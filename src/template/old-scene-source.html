@@ -1,0 +1,221 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>El Pueblo Sin Nombre</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one continuous scroll story. Sticky chapter bar, full-bleed cover, bands per chapter. Dark single look: night over a village the Rupture of Neth is erasing. */
+:root{--bg:#0c0a12;--bg2:#131020;--bg3:#1a1628;--ink:#ece7f5;--mu:#a59fba;--line:#2c2740;--vio:#a78bfa;--vio2:#7c5cd6;--gold:#d9b86c;--bad:#ec8aa0;--ok:#86d1ae;--disp:Cinzel,Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--ui:Inter,system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:auto;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 var(--ui)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.in{max-width:1000px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--disp);font-weight:700;margin:0;letter-spacing:.04em;text-wrap:balance}
+p{margin:0 0 10px}.mu{color:var(--mu)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(12,10,18,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{display:flex;align-items:center;gap:10px;padding-block:8px}
+#nav{display:flex;gap:2px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none}
+#nav a{white-space:nowrap;text-decoration:none;color:var(--mu);padding:7px 12px;border-radius:999px;font-size:14px}
+#nav a.on{color:var(--ink);background:var(--bg3)}
+.seg{display:inline-flex;flex:none;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--bg2)}
+.seg::before{content:"Dificultad";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:0 8px 0 10px}
+.seg button{border:0;background:none;color:var(--mu);width:30px;height:30px;border-radius:999px;font:600 13px var(--ui);cursor:pointer}
+.seg button.on{background:var(--vio);color:var(--bg)}
+.seg button:focus-visible,#nav a:focus-visible,.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:560px){.seg::before{display:none}}
+.prog{height:2px;width:0;background:linear-gradient(90deg,var(--vio),var(--gold))}
+.cover{text-align:center;padding-block:44px 28px;background:radial-gradient(70% 60% at 50% 0,rgba(124,92,214,.32),transparent 75%)}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+.cover h1{font-size:clamp(34px,9vw,68px);line-height:1.08;margin-bottom:10px}
+.cover .sub{font:italic 500 clamp(18px,3.4vw,24px)/1.4 var(--serif);color:var(--mu);margin:0 auto 26px;max-width:36ch}
+.scene{display:block;width:100%;border-radius:20px;border:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0 6px}
+.chips span{border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:5px 14px;font-size:13px;color:var(--mu)}
+.chips b{color:var(--ink);font-weight:600}
+.hint{font-size:13px;color:var(--mu);margin:8px 0 0}
+.ch{padding-block:76px 12px;border-top:1px solid var(--line)}
+.ch.alt{background:var(--bg2)}
+.hd{margin-bottom:30px}
+.hd h2{font-size:clamp(28px,6vw,46px);line-height:1.12}
+.hd p{font:500 clamp(18px,2.6vw,21px)/1.5 var(--serif);color:var(--mu);margin:12px 0 0;max-width:56ch}
+.sec{margin-top:44px}
+.sec>h3{font-size:19px;margin-bottom:14px;color:var(--gold)}
+.story p{font:500 clamp(19px,2.6vw,22px)/1.65 var(--serif);max-width:58ch;margin-bottom:16px}
+.qs{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:22px}
+.qs div{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--bg3);font:italic 500 18px/1.4 var(--serif)}
+.qs small{display:block;font:600 11px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.card{background:var(--bg3);border:1px solid var(--line);border-radius:16px;padding:18px 20px;min-width:0}
+.ch.alt .card{background:var(--bg)}
+.g{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:1px 10px;margin-bottom:10px}
+h3{font-size:16px}.card h3{margin-bottom:6px}
+.it{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.it:last-child{border-bottom:0}
+.n{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:grid;place-items:center;font:700 15px var(--disp)}
+.it.a .n{background:var(--gold);color:var(--bg)}
+.it b{display:block;font-weight:600}.it span{color:var(--mu);font-size:14px}
+ol.st{list-style:none;margin:0 0 12px;padding:0;counter-reset:s}
+ol.st li{counter-increment:s;display:flex;gap:12px;margin-bottom:12px}
+ol.st li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:8px;background:var(--bg);display:grid;place-items:center;font:700 13px var(--disp);color:var(--gold)}
+.tools{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.btn{border:1px solid var(--vio);background:none;color:var(--vio);border-radius:999px;padding:9px 18px;font:600 14px var(--ui);cursor:pointer}
+.btn:hover{background:var(--vio);color:var(--bg)}
+.out{display:flex;gap:14px;align-items:center;margin-top:14px;min-height:60px}
+.die{flex:none;width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font:700 21px var(--disp);border:2px solid var(--gold);color:var(--gold)}
+.die.bad{border-color:var(--bad);color:var(--bad)}.die.ok{border-color:var(--ok);color:var(--ok)}
+.pips{display:flex;gap:8px;margin:6px 0 12px}
+.pips i{flex:1;height:14px;border-radius:7px;background:var(--bg)}
+.pips i.on{background:linear-gradient(90deg,var(--vio),var(--gold))}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.bar{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:14px;color:var(--mu)}
+.bar .t{flex:1;height:10px;border-radius:5px;background:var(--bg);overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--line)}
+.bar.on{color:var(--ink);font-weight:600}.bar.on .t i{background:linear-gradient(90deg,var(--vio),var(--gold))}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}
+.ico{display:block;width:100%;max-width:150px;margin:0 0 12px;border-radius:14px}
+.hero2{display:grid;gap:28px;grid-template-columns:minmax(0,260px) minmax(0,1fr);align-items:start}
+@media (max-width:720px){.hero2{grid-template-columns:1fr}}
+.por{display:block;width:100%;max-width:260px;border-radius:18px;border:1px solid var(--line)}
+.st2{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:10px;margin:14px 0}
+.st2 div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.st2 b{display:block;font:700 26px var(--disp);color:var(--gold)}.st2 small{color:var(--mu);font-size:12px}
+.big{font:700 34px var(--disp);color:var(--gold);margin:0}
+.tlv{list-style:none;margin:0;padding:0 0 0 22px;border-left:1px solid var(--line)}
+.mo{position:relative;padding:0 0 26px 22px}
+.mo::before{content:"";position:absolute;left:-28px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--vio);box-shadow:0 0 0 4px var(--bg)}
+.ch.alt .mo::before{box-shadow:0 0 0 4px var(--bg2)}
+.mo h3{font-size:14px;color:var(--gold);margin-bottom:4px}
+.mo p{font:italic 500 clamp(18px,2.4vw,20px)/1.55 var(--serif);max-width:56ch;margin:0}
+.foot{padding-block:48px 64px;border-top:1px solid var(--line);color:var(--mu);font-size:13px}
+.foot p{max-width:70ch}
+</style>
+
+<div class="top"><div class="in"><nav id="nav" aria-label="Capítulos"></nav><div class="seg" role="group" aria-label="Dificultad"></div></div><div class="prog" id="prog"></div></div>
+
+<header class="cover"><div class="in">
+<p class="eyebrow">Age of Fantasy: Quest · Érebo</p>
+<h1>El Pueblo Sin Nombre</h1>
+<p class="sub">Misión 1: el pueblo vacío</p>
+<svg class='scene' viewBox='0 0 800 300' role='img' aria-label='Un pueblo vacío bajo una luna borrada, con el Heraldo del Umbral junto al pozo'><defs><linearGradient id='sk' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#241a3d'/><stop offset='1' stop-color='#0d0b14'/></linearGradient><radialGradient id='gl'><stop offset='0' stop-color='#8f6fe0' stop-opacity='.55'/><stop offset='1' stop-color='#8f6fe0' stop-opacity='0'/></radialGradient><g id='her'><path d='M-24 92C-34 130-40 190-56 252l12-14 10 14 14-18 12 18 12-16 12 16 12-14 10 14L56 252C40 190 34 130 24 92z' fill='#7c7889'/><path d='M-4 96C-8 150-14 200-18 236H-2C2 200 6 150 6 98z' fill='#5f5b6d'/><path d='M-42 108L-16 84H16l26 24-16 12h-52z' fill='#403c4f' stroke='#2a2536'/><path d='M-22 92C-24 40-8 22 0 22S24 40 22 92C12 82-12 82-22 92z' fill='#4b475a'/><ellipse cy='56' rx='13' ry='20' fill='#08060d'/><ellipse cy='58' rx='8' ry='14' fill='#cfcbe0' opacity='.3'/><circle cy='132' r='9' fill='#14111e' stroke='#b79cf0' stroke-width='1.5'/><path d='M0 124l-2 6 4 3-2 8' stroke='#e6dcff' fill='none'/><path d='M24 102C44 112 52 138 58 160M-24 102C-46 106-58 118-62 132' stroke='#5f5b6d' stroke-width='10' fill='none' stroke-linecap='round'/><path d='M58 12V252' stroke='#2a2536' stroke-width='4'/><path d='M58 14C100 2 136 30 144 80C122 48 92 36 58 40z' fill='#0b0912' stroke='#b79cf0' stroke-width='2'/><g fill='#0b0912' stroke='#b79cf0' stroke-width='1.5'><circle cx='-66' cy='108' r='8'/><circle cx='-54' cy='84' r='8'/><circle cx='-80' cy='86' r='7'/></g></g></defs><rect width='800' height='300' fill='url(#sk)'/><circle cx='610' cy='78' r='70' fill='url(#gl)'/><circle cx='610' cy='78' r='36' fill='#0d0b14' stroke='#8b78c4' stroke-width='2'/><circle cx='610' cy='78' r='46' fill='none' stroke='#8b78c4' stroke-width='.8' stroke-dasharray='2 5'/><g fill='#cfc6ee' opacity='.7'><circle cx='90' cy='40' r='1.4'/><circle cx='180' cy='70' r='1'/><circle cx='330' cy='30' r='1.2'/><circle cx='450' cy='60' r='1'/><circle cx='740' cy='40' r='1.3'/><circle cx='60' cy='110' r='1'/></g><path d='M0 232V192l34-26 34 26v40zM90 232v-50l30-22 30 22v50zM640 232v-44l32-24 32 24v44zM720 232v-34l30-20 30 20v34z' fill='#171325'/><path d='M20 262V200l46-34 46 34v62zM690 262V204l44-32 44 32v58z' fill='#0e0b17'/><g fill='#e0b25a' opacity='.55'><rect x='58' y='208' width='10' height='14'/><rect x='722' y='212' width='10' height='14'/></g><path d='M0 252C200 238 600 238 800 252V300H0z' fill='#0a0810'/><ellipse cx='400' cy='264' rx='420' ry='26' fill='#6c5aa8' opacity='.16'/><g transform='translate(250 0)'><path d='M-46 252V224h92v28z' fill='#2a2536'/><ellipse cy='224' rx='46' ry='12' fill='#3b3550'/><ellipse cy='224' rx='33' ry='8' fill='#05040a'/><path d='M0 216C-12 192 12 172 0 142M10 218C22 198-2 182 10 160' fill='none' stroke='#a78bfa' stroke-width='2' opacity='.65'/></g><ellipse cx='530' cy='254' rx='92' ry='12' fill='none' stroke='#8f6fe0' opacity='.4'/><use href='#her' transform='translate(530 0)'/><g fill='#a39fb5' opacity='.5'><circle cx='440' cy='196' r='1.5'/><circle cx='470' cy='170' r='1.2'/><circle cx='610' cy='200' r='1.5'/><circle cx='640' cy='150' r='1.2'/><circle cx='330' cy='190' r='1.4'/><circle cx='380' cy='150' r='1'/></g></svg>
+<div class="chips"><span><b>Misión 1</b> de 6</span><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48&quot;</b></span><span>Jefe <b>opcional</b></span></div>
+<p class="hint" id="hint"></p>
+</div></header>
+
+<section class="ch" id="historia"><div class="in">
+<div class="hd"><p class="eyebrow">Prólogo</p><h2>El contrato del Filo</h2><p>Léelo en voz alta antes de colocar las miniaturas.</p></div>
+<div class="story">
+<p>Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en las de Neth simplemente se borra lo que había.</p>
+<p>Vosotros vivís en Varek’s Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.</p>
+<p>No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Una patrulla fue a mirar y volvió sin saber a qué había ido. Todos los registros de aquel pueblo están en blanco, y no es un error.</p>
+<p>La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.</p>
+<p>Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma.</p>
+</div>
+<div class="qs"><div><small>Antes de bajar</small>¿Por qué aceptaste este encargo y no otro?</div><div><small>Antes de bajar</small>¿Qué es lo que más temes olvidar?</div><div><small>Antes de bajar</small>¿Quién se quedó en Varek’s Hold para recordarte si no vuelves?</div></div>
+<div class="sec"><h3>La campaña</h3><div id="tl"></div></div>
+</div></section>
+
+<section class="ch alt" id="mision"><div class="in">
+<div class="hd"><p class="eyebrow">Misión 1</p><h2>El pueblo vacío</h2><p>Busca por el pueblo, abre lo que encuentres y sal antes de que el Vacío os olvide.</p></div>
+<div class="sec" style="margin-top:0"><h3>Objetivos</h3><div class="g" id="obj"></div></div>
+<div class="sec"><h3>Preparación</h3><div class="card"><ol class="st" id="st"></ol><p class="mu" style="margin:0">Mesa de 48&quot;x48&quot; con más de 20 piezas de terreno.</p></div></div>
+<div class="sec"><h3>Herramientas de mesa</h3><div class="tools">
+<div class="card"><h3>Cofres</h3><p class="mu">Cada ficha de búsqueda es un cofre. Un héroe lo abre con la acción Descubrir. La primera tirada da el contenido y la segunda, el objeto concreto.</p><button class="btn" data-r="CH">Abrir un cofre</button><div class="out" id="CH"></div></div>
+<div class="card"><h3>Eventos de Neth</h3><p class="mu">Tira 2d6 al empezar la ronda 1 y cada vez que entren refuerzos: el primer dado son las decenas y el segundo las unidades.</p><button class="btn" data-r="EV">Tirar 2d6</button><div class="out" id="EV"></div></div>
+<div class="card"><h3>Alertness</h3><div class="pips" id="pips"></div><p id="alm" class="mu"></p><div class="row" id="alb"></div></div>
+</div></div>
+<div class="sec"><h3>Narración</h3><div id="nar"></div></div>
+</div></section>
+
+<section class="ch" id="enemigos"><div class="in">
+<div class="hd"><p class="eyebrow">Enemigos</p><h2>Lo que el pueblo ha olvidado</h2><p>Tres tipos de criaturas, que llegan por oleadas.</p></div>
+<div class="g" id="mon"></div>
+<div class="sec"><h3>Tamaño de oleada</h3><div class="card"><p class="mu">Porcentaje de los puntos totales de los héroes.</p><div id="bars"></div></div></div>
+<div class="sec"><h3>Oleadas y sorpresas</h3><div class="card tw"><table id="wv"></table></div></div>
+</div></section>
+
+<section class="ch alt" id="heraldo"><div class="in">
+<div class="hd"><p class="eyebrow">Jefe · estadísticas de la casa</p><h2>Heraldo del Umbral</h2><p>Una figura alta, de túnica sin color y rostro borrado. Llega con la pelea de jefe, en una oleada de doble valor.</p></div>
+<div class="hero2">
+<svg class='por' viewBox='-100 0 250 262' role='img' aria-label='Heraldo del Umbral'><rect x='-100' width='250' height='262' fill='#0f0c18'/><circle cx='20' cy='120' r='100' fill='#8f6fe0' opacity='.14'/><use href='#her'/></svg>
+<div><div class="st2" id="hs"></div>
+<div class="card" style="margin-bottom:14px"><h3>Hoz del vacío</h3><p class="mu" style="margin:0">Cuerpo a cuerpo · 4 ataques · AP(2) · <i>Rending</i></p></div>
+<div class="card tw" style="margin-bottom:14px"><h3>Hechizos</h3><p class="mu">La IA lanza uno al azar y tiene éxito con 4+.</p><table><tr><td><b>Olvido</b> · 1</td><td>Un héroe a 12&quot; pasa Wil o pierde su siguiente acción de habilidad.</td></tr>
+<tr><td><b>Borrado</b> · 2</td><td>Un héroe a 12&quot; recibe 3 impactos con AP(1).</td></tr>
+<tr><td><b>Silencio</b> · 3</td><td>Todos los héroes a 9&quot; pasan Wil o pierden D3 de poder.</td></tr></table></div>
+<div class="card"><h3>Punto débil</h3><p class="mu">Los ataques del héroe que lleve el diario del olvidado contra él ganan AP(1).</p><p class="mu" style="margin:0"><i>Villain</i>, <i>Stealth</i> y, con resistencia 9 o más, no puede quedar Aturdido: cada moral fallida le causa D3 heridas.</p></div>
+</div></div>
+</div></section>
+
+<section class="ch" id="recompensas"><div class="in">
+<div class="hd"><p class="eyebrow">Recompensas por héroe</p><h2>Lo que os lleváis</h2><p>El XP y el oro dependen del nivel de dificultad elegido arriba.</p></div>
+<div class="g" id="xp"></div>
+<p class="mu" style="margin-top:16px">Un héroe sube a nivel 2 con 3 XP y a nivel 3 con 6 XP. Al terminar recupera 3 heridas y 3 de poder.</p>
+</div></section>
+
+<footer class="foot"><div class="in"><p>Campaña fan para Age of Fantasy: Quest, de One Page Rules, ambientada en Érebo. Las reglas de oleadas, objetivos, XP y oro siguen el Campaign Builder v2.1.0. Los eventos de Neth, las sorpresas por oleada, los efectos de los objetos y las estadísticas del Heraldo son reglas de la casa, y no son contenido oficial.</p></div></footer>
+
+<script>
+
+const q=s=>document.querySelector(s),R=n=>1+Math.floor(Math.random()*n);
+let D=3,A=0,F="";
+const DN=["Principiante","Intermedio","Experto","Legendario"],PC=[25,50,100,200],TG=[7,9,10,12];
+const V=[["historia","Historia"],["mision","Misión"],["enemigos","Enemigos"],["heraldo","Heraldo"],["recompensas","Recompensas"]];
+const camp=[["El pueblo vacío","Ruptura de Neth · Borrados y Culto del Umbral",1],["El camino de las raíces","Ruptura de Eryn · terreno peligroso y veneno"],["La aldea sitiada","Asedio del Culto · los Resonantes como aliados"],["La emboscada","Concordancia de Orum · una tercera facción"],["La cripta primordial","Deudores de Vael · ruina de un Primordial"],["El corazón del borrado","Hermano Ocaso · villano final"]];
+const obj=[["Principal","Búsqueda por zonas","Tres marcadores en cuadrantes distintos. Superar Wil y sacar 5+, o ser el último. El último guarda el diario del olvidado."],["Secundario","Tira 1d6 al cumplir el principal","Se prepara al final de esa ronda y sube la Alertness en 3."],["Fin","Todos a una esquina","Con el principal cumplido, a 6&quot; de la misma esquina al acabar una ronda."],["Jefe · opcional","El Heraldo del Umbral","Tras ambos objetivos llega una oleada de doble valor. Destruirla da el doble de XP."]];
+const st=[["Objetivos","Prepara el principal; el secundario llega después."],["Fichas de búsqueda","D3 + héroes, por cuadrantes y esquinas. Cada una es un cofre."],["Enemigos","Los centinelas empiezan en el centro de cuadrantes al azar."],["Héroes","A 6&quot; de una esquina al azar."],["Desafíos","Empieza de noche (-1 a disparar, visión 12&quot;), luego alba y día."]];
+const HZ=[["Afligido","Al activarse debe superar Fuerza para quitárselo; si falla, recibe 1 herida."],["Enfermo","Al activarse debe superar Voluntad para quitárselo; recibe tantas heridas como poder gaste."],["Afectado","Puede gastar D3 de poder para quitárselo; mientras tanto tiene -1 a todas las tiradas de característica."],["Debilitado","Al activarse debe superar Destreza para quitárselo; mientras tanto mueve la mitad."],["Ninguno","El aire huele a ceniza, y nada más."]];
+const EL=[["Elixir heroico","El héroe tiene +1 a impactar hasta el final de la ronda."],["Elixir de conquista","El héroe tiene +1 a Fuerza, Destreza y Voluntad hasta el final de la ronda."],["Elixir de poder","El héroe restaura D3+3 de poder."]];
+const BM=[["Bomba de ruido","Se lanza a 12&quot;. Las unidades enemigas a 3&quot; del punto ignoran a los héroes en su siguiente activación y corren hacia él."],["Bomba de grasa","Se lanza a 12&quot;. Un círculo de 3&quot; cuenta como terreno difícil hasta el final de la siguiente ronda."],["Bomba aturdidora","Se lanza a 12&quot;. Una unidad enemiga a 3&quot; del punto queda Aturdida (si no tiene resistencia 9+)."]];
+const PT=[["Poción de curación","Un héroe a 1&quot; se quita todos sus estados."],["Poción de teletransporte","El héroe se coloca a 6&quot; o menos de la esquina que elija."],["Poción de salud","Un héroe a 1&quot; restaura 3 heridas."]];
+const sub=(a,s,m)=>a[m[s-1]];
+function chest(){
+const n=R(6);
+if(n<=2){const s=R(6),e=HZ[s<=4?s-1:4];return[n,"Peligro · "+e[0],"Tirada "+s+": "+(s>4?e[1]:"El cofre desaparece y el héroe a 1&quot; sufre el estado. "+e[1]),"bad"]}
+if(n===3){const s=R(6),e=EL[s<=3?0:s<=5?1:2];return[n,"Bolsa de elixires · "+e[0],"Tirada "+s+": "+e[1],"ok"]}
+if(n===4){const s=R(6),e=BM[s<=3?0:s<=5?1:2];return[n,"Bolsa de bombas · "+e[0],"Tirada "+s+": "+e[1],"ok"]}
+if(n===5){const s=R(6),e=PT[s<=3?0:s<=5?1:2];return[n,"Caja de pociones · "+e[0],"Tirada "+s+": "+e[1],"ok"]}
+return[n,"Tesoro maldito",`Los héroes obtienen ${5*D} de oro, pero surge un Borrado débil junto a quien lo abrió.`,""]}
+const H="Un héroe al azar ",S=" hasta el siguiente evento.";
+const EV=[["Golpe del vacío",H+"queda Aturdido.","bad"],["Suelo de ceniza",H+"queda Afectado.","bad"],["Maldición del olvido",H+"tiene -1 a Fuerza"+S,"bad"],["Derrumbe",H+"sufre D3 heridas.","bad"],["Zarzas secas",H+"queda Debilitado.","bad"],["Memoria falsa",H+"tiene -1 a Voluntad"+S,"bad"],["Trampa del Umbral",H+"sufre D3 impactos.","bad"],["Susurros sin voz",H+"pierde D3 de poder.","bad"],["Viento maldito",H+"queda Afligido.","bad"],["Enjambre de sombras",H+"queda Aturdido.","bad"],["Hilos de olvido",H+"tiene -1 a Destreza"+S,"bad"],["Moho gris",H+"queda Enfermo.","bad"],
+["Tierra que se borra","Un cuadrante al azar cuenta como terreno peligroso"+S,""],["Erosión maldita","Todos tienen -1 a Defensa"+S,""],["Bruma que aturde","Todos tienen -1 a impactar"+S,""],["Lluvia de ceniza","Un cuadrante al azar cuenta como terreno difícil"+S,""],["Niebla espesa","Todos tienen -6&quot; de alcance al disparar"+S,""],["Temblor del pozo","Todos tienen -1 a los chequeos de moral"+S,""],
+["Charco de recuerdos",H+"tiene +1 a moral"+S,"ok"],["Perro fiel",H+"tiene +1 a Destreza"+S,"ok"],["Mapa olvidado","Coloca D3 fichas de búsqueda, cada una a 6&quot; del centro de cuadrantes distintos.","ok"],["Cuervo vigía",H+"tiene +6&quot; de alcance al disparar"+S,"ok"],["Eco de un aldeano",H+"restaura D3 de poder.","ok"],["Sumidero","Una unidad enemiga al azar queda Aturdida.","ok"],
+["Niebla de lucidez",H+"tiene +1 a Voluntad"+S,"ok"],["Bayas veloces",H+"se mueve +2&quot; al Avanzar y +4&quot; al Correr o Cargar"+S,"ok"],["Arma encantada",H+"tiene +1 a impactar en cuerpo a cuerpo"+S,"ok"],["Espíritu de apoyo",H+"tiene +1 a Fuerza"+S,"ok"],["Vientos encantados",H+"tiene +1 a impactar al disparar"+S,"ok"],["Espíritu guardián",H+"tiene +1 a Defensa"+S,"ok"],
+["Bolsa de elixires",H+"recibe un Elixir de poder.","ok"],["Visión profética","Revela el contenido de D3 fichas de búsqueda sin revelar.","ok"],["Bolsa de bombas",H+"recibe una Bomba aturdidora.","ok"],["Montón de oro",H+"recibe 15 de oro.","ok"],["Caja de pociones",H+"recibe una Poción de salud.","ok"],["Claridad súbita",H+"recibe D3 de XP.","ok"]];
+const wv=[["Centinelas","Borrados","El evento de Neth de la ronda 1"],["Refuerzos 1","Animales deformados y una unidad con <i>Ambush</i>","Entra D3 rondas después junto a un Objetivo de IA"],["Refuerzos 2","Cultistas con un <i>Caster</i> y escolta","Mientras no esté Aturdido, los Borrados a 6&quot; impactan +1 en melé"],["Refuerzos 3+","Alterna los refuerzos 1 y 2","Un evento de Neth cada vez"],["Jefe","Heraldo, Borrados y cultistas","Doble valor, sin más refuerzos"]];
+const mon=[["Borrados","Figuras grises que recuerdan a medias cómo caminar. Rostro liso, ropa sin color y miembros que se deshacen en ceniza."],["Cultistas del Umbral","Túnicas negras con el signo del Umbral en las mangas. Cantan una sola nota y brilla violeta en sus palmas."],["Animales deformados","Perros del pueblo con la carne torcida y los ojos blancos. Rápidos, mal afinados y sin miedo."]];
+const nar=[["Antes de empezar","El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro."],["Ronda 1","Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar."],["Ronda 2","El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien."],["Entran los refuerzos 1","Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos."],["Entran los refuerzos 2","Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila."],["Se cumple el objetivo principal","Al retirar el último rastro, vuestras manos tocan un diario cuya letra os suena, aunque ninguno recuerda a su dueño. Es hora de correr hacia la esquina más cercana."],["Se activa el objetivo secundario","El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros."],["Llega el Heraldo","Una figura alta cruza la plaza sin prisa. Solo dice vuestros nombres, y por un instante dudáis de que sean los vuestros."]];
+q("#nav").innerHTML=V.map(v=>`<a href="#${v[0]}">${v[1]}</a>`).join("");
+document.querySelectorAll(".seg").forEach(e=>e.innerHTML=[1,2,3,4].map(i=>`<button data-d="${i}" aria-label="Dificultad ${i}">${i}</button>`).join(""));
+q("#tl").innerHTML=camp.map((c,i)=>`<div class="it${c[2]?" a":""}"><div class="n">${i+1}</div><div><b>${c[0]}</b><span>${c[1]}</span></div></div>`).join("");
+q("#obj").innerHTML=obj.map(o=>`<div class="card"><span class="tag">${o[0]}</span><h3>${o[1]}</h3><p class="mu" style="margin:0">${o[2]}</p></div>`).join("");
+q("#st").innerHTML=st.map(s=>`<li><div><b>${s[0]}</b><br><span class="mu">${s[1]}</span></div></li>`).join("");
+q("#wv").innerHTML=wv.map(w=>`<tr><td><b>${w[0]}</b></td><td>${w[1]}</td><td class="mu">${w[2]}</td></tr>`).join("");
+const ICO=[`<svg class='ico' viewBox='0 0 120 120' role='img' aria-label='Borrado'><rect width='120' height='120' fill='#151220'/><circle cx='60' cy='60' r='50' fill='#8f6fe0' opacity='.1'/><path d='M42 104C40 80 38 62 46 48c4-8 14-8 18 0 8 14 8 32 6 56z' fill='#8b8798'/><circle cx='54' cy='36' r='13' fill='#a9a5b8'/><ellipse cx='54' cy='38' rx='7' ry='9' fill='#d7d3e4' opacity='.35'/><path d='M44 56C34 72 32 84 30 96M66 56C76 72 78 84 80 98' stroke='#8b8798' stroke-width='5' fill='none' stroke-linecap='round' stroke-dasharray='14 5 3 5'/><g fill='#a9a5b8' opacity='.6'><circle cx='30' cy='104' r='2'/><circle cx='82' cy='106' r='2'/><circle cx='56' cy='112' r='1.6'/><circle cx='68' cy='110' r='1.4'/></g></svg>`,`<svg class='ico' viewBox='0 0 120 120' role='img' aria-label='Cultista del Umbral'><rect width='120' height='120' fill='#151220'/><circle cx='60' cy='60' r='50' fill='#8f6fe0' opacity='.1'/><path d='M60 22c-16 0-22 18-22 30L30 108h60L82 52C82 40 76 22 60 22z' fill='#262234'/><ellipse cx='60' cy='48' rx='11' ry='14' fill='#08060d'/><ellipse cx='60' cy='52' rx='6' ry='8' fill='#c9c5d6' opacity='.35'/><path d='M42 70L26 46M78 70l16-24' stroke='#262234' stroke-width='9' stroke-linecap='round'/><circle cx='25' cy='42' r='7' fill='#a78bfa' opacity='.65'/><circle cx='95' cy='42' r='7' fill='#a78bfa' opacity='.65'/><path d='M44 88h32' stroke='#6b6580' stroke-width='2'/><circle cx='60' cy='72' r='4' fill='none' stroke='#b79cf0'/></svg>`,`<svg class='ico' viewBox='0 0 120 120' role='img' aria-label='Animal deformado'><rect width='120' height='120' fill='#151220'/><circle cx='60' cy='60' r='50' fill='#8f6fe0' opacity='.1'/><ellipse cx='56' cy='66' rx='28' ry='15' fill='#6f6b7e'/><path d='M80 56l20-8 8 10-6 10H84z' fill='#85819a'/><path d='M92 66l14-2-4 6z' fill='#e9e5f2'/><circle cx='94' cy='54' r='3' fill='#fff'/><path d='M38 78l-6 22M52 80l-2 22M70 80l8 18M80 74l10 22' stroke='#6f6b7e' stroke-width='5' stroke-linecap='round' fill='none'/><path d='M44 62q4 4 0 8M52 60q4 4 0 10M60 60q4 4 0 10' stroke='#3b3748' fill='none'/><path d='M34 54l4 6 4-8 5 8 5-8' stroke='#8b8798' fill='none'/><path d='M28 62C18 56 14 48 16 42' stroke='#6f6b7e' stroke-width='4' fill='none'/></svg>`];q("#mon").innerHTML=mon.map((m,i)=>`<div class="card">${ICO[i]}<h3>${m[0]}</h3><p class="mu" style="margin:0">${m[1]}</p></div>`).join("");
+q("#nar").innerHTML=`<ol class="tlv">`+nar.map(n=>`<li class="mo"><h3>${n[0]}</h3><p>${n[1]}</p></li>`).join("")+`</ol>`;
+function draw(){
+document.querySelectorAll(".seg button").forEach(b=>b.classList.toggle("on",+b.dataset.d===D));
+q("#hint").textContent=`Dificultad ${D} · ${DN[D-1]} · oleadas al ${PC[D-1]}%`;
+q("#bars").innerHTML=PC.map((p,i)=>`<div class="bar${i+1===D?" on":""}"><span style="width:92px">Nivel ${i+1}</span><div class="t"><i style="width:${p/2}%"></i></div><span>${p}%</span></div>`).join("");
+q("#hs").innerHTML=[["3+","Calidad"],["3+","Defensa"],[TG[D-1],"Resistencia"],["3","Miedo"],["3","Invocador"]].map(s=>`<div><b>${s[0]}</b><small>${s[1]}</small></div>`).join("");
+q("#xp").innerHTML=[["Principal",2*D+" XP"],["Secundario",D+" XP"],["Jefe destruido",2*D+" XP"],["Máximo",5*D+" XP"],["Paga de riesgo",5*D+" de oro"]].map(x=>`<div class="card"><p class="mu" style="margin:0">${x[0]}</p><p class="big">${x[1]}</p></div>`).join("");
+}
+function drawAl(){
+q("#pips").innerHTML=[0,1,2,3,4,5].map(i=>`<i class="${i<A?"on":""}"></i>`).join("");
+q("#alm").textContent=F||`Alertness ${A} de 6. Al llegar a 6 entran refuerzos.`;
+q("#alb").innerHTML=[["+1 fin de ronda",1],["+2 sin enemigos",2],["+3 secundario",3],["Reiniciar",0]].map(b=>`<button class="btn" data-a="${b[1]}">${b[0]}</button>`).join("");
+}
+document.addEventListener("click",e=>{
+const t=e.target;
+if(t.dataset.d){D=+t.dataset.d;try{sessionStorage.setItem("d",D)}catch(x){}draw()}
+if(t.dataset.a!==undefined){const n=+t.dataset.a;F="";if(!n){A=0}else{A+=n;if(A>=6){A=0;F="¡Entran refuerzos! Despliega la siguiente oleada y tira un evento de Neth."}}drawAl()}
+if(t.dataset.r==="CH"){const c=chest();q("#CH").innerHTML=`<div class="die ${c[3]}">${c[0]}</div><div><b>${c[1]}</b><p class="mu" style="margin:0">${c[2]}</p></div>`}
+if(t.dataset.r==="EV"){const ev=t.dataset.r==="EV",a=R(6),b=R(6),n=ev?a*10+b:R(6),L=EV,e2=L[(a-1)*6+b-1],x=typeof e2[1]==="function"?e2[1]():e2[1];q("#"+t.dataset.r).innerHTML=`<div class="die ${e2[2]}">${n}</div><div><b>${e2[0]}</b><p class="mu" style="margin:0">${x}</p></div>`}
+});
+try{const s=+sessionStorage.getItem("d");if(s>=1&&s<=4)D=s}catch(x){}
+const secs=V.map(v=>q("#"+v[0])),links=[...document.querySelectorAll("#nav a")];
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});secs.forEach(s=>io.observe(s))}
+const pg=q("#prog");function sp(){const h=document.documentElement;pg.style.width=Math.min(100,100*scrollY/Math.max(1,h.scrollHeight-innerHeight))+"%"}addEventListener("scroll",sp,{passive:true});sp();
+draw();drawAl();
+
+</script>

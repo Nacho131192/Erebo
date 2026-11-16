@@ -6,13 +6,7 @@ Campaña fan para **Age of Fantasy: Quest** (One Page Rules), ambientada en Ére
 - `docs/mision-1.md`: texto completo de la misión 1 (fuente de verdad).
 - `CLAUDE.md`: contexto completo del proyecto (reglas oficiales usadas, reglas de la casa, diseño, pendientes).
 
-## Pendiente de subir
-
-Estos archivos se mencionan en `CLAUDE.md` pero aún no están en el repositorio:
-
-- `src/template/final-tpl.html`, `data.js`, `old-scene-source.html`, `build.py` (generador de la página)
-
-La página de `src/` es autónoma y lleva todos los datos dentro, así que mientras tanto se puede editar directamente.
+- `src/template/`: generador de la página (`final-tpl.html`, `data.js`, `old-scene-source.html`, `build.py`). Para regenerarla: `python3 src/template/build.py`.
 
 ---
 
