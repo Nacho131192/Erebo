@@ -18,9 +18,9 @@ Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa emp
 
 ## Objetivos y recompensas
 
-- **Objetivo principal: búsqueda por zonas.** Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. Con 5+, o si era el último, el objetivo se cumple. El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el **diario del olvidado**.
-- **Objetivo secundario:** se prepara solo cuando se cumple el principal, al final de esa ronda, y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.
-- **Fin de la misión:** con el principal cumplido, todos los héroes deben estar a 6" o menos de la misma esquina al final de una ronda. El secundario no es obligatorio.
+- **Objetivo principal: búsqueda por zonas.** Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. El objetivo se cumple al retirar los tres marcadores (regla de la casa: no se usa la tirada de 5+). El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el **diario del olvidado**.
+- **Objetivo secundario:** se prepara cuando se cumple el principal y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.
+- **Fin de la misión:** con el principal cumplido, todos los héroes deben estar a 6" o menos de la misma esquina y sin enemigos alrededor al final de una ronda (regla de la casa: sin enemigos alrededor). El secundario no es obligatorio.
 - **Pelea de jefe (opcional):** tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.
 - **Al terminar:** los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.
 - **Derrota:** si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo.

@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>El Pueblo Sin Nombre</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -136,7 +136,62 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .ph h2{margin:0;font:700 15px var(--disp);letter-spacing:.18em;color:var(--pgold)}
 .pc{background:var(--pcard);border:1px solid var(--pline);border-radius:16px;padding:16px}
 .pc h3{margin:0 0 10px;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--pmu);display:flex;justify-content:space-between;align-items:center;gap:8px}
-.pc h3 em{font-style:normal;color:var(--pgold);letter-spacing:.1em}
+.pc h3 em{font-style:normal;color:var(--pmu);letter-spacing:.1em;text-align:right}
+.startw{display:flex;justify-content:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--pline)}
+.pb.big{text-transform:uppercase;letter-spacing:.16em;padding:12px 28px;font:700 13px var(--ui);border-radius:12px;box-shadow:0 6px 18px rgba(167,139,250,.25)}
+.play{flex:none;width:32px;height:32px;padding:0;border-radius:50%;border:1px solid var(--pgold);background:radial-gradient(circle at 35% 30%,#2a2150,#15121f);color:var(--pgold);display:grid;place-items:center}
+.play:hover{background:#2a2150}.play svg{width:14px;height:14px;margin-left:2px}
+.mkr{padding:9px 10px;margin:0 0 6px;border:1px solid var(--pline);border-radius:11px;background:var(--pcard2)}
+.mkr b{font-weight:600}.mkr.on{border-color:#5b4a2a;background:linear-gradient(135deg,#2a2112,#1c1830)}.mkr.on b{color:var(--pgold)}
+.res.dim{opacity:.55}
+.pb:disabled{opacity:.45;cursor:not-allowed;background:none}
+.exit{display:flex;gap:12px;align-items:center;width:100%;text-align:left;margin-top:16px;padding:12px 14px;border-radius:13px;border:1px solid #5b4a2a;background:linear-gradient(135deg,#2a2112,#1c1830);color:var(--pink)}
+.exit svg{flex:none;width:32px;height:32px;color:var(--pgold)}
+.exit b{display:block;font-size:13.5px;color:var(--pgold)}.exit small{display:block;margin-top:2px;color:var(--pmu);font-size:12px;line-height:1.4}
+.exit:hover:not(:disabled){border-color:var(--pgold)}
+.exit.on{background:linear-gradient(135deg,#e2c47c,#a8843a);border-color:var(--pgold)}.exit.on b,.exit.on small,.exit.on svg{color:#1a1208}
+.exit:disabled{opacity:.45;cursor:not-allowed}
+.seals button:disabled{cursor:not-allowed}.seals button:disabled:not(.on){opacity:.35}
+.stp button:disabled{opacity:.3;cursor:not-allowed}
+.lockn{display:flex;gap:10px;align-items:center;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--pline);font-size:12.5px;line-height:1.45;color:var(--pmu)}
+.lockn svg{flex:none;width:18px;height:18px;color:var(--pgold)}
+.dblk+.dblk{margin-top:18px;padding-top:16px;border-top:1px solid var(--pline)}
+.dctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px;margin-top:12px}
+.dctl.man{margin-top:10px;justify-content:center}
+.dctl.ctr{justify-content:center}.dctl.ctr .pb{min-width:132px}
+.cwrap{display:flex;justify-content:center}
+.rnum{display:flex;align-items:center;gap:10px}
+.rnum small{font:600 10.5px/1.3 var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pmu);text-align:right;max-width:72px}
+.dctl .or{font:600 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pmu);padding:0 2px 10px}
+.dl{display:flex;flex-direction:column;gap:3px}.dl small{font-size:10.5px;letter-spacing:.06em;color:var(--pmu)}
+.dsel{appearance:none;-webkit-appearance:none;width:58px;height:33px;padding:0 22px 0 12px;border-radius:9px;border:1px solid #3a3358;background:var(--pcard2) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23d9b86c' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 9px center;color:var(--pink);font:700 15px var(--num);cursor:pointer}
+.dsel:focus-visible{outline:2px solid var(--pgold);outline-offset:2px}
+.dsel option{background:#1c1830;color:#ece7f5}
+.dnote{margin:0 0 6px;font-size:12.5px;color:var(--pgold)}
+.dmsg{margin:8px 0 0;font-size:12px;line-height:1.45;color:var(--pbad)}
+.armyb{margin-top:16px;padding-top:14px;border-top:1px solid var(--pline)}
+.armyr{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.armyr p{margin:0;font-size:12.5px;line-height:1.45;color:var(--pmu)}.armyr p b{display:block;font-size:14px;color:var(--pink)}
+.rbox{display:flex;align-items:center;gap:16px}
+.rbox>b{font:700 46px/1 var(--num);color:var(--pink);min-width:44px;text-align:center}
+.rbox{align-items:flex-start}.rbox>b{padding-top:4px}
+.fx{list-style:none;margin:8px 0 0;padding:0}
+.fx li{position:relative;padding:0 0 6px 14px;font-size:13px;line-height:1.35}
+.fx li::before{content:"";position:absolute;left:0;top:6px;width:6px;height:6px;border-radius:50%;background:var(--pgold)}
+.fx li b{color:var(--pink);font-weight:600}.fx li small{display:block;color:var(--pmu);font-size:12px}
+.nxt{margin:6px 0 0;padding-top:10px;border-top:1px solid var(--pline);font-size:12px;line-height:1.45;color:var(--pmu)}
+.pb.mid{text-transform:uppercase;letter-spacing:.14em;padding:9px 20px;font:700 12px var(--ui);border-radius:10px}
+.hintc{margin:8px 0 0;text-align:center;font-size:12px;color:var(--pmu)}
+.alw{margin-top:14px;padding:12px 14px;border-radius:13px;border:1px solid #5b4a2a;background:linear-gradient(135deg,#2a2112,#1c1830)}
+.alwh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px}
+.alwh b{font:700 13px var(--ui);color:var(--pgold);letter-spacing:.04em}.alwh span{font:600 12px var(--num);color:var(--pmu)}
+.alw .un{border-top-color:#3a3024}
+.linkb{border:0;background:none;padding:4px 6px;font:600 12px var(--ui);color:var(--pmu);text-decoration:underline;text-underline-offset:3px;text-decoration-color:#4a4268}
+.linkb:hover{color:var(--pgold)}
+.alh{list-style:none;margin:8px 0 0;padding:0}
+.alh li{padding:8px 0;border-top:1px solid var(--pline);font-size:12.5px;color:var(--pmu)}
+.alh li b{color:var(--pink);font-size:13px;margin-right:8px}.alh li small{font:600 11.5px var(--num)}.alh li span{display:block;margin-top:3px;line-height:1.45}
+.pc h3 .tt{flex:none;border:1px solid var(--pgold);color:var(--pgold);border-radius:999px;padding:3px calc(11px - .2em) 3px 11px}
 .pb{border:1px solid #5b49a8;background:none;color:#cdbfff;border-radius:11px;padding:10px 14px;font:600 13px var(--ui)}
 .pb:hover{background:#2a2150}
 .pb.pr{background:var(--pvio);border-color:var(--pvio);color:#0c0a12}
@@ -162,12 +217,6 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .tog input{width:20px;height:20px;accent-color:#a78bfa;margin:0}
 .alert{background:linear-gradient(135deg,#2a2150,#1c1830);border:1px solid #5b49a8;border-radius:14px;padding:14px 16px;font-size:14px}
 .alert b{color:var(--pgold)}
-.rib{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.rib span{border:1px solid var(--pline);border-radius:999px;padding:4px 11px;font:600 12px var(--ui);color:var(--pmu)}
-.rib span.done{border-color:#3d6b57;color:var(--pok)}
-.rib span.now{background:var(--pvio);border-color:var(--pvio);color:#0c0a12}
-.rib span.boss{border-style:dashed;border-color:var(--pgold);color:var(--pgold)}
-.rib span.boss.now{background:var(--pgold);color:#0c0a12}
 .un{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 12px;padding:10px 0;border-top:1px solid var(--pline)}
 .un:first-of-type{border-top:0}
 .un .q{grid-row:span 2;font:700 30px/1 var(--num);color:var(--pgold);text-align:center;padding-top:2px}
@@ -175,6 +224,9 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .chipsr{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
 .chipsr i{font-style:normal;border-radius:7px;background:var(--pcard2);border:1px solid #3a3358;padding:2px 8px;font:600 12px var(--num);color:var(--pink)}
 .chipsr i.ch{border-color:var(--pgold);color:var(--pgold)}
+.tgs{display:inline-flex;gap:4px;vertical-align:1px}.tg{font:600 10.5px var(--ui);letter-spacing:.06em;text-transform:uppercase;font-style:normal;border-radius:6px;padding:1px 6px;border:1px solid var(--pgold);color:var(--pgold)}.tg.rc{border-color:#3a3358;color:var(--pmu)}
+#armyTxt{display:block;width:100%;box-sizing:border-box;min-height:200px;margin:6px 0 8px;background:var(--pcard2);color:var(--pink);border:1px solid #3a3358;border-radius:10px;padding:10px;font:12px/1.45 ui-monospace,Consolas,monospace;resize:vertical}
+.alist{list-style:none;margin:12px 0 0;padding:0;font-size:12.5px;color:var(--pmu)}.alist li{display:flex;gap:8px;padding:4px 0;border-top:1px solid var(--pline)}.alist b{color:var(--pgold);font-family:var(--num);min-width:24px}.alist .nm{min-width:0;overflow-wrap:anywhere}.alist .pt{margin-left:auto;font-family:var(--num);white-space:nowrap}
 .nar{font:italic 500 21px/1.45 var(--serif);color:var(--pink);margin:0}
 .ck{display:flex;gap:11px;align-items:flex-start;margin:0 0 10px;font-size:13.5px;line-height:1.45;cursor:pointer}
 .ck input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:#a78bfa}
@@ -229,7 +281,7 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 <div class="veil" id="veil"></div>
 
 <script>
-const DATA={"ev": [["11", "Golpe del vacío", "Un héroe al azar queda Aturdido."], ["12", "Suelo de ceniza", "Un héroe al azar queda Afectado."], ["13", "Maldición del olvido", "Un héroe al azar tiene -1 a las tiradas de Fuerza hasta el siguiente evento."], ["14", "Derrumbe", "Un héroe al azar sufre D3 heridas."], ["15", "Zarzas secas", "Un héroe al azar queda Debilitado."], ["16", "Memoria falsa", "Un héroe al azar tiene -1 a las tiradas de Voluntad hasta el siguiente evento."], ["21", "Trampa del Umbral", "Un héroe al azar sufre D3 impactos."], ["22", "Susurros sin voz", "Un héroe al azar pierde D3 de poder."], ["23", "Viento maldito", "Un héroe al azar queda Afligido."], ["24", "Enjambre de sombras", "Un héroe al azar queda Aturdido."], ["25", "Hilos de olvido", "Un héroe al azar tiene -1 a las tiradas de Destreza hasta el siguiente evento."], ["26", "Moho gris", "Un héroe al azar queda Enfermo."], ["31", "Tierra que se borra", "Un cuadrante al azar cuenta como terreno peligroso hasta el siguiente evento."], ["32", "Erosión maldita", "Todos los héroes y enemigos tienen -1 a las tiradas de Defensa hasta el siguiente evento."], ["33", "Bruma que aturde", "Todos los héroes y enemigos tienen -1 a impactar hasta el siguiente evento."], ["34", "Lluvia de ceniza", "Un cuadrante al azar cuenta como terreno difícil hasta el siguiente evento."], ["35", "Niebla espesa", "Todos los héroes y enemigos tienen -6\" de alcance al disparar hasta el siguiente evento."], ["36", "Temblor del pozo", "Todos los héroes y enemigos tienen -1 a los chequeos de moral hasta el siguiente evento."], ["41", "Charco de recuerdos", "Un héroe al azar tiene +1 a los chequeos de moral hasta el siguiente evento."], ["42", "Perro fiel", "Un héroe al azar tiene +1 a las tiradas de Destreza hasta el siguiente evento."], ["43", "Mapa olvidado", "Coloca D3 fichas de búsqueda, cada una a 6\" del centro de cuadrantes distintos."], ["44", "Cuervo vigía", "Un héroe al azar tiene +6\" de alcance al disparar hasta el siguiente evento."], ["45", "Eco de un aldeano", "Un héroe al azar restaura D3 de poder."], ["46", "Sumidero", "Una unidad enemiga al azar queda Aturdida."], ["51", "Niebla de lucidez", "Un héroe al azar tiene +1 a las tiradas de Voluntad hasta el siguiente evento."], ["52", "Bayas veloces", "Un héroe al azar se mueve +2\" al Avanzar y +4\" al Correr o Cargar hasta el siguiente evento."], ["53", "Arma encantada", "Un héroe al azar tiene +1 a impactar en cuerpo a cuerpo hasta el siguiente evento."], ["54", "Espíritu de apoyo", "Un héroe al azar tiene +1 a las tiradas de Fuerza hasta el siguiente evento."], ["55", "Vientos encantados", "Un héroe al azar tiene +1 a impactar al disparar hasta el siguiente evento."], ["56", "Espíritu guardián", "Un héroe al azar tiene +1 a las tiradas de Defensa hasta el siguiente evento."], ["61", "Bolsa de elixires", "Un héroe al azar recibe un Elixir de poder."], ["62", "Visión profética", "Revela el contenido de D3 fichas de búsqueda al azar que aún no se hayan revelado."], ["63", "Bolsa de bombas", "Un héroe al azar recibe una Bomba aturdidora."], ["64", "Montón de oro", "Un héroe al azar recibe 15 de oro."], ["65", "Caja de pociones", "Un héroe al azar recibe una Poción de salud."], ["66", "Claridad súbita", "Un héroe al azar recibe D3 de XP."]], "nar": [["Antes de empezar", "El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro. La Voz del Filo os dijo que aquí vivían unas cuarenta personas, pero al mirar el pueblo ninguno de vosotros sabría decir cómo lo sabe."], ["Ronda 1", "Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar. Tienen forma de personas, pero les falta algo que no sabríais nombrar."], ["Ronda 2", "El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien. Nadie vive aquí, pero el pueblo parece esperar visita."], ["Ronda 3", "Un roce a vuestra espalda. Algo se ha levantado donde un instante antes no había nada, y os mira sin cara con la cabeza ladeada, como un niño que escucha."], ["Entran los refuerzos 1", "Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos. Más atrás, algo más lento se arrastra entre las sombras de los muros."], ["Entran los refuerzos 2", "Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. El que va primero sonríe como quien llega tarde a una ceremonia que ya conoce."], ["Se cumple el objetivo principal", "Al retirar el último rastro, vuestras manos tocan un diario cuya letra os suena, aunque ninguno recuerda a su dueño. Sus páginas están intactas, como si el Vacío no hubiera podido borrarlas. La plaza se vacía y el cielo se oscurece sin que anochezca. El pueblo se está olvidando de sí mismo y de vosotros también. Es hora de correr hacia la esquina más cercana."], ["Se activa el objetivo secundario", "El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros. El Vacío no quiere ya esperar."], ["Llega el Heraldo", "Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostro que se os escurre de la memoria apenas dejáis de mirarlo. No levanta el arma. Solo dice vuestros nombres, y por un instante dudáis de que sean los vuestros."]], "fin": ["Misión cumplida sin pelea de jefe: al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección: Ocaso.", "Misión cumplida y Heraldo destruido: el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Sabéis que Ocaso lo sabrá.", "Derrota: el camino os devuelve al borde del pueblo, sin recordar bien cómo llegasteis. Habéis perdido algo, pero nadie sabe decir qué."], "pro": ["Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en las de Neth simplemente se borra lo que había.", "Vosotros vivís en Varek's Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.", "No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Una patrulla fue a mirar y volvió sin saber a qué había ido. Todos los registros de aquel pueblo están en blanco, y no es un error.", "La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.", "Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma. Antes de bajar, cada uno dice en voz alta por qué aceptó este encargo y no otro, qué es lo que más teme olvidar y quién se quedó en Varek's Hold para recordarle si no vuelve."], "obj": ["Objetivo principal: búsqueda por zonas. Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1\" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. Con 5+, o si era el último, el objetivo se cumple. El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el diario del olvidado.", "Objetivo secundario: se prepara solo cuando se cumple el principal, al final de esa ronda, y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.", "Fin de la misión: con el principal cumplido, todos los héroes deben estar a 6\" o menos de la misma esquina al final de una ronda. El secundario no es obligatorio.", "Pelea de jefe (opcional): tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.", "Al terminar: los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.", "Derrota: si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo."], "prep": ["Mesa: tamaño estándar, 48\"x48\" (4'x4') con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24\"x24\" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.", "1. Objetivos: prepara el objetivo principal. El secundario se prepara más tarde.", "2. Fichas de búsqueda: coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6\" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.", "3. Despliegue enemigo: ver Oleadas y sorpresas.", "4. Despliegue de héroes: tira un dado. Con 1-4 se despliegan a 6\" o menos de la esquina con ese número, y con 5-6 eliges la esquina.", "5. Desafíos opcionales: la misión empieza de noche (-1 a impactar al disparar y visión limitada a 12\"). Pasa a alba (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de Neth y la pelea de jefe."]};
+const DATA={"ev": [["11", "Golpe del vacío", "Un héroe al azar queda Aturdido."], ["12", "Suelo de ceniza", "Un héroe al azar queda Afectado."], ["13", "Maldición del olvido", "Un héroe al azar tiene -1 a las tiradas de Fuerza hasta el siguiente evento."], ["14", "Derrumbe", "Un héroe al azar sufre D3 heridas."], ["15", "Zarzas secas", "Un héroe al azar queda Debilitado."], ["16", "Memoria falsa", "Un héroe al azar tiene -1 a las tiradas de Voluntad hasta el siguiente evento."], ["21", "Trampa del Umbral", "Un héroe al azar sufre D3 impactos."], ["22", "Susurros sin voz", "Un héroe al azar pierde D3 de poder."], ["23", "Viento maldito", "Un héroe al azar queda Afligido."], ["24", "Enjambre de sombras", "Un héroe al azar queda Aturdido."], ["25", "Hilos de olvido", "Un héroe al azar tiene -1 a las tiradas de Destreza hasta el siguiente evento."], ["26", "Moho gris", "Un héroe al azar queda Enfermo."], ["31", "Tierra que se borra", "Un cuadrante al azar cuenta como terreno peligroso hasta el siguiente evento."], ["32", "Erosión maldita", "Todos los héroes y enemigos tienen -1 a las tiradas de Defensa hasta el siguiente evento."], ["33", "Bruma que aturde", "Todos los héroes y enemigos tienen -1 a impactar hasta el siguiente evento."], ["34", "Lluvia de ceniza", "Un cuadrante al azar cuenta como terreno difícil hasta el siguiente evento."], ["35", "Niebla espesa", "Todos los héroes y enemigos tienen -6\" de alcance al disparar hasta el siguiente evento."], ["36", "Temblor del pozo", "Todos los héroes y enemigos tienen -1 a los chequeos de moral hasta el siguiente evento."], ["41", "Charco de recuerdos", "Un héroe al azar tiene +1 a los chequeos de moral hasta el siguiente evento."], ["42", "Perro fiel", "Un héroe al azar tiene +1 a las tiradas de Destreza hasta el siguiente evento."], ["43", "Mapa olvidado", "Coloca D3 fichas de búsqueda, cada una a 6\" del centro de cuadrantes distintos."], ["44", "Cuervo vigía", "Un héroe al azar tiene +6\" de alcance al disparar hasta el siguiente evento."], ["45", "Eco de un aldeano", "Un héroe al azar restaura D3 de poder."], ["46", "Sumidero", "Una unidad enemiga al azar queda Aturdida."], ["51", "Niebla de lucidez", "Un héroe al azar tiene +1 a las tiradas de Voluntad hasta el siguiente evento."], ["52", "Bayas veloces", "Un héroe al azar se mueve +2\" al Avanzar y +4\" al Correr o Cargar hasta el siguiente evento."], ["53", "Arma encantada", "Un héroe al azar tiene +1 a impactar en cuerpo a cuerpo hasta el siguiente evento."], ["54", "Espíritu de apoyo", "Un héroe al azar tiene +1 a las tiradas de Fuerza hasta el siguiente evento."], ["55", "Vientos encantados", "Un héroe al azar tiene +1 a impactar al disparar hasta el siguiente evento."], ["56", "Espíritu guardián", "Un héroe al azar tiene +1 a las tiradas de Defensa hasta el siguiente evento."], ["61", "Bolsa de elixires", "Un héroe al azar recibe un Elixir de poder."], ["62", "Visión profética", "Revela el contenido de D3 fichas de búsqueda al azar que aún no se hayan revelado."], ["63", "Bolsa de bombas", "Un héroe al azar recibe una Bomba aturdidora."], ["64", "Montón de oro", "Un héroe al azar recibe 15 de oro."], ["65", "Caja de pociones", "Un héroe al azar recibe una Poción de salud."], ["66", "Claridad súbita", "Un héroe al azar recibe D3 de XP."]], "nar": [["Antes de empezar", "El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro. La Voz del Filo os dijo que aquí vivían unas cuarenta personas, pero al mirar el pueblo ninguno de vosotros sabría decir cómo lo sabe."], ["Ronda 1", "Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar. Tienen forma de personas, pero les falta algo que no sabríais nombrar."], ["Ronda 2", "El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien. Nadie vive aquí, pero el pueblo parece esperar visita."], ["Ronda 3", "Un roce a vuestra espalda. Algo se ha levantado donde un instante antes no había nada, y os mira sin cara con la cabeza ladeada, como un niño que escucha."], ["Entran los refuerzos 1", "Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos. Más atrás, algo más lento se arrastra entre las sombras de los muros."], ["Entran los refuerzos 2", "Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. El que va primero sonríe como quien llega tarde a una ceremonia que ya conoce."], ["Se cumple el objetivo principal", "Al retirar el último rastro, vuestras manos tocan un diario cuya letra os suena, aunque ninguno recuerda a su dueño. Sus páginas están intactas, como si el Vacío no hubiera podido borrarlas. La plaza se vacía y el cielo se oscurece sin que anochezca. El pueblo se está olvidando de sí mismo y de vosotros también. Es hora de correr hacia la esquina más cercana."], ["Se activa el objetivo secundario", "El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros. El Vacío no quiere ya esperar."], ["Llega el Heraldo", "Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostro que se os escurre de la memoria apenas dejáis de mirarlo. No levanta el arma. Solo dice vuestros nombres, y por un instante dudáis de que sean los vuestros."]], "fin": ["Misión cumplida sin pelea de jefe: al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección: Ocaso.", "Misión cumplida y Heraldo destruido: el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Sabéis que Ocaso lo sabrá.", "Derrota: el camino os devuelve al borde del pueblo, sin recordar bien cómo llegasteis. Habéis perdido algo, pero nadie sabe decir qué."], "pro": ["Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en las de Neth simplemente se borra lo que había.", "Vosotros vivís en Varek's Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.", "No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Una patrulla fue a mirar y volvió sin saber a qué había ido. Todos los registros de aquel pueblo están en blanco, y no es un error.", "La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.", "Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma. Antes de bajar, cada uno dice en voz alta por qué aceptó este encargo y no otro, qué es lo que más teme olvidar y quién se quedó en Varek's Hold para recordarle si no vuelve."], "obj": ["Objetivo principal: búsqueda por zonas. Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1\" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. El objetivo se cumple al retirar los tres marcadores (regla de la casa: no se usa la tirada de 5+). El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el diario del olvidado.", "Objetivo secundario: se prepara cuando se cumple el principal y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.", "Fin de la misión: con el principal cumplido, todos los héroes deben estar a 6\" o menos de la misma esquina y sin enemigos alrededor al final de una ronda (regla de la casa: sin enemigos alrededor). El secundario no es obligatorio.", "Pelea de jefe (opcional): tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.", "Al terminar: los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.", "Derrota: si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo."], "prep": ["Mesa: tamaño estándar, 48\"x48\" (4'x4') con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24\"x24\" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.", "1. Objetivos: prepara el objetivo principal. El secundario se prepara más tarde.", "2. Fichas de búsqueda: coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6\" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.", "3. Despliegue enemigo: ver Oleadas y sorpresas.", "4. Despliegue de héroes: tira un dado. Con 1-4 se despliegan a 6\" o menos de la esquina con ese número, y con 5-6 eliges la esquina.", "5. Desafíos opcionales: la misión empieza de noche (-1 a impactar al disparar y visión limitada a 12\"). Pasa a alba (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de Neth y la pelea de jefe."]};
 const SCENE=`<svg class='scene' viewBox='0 0 800 300' role='img' aria-label='Un pueblo vacío bajo una luna borrada, con el Heraldo del Umbral junto al pozo'><defs><linearGradient id='sk' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#241a3d'/><stop offset='1' stop-color='#0d0b14'/></linearGradient><radialGradient id='gl'><stop offset='0' stop-color='#8f6fe0' stop-opacity='.55'/><stop offset='1' stop-color='#8f6fe0' stop-opacity='0'/></radialGradient><g id='her'><path d='M-24 92C-34 130-40 190-56 252l12-14 10 14 14-18 12 18 12-16 12 16 12-14 10 14L56 252C40 190 34 130 24 92z' fill='#7c7889'/><path d='M-4 96C-8 150-14 200-18 236H-2C2 200 6 150 6 98z' fill='#5f5b6d'/><path d='M-42 108L-16 84H16l26 24-16 12h-52z' fill='#403c4f' stroke='#2a2536'/><path d='M-22 92C-24 40-8 22 0 22S24 40 22 92C12 82-12 82-22 92z' fill='#4b475a'/><ellipse cy='56' rx='13' ry='20' fill='#08060d'/><ellipse cy='58' rx='8' ry='14' fill='#cfcbe0' opacity='.3'/><circle cy='132' r='9' fill='#14111e' stroke='#b79cf0' stroke-width='1.5'/><path d='M0 124l-2 6 4 3-2 8' stroke='#e6dcff' fill='none'/><path d='M24 102C44 112 52 138 58 160M-24 102C-46 106-58 118-62 132' stroke='#5f5b6d' stroke-width='10' fill='none' stroke-linecap='round'/><path d='M58 12V252' stroke='#2a2536' stroke-width='4'/><path d='M58 14C100 2 136 30 144 80C122 48 92 36 58 40z' fill='#0b0912' stroke='#b79cf0' stroke-width='2'/><g fill='#0b0912' stroke='#b79cf0' stroke-width='1.5'><circle cx='-66' cy='108' r='8'/><circle cx='-54' cy='84' r='8'/><circle cx='-80' cy='86' r='7'/></g></g></defs><rect width='800' height='300' fill='url(#sk)'/><circle cx='610' cy='78' r='70' fill='url(#gl)'/><circle cx='610' cy='78' r='36' fill='#0d0b14' stroke='#8b78c4' stroke-width='2'/><circle cx='610' cy='78' r='46' fill='none' stroke='#8b78c4' stroke-width='.8' stroke-dasharray='2 5'/><g fill='#cfc6ee' opacity='.7'><circle cx='90' cy='40' r='1.4'/><circle cx='180' cy='70' r='1'/><circle cx='330' cy='30' r='1.2'/><circle cx='450' cy='60' r='1'/><circle cx='740' cy='40' r='1.3'/><circle cx='60' cy='110' r='1'/></g><path d='M0 232V192l34-26 34 26v40zM90 232v-50l30-22 30 22v50zM640 232v-44l32-24 32 24v44zM720 232v-34l30-20 30 20v34z' fill='#171325'/><path d='M20 262V200l46-34 46 34v62zM690 262V204l44-32 44 32v58z' fill='#0e0b17'/><g fill='#e0b25a' opacity='.55'><rect x='58' y='208' width='10' height='14'/><rect x='722' y='212' width='10' height='14'/></g><path d='M0 252C200 238 600 238 800 252V300H0z' fill='#0a0810'/><ellipse cx='400' cy='264' rx='420' ry='26' fill='#6c5aa8' opacity='.16'/><g transform='translate(250 0)'><path d='M-46 252V224h92v28z' fill='#2a2536'/><ellipse cy='224' rx='46' ry='12' fill='#3b3550'/><ellipse cy='224' rx='33' ry='8' fill='#05040a'/><path d='M0 216C-12 192 12 172 0 142M10 218C22 198-2 182 10 160' fill='none' stroke='#a78bfa' stroke-width='2' opacity='.65'/></g><ellipse cx='530' cy='254' rx='92' ry='12' fill='none' stroke='#8f6fe0' opacity='.4'/><use href='#her' transform='translate(530 0)'/><g fill='#a39fb5' opacity='.5'><circle cx='440' cy='196' r='1.5'/><circle cx='470' cy='170' r='1.2'/><circle cx='610' cy='200' r='1.5'/><circle cx='640' cy='150' r='1.2'/><circle cx='330' cy='190' r='1.4'/><circle cx='380' cy='150' r='1'/></g></svg>`,PORTRAIT=`<svg class='por' viewBox='-100 0 250 262' role='img' aria-label='Heraldo del Umbral'><rect x='-100' width='250' height='262' fill='#0f0c18'/><circle cx='20' cy='120' r='100' fill='#8f6fe0' opacity='.14'/><use href='#her'/></svg>`;
 const $=s=>document.querySelector(s),R=n=>1+Math.floor(Math.random()*n);
 const REDUCE=matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -241,30 +293,130 @@ const em=s=>esc(s).replace(/\b(Ambush|Caster|Fast|Fear|Stealth|Villain|Tough|Ren
 
 /* ---------- estado ---------- */
 const KEY="psn-m1-v2";
-const S0=()=>({d:3,pts:300,heroes:3,round:0,al:0,wave:0,noEn:false,mk:[0,0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},manualPrim:false});
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&typeof j==="object")return Object.assign(S0(),j)}catch(e){}return S0()}
+const S0=()=>({d:3,pts:300,heroes:3,round:0,al:1,wave:0,noEn:false,mk:[0,0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},comp:{},shown:false,alw:[],alShow:false,manualPrim:false});
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&typeof j==="object"){const o=Object.assign(S0(),j);if(!(o.al>=1))o.al=1;return o}}catch(e){}return S0()}
 let S=load(),UI={open:false,sure:false};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
 /* ---------- reglas ---------- */
 const D=()=>S.d,BUD=()=>Math.round(S.pts*PC[S.d-1]/100);
-const stage=()=>S.boss||S.wave>=2?"Día":S.wave===1?"Alba":"Noche";
-/* costes orientativos de la casa: ajústalos a tu Army Forge */
-const U={bor:["Borrados","unidad de 5",60,"espectros o muertos vivientes"],ani:["Animales deformados","unidad de 3",45,"Fast"],amb:["Unidad con Ambush","animales deformados",60,"Fast, Ambush"],cul:["Cultistas del Umbral","escolta, unidad de 5",80,""],cas:["Cultista con Caster","1 modelo",70,"Caster"],her:["Heraldo del Umbral","1 modelo (coste estimado)",150,"Villain, Fear(3), Stealth, Caster(3)"]};
-const cnt=(pts,k)=>Math.max(1,Math.round(pts/U[k][2]));
+const nRef=()=>S.wave+((S.alw||[]).length);
+const stage=()=>S.boss||nRef()>=2?"Día":nRef()===1?"Alba":"Noche";
+/* ---------- ejército enemigo: la lista de Army Forge del jugador ----------
+   Cada línea "Nx Nombre [modelos] Qn+ Dn+ | pts | reglas" es una entrada; N copias (1 si no pone nada).
+   La línea siguiente son las armas. Se guarda aparte de la partida para que "Nueva partida" no la borre. */
+const AKEY="psn-army-v1";
+const ARMY_DEF=`++ Goblins - Goblins (v3.6.0), Wood Elves (v3.6.0), Orcs (v3.6.0) [AOFQAI 3185pts] [37 Units] ++
+
+3x Goblins Guerreros epada escudo [1] Q5+ D6+ | 25pts | Mischievous, Tough(3), Strider
+Hand Weapon (A3, Parry(1))
+
+2x Goblins Lanceros [1] Q5+ D6+ | 30pts | Mischievous, Tough(3), Strider
+Spear (A3, Counter, Brace(1))
+
+4x Huruk lanceros [1] Q5+ D6+ | 35pts | Mischievous, Tough(3), Strider, Instinctive
+Spear (A3, Counter, Brace(1))
+
+3x Huruk Guerreros [1] Q5+ D6+ | 30pts | Mischievous, Tough(3), Strider, Instinctive
+Hand Weapon (A3, Parry(1))
+
+Goblins Lanceros en Lobo [1] Q5+ D5+ | 50pts | Mischievous, Tough(3), Scout, Strider
+Lance (A3, Thrust), Poison Fangs (A3, Shred)
+
+Goblins guerreros en lobo [1] Q5+ D5+ | 45pts | Mischievous, Tough(3), Scout, Strider
+Hand Weapon (A3, Parry(1)), Poison Fangs (A3, Shred)
+
+Lider Orco (orco mordor espada) [1] Q5+ D6+ | 95pts | Hero, Tough(9), Ferocious, Defense(1)
+Dual Hand Weapons (A12)
+
+3x Goblins arqueros [1] Q5+ D6+ | 50pts | Mischievous, Tough(3), Strider
+Shortbow (18", A6), Strike (A3)
+
+Guerrero Orco (guerrero mordor) [1] Q5+ D5+ | 35pts | Ferocious, Tough(3), Dodge
+Hand Weapon (A3, Parry(1))
+
+2x Shaman (Orco espada viejo en pose) [1] Q5+ D6+ | 50pts | Caster Group(1), Mischievous, Tough(3), Strider
+Shaman Wand (9", A3, Assault, Unstoppable)
+
+Asesino con cabeza en mano [1] Q5+ D6+ | 115pts | Stealth, Good Fighter, Mischievous, Tough(3), Strider, Takedown Strike(3)
+Poison Daggers (A9, Shred)
+
+3x Guerreros armas duales [1] Q5+ D6+ | 90pts | Ferocious, Scout, Tough(3)
+Sling-Bombs (12", A3, Indirect, Rending, Assault)
+
+3x Arquero orco [1] Q5+ D5+ | 45pts | Ferocious, Tough(3)
+Bow (24", A3), Strike (A3)
+
+2x Fanattico (Lancero Mordor) [1] Q5+ D6+ | 95pts | Bounding, Crossing Attack(9), Mischievous, Traversal, Tough(3), Furious
+Wrecking Shroom (A3, AP(1), Blast(3))
+
+Pester Swarm (Estandarte) [1] Q5+ D6+ | 100pts | Tough(9), Unpredictable Fighter, Mischievous, Strider
+Pester Bombs (12", A3, Blast(3), Assault)
+
+Explorador elfo silvano [1] Q4+ D5+ | 70pts | Scout, Stealth, Strider, Wild Veil, Tough(3)
+Bow (24", A3), Strike (A3)
+
+Arqueros con espadas [1] Q5+ D6+ | 55pts | Strider, Ferocious, Tough(3)
+Shortbow (18", A6), Strike (A3)
+
+2x Cazador de hierro (arquero mordor) [1] Q5+ D5+ | 115pts | Ferocious, Tough(3)
+Killer-Snipebow (36", A3, Reliable, Rending, Takedown), Strike (A3)
+
+Troll Giant [1] Q4+ D4+ | 845pts | Fear(6), Regeneration, Tough(36), Mischievous, Strider
+Giant Club (A24, AP(2)), Stomp (A12, AP(1))
+
+Carro de jabalies [1] Q5+ D3+ | 335pts | Fast, Impact(12), Tough(18), Ferocious
+Spear Crew (A9, Thrust), Tusks (A6, AP(1))`;
+function parseArmy(t){
+ const re=/^(?:(\d+)\s*x\s+)?(.+?)\s*\[(\d+)\]\s*Q(\d)\+\s*D(\d)\+\s*\|\s*(\d+)\s*pts?\s*(?:\|\s*(.*))?$/i,out=[],bad=[];let last=null;
+ String(t).split(/\r?\n/).forEach(raw=>{const l=raw.trim();if(!l||/^\+\+/.test(l))return;
+  const m=l.match(re);
+  if(m){last={n:+(m[1]||1),name:m[2].trim(),mod:+m[3],q:+m[4],d:+m[5],pts:+m[6],rules:(m[7]||"").trim(),w:""};out.push(last)}
+  else if(last)last.w+=(last.w?" · ":"")+l;else bad.push(l)});
+ return{units:out.filter(u=>u.pts>0&&u.n>0),bad};
+}
+const sig=t=>{let h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))|0;return h};
+let ARMY_TXT=ARMY_DEF;try{ARMY_TXT=localStorage.getItem(AKEY)||ARMY_DEF}catch(e){}
+let ARMY=parseArmy(ARMY_TXT).units,ASIG=sig(ARMY_TXT);
+if(!ARMY.length){ARMY_TXT=ARMY_DEF;ARMY=parseArmy(ARMY_DEF).units;ASIG=sig(ARMY_DEF)}
+function setArmy(t){ARMY_TXT=t;ARMY=parseArmy(t).units;ASIG=sig(t)}
+const HER={name:"Heraldo del Umbral",pts:150}; /* jefe de la casa: coste estimado, lo representa la miniatura que elijas */
+
+/* Sorteo de una oleada: unidades al azar de la lista sin pasarse del valor.
+   Primero usa copias que no hayan salido en oleadas anteriores; si no queda ninguna que quepa,
+   recicla (la unidad solo se usa si ya fue eliminada). Nunca más copias de las que tienes en una misma oleada. */
+function genComp(k,budget){
+ const left=ARMY.map(a=>a.n),inW=ARMY.map(()=>0),u=[];
+ const used=c=>c.u.forEach(e=>{if(!e.r&&left[e.i]>0)left[e.i]--});
+ Object.keys(S.comp).filter(x=>x!=="boss"&&(k==="boss"||k==="al"||+x<k)).forEach(x=>used(S.comp[x]));
+ (S.alw||[]).forEach(w=>used(w.c));
+ let rem=budget;
+ const draw=rec=>{const c=[];ARMY.forEach((a,i)=>{const n=rec?a.n-inW[i]:left[i];if(a.pts<=rem)for(let j=0;j<n;j++)c.push(i)});return c.length?c[Math.floor(Math.random()*c.length)]:-1};
+ for(let g=0;g<300;g++){let r=false,i=draw(false);if(i<0){i=draw(true);r=true}if(i<0)break;if(!r)left[i]--;inW[i]++;u.push({i,r});rem-=ARMY[i].pts}
+ if(!u.length&&ARMY.length&&budget>0){const i=ARMY.reduce((b,a,j)=>a.pts<ARMY[b].pts?j:b,0);u.push({i,r:left[i]<=0})}
+ if(k!=="boss"&&k%2===1&&u.length)u[Math.floor(Math.random()*u.length)].a=true;
+ u.sort((x,y)=>x.i-y.i||(x.r-y.r)||((x.a?1:0)-(y.a?1:0)));
+ return{b:budget,s:ASIG,u};
+}
+function comp(k){
+ const b=k==="boss"?Math.max(0,2*BUD()-HER.pts):BUD(),c=S.comp[k];
+ if(!c||c.b!==b||c.s!==ASIG||c.u.some(e=>!ARMY[e.i])){S.comp[k]=genComp(k,b);delete S.rolls[k]}
+ return S.comp[k];
+}
 function waveDef(k){
  const B=BUD();
- if(k==="boss"){const r=Math.max(0,2*B-U.her[2]);return{name:"Jefe",budget:2*B,surprise:"Oleada de doble valor y no entran más refuerzos. Las unidades de IA a 12\" usan la Calidad del Heraldo en moral mientras no esté Aturdido.",units:[{k:"her",q:1,p:"c"},{k:"bor",q:cnt(r/2,"bor"),p:"c"},{k:"cul",q:cnt(r/2,"cul"),p:"c"}]}}
- if(k===0)return{name:"Centinelas",budget:B,surprise:"Tira el evento de Neth de la ronda 1.",units:[{k:"bor",q:cnt(B,"bor"),p:"q"}]};
- if(k%2===1)return{name:"Refuerzos "+k,budget:B,surprise:"La unidad con Ambush entra D3 rondas después, al empezar la ronda. "+(k>1?"Evento de Neth.":""),units:[{k:"amb",q:1,p:"a"},{k:"ani",q:cnt(B-U.amb[2],"ani"),p:"c"}]};
- return{name:"Refuerzos "+k,budget:B,surprise:"Mientras el Caster no esté Aturdido, los Borrados a 6\" de él ganan +1 a impactar en cuerpo a cuerpo. Evento de Neth.",units:[{k:"cas",q:1,p:"c"},{k:"cul",q:cnt(B-U.cas[2],"cul"),p:"c"}]};
+ if(k==="boss")return{name:"Jefe",budget:2*B,p:"c",her:true,c:comp(k),surprise:"Oleada de doble valor y no entran más refuerzos. Las unidades de IA a 12\" usan la Calidad del Heraldo en moral mientras no esté Aturdido."};
+ if(k===0)return{name:"Centinelas",budget:B,p:"q",c:comp(0),surprise:"Tira el evento de Neth de la ronda 1."};
+ const c=comp(k);
+ if(k%2===1)return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:"La unidad marcada con Ambush entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."+(k>1?" Evento de Neth.":"")};
+ const cas=c.u.some(e=>/\bCaster/i.test(ARMY[e.i].rules));
+ return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:(cas?"Mientras la unidad con Caster no esté Aturdida, las unidades enemigas a 6\" de ella ganan +1 a impactar en cuerpo a cuerpo. ":"")+"Evento de Neth."};
 }
 const curW=()=>S.boss?"boss":S.wave;
 const PLACE={q:"Centro de un cuadrante. Un dado por unidad.",c:"A 6\" o menos de una esquina. Un dado por unidad.",a:"D3 rondas después, a 6\" de un Objetivo de IA (al azar si hay varios)."};
 function rollPos(){
- const k=curW(),w=waveDef(k),out=[];
- w.units.forEach(u=>{for(let i=1;i<=u.q;i++){if(u.p==="a"){const d3=R(3);out.push({u:U[u.k][0],t:"a",d:d3,at:S.round+d3})}else out.push({u:U[u.k][0],t:u.p,d:R(6)})}});
- S.rolls[k]=out;
+ const k=curW(),w=waveDef(k);
+ S.rolls[k]={u:w.c.u.map(e=>{if(e.a){const d3=R(3);return{t:"a",d:d3,at:S.round+d3}}return{t:w.p,d:R(6)}}),h:w.her?{t:"c",d:R(6)}:null};
 }
 function posLabel(r){
  if(r.t==="a")return"Ronda "+r.at+" · D3="+r.d;
@@ -279,55 +431,88 @@ const BMB=[[1,3,"Bomba de ruido","Las unidades enemigas a 3\" del punto ignoran 
 const POC=[[1,3,"Poción de curación","Un héroe a 1\" se quita todos sus estados."],[4,5,"Poción de teletransporte","El héroe se coloca a 6\" o menos de la esquina que elija."],[6,6,"Poción de salud","Un héroe a 1\" restaura 3 heridas."]];
 const pick=(t,d)=>t.find(r=>d>=r[0]&&d<=r[1]);
 const CHEST=[[1,2,"Peligro","Un cofre que nunca tuvo dueño. Se desvanece al tocarlo y deja algo en el aire."],[3,3,"Bolsa de elixires","Frascos que alguien olvidó beber."],[4,4,"Bolsa de bombas","Esferas de arcilla con la etiqueta borrada."],[5,5,"Caja de pociones","Pociones en fila, cada una con un nombre que ya nadie recuerda."],[6,6,"Tesoro maldito","Monedas frías que pesan más de lo que deberían."]];
-function rollChest(){
- const a=R(6),c=pick(CHEST,a);let b=0,t="ok",title=c[2],text=c[3],x="";
- if(a<=2){b=R(6);const p=pick(PEL,b);title="Peligro · "+p[2];text=p[3]+" El cofre desaparece; solo afecta a un héroe a 1\".";t="bad"}
- else if(a===3){b=R(6);const p=pick(ELX,b);title=p[2];text=p[3]}
- else if(a===4){b=R(6);const p=pick(BMB,b);title=p[2];text=p[3]+" Se lanza como acción a 12\"."}
- else if(a===5){b=R(6);const p=pick(POC,b);title=p[2];text=p[3]}
+function rollChest(A,B){
+ const a=A||R(6),c=pick(CHEST,a);let b=0,t="ok",title=c[2],text=c[3],x="";
+ if(a<=2){b=B||R(6);const p=pick(PEL,b);title="Peligro · "+p[2];text=p[3]+" El cofre desaparece; solo afecta a un héroe a 1\".";t="bad"}
+ else if(a===3){b=B||R(6);const p=pick(ELX,b);title=p[2];text=p[3]}
+ else if(a===4){b=B||R(6);const p=pick(BMB,b);title=p[2];text=p[3]+" Se lanza como acción a 12\"."}
+ else if(a===5){b=B||R(6);const p=pick(POC,b);title=p[2];text=p[3]}
  else{t="bad";title="Tesoro maldito";text="Los héroes obtienen "+5*S.d+" de oro y surge un Borrado débil junto al héroe que abrió el cofre."}
  return{a,b,t,title,text,x}
 }
+function setEv(x,y){const n=x*10+y,e2=neth(n);S.ev={n,t:e2[1],x:e2[2],tone:n<40?"bad":"ok",extra:evExtra(e2[2])};S.needEv=false;hist("Evento",n+" "+e2[1])}
+function setCh(x,y){S.ch=rollChest(x,y);hist("Cofre",S.ch.a+(S.ch.b?"/"+S.ch.b:"")+" "+S.ch.title)}
+const dsel=(id,l)=>`<label class="dl"><small>${l}</small><select id="${id}" class="dsel" data-f="${id}"><option value="">–</option>${[1,2,3,4,5,6].map(n=>`<option>${n}</option>`).join("")}</select></label>`;
 function hist(k,t){S.hist.unshift(k+" "+t);S.hist=S.hist.slice(0,6)}
 
 /* ---------- acciones ---------- */
 function setNar(k){S.nar=k}
 function reinforce(){
- S.wave++;S.al=0;S.needEv=true;S.noEn=false;
+ S.shown=true;S.wave++;S.needEv=true;
  setNar(S.wave%2===1?"w1":"w2");
- S.alert="Entran los refuerzos "+S.wave+". Despliega la oleada y tira un evento de Neth. "+(S.wave===1?"Pasa a alba.":S.wave===2?"Pasa a día.":"");
+ S.alert="Entra la oleada "+(S.wave+1)+". Despliégala y tira un evento de Neth.";
+}
+/* Sube la Alertness. Al llegar a 6 entran refuerzos y lo que sobra pasa a la nueva cuenta
+   (la cuenta va de 1 a 6 como un dado; al llegar a 6 entran refuerzos y vuelve siempre a 1, aunque sobre algo: regla de la casa para dar un respiro). Devuelve true si entraron refuerzos. */
+/* Refuerzos por Alertness 6 (regla de la casa: separados de "Oleada actual"). Se sortean con la lista y se guardan en S.alw. */
+function alertWave(){
+ S.alw.push({c:genComp("al",BUD()),r:null,round:S.round});
+ S.alShow=true;S.needEv=true;S.noEn=false;
+ setNar(S.alw.length%2===1?"w1":"w2");
+ S.alert="La Alertness llega a 6: entran refuerzos ("+S.alw.length+"). Los tienes en «Nivel de alerta». Despliégalos y tira un evento de Neth.";
+}
+function addAl(n){
+ S.al+=n;
+ if(S.boss){S.al=Math.min(5,S.al);return false}
+ if(S.al>=6){alertWave();S.al=1;return true}
+ return false;
 }
 function endRound(){
  S.alert="";
  if(S.armed&&!S.boss){S.boss=true;S.armed=false;S.round++;setNar("boss");S.needEv=false;S.alert="Llega la pelea de jefe: el Heraldo y su oleada de doble valor. No entran más refuerzos.";return}
- let add=S.noEn?2:1,secNow=false;
- if(S.prim&&!S.secRolled){S.secRolled=true;S.sec=R(6);add+=3;secNow=true}
+ const add=S.noEn?0:1;S.noEn=false; /* si se marcó Sin enemigos, el +2 ya se sumó */
  S.round++;
  if(S.boss)return;
- S.al+=add;
- if(S.al>=6){reinforce();if(secNow)S.alert+=" Además se prepara el objetivo secundario."}
- else if(secNow){setNar("sec");S.alert="Se prepara el objetivo secundario y la Alertness sube 3."}
- else if(S.round<=3)setNar("r"+S.round);
+ if(!addAl(add)&&S.round<=3)setNar("r"+S.round);
+}
+/* Secundario: se prepara con su botón una vez cumplido el principal. d6 en la tabla y +3 de Alertness. */
+function prepSec(v){
+ if(!S.prim||S.secRolled)return;
+ S.secRolled=true;S.sec=v||R(6);setNar("sec");
+ if(addAl(3)){S.alert="Objetivo secundario: "+DATA.sec[S.sec-1][0]+". La Alertness sube 3 y llega a 6: entran refuerzos (en «Nivel de alerta»). Despliégalos y tira un evento de Neth."}
+ else S.alert="Objetivo secundario: "+DATA.sec[S.sec-1][0]+". La Alertness sube 3.";
+ hist("Secundario",S.sec+" "+DATA.sec[S.sec-1][0]);
 }
 function startGame(){S.round=1;S.needEv=true;setNar("r1");S.alert="Empieza la ronda 1. Tira el evento de Neth."}
 function setMk(i){S.mk[i]=S.mk[i]?0:1;if(S.mk.every(Boolean)&&!S.prim){S.prim=true;setNar("pri")}else if(!S.mk.every(Boolean)&&S.prim&&!S.manualPrim)S.prim=false}
 const ACT={
- d:v=>{S.d=+v},
- pts:v=>{S.pts=Math.min(3000,Math.max(50,S.pts+ +v))},
- heroes:v=>{S.heroes=Math.min(4,Math.max(2,S.heroes+ +v))},
+ d:v=>{if(!S.round)S.d=+v},
+ pts:v=>{if(!S.round)S.pts=Math.min(3000,Math.max(50,S.pts+ +v))},
+ heroes:v=>{if(!S.round)S.heroes=Math.min(4,Math.max(2,S.heroes+ +v))},
  start:()=>startGame(),
  end:()=>endRound(),
- alAdj:v=>{S.al=Math.max(0,Math.min(5,S.al+ +v))},
- noEn:()=>{S.noEn=!S.noEn},
+ alAdj:v=>{v=+v;if(v<0){S.al=Math.max(1,S.al+v);return}
+  if(addAl(v)&&S.round){S.round++;S.alw[S.alw.length-1].round=S.round;S.alert="La Alertness llega a 6: pasáis a la ronda "+S.round+" y entran refuerzos (en «Nivel de alerta»). Despliégalos y tira un evento de Neth."}},
+ /* Sin enemigos en mesa: suma +2 al momento (en lugar del +1 de fin de ronda). Desmarcar lo deshace. */
+ noEn:()=>{if(S.noEn){S.noEn=false;S.al=Math.max(1,S.al-2);return}
+  S.noEn=true;if(addAl(2)&&S.round){S.round++;S.alw[S.alw.length-1].round=S.round;S.alert="Sin enemigos en mesa: la Alertness llega a 6, pasáis a la ronda "+S.round+" y entran refuerzos (en «Nivel de alerta»). Despliégalos y tira un evento de Neth."}},
  mk:v=>setMk(+v),
- prim5:()=>{S.prim=true;S.manualPrim=true;setNar("pri")},
  secDone:()=>{S.secDone=!S.secDone},
- endc:()=>{S.end=!S.end},
+ endc:()=>{if(S.prim||S.end)S.end=!S.end},
+ play:()=>{UI.soon=true;clearTimeout(UI.soonT);UI.soonT=setTimeout(()=>{UI.soon=false;render()},3500)},
  arm:()=>{S.armed=true},
  dead:()=>{S.dead=!S.dead},
  defeat:()=>{S.defeat=!S.defeat},
+ first:()=>{S.shown=true},
  next:()=>{if(!S.boss)reinforce()},
  pos:()=>rollPos(),
+ alPos:()=>{const w=S.alw[S.alw.length-1];if(w)w.r=w.c.u.map(()=>({t:"c",d:R(6)}))},
+ alHide:()=>{S.alShow=false},
+ alHist:()=>{UI.alHist=!UI.alHist},
+ reroll:()=>{const k=curW();delete S.comp[k];delete S.rolls[k]},
+ armyT:()=>{UI.army=!UI.army;UI.armyMsg=""},
+ armySave:()=>{if(S.round)return;const el=$("#armyTxt");if(!el)return;const t=el.value,p=parseArmy(t);if(!p.units.length){UI.armyMsg="No he reconocido ninguna unidad. Cada una necesita una línea como: 3x Nombre [1] Q5+ D6+ | 25pts | reglas";return}try{localStorage.setItem(AKEY,t)}catch(e){}setArmy(t);UI.armyMsg="Lista cargada: "+p.units.length+" entradas."+(p.bad.length?" Se ignoraron "+p.bad.length+" líneas que no entendí.":"")+" Las oleadas se vuelven a sortear."},
+ armyDef:()=>{if(S.round)return;try{localStorage.removeItem(AKEY)}catch(e){}setArmy(ARMY_DEF);UI.armyMsg="Lista de ejemplo restaurada."},
  ok:()=>{S.alert=""},
  reset:()=>{if(!UI.sure){UI.sure=true;setTimeout(()=>{UI.sure=false;render()},3500);return}S=S0();UI.sure=false;try{localStorage.removeItem(KEY)}catch(e){}}
 };
@@ -340,8 +525,12 @@ document.addEventListener("click",e=>{
  const b=e.target.closest("[data-a]");
  if(!b){if(e.target.closest("#pbar")){togglePanel()}else if(e.target.id==="veil"){UI.open=false;render()}return}
  const a=b.dataset.a,v=b.dataset.v;
- if(a==="CH"){tumble("CH",()=>{S.ch=rollChest();hist("Cofre",S.ch.a+(S.ch.b?"/"+S.ch.b:"")+" "+S.ch.title);save();render()});return}
- if(a==="EV"){tumble("EV",()=>{const x=R(6),y=R(6),n=x*10+y,e2=neth(n);S.ev={n,t:e2[1],x:e2[2],tone:n<40?"bad":"ok",extra:evExtra(e2[2])};S.needEv=false;hist("Evento",n+" "+e2[1]);save();render()});return}
+ if(a==="SECm"){if(!S.prim||S.secRolled)return;const x=+$("#secA").value;if(!x){UI.secMsg="Elige el resultado del dado.";render();return}UI.secMsg="";prepSec(x);save();render();return}
+ if(a==="SEC"){if(!S.prim||S.secRolled)return;tumble("SEC",()=>{prepSec();save();render()});return}
+ if(a==="CH"){UI.chMsg="";tumble("CH",()=>{setCh();save();render()});return}
+ if(a==="EV"){UI.evMsg="";tumble("EV",()=>{setEv(R(6),R(6));save();render()});return}
+ if(a==="EVm"){const x=+$("#evA").value,y=+$("#evB").value;if(!x||!y){UI.evMsg="Elige los dos dados: primero las decenas y luego las unidades.";render();return}UI.evMsg="";setEv(x,y);save();render();return}
+ if(a==="CHm"){const x=+$("#chA").value,y=+$("#chB").value;if(!x){UI.chMsg="Elige el dado del contenido.";render();return}if(x<=5&&!y){UI.chMsg="Con "+x+" en el contenido hace falta el segundo dado (el objeto o el peligro).";render();return}UI.chMsg="";setCh(x,x<=5?y:0);save();render();return}
  if(ACT[a])ACT[a](v);
  save();render();
 });
@@ -356,33 +545,77 @@ function gauge(){
   p+=`<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${i<S.al?(S.al>=5?"#d9b86c":"#a78bfa"):"#2a2340"}" stroke-width="16" stroke-linecap="round"/>`}
  return`<svg class="gauge" viewBox="0 0 250 132" role="img" aria-label="Alertness ${S.al} de 6">${p}<text x="125" y="108" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="46" fill="#ece7f5">${S.al}</text><text x="125" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#a59fba">de 6 · a 6 entran refuerzos</text></svg>`;
 }
-function ribbon(){
- const cur=curW(),max=Math.max(S.wave,2);let h="";
- for(let k=0;k<=max;k++){const c=cur!=="boss"&&k===cur?"now":(cur==="boss"||k<cur)&&k<=S.wave?"done":"";h+=`<span class="${c}">${k===0?"Centinelas":"R"+k}</span>`}
- h+=`<span class="boss ${cur==="boss"?"now":""}">Jefe</span>`;return`<div class="rib">${h}</div>`;
+function prof(a){return"Q"+a.q+"+ D"+a.d+"+"+(a.rules?" · "+a.rules:"")+(a.w?" · "+a.w:"")}
+function unitRow(q,name,sub,place,rs,tags){
+ const chips=rs.map(r=>`<i class="${r.d>4&&r.t!=="a"?"ch":""}">${esc(posLabel(r))}</i>`).join("");
+ return`<div class="un"><div class="q">${q}</div><div><b>${esc(name)}</b>${tags?` <span class="tgs">${tags}</span>`:""}<small>${em(sub)}</small><small>${esc(place)}</small>${chips?`<div class="chipsr">${chips}</div>`:""}</div></div>`;
 }
 function waveCard(){
- const k=curW(),w=waveDef(k),rolls=S.rolls[k];
- let units=w.units.map(u=>{const d=U[u.k];const mine=rolls?rolls.filter(r=>r.u===d[0]).map(r=>`<i class="${r.d>4&&r.t!=="a"?"ch":""}">${esc(posLabel(r))}</i>`).join(""):"";
-  return`<div class="un"><div class="q">${u.q}</div><div><b>${esc(d[0])}</b><small>${esc(d[1])}${d[3]||u.k==="her"?" · "+em((d[3]||"")+(u.k==="her"?", Tough("+TG[S.d-1]+")":"")):""} · ~${d[2]} pts c/u</small><small>${esc(PLACE[u.p])}</small>${mine?`<div class="chipsr">${mine}</div>`:""}</div></div>`}).join("");
- return`<section class="pc"><h3>Oleada actual <em>${esc(w.name)}</em></h3>${ribbon()}<p style="margin:0 0 6px;font-size:12.5px;color:var(--pmu)">Valor de la oleada: <b style="color:var(--pink)">${w.budget} pts</b> (${PC[S.d-1]}% de ${S.pts}). Cantidades orientativas.</p>${units}<p style="margin:8px 0 10px;font-size:12.5px;line-height:1.5;color:var(--pmu)">${em(w.surprise)}</p><div class="row"><button class="pb sm" data-a="pos" data-f="pos">Sortear posiciones</button>${S.boss?"":`<button class="pb sm gh" data-a="next" data-f="next">Adelantar oleada</button>`}</div></section>`;
+ if(!S.shown&&!S.boss&&S.wave===0)return`<section class="pc"><h3><span class="tt">Oleada actual</span></h3><p style="margin:0 0 12px;font-size:12.5px;line-height:1.5;color:var(--pmu)">Todavía no hay enemigos en la mesa. Elige antes la dificultad, los puntos de los héroes y tu ejército, y pulsa el botón para generar la primera oleada.</p><div class="cwrap"><button class="pb pr big" data-a="first" data-f="first">Primera oleada</button></div></section>`;
+ const k=curW(),w=waveDef(k),ro=S.rolls[k]&&!Array.isArray(S.rolls[k])?S.rolls[k]:null,g=[];
+ w.c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i&&y.r===!!e.r&&y.a===!!e.a);if(x)x.j.push(j);else g.push({i:e.i,r:!!e.r,a:!!e.a,j:[j]})});
+ let h="";
+ if(w.her)h+=unitRow(1,HER.name,"Q3+ D3+ · Villain, Fear(3), Stealth, Caster(3), Tough("+TG[S.d-1]+") · "+HER.pts+" pts (estimado)",PLACE.c,ro&&ro.h?[ro.h]:[],"");
+ g.forEach(x=>{const a=ARMY[x.i];
+  h+=unitRow(x.j.length,a.name,prof(a)+" · "+a.pts+" pts c/u",(x.r?"Reciclada: úsala solo si ya fue eliminada. ":"")+PLACE[x.a?"a":w.p],ro?x.j.map(j=>ro.u[j]).filter(Boolean):[],(x.a?`<i class="tg">Ambush</i>`:"")+(x.r?`<i class="tg rc">Reciclada</i>`:""))});
+ if(!h)h=`<p style="margin:6px 0;font-size:12.5px;color:var(--pbad)">No hay unidades en tu lista. Pégala en «Ejército enemigo».</p>`;
+ const tot=w.c.u.reduce((s,e)=>s+ARMY[e.i].pts,0)+(w.her?HER.pts:0),n=w.c.u.length+(w.her?1:0);
+ return`<section class="pc"><h3><span class="tt">Oleada actual</span></h3><p style="margin:0 0 6px;font-size:12.5px;color:var(--pmu)">Valor de la oleada: <b style="color:var(--pink)">${w.budget} pts</b> (${k==="boss"?"el doble de ":""}${PC[S.d-1]}% de ${S.pts}). Sorteadas: <b style="color:var(--pink)">${n} unidades · ${tot} pts</b>.</p>${h}<p style="margin:8px 0 10px;font-size:12.5px;line-height:1.5;color:var(--pmu)">${em(w.surprise)}</p><div class="row"><button class="pb sm" data-a="pos" data-f="pos">Sortear posiciones</button><button class="pb sm gh" data-a="reroll" data-f="reroll">Otra composición</button>${S.boss?"":`<button class="pb sm" data-a="next" data-f="next">Siguiente oleada</button>`}</div></section>`;
 }
+function armyBlock(){
+ const n=ARMY.reduce((s,a)=>s+a.n,0),tot=ARMY.reduce((s,a)=>s+a.n*a.pts,0),lk=!!S.round;
+ let h=`<div class="armyb"><p class="sbh" style="margin-top:0">Ejército enemigo</p><div class="armyr"><p><b>${n} unidades</b>${tot} pts</p><button class="pb sm gh" data-a="armyT" data-f="armyT" aria-expanded="${!!UI.army}">${UI.army?"Cerrar la lista":lk?"Ver la lista":"Ver o cambiar la lista"}</button></div>`;
+ if(UI.army){
+  if(!lk)h+=`<label class="sbh" for="armyTxt" style="display:block;margin-top:12px">Pega aquí la lista exportada de Army Forge</label><textarea id="armyTxt" spellcheck="false">${esc(ARMY_TXT)}</textarea><div class="row"><button class="pb sm" data-a="armySave" data-f="armySave">Usar esta lista</button><button class="pb sm gh" data-a="armyDef" data-f="armyDef">Lista de ejemplo</button></div>${UI.armyMsg?`<p style="margin:8px 0 0;font-size:12.5px;color:var(--pgold)">${esc(UI.armyMsg)}</p>`:""}`;
+  h+=`<ul class="alist">${ARMY.map(a=>`<li><b>${a.n}×</b><span class="nm">${esc(a.name)}</span><span class="pt">${a.pts} pts</span></li>`).join("")}</ul>`;
+ }
+ return h+`</div>`;
+}
+/* Recuadro "Número de ronda" */
+const STG={
+ "Noche":{fx:[["-1 a impactar al disparar","Para héroes y enemigos."],["Visión de 12\"","Nadie ve ni dispara a más de 12\"."]],next:"Pasa a alba cuando entren los primeros refuerzos."},
+ "Alba":{fx:[["-1 a impactar al disparar","Para héroes y enemigos."],["Visión normal","Ya no hay límite de 12\"."]],next:"Pasa a día con los siguientes refuerzos."},
+ "Día":{fx:[["Sin penalizaciones","Disparo y visión normales."]],next:"Se mantiene hasta el final de la misión."}};
+function roundCard(){
+ const st=stage(),g=STG[st];
+ return`<section class="pc"><h3><span class="tt">Número de ronda</span></h3><div class="rbox"><b>${S.round}</b><div><span class="tag">${st}</span><ul class="fx">${g.fx.map(f=>`<li><b>${esc(f[0])}</b><small>${esc(f[1])}</small></li>`).join("")}</ul></div></div><p class="nxt">${S.round?esc(g.next):"La partida empieza de noche. "+esc(g.next)}</p><div class="cwrap" style="margin-top:12px"><button class="pb pr mid" data-a="end" data-f="end" ${S.round?"":"disabled"}>Avanzar ronda</button></div>${S.round?`<p class="hintc">Suma una ronda y +1 al nivel de alerta.</p>`:`<p class="hintc">Pulsa «Empezar partida» para jugar la ronda 1.</p>`}</section>`;
+}
+/* Refuerzos por alerta dentro del recuadro "Nivel de alerta" */
+const unitsLine=c=>{const g={};c.u.forEach(e=>{const k=ARMY[e.i]?ARMY[e.i].name:"?";g[k]=(g[k]||0)+1});return Object.entries(g).map(([k,v])=>v+"× "+k).join(" · ")};
+function alertBox(){
+ const L=S.alw||[];let h="";
+ const w=L[L.length-1];
+ if(w&&S.alShow){
+  const g=[];w.c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i&&y.r===!!e.r);if(x)x.j.push(j);else g.push({i:e.i,r:!!e.r,j:[j]})});
+  const tot=w.c.u.reduce((s,e)=>s+ARMY[e.i].pts,0);
+  h+=`<div class="alw"><div class="alwh"><b>Refuerzos por alerta ${L.length}</b><span>${w.c.u.length} unidades · ${tot} pts</span></div>${g.map(x=>{const a=ARMY[x.i];return unitRow(x.j.length,a.name,prof(a)+" · "+a.pts+" pts c/u",(x.r?"Reciclada: úsala solo si ya fue eliminada. ":"")+PLACE.c,w.r?x.j.map(j=>w.r[j]):[],x.r?`<i class="tg rc">Reciclada</i>`:"")}).join("")}<div class="row" style="justify-content:center;margin-top:10px"><button class="pb sm" data-a="alPos" data-f="alPos">Sortear posiciones</button><button class="pb sm gh" data-a="alHide" data-f="alHide">Ya están en la mesa</button></div></div>`;
+ }
+ if(L.length){
+  h+=`<div class="cwrap" style="margin-top:12px"><button class="linkb" data-a="alHist" data-f="alHist" aria-expanded="${!!UI.alHist}">${UI.alHist?"Ocultar refuerzos generados":"Ver refuerzos generados ("+L.length+")"}</button></div>`;
+  if(UI.alHist)h+=`<ol class="alh">${L.map((x,i)=>`<li><b>Refuerzos ${i+1}</b><small>Ronda ${x.round||"–"} · ${x.c.u.reduce((s,e)=>s+ARMY[e.i].pts,0)} pts</small><span>${esc(unitsLine(x.c))}</span></li>`).join("")}</ol>`;
+ }
+ return h;
+}
+const MK=["Primer rastro del pueblo","Segundo rastro del pueblo","Tercer rastro del pueblo"];
+const EXIT='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h24v24H4z" opacity=".28"/><path d="M4 21A17 17 0 0 0 21 4" stroke-dasharray="2.2 3"/><path d="M4 11V4h7"/><path d="M16 16L6 6"/><path d="M6 11V6h5"/></svg>';
 function objCard(){
- const mk=[0,1,2].map(i=>`<label class="ck"><input type="checkbox" data-a="mk" data-v="${i}" data-f="mk${i}" ${S.mk[i]?"checked":""}><span>Marcador ${i+1} retirado</span></label>`).join("");
- let sec="";
- if(!S.prim)sec=`<p class="sbh">Secundario</p><p style="margin:0;font-size:12.5px;color:var(--pmu)">Se prepara al final de la ronda en que cumplas el principal y sube la Alertness en 3.</p>`;
- else if(!S.secRolled)sec=`<p class="sbh">Secundario</p><p style="margin:0;font-size:12.5px;color:var(--pmu)">Se tira y se prepara al pulsar Fin de ronda.</p>`;
- else{const s=DATA.sec[S.sec-1];sec=`<p class="sbh">Secundario · d6 = ${S.sec}</p><label class="ck"><input type="checkbox" data-a="secDone" data-f="sd" ${S.secDone?"checked":""}><span><b>${esc(s[0])}</b><small>${esc(s[1])}</small></span></label>`}
+ const done=S.mk.filter(Boolean).length;
+ const mk=MK.map((m,i)=>`<label class="ck mkr ${S.mk[i]?"on":""}"><input type="checkbox" data-a="mk" data-v="${i}" data-f="mk${i}" ${S.mk[i]?"checked":""}><span><b>${m}</b><small>${S.mk[i]?"Arrancado al olvido.":"Aún lo guarda la ceniza."}</small></span></label>`).join("");
+ let sec;
+ if(S.secRolled){const o=DATA.sec[S.sec-1];
+  sec=`<div class="res"><div class="die" id="die-SEC">${S.sec}</div><div><b>${esc(o[0])}</b><p>${esc(o[1])}</p></div></div><label class="ck" style="margin-top:10px"><input type="checkbox" data-a="secDone" data-f="sd" ${S.secDone?"checked":""}><span>Objetivo secundario cumplido</span></label>`}
+ else sec=`<div class="res ${S.prim?"":"dim"}"><div class="die" id="die-SEC">1d6</div><div><b>Por preparar</b><p>${S.prim?"Tira 1d6 para elegir el objetivo. Al prepararlo, la Alertness sube 3.":"Se prepara cuando los tres rastros estén en vuestras manos."}</p></div></div><div class="dctl ctr"><button class="pb pr sm ${S.prim?"pulse":""}" data-a="SEC" data-f="SEC" ${S.prim?"":"disabled"}>Preparar objetivo secundario</button></div>${S.prim?`<div class="dctl man"><span class="or">Manual</span>${dsel("secA","Objetivo (1d6)")}<button class="pb sm gh" data-a="SECm" data-f="SECm">Aplicar</button></div>${UI.secMsg?`<p class="dmsg">${esc(UI.secMsg)}</p>`:""}`:""}`;
  let boss="";
- if(S.prim&&S.secDone&&!S.armed&&!S.boss)boss=`<div style="margin-top:10px"><button class="pb sm" data-a="arm" data-f="arm">Activar pelea de jefe</button></div>`;
- else if(S.armed&&!S.boss)boss=`<p style="margin:10px 0 0;font-size:12.5px;color:var(--pgold)">El jefe llega al final de esta ronda.</p>`;
- else if(S.boss)boss=`<label class="ck" style="margin-top:10px"><input type="checkbox" data-a="dead" data-f="dead" ${S.dead?"checked":""}><span>Oleada del Heraldo destruida</span></label>`;
- return`<section class="pc"><h3>Objetivos</h3><p class="sbh" style="margin-top:0">Principal · búsqueda por zonas</p>${mk}${S.prim?"":`<button class="pb sm gh" data-a="prim5" data-f="prim5">Salió 5+ en la tirada</button>`}${S.prim?`<p style="margin:0;font-size:12.5px;color:var(--pok)">Principal cumplido. Quien retiró el último marcador lleva el diario del olvidado.</p>`:""}${sec}<label class="ck" style="margin-top:12px"><input type="checkbox" data-a="endc" data-f="endc" ${S.end?"checked":""}><span>Todos a 6&quot; de la misma esquina<small>Fin de la misión, con el principal cumplido.</small></span></label>${boss}</section>`;
+ if(S.prim&&S.secDone&&!S.armed&&!S.boss)boss=`<div style="margin-top:12px"><button class="pb sm" data-a="arm" data-f="arm">Activar pelea de jefe</button></div>`;
+ else if(S.armed&&!S.boss)boss=`<p style="margin:12px 0 0;font-size:12.5px;color:var(--pgold)">El jefe llega al final de esta ronda.</p>`;
+ else if(S.boss)boss=`<label class="ck" style="margin-top:12px"><input type="checkbox" data-a="dead" data-f="dead" ${S.dead?"checked":""}><span>Oleada del Heraldo destruida</span></label>`;
+ const exit=`<button class="exit ${S.end?"on":""}" data-a="endc" data-f="endc" aria-pressed="${S.end}" ${S.prim||S.end?"":"disabled"}>${EXIT}<span><b>${S.end?"Habéis escapado del pueblo":"Escapar del pueblo"}</b><small>${S.end?"Fin de la misión. Pulsa de nuevo para deshacer.":S.prim?"Todos los héroes a 6\" o menos de la misma esquina y sin enemigos alrededor, al final de la ronda.":"Primero recuperad los tres rastros."}</small></span></button>`;
+ return`<section class="pc"><h3><span class="tt">Objetivos</span></h3><p class="sbh" style="margin-top:0;display:flex;justify-content:space-between">Principal · búsqueda por zonas<span style="color:${done===3?"var(--pgold)":"var(--pmu)"}">${done} de 3</span></p>${mk}${S.prim?`<p style="margin:0;font-size:12.5px;line-height:1.5;color:var(--pok)">Los tres rastros están en vuestras manos. Quien recogió el último lleva el diario del olvidado.</p>`:""}<p class="sbh" style="margin-top:16px">Secundario</p>${sec}${boss}${exit}</section>`;
 }
 function finalCard(){
  const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d:0);
  const won=S.prim&&S.end&&!S.defeat;
- let h=`<section class="fn"><h3>${S.defeat?"Derrota":won?"Misión cumplida":"Botín de la misión"}</h3>`;
+ let h=`<section class="fn"><h3><span class="tt">${S.defeat?"Derrota":won?"Misión cumplida":"Botín de la misión"}</span></h3>`;
  if(S.defeat)h+=`<p>${esc(cap(DATA.fin[2].replace(/^Derrota: /,"")))}</p>`;
  else if(won)h+=`<p>${esc(cap((S.dead?DATA.fin[1]:DATA.fin[0]).replace(/^[^:]+: /,"")))}</p>`;
  h+=`<div class="xp"><div><b>${xp}</b><small>XP de ${5*S.d}</small></div><div><b>${won?5*S.d:0}</b><small>Oro de riesgo</small></div></div><div class="row" style="margin-top:12px"><button class="pb sm gh" data-a="defeat" data-f="defeat">${S.defeat?"Retirar derrota":"Declarar derrota"}</button></div></section>`;
@@ -392,7 +625,7 @@ function render(){
  const pb=$("#pbody"),keep=pb.scrollTop,f=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.f:null;
  const roundTxt=S.round?"Ronda "+S.round:"Preparación";
  $("#pbar").setAttribute("aria-expanded",UI.open);
- $("#pbar").innerHTML=`<span class="grab"></span><div class="rn">${S.round}</div><div class="mid"><b style="font-size:14px">${roundTxt} · ${stage()}</b><div class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</div><small>${esc(waveDef(curW()).name)} · Alertness ${S.al} de 6</small></div>${S.round?`<button class="pb sm pr" data-a="end" data-f="endm" aria-label="Fin de ronda">Fin de ronda</button>`:`<button class="pb sm pr" data-a="start" data-f="startm">Empezar</button>`}`;
+ $("#pbar").innerHTML=`<span class="grab"></span><div class="rn">${S.round}</div><div class="mid"><b style="font-size:14px">${roundTxt} · ${stage()}</b><div class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</div><small>${S.shown||S.boss||S.wave>0?esc(waveDef(curW()).name):"Sin oleada"} · Alertness ${S.al} de 6</small></div>${S.round?`<button class="pb sm pr" data-a="end" data-f="endm" aria-label="Avanzar ronda">Avanzar ronda</button>`:`<button class="pb sm pr" data-a="start" data-f="startm">Empezar</button>`}`;
  const alert=S.alert?`<div class="alert"><b>${esc(S.alert)}</b><div class="row" style="margin-top:8px"><button class="pb sm" data-a="ok" data-f="ok">Entendido</button></div></div>`:"";
  const nk=S.nar,nt=DATA.narMap[nk]||"";
  const ev=S.ev?`<div class="res"><div class="die ${S.ev.tone}" id="die-EV">${S.ev.n}</div><div><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res"><div class="die" id="die-EV">2d6</div><div><b>Evento de Neth</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
@@ -400,16 +633,20 @@ function render(){
  pb.innerHTML=`
  <div class="ph"><h2>MESA DE JUEGO</h2><button class="pb sm gh" data-a="reset" data-f="reset">${UI.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button></div>
  ${alert}
- <section class="pc"><h3>Partida</h3><div class="seals" role="group" aria-label="Dificultad">${[1,2,3,4].map(i=>`<button data-a="d" data-v="${i}" data-f="d${i}" class="${S.d===i?"on":""}" aria-label="Dificultad ${i}" aria-pressed="${S.d===i}">${i}</button>`).join("")}</div><p style="margin:8px 0 0;font-size:12.5px;color:var(--pmu)">${DN[S.d-1]} · oleadas al ${PC[S.d-1]}%</p>
- <div class="stp"><span>Puntos de los héroes</span><button data-a="pts" data-v="-25" data-f="pm" aria-label="Menos puntos">−</button><b>${S.pts}</b><button data-a="pts" data-v="25" data-f="pp" aria-label="Más puntos">+</button></div>
- <div class="stp"><span>Héroes</span><button data-a="heroes" data-v="-1" data-f="hm" aria-label="Menos héroes">−</button><b>${S.heroes}</b><button data-a="heroes" data-v="1" data-f="hp" aria-label="Más héroes">+</button></div></section>
- <section class="pc"><div class="rd"><div><span class="tag">${stage()}</span><div style="font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--pmu);margin-top:8px">${S.round?"Ronda":"Antes de empezar"}</div></div><b>${S.round}</b></div>${gauge()}
- <div class="row" style="margin-top:10px;justify-content:center">${S.round?`<button class="pb pr" data-a="end" data-f="end">Fin de ronda</button>`:`<button class="pb pr" data-a="start" data-f="start">Empezar partida</button>`}<button class="pb sm gh" data-a="alAdj" data-v="-1" data-f="am" aria-label="Quitar 1 de Alertness">−1</button><button class="pb sm gh" data-a="alAdj" data-v="1" data-f="ap" aria-label="Sumar 1 de Alertness">+1</button></div>
- <label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>No queda ningún enemigo en la mesa (+2 en vez de +1)</span></label></section>
+ <section class="pc"><h3><span class="tt">Configuración de partida</span></h3><div class="seals" role="group" aria-label="Dificultad">${[1,2,3,4].map(i=>`<button data-a="d" data-v="${i}" data-f="d${i}" class="${S.d===i?"on":""}" aria-label="Dificultad ${i}" aria-pressed="${S.d===i}" ${S.round?"disabled":""}>${i}</button>`).join("")}</div><p style="margin:8px 0 0;font-size:12.5px;color:var(--pmu)">${DN[S.d-1]} (${PC[S.d-1]}% fuerza de enemigos)</p>
+ <div class="stp"><span>Puntos de los héroes</span><button data-a="pts" data-v="-25" data-f="pm" ${S.round?"disabled":""} aria-label="Menos puntos">−</button><b>${S.pts}</b><button data-a="pts" data-v="25" data-f="pp" ${S.round?"disabled":""} aria-label="Más puntos">+</button></div>
+ <div class="stp"><span>Número de héroes</span><button data-a="heroes" data-v="-1" data-f="hm" ${S.round?"disabled":""} aria-label="Menos héroes">−</button><b>${S.heroes}</b><button data-a="heroes" data-v="1" data-f="hp" ${S.round?"disabled":""} aria-label="Más héroes">+</button></div>${armyBlock()}${S.round?`<p class="lockn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>Configuración bloqueada durante la partida. Para cambiarla, pulsa «Nueva partida».</p>`:`<div class="startw"><button class="pb pr big" data-a="start" data-f="start">Empezar partida</button></div>`}</section>
+ ${roundCard()}
+ <section class="pc"><h3><span class="tt">Nivel de alerta</span></h3>${gauge()}
+ <div class="row" style="margin-top:10px;justify-content:center"><button class="pb sm gh" data-a="alAdj" data-v="-1" data-f="am" aria-label="Quitar 1 de Alertness">−1</button><button class="pb sm gh" data-a="alAdj" data-v="1" data-f="ap" aria-label="Sumar 1 de Alertness">+1</button></div>
+ <label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>Sin enemigos en mesa (+2)</span></label>${alertBox()}</section>
  ${waveCard()}
- <section class="pc"><h3>Texto de la ronda <em>Léelo en voz alta</em></h3><p class="nar">${esc(nt)}</p></section>
+ <section class="pc"><h3><span class="tt">Texto de la ronda</span><button class="play" type="button" data-a="play" data-f="play" aria-label="Reproducir el texto (el audio llegará más adelante)" title="Audio: próximamente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button></h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></section>
  ${objCard()}
- <section class="pc"><h3>Dados</h3><div class="dice"><button class="pb ${S.needEv?"pulse":""}" data-a="EV" data-f="EV">Evento de Neth</button><button class="pb" data-a="CH" data-f="CH">Abrir cofre</button></div>${S.needEv?`<p style="margin:0 0 6px;font-size:12.5px;color:var(--pgold)">Toca tirar el evento de Neth.</p>`:""}<div aria-live="polite">${ev}${ch}</div>${S.hist.length?`<p class="hist">Últimas: ${S.hist.slice(0,3).map(esc).join(" · ")}</p>`:""}</section>
+ <section class="pc"><h3><span class="tt">Dados</span></h3>
+ <div class="dblk"><p class="sbh" style="margin-top:0">Evento de Neth · 2d6</p>${S.needEv?`<p class="dnote">Toca tirar el evento de Neth.</p>`:""}<div aria-live="polite">${ev}</div><div class="dctl ctr"><button class="pb pr sm ${S.needEv?"pulse":""}" data-a="EV" data-f="EV">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("evA","Decenas")}${dsel("evB","Unidades")}<button class="pb sm gh" data-a="EVm" data-f="EVm">Aplicar</button></div>${UI.evMsg?`<p class="dmsg">${esc(UI.evMsg)}</p>`:""}</div>
+ <div class="dblk"><p class="sbh" style="margin-top:0">Cofre · contenido y objeto</p><div aria-live="polite">${ch}</div><div class="dctl ctr"><button class="pb pr sm" data-a="CH" data-f="CH">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("chA","Contenido")}${dsel("chB","Objeto")}<button class="pb sm gh" data-a="CHm" data-f="CHm">Aplicar</button></div>${UI.chMsg?`<p class="dmsg">${esc(UI.chMsg)}</p>`:""}</div>
+ ${S.hist.length?`<p class="hist">Últimas: ${S.hist.slice(0,3).map(esc).join(" · ")}</p>`:""}</section>
  ${finalCard()}`;
  $("#panel").classList.toggle("open",UI.open);$("#veil").classList.toggle("on",UI.open);
  pb.scrollTop=keep;
@@ -466,7 +703,7 @@ function buildSheet(){
  h+=sec("enemigos","Oleadas","Lo que el pueblo ha olvidado",`<div class="mons"><div class="mon">${cMon("bor")}<h3>Borrados</h3><p>Figuras grises que recuerdan a medias cómo caminar. Espectros o muertos vivientes de rostro liso.</p></div><div class="mon">${cMon("cul")}<h3>Cultistas del Umbral</h3><p>Túnicas negras con el signo del Umbral en las mangas. Cantan una sola nota. Un <i>Caster</i> los guía.</p></div><div class="mon">${cMon("ani")}<h3>Animales deformados</h3><p>Perros del pueblo con la carne torcida y los ojos blancos. Rápidos (<i>Fast</i>) y mal afinados.</p></div></div>
  <div class="body"><p>Ten al menos 2 o 3 veces más unidades que héroes, y puntos para 2 o 3 oleadas completas.</p><p><b class="hl">Tamaño de oleada.</b> Porcentaje de los puntos totales de los héroes. Ejemplo: con 300 puntos de héroes, una oleada de nivel 2 vale 150 puntos.</p></div><div class="bars" id="bars"></div>
  <div class="body"><p><b class="hl">Centinelas.</b> Antes de empezar se despliegan en el centro de un cuadrante al azar: un dado por unidad, con 1-4 va al cuadrante con ese número y con 5-6 eliges. El PDF no fija cuántos son, así que usa el tamaño de una oleada.</p><p><b class="hl">Alertness.</b> Al final de cada ronda sube 1, o 2 si no queda ningún enemigo en la mesa. Al llegar a 6 entra una oleada de refuerzos y la Alertness vuelve a 0.</p><p><b class="hl">Refuerzos.</b> Cada unidad entra a 6&quot; o menos de una esquina al azar: con 1-4 va a la esquina con ese número y con 5-6 eliges.</p></div>
- <div class="tw"><table id="wvt"></table></div><p class="small">El panel de juego calcula la cantidad de unidades de cada oleada con costes orientativos (unidad de Borrados 60, animales 45, cultistas 80, <i>Caster</i> 70, <i>Ambush</i> 60 y Heraldo 150). Son estimaciones de la casa: sustitúyelas por los costes de tu Army Forge.</p>`);
+ <div class="tw"><table id="wvt"></table></div><p class="small">El panel de juego sortea al azar las unidades de cada oleada con tu propia lista de Army Forge (pégala en «Ejército enemigo»), sin pasarse de su valor. Los Borrados, animales y cultistas son el papel que hacen en la historia: tus miniaturas los representan. Si ya no quedan copias libres de una unidad, sale como <b class="hl">reciclada</b>: úsala solo si ya fue eliminada. El Heraldo cuenta como 150 pts (estimación de la casa).</p>`);
  h+=sec("eventos","Reglas de la casa","Eventos de Neth",`<div class="body"><p>Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento. Es una adaptación de la tabla de eventos del modo horda.</p></div><details class="fold"><summary>Los 36 eventos</summary><div class="in"><div class="evg">${DATA.ev.map(e=>`<div><b>${e[0]}</b><span><b style="display:inline;width:auto;font:700 16px var(--serif);color:var(--ink)">${esc(e[1])}.</b> ${esc(e[2])}</span></div>`).join("")}</div></div></details>`);
  h+=sec("heraldo","Jefe · estadísticas de la casa","Heraldo del Umbral",`<div class="her">${PORTRAIT}<div><div class="stg" id="hs"></div><div class="body"><p>Llega con la pelea de jefe, en una oleada de doble valor junto a Borrados y cultistas. <i>Villain</i> permite que las unidades de IA a 12&quot; o menos usen la Calidad del Heraldo en sus chequeos de moral si es mejor que la suya, mientras no esté Aturdido.</p></div></div></div>
  <div class="body" style="margin-top:18px"><p><b class="hl">Reglas especiales.</b> <i>Villain</i>, <i>Fear</i>(3), <i>Stealth</i>, <i>Tough</i>(<span id="tg2"></span>), <i>Caster</i>(3).</p><p><b class="hl">Hoz del vacío</b> (cuerpo a cuerpo): 4 ataques, AP(2), <i>Rending</i>.</p></div>
@@ -498,5 +735,3 @@ DATA.narMap={};
 (function(){const m={"Antes de empezar":"start","Ronda 1":"r1","Ronda 2":"r2","Ronda 3":"r3","Entran los refuerzos 1":"w1","Entran los refuerzos 2":"w2","Se cumple el objetivo principal":"pri","Se activa el objetivo secundario":"sec","Llega el Heraldo":"boss"};DATA.nar.forEach(n=>{if(m[n[0]])DATA.narMap[m[n[0]]]=n[1]})})();
 buildSheet();buildToc();render();
 </script>
-
-</body></html>

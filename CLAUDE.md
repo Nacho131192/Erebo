@@ -58,19 +58,25 @@ El usuario pasó los dos PDFs. Resumen de lo que se aplicó:
 - **Diario del olvidado**: lo lleva quien retira el último marcador; da AP(1) contra el Heraldo.
 - **Heraldo del Umbral** (jefe): Calidad 3+, Defensa 3+, Villain, Fear(3), Stealth, Caster(3), **Tough(7/9/10/12)** según dificultad, hoz del vacío 4 ataques AP(2) Rending; hechizos Olvido (1), Borrado (2), Silencio (3). Sin Aturdido con Tough(9)+; cada moral fallido le causa D3 heridas. **No está probado en mesa.**
 - **Cantidad de centinelas**: el PDF no la fija; se asumió igual al tamaño de una oleada.
+- **Principal sin atajo**: se cumple solo al retirar los 3 marcadores; no se usa la tirada de 5+ (decisión de Nacho, 2026-11-16).
+- **Salida**: además de estar a 6" de la misma esquina, sin enemigos alrededor.
+- **Secundario**: se prepara con un botón en cuanto se cumple el principal (no al final de la ronda), tirando o metiendo el d6 a mano.
+- **Alertness de 1 a 6**: al llegar a 6 entran refuerzos y lo que sobra pasa a la nueva cuenta (la cuenta va de 1 a 6, como un dado: empieza en 1, a 6 entran refuerzos y vuelve siempre a 1; lo que sobra se pierde, para dar un respiro al jugador). Función `addAl` (fin de ronda, +1 manual y +3 del secundario). Si se llega a 6 con el +1 manual durante la partida, también se suma una ronda.
+- **Refuerzos por alerta separados** (decisión de Nacho): al llegar la Alertness a 6, los refuerzos se sortean aparte (`alertWave`, `S.alw`) y se muestran dentro de "Nivel de alerta" (Sortear posiciones, "Ya están en la mesa" para ocultarlos, "Ver refuerzos generados (n)" con el historial). "Oleada actual" solo avanza con sus botones y ya no toca la Alertness. El sorteo descuenta las unidades de ambos. Noche/Alba/Día cuenta las llegadas de los dos (`nRef`).
+- **Sin enemigos en mesa**: marcar la casilla suma +2 al momento (desmarcar lo resta); ese fin de ronda ya no suma el +1. Si así se llega a 6, entran refuerzos y se suma una ronda.
 
 Todo el contenido de la misión (texto literal) está en `docs/mision-1.md`. Es la fuente de verdad. Ese archivo es la exportación del documento de Claude Docs "El Pueblo Sin Nombre – Misión 1: El pueblo vacío".
 
 ## 5. El artefacto (la página web)
 
 Archivo final: `src/pueblo-sin-nombre.html` (una sola página, ~70 KB, sin dependencias salvo Google Fonts: Cinzel, Cinzel Decorative, Cormorant Garamond, Inter, Space Grotesk).
-Se publicó como artefacto de claude.ai (privado, URL https://claude.ai/artifact/KqZJgnaBrhxonFkHZJyCFL, versión 7).
+Se publicó como artefacto de claude.ai (privado, URL https://claude.ai/artifact/KqZJgnaBrhxonFkHZJyCFL, versión 17: oleadas con Army Forge, botón Primera oleada, títulos en cápsula dorada, objetivos rediseñados, configuración bloqueable, dados manuales y alerta que llega a 6).
 
 ### Cómo se genera
 - `src/template/final-tpl.html`: plantilla con CSS + HTML + JS. Marcadores `%%DATA%%`, `%%SCENE%%`, `%%PORTRAIT%%`.
 - `src/template/data.js`: textos extraídos de la misión (prólogo, objetivos, preparación, 36 eventos, narración, finales).
 - `src/template/old-scene-source.html`: de ahí se extraen los dos SVG hechos a mano (escena de portada `svg.scene`, que define `<g id="her">`, y retrato `svg.por`, que lo reutiliza con `<use href="#her">`).
-- `python3 src/template/build.py` regenera `src/pueblo-sin-nombre.html`.
+- `py src/template/build.py` (en Windows no hay `python3`; usar el lanzador `py`) regenera `src/pueblo-sin-nombre.html`.
 - Si cambias textos de la misión en `docs/mision-1.md`, hay que regenerar `data.js` (parsear los apartados con las mismas expresiones; los cofres, los hechizos, la tabla de oleadas y la narración corta están además escritos a mano en la plantilla).
 
 ### Diseño elegido (tras 4 maquetas; la B "tráiler" se descartó)
@@ -80,16 +86,17 @@ Se publicó como artefacto de claude.ai (privado, URL https://claude.ai/artifact
 
 ### Panel de juego — qué hace
 Estado guardado en `localStorage` (clave `psn-m1-v2`, con try/catch; botón "Nueva partida" con doble pulsación).
-1. **Partida**: dificultad 1-4, puntos de héroes (pasos de 25, por defecto 300), nº de héroes (2-4).
-2. **Ronda y Alertness**: medidor de 6 segmentos; "Fin de ronda" suma +1 (o +2 con la casilla "no queda ningún enemigo"); al llegar a 6 entra la siguiente oleada, avisa y marca "tira evento de Neth". Botones −1/+1 manuales. Etiqueta Noche/Alba/Día.
-3. **Oleada actual**: cinta Centinelas / R1 / R2… / Jefe; valor en puntos de la oleada; **unidades, cantidad y posición**; botón "Sortear posiciones" tira un d6 por unidad (1-4 cuadrante o esquina con ese número, 5-6 "a tu elección"); la unidad con Ambush tira D3 y da la ronda de entrada. "Adelantar oleada" manual.
-4. **Texto de la ronda**: narración para leer en voz alta según el momento (inicio, rondas 1-3, refuerzos 1 y 2, objetivo principal, secundario, Heraldo).
-5. **Objetivos**: 3 marcadores, "salió 5+", secundario (se tira al pulsar Fin de ronda tras cumplir el principal: d6, +3 Alertness), casilla de esquina final, "Activar pelea de jefe" (llega al final de esa ronda), "Heraldo destruido".
-6. **Dados**: evento de Neth (2d6 de uno en uno, con ayudas "héroe nº X", "cuadrante N", "D3 = n") y cofre (contenido + subtirada, tesoro maldito calcula 5×D de oro).
-7. **Cierre**: XP y oro acumulados, final de misión (sin jefe / con Heraldo destruido) o derrota.
+1. **Configuración de partida** (incluye el bloque *Ejército enemigo* bajo Número de héroes; al empezar se puede ver la lista pero no cambiarla): dificultad 1-4 (debajo: "Experto (100% fuerza de enemigos)"), puntos de héroes (pasos de 25, por defecto 300), "Número de héroes" (2-4) y, al pie y centrado, el botón EMPEZAR PARTIDA. Al empezar (`S.round>0`) todo queda bloqueado (botones deshabilitados + guardas en `ACT`) con un aviso con candado; "Nueva partida" lo desbloquea. Todos los títulos de tarjeta van en cápsula dorada (`.pc h3 .tt`).
+2. **Número de ronda** (recuadro propio): número grande, cápsula Noche/Alba/Día con la lista de sus efectos (`STG`: Noche -1 al disparar y visión 12"; Alba -1 al disparar; Día sin penalizaciones) y cuándo cambia y botón AVANZAR RONDA (antes "Fin de ronda": ronda +1 y Alertness +1, o nada si ya se sumó el +2). **Nivel de alerta**: medidor de 6 segmentos; "Fin de ronda" suma +1 (o +2 con la casilla "Sin enemigos en mesa (+2)"); al llegar a 6 entra la siguiente oleada, avisa y marca "tira evento de Neth". Botones −1/+1 manuales (el +1 ya puede llegar a 6). Junto al número grande pone "Número de ronda".
+3. **Ejército enemigo** (dentro de Configuración, `armyBlock`): el jugador pega su lista exportada de Army Forge (textarea). Se guarda aparte en `localStorage` (clave `psn-army-v1`, "Nueva partida" no la borra); por defecto, la lista de Nacho (`ARMY_DEF` en la plantilla, 20 entradas, 37 unidades, 3185 pts; en el panel se ven unidades y, debajo, puntos). Formato por entrada: `Nx Nombre [modelos] Qn+ Dn+ | pts | reglas` + línea de armas; `Nx` = N copias, cada una al coste indicado (así suman los 3185).
+4. **Oleada actual**: al empezar no hay oleada; el botón "PRIMERA OLEADA" (centrado, mayúsculas) la genera (`S.shown`) y después queda "Siguiente oleada" (oculto en la pelea de jefe). Sin cinta de pestañas ni nombre de la oleada en el título (el nombre sigue en la barra inferior del móvil). Cada oleada se **sortea al azar** con unidades de esa lista hasta llenar su valor sin pasarse (`genComp`), y se guarda en `S.comp[k]` (se vuelve a sortear si cambian el valor o la lista). Primero usa copias que no salieron en oleadas anteriores; si no cabe ninguna, recicla (etiqueta "Reciclada": solo si ya fue eliminada). Nunca más copias de las que tiene en una misma oleada. En refuerzos impares, una unidad al azar lleva Ambush. En los pares, si sale una unidad con Caster, se aplica la sorpresa del +1. Jefe: Heraldo (150 pts estimados) + sorteo de 2×valor − 150. Se muestra el perfil completo de cada unidad. Botones "Sortear posiciones" y "Otra composición". Borrados, animales y cultistas son solo el papel narrativo.
+5. **Texto de la ronda**: botón redondo de reproducir (de momento solo avisa de que el audio llegará más adelante); narración para leer en voz alta según el momento (inicio, rondas 1-3, refuerzos 1 y 2, objetivo principal, secundario, Heraldo).
+6. **Objetivos**: tres "rastros del pueblo" (contador n de 3); secundario con botón "Preparar objetivo secundario" (activo al cumplir el principal: d6 con animación, +3 Alertness, puede traer refuerzos) y casilla de cumplido; botón "Escapar del pueblo" (a 6" de una esquina y sin enemigos; activo con el principal), "Activar pelea de jefe" (llega al final de esa ronda), "Heraldo destruido".
+7. **Dados**: dos bloques separados (Evento de Neth y Cofre), cada uno con "Tirar" centrado (la app tira) o "Manual" (dos desplegables 1-6 + "Aplicar"; el cofre solo pide el segundo dado si el contenido es 1-5). Evento de Neth (2d6 de uno en uno, con ayudas "héroe nº X", "cuadrante N", "D3 = n") y cofre (contenido + subtirada, tesoro maldito calcula 5×D de oro).
+8. **Cierre**: XP y oro acumulados, final de misión (sin jefe / con Heraldo destruido) o derrota.
 
 ### Supuestos que conviene revisar con el usuario
-- Las **cantidades de unidades** se calculan con **costes orientativos inventados** por unidad: Borrados 60, animales deformados 45, unidad con Ambush 60, cultistas 80, cultista con Caster 70, Heraldo 150 (la oleada de jefe vale 2× el presupuesto, restando el Heraldo y repartiendo el resto a mitades entre Borrados y cultistas). Mínimo 1 unidad por tipo. Está avisado en la página. Hay que sustituirlos por los costes reales de su Army Forge cuando los dé.
+- El **Heraldo** cuenta como 150 pts (estimado; no existe en Army Forge). En nivel 1 la oleada del jefe es solo el Heraldo (2×75 − 150 = 0).
 - **Numeración** de cuadrantes y esquinas del 1 al 4 en sentido horario desde el noroeste (sugerida; el PDF solo dice "numéralos de 1 a 4").
 - Refuerzos 3 en adelante alternan los tipos 1 y 2.
 - Probado en un navegador de pruebas (escritorio y móvil, flujo completo de partida, sin errores de JS). **No se probó** la persistencia en el navegador real ni la tipografía final (en el entorno de pruebas las fuentes de Google no cargaban).
@@ -103,7 +110,7 @@ Estado guardado en `localStorage` (clave `psn-m1-v2`, con try/catch; botón "Nue
 
 ## 7. Pendiente / siguiente
 
-1. Pedir al usuario los costes de unidad reales (o su Army Forge) y ajustar `U` en la plantilla.
+1. Oleadas con la lista real de Army Forge: hecho (2026-11-16). Artefacto republicado (versión 8). Falta el reciclaje "bueno" (marcar bajas en el panel), que Nacho dejó para más adelante.
 2. Ver su opinión sobre el aspecto final y el panel; iterar.
 3. **Misión 2, "El camino de las raíces"** (Ruptura de Eryn, terreno peligroso y veneno): el usuario dijo "aún no"; primero afinar la misión 1. Reutilizar el mismo método: documento de misión → página con pergamino + panel (el panel puede configurarse por misión: oleadas, narración, eventos).
 4. Ideas aparcadas: lectura en voz alta (TTS), emblemas de facción, mapa de la campaña, múltiples misiones en un mismo artefacto.
