@@ -1,6 +1,6 @@
 # El Pueblo Sin Nombre — Misión 1: El pueblo vacío
 
-*Campaña para Age of Fantasy: Quest (One Page Rules), ambientada en Érebo · 2 a 4 héroes · Mesa de 4'x4'*
+*Campaña para Age of Fantasy: Quest (One Page Rules), ambientada en Érebo · 2 a 4 héroes · Mesa de 122 x 122 cm*
 
 ## Prólogo: El contrato del Filo
 
@@ -14,7 +14,7 @@ No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y u
 
 La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.
 
-Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma. Antes de bajar, cada uno dice en voz alta por qué aceptó este encargo y no otro, qué es lo que más teme olvidar y quién se quedó en Varek's Hold para recordarle si no vuelve.
+Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma.
 
 ## Objetivos y recompensas
 
@@ -50,7 +50,7 @@ Un héroe sube a nivel 2 con 3 XP y a nivel 3 con 6 XP. Las fórmulas son las de
 
 ## Preparación
 
-- **Mesa:** tamaño estándar, 48"x48" (4'x4') con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24"x24" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.
+- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm) con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24"x24" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.
 - **1. Objetivos:** prepara el objetivo principal. El secundario se prepara más tarde.
 - **2. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.
 - **3. Despliegue enemigo:** ver Oleadas y sorpresas.
@@ -176,6 +176,12 @@ Los héroes obtienen 5 × D de oro (D es el nivel de dificultad) y surge un Borr
 
 ## El Heraldo del Umbral
 
+*En la página solo se ve lo que se cuenta de él; sus estadísticas aparecen en la mesa de juego cuando entra en partida.*
+
+**Lo que se cuenta:** Nadie en Varek's Hold sabe cómo se llama, y quienes dicen haberlo visto no se ponen de acuerdo en su cara. Unos hablan de un sacerdote del Umbral que bajó a un pozo como este hace años y nunca terminó de subir. Otros juran que no es nadie: solo el hueco que deja una persona cuando el mundo la olvida, vestido con lo último que llevaba puesto. Los cultistas lo llaman Heraldo y bajan la voz al decirlo, como si anunciara la llegada de alguien más. Puede que nunca aparezca. Puede que ya os esté mirando.
+
+> «No os voy a matar. Os voy a dejar marchar, y cuando volváis a casa nadie os estará esperando.»
+
 Llega con la pelea de jefe, en una oleada de doble valor junto a Borrados y cultistas. *Villain* permite que las unidades de IA a 12" o menos usen la Calidad del Heraldo en sus chequeos de moral si es mejor que la suya, mientras el Heraldo no esté Aturdido.
 
 **Heraldo del Umbral** *(estadísticas de la casa, no oficiales)*
@@ -196,27 +202,27 @@ Llega con la pelea de jefe, en una oleada de doble valor junto a Borrados y cult
 
 ### Antes de empezar
 
-El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro. La Voz del Filo os dijo que aquí vivían unas cuarenta personas, pero al mirar el pueblo ninguno de vosotros sabría decir cómo lo sabe.
+El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro. La Voz del Filo os dijo que aquí vivían unas cuarenta personas, pero al mirar el pueblo ninguno de vosotros sabría decir cómo lo sabe. En la plaza, el pozo está destapado. Del fondo no sube agua, sino silencio.
 
 ### Ronda 1
 
-Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar. Tienen forma de personas, pero les falta algo que no sabríais nombrar.
+Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar. Tienen forma de personas, pero les falta algo que no sabríais nombrar. Una de ellas se detiene y mira hacia el pozo, como si esperara una orden que todavía no ha llegado.
 
 ### Ronda 2
 
-El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien. Nadie vive aquí, pero el pueblo parece esperar visita.
+El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien. Junto a la taza hay una silla apartada, como si alguien acabara de levantarse, y ninguno de vosotros lo ha visto salir. Nadie vive aquí, pero el pueblo parece esperar visita.
 
 ### Ronda 3
 
-Un roce a vuestra espalda. Algo se ha levantado donde un instante antes no había nada, y os mira sin cara con la cabeza ladeada, como un niño que escucha.
+Un roce a vuestra espalda. Algo se ha levantado donde un instante antes no había nada, y os mira sin cara con la cabeza ladeada, como un niño que escucha. Cuando por fin se mueve, no viene hacia vosotros: va hacia el pozo, y se arrodilla.
 
-### Entran los refuerzos 1
+### Ronda 4
 
-Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos. Más atrás, algo más lento se arrastra entre las sombras de los muros.
+Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos. Más atrás, algo más lento se arrastra entre las sombras de los muros. Al llegar a la plaza dejan de ladrar a la vez, y todos miran en la misma dirección.
 
-### Entran los refuerzos 2
+### Ronda 5
 
-Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. El que va primero sonríe como quien llega tarde a una ceremonia que ya conoce.
+Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. Al pasar junto al pozo, el que va primero se inclina, como quien saluda a alguien que todavía no ha llegado.
 
 ### Se cumple el objetivo principal
 
@@ -224,17 +230,18 @@ Al retirar el último rastro, vuestras manos tocan un diario cuya letra os suena
 
 ### Se activa el objetivo secundario
 
-El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros. El Vacío no quiere ya esperar.
+El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros. Desde el fondo sube un sonido que podría ser una voz, o vuestros nombres dichos del revés. El Vacío no quiere ya esperar.
 
-### Llega el Heraldo
+### Llega el Heraldo *(no aparece en la página: es sorpresa)*
 
 Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostro que se os escurre de la memoria apenas dejáis de mirarlo. No levanta el arma. Solo dice vuestros nombres, y por un instante dudáis de que sean los vuestros.
 
 ## Finales
 
-- **Misión cumplida sin pelea de jefe:** al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección: Ocaso.
-- **Misión cumplida y Heraldo destruido:** el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Sabéis que Ocaso lo sabrá.
+- **Misión cumplida:** al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección, Ocaso, y un camino dibujado hacia el bosque de Eryn, donde las raíces han empezado a moverse. Esa noche, junto al fuego, uno de vosotros oye su nombre al otro lado de los árboles, dicho sin prisa. El Heraldo no os ha olvidado. Os sigue.
+- **Misión cumplida y Heraldo destruido:** el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Entre los restos de su túnica encontráis una semilla negra, todavía tibia, que late como un corazón pequeño. La última página señala Ocaso, y el único camino hacia allí cruza el bosque de Eryn. En algún lugar, alguien ha notado que el Heraldo no ha vuelto.
 - **Derrota:** el camino os devuelve al borde del pueblo, sin recordar bien cómo llegasteis. Habéis perdido algo, pero nadie sabe decir qué.
+
 ## Notas
 
 - Son reglas de la casa los eventos de Neth, las sorpresas por oleada, el tesoro maldito, el diario del olvidado y las estadísticas del Heraldo. Todo lo demás sigue el Campaign Builder v2.1.0 de OPR.
