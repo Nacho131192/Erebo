@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>El Pueblo Sin Nombre</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -15,12 +16,81 @@ body{margin:0;background:radial-gradient(1100px 640px at 28% -8%,#33201a 0,#120d
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#120d0b;z-index:60}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--pgold);outline-offset:2px}
-.shell{display:flex;align-items:flex-start;min-height:100vh}
-.col{flex:1 1 0;min-width:0;padding:0 24px 80px max(16px,env(safe-area-inset-left,0px))}
+html{scrollbar-gutter:stable}
+html.lock{overflow:hidden}
+[hidden]{display:none!important}
+.view.enter{animation:vfade .5s ease-out backwards}
+.mis.enter .scroll{animation:vin .8s cubic-bezier(.22,1,.36,1) backwards}
+.view.leave{animation:vout .24s ease-in forwards;pointer-events:none}
+@keyframes vin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes vfade{from{opacity:0}}
+@keyframes vout{to{opacity:0}}
+.col{min-width:0;padding:0 max(24px,env(safe-area-inset-right,0px)) 120px max(24px,env(safe-area-inset-left,0px))}
 
-/* barra de capítulos */
-.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;margin:0 auto;max-width:900px;display:flex;gap:2px;overflow-x:auto;padding:10px 0 8px;scrollbar-width:none;background:linear-gradient(#120d0bf2 70%,#120d0b00)}
-.toc a{white-space:nowrap;text-decoration:none;color:#bfa985;font:600 12px var(--ui);letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;border-radius:999px}
+/* ===== selector de misiones ===== */
+.home{position:relative;min-height:100vh;padding:calc(56px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) 64px max(24px,env(safe-area-inset-left,0px));overflow:hidden}
+.home::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 520px at 50% -6%,rgba(217,160,90,.16),transparent 62%),radial-gradient(1200px 700px at 50% 120%,rgba(0,0,0,.55),transparent 60%)}
+.home::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .4 0 0 0 0 .3 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hwrap{position:relative;z-index:1;max-width:1120px;margin:0 auto}
+.hhead{text-align:center;margin:0 auto 44px;max-width:720px}
+.hhead .sigil{width:58px;height:58px;color:var(--pgold);filter:drop-shadow(0 0 14px rgba(217,184,108,.35))}
+.hhead .eb{color:#c99a62;letter-spacing:.32em;text-wrap:balance}
+.hhead h1{margin:6px 0 0;font:700 clamp(36px,6.4vw,64px)/1.05 var(--deco);letter-spacing:.01em;background:linear-gradient(180deg,#f8ead0 0,#e2c37f 48%,#a87d34 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance;filter:drop-shadow(0 2px 18px rgba(217,160,90,.18))}
+.hhead .orn{margin:16px auto 14px;color:#9c7a3c}
+.hhead p.lead{margin:0;text-wrap:balance;font:italic 500 clamp(19px,2.4vw,22px)/1.45 var(--serif);color:#cdb894}
+.hprog{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;margin-top:18px;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#a8906c}
+.hprog i{display:flex;gap:5px}.hprog i b{width:18px;height:3px;border-radius:2px;background:#3a2a1c}.hprog i b.on{background:linear-gradient(90deg,#e2c37f,#a87d34)}
+.mgridh{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.mcard{position:relative;display:flex;flex-direction:column;border-radius:10px;min-width:0;animation:vin .7s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i,0)*70ms + 120ms)}
+.mcard .art{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:6px}
+.mcard .txt{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.mcard .mn{font:600 11px var(--ui);letter-spacing:.28em;text-transform:uppercase}
+.mcard h2{margin:0;font:700 22px/1.2 var(--disp);text-wrap:balance}
+.mcard .th{margin:0;font:italic 500 18px/1.35 var(--serif)}
+/* misión disponible: folio de pergamino */
+.mcard.on{color:var(--ink);padding:10px;box-shadow:inset 0 0 46px rgba(100,58,20,.38),0 0 0 1px rgba(217,184,108,.55),0 0 0 6px rgba(18,13,11,.9),0 0 0 7px rgba(217,184,108,.35),0 24px 60px rgba(0,0,0,.6),0 0 80px rgba(217,160,90,.12);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+.mcard.on .art{background:#1a1322;border:1.5px solid var(--goldd);box-shadow:inset 0 0 40px rgba(0,0,0,.6)}
+.mcard.on .art svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.mcard.on .art .wax{position:absolute;left:14px;top:12px;width:48px;height:48px;font-size:16px;z-index:1}
+.mcard.on .mn{color:var(--red)}
+.mcard.on .th{color:var(--ink2)}
+.mcard.on .meta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.mcard.on .meta span{border:1px solid var(--rule);border-radius:999px;padding:3px 10px;font:500 12px var(--ui);color:var(--ink2);background:rgba(255,248,230,.4)}
+.mcard.on .meta b{color:var(--ink)}
+.mst{display:flex;align-items:center;gap:8px;margin:auto 0 0;padding-top:14px;font:600 12px var(--ui);color:var(--ink2)}
+.mst i{width:8px;height:8px;border-radius:50%;background:#5f8f6c;box-shadow:0 0 0 3px rgba(95,143,108,.2)}
+.mst.live i{background:#7b5fd6;box-shadow:0 0 0 3px rgba(123,95,214,.22);animation:blink 2s infinite}
+@keyframes blink{50%{box-shadow:0 0 0 6px rgba(123,95,214,0)}}
+.go{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;padding:13px 18px;border:0;border-radius:8px;background:linear-gradient(180deg,#9a3442,#7a2431);color:#f8ead0;font:700 12.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px rgba(122,36,49,.35)}
+.go::after{content:"";position:absolute;inset:0;border-radius:10px}
+.go svg{width:16px;height:16px;transition:transform .3s}
+.mcard.on:hover{transform:translateY(-4px)}
+.mcard.on:hover .art svg{transform:scale(1.04)}
+.mcard.on:hover .go svg{transform:translateX(4px)}
+.mcard.on:has(.go:focus-visible){outline:2px solid var(--pgold);outline-offset:10px}
+.go:focus-visible{outline:none}
+/* misiones selladas */
+.mcard.lk{color:#bda98a;background:linear-gradient(165deg,#21170f 0,#150f0b 70%);border:1px solid #3a2a1c;box-shadow:inset 0 1px 0 rgba(255,230,180,.05),0 18px 40px rgba(0,0,0,.4);padding:10px}
+.mcard.lk .art{display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#2a1d14,#120c09 72%);border:1px solid #2e2116;box-shadow:inset 0 0 50px rgba(0,0,0,.7)}
+.mcard.lk .emb{width:46%;max-width:120px;color:#8a6a3a;opacity:.55;filter:drop-shadow(0 1px 0 rgba(0,0,0,.8))}
+.mcard.lk .lock{position:absolute;right:12px;top:12px;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6d2b33,#3d141b 72%);box-shadow:0 3px 8px rgba(0,0,0,.6),inset 0 0 0 2px rgba(0,0,0,.25);color:#d9a8a8}
+.mcard.lk .lock svg{width:16px;height:16px}
+.mcard.lk .mn{color:#8f7556}
+.mcard.lk h2{color:#d9c6a5}
+.mcard.lk .th{color:#9d8a6e}
+.soon{align-self:flex-start;margin-top:auto;padding-top:12px;font:600 10.5px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#7d6748}
+.wax{display:grid;place-items:center;border-radius:50%;font:700 17px var(--disp);color:#f6e9d0;background:radial-gradient(circle at 35% 30%,#c4505f,#7a2431 70%);box-shadow:0 3px 10px rgba(0,0,0,.55),inset 0 0 0 3px rgba(0,0,0,.14),inset 0 0 0 5px rgba(255,255,255,.06)}
+.hfoot{margin:48px auto 0;max-width:640px;text-align:center;font:500 12.5px/1.6 var(--ui);color:#7d6a52}
+
+/* barra superior de la misión: volver + capítulos */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;margin:0 auto;max-width:940px;display:flex;align-items:center;gap:10px;padding:10px 0 8px;background:linear-gradient(#120d0bf2 70%,#120d0b00)}
+.back{flex:none;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px 0 11px;border-radius:999px;border:1px solid #6b4a2a;background:linear-gradient(180deg,#2c1d12,#1c130c);color:#f1e2c2;font:600 12px var(--ui);letter-spacing:.12em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,230,180,.08),0 4px 12px rgba(0,0,0,.35);transition:border-color .2s,background .2s}
+.back svg{width:16px;height:16px;color:var(--pgold);transition:transform .25s}
+.back:hover{border-color:var(--pgold)}.back:hover svg{transform:translateX(-3px)}
+.toc{flex:1;min-width:0;display:flex;gap:1px;overflow-x:auto;scrollbar-width:none}
+.toc.ov{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.toc::-webkit-scrollbar{display:none}
+.toc a{white-space:nowrap;text-decoration:none;color:#bfa985;font:600 12px var(--ui);letter-spacing:.12em;text-transform:uppercase;padding:9px 11px;border-radius:999px}
 .toc a:hover{color:#f1e6cb}
 .toc a.on{background:#3a2616;color:#f6e9d0;box-shadow:inset 0 0 0 1px #6b4a2a}
 
@@ -29,8 +99,8 @@ button:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var
 .roller{position:relative;height:34px;border-radius:17px;background:linear-gradient(#3a2412,#a77c46 28%,#dcbc7c 50%,#8a6234 74%,#2f1c0d);box-shadow:0 10px 24px rgba(0,0,0,.55);z-index:2}
 .roller::before,.roller::after{content:"";position:absolute;top:-5px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0dba0,#9a742d 62%,#4a3212);box-shadow:0 4px 10px rgba(0,0,0,.5)}
 .roller::before{left:-16px}.roller::after{right:-16px}
-.sheet{position:relative;margin:-4px 20px;padding:72px clamp(22px,7vw,88px) 80px;color:var(--ink);
-background:radial-gradient(120% 50% at 50% 0,rgba(255,250,235,.28),transparent 60%),
+.sheet{position:relative;margin:-4px 20px;padding:72px clamp(22px,7vw,88px) 80px;color:var(--ink)}
+.sheet,.mcard.on{background:radial-gradient(120% 50% at 50% 0,rgba(255,250,235,.28),transparent 60%),
 url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .24 0 0 0 0 .1 0 0 0 .2 0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E"),
 linear-gradient(90deg,#cdb27c 0,#e6d3a8 7%,#ecdcb9 50%,#e6d3a8 93%,#cdb27c 100%);
 box-shadow:inset 0 0 70px rgba(100,58,20,.42),0 30px 80px rgba(0,0,0,.6)}
@@ -129,12 +199,49 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .foot{margin:44px 0 0;padding-top:20px;border-top:1px solid var(--rule);font:500 13px/1.55 var(--ui);color:var(--ink2)}
 
 /* ===== panel de juego ===== */
-.panel{flex:none;width:400px;position:sticky;top:env(safe-area-inset-top,0px);height:calc(100vh - env(safe-area-inset-top,0px));display:flex;flex-direction:column;background:var(--pbg);border-left:1px solid var(--pline);color:var(--pink);z-index:40}
-.pbar{display:none}
-.pbody{flex:1;overflow-y:auto;padding:18px max(18px,env(safe-area-inset-right,0px)) 28px 18px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:#3a3358 transparent}
-.ph{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.ph h2{margin:0;font:700 15px var(--disp);letter-spacing:.18em;color:var(--pgold)}
-.pc{background:var(--pcard);border:1px solid var(--pline);border-radius:16px;padding:16px}
+/* capa a pantalla completa que entra desde la derecha */
+.panel{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;color:var(--pink);
+background:radial-gradient(1000px 520px at 88% -12%,rgba(167,139,250,.13),transparent 62%),radial-gradient(800px 480px at -6% 112%,rgba(217,184,108,.07),transparent 60%),var(--pbg);
+box-shadow:-40px 0 90px rgba(0,0,0,.7);transform:translateX(102%);visibility:hidden;
+transition:transform .62s cubic-bezier(.22,1,.36,1),visibility 0s linear .62s}
+.panel.open{transform:none;visibility:visible;transition:transform .62s cubic-bezier(.22,1,.36,1),visibility 0s}
+.panel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(217,184,108,.5),transparent)}
+.phead{flex:none;display:flex;align-items:center;gap:14px;padding:calc(14px + env(safe-area-inset-top,0px)) max(22px,env(safe-area-inset-right,0px)) 14px max(18px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--pline);background:linear-gradient(180deg,rgba(12,10,18,.96),rgba(12,10,18,.82));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.px{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid #3a3358;background:radial-gradient(circle at 35% 30%,#221c38,#15121f);color:var(--pink);transition:border-color .2s,transform .35s cubic-bezier(.22,1,.36,1),color .2s}
+.px svg{width:18px;height:18px}
+.px:hover{border-color:var(--pgold);color:var(--pgold);transform:rotate(90deg)}
+.ptl{min-width:0}
+.ptl small{display:block;font:600 10.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--pmu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ptl h2{margin:2px 0 0;font:700 17px/1.1 var(--disp);letter-spacing:.18em;text-transform:uppercase;color:var(--pgold)}
+.pst{display:flex;gap:8px;margin-left:auto;align-items:center}
+.pst span{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--pline);background:var(--pcard);font:600 12px var(--ui);color:var(--pmu);white-space:nowrap}
+.pst span b{font:700 14px var(--num);color:var(--pink)}
+.pst .mp{display:flex;gap:3px}.pst .mp i{width:9px;height:6px;border-radius:2px;background:#2a2340}.pst .mp i.on{background:linear-gradient(90deg,#a78bfa,#d9b86c)}
+#pact{flex:none;margin-left:4px}
+.pbody{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:22px max(22px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(22px,env(safe-area-inset-left,0px));scrollbar-width:thin;scrollbar-color:#3a3358 transparent}
+.pwrap{max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.mgrid{display:grid;gap:16px;grid-template-columns:repeat(var(--cols,1),minmax(0,1fr));align-items:start}
+.pwrap.c1{max-width:640px}
+.mcol{display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel.intro .pwrap>.alert,.panel.intro .mcol>*{animation:vin .65s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--c,0)*80ms + var(--r,0)*70ms + 200ms)}
+.mcol>*:nth-child(2){--r:1}.mcol>*:nth-child(3){--r:2}.mcol>*:nth-child(n+4){--r:3}
+.pc{background:linear-gradient(180deg,#17142250,transparent 40%),var(--pcard);border:1px solid var(--pline);border-radius:16px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.28)}
+
+/* botón flotante de la mesa */
+.fab{position:fixed;z-index:45;right:max(22px,calc(env(safe-area-inset-right,0px) + 14px));bottom:max(22px,calc(env(safe-area-inset-bottom,0px) + 14px));display:flex;align-items:center;gap:12px;padding:7px 22px 7px 7px;border:0;border-radius:999px;color:#0c0a12;text-align:left;
+background:linear-gradient(180deg,#c3b0ff 0,#a78bfa 45%,#8e6ff0 100%);
+box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(60,30,140,.25),0 0 0 1px rgba(167,139,250,.55),0 12px 30px rgba(110,80,220,.45),0 4px 10px rgba(0,0,0,.4);
+transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;animation:fabin .7s cubic-bezier(.22,1,.36,1) .45s backwards}
+.fab:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(60,30,140,.25),0 0 0 1px rgba(201,184,255,.8),0 18px 40px rgba(110,80,220,.55),0 6px 14px rgba(0,0,0,.4)}
+.fab:active{transform:translateY(0) scale(.98)}
+.fab:focus-visible{outline:2px solid var(--pgold);outline-offset:4px}
+@keyframes fabin{from{opacity:0;transform:translateY(24px) scale(.9)}to{opacity:1;transform:none}}
+.fring{position:relative;flex:none;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a2150,#0f0c18);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4),0 2px 6px rgba(40,20,90,.45);display:grid;place-items:center;color:var(--pgold)}
+.fring svg.rg{position:absolute;inset:0;width:100%;height:100%}
+.fring .ic{width:22px;height:22px}
+.fring b{position:relative;font:700 19px/1 var(--num);color:#f3eefe}
+.ftx b{display:block;font:700 12.5px/1.2 var(--ui);letter-spacing:.16em;text-transform:uppercase}
+.ftx small{display:block;margin-top:3px;font:600 12px/1.2 var(--ui);color:#2b1f55}
 .pc h3{margin:0 0 10px;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--pmu);display:flex;justify-content:space-between;align-items:center;gap:8px}
 .pc h3 em{font-style:normal;color:var(--pmu);letter-spacing:.1em;text-align:right}
 .startw{display:flex;justify-content:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--pline)}
@@ -246,39 +353,55 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .xp{display:flex;gap:8px;margin-top:8px}
 .xp div{flex:1;border:1px solid var(--pline);border-radius:11px;padding:8px;text-align:center}
 .xp b{display:block;font:700 22px var(--num);color:var(--pgold)}.xp small{font-size:11px;color:var(--pmu);letter-spacing:.08em;text-transform:uppercase}
-.veil{display:none}
 
-@media (max-width:959px){
-.shell{display:block}
-.col{padding:0 max(16px,env(safe-area-inset-right,0px)) calc(var(--bar) + 28px) max(16px,env(safe-area-inset-left,0px))}
-.panel{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;height:auto;max-height:88vh;border-left:0;border-top:1px solid var(--pline);border-radius:22px 22px 0 0;box-shadow:0 -18px 50px rgba(0,0,0,.65);transform:translateY(calc(100% - var(--bar)));transition:transform .32s cubic-bezier(.2,.8,.2,1)}
-.panel.open{transform:none}
-.pbar{display:flex;align-items:center;gap:12px;height:var(--bar);padding:0 max(14px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(14px,env(safe-area-inset-left,0px));cursor:pointer;flex:none;border-bottom:1px solid var(--pline)}
-.pbar{position:relative}.pbar .grab{position:absolute;top:7px;left:50%;width:44px;height:4px;margin-left:-22px;border-radius:2px;background:#3a3358}
-.pbar .rn{font:700 24px var(--num);min-width:34px;text-align:center}
-.pbar .mid{flex:1;min-width:0}
-.pbar .mid small{display:block;color:var(--pmu);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mp{display:flex;gap:4px;margin-top:5px}
-.mp i{flex:1;height:7px;border-radius:4px;background:#2a2340}.mp i.on{background:linear-gradient(90deg,#a78bfa,#d9b86c)}
-.pbody{max-height:calc(88vh - var(--bar))}
-.veil{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:35}
-.veil.on{display:block}
+@media (max-width:999px){.mgridh{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:899px){.pst{display:none}#pact{margin-left:auto}}
+@media (max-width:640px){
+.home{padding-top:calc(36px + env(safe-area-inset-top,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hhead{margin-bottom:30px}
+.hhead .eb{letter-spacing:.2em;font-size:10.5px}
+.hprog{letter-spacing:.14em;gap:10px}.hprog i b{width:14px}
+.mcard .mn{letter-spacing:.18em}
+.ptl small{letter-spacing:.14em}
+.mgridh{grid-template-columns:1fr;gap:14px}
+.mcard.on{margin:4px 4px 14px}
+.mcard.lk{display:grid;grid-template-columns:84px minmax(0,1fr);align-items:center;gap:0;padding:8px}
+.mcard.lk .art{aspect-ratio:1;border-radius:6px}
+.mcard.lk .emb{width:62%}
+.mcard.lk .lock{right:-6px;top:-6px;width:28px;height:28px}.mcard.lk .lock svg{width:12px;height:12px}
+.mcard.lk .txt{padding:6px 10px 6px 16px;gap:3px}
+.mcard.lk h2{font-size:17px}.mcard.lk .th{font-size:16px}
+.mcard.lk .soon{display:none}
+.col{padding:0 max(16px,env(safe-area-inset-right,0px)) 120px max(16px,env(safe-area-inset-left,0px))}
 .sheet{margin:-4px 8px}
+.back{width:40px;height:40px;padding:0;justify-content:center}.back span{display:none}
+.phead{gap:12px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+.ptl h2{font-size:15px;letter-spacing:.14em}
+.pbody{padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px));padding-top:16px}
+.pwrap,.mgrid,.mcol{gap:14px}
+.fab{padding:6px}
+.fab .ftx{display:none}
+.fring{width:54px;height:54px}
 }
-@media (prefers-reduced-motion:reduce){.panel{transition:none}}
+@media (prefers-reduced-motion:reduce){
+.panel,.panel.open{transition:visibility 0s}
+.view.enter,.view.leave,.mis.enter .scroll,.mcard,.fab,.panel.intro .pwrap>*,.panel.intro .mcol>*{animation:none}
+.mcard.on,.mcard.on .art svg,.px{transition:none}
+}
 </style>
 
-<div class="shell">
+<div class="view home" id="home"><div class="hwrap" id="hwrap"></div></div>
+<div class="view mis" id="mis" hidden>
 <main class="col" id="col">
-<nav class="toc" id="toc" aria-label="Capítulos"></nav>
+<div class="topbar"><button class="back" type="button" data-nav="home" aria-label="Volver al menú de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button><nav class="toc" id="toc" aria-label="Capítulos"></nav></div>
 <article class="scroll"><div class="roller" aria-hidden="true"></div><div class="sheet" id="sheet"></div><div class="roller" aria-hidden="true"></div></article>
 </main>
-<aside class="panel" id="panel" aria-label="Panel de juego">
-<div class="pbar" id="pbar" role="button" tabindex="0" aria-expanded="false" aria-controls="pbody"></div>
+<button class="fab" id="fab" type="button" data-nav="open" aria-controls="panel" aria-expanded="false"></button>
+</div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle" inert>
+<header class="phead"><button class="px" id="px" type="button" data-nav="close" aria-label="Cerrar la mesa de juego y volver al pergamino"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="ptl"><small>Misión I · El pueblo vacío</small><h2 id="ptitle">Mesa de juego</h2></div><div class="pst" id="pst"></div><div id="pact"></div></header>
 <div class="pbody" id="pbody"></div>
 </aside>
-</div>
-<div class="veil" id="veil"></div>
 
 <script>
 const DATA={"ev": [["11", "Golpe del vacío", "Un héroe al azar queda Aturdido."], ["12", "Suelo de ceniza", "Un héroe al azar queda Afectado."], ["13", "Maldición del olvido", "Un héroe al azar tiene -1 a las tiradas de Fuerza hasta el siguiente evento."], ["14", "Derrumbe", "Un héroe al azar sufre D3 heridas."], ["15", "Zarzas secas", "Un héroe al azar queda Debilitado."], ["16", "Memoria falsa", "Un héroe al azar tiene -1 a las tiradas de Voluntad hasta el siguiente evento."], ["21", "Trampa del Umbral", "Un héroe al azar sufre D3 impactos."], ["22", "Susurros sin voz", "Un héroe al azar pierde D3 de poder."], ["23", "Viento maldito", "Un héroe al azar queda Afligido."], ["24", "Enjambre de sombras", "Un héroe al azar queda Aturdido."], ["25", "Hilos de olvido", "Un héroe al azar tiene -1 a las tiradas de Destreza hasta el siguiente evento."], ["26", "Moho gris", "Un héroe al azar queda Enfermo."], ["31", "Tierra que se borra", "Un cuadrante al azar cuenta como terreno peligroso hasta el siguiente evento."], ["32", "Erosión maldita", "Todos los héroes y enemigos tienen -1 a las tiradas de Defensa hasta el siguiente evento."], ["33", "Bruma que aturde", "Todos los héroes y enemigos tienen -1 a impactar hasta el siguiente evento."], ["34", "Lluvia de ceniza", "Un cuadrante al azar cuenta como terreno difícil hasta el siguiente evento."], ["35", "Niebla espesa", "Todos los héroes y enemigos tienen -6\" de alcance al disparar hasta el siguiente evento."], ["36", "Temblor del pozo", "Todos los héroes y enemigos tienen -1 a los chequeos de moral hasta el siguiente evento."], ["41", "Charco de recuerdos", "Un héroe al azar tiene +1 a los chequeos de moral hasta el siguiente evento."], ["42", "Perro fiel", "Un héroe al azar tiene +1 a las tiradas de Destreza hasta el siguiente evento."], ["43", "Mapa olvidado", "Coloca D3 fichas de búsqueda, cada una a 6\" del centro de cuadrantes distintos."], ["44", "Cuervo vigía", "Un héroe al azar tiene +6\" de alcance al disparar hasta el siguiente evento."], ["45", "Eco de un aldeano", "Un héroe al azar restaura D3 de poder."], ["46", "Sumidero", "Una unidad enemiga al azar queda Aturdida."], ["51", "Niebla de lucidez", "Un héroe al azar tiene +1 a las tiradas de Voluntad hasta el siguiente evento."], ["52", "Bayas veloces", "Un héroe al azar se mueve +2\" al Avanzar y +4\" al Correr o Cargar hasta el siguiente evento."], ["53", "Arma encantada", "Un héroe al azar tiene +1 a impactar en cuerpo a cuerpo hasta el siguiente evento."], ["54", "Espíritu de apoyo", "Un héroe al azar tiene +1 a las tiradas de Fuerza hasta el siguiente evento."], ["55", "Vientos encantados", "Un héroe al azar tiene +1 a impactar al disparar hasta el siguiente evento."], ["56", "Espíritu guardián", "Un héroe al azar tiene +1 a las tiradas de Defensa hasta el siguiente evento."], ["61", "Bolsa de elixires", "Un héroe al azar recibe un Elixir de poder."], ["62", "Visión profética", "Revela el contenido de D3 fichas de búsqueda al azar que aún no se hayan revelado."], ["63", "Bolsa de bombas", "Un héroe al azar recibe una Bomba aturdidora."], ["64", "Montón de oro", "Un héroe al azar recibe 15 de oro."], ["65", "Caja de pociones", "Un héroe al azar recibe una Poción de salud."], ["66", "Claridad súbita", "Un héroe al azar recibe D3 de XP."]], "nar": [["Antes de empezar", "El camino termina donde las casas empiezan, y las casas están en pie, con las puertas abiertas y la ropa tendida. No hay humo en las chimeneas ni huellas en el barro. La Voz del Filo os dijo que aquí vivían unas cuarenta personas, pero al mirar el pueblo ninguno de vosotros sabría decir cómo lo sabe."], ["Ronda 1", "Algo se mueve junto al pozo, y no es el viento. Figuras grises salen de las puertas con andares torpes, como si recordaran a medias cómo caminar. Tienen forma de personas, pero les falta algo que no sabríais nombrar."], ["Ronda 2", "El aire se enfría sin que baje el sol. En una ventana ves una taza aún caliente y una mesa puesta para alguien. Nadie vive aquí, pero el pueblo parece esperar visita."], ["Ronda 3", "Un roce a vuestra espalda. Algo se ha levantado donde un instante antes no había nada, y os mira sin cara con la cabeza ladeada, como un niño que escucha."], ["Entran los refuerzos 1", "Ladridos a lo lejos, rápidos y mal afinados. Los perros del pueblo corren hacia vosotros con la carne torcida y los ojos blancos. Más atrás, algo más lento se arrastra entre las sombras de los muros."], ["Entran los refuerzos 2", "Desde algún rincón del pueblo llegan voces que cantan una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. El que va primero sonríe como quien llega tarde a una ceremonia que ya conoce."], ["Se cumple el objetivo principal", "Al retirar el último rastro, vuestras manos tocan un diario cuya letra os suena, aunque ninguno recuerda a su dueño. Sus páginas están intactas, como si el Vacío no hubiera podido borrarlas. La plaza se vacía y el cielo se oscurece sin que anochezca. El pueblo se está olvidando de sí mismo y de vosotros también. Es hora de correr hacia la esquina más cercana."], ["Se activa el objetivo secundario", "El pozo respira. La tierra a su alrededor se hunde y vuelve a subir, y todo lo que no sois vosotros corre hacia vosotros. El Vacío no quiere ya esperar."], ["Llega el Heraldo", "Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostro que se os escurre de la memoria apenas dejáis de mirarlo. No levanta el arma. Solo dice vuestros nombres, y por un instante dudáis de que sean los vuestros."]], "fin": ["Misión cumplida sin pelea de jefe: al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección: Ocaso.", "Misión cumplida y Heraldo destruido: el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Sabéis que Ocaso lo sabrá.", "Derrota: el camino os devuelve al borde del pueblo, sin recordar bien cómo llegasteis. Habéis perdido algo, pero nadie sabe decir qué."], "pro": ["Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en las de Neth simplemente se borra lo que había.", "Vosotros vivís en Varek's Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.", "No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Una patrulla fue a mirar y volvió sin saber a qué había ido. Todos los registros de aquel pueblo están en blanco, y no es un error.", "La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.", "Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma. Antes de bajar, cada uno dice en voz alta por qué aceptó este encargo y no otro, qué es lo que más teme olvidar y quién se quedó en Varek's Hold para recordarle si no vuelve."], "obj": ["Objetivo principal: búsqueda por zonas. Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1\" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. El objetivo se cumple al retirar los tres marcadores (regla de la casa: no se usa la tirada de 5+). El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el diario del olvidado.", "Objetivo secundario: se prepara cuando se cumple el principal y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.", "Fin de la misión: con el principal cumplido, todos los héroes deben estar a 6\" o menos de la misma esquina y sin enemigos alrededor al final de una ronda (regla de la casa: sin enemigos alrededor). El secundario no es obligatorio.", "Pelea de jefe (opcional): tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.", "Al terminar: los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.", "Derrota: si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo."], "prep": ["Mesa: tamaño estándar, 48\"x48\" (4'x4') con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24\"x24\" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.", "1. Objetivos: prepara el objetivo principal. El secundario se prepara más tarde.", "2. Fichas de búsqueda: coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6\" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.", "3. Despliegue enemigo: ver Oleadas y sorpresas.", "4. Despliegue de héroes: tira un dado. Con 1-4 se despliegan a 6\" o menos de la esquina con ese número, y con 5-6 eliges la esquina.", "5. Desafíos opcionales: la misión empieza de noche (-1 a impactar al disparar y visión limitada a 12\"). Pasa a alba (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de Neth y la pelea de jefe."]};
@@ -522,8 +645,10 @@ function tumble(kind,done){
  let n=0;const iv=setInterval(()=>{el.textContent=kind==="EV"?R(6)+""+R(6):R(6);if(++n>9){clearInterval(iv);done()}},55);
 }
 document.addEventListener("click",e=>{
+ const n=e.target.closest("[data-nav]");
+ if(n){e.preventDefault();NAV(n.dataset.nav);return}
  const b=e.target.closest("[data-a]");
- if(!b){if(e.target.closest("#pbar")){togglePanel()}else if(e.target.id==="veil"){UI.open=false;render()}return}
+ if(!b)return;
  const a=b.dataset.a,v=b.dataset.v;
  if(a==="SECm"){if(!S.prim||S.secRolled)return;const x=+$("#secA").value;if(!x){UI.secMsg="Elige el resultado del dado.";render();return}UI.secMsg="";prepSec(x);save();render();return}
  if(a==="SEC"){if(!S.prim||S.secRolled)return;tumble("SEC",()=>{prepSec();save();render()});return}
@@ -534,8 +659,41 @@ document.addEventListener("click",e=>{
  if(ACT[a])ACT[a](v);
  save();render();
 });
-$("#pbar").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){if(e.target.id==="pbar"){e.preventDefault();togglePanel()}}});
-function togglePanel(){UI.open=!UI.open;render()}
+
+/* ---------- vistas: selector de misiones, pergamino y mesa ---------- */
+let VIEW="home",misY=0,swapT=0;
+function swapView(from,to,after){
+ clearTimeout(swapT);
+ const go=()=>{from.hidden=true;from.classList.remove("leave","enter");to.hidden=false;to.classList.remove("leave");to.classList.add("enter");after&&after()};
+ if(REDUCE){go();return}
+ from.classList.remove("enter");from.classList.add("leave");swapT=setTimeout(go,230);
+}
+function toTop(y){window.scrollTo({top:y,left:0,behavior:"instant"})}
+function openMesa(){
+ const p=$("#panel");if(p.classList.contains("open"))return;
+ p.inert=false;$("#mis").inert=true;document.documentElement.classList.add("lock");
+ p.classList.add("open","intro");$("#fab").setAttribute("aria-expanded","true");
+ setTimeout(()=>p.classList.remove("intro"),1200);
+ requestAnimationFrame(()=>$("#px").focus({preventScroll:true}));
+}
+function closeMesa(){
+ const p=$("#panel");if(!p.classList.contains("open"))return;
+ p.classList.remove("open","intro");$("#mis").inert=false;document.documentElement.classList.remove("lock");
+ $("#fab").setAttribute("aria-expanded","false");$("#fab").focus({preventScroll:true});
+ setTimeout(()=>{if(!p.classList.contains("open"))p.inert=true},REDUCE?0:640);
+}
+function NAV(t){
+ if(t==="open")return openMesa();
+ if(t==="close")return closeMesa();
+ if(t==="m1"&&VIEW!=="m1"){VIEW="m1";swapView($("#home"),$("#mis"),()=>{tocOv();toTop(misY);$(".back").focus({preventScroll:true})});return}
+ if(t==="home"&&VIEW!=="home"){closeMesa();misY=window.scrollY;VIEW="home";paintHome();swapView($("#mis"),$("#home"),()=>{toTop(0);const g=$("#hwrap .go");if(g)g.focus({preventScroll:true})})}
+}
+function tocOv(){const t=$("#toc");t.classList.toggle("ov",t.scrollWidth>t.clientWidth+2)}
+addEventListener("resize",tocOv);
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#panel").classList.contains("open")){e.preventDefault();closeMesa()}});
+let COLS=0;const MQ3=matchMedia("(min-width:1280px)"),MQ2=matchMedia("(min-width:760px)");
+const colsNow=()=>MQ3.matches?3:MQ2.matches?2:1;
+[MQ3,MQ2].forEach(m=>{const f=()=>{if(colsNow()!==COLS)render()};m.addEventListener?m.addEventListener("change",f):m.addListener(f)});
 
 /* ---------- panel ---------- */
 function gauge(){
@@ -623,33 +781,36 @@ function finalCard(){
 }
 function render(){
  const pb=$("#pbody"),keep=pb.scrollTop,f=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.f:null;
- const roundTxt=S.round?"Ronda "+S.round:"Preparación";
- $("#pbar").setAttribute("aria-expanded",UI.open);
- $("#pbar").innerHTML=`<span class="grab"></span><div class="rn">${S.round}</div><div class="mid"><b style="font-size:14px">${roundTxt} · ${stage()}</b><div class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</div><small>${S.shown||S.boss||S.wave>0?esc(waveDef(curW()).name):"Sin oleada"} · Alertness ${S.al} de 6</small></div>${S.round?`<button class="pb sm pr" data-a="end" data-f="endm" aria-label="Avanzar ronda">Avanzar ronda</button>`:`<button class="pb sm pr" data-a="start" data-f="startm">Empezar</button>`}`;
+ const mp=`<i class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</i>`;
+ $("#pst").innerHTML=S.round?`<span>Ronda <b>${S.round}</b></span><span>${esc(stage())}</span><span>Alerta <b>${S.al}</b>${mp}</span>`:`<span>Preparación</span><span>Alerta <b>${S.al}</b>${mp}</span>`;
+ $("#pact").innerHTML=`<button class="pb sm gh" data-a="reset" data-f="reset">${UI.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>`;
+ $("#fab").innerHTML=fabRing()+`<span class="ftx"><b>Mesa de juego</b><small>${S.round?`Ronda ${S.round} · Alerta ${S.al}/6`:"Preparar la partida"}</small></span>`;
+ $("#fab").setAttribute("aria-label",S.round?`Abrir la mesa de juego. Ronda ${S.round}, alerta ${S.al} de 6`:"Abrir la mesa de juego");
  const alert=S.alert?`<div class="alert"><b>${esc(S.alert)}</b><div class="row" style="margin-top:8px"><button class="pb sm" data-a="ok" data-f="ok">Entendido</button></div></div>`:"";
  const nk=S.nar,nt=DATA.narMap[nk]||"";
  const ev=S.ev?`<div class="res"><div class="die ${S.ev.tone}" id="die-EV">${S.ev.n}</div><div><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res"><div class="die" id="die-EV">2d6</div><div><b>Evento de Neth</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
  const ch=S.ch?`<div class="res"><div class="die ${S.ch.t}" id="die-CH">${S.ch.a}${S.ch.b?"·"+S.ch.b:""}</div><div><b>${esc(S.ch.title)}</b><p>${esc(S.ch.text)}</p></div></div>`:`<div class="res"><div class="die" id="die-CH">1d6</div><div><b>Cofre</b><p>Un héroe lo abre con la acción Descubrir. Se tira el contenido y después el objeto.</p></div></div>`;
- pb.innerHTML=`
- <div class="ph"><h2>MESA DE JUEGO</h2><button class="pb sm gh" data-a="reset" data-f="reset">${UI.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button></div>
- ${alert}
- <section class="pc"><h3><span class="tt">Configuración de partida</span></h3><div class="seals" role="group" aria-label="Dificultad">${[1,2,3,4].map(i=>`<button data-a="d" data-v="${i}" data-f="d${i}" class="${S.d===i?"on":""}" aria-label="Dificultad ${i}" aria-pressed="${S.d===i}" ${S.round?"disabled":""}>${i}</button>`).join("")}</div><p style="margin:8px 0 0;font-size:12.5px;color:var(--pmu)">${DN[S.d-1]} (${PC[S.d-1]}% fuerza de enemigos)</p>
+ const C={};
+ C.cfg=`<section class="pc"><h3><span class="tt">Configuración de partida</span></h3><div class="seals" role="group" aria-label="Dificultad">${[1,2,3,4].map(i=>`<button data-a="d" data-v="${i}" data-f="d${i}" class="${S.d===i?"on":""}" aria-label="Dificultad ${i}" aria-pressed="${S.d===i}" ${S.round?"disabled":""}>${i}</button>`).join("")}</div><p style="margin:8px 0 0;font-size:12.5px;color:var(--pmu)">${DN[S.d-1]} (${PC[S.d-1]}% fuerza de enemigos)</p>
  <div class="stp"><span>Puntos de los héroes</span><button data-a="pts" data-v="-25" data-f="pm" ${S.round?"disabled":""} aria-label="Menos puntos">−</button><b>${S.pts}</b><button data-a="pts" data-v="25" data-f="pp" ${S.round?"disabled":""} aria-label="Más puntos">+</button></div>
- <div class="stp"><span>Número de héroes</span><button data-a="heroes" data-v="-1" data-f="hm" ${S.round?"disabled":""} aria-label="Menos héroes">−</button><b>${S.heroes}</b><button data-a="heroes" data-v="1" data-f="hp" ${S.round?"disabled":""} aria-label="Más héroes">+</button></div>${armyBlock()}${S.round?`<p class="lockn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>Configuración bloqueada durante la partida. Para cambiarla, pulsa «Nueva partida».</p>`:`<div class="startw"><button class="pb pr big" data-a="start" data-f="start">Empezar partida</button></div>`}</section>
- ${roundCard()}
- <section class="pc"><h3><span class="tt">Nivel de alerta</span></h3>${gauge()}
+ <div class="stp"><span>Número de héroes</span><button data-a="heroes" data-v="-1" data-f="hm" ${S.round?"disabled":""} aria-label="Menos héroes">−</button><b>${S.heroes}</b><button data-a="heroes" data-v="1" data-f="hp" ${S.round?"disabled":""} aria-label="Más héroes">+</button></div>${armyBlock()}${S.round?`<p class="lockn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>Configuración bloqueada durante la partida. Para cambiarla, pulsa «Nueva partida».</p>`:`<div class="startw"><button class="pb pr big" data-a="start" data-f="start">Empezar partida</button></div>`}</section>`;
+ C.round=roundCard();
+ C.al=`<section class="pc"><h3><span class="tt">Nivel de alerta</span></h3>${gauge()}
  <div class="row" style="margin-top:10px;justify-content:center"><button class="pb sm gh" data-a="alAdj" data-v="-1" data-f="am" aria-label="Quitar 1 de Alertness">−1</button><button class="pb sm gh" data-a="alAdj" data-v="1" data-f="ap" aria-label="Sumar 1 de Alertness">+1</button></div>
- <label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>Sin enemigos en mesa (+2)</span></label>${alertBox()}</section>
- ${waveCard()}
- <section class="pc"><h3><span class="tt">Texto de la ronda</span><button class="play" type="button" data-a="play" data-f="play" aria-label="Reproducir el texto (el audio llegará más adelante)" title="Audio: próximamente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button></h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></section>
- ${objCard()}
- <section class="pc"><h3><span class="tt">Dados</span></h3>
+ <label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>Sin enemigos en mesa (+2)</span></label>${alertBox()}</section>`;
+ C.wave=waveCard();
+ C.txt=`<section class="pc"><h3><span class="tt">Texto de la ronda</span><button class="play" type="button" data-a="play" data-f="play" aria-label="Reproducir el texto (el audio llegará más adelante)" title="Audio: próximamente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button></h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></section>`;
+ C.obj=objCard();
+ C.dice=`<section class="pc"><h3><span class="tt">Dados</span></h3>
  <div class="dblk"><p class="sbh" style="margin-top:0">Evento de Neth · 2d6</p>${S.needEv?`<p class="dnote">Toca tirar el evento de Neth.</p>`:""}<div aria-live="polite">${ev}</div><div class="dctl ctr"><button class="pb pr sm ${S.needEv?"pulse":""}" data-a="EV" data-f="EV">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("evA","Decenas")}${dsel("evB","Unidades")}<button class="pb sm gh" data-a="EVm" data-f="EVm">Aplicar</button></div>${UI.evMsg?`<p class="dmsg">${esc(UI.evMsg)}</p>`:""}</div>
  <div class="dblk"><p class="sbh" style="margin-top:0">Cofre · contenido y objeto</p><div aria-live="polite">${ch}</div><div class="dctl ctr"><button class="pb pr sm" data-a="CH" data-f="CH">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("chA","Contenido")}${dsel("chB","Objeto")}<button class="pb sm gh" data-a="CHm" data-f="CHm">Aplicar</button></div>${UI.chMsg?`<p class="dmsg">${esc(UI.chMsg)}</p>`:""}</div>
- ${S.hist.length?`<p class="hist">Últimas: ${S.hist.slice(0,3).map(esc).join(" · ")}</p>`:""}</section>
- ${finalCard()}`;
- $("#panel").classList.toggle("open",UI.open);$("#veil").classList.toggle("on",UI.open);
+ ${S.hist.length?`<p class="hist">Últimas: ${S.hist.slice(0,3).map(esc).join(" · ")}</p>`:""}</section>`;
+ C.fin=finalCard();
+ COLS=colsNow();
+ const L=COLS===3?[["cfg","obj"],["round","al","txt"],["wave","dice","fin"]]:COLS===2?[["cfg","round","al","txt"],["wave","obj","dice","fin"]]:[["cfg","round","al","wave","txt","obj","dice","fin"]];
+ pb.innerHTML=`<div class="pwrap c${COLS}">${alert}<div class="mgrid" style="--cols:${COLS}">${L.map((col,i)=>`<div class="mcol" style="--c:${i}">${col.map(k=>C[k]||"").join("")}</div>`).join("")}</div></div>`;
  pb.scrollTop=keep;
+ paintHome();
  if(f){const t=document.querySelector('[data-f="'+f+'"]');if(t)t.focus({preventScroll:true})}
  paintSheet();
 }
@@ -733,5 +894,39 @@ function buildToc(){
 DATA.sec=[["Interrogar","El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral."],["Salvaguardar","Mantén el pozo bajo control para frenar la Ruptura."],["Capturar","Saca una reliquia del pozo hasta una esquina."],["Sabotear","Destruye un símbolo del Umbral lejos de los héroes."],["Rebuscar","Revuelve las casas de dos esquinas en busca de pistas."],["Escoltar","Lleva a un superviviente sin rostro hasta la salida."]];
 DATA.narMap={};
 (function(){const m={"Antes de empezar":"start","Ronda 1":"r1","Ronda 2":"r2","Ronda 3":"r3","Entran los refuerzos 1":"w1","Entran los refuerzos 2":"w2","Se cumple el objetivo principal":"pri","Se activa el objetivo secundario":"sec","Llega el Heraldo":"boss"};DATA.nar.forEach(n=>{if(m[n[0]])DATA.narMap[m[n[0]]]=n[1]})})();
-buildSheet();buildToc();render();
+/* ---------- botón flotante: anillo de alerta (6 tramos) con la ronda dentro ---------- */
+const SWORDS='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5L3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2M14.5 6.5L18 3h3v3l-3.5 3.5M5 14l4 4M7 17l-3 3M3 19l2 2"/></svg>';
+function fabRing(){
+ const arc=i=>{const a0=(-90+i*60+5)*Math.PI/180,a1=(-90+(i+1)*60-5)*Math.PI/180,r=21.5;return`M${(24+r*Math.cos(a0)).toFixed(2)} ${(24+r*Math.sin(a0)).toFixed(2)}A${r} ${r} 0 0 1 ${(24+r*Math.cos(a1)).toFixed(2)} ${(24+r*Math.sin(a1)).toFixed(2)}`};
+ const segs=[0,1,2,3,4,5].map(i=>`<path d="${arc(i)}" stroke="${i<S.al?(S.al>=5?"#ec8aa0":"#d9b86c"):"#3a3358"}" stroke-width="2.6" stroke-linecap="round" fill="none"/>`).join("");
+ return`<span class="fring"><svg class="rg" viewBox="0 0 48 48" aria-hidden="true">${segs}</svg>${S.round?`<b>${S.round}</b>`:SWORDS}</span>`;
+}
+
+/* ---------- selector de misiones ---------- */
+const MIS=[["I","El pueblo vacío","Ruptura de Neth","Un contrato del Filo, Borrados y el Culto del Umbral."],["II","El camino de las raíces","Ruptura de Eryn","Terreno peligroso y veneno."],["III","La aldea sitiada","Asedio del Culto","Los Resonantes como aliados."],["IV","La emboscada","Concordancia de Orum","Una tercera facción entra en juego."],["V","La cripta primordial","Deudores de Vael","La ruina de un Primordial."],["VI","El corazón del borrado","Hermano Ocaso","El villano final."]];
+const EMB=(()=>{const o='<svg class="emb" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">',c="</svg>";
+ let rays="";for(let i=0;i<12;i++){const a=i*30*Math.PI/180,r0=i%3===1?23:22,r1=i%3===1?25:28;rays+=`<path d="M${(32+r0*Math.cos(a)).toFixed(1)} ${(32+r0*Math.sin(a)).toFixed(1)}L${(32+r1*Math.cos(a)).toFixed(1)} ${(32+r1*Math.sin(a)).toFixed(1)}"${i%4===2?' stroke-dasharray="1.5 2.5"':""}/>`}
+ let stakes="";for(let x=11;x<=49;x+=7.6)stakes+=`<path d="M${x.toFixed(1)} 56V30l3-6 3 6v26"/>`;
+ return{
+ II:o+'<path d="M6 27h52" stroke-dasharray="2 3"/><path d="M32 6v21M32 14l-8-7M32 18l9-8M27 10l-5 1"/><path d="M32 27c0 9-6 11-12 15s-8 9-8 15M32 27c0 9 5 12 10 16s7 9 7 14M32 29c-1 10 0 18 3 28M25 40c-4 2-9 2-13-1M40 44c4 1 8-1 11-4"/><path d="M47 50c0 2-1.5 3.5-3 3.5s-3-1.5-3-3.5 3-6 3-6 3 4 3 6z"/>'+c,
+ III:o+stakes+'<path d="M8 41h50"/><path d="M32 19c-5-3-4-8 0-13 1 3 4 5 4 8 0 3-2 5-4 5z"/><path d="M6 59h52"/>'+c,
+ IV:o+'<path d="M45 13l5 1-1 5-24 24-5-5z"/><path d="M18 37l9 9M21 43l-6 6"/><circle cx="13.5" cy="50.5" r="2"/><path d="M19 13l-5 1 1 5 24 24 5-5z"/><path d="M46 37l-9 9M43 43l6 6"/><circle cx="50.5" cy="50.5" r="2"/>'+c,
+ V:o+'<path d="M14 56V30a18 18 0 0 1 36 0v26"/><path d="M22 56V32a10 10 0 0 1 20 0v24"/><path d="M29 10h6l-1 6h-4z"/><path d="M8 56h48M12 60h40"/><circle cx="32" cy="42" r="3"/><path d="M32 45v5"/>'+c,
+ VI:o+rays+'<circle cx="32" cy="32" r="15"/><circle cx="37" cy="28.5" r="13.5" fill="#150e0a" stroke-dasharray="2 2.5"/>'+c}})();
+const LOCK='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>';
+const ARROW='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+function buildHome(){
+ const sc=SCENE.replace(/id='([^']+)'/g,"id='h-$1'").replace(/url\(#/g,"url(#h-").replace(/href='#/g,"href='#h-").replace("<svg ","<svg preserveAspectRatio='xMidYMid slice' ");
+ const one=MIS[0];
+ const first=`<article class="mcard on" role="listitem" style="--i:0"><div class="art">${sc}<span class="wax">I</span></div><div class="txt"><p class="mn">Misión ${one[0]} · ${one[2]}</p><h2>${one[1]}</h2><p class="th">${one[3]}</p><div class="meta"><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48&quot;</b></span><span>Jefe <b>opcional</b></span></div><p class="mst" id="m1st"></p><button class="go" type="button" data-nav="m1"><span id="m1go">Entrar en la misión</span>${ARROW}</button></div></article>`;
+ const rest=MIS.slice(1).map((m,i)=>`<article class="mcard lk" role="listitem" style="--i:${i+1}" aria-label="Misión ${m[0]}, ${m[1]}: sellada, próximamente"><div class="art">${EMB[m[0]]}<span class="lock">${LOCK}</span></div><div class="txt"><p class="mn">Misión ${m[0]} · ${m[2]}</p><h2>${m[1]}</h2><p class="th">${m[3]}</p><span class="soon">Sellada · Próximamente</span></div></article>`).join("");
+ $("#hwrap").innerHTML=`<header class="hhead">${SIG}<p class="eb">Érebo · Campaña de Age of Fantasy: Quest</p><h1>El Pueblo Sin Nombre</h1>${ORN}<p class="lead">Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre. Elegid la que vais a jugar.</p><div class="hprog"><span>1 de 6 misiones disponibles</span><i>${MIS.map((m,i)=>`<b class="${i===0?"on":""}"></b>`).join("")}</i></div></header><div class="mgridh" role="list">${first}${rest}</div><p class="hfoot">Campaña fan para Age of Fantasy: Quest, de One Page Rules. Las misiones II a VI están en preparación.</p>`;
+}
+function paintHome(){
+ const st=$("#m1st"),g=$("#m1go");if(!st)return;
+ st.className="mst"+(S.round?" live":"");
+ st.innerHTML=S.round?`<i></i>Partida en curso · Ronda ${S.round}`:`<i></i>Lista para jugar`;
+ g.textContent=S.round?"Continuar la partida":"Entrar en la misión";
+}
+buildHome();buildSheet();buildToc();render();
 </script>

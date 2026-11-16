@@ -1,0 +1,2 @@
+Coloca aquí las imágenes generadas con los nombres de docs/imagenes.md
+(portada, heraldo, borrado, cultista, animal; opcionales: prologo, varek).

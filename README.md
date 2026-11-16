@@ -4,6 +4,7 @@ Campaña fan para **Age of Fantasy: Quest** (One Page Rules), ambientada en Ére
 
 - `src/pueblo-sin-nombre.html`: la página de la misión 1 (pergamino con la historia y las reglas, y panel de juego). Ábrela en el navegador.
 - `docs/mision-1.md`: texto completo de la misión 1 (fuente de verdad).
+- `docs/imagenes.md`: guía de estilo y prompts de las ilustraciones; las imágenes van en `assets/`.
 - `CLAUDE.md`: contexto completo del proyecto (reglas oficiales usadas, reglas de la casa, diseño, pendientes).
 
 - `src/template/`: generador de la página (`final-tpl.html`, `data.js`, `old-scene-source.html`, `build.py`). Para regenerarla: `py src/template/build.py` (o `python3` fuera de Windows).
