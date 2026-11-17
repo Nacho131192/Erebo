@@ -8,5 +8,9 @@ old=rd("old-scene-source.html")
 sc=re.search(r"<svg class='scene'.*?</svg>",old,re.S).group(0)
 po=re.search(r"<svg class='por'.*?</svg>",old,re.S).group(0)
 out=s.replace("%%DATA%%",rd("data.js")).replace("%%SCENE%%",sc).replace("%%PORTRAIT%%",po)
+# Láminas (assets/web/, ya optimizadas): se incrustan como data URI porque el artefacto no puede cargar archivos sueltos.
+import base64
+def img(n): return "data:image/jpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","web",n),"rb").read()).decode()
+out=out.replace("%%IMG_RETRATO%%",img("heraldo.jpg")).replace("%%IMG_JEFE%%",img("heraldo-jefe.jpg"))
 open(os.path.join(H,"..","pueblo-sin-nombre.html"),"w",encoding="utf-8",newline="\n").write(out)
 print("ok",len(out))

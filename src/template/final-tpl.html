@@ -193,7 +193,7 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .her{display:grid;gap:32px;grid-template-columns:minmax(0,240px) minmax(0,1fr);align-items:start}
 @media (max-width:640px){.her{grid-template-columns:1fr;justify-items:center}.her .body{justify-self:stretch}}
 .porf{margin:0;width:100%;max-width:240px}
-.por{display:block;width:100%;max-width:240px;border-radius:4px;border:1.5px solid var(--goldd);box-shadow:0 0 0 4px rgba(234,217,180,.9),0 0 0 5.5px var(--goldd),0 16px 30px rgba(60,30,10,.35)}
+.por{display:block;width:100%;height:auto;max-width:240px;border-radius:4px;border:1.5px solid var(--goldd);box-shadow:0 0 0 4px rgba(234,217,180,.9),0 0 0 5.5px var(--goldd),0 16px 30px rgba(60,30,10,.35)}
 .porf figcaption{margin-top:14px;text-align:center;font:600 10.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--ink2);opacity:.8}
 .quote{position:relative;margin:26px 0 0;padding:22px 26px 20px;border-top:1px solid var(--goldd);border-bottom:1px solid var(--goldd);text-align:center}
 .quote::before{content:"“";display:block;height:30px;margin:-4px 0 6px;font:700 54px/1 var(--deco);color:var(--red)}
@@ -201,6 +201,8 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .quote cite{display:block;margin-top:10px;font:600 11px var(--ui);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
 /* ficha del Heraldo en la mesa (solo cuando entra en juego) */
 .hfi{margin:10px 0 4px;padding:14px;border-radius:13px;border:1px solid #5b4a2a;background:linear-gradient(135deg,#2a2112,#1c1830)}
+.hfimg{margin:-14px -14px 12px;overflow:hidden;border-radius:12px 12px 0 0;border-bottom:1px solid #5b4a2a}
+.hfimg img{display:block;width:100%;height:auto}
 .hfi h4{margin:0 0 8px;font:700 13px var(--ui);letter-spacing:.04em;color:var(--pgold)}
 .hfi .chipsr{margin:0 0 10px}
 .hfi p{margin:0 0 7px;font-size:12.5px;line-height:1.5;color:var(--pmu)}.hfi p b{color:var(--pink)}
@@ -423,7 +425,7 @@ transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;animation:fa
 
 <script>
 %%DATA%%
-const SCENE=`%%SCENE%%`,PORTRAIT=`%%PORTRAIT%%`;
+const SCENE=`%%SCENE%%`,PORTRAIT=`%%PORTRAIT%%`,IMG_RETRATO="%%IMG_RETRATO%%",IMG_JEFE="%%IMG_JEFE%%";
 const $=s=>document.querySelector(s),R=n=>1+Math.floor(Math.random()*n);
 const REDUCE=matchMedia("(prefers-reduced-motion:reduce)").matches;
 const DN=["Principiante","Intermedio","Experto","Legendario"],PC=[25,50,100,200],TG=[7,9,10,12];
@@ -728,7 +730,7 @@ function unitRow(q,name,sub,place,rs,tags){
 }
 /* Ficha del Heraldo: solo se ve en la mesa cuando entra en juego (en el pergamino está oculta). */
 function herFicha(){
- return`<div class="hfi"><h4>Ficha del Heraldo · estadísticas de la casa</h4><div class="chipsr"><i>Calidad 3+</i><i>Defensa 3+</i><i class="ch">Tough(${TG[S.d-1]})</i><i>Fear(3)</i><i>Caster(3)</i></div>
+ return`<div class="hfi"><figure class="hfimg"><img src="${IMG_JEFE}" width="640" height="808" alt="El Heraldo del Umbral se alza sobre los tejados del pueblo, con la hoz vertical en la mano"></figure><h4>Ficha del Heraldo · estadísticas de la casa</h4><div class="chipsr"><i>Calidad 3+</i><i>Defensa 3+</i><i class="ch">Tough(${TG[S.d-1]})</i><i>Fear(3)</i><i>Caster(3)</i></div>
  <p><b>Reglas especiales:</b> <i>Villain</i>, <i>Fear</i>(3), <i>Stealth</i>, <i>Tough</i>(${TG[S.d-1]}), <i>Caster</i>(3). Con <i>Villain</i>, las unidades de IA a 12" usan su Calidad en moral si es mejor, mientras no esté Aturdido.</p>
  <p><b>Hoz del vacío</b> (cuerpo a cuerpo): 4 ataques, AP(2), <i>Rending</i>.</p>
  <ul><li><b>Olvido · 1</b>Un héroe a 12" pasa una tirada de Wil o pierde su siguiente acción de habilidad.</li><li><b>Borrado · 2</b>Un héroe a 12" recibe 3 impactos con AP(1).</li><li><b>Silencio · 3</b>Todos los héroes a 9" pasan una tirada de Wil o pierden D3 de poder.</li></ul>
@@ -904,7 +906,7 @@ function buildSheet(){
  const rt=(t)=>t.map(r=>`<tr><td>${r[0]===r[1]?r[0]:r[0]+"-"+r[1]}</td><td><b>${esc(r[2])}</b></td><td>${esc(r[3])}</td></tr>`).join("");
  h+=sec("eventos","Reglas de la casa","Eventos de Neth",`<div class="body"><p>Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento.</p><p class="note">Hay treinta y seis posibilidades. Estas son tres de ellas; la mesa de juego tira las demás por ti.</p></div>${picks(eventPicks())}`);
  h+=sec("cofres","Botín","Cofres",`<div class="body"><p>Cada ficha de búsqueda es un cofre. Un héroe gasta una acción de habilidad (Descubrir): a 6&quot; o menos y con línea de visión pasa una tirada de Wil, y a 1&quot; o menos no necesita tirada. Después se tira el contenido y, si hace falta, el objeto. Si es un objeto o oro y el héroe está a 1&quot;, lo recoge. Si no, deja un marcador de tesoro.</p><p class="note">Esto es solo una muestra de lo que puede guardar un cofre. La mesa de juego tira el resto por ti.</p></div>${picks(chestPicks())}`);
- h+=sec("heraldo","Lo que se cuenta","Heraldo del Umbral",`<div class="her"><figure class="porf">${PORTRAIT}<figcaption>Retrato provisional</figcaption></figure><div class="body"><p>Nadie en Varek’s Hold sabe cómo se llama, y quienes dicen haberlo visto no se ponen de acuerdo en su cara. Unos hablan de un sacerdote del Umbral que bajó a un pozo como este hace años y nunca terminó de subir.</p><p>Otros juran que no es nadie: solo el hueco que deja una persona cuando el mundo la olvida, vestido con lo último que llevaba puesto. Los cultistas lo llaman Heraldo y bajan la voz al decirlo, como si anunciara la llegada de alguien más.</p><p class="note">Puede que nunca aparezca. Puede que ya os esté mirando.</p></div></div><blockquote class="quote"><p>No os voy a matar. Os voy a dejar marchar, y cuando volváis a casa nadie os estará esperando.</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`);
+ h+=sec("heraldo","Lo que se cuenta","Heraldo del Umbral",`<div class="her"><figure class="porf"><img class="por" src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"><figcaption>El Heraldo del Umbral</figcaption></figure><div class="body"><p>Nadie en Varek’s Hold sabe cómo se llama, y quienes dicen haberlo visto no se ponen de acuerdo en su cara. Unos hablan de un sacerdote del Umbral que bajó a un pozo como este hace años y nunca terminó de subir.</p><p>Otros juran que no es nadie: solo el hueco que deja una persona cuando el mundo la olvida, vestido con lo último que llevaba puesto. Los cultistas lo llaman Heraldo y bajan la voz al decirlo, como si anunciara la llegada de alguien más.</p><p class="note">Puede que nunca aparezca. Puede que ya os esté mirando.</p></div></div><blockquote class="quote"><p>No os voy a matar. Os voy a dejar marchar, y cuando volváis a casa nadie os estará esperando.</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`);
  h+=sec("lecturas","Para leer en voz alta","Narración",`<p class="note" style="margin-top:-6px">Lee cada texto cuando ocurra el momento indicado. El panel de juego te muestra el que toca.</p><ol class="tl">${DATA.nar.filter(n=>n[0]!=="Llega el Heraldo").map(n=>`<li><h3>${esc(n[0])}</h3><p>${esc(n[1])}</p></li>`).join("")}</ol><h3 style="margin-top:8px">Finales</h3><div class="fins">${DATA.fin.map(f=>{const i=f.indexOf(": ");return`<div class="fin"><b class="hl">${esc(f.slice(0,i))}.</b> ${esc(cap(f.slice(i+2)))}</div>`}).join("")}</div>`);
  h+=sec("enemigos","Oleadas","Lo que el pueblo ha olvidado",`<div class="mons"><div class="mon">${cMon("bor")}<h3>Borrados</h3><p>Figuras grises que recuerdan a medias cómo caminar. Espectros o muertos vivientes de rostro liso.</p></div><div class="mon">${cMon("cul")}<h3>Cultistas del Umbral</h3><p>Túnicas negras con el signo del Umbral en las mangas. Cantan una sola nota. Un <i>Caster</i> los guía.</p></div><div class="mon">${cMon("ani")}<h3>Animales deformados</h3><p>Perros del pueblo con la carne torcida y los ojos blancos. Rápidos (<i>Fast</i>) y mal afinados.</p></div></div>
  <div class="body"><p>Ten al menos 2 o 3 veces más unidades que héroes, y puntos para 2 o 3 oleadas completas.</p><p><b class="hl">Tamaño de oleada.</b> Porcentaje de los puntos totales de los héroes. Ejemplo: con 300 puntos de héroes, una oleada de nivel 2 vale 150 puntos.</p></div><div class="bars" id="bars"></div>

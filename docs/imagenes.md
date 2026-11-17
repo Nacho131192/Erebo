@@ -88,6 +88,18 @@ Formato apaisado **8:3**.
 
 La ciudad de los héroes, apoyada en el muro del Primordial que no cayó del todo.
 
+## 2.8 Generarlas con Pollinations (opcional)
+
+En vez de copiar los prompts a mano, el script `tools/pollinations.py` los lee de este archivo y genera la lámina con el modelo que elijas. Necesita una clave `sk_` de enter.pollinations.ai/keys en la variable `POLLINATIONS_API_KEY`.
+
+```
+py tools/pollinations.py modelos                  # modelos que admiten Quest Pollen, con precio
+py tools/pollinations.py imagen heraldo --modelo flux.1-schnell --seed 42
+py tools/pollinations.py imagen heraldo --modelo flux.2-klein-4b --seed 42 --ref assets/portada.png --final
+```
+
+Los borradores van a `assets/pruebas/` con una ficha `.json` (modelo, semilla y prompt) para repetirlos; `--final` guarda la buena como `assets/<lámina>`. Si editas un prompt aquí, el script usa la versión nueva.
+
 ## 3. Qué se queda en código
 
 El **mapa de cuadrantes** sigue dibujado en código, porque tiene que ser exacto: cuadrantes, esquinas, numeración y escala.
