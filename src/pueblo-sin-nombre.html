@@ -89,13 +89,13 @@ html.lock{overflow:hidden}
 .back{flex:none;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 15px 0 11px;border-radius:999px;border:1px solid #6b4a2a;background:linear-gradient(180deg,#2c1d12,#1c130c);color:#f1e2c2;font:600 12px var(--ui);letter-spacing:.12em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,230,180,.08),0 4px 12px rgba(0,0,0,.35);transition:border-color .2s,background .2s}
 .back svg{width:16px;height:16px;color:var(--pgold);transition:transform .25s}
 .back:hover{border-color:var(--pgold)}.back:hover svg{transform:translateX(-3px)}
-.toc{flex:1;min-width:0;display:flex;gap:1px;overflow-x:auto;scrollbar-width:none}
-.toc.ov{-webkit-mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
-.toc::-webkit-scrollbar{display:none}
-.toc a{white-space:nowrap;text-decoration:none;color:#bfa985;font:600 12px var(--ui);letter-spacing:.12em;text-transform:uppercase;padding:9px 11px;border-radius:999px}
-.toc a:hover{color:#f1e6cb}
-.toc a.on{background:#3a2616;color:#f6e9d0;box-shadow:inset 0 0 0 1px #6b4a2a}
 
+/* Las fichas de héroe solo se ven con la mesa de juego abierta. */
+body:not(:has(#panel.open)) #hfLayer{display:none}
+/* El Heraldo, dentro del prólogo */
+.heri{margin-top:34px}.heri>.orn{margin:0 auto 18px}
+.herb{text-align:center;max-width:52ch;margin:0 auto 26px!important}
+.herh{margin:0 0 10px;font:700 19px/1.25 var(--disp);color:var(--ink)}
 /* pergamino */
 .scroll{max-width:900px;margin:6px auto 0}
 .roller{position:relative;height:34px;border-radius:17px;background:linear-gradient(#3a2412,#a77c46 28%,#dcbc7c 50%,#8a6234 74%,#2f1c0d);box-shadow:0 10px 24px rgba(0,0,0,.55);z-index:2}
@@ -854,7 +854,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 <div class="view mapv" id="home" hidden></div>
 <div class="view mis" id="mis" hidden>
 <main class="col" id="col">
-<div class="topbar"><button class="back" type="button" data-nav="home" aria-label="Volver al menú de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button><nav class="toc" id="toc" aria-label="Capítulos"></nav></div>
+<div class="topbar"><button class="back" type="button" data-nav="home" aria-label="Volver al menú de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button></div>
 <article class="scroll"><div class="roller" aria-hidden="true"></div><div class="sheet" id="sheet"></div><div class="roller" aria-hidden="true"></div></article>
 </main>
 <button class="fab" id="fab" type="button" data-nav="open" aria-controls="panel" aria-expanded="false"></button>
@@ -1203,6 +1203,7 @@ function openMesa(){
 }
 function closeMesa(){
  const p=$("#panel");if(!p.classList.contains("open"))return;
+ if(typeof HF!=="undefined"){hfClose();HF.fan=false;hfMeds()}
  if(UI.au){narStop();render()}
  p.classList.remove("open","intro");$("#mis").inert=false;document.documentElement.classList.remove("lock");
  $("#fab").setAttribute("aria-expanded","false");$("#fab").focus({preventScroll:true});
@@ -1216,10 +1217,8 @@ function NAV(t){
  if(VIEW==="m1"){closeMesa();misY=window.scrollY}
  VIEW=t;
  if(t==="home")HOME.map();else if(t==="camp")HOME.camp();
- swapView(from,to,()=>{if(t==="m1"){tocOv();toTop(misY);$("#mis .back").focus({preventScroll:true})}else{toTop(0);if(t==="home")HOME.mapAfter();else HOME.focusCamp()}});
+ swapView(from,to,()=>{if(t==="m1"){toTop(misY);$("#mis .back").focus({preventScroll:true})}else{toTop(0);if(t==="home")HOME.mapAfter();else HOME.focusCamp()}});
 }
-function tocOv(){const t=$("#toc");t.classList.toggle("ov",t.scrollWidth>t.clientWidth+2)}
-addEventListener("resize",tocOv);
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#panel").classList.contains("open")){e.preventDefault();closeMesa()}});
 let COLS=0;const MQ3=matchMedia("(min-width:1280px)"),MQ2=matchMedia("(min-width:760px)");
 const colsNow=()=>MQ3.matches?3:MQ2.matches?2:1;
@@ -1644,7 +1643,7 @@ function chestPicks(){
 function buildSheet(){
  const P=DATA.pro;
  let h=`<header class="cover">${SIG}<p class="eb">Age of Fantasy: Quest · Érebo · Misión 1 de 6</p><h1>El pueblo vacío</h1><p class="sub">El Pueblo Sin Nombre: un contrato del Filo, una Ruptura de Neth y un pueblo que ya no recuerda su nombre.</p><div class="plate">${SCENE}</div></header>`;
- h+=sec("historia","Prólogo","El contrato del Filo",`<div class="body"><p class="note">${esc(DATA.pro[-1]||"Léelo antes de colocar las miniaturas.")}</p>${P.slice(0,4).map((p,i)=>`<p class="${i===0?"drop":""}">${esc(p)}</p>`).join("")}<p>${esc(P[4])}</p></div>`);
+ h+=sec("historia","Prólogo","El contrato del Filo",`<div class="body"><p class="note">${esc(DATA.pro[-1]||"Léelo antes de colocar las miniaturas.")}</p>${P.slice(0,4).map((p,i)=>`<p class="${i===0?"drop":""}">${esc(p)}</p>`).join("")}<p>${esc(P[4])}</p></div><div class="heri">${ORN}<p class="note herb">En las tabernas de Varek’s Hold, cuando alguien nombra el pueblo, siempre hay otro que acaba hablando del Heraldo.</p><div class="her"><figure class="porf"><img class="por" src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"><figcaption>El Heraldo del Umbral</figcaption></figure><div class="body"><h3 class="herh">Lo que se cuenta del Heraldo</h3><p>Nadie en Varek’s Hold sabe cómo se llama, y quienes dicen haberlo visto no se ponen de acuerdo en su cara. Unos hablan de un sacerdote del Umbral que bajó a un pozo como este hace años y nunca terminó de subir.</p><p>Otros juran que no es nadie: solo el hueco que deja una persona cuando el mundo la olvida, vestido con lo último que llevaba puesto. Los cultistas lo llaman Heraldo y bajan la voz al decirlo, como si anunciara la llegada de alguien más.</p><p class="note">Puede que nunca aparezca. Puede que ya os esté mirando.</p></div></div><blockquote class="quote"><p>No os voy a matar. Os voy a dejar marchar, y cuando volváis a casa nadie os estará esperando.</p><cite>Palabras atribuidas al Heraldo</cite></blockquote></div>`);
  const ob=DATA.obj.map(l=>{const i=l.indexOf(": ");return[l.slice(0,i),l.slice(i+2)]});
  const seals=["I","II","III","IV"],cls=["","v","g","o"];
  h+=sec("objetivos","Misión 1","Objetivos y recompensas",`<div class="objs body">${ob.slice(0,4).map((o,i)=>`<div class="ob"><div class="seal ${cls[i]}">${seals[i]}</div><div><h3>${esc(o[0])}</h3><p>${esc(cap(o[1]))}</p></div></div>`).join("")}</div>
@@ -1657,12 +1656,6 @@ function buildSheet(){
  const rt=(t)=>t.map(r=>`<tr><td>${r[0]===r[1]?r[0]:r[0]+"-"+r[1]}</td><td><b>${esc(r[2])}</b></td><td>${esc(r[3])}</td></tr>`).join("");
  h+=sec("eventos","Reglas de la casa","Eventos de Neth",`<div class="body"><p>Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento.</p><p class="note">Hay treinta y seis posibilidades. Estas son tres de ellas; la mesa de juego tira las demás por ti.</p></div>${picks(eventPicks())}`);
  h+=sec("cofres","Botín","Cofres",`<div class="body"><p>Cada ficha de búsqueda es un cofre. Un héroe gasta una acción de habilidad (Descubrir): a 6&quot; o menos y con línea de visión pasa una tirada de Wil, y a 1&quot; o menos no necesita tirada. Después se tira el contenido y, si hace falta, el objeto. Si es un objeto o oro y el héroe está a 1&quot;, lo recoge. Si no, deja un marcador de tesoro.</p><p class="note">Esto es solo una muestra de lo que puede guardar un cofre. La mesa de juego tira el resto por ti.</p></div>${picks(chestPicks())}`);
- h+=sec("heraldo","Lo que se cuenta","Heraldo del Umbral",`<div class="her"><figure class="porf"><img class="por" src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"><figcaption>El Heraldo del Umbral</figcaption></figure><div class="body"><p>Nadie en Varek’s Hold sabe cómo se llama, y quienes dicen haberlo visto no se ponen de acuerdo en su cara. Unos hablan de un sacerdote del Umbral que bajó a un pozo como este hace años y nunca terminó de subir.</p><p>Otros juran que no es nadie: solo el hueco que deja una persona cuando el mundo la olvida, vestido con lo último que llevaba puesto. Los cultistas lo llaman Heraldo y bajan la voz al decirlo, como si anunciara la llegada de alguien más.</p><p class="note">Puede que nunca aparezca. Puede que ya os esté mirando.</p></div></div><blockquote class="quote"><p>No os voy a matar. Os voy a dejar marchar, y cuando volváis a casa nadie os estará esperando.</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`);
- h+=sec("lecturas","Para leer en voz alta","Narración",`<p class="note" style="margin-top:-6px">Lee cada texto cuando ocurra el momento indicado. El panel de juego te muestra el que toca.</p><ol class="tl">${DATA.nar.filter(n=>n[0]!=="Llega el Heraldo").map(n=>`<li><h3>${esc(n[0])}</h3><p>${esc(n[1])}</p></li>`).join("")}</ol><h3 style="margin-top:8px">Finales</h3><div class="fins">${DATA.fin.map(f=>{const i=f.indexOf(": ");return`<div class="fin"><b class="hl">${esc(f.slice(0,i))}.</b> ${esc(cap(f.slice(i+2)))}</div>`}).join("")}</div>`);
- h+=sec("enemigos","Oleadas","Lo que el pueblo ha olvidado",`<div class="mons"><div class="mon">${cMon("bor")}<h3>Borrados</h3><p>Figuras grises que recuerdan a medias cómo caminar. Espectros o muertos vivientes de rostro liso.</p></div><div class="mon">${cMon("cul")}<h3>Cultistas del Umbral</h3><p>Túnicas negras con el signo del Umbral en las mangas. Cantan una sola nota. Un <i>Caster</i> los guía.</p></div><div class="mon">${cMon("ani")}<h3>Animales deformados</h3><p>Perros del pueblo con la carne torcida y los ojos blancos. Rápidos (<i>Fast</i>) y mal afinados.</p></div></div>
- <div class="body"><p>Ten al menos 2 o 3 veces más unidades que héroes, y puntos para 2 o 3 oleadas completas.</p><p><b class="hl">Tamaño de oleada.</b> Porcentaje de los puntos totales de los héroes. Ejemplo: con 300 puntos de héroes, una oleada de nivel 2 vale 150 puntos.</p></div><div class="bars" id="bars"></div>
- <div class="body"><p><b class="hl">Centinelas.</b> Antes de empezar se despliegan en el centro de un cuadrante al azar: un dado por unidad, con 1-4 va al cuadrante con ese número y con 5-6 eliges. El PDF no fija cuántos son, así que usa el tamaño de una oleada.</p><p><b class="hl">Alertness.</b> Al final de cada ronda sube 1, o 2 si no queda ningún enemigo en la mesa. Al llegar a 6 entra una oleada de refuerzos y la Alertness vuelve a 0.</p><p><b class="hl">Refuerzos.</b> Cada unidad entra a 6&quot; o menos de una esquina al azar: con 1-4 va a la esquina con ese número y con 5-6 eliges.</p></div>
- <div class="tw"><table id="wvt"></table></div><p class="small">El panel de juego sortea al azar las unidades de cada oleada con tu propia lista de Army Forge (pégala en «Ejército enemigo»), sin pasarse de su valor. Los Borrados, animales y cultistas son el papel que hacen en la historia: tus miniaturas los representan. Solo salen copias que no estén ya en la mesa: en «Oleadas» marca cuántas siguen en pie o elimínalas del tablero, y las que caen vuelven a estar disponibles. El Heraldo cuenta como 150 pts (estimación de la casa).</p>`);
  $("#sheet").innerHTML=h;
 }
 function paintSheet(){
@@ -1672,13 +1665,6 @@ function paintSheet(){
  const cur=curW(),W=[["Centinelas",0],["Refuerzos 1",1],["Refuerzos 2",2],["Refuerzos 3 en adelante",3],["Jefe","boss"]];
  const wt=[["Centinelas","Borrados","El evento de Neth de la ronda 1."],["Refuerzos 1","Animales deformados con <i>Fast</i> y una unidad con <i>Ambush</i>","La unidad con <i>Ambush</i> entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."],["Refuerzos 2","Cultistas con un <i>Caster</i> y su escolta","Mientras el <i>Caster</i> no esté Aturdido, los Borrados a 6\" de él ganan +1 a impactar en cuerpo a cuerpo."],["Refuerzos 3 en adelante","Alterna los refuerzos 1 y 2","Un evento de Neth cada vez."],["Jefe","El Heraldo del Umbral, con Borrados y cultistas hasta el doble de valor","Su ficha aparece en la mesa de juego cuando entra en partida."]];
  const wv=$("#wvt");if(wv)wv.innerHTML=`<tr><th>Oleada</th><th>Composición</th><th>Sorpresa</th></tr>`+wt.map((r,i)=>{const k=W[i][1];const on=cur==="boss"?k==="boss":(k===cur||(k===3&&cur>=3));return`<tr class="${on?"cur":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`}).join("");
-}
-function buildToc(){
- const T=[["historia","Historia"],["objetivos","Objetivos"],["preparacion","Preparación"],["eventos","Eventos"],["cofres","Cofres"],["heraldo","Heraldo"],["lecturas","Narración"],["enemigos","Oleadas"]];
- $("#toc").innerHTML=T.map(t=>`<a href="#${t[0]}">${t[1]}</a>`).join("");
- if("IntersectionObserver" in window){const links=[...document.querySelectorAll("#toc a")];
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>{const on=a.getAttribute("href")==="#"+e.target.id;a.classList.toggle("on",on);if(on){const t=$("#toc");t.scrollLeft=a.offsetLeft-t.clientWidth/2+a.clientWidth/2}})}),{rootMargin:"-30% 0px -60% 0px"});
-  T.forEach(t=>{const el=document.getElementById(t[0]);if(el)io.observe(el)})}
 }
 DATA.sec=[["Interrogar","El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral."],["Salvaguardar","Mantén el pozo bajo control para frenar la Ruptura."],["Capturar","Saca una reliquia del pozo hasta una esquina."],["Sabotear","Destruye un símbolo del Umbral lejos de los héroes."],["Rebuscar","Revuelve las casas de dos esquinas en busca de pistas."],["Escoltar","Lleva a un superviviente sin rostro hasta la salida."]];
 DATA.narMap={};
@@ -1947,5 +1933,5 @@ return{
 }})();
 function buildHome(){HOME.build()}
 function paintHome(){HOME.paint()}
-buildHome();buildSheet();buildToc();render();
+buildHome();buildSheet();render();
 </script>
