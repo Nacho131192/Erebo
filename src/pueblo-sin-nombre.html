@@ -438,9 +438,160 @@ transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;animation:fa
 }
 @media (prefers-reduced-motion:reduce){
 .panel,.panel.open{transition:visibility 0s}
+.hf-drw,.hf-scrim,.hf-hmed,.hf-xb,.hf-add{transition:none}.hf-mrow,.hf-add,.hf-skull{animation:none}
 .view.enter,.view.leave,.mis.enter .scroll,.mcard,.fab,.panel.intro .pwrap>*,.panel.intro .mcol>*{animation:none}
 .mcard.on,.mcard.on .art svg,.px{transition:none}
 }
+
+/* ---------- ficha del héroe (solo en la mesa): medallones apilados abajo a la derecha y hoja de campaña ---------- */
+.pbody{padding-bottom:calc(130px + env(safe-area-inset-bottom,0px))}
+.wtog{bottom:108px}
+.hf-meds{position:absolute;z-index:8;right:max(18px,calc(env(safe-area-inset-right,0px) + 12px));bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 12px));display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.hf-stack{position:relative;width:66px;border:0;padding:0;background:none;display:block}
+.hf-coin{position:absolute;left:0;width:66px;height:66px;transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.hf-stack:hover .hf-coin:first-child{transform:translateY(-3px)}
+.hf-hmed{position:relative;width:66px;height:66px;border-radius:50%;display:block}
+.hf-hmed::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a2150,#0f0c18);box-shadow:0 10px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.55),0 0 22px rgba(167,139,250,.18)}
+.hf-hmed .hf-pic{position:absolute;inset:6px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #0c0a12}
+.hf-pic svg,.hf-pic img{display:block;width:100%;height:100%;object-fit:cover}
+svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.hf-cnt{position:absolute;right:-4px;top:-4px;z-index:9;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--pgold);color:#1a1405;font:700 12px var(--num);display:grid;place-items:center;box-shadow:0 0 0 3px var(--pbg)}
+.hf-fan{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.hf-mrow{display:flex;align-items:center;gap:10px;border:0;padding:0;background:none;color:inherit;animation:hfrise .45s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes hfrise{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+.hf-nm{display:flex;flex-direction:column;align-items:flex-end;padding:6px 12px;border-radius:12px;border:1px solid #3a3358;background:rgba(21,18,31,.95);box-shadow:0 8px 20px rgba(0,0,0,.45);white-space:nowrap}
+.hf-nm b{font:700 12.5px var(--disp);letter-spacing:.06em;color:var(--pink)}
+.hf-nm small{font:600 11px var(--num);color:#f6b3c3}
+.hf-nm small.st{color:var(--pbad)}.hf-nm small.ko{color:#ff6b7f}
+.hf-mrow:hover .hf-nm{border-color:var(--pgold)}
+.hf-mrow.on .hf-hmed::before{box-shadow:0 10px 24px rgba(0,0,0,.6),0 0 0 2px var(--pgold),0 0 26px rgba(217,184,108,.35)}
+.hf-add{width:50px;height:50px;margin-right:8px;border-radius:50%;border:1.5px dashed var(--pgold);background:radial-gradient(circle at 35% 30%,#2a2346,#15121f);color:var(--pgold);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.5);animation:hfrise .45s cubic-bezier(.22,1,.36,1) both;transition:transform .25s}
+.hf-add:hover{transform:rotate(90deg)}
+.hf-add svg{width:20px;height:20px}
+.hf-cf{width:40px;height:40px;margin-right:13px;border-radius:50%;border:1px solid #3a3358;background:var(--pcard);color:var(--pmu);display:grid;place-items:center}
+.hf-cf svg{width:14px;height:14px}
+.hf-dead .hf-pic{filter:brightness(.32) grayscale(.55)}
+.hf-skull{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:2;animation:hfskull .5s cubic-bezier(.22,1,.36,1) both}
+.hf-skull svg{width:46%;height:46%;filter:drop-shadow(0 0 6px rgba(230,40,60,.65)) drop-shadow(0 2px 3px rgba(0,0,0,.7))}
+@keyframes hfskull{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:1;transform:none}}
+.hf-scrim{position:absolute;inset:0;z-index:9;background:rgba(4,3,8,.55);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s linear .35s}
+.hf-scrim.open{opacity:1;visibility:visible;transition:opacity .35s}
+.hf-drw{position:absolute;top:0;bottom:0;right:0;z-index:10;width:min(440px,100%);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);background:radial-gradient(600px 300px at 80% -10%,rgba(167,139,250,.14),transparent 60%),var(--pbg);border-left:1px solid #3a3358;box-shadow:-30px 0 80px rgba(0,0,0,.7);transform:translateX(104%);visibility:hidden;transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s linear .55s}
+.hf-drw.open{transform:none;visibility:visible;transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s}
+.hf-dh{flex:none;display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--pline)}
+.hf-xb{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid #3a3358;background:radial-gradient(circle at 35% 30%,#221c38,#15121f);display:grid;place-items:center;color:var(--pink);transition:transform .35s,border-color .2s,color .2s}
+.hf-xb:hover{transform:rotate(90deg);border-color:var(--pgold);color:var(--pgold)}
+.hf-xb svg{width:16px;height:16px}
+.hf-tt small{display:block;font:600 10px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--pmu)}
+.hf-tt b{display:block;font:700 15px var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--pgold)}
+.hf-nav{margin-left:auto;display:flex;gap:6px}
+.hf-nav button{width:32px;height:32px;border-radius:50%;border:1px solid #3a3358;background:none;color:var(--pmu);display:grid;place-items:center}
+.hf-nav button:hover{color:var(--pgold);border-color:var(--pgold)}
+.hf-nav button:disabled{opacity:.3;cursor:default}
+.hf-nav svg{width:13px;height:13px}
+.hf-db{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:16px 16px calc(28px + env(safe-area-inset-bottom,0px));scrollbar-width:thin;scrollbar-color:#3a3358 transparent}
+.hf-v{border-radius:16px;border:1px solid var(--pline);background:linear-gradient(180deg,#17142250,transparent 40%),var(--pcard);box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.28);padding:18px;display:flex;flex-direction:column;gap:16px;color:var(--pink)}
+.hf-hd{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.hf-md{position:relative;width:84px;height:84px}
+.hf-md .hf-pic{position:absolute;inset:7px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #0c0a12}
+.hf-lv{position:absolute;left:50%;bottom:-6px;z-index:3;transform:translateX(-50%);height:20px;padding:0 9px;border-radius:999px;background:var(--pgold);color:#1a1405;font:700 10px var(--ui);letter-spacing:.12em;display:grid;place-items:center;white-space:nowrap;box-shadow:0 0 0 3px var(--pcard)}
+.hf-nmx{min-width:0}
+.hf-nmx h3{margin:0;font:700 20px/1.15 var(--disp);letter-spacing:.06em;color:var(--pink);text-wrap:balance}
+.hf-nmx p{margin:6px 0 0;display:flex;gap:6px;flex-wrap:wrap}
+.hf-tag{height:24px;padding:0 10px;border-radius:999px;border:1px solid #3a3358;font:600 11.5px/22px var(--ui);color:var(--pmu)}
+.hf-tag.r{border-color:rgba(143,182,240,.45);color:#8fb6f0}
+.hf-tag.p{border-color:rgba(217,184,108,.5);color:var(--pgold)}
+.hf-acts{display:flex;gap:8px;flex-wrap:wrap}
+.hf-eb{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--pgold);background:rgba(217,184,108,.08);color:var(--pgold);font:700 10.5px var(--ui);letter-spacing:.13em;text-transform:uppercase}
+.hf-eb:hover{background:rgba(217,184,108,.18)}
+.hf-eb svg{width:13px;height:13px}
+.hf-eb.on{background:var(--pgold);color:#1a1405}
+.hf-eb.v{border-color:rgba(167,139,250,.7);color:#cbbcff;background:rgba(167,139,250,.08)}
+.hf-eb.v:hover{background:rgba(167,139,250,.18)}
+.hf-eb.v.on{background:var(--pvio);color:#120c24}
+.hf-lbl{font:600 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--pmu)}
+.hf-xp{display:flex;flex-direction:column;gap:6px}
+.hf-xp .hf-lbl{display:flex;justify-content:space-between;gap:8px;letter-spacing:.14em}
+.hf-xp .hf-lbl b{font:700 12px var(--num);color:var(--pink);letter-spacing:0}
+.hf-xp small{font:400 11.5px/1.4 var(--ui);color:var(--pmu)}
+.hf-bar{height:6px;border-radius:999px;background:#251f3a;overflow:hidden}
+.hf-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--pvio),var(--pgold));transition:width .3s}
+.hf-st{display:inline-flex;align-items:center;border-radius:999px;border:1px solid #3a3358;background:#110e1b;overflow:hidden}
+.hf-st button{width:30px;height:30px;border:0;background:none;display:grid;place-items:center;color:var(--pmu)}
+.hf-st button:hover{background:#221c38;color:var(--pink)}
+.hf-st button svg{width:12px;height:12px}
+.hf-st b{min-width:42px;text-align:center;font:700 15px var(--num);font-variant-numeric:tabular-nums}
+.hf-st i{width:1px;height:16px;background:#3a3358}
+.hf-trk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.hf-tk{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;border:1px solid var(--pline);background:#120f1c}
+.hf-tk .hf-big{font:700 26px/1 var(--num);font-variant-numeric:tabular-nums}
+.hf-tk .hf-big small{font-size:14px;color:var(--pmu)}
+.hf-tk.hp .hf-big{color:#f6b3c3}.hf-tk.pw .hf-big{color:#cbbcff}
+.hf-tk .hf-st{align-self:flex-start}
+.hf-stt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--pline);border-radius:12px;overflow:hidden}
+.hf-stt div{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 2px;border-left:1px solid var(--pline);min-width:0}
+.hf-stt div:first-child{border-left:0}
+.hf-stt b{font:700 18px/1 var(--num);font-variant-numeric:tabular-nums}
+.hf-stt span{font:600 8.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--pmu)}
+.hf-stt .dn b{color:var(--pbad)}
+.hf-mini{display:flex;gap:16px;flex-wrap:wrap}
+.hf-mini>div{display:flex;align-items:center;gap:8px}
+.hf-chips{display:flex;flex-wrap:wrap;gap:6px}
+.hf-chip{height:28px;padding:0 11px;border-radius:999px;border:1px dashed #3a3358;background:none;font:600 12px var(--ui);color:var(--pmu)}
+.hf-chip:hover{color:var(--pink);border-color:var(--pmu)}
+.hf-chip.on{border-style:solid;border-color:rgba(236,138,160,.6);background:rgba(236,138,160,.12);color:#ffd0db}
+.hf-tabs{display:flex;gap:4px;padding:3px;border-radius:999px;border:1px solid var(--pline);background:#110e1b}
+.hf-tabs button{flex:1;height:30px;border:0;border-radius:999px;background:none;font:600 12px var(--ui);color:var(--pmu);white-space:nowrap}
+.hf-tabs button.on{background:linear-gradient(180deg,#2a2346,#211b38);color:var(--pgold);box-shadow:inset 0 0 0 1px rgba(217,184,108,.35)}
+.hf-sk{display:flex;flex-direction:column;gap:12px}
+.hf-sk>div{display:flex;flex-direction:column;gap:2px}
+.hf-sk b{font:700 13.5px var(--ui);color:var(--pink)}
+.hf-sk b .kw{font:600 11px var(--num);letter-spacing:.04em;color:var(--pvio);margin-left:6px}
+.hf-sk p{margin:0;font:400 13px/1.45 var(--ui);color:var(--pmu)}
+.hf-sk p.nd{font-style:italic;color:#6f6889}
+.hf-wp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:6px;border:1px solid var(--pline);border-radius:10px;overflow:hidden;background:#120f1c}
+.hf-wp span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 4px;border-left:1px solid var(--pline);min-width:0}
+.hf-wp span:first-child{border-left:0}
+.hf-wp small{font:700 9.5px var(--ui);letter-spacing:.16em;color:var(--pmu)}
+.hf-wp b{font:700 15px/1.2 var(--num);color:var(--pink);text-align:center;overflow-wrap:anywhere}
+.hf-wp b.no{color:#5d5677}
+.hf-empty{font:italic 500 15px var(--serif);color:var(--pmu)}
+.hf-form{display:flex;flex-direction:column;gap:12px}
+.hf-fr{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+.hf-fl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.hf-fl>span{font:600 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pmu)}
+.hf-fl input,.hf-fl select,.hf-fl textarea{width:100%;min-width:0;height:36px;padding:0 10px;border-radius:9px;border:1px solid #3a3358;background:#0f0d18;color:var(--pink);font:500 14px var(--ui)}
+.hf-fl textarea{height:auto;min-height:56px;padding:8px 10px;resize:vertical;line-height:1.4}
+.hf-fl input:focus,.hf-fl select:focus,.hf-fl textarea:focus{outline:none;border-color:var(--pgold)}
+.hf-skr{display:grid;gap:8px;grid-template-columns:1fr 120px 32px;align-items:start;padding:10px;border-radius:12px;border:1px solid var(--pline);background:#120f1c}
+.hf-skr .hf-fl:nth-child(4){grid-column:1/-1}
+.hf-del{width:32px;height:32px;margin-top:19px;border-radius:50%;border:1px solid #3a3358;background:none;color:var(--pbad);display:grid;place-items:center}
+.hf-del svg{width:12px;height:12px}
+.hf-add2{height:34px;border-radius:10px;border:1px dashed #3a3358;background:none;color:var(--pmu);font:600 12.5px var(--ui)}
+.hf-add2:hover{color:var(--pgold);border-color:var(--pgold)}
+.hf-upl{position:relative;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 14px;border-radius:9px;border:1px solid #3a3358;background:#0f0d18;font:600 12.5px var(--ui);color:var(--pink);cursor:pointer}
+.hf-upl:hover{border-color:var(--pgold)}
+.hf-upl input{position:absolute;width:1px;height:1px;opacity:0}
+.hf-note{margin:0;font:400 12px/1.45 var(--ui);color:var(--pmu)}
+.hf-dng{height:34px;border-radius:10px;border:1px solid rgba(236,138,160,.4);background:none;color:var(--pbad);font:600 12.5px var(--ui)}
+.hf-dng.arm{background:rgba(236,138,160,.15)}
+.hf-imp{display:flex;flex-direction:column;gap:12px}
+.hf-imp textarea{width:100%;min-height:170px;padding:12px;border-radius:12px;border:1px solid #3a3358;background:#0f0d18;color:#d9d2ee;font:500 12.5px/1.5 ui-monospace,Consolas,monospace;resize:vertical}
+.hf-imp textarea:focus{outline:none;border-color:var(--pvio)}
+.hf-steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font:400 13px/1.45 var(--ui);color:#cfc8e2}
+.hf-steps li{display:flex;gap:10px}
+.hf-steps li b{flex:none;width:20px;height:20px;border-radius:50%;border:1px solid var(--goldd);display:grid;place-items:center;font:700 10px var(--num);color:var(--pgold)}
+.hf-prev{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid rgba(134,209,174,.35);background:rgba(134,209,174,.06)}
+.hf-prev.err{border-color:rgba(236,138,160,.4);background:rgba(236,138,160,.06)}
+.hf-prev h4{margin:0;font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pok)}
+.hf-prev.err h4{color:var(--pbad)}
+.hf-prev ul{margin:0;padding:0 0 0 16px;font:400 13px/1.5 var(--ui);color:#d4cde6}
+.hf-row{display:flex;gap:8px;flex-wrap:wrap}
+.hf-pri{height:38px;padding:0 18px;border-radius:999px;border:0;background:linear-gradient(180deg,#e7cd8c,#c9a24f);color:#1a1405;font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase}
+.hf-pri:disabled{opacity:.4;cursor:default}
+.hf-sec{height:38px;padding:0 16px;border-radius:999px;border:1px solid #3a3358;background:none;color:var(--pink);font:600 12.5px var(--ui)}
+.hf-sec:hover{border-color:var(--pgold);color:var(--pgold)}
+@media (max-width:520px){.hf-skr{grid-template-columns:1fr 32px}.hf-skr .hf-fl:nth-child(2){grid-column:1/-1;order:3}.hf-stt span{font-size:7.5px;letter-spacing:.04em}}
 </style>
 
 <div class="view home" id="home"><div class="hwrap" id="hwrap"></div></div>
@@ -454,6 +605,13 @@ transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;animation:fa
 <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle" inert>
 <header class="phead"><button class="px" id="px" type="button" data-nav="close" aria-label="Cerrar la mesa de juego y volver al pergamino"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="ptl"><small>Misión I · El pueblo vacío</small><h2 id="ptitle">Mesa de juego</h2></div><div class="pst" id="pst"></div><div id="pact"></div></header>
 <div class="pbody" id="pbody"></div>
+<div class="hf-meds" id="hfMeds"></div>
+<div class="hf-scrim" id="hfScrim"></div>
+<aside class="hf-drw" id="hfDrw" aria-label="Ficha del héroe" aria-hidden="true">
+<div class="hf-dh"><button class="hf-xb" type="button" data-hf="close" aria-label="Cerrar la ficha"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="hf-tt"><small id="hfSub">Héroe 1 de 1</small><b>Ficha del héroe</b></div>
+<div class="hf-nav"><button type="button" data-hf="prev" id="hfPrev" aria-label="Héroe anterior"><svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 2.5L4 6l3.5 3.5"/></svg></button><button type="button" data-hf="next" id="hfNext" aria-label="Héroe siguiente"><svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5L8 6 4.5 9.5"/></svg></button></div></div>
+<div class="hf-db" id="hfDb"></div>
+</aside>
 </aside>
 
 <script>
@@ -936,7 +1094,189 @@ function render(){
  paintHome();
  if(f){const t=document.querySelector('[data-f="'+f+'"]');if(t)t.focus({preventScroll:true})}
  paintSheet();
+ hfPaint();
 }
+
+/* ---------- ficha del héroe (solo en la mesa) ----------
+   Medallones apilados abajo a la derecha de la mesa; al pulsarlos se abren con el botón + para añadir héroes.
+   Cada héroe tiene su hoja de campaña. Se guarda aparte (HKEY): «Nueva partida» no la borra.
+   La XP de la campaña no se edita: sale del mismo cálculo que el cierre de la mesa (finalCard). */
+const HKEY="psn-heroes-v1";
+const hfX=()=>Math.min(5*S.d,(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d:0));
+const HF_WAKI=`++ Wakiisen - Barbarian (Ogres) [AOFQ 285pts] [Lvl 4] ++
+
+Wakiisen | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | Tough(18), Destroyer, Barbaric Frenzy
+Dual Hand Weapons (A8)
+Consumables: 2x Health Potion
+Skills: Rage, Healing Touch`;
+const HF_ST=[["at","Aturdido"],["af","Afligido"],["en","Enfermo"],["de","Debilitado"],["ac","Afectado"]];
+const HF_STAT=[["cal","Calidad"],["def","Defensa"],["fue","Fuerza"],["des","Destreza"],["vol","Voluntad"]];
+const HF_TABS=[["regla","Reglas"],["hab","Habilidades"],["equipo","Equipo"]];
+const HF_PAL=[["#4a3a7a","#211a3a"],["#2f4a6e","#16223a"],["#5a3a2a","#2a1a12"],["#2e5a4a","#122a22"]];
+/* Explicaciones: resumen propio de reglas comunes de OPR y las de Wakiisen traducidas del texto que dictó Nacho (2026-11-17). */
+const HF_GLOS={
+ "ap":"Las tiradas de Defensa contra este ataque restan el valor indicado.",
+ "rending":"Con un 6 natural al impactar, ese impacto gana AP(4) e ignora Regeneration.",
+ "fear":"En cuerpo a cuerpo cuenta como si hubiera causado heridas extra para decidir quién gana.",
+ "stealth":"Quien le dispare desde más de 9\" tiene −1 a impactar.",
+ "regeneration":"Cuando recibe una herida, con 5+ la ignora.",
+ "fast":"Mueve más de lo normal al avanzar y al cargar.",
+ "strider":"Ignora los efectos del terreno difícil al moverse.",
+ "scout":"Se despliega después del resto y puede recolocarse antes de empezar.",
+ "ambush":"No se despliega al principio: entra más tarde en cualquier punto alejado de los enemigos.",
+ "furious":"Al cargar, cada 6 natural al impactar causa un impacto extra.",
+ "caster":"Puede lanzar hechizos gastando sus fichas de hechizo.",
+ "barbaric frenzy":"Una vez por partida, al activarse, el héroe recupera 3 de poder.",
+ "destroyer":"Cuando este héroe dispara / carga contra enemigos que están a más de 9\" / 6\", cada 1 sin modificar que saquen al bloquear los impactos de sus armas causa 1 herida extra.",
+ "healing touch":"El héroe recupera 3 heridas. Puede aplicar el efecto a otro héroe que esté a 3\" o menos.",
+ "rage":"El héroe sufre 1 herida y gana +2 a impactar en cuerpo a cuerpo al cargar, hasta el final de la ronda."
+};
+const HI={minus:'<svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 6h7"/></svg>',plus:'<svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 6h7M6 2.5v7"/></svg>',pen:'<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M10.5 2.5l3 3L6 13H3v-3z"/></svg>',ok:'<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>',x:'<svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3l-6 6"/></svg>',imp:'<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M3 13h10"/></svg>',add:'<svg viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>'};
+const HF_SKULL=`<span class="hf-skull" role="img" aria-label="Inconsciente"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#e3283c" d="M12 2.2c-4.9 0-8.6 3.5-8.6 8.2 0 2.7 1.2 4.6 3 5.8v2.6c0 .9.7 1.6 1.6 1.6h1v-2.1h1.3v2.1h3.4v-2.1h1.3v2.1h1c.9 0 1.6-.7 1.6-1.6v-2.6c1.8-1.2 3-3.1 3-5.8 0-4.7-3.7-8.2-8.6-8.2z"/><ellipse cx="8.6" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><ellipse cx="15.4" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><path fill="#1a0507" d="M12 13.4l-1.5 2.6h3z"/><path d="M7.4 6.2c1-1.3 2.6-2 4.2-2.1" stroke="#ff8a96" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".7"/></svg></span>`;
+const hfMk=o=>Object.assign({name:"Nuevo héroe",raza:"",prof:"",nivel:1,pts:0,cal:4,def:4,fue:4,des:4,vol:4,hp:3,hpMax:3,pw:0,pwMax:0,pot:0,gold:0,st:[],img:"",sk:[],c:0},o);
+function hfSplit(s){const out=[];let d=0,b="";for(const ch of s){if(ch==="(")d++;else if(ch===")")d=Math.max(0,d-1);if(ch===","&&!d){if(b.trim())out.push(b.trim());b=""}else b+=ch}if(b.trim())out.push(b.trim());return out}
+/* Lee la exportación de héroe de Army Forge (AoF: Quest):
+   ++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++
+   Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | reglas
+   armas · Consumables: 2x Health Potion · Skills: a, b */
+function hfParse(t){
+ const lines=String(t).split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+ const reQ=/^(.+?)\s*\|\s*Qua\s*(\d)\+\s*Def\s*(\d)\+\s*(?:Tou\s*(\d+))?\s*(?:Pow\s*(\d+))?\s*\|\s*Str\s*(\d)\+\s*Dex\s*(\d)\+\s*Wil\s*(\d)\+\s*\|\s*(\d+)\s*pts?\s*(?:\|\s*(\d+)\s*XP)?\s*(?:\|\s*(.*))?$/i;
+ const r={prof:"",raza:"",nivel:null,rules:[],weap:[],cons:[],skills:[],pot:null};let u=false;
+ for(const l of lines){
+  if(/^\+\+/.test(l)){const s=l.replace(/^\+\+\s*|\s*\+\+$/g,""),lv=s.match(/\[Lvl\s*(\d+)\]/i),body=s.replace(/\[.*?\]/g,"").replace(/\(v[\d.]+\)/g,"").trim(),m=body.match(/^(.+?)\s+-\s+(.+?)(?:\s*\((.+?)\))?\s*$/);
+   if(lv)r.nivel=+lv[1];if(m){r.hname=m[1].trim();r.prof=m[2].trim();r.raza=(m[3]||"").trim()}continue}
+  let m=l.match(reQ);
+  if(m&&!u){u=true;Object.assign(r,{name:m[1].trim(),cal:+m[2],def:+m[3],hpMax:m[4]?+m[4]:null,pwMax:m[5]!=null?+m[5]:null,fue:+m[6],des:+m[7],vol:+m[8],pts:+m[9],afxp:m[10]?+m[10]:null});r.rules=hfSplit(m[11]||"");continue}
+  if(!u)continue;
+  if((m=l.match(/^Consumables?:\s*(.*)$/i))){for(const x of hfSplit(m[1])){const c=x.match(/^(\d+)\s*x\s+(.+)$/i),n=c?+c[1]:1,nm=(c?c[2]:x).trim();if(/health\s*potion|poci[oó]n de salud/i.test(nm))r.pot=(r.pot||0)+n;else r.cons.push({n:nm,q:n})}continue}
+  if((m=l.match(/^Skills?:\s*(.*)$/i))){r.skills.push(...hfSplit(m[1]));continue}
+  r.weap.push(...hfSplit(l).map(x=>{const w=x.match(/^(.+?)\s*\((.*)\)$/);return w?{n:w[1].trim(),k:w[2].trim()}:{n:x,k:""}}));
+ }
+ if(!u)return{err:"No encuentro la línea del héroe. En Army Forge se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
+ return r;
+}
+function hfClamp(h){h.hpMax=Math.max(1,+h.hpMax||1);h.pwMax=Math.max(0,+h.pwMax||0);h.hp=Math.min(Math.max(0,+h.hp||0),h.hpMax);h.pw=Math.min(Math.max(0,+h.pw||0),h.pwMax);h.pot=Math.max(0,+h.pot||0);h.gold=Math.max(0,+h.gold||0);h.nivel=Math.max(1,+h.nivel||1)}
+/* Copia lo leído a la ficha. No toca el oro ni los estados; la XP de Army Forge no se usa (la de la campaña empieza en 0). Tough(n) ya son las heridas: no se repite en Reglas. */
+function hfApply(h,r){
+ h.name=r.name||r.hname||h.name;h.cal=r.cal;h.def=r.def;if(r.prof)h.prof=r.prof;if(r.raza)h.raza=r.raza;if(r.nivel)h.nivel=r.nivel;if(r.pts)h.pts=r.pts;
+ if(r.fue)h.fue=r.fue;if(r.des)h.des=r.des;if(r.vol)h.vol=r.vol;
+ if(r.hpMax){const full=h.hp===h.hpMax;h.hpMax=r.hpMax;if(full||h.hp>r.hpMax)h.hp=r.hpMax}
+ if(r.pwMax!=null){const full=h.pw===h.pwMax;h.pwMax=r.pwMax;if(full||h.pw>r.pwMax)h.pw=r.pwMax}
+ if(r.pot!=null)h.pot=r.pot;
+ h.sk=r.rules.filter(x=>!/^Tough\(\d+\)$/i.test(x)).map(x=>({g:"regla",n:x,k:"",d:""}))
+  .concat(r.skills.map(x=>({g:"hab",n:x,k:"",d:""})),r.weap.map(x=>({g:"equipo",n:x.n,k:x.k,d:""})),r.cons.map(x=>({g:"equipo",n:(x.q>1?x.q+"× ":"")+x.n,k:"Consumible",d:""})));
+ hfClamp(h);
+}
+function hfDefault(){const h=hfMk({c:0});hfApply(h,hfParse(HF_WAKI));h.hp=h.hpMax;h.pw=h.pwMax;return[h]}
+let HS;try{HS=JSON.parse(localStorage.getItem(HKEY))}catch(e){HS=null}
+if(!Array.isArray(HS)||!HS.length)HS=hfDefault();
+const HF={cur:0,open:false,fan:false,mode:"",tab:"regla",imp:"",res:null,delArm:false};
+function hfSave(){try{localStorage.setItem(HKEY,JSON.stringify(HS))}catch(e){}}
+const hfH=()=>HS[HF.cur];
+const hfKo=h=>h.hp<=0;
+function hfPort(h,id){const[a,b]=HF_PAL[(h.c||0)%HF_PAL.length],u="hfp"+id;
+ return`<svg viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="${u}g" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="${a}"/><stop offset=".55" stop-color="${b}"/><stop offset="1" stop-color="#0d0b16"/></radialGradient><linearGradient id="${u}r" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9b86c" stop-opacity=".9"/><stop offset=".4" stop-color="#d9b86c" stop-opacity="0"/></linearGradient><radialGradient id="${u}f" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6b5a7a"/><stop offset="1" stop-color="#1b1526"/></radialGradient></defs><rect width="200" height="220" fill="url(#${u}g)"/><path d="M18 220 C22 170 52 150 100 148 C148 150 178 170 182 220 Z" fill="#1e1828"/><path d="M52 176 C70 160 130 160 148 176 L142 220 H58 Z" fill="#3a3046"/><circle cx="100" cy="196" r="7" fill="none" stroke="#d9b86c" stroke-width="2"/><path d="M58 132 C52 74 70 40 100 38 C130 40 148 74 142 132 C132 152 68 152 58 132 Z" fill="#1d1729"/><path d="M72 128 C68 90 80 66 100 64 C120 66 132 90 128 128 C118 142 82 142 72 128 Z" fill="url(#${u}f)"/><path d="M84 104 l10 3 M116 104 l-10 3" stroke="#d9b86c" stroke-width="2.4" stroke-linecap="round"/><path d="M58 132 C52 74 70 40 100 38" fill="none" stroke="url(#${u}r)" stroke-width="3"/></svg>`}
+const hfPic=(h,id)=>h.img?`<img src="${esc(h.img)}" alt="">`:hfPort(h,id);
+function hfRing(h,sz,w){const r=sz/2-w/2-1,C=2*Math.PI*r,fr=h.hpMax?h.hp/h.hpMax:0;
+ return`<svg class="hf-rg" viewBox="0 0 ${sz} ${sz}" aria-hidden="true"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#251f3a" stroke-width="${w}"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#e58aa0" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-fr)}" style="transition:stroke-dashoffset .4s"/></svg>`}
+const hfMed=(h,id)=>`<span class="hf-hmed ${hfKo(h)?"hf-dead":""}">${hfRing(h,66,4)}<span class="hf-pic">${hfPic(h,id)}</span>${hfKo(h)?HF_SKULL:""}</span>`;
+const hfDebuff=(h,a)=>(a==="fue"&&h.st.includes("af"))||(a==="vol"&&h.st.includes("en"))||(a==="des"&&h.st.includes("de"));
+const hfStp=(k,v,bare)=>`<span class="hf-st"><button type="button" data-hf="inc" data-k="${k}" data-d="-1" aria-label="Restar">${HI.minus}</button>${bare?"<i></i>":`<b>${v}</b>`}<button type="button" data-hf="inc" data-k="${k}" data-d="1" aria-label="Sumar">${HI.plus}</button></span>`;
+const hfKey=s=>s.n.toLowerCase().replace(/\(.*$/,"").trim();
+const hfExplain=s=>s.d||(s.g!=="equipo"&&HF_GLOS[hfKey(s)])||"";
+/* Perfil de un arma en las cuatro casillas de Army Forge: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
+function hfWeapon(k){let rng="",atk="",ap="";const spe=[];
+ for(const p of hfSplit(k||"")){let m;if((m=p.match(/^(\d+)\s*"$/)))rng=m[1]+'"';else if((m=p.match(/^A(\d+)$/i)))atk="A"+m[1];else if((m=p.match(/^AP\((\d+)\)$/i)))ap=m[1];else spe.push(p)}
+ const c=(l,v)=>`<span><small>${l}</small><b class="${v?"":"no"}">${v?esc(v):"—"}</b></span>`;
+ return`<div class="hf-wp">${c("RNG",rng)}${c("ATK",atk)}${c("AP",ap)}${c("SPE",spe.join(", "))}</div>`}
+
+function hfMeds(){const M=$("#hfMeds");if(!M)return;
+ if(!HF.fan){const n=HS.length,sh=HS.slice(0,3);
+  M.innerHTML=`<button type="button" class="hf-stack" data-hf="fan" aria-expanded="false" aria-label="Mostrar ${n===1?"el héroe":"los "+n+" héroes"}" style="height:${66+(sh.length-1)*12}px">${sh.map((h,i)=>`<span class="hf-coin" style="top:${(sh.length-1-i)*12}px;z-index:${5-i}">${hfMed(h,"s"+i)}</span>`).join("")}<span class="hf-cnt">${n}</span></button>`;return}
+ M.innerHTML=`<button type="button" class="hf-add" data-hf="add" aria-label="Añadir un héroe" title="Añadir héroe">${HI.add}</button><div class="hf-fan">${HS.map((h,i)=>`<button type="button" class="hf-mrow ${HF.open&&i===HF.cur?"on":""}" data-hf="open" data-i="${i}" style="--i:${HS.length-i}" aria-label="Abrir la ficha de ${esc(h.name)}"><span class="hf-nm"><b>${esc(h.name)}</b>${hfKo(h)?`<small class="ko">Inconsciente</small>`:`<small class="${h.st.length?"st":""}">${h.hp}/${h.hpMax} heridas${h.st.length?" · "+h.st.length+" estado"+(h.st.length>1?"s":""):""}</small>`}</span>${hfMed(h,"f"+i)}</button>`).join("")}</div><button type="button" class="hf-cf" data-hf="unfan" aria-label="Recoger los medallones">${HI.x}</button>`}
+
+function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><span>${l}</span><input data-hff="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`;
+ return`<div class="hf-form"><div class="hf-fr">${f("name","Nombre")}</div><div class="hf-fr">${f("raza","Raza")}${f("prof","Profesión")}</div><div class="hf-fr">${f("nivel","Nivel","number",'min="1" max="10"')}${f("pts","Puntos","number",'min="0"')}</div>
+ <div class="hf-fr">${HF_STAT.map(([k,n])=>f(k,n,"number",'min="2" max="6"')).join("")}</div>
+ <div class="hf-fr">${f("hpMax","Heridas máx.","number",'min="1" max="40"')}${f("pwMax","Poder máx.","number",'min="0" max="12"')}</div>
+ <div class="hf-fl"><span>Retrato</span><div class="hf-row"><label class="hf-upl"><input type="file" accept="image/*" data-hfimg>${h.img?"Cambiar imagen":"Subir imagen"}</label>${h.img?`<button type="button" class="hf-sec" data-hf="noimg">Quitar imagen</button>`:""}</div></div>
+ <span class="hf-lbl" style="margin-top:4px">Reglas, habilidades y equipo</span>
+ ${h.sk.map((s,i)=>`<div class="hf-skr"><label class="hf-fl"><span>Nombre</span><input data-hfs="${i}" data-sf="n" value="${esc(s.n)}"></label><label class="hf-fl"><span>Tipo</span><select data-hfs="${i}" data-sf="g">${HF_TABS.map(([k,n])=>`<option value="${k}" ${s.g===k?"selected":""}>${n}</option>`).join("")}</select></label><button type="button" class="hf-del" data-hf="del" data-i="${i}" aria-label="Quitar ${esc(s.n)}">${HI.x}</button><label class="hf-fl"><span>Perfil y explicación</span><input data-hfs="${i}" data-sf="k" value="${esc(s.k)}" placeholder="Arma: 24&quot;, A3, AP(1), Rending" style="margin-bottom:6px"><textarea data-hfs="${i}" data-sf="d" placeholder="${esc(hfExplain(Object.assign({},s,{d:""}))||"Qué hace")}">${esc(s.d)}</textarea></label></div>`).join("")}
+ <button type="button" class="hf-add2" data-hf="addsk">+ Añadir regla, habilidad u objeto</button>
+ <button type="button" class="hf-dng ${HF.delArm?"arm":""}" data-hf="delh">${HF.delArm?"Pulsa otra vez para quitar a "+esc(h.name):"Quitar este héroe"}</button></div>`}
+
+function hfImporter(){const r=HF.res;
+ return`<div class="hf-imp"><ol class="hf-steps"><li><b>1</b>En Army Forge exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(hfH().name)}.</li></ol>
+ <label class="hf-fl"><span>Texto de Army Forge</span><textarea id="hfTxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(HF.imp)}</textarea></label>
+ <div class="hf-row"><button type="button" class="hf-pri" data-hf="read" ${HF.imp.trim()?"":"disabled"}>Leer</button></div>
+ ${r?(r.err?`<div class="hf-prev err"><h4>No se pudo leer</h4><p class="hf-note">${esc(r.err)}</p></div>`:`<div class="hf-prev"><h4>Esto es lo que he leído</h4><ul>
+ <li>Nombre: <b>${esc(r.name)}</b>${r.nivel?` · nivel ${r.nivel}`:""}${r.pts?` · ${r.pts} pts`:""}</li>
+ ${r.raza||r.prof?`<li>${[r.raza&&"Raza: "+esc(r.raza),r.prof&&"Profesión: "+esc(r.prof)].filter(Boolean).join(" · ")}</li>`:""}
+ <li>Calidad ${r.cal}+ · Defensa ${r.def}+ · Fuerza ${r.fue}+ · Destreza ${r.des}+ · Voluntad ${r.vol}+</li>
+ ${r.hpMax?`<li>Heridas máx.: ${r.hpMax}${r.pwMax!=null?` · Poder máx.: ${r.pwMax}`:""}</li>`:""}
+ ${r.rules.length?`<li>Reglas: ${esc(r.rules.join(", "))}</li>`:""}${r.skills.length?`<li>Habilidades: ${esc(r.skills.join(", "))}</li>`:""}
+ ${r.weap.length?`<li>Armas: ${esc(r.weap.map(w=>w.n+(w.k?" ("+w.k+")":"")).join(", "))}</li>`:""}${r.pot!=null?`<li>Pociones de salud: ${r.pot}</li>`:""}
+ ${r.afxp!=null?`<li>XP en Army Forge: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
+ <p class="hf-note">Se sustituyen características, reglas, habilidades y equipo. El oro y los estados no se tocan.</p><div class="hf-row"><button type="button" class="hf-pri" data-hf="apply">Aplicar a la ficha</button></div></div>`):""}</div>`}
+
+function hfSheet(){const h=hfH(),x=hfX(),xm=5*S.d,m=HF.mode;
+ const head=`<div class="hf-hd"><div class="hf-md ${hfKo(h)?"hf-dead":""}">${hfRing(h,84,5)}<div class="hf-pic">${hfPic(h,"d"+HF.cur)}</div>${hfKo(h)?HF_SKULL:""}<span class="hf-lv">NIV ${esc(h.nivel)}</span></div>
+ <div class="hf-nmx"><h3>${esc(h.name)}</h3><p>${h.raza?`<span class="hf-tag r">${esc(h.raza)}</span>`:""}${h.prof?`<span class="hf-tag p">${esc(h.prof)}</span>`:""}${h.pts?`<span class="hf-tag">${esc(h.pts)} pts</span>`:""}</p></div></div>
+ <div class="hf-acts"><button type="button" class="hf-eb v ${m==="imp"?"on":""}" data-hf="mode" data-m="imp" aria-pressed="${m==="imp"}">${HI.imp}Importar de Army Forge</button><button type="button" class="hf-eb ${m==="edit"?"on":""}" data-hf="mode" data-m="edit" aria-pressed="${m==="edit"}">${m==="edit"?HI.ok+"Hecho":HI.pen+"Editar"}</button></div>`;
+ if(m==="imp")return`<div class="hf-v">${head}${hfImporter()}</div>`;
+ if(m==="edit")return`<div class="hf-v">${head}${hfForm()}</div>`;
+ const L=h.sk.filter(s=>s.g===HF.tab);
+ return`<div class="hf-v">${head}
+ <div class="hf-xp"><span class="hf-lbl"><span>XP de la campaña</span><b>${x} / ${xm} máx.</b></span><div class="hf-bar"><i style="width:${xm?x/xm*100:0}%"></i></div><small>Se suma sola en la mesa al cumplir objetivos y destruir al jefe.</small></div>
+ <div class="hf-trk"><div class="hf-tk hp"><span class="hf-lbl">Heridas</span><span class="hf-big">${h.hp}<small> / ${h.hpMax}</small></span>${hfStp("hp",h.hp,1)}</div><div class="hf-tk pw"><span class="hf-lbl">Poder</span><span class="hf-big">${h.pw}<small> / ${h.pwMax}</small></span>${hfStp("pw",h.pw,1)}</div></div>
+ <div class="hf-stt">${HF_STAT.map(([k,n])=>`<div class="${hfDebuff(h,k)?"dn":""}"><b>${esc(h[k])}+</b><span>${n}</span></div>`).join("")}</div>
+ <div class="hf-mini"><div><span class="hf-lbl">Pociones</span>${hfStp("pot",h.pot)}</div><div><span class="hf-lbl">Oro</span>${hfStp("gold",h.gold)}</div></div>
+ <div style="display:flex;flex-direction:column;gap:8px"><span class="hf-lbl">Estados</span><div class="hf-chips">${HF_ST.map(([k,n])=>`<button type="button" class="hf-chip ${h.st.includes(k)?"on":""}" data-hf="st" data-k="${k}" aria-pressed="${h.st.includes(k)}">${n}</button>`).join("")}</div></div>
+ <div class="hf-tabs" role="tablist">${HF_TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${HF.tab===k}" class="${HF.tab===k?"on":""}" data-hf="tab" data-k="${k}">${n}</button>`).join("")}</div>
+ <div class="hf-sk">${L.length?L.map(s=>{const w=s.g==="equipo"&&s.k&&s.k!=="Consumible",t=hfExplain(s);
+  return w?`<div><b>${esc(s.n)}</b>${hfWeapon(s.k)}${t?`<p>${esc(t)}</p>`:""}</div>`:`<div><b>${esc(s.n)}${s.k?`<span class="kw">${esc(s.k)}</span>`:""}</b>${t?`<p>${esc(t)}</p>`:s.g==="equipo"?"":`<p class="nd">Sin explicación todavía. Añádela con Editar.</p>`}</div>`}).join(""):`<span class="hf-empty">Nada anotado todavía.</span>`}</div></div>`}
+
+function hfPaint(){hfMeds();if(!HF.open)return;$("#hfDb").innerHTML=hfSheet();
+ $("#hfSub").textContent=`Héroe ${HF.cur+1} de ${HS.length}`;$("#hfPrev").disabled=HF.cur===0;$("#hfNext").disabled=HF.cur>=HS.length-1}
+function hfOpen(i){HF.cur=i;HF.mode="";HF.tab="regla";HF.res=null;HF.delArm=false;HF.open=true;hfPaint();$("#hfDrw").classList.add("open");$("#hfScrim").classList.add("open");$("#hfDrw").setAttribute("aria-hidden","false");$("#hfDb").scrollTop=0;setTimeout(()=>{const b=$("#hfDrw .hf-xb");if(b)b.focus({preventScroll:true})},80)}
+function hfClose(){if(!HF.open)return;HF.open=false;$("#hfDrw").classList.remove("open");$("#hfScrim").classList.remove("open");$("#hfDrw").setAttribute("aria-hidden","true");hfMeds()}
+$("#panel").addEventListener("click",e=>{
+ if(e.target.id==="hfScrim"){hfClose();return}
+ const b=e.target.closest("[data-hf]");if(!b)return;const a=b.dataset.hf,h=hfH();
+ if(a==="fan"){HF.fan=true;hfMeds();return}
+ if(a==="unfan"){HF.fan=false;hfMeds();return}
+ if(a==="add"){HS.push(hfMk({name:"Héroe "+(HS.length+1),c:HS.length}));hfSave();hfOpen(HS.length-1);HF.mode="imp";hfPaint();return}
+ if(a==="open"){hfOpen(+b.dataset.i);return}
+ if(a==="close"){hfClose();return}
+ if(a==="prev"&&HF.cur>0){hfOpen(HF.cur-1);return}
+ if(a==="next"&&HF.cur<HS.length-1){hfOpen(HF.cur+1);return}
+ if(a==="inc"){h[b.dataset.k]=(+h[b.dataset.k]||0)+(+b.dataset.d);hfClamp(h)}
+ else if(a==="st"){const k=b.dataset.k;h.st=h.st.includes(k)?h.st.filter(x=>x!==k):[...h.st,k]}
+ else if(a==="mode"){HF.mode=HF.mode===b.dataset.m?"":b.dataset.m;HF.res=null;HF.delArm=false;hfClamp(h)}
+ else if(a==="tab")HF.tab=b.dataset.k;
+ else if(a==="del")h.sk.splice(+b.dataset.i,1);
+ else if(a==="addsk")h.sk.push({g:HF.tab,n:"Nueva habilidad",k:"",d:""});
+ else if(a==="noimg")h.img="";
+ else if(a==="delh"){if(!HF.delArm){HF.delArm=true}else{HS.splice(HF.cur,1);if(!HS.length)HS=hfDefault();HF.cur=Math.max(0,HF.cur-1);HF.delArm=false;hfSave();hfClose();return}}
+ else if(a==="read")HF.res=hfParse(HF.imp);
+ else if(a==="apply"&&HF.res&&!HF.res.err){hfApply(h,HF.res);HF.mode="";HF.tab="regla";HF.res=null;HF.imp=""}
+ else return;
+ hfSave();hfPaint();
+});
+$("#panel").addEventListener("input",e=>{const t=e.target,h=hfH();
+ if(t.id==="hfTxt"){HF.imp=t.value;const b=$('[data-hf="read"]');if(b)b.disabled=!t.value.trim();return}
+ if(t.dataset.hff){h[t.dataset.hff]=t.type==="number"?(t.value===""?"":+t.value):t.value;hfSave();hfMeds();return}
+ if(t.dataset.hfs){h.sk[+t.dataset.hfs][t.dataset.sf]=t.value;hfSave()}
+});
+$("#panel").addEventListener("change",e=>{const t=e.target,h=hfH();
+ if(t.dataset.hff){hfClamp(h);hfSave();hfPaint();return}
+ if(t.hasAttribute("data-hfimg")&&t.files&&t.files[0]){const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);h.img=c.toDataURL("image/jpeg",.85);hfSave();hfPaint()};im.src=rd.result};rd.readAsDataURL(t.files[0])}
+});
+/* Escape: primero cierra la ficha, luego recoge los medallones; solo después cierra la mesa. */
+document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!$("#panel").classList.contains("open"))return;
+ if(HF.open){e.preventDefault();e.stopImmediatePropagation();hfClose();const s=$(".hf-mrow.on")||$(".hf-stack");if(s)s.focus({preventScroll:true})}
+ else if(HF.fan){e.preventDefault();e.stopImmediatePropagation();HF.fan=false;hfMeds()}},true);
 
 /* ---------- hoja de pergamino ---------- */
 const ORN='<svg class="orn" viewBox="0 0 320 22" aria-hidden="true"><path d="M4 11h124M192 11h124" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M160 2l9 9-9 9-9-9z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="160" cy="11" r="2.4" fill="currentColor"/><path d="M134 11c8-8 14 8 22 0M164 11c8 8 14-8 22 0" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';

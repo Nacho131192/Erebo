@@ -1,0 +1,500 @@
+<title>Ficha del Héroe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: a life-size slice of the game table (stage) with the stacked hero medallions bottom-right and the campaign sheet sliding in from the right */
+:root{
+  color-scheme:dark;
+  --bg:#0c0a12;--card:#15121f;--card2:#1c1830;--line:#2a2340;--line2:#3a3358;
+  --ink:#ece7f5;--mu:#a59fba;--vio:#a78bfa;--gold:#d9b86c;--goldd:#8f6a1f;--bad:#ec8aa0;--ok:#86d1ae;--blue:#8fb6f0;--wax:#8a2a35;
+  --disp:Cinzel,Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--ui:Inter,system-ui,sans-serif;--num:"Space Grotesk",Inter,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:radial-gradient(1100px 560px at 90% -10%,rgba(167,139,250,.12),transparent 62%),radial-gradient(900px 520px at -8% 108%,rgba(217,184,108,.07),transparent 60%),var(--bg);color:var(--ink);font:400 15px/1.5 var(--ui);min-height:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:36px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+
+.top{display:flex;flex-direction:column;gap:10px;max-width:780px}
+.eb{font:600 11px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.top h1{margin:0;font:700 clamp(30px,5vw,44px)/1.08 var(--disp);letter-spacing:.06em;color:var(--gold);text-wrap:balance}
+.top p{margin:0;font:500 clamp(18px,2.2vw,21px)/1.5 var(--serif);color:#cfc6e4;max-width:64ch}
+.chosen{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chosen span{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--card);font:600 12px var(--ui);color:var(--mu)}
+.chosen b{font:700 12px var(--disp);color:var(--gold)}
+
+.layout{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) 300px;align-items:start}
+@media (max-width:1000px){.layout{grid-template-columns:1fr}}
+
+/* escenario: trozo de la mesa */
+.stage{position:relative;height:clamp(620px,82vh,780px);border-radius:18px;overflow:hidden;border:1px solid var(--line2);
+  background:radial-gradient(900px 480px at 88% -12%,rgba(167,139,250,.13),transparent 62%),radial-gradient(700px 420px at -6% 112%,rgba(217,184,108,.07),transparent 60%),var(--bg);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.sh{position:absolute;inset:0 0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(12,10,18,.9);z-index:1}
+.sh .x0{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line2);background:#1a1628}
+.sh .t0 small{display:block;font:600 9.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.sh .t0 b{display:block;font:700 14px var(--disp);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.sh .p0{margin-left:auto;display:flex;gap:6px}
+.sh .p0 span{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);font:600 11px var(--ui);color:var(--mu);white-space:nowrap}
+.sh .p0 span b{font:700 12px var(--num);color:var(--ink)}
+.sb{position:absolute;inset:61px 0 0;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;align-content:start;overflow:hidden}
+.ghost{border-radius:14px;border:1px solid var(--line);background:var(--card);padding:14px;display:flex;flex-direction:column;gap:10px;opacity:.55}
+.ghost .tt{align-self:flex-start;border:1px solid var(--goldd);color:var(--gold);border-radius:999px;padding:3px 10px;font:600 9.5px var(--ui);letter-spacing:.18em;text-transform:uppercase}
+.ghost i{display:block;height:8px;border-radius:4px;background:#241f38}
+.ghost i.w{width:60%}.ghost i.s{width:40%}
+.ghost .big{font:700 40px/1 var(--num);color:#d7cff0}
+
+/* medallones */
+.meds{position:absolute;right:18px;bottom:18px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.stack{position:relative;width:66px;border:0;padding:0;background:none;display:block}
+.stack .coin{position:absolute;left:0;width:66px;height:66px;transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s}
+.med{position:relative;width:66px;height:66px;border-radius:50%;display:block}
+.med .pic{position:absolute;inset:6px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #0c0a12}
+.med svg.rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.med::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#2a2150,#0f0c18);box-shadow:0 10px 24px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.55),0 0 22px rgba(167,139,250,.18)}
+.stack .cnt{position:absolute;right:-4px;top:-4px;z-index:9;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--gold);color:#1a1405;font:700 12px var(--num);display:grid;place-items:center;box-shadow:0 0 0 3px var(--bg)}
+.stack:hover .coin:first-child{transform:translateY(-3px)}
+.fan{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.fan[hidden]{display:none}
+.mrow{display:flex;align-items:center;gap:10px;border:0;padding:0;background:none;animation:rise .45s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes rise{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+.mrow .nm{display:flex;flex-direction:column;align-items:flex-end;padding:6px 12px;border-radius:12px;border:1px solid var(--line2);background:rgba(21,18,31,.94);box-shadow:0 8px 20px rgba(0,0,0,.45);white-space:nowrap}
+.mrow .nm b{font:700 12.5px var(--disp);letter-spacing:.06em;color:var(--ink)}
+.mrow .nm small{font:600 11px var(--num);color:#f6b3c3}
+.mrow .nm small.st{color:var(--bad)}
+.mrow:hover .nm{border-color:var(--gold)}
+.mrow.on .med::before{box-shadow:0 10px 24px rgba(0,0,0,.6),0 0 0 2px var(--gold),0 0 26px rgba(217,184,108,.35)}
+.addm{width:50px;height:50px;margin-right:8px;border-radius:50%;border:1.5px dashed var(--gold);background:radial-gradient(circle at 35% 30%,#2a2346,#15121f);color:var(--gold);display:grid;place-items:center;box-shadow:0 8px 20px rgba(0,0,0,.5);animation:rise .45s cubic-bezier(.22,1,.36,1) both;transition:transform .25s,background .2s}
+.addm:hover{transform:rotate(90deg);background:radial-gradient(circle at 35% 30%,#3a2f5c,#1a1530)}
+.addm svg{width:20px;height:20px}
+.close-fan{width:40px;height:40px;margin-right:13px;border-radius:50%;border:1px solid var(--line2);background:var(--card);color:var(--mu);display:grid;place-items:center}
+.close-fan svg{width:14px;height:14px}
+
+/* cajón */
+.scrim{position:absolute;inset:0;z-index:6;background:rgba(4,3,8,.55);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s linear .35s}
+.scrim.open{opacity:1;visibility:visible;transition:opacity .35s}
+.drawer{position:absolute;top:0;bottom:0;right:0;z-index:7;width:min(440px,100%);display:flex;flex-direction:column;background:radial-gradient(600px 300px at 80% -10%,rgba(167,139,250,.14),transparent 60%),var(--bg);border-left:1px solid var(--line2);box-shadow:-30px 0 80px rgba(0,0,0,.7);transform:translateX(104%);visibility:hidden;transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s linear .55s}
+.drawer.open{transform:none;visibility:visible;transition:transform .55s cubic-bezier(.22,1,.36,1),visibility 0s}
+.dh{flex:none;display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.xb{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:radial-gradient(circle at 35% 30%,#221c38,#15121f);display:grid;place-items:center;color:var(--ink);transition:transform .35s,border-color .2s}
+.xb:hover{transform:rotate(90deg);border-color:var(--gold);color:var(--gold)}
+.xb svg{width:15px;height:15px}
+.dh .tt small{display:block;font:600 9.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.dh .tt b{display:block;font:700 14px var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.nav{margin-left:auto;display:flex;gap:6px}
+.nav button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line2);background:none;color:var(--mu);display:grid;place-items:center}
+.nav button:hover{color:var(--gold);border-color:var(--gold)}
+.nav button:disabled{opacity:.3;cursor:default}
+.nav svg{width:13px;height:13px}
+.db{flex:1;overflow-y:auto;padding:16px 16px 28px;scrollbar-width:thin;scrollbar-color:#3a3358 transparent}
+
+/* ficha II */
+.pic svg,.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.v2{border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,#17142250,transparent 40%),var(--card);box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 14px 34px rgba(0,0,0,.28);padding:18px;display:flex;flex-direction:column;gap:16px}
+.hd{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.md{position:relative;width:84px;height:84px}
+.md .pic{position:absolute;inset:7px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #0c0a12}
+.md svg.rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.lvb{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);height:20px;padding:0 9px;border-radius:999px;background:var(--gold);color:#1a1405;font:700 10px var(--ui);letter-spacing:.12em;display:grid;place-items:center;white-space:nowrap;box-shadow:0 0 0 3px var(--card)}
+.nmx{min-width:0}
+.nmx h3{margin:0;font:700 20px/1.15 var(--disp);letter-spacing:.06em;color:var(--ink);text-wrap:balance}
+.nmx p{margin:6px 0 0;display:flex;gap:6px;flex-wrap:wrap}
+.tag{height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--line2);font:600 11.5px/22px var(--ui);color:var(--mu)}
+.tag.r{border-color:rgba(143,182,240,.45);color:var(--blue)}
+.tag.p{border-color:rgba(217,184,108,.5);color:var(--gold)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.edb{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px;border-radius:999px;border:1px solid var(--gold);background:rgba(217,184,108,.08);color:var(--gold);font:700 10.5px var(--ui);letter-spacing:.13em;text-transform:uppercase;transition:background .2s}
+.edb:hover{background:rgba(217,184,108,.18)}
+.edb svg{width:13px;height:13px}
+.edb.on{background:var(--gold);color:#1a1405}
+.edb.v{border-color:rgba(167,139,250,.7);color:#cbbcff;background:rgba(167,139,250,.08)}
+.edb.v:hover{background:rgba(167,139,250,.18)}
+.edb.v.on{background:var(--vio);color:#120c24}
+.lbl{font:600 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.xp{display:flex;flex-direction:column;gap:6px}
+.xp .lbl{display:flex;justify-content:space-between;gap:8px;letter-spacing:.14em}
+.xp .lbl b{font:700 12px var(--num);color:var(--ink);letter-spacing:0}
+.xpr{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.bar{height:6px;border-radius:999px;background:#251f3a;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--vio),var(--gold));transition:width .3s}
+.stp{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--line2);background:#110e1b;overflow:hidden}
+.stp button{width:30px;height:30px;border:0;background:none;display:grid;place-items:center;color:var(--mu);transition:background .15s,color .15s}
+.stp button:hover{background:#221c38;color:var(--ink)}
+.stp button svg{width:12px;height:12px}
+.stp b{min-width:42px;text-align:center;font:700 15px var(--num);font-variant-numeric:tabular-nums}
+.stp i{width:1px;height:16px;background:var(--line2)}
+.trk{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tk{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;border:1px solid var(--line);background:#120f1c}
+.tk .big{font:700 26px/1 var(--num);font-variant-numeric:tabular-nums}
+.tk .big small{font-size:14px;color:var(--mu)}
+.tk.hp .big{color:#f6b3c3}.tk.pw .big{color:#cbbcff}
+.tk .stp{align-self:flex-start}
+.stt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stt div{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 2px;border-left:1px solid var(--line)}
+.stt div:first-child{border-left:0}
+.stt b{font:700 18px/1 var(--num);font-variant-numeric:tabular-nums}
+.stt span{font:600 8.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.stt .dn b{color:var(--bad)}
+.mini{display:flex;gap:16px;flex-wrap:wrap}
+.mini>div{display:flex;align-items:center;gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:28px;padding:0 11px;border-radius:999px;border:1px dashed var(--line2);background:none;font:600 12px var(--ui);color:var(--mu);transition:all .18s}
+.chip:hover{color:var(--ink);border-color:var(--mu)}
+.chip.on{border-style:solid;border-color:rgba(236,138,160,.6);background:rgba(236,138,160,.12);color:#ffd0db}
+.chip .ef{font-weight:500;opacity:.75}
+.tabs{display:flex;gap:4px;padding:3px;border-radius:999px;border:1px solid var(--line);background:#110e1b}
+.tabs button{flex:1;height:30px;border:0;border-radius:999px;background:none;font:600 12px var(--ui);color:var(--mu);white-space:nowrap}
+.tabs button.on{background:linear-gradient(180deg,#2a2346,#211b38);color:var(--gold);box-shadow:inset 0 0 0 1px rgba(217,184,108,.35)}
+.sk{display:flex;flex-direction:column;gap:10px}
+.sk div{display:flex;flex-direction:column;gap:2px}
+.sk p.nd{font-style:italic;color:#6f6889}
+.sk .wpn{display:grid;gap:0;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:6px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#120f1c}
+.wpn span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 4px;border-left:1px solid var(--line);min-width:0}
+.wpn span:first-child{border-left:0}
+.wpn small{font:700 9.5px var(--ui);letter-spacing:.16em;color:var(--mu)}
+.wpn b{font:700 15px/1.2 var(--num);color:var(--ink);text-align:center;overflow-wrap:anywhere}
+.wpn b.no{color:#5d5677}
+.ghost.live{opacity:1}
+.ghost .hint{font:400 12px/1.4 var(--ui);color:var(--mu)}
+.tg{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#120f1c;cursor:pointer;font:500 13px var(--ui);color:var(--ink)}
+.tg input{width:16px;height:16px;accent-color:#d9b86c;margin:0}
+.tg span{flex:1}
+.tg em{font:700 12px var(--num);font-style:normal;color:var(--gold)}
+.xpbox{display:flex;align-items:baseline;gap:8px;padding-top:4px}
+.xpbox b{font:700 28px/1 var(--num);color:var(--ink)}
+.xpbox small{font:600 12px var(--ui);color:var(--mu)}
+.xp .src{font:400 11.5px/1.4 var(--ui);color:var(--mu)}
+/* héroe caído: retrato oscurecido y calavera roja */
+.dead .pic{filter:brightness(.32) grayscale(.55)}
+.skull{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:2;animation:skin .5s cubic-bezier(.22,1,.36,1) both}
+.skull svg{width:46%;height:46%;filter:drop-shadow(0 0 6px rgba(230,40,60,.65)) drop-shadow(0 2px 3px rgba(0,0,0,.7))}
+@keyframes skin{from{opacity:0;transform:scale(.6) rotate(-8deg)}to{opacity:1;transform:none}}
+.mrow .nm small.ko{color:#ff6b7f}
+.sk b{font:700 13.5px var(--ui);color:var(--ink)}
+.sk b .kw{font:600 11px var(--num);letter-spacing:.04em;color:var(--vio);margin-left:6px}
+.sk p{margin:0;font:400 13px/1.45 var(--ui);color:var(--mu)}
+.empty{font:italic 500 15px var(--serif);color:var(--mu)}
+/* formularios */
+.form{display:flex;flex-direction:column;gap:12px}
+.fr{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+.fl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fl span{font:600 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--mu)}
+.fl input,.fl select,.fl textarea{width:100%;min-width:0;height:36px;padding:0 10px;border-radius:9px;border:1px solid var(--line2);background:#0f0d18;font:500 14px var(--ui)}
+.fl textarea{height:auto;min-height:56px;padding:8px 10px;resize:vertical;line-height:1.4}
+.fl input:focus,.fl select:focus,.fl textarea:focus{outline:none;border-color:var(--gold)}
+.skr{display:grid;gap:8px;grid-template-columns:1fr 110px 32px;align-items:start;padding:10px;border-radius:12px;border:1px solid var(--line);background:#120f1c}
+.skr .fl:nth-child(4){grid-column:1/-1}
+.del{width:32px;height:32px;margin-top:19px;border-radius:50%;border:1px solid var(--line2);background:none;color:var(--bad);display:grid;place-items:center}
+.del svg{width:12px;height:12px}
+.add{height:34px;border-radius:10px;border:1px dashed var(--line2);background:none;color:var(--mu);font:600 12.5px var(--ui)}
+.add:hover{color:var(--gold);border-color:var(--gold)}
+.upl{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 14px;border-radius:9px;border:1px solid var(--line2);background:#0f0d18;font:600 12.5px var(--ui);color:var(--ink);cursor:pointer}
+.upl:hover{border-color:var(--gold)}
+.upl input{position:absolute;width:1px;height:1px;opacity:0}
+.note{font:400 12px/1.45 var(--ui);color:var(--mu)}
+.danger{height:34px;border-radius:10px;border:1px solid rgba(236,138,160,.4);background:none;color:var(--bad);font:600 12.5px var(--ui)}
+.danger.arm{background:rgba(236,138,160,.15)}
+/* importar */
+.imp{display:flex;flex-direction:column;gap:12px}
+.imp textarea{width:100%;min-height:170px;padding:12px;border-radius:12px;border:1px solid var(--line2);background:#0f0d18;font:500 12.5px/1.5 ui-monospace,Consolas,monospace;color:#d9d2ee;resize:vertical}
+.imp textarea:focus{outline:none;border-color:var(--vio)}
+.steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font:400 13px/1.45 var(--ui);color:#cfc8e2}
+.steps li{display:flex;gap:10px}
+.steps li b{flex:none;width:20px;height:20px;border-radius:50%;border:1px solid var(--goldd);display:grid;place-items:center;font:700 10px var(--num);color:var(--gold)}
+.prev{display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid rgba(134,209,174,.35);background:rgba(134,209,174,.06)}
+.prev.err{border-color:rgba(236,138,160,.4);background:rgba(236,138,160,.06)}
+.prev h4{margin:0;font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ok)}
+.prev.err h4{color:var(--bad)}
+.prev ul{margin:0;padding:0 0 0 16px;font:400 13px/1.5 var(--ui);color:#d4cde6}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.pri{height:38px;padding:0 18px;border-radius:999px;border:0;background:linear-gradient(180deg,#e7cd8c,#c9a24f);color:#1a1405;font:700 12px var(--ui);letter-spacing:.14em;text-transform:uppercase;box-shadow:0 6px 16px rgba(217,184,108,.25)}
+.pri:disabled{opacity:.4;cursor:default;box-shadow:none}
+.sec{height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:none;color:var(--ink);font:600 12.5px var(--ui)}
+.sec:hover{border-color:var(--gold);color:var(--gold)}
+
+/* notas al lado */
+.side{display:flex;flex-direction:column;gap:12px}
+.nt{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;flex-direction:column;gap:6px}
+.nt h3{margin:0;font:700 13px var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.nt p{margin:0;font:400 13.5px/1.5 var(--ui);color:#d4cde6}
+.nt.q{border-color:rgba(167,139,250,.35)}
+.nt.q h3{color:#cbbcff}
+.reset{align-self:flex-start;height:32px;padding:0 14px;border-radius:999px;border:1px solid var(--line2);background:none;color:var(--mu);font:600 12px var(--ui)}
+.reset:hover{color:var(--ink)}
+
+@media (max-width:560px){
+  .stage{height:720px}
+  .sh .p0 span:nth-child(n+2){display:none}
+  .sb{grid-template-columns:1fr}
+  .skr{grid-template-columns:1fr 32px}
+  .skr .fl:nth-child(2){grid-column:1/-1;order:3}
+  .stt span{font-size:7.5px;letter-spacing:.04em}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eb">Mesa de juego · Maqueta 2 · Rama portatil-lenovo</span>
+    <h1>Ficha del héroe</h1>
+    <p>Tu elección montada sobre un trozo de la mesa. Pulsa el medallón de abajo a la derecha: se abren los héroes y, encima, el botón + para añadir otro. Cada héroe tiene su propia hoja de campaña. De momento solo está Wakiisen.</p>
+    <div class="chosen"><span><b>B</b>Medallones flotantes apilados</span><span><b>II</b>Hoja de campaña</span><span>Solo en la mesa de juego</span></div>
+  </header>
+
+  <div class="layout">
+    <div class="stage" id="stage">
+      <div class="sh"><span class="x0"></span><span class="t0"><small>Misión I · El pueblo vacío</small><b>Mesa de juego</b></span><span class="p0"><span>Ronda <b>2</b></span><span>Noche</span><span>Alerta <b>3/6</b></span></span></div>
+      <div class="sb" aria-hidden="true">
+        <div class="ghost"><span class="tt">Número de ronda</span><span class="big">2</span><i class="w"></i><i class="s"></i></div>
+        <div class="ghost"><span class="tt">Oleadas</span><i></i><i class="w"></i><i></i><i class="s"></i><i class="w"></i><i></i></div>
+        <div class="ghost live" aria-hidden="false"><span class="tt">Objetivos</span><span class="hint">Simulación de la mesa: marca y mira cómo cambia la XP de la ficha.</span>
+          <label class="tg"><input type="checkbox" id="o-prim"><span>Principal cumplido</span><em>+6</em></label>
+          <label class="tg"><input type="checkbox" id="o-sec"><span>Secundario cumplido</span><em>+3</em></label>
+          <label class="tg"><input type="checkbox" id="o-dead"><span>Heraldo destruido</span><em>+6</em></label>
+          <div class="xpbox"><b id="o-xp">0</b><small>XP de 15</small></div></div>
+        <div class="ghost"><span class="tt">Dados</span><i></i><i class="s"></i></div>
+      </div>
+      <div class="meds" id="meds"></div>
+      <div class="scrim" id="scrim"></div>
+      <aside class="drawer" id="drawer" aria-label="Ficha del héroe" aria-hidden="true">
+        <div class="dh"><button class="xb" type="button" id="dx" aria-label="Cerrar la ficha"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="tt"><small id="dsub">Héroe 1 de 1</small><b>Ficha del héroe</b></div>
+          <div class="nav"><button type="button" id="dprev" aria-label="Héroe anterior"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 2.5L4 6l3.5 3.5"/></svg></button><button type="button" id="dnext" aria-label="Héroe siguiente"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5L8 6 4.5 9.5"/></svg></button></div></div>
+        <div class="db" id="db"></div>
+      </aside>
+    </div>
+
+    <aside class="side">
+      <div class="nt"><h3>Medallones</h3><p>Cerrados, los héroes se apilan como monedas con el número de héroes encima. Al pulsar se abren hacia arriba con su nombre y sus heridas, y arriba del todo aparece el + para añadir un héroe.</p></div>
+      <div class="nt"><h3>Importar de Army Forge</h3><p>Junto a Editar. Pegas el texto que exporta Army Forge y la ficha toma nombre, Calidad, Defensa, heridas (Tough), reglas y armas. Antes de aplicar te enseña lo que ha leído.</p></div>
+      <div class="nt"><h3>Experiencia</h3><p>El jugador no la toca: sale del mismo contador que la mesa (principal 2×D, secundario D, Heraldo destruido 2×D; máximo 5×D). Prueba las casillas de «Objetivos» del fondo.</p></div>
+      <div class="nt"><h3>Héroe caído</h3><p>Con 0 heridas el retrato se oscurece y aparece una calavera roja, en la ficha y en su medallón.</p></div>
+      <div class="nt q"><h3>Wakiisen</h3><p>Cargado desde tu texto de Army Forge: ogro bárbaro de nivel 4, 285 pts. Las reglas, las habilidades y el equipo van en sus pestañas. La XP de Army Forge (9) no se copia: la de la campaña empieza en 0.</p></div>
+      <button class="reset" type="button" id="reset">Empezar de nuevo con Wakiisen</button>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function(){
+const KEY="ficha-maqueta-v3",D=3,XPMAX=5*D;
+const PAL=[["#4a3a7a","#211a3a"],["#2f4a6e","#16223a"],["#5a3a2a","#2a1a12"],["#2e5a4a","#122a22"]];
+const mk=(o)=>Object.assign({name:"Nuevo héroe",raza:"",prof:"",nivel:1,pts:0,xp:0,cal:4,def:4,fue:4,des:4,vol:4,hp:3,hpMax:3,pw:0,pwMax:0,pot:0,gold:0,st:[],img:"",sk:[],c:0,af:""},o);
+/* Wakiisen, el héroe de Nacho, tal como lo exporta Army Forge (2026-11-17) */
+const WAKI=`++ Wakiisen - Barbarian (Ogres) [AOFQ 285pts] [Lvl 4] ++
+
+Wakiisen | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | Tough(18), Destroyer, Barbaric Frenzy
+Dual Hand Weapons (A8)
+Consumables: 2x Health Potion
+Skills: Rage, Healing Touch`;
+const SAMPLE=()=>{const h=mk({c:0});applyAF(h,parseHero(WAKI));h.hp=h.hpMax;h.pw=h.pwMax;return [h]};
+let HS;try{HS=JSON.parse(localStorage.getItem(KEY))}catch(e){HS=null}
+if(!Array.isArray(HS)||!HS.length)HS=SAMPLE();
+HS.forEach(h=>{h.sk=(h.sk||[]).filter(s=>!(s.g==="regla"&&/^Tough\(\d+\)$/i.test(s.n)))});
+let cur=0,mode="",tab="regla",fan=false,impTxt="",impRes=null,delArm=false;
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(HS))}catch(e){}};
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const IC={minus:'<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 6h7"/></svg>',plus:'<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 6h7M6 2.5v7"/></svg>',pen:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M10.5 2.5l3 3L6 13H3v-3z"/></svg>',ok:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>',x:'<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 3l6 6M9 3l-6 6"/></svg>',imp:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M3 13h10"/></svg>',add:'<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>'};
+const ST=[["at","Aturdido",""],["af","Afligido","Fue"],["en","Enfermo","Vol"],["de","Debilitado","Des"],["ac","Afectado","−1"]];
+const STATS=[["cal","Calidad","+"],["def","Defensa","+"],["fue","Fuerza","+"],["des","Destreza","+"],["vol","Voluntad","+"]];
+const TABS=[["regla","Reglas"],["hab","Habilidades"],["equipo","Equipo"]];
+
+function portrait(h,id){const [a,b]=PAL[(h.c||0)%PAL.length];const u="p"+id;
+ return `<svg viewBox="0 0 200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="${u}g" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="${a}"/><stop offset=".55" stop-color="${b}"/><stop offset="1" stop-color="#0d0b16"/></radialGradient><linearGradient id="${u}r" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9b86c" stop-opacity=".9"/><stop offset=".4" stop-color="#d9b86c" stop-opacity="0"/></linearGradient><radialGradient id="${u}f" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#6b5a7a"/><stop offset="1" stop-color="#1b1526"/></radialGradient></defs>
+<rect width="200" height="220" fill="url(#${u}g)"/><path d="M18 220 C22 170 52 150 100 148 C148 150 178 170 182 220 Z" fill="#1e1828"/><path d="M52 176 C70 160 130 160 148 176 L142 220 H58 Z" fill="#3a3046"/><circle cx="100" cy="196" r="7" fill="none" stroke="#d9b86c" stroke-width="2"/>
+<path d="M58 132 C52 74 70 40 100 38 C130 40 148 74 142 132 C132 152 68 152 58 132 Z" fill="#1d1729"/><path d="M72 128 C68 90 80 66 100 64 C120 66 132 90 128 128 C118 142 82 142 72 128 Z" fill="url(#${u}f)"/><path d="M84 104 l10 3 M116 104 l-10 3" stroke="#d9b86c" stroke-width="2.4" stroke-linecap="round"/><path d="M58 132 C52 74 70 40 100 38" fill="none" stroke="url(#${u}r)" stroke-width="3"/></svg>`}
+const pic=(h,id)=>h.img?`<img src="${esc(h.img)}" alt="">`:portrait(h,id);
+function ring(h,sz,w){const r=sz/2-w/2-1,C=2*Math.PI*r,fr=h.hpMax?h.hp/h.hpMax:0,col=fr<=.34?"#ec8aa0":"#e58aa0";
+ return `<svg class="rg" viewBox="0 0 ${sz} ${sz}"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#251f3a" stroke-width="${w}"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-fr)}" style="transition:stroke-dashoffset .4s"/></svg>`}
+const SKULL=`<span class="skull" aria-label="Inconsciente"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#e3283c" d="M12 2.2c-4.9 0-8.6 3.5-8.6 8.2 0 2.7 1.2 4.6 3 5.8v2.6c0 .9.7 1.6 1.6 1.6h1v-2.1h1.3v2.1h3.4v-2.1h1.3v2.1h1c.9 0 1.6-.7 1.6-1.6v-2.6c1.8-1.2 3-3.1 3-5.8 0-4.7-3.7-8.2-8.6-8.2z"/><ellipse cx="8.6" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><ellipse cx="15.4" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><path fill="#1a0507" d="M12 13.4l-1.5 2.6h3z"/><path d="M7.4 6.2c1-1.3 2.6-2 4.2-2.1" stroke="#ff8a96" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".7"/></svg></span>`;
+const ko=h=>h.hp<=0;
+const med=(h,i)=>`<span class="med ${ko(h)?"dead":""}">${ring(h,66,4)}<span class="pic">${pic(h,"m"+i)}</span>${ko(h)?SKULL:""}</span>`;
+/* XP de la campaña: la calcula la mesa (principal 2×D, secundario D, jefe 2×D; máximo 5×D). La ficha solo la muestra. */
+const OBJ={prim:false,sec:false,dead:false};
+const xpMesa=()=>Math.min(XPMAX,(OBJ.prim?2*D:0)+(OBJ.sec?D:0)+(OBJ.dead?2*D:0));
+/* Explicaciones de reglas comunes de OPR (resumen propio, no texto oficial). Lo que no esté aquí se explica a mano con Editar. */
+const GLOS={
+ "ap":"Las tiradas de Defensa contra este ataque restan el valor indicado.",
+ "rending":"Con un 6 natural al impactar, ese impacto gana AP(4) e ignora Regeneration.",
+ "fear":"En cuerpo a cuerpo cuenta como si hubiera causado heridas extra para decidir quién gana.",
+ "stealth":"Quien le dispare desde más de 9\" tiene −1 a impactar.",
+ "regeneration":"Cuando recibe una herida, con 5+ la ignora.",
+ "fast":"Mueve más de lo normal al avanzar y al cargar.",
+ "strider":"Ignora los efectos del terreno difícil al moverse.",
+ "scout":"Se despliega después del resto y puede recolocarse antes de empezar.",
+ "ambush":"No se despliega al principio: entra más tarde en cualquier punto alejado de los enemigos.",
+ "furious":"Al cargar, cada 6 natural al impactar causa un impacto extra.",
+ "caster":"Puede lanzar hechizos gastando sus fichas de hechizo.",
+ /* reglas y habilidades de Wakiisen, traducidas del texto que dictó Nacho (2026-11-17) */
+ "barbaric frenzy":"Una vez por partida, al activarse, el héroe recupera 3 de poder.",
+ "destroyer":"Cuando este héroe dispara / carga contra enemigos que están a más de 9\" / 6\", cada 1 sin modificar que saquen al bloquear los impactos de sus armas causa 1 herida extra.",
+ "healing touch":"El héroe recupera 3 heridas. Puede aplicar el efecto a otro héroe que esté a 3\" o menos.",
+ "rage":"El héroe sufre 1 herida y gana +2 a impactar en cuerpo a cuerpo al cargar, hasta el final de la ronda."
+};
+const gkey=s=>s.n.toLowerCase().replace(/\(.*$/,"").trim();
+function explain(s){if(s.d)return s.d;if(s.g!=="equipo"&&GLOS[gkey(s)])return GLOS[gkey(s)];return ""}
+/* Perfil de un arma en las cuatro casillas de Army Forge: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
+function weapon(k){const parts=splitTop(k||"");let rng="",atk="",ap="";const spe=[];
+ for(const p of parts){let m;if((m=p.match(/^(\d+)\s*"$/)))rng=m[1]+'"';else if((m=p.match(/^A(\d+)$/i)))atk="A"+m[1];else if((m=p.match(/^AP\((\d+)\)$/i)))ap=m[1];else spe.push(p)}
+ const c=(l,v)=>`<span><small>${l}</small><b class="${v?"":"no"}">${v?esc(v):"—"}</b></span>`;
+ return `<div class="wpn">${c("RNG",rng)}${c("ATK",atk)}${c("AP",ap)}${c("SPE",spe.join(", "))}</div>`}
+
+/* ---- medallones ---- */
+function paintMeds(){const M=document.getElementById("meds");
+ if(!fan){const n=HS.length,show=HS.slice(0,3);
+  M.innerHTML=`<button type="button" class="stack" id="stack" aria-expanded="false" aria-label="Mostrar los ${n} héroes" style="height:${66+(show.length-1)*12}px">${show.map((h,i)=>`<span class="coin" style="top:${(show.length-1-i)*12}px;z-index:${5-i}">${med(h,"s"+i)}</span>`).join("")}<span class="cnt">${n}</span></button>`;return}
+ M.innerHTML=`<button type="button" class="addm" id="addh" aria-label="Añadir un héroe" title="Añadir héroe">${IC.add}</button>
+ <div class="fan">${HS.map((h,i)=>`<button type="button" class="mrow ${D_open&&i===cur?"on":""}" data-h="${i}" style="--i:${HS.length-i}" aria-label="Abrir la ficha de ${esc(h.name)}"><span class="nm"><b>${esc(h.name)}</b>${ko(h)?`<small class="ko">Inconsciente</small>`:`<small class="${h.st.length?"st":""}">${h.hp}/${h.hpMax} heridas${h.st.length?" · "+h.st.length+" estado"+(h.st.length>1?"s":""):""}</small>`}</span>${med(h,"f"+i)}</button>`).join("")}</div>
+ <button type="button" class="close-fan" id="cfan" aria-label="Recoger los medallones">${IC.x}</button>`}
+
+/* ---- ficha ---- */
+const H=()=>HS[cur];
+const debuff=(h,a)=>(a==="fue"&&h.st.includes("af"))||(a==="vol"&&h.st.includes("en"))||(a==="des"&&h.st.includes("de"));
+const stp=(k,v,bare)=>`<span class="stp"><button type="button" data-inc="${k}" data-d="-1" aria-label="Restar">${IC.minus}</button>${bare?"<i></i>":`<b>${v}</b>`}<button type="button" data-inc="${k}" data-d="1" aria-label="Sumar">${IC.plus}</button></span>`;
+function sheet(){const h=H(),C=2*Math.PI*38,fr=h.hpMax?h.hp/h.hpMax:0;
+ const head=`<div class="hd"><div class="md ${ko(h)?"dead":""}">${ring(h,84,5)}<div class="pic">${pic(h,"d"+cur)}</div>${ko(h)?SKULL:""}<span class="lvb">NIV ${esc(h.nivel)}</span></div>
+ <div class="nmx"><h3>${esc(h.name)}</h3><p>${h.raza?`<span class="tag r">${esc(h.raza)}</span>`:""}${h.prof?`<span class="tag p">${esc(h.prof)}</span>`:""}${!h.raza&&!h.prof?`<span class="tag">Sin raza ni profesión</span>`:""}${h.pts?`<span class="tag">${esc(h.pts)} pts</span>`:""}</p></div></div>
+ <div class="acts"><button type="button" class="edb v ${mode==="imp"?"on":""}" data-mode="imp" aria-pressed="${mode==="imp"}">${IC.imp}Importar de Army Forge</button><button type="button" class="edb ${mode==="edit"?"on":""}" data-mode="edit" aria-pressed="${mode==="edit"}">${mode==="edit"?IC.ok+"Hecho":IC.pen+"Editar"}</button></div>`;
+ if(mode==="imp")return `<div class="v2">${head}${importer()}</div>`;
+ if(mode==="edit")return `<div class="v2">${head}${form()}</div>`;
+ const t=tab,L=h.sk.filter(s=>s.g===t);
+ return `<div class="v2">${head}
+ <div class="xp"><span class="lbl"><span>XP de la campaña</span><b>${xpMesa()} / ${XPMAX} máx.</b></span><div class="bar"><i style="width:${xpMesa()/XPMAX*100}%"></i></div><span class="src">Se suma sola en la mesa al cumplir objetivos y destruir al jefe.</span></div>
+ <div class="trk"><div class="tk hp"><span class="lbl">Heridas</span><span class="big">${h.hp}<small> / ${h.hpMax}</small></span>${stp("hp",h.hp,1)}</div>
+ <div class="tk pw"><span class="lbl">Poder</span><span class="big">${h.pw}<small> / ${h.pwMax}</small></span>${stp("pw",h.pw,1)}</div></div>
+ <div class="stt">${STATS.map(([k,n,s])=>`<div class="${debuff(h,k)?"dn":""}"><b>${esc(h[k])}${s}</b><span>${n}</span></div>`).join("")}</div>
+ <div class="mini"><div><span class="lbl">Pociones</span>${stp("pot",h.pot)}</div><div><span class="lbl">Oro</span>${stp("gold",h.gold)}</div></div>
+ <div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Estados</span><div class="chips">${ST.map(([k,n,e])=>`<button type="button" class="chip ${h.st.includes(k)?"on":""}" data-st="${k}" aria-pressed="${h.st.includes(k)}">${n}</button>`).join("")}</div></div>
+ <div class="tabs" role="tablist">${TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${t===k}" class="${t===k?"on":""}" data-tab="${k}">${n}</button>`).join("")}</div>
+ <div class="sk">${L.length?L.map(s=>{const isW=s.g==="equipo"&&s.k&&s.k!=="Consumible",x=explain(s);
+  if(isW)return `<div><b>${esc(s.n)}</b>${weapon(s.k)}${x?`<p>${esc(x)}</p>`:""}</div>`;
+  return `<div><b>${esc(s.n)}${s.k?`<span class="kw">${esc(s.k)}</span>`:""}</b>${x?`<p>${esc(x)}</p>`:s.g==="equipo"?"":`<p class="nd">Sin explicación todavía. Añádela con Editar.</p>`}</div>`}).join(""):`<span class="empty">Nada anotado todavía.</span>`}</div></div>`}
+
+function form(){const h=H();
+ const f=(k,l,t="text",o="")=>`<label class="fl"><span>${l}</span><input data-f="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`;
+ return `<div class="form">
+ <div class="fr">${f("name","Nombre")}</div>
+ <div class="fr">${f("raza","Raza")}${f("prof","Profesión")}</div>
+ <div class="fr">${f("nivel","Nivel","number",'min="1" max="10"')}${f("pts","Puntos","number",'min="0"')}</div>
+ <div class="fr">${f("cal","Calidad","number",'min="2" max="6"')}${f("def","Defensa","number",'min="2" max="6"')}${f("fue","Fuerza","number",'min="2" max="6"')}${f("des","Destreza","number",'min="2" max="6"')}${f("vol","Voluntad","number",'min="2" max="6"')}</div>
+ <div class="fr">${f("hpMax","Heridas máx.","number",'min="1" max="40"')}${f("pwMax","Poder máx.","number",'min="0" max="12"')}</div>
+ <div class="fl"><span>Retrato</span><div class="row"><label class="upl"><input type="file" accept="image/*" data-img>${h.img?"Cambiar imagen":"Subir imagen"}</label>${h.img?`<button type="button" class="sec" data-noimg>Quitar imagen</button>`:""}</div></div>
+ <span class="lbl" style="margin-top:4px">Habilidades y equipo</span>
+ ${h.sk.map((s,i)=>`<div class="skr"><label class="fl"><span>Nombre</span><input data-sk="${i}" data-sf="n" value="${esc(s.n)}"></label><label class="fl"><span>Tipo</span><select data-sk="${i}" data-sf="g">${TABS.map(([k,n])=>`<option value="${k}" ${s.g===k?"selected":""}>${n}</option>`).join("")}</select></label><button type="button" class="del" data-del="${i}" aria-label="Quitar ${esc(s.n)}">${IC.x}</button><label class="fl"><span>Regla y efecto</span><input data-sk="${i}" data-sf="k" value="${esc(s.k)}" placeholder="Palabra clave (Tough, AP…)" style="margin-bottom:6px"><textarea data-sk="${i}" data-sf="d">${esc(s.d)}</textarea></label></div>`).join("")}
+ <button type="button" class="add" data-addsk>+ Añadir habilidad u objeto</button>
+ <button type="button" class="danger ${delArm?"arm":""}" data-delh>${delArm?"Pulsa otra vez para quitar a "+esc(h.name):"Quitar este héroe"}</button>
+ </div>`}
+
+/* ---- importar de Army Forge ---- */
+const EX=WAKI;
+/* separa por comas que no estén dentro de paréntesis (admite anidados: AP(1) dentro de (A3, AP(1))) */
+function splitTop(s){const out=[];let d=0,b="";for(const ch of s){if(ch==="(")d++;else if(ch===")")d=Math.max(0,d-1);if(ch===","&&!d){if(b.trim())out.push(b.trim());b=""}else b+=ch}if(b.trim())out.push(b.trim());return out}
+/* Lee la exportación de héroe de Army Forge (AoF: Quest):
+   ++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++
+   Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | reglas
+   armas · Consumables: 2x Health Potion · Skills: a, b
+   También admite el formato de unidad de las listas de ejército (Nombre [1] Q4+ D4+ | pts | reglas). */
+function parseHero(t){
+ const lines=String(t).split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+ const reQ=/^(.+?)\s*\|\s*Qua\s*(\d)\+\s*Def\s*(\d)\+\s*(?:Tou\s*(\d+))?\s*(?:Pow\s*(\d+))?\s*\|\s*Str\s*(\d)\+\s*Dex\s*(\d)\+\s*Wil\s*(\d)\+\s*\|\s*(\d+)\s*pts?\s*(?:\|\s*(\d+)\s*XP)?\s*(?:\|\s*(.*))?$/i;
+ const reU=/^(?:(\d+)\s*x\s+)?(.+?)\s*\[(\d+)\]\s*Q(\d)\+\s*D(\d)\+\s*\|\s*(\d+)\s*pts?\s*(?:\|\s*(.*))?$/i;
+ const r={prof:"",raza:"",nivel:null,rules:[],weap:[],cons:[],skills:[],pot:null};let u=false;
+ for(const l of lines){
+  if(/^\+\+/.test(l)){const s=l.replace(/^\+\+\s*|\s*\+\+$/g,""),lv=s.match(/\[Lvl\s*(\d+)\]/i),body=s.replace(/\[.*?\]/g,"").replace(/\(v[\d.]+\)/g,"").trim(),m=body.match(/^(.+?)\s+-\s+(.+?)(?:\s*\((.+?)\))?\s*$/);
+   if(lv)r.nivel=+lv[1];if(m){r.hname=m[1].trim();r.prof=m[2].trim();r.raza=(m[3]||"").trim()}continue}
+  let m=l.match(reQ);
+  if(m&&!u){u=true;Object.assign(r,{name:m[1].trim(),cal:+m[2],def:+m[3],hpMax:m[4]?+m[4]:null,pwMax:m[5]!=null?+m[5]:null,fue:+m[6],des:+m[7],vol:+m[8],pts:+m[9],afxp:m[10]?+m[10]:null});r.rules=splitTop(m[11]||"");continue}
+  m=l.match(reU);
+  if(m&&!u){u=true;Object.assign(r,{name:m[2].replace(/\s*\(.*\)\s*$/,"").trim(),cal:+m[4],def:+m[5],pts:+m[6]});r.rules=splitTop(m[7]||"").filter(x=>!/^Hero$/i.test(x));
+   const tg=r.rules.map(x=>x.match(/^Tough\((\d+)\)$/i)).find(Boolean),cs=r.rules.map(x=>x.match(/^Caster\((\d+)\)$/i)).find(Boolean);r.hpMax=tg?+tg[1]:null;r.pwMax=cs?+cs[1]:null;
+   if(!r.raza&&r.prof){r.raza=r.prof;r.prof=""}continue}
+  if(!u)continue;
+  if((m=l.match(/^Consumables?:\s*(.*)$/i))){for(const x of splitTop(m[1])){const c=x.match(/^(\d+)\s*x\s+(.+)$/i),n=c?+c[1]:1,name=(c?c[2]:x).trim();if(/health\s*potion|poci[oó]n de salud/i.test(name))r.pot=(r.pot||0)+n;else r.cons.push({n:name,q:n})}continue}
+  if((m=l.match(/^Skills?:\s*(.*)$/i))){r.skills.push(...splitTop(m[1]));continue}
+  r.weap.push(...splitTop(l).map(x=>{const w=x.match(/^(.+?)\s*\((.*)\)$/);return w?{n:w[1].trim(),k:w[2].trim()}:{n:x,k:""}}));
+ }
+ if(!u)return {err:"No encuentro la línea del héroe. En Army Forge se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
+ return r;
+}
+/* Copia a la ficha lo leído. No toca la XP de la campaña (empieza en 0), el oro ni los estados. */
+function applyAF(h,r){
+ h.name=r.name||r.hname||h.name;h.cal=r.cal;h.def=r.def;if(r.prof)h.prof=r.prof;if(r.raza)h.raza=r.raza;if(r.nivel)h.nivel=r.nivel;if(r.pts)h.pts=r.pts;
+ if(r.fue)h.fue=r.fue;if(r.des)h.des=r.des;if(r.vol)h.vol=r.vol;
+ if(r.hpMax){const full=h.hp===h.hpMax;h.hpMax=r.hpMax;if(full||h.hp>r.hpMax)h.hp=r.hpMax}
+ if(r.pwMax!=null){const full=h.pw===h.pwMax;h.pwMax=r.pwMax;if(full||h.pw>r.pwMax)h.pw=r.pwMax}
+ if(r.pot!=null)h.pot=r.pot;
+ h.sk=r.rules.filter(x=>!/^Tough\(\d+\)$/i.test(x)).map(x=>({g:"regla",n:x,k:"",d:""}))
+  .concat(r.skills.map(x=>({g:"hab",n:x,k:"",d:""})))
+  .concat(r.weap.map(x=>({g:"equipo",n:x.n,k:x.k,d:""})))
+  .concat(r.cons.map(x=>({g:"equipo",n:(x.q>1?x.q+"× ":"")+x.n,k:"Consumible",d:""})));
+ clamp(h);
+}
+function importer(){const r=impRes;
+ return `<div class="imp">
+ <ol class="steps"><li><b>1</b>En Army Forge exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(H().name)}.</li></ol>
+ <label class="fl"><span>Texto de Army Forge</span><textarea id="imptxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(impTxt)}</textarea></label>
+ <div class="row"><button type="button" class="pri" data-read ${impTxt.trim()?"":"disabled"}>Leer</button><button type="button" class="sec" data-ex>Pegar a Wakiisen</button></div>
+ ${r?(r.err?`<div class="prev err"><h4>No se pudo leer</h4><p class="note" style="color:#f3c6d1">${esc(r.err)}</p></div>`:
+ `<div class="prev"><h4>Esto es lo que he leído</h4><ul>
+  <li>Nombre: <b>${esc(r.name)}</b>${r.nivel?` · nivel ${r.nivel}`:""}${r.pts?` · ${r.pts} pts`:""}</li>
+  ${r.raza||r.prof?`<li>${[r.raza&&"Raza: "+esc(r.raza),r.prof&&"Profesión: "+esc(r.prof)].filter(Boolean).join(" · ")}</li>`:""}
+  <li>Calidad ${r.cal}+ · Defensa ${r.def}+${r.fue?` · Fuerza ${r.fue}+ · Destreza ${r.des}+ · Voluntad ${r.vol}+`:""}</li>
+  ${r.hpMax?`<li>Heridas máx.: ${r.hpMax}${r.pwMax!=null?` · Poder máx.: ${r.pwMax}`:""}</li>`:""}
+  ${r.rules.length?`<li>Reglas: ${esc(r.rules.join(", "))}</li>`:""}
+  ${r.skills.length?`<li>Habilidades: ${esc(r.skills.join(", "))}</li>`:""}
+  ${r.weap.length?`<li>Armas: ${esc(r.weap.map(w=>w.n+(w.k?" ("+w.k+")":"")).join(", "))}</li>`:""}
+  ${r.pot!=null?`<li>Pociones de salud: ${r.pot}</li>`:""}
+  ${r.afxp!=null?`<li>XP en Army Forge: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
+  <p class="note">Se sustituyen características, reglas, habilidades y equipo. La XP de la campaña, el oro y los estados no se tocan.</p>
+  <div class="row"><button type="button" class="pri" data-apply>Aplicar a la ficha</button></div></div>`):""}
+ </div>`}
+
+/* ---- pintar ---- */
+let D_open=false;
+const DR=document.getElementById("drawer"),SC=document.getElementById("scrim"),DB=document.getElementById("db");
+function paintSheet(keepFocus){if(keepFocus)return;DB.innerHTML=sheet();
+ document.getElementById("dsub").textContent=`Héroe ${cur+1} de ${HS.length}`;
+ document.getElementById("dprev").disabled=cur===0;document.getElementById("dnext").disabled=cur>=HS.length-1}
+function paint(keep){paintMeds();if(D_open)paintSheet(keep)}
+function openH(i){cur=i;mode="";tab="regla";impRes=null;delArm=false;D_open=true;paint();DR.classList.add("open");SC.classList.add("open");DR.setAttribute("aria-hidden","false");setTimeout(()=>document.getElementById("dx").focus({preventScroll:true}),80)}
+function closeD(){D_open=false;DR.classList.remove("open");SC.classList.remove("open");DR.setAttribute("aria-hidden","true");paintMeds()}
+function clamp(h){h.hpMax=Math.max(1,+h.hpMax||1);h.pwMax=Math.max(0,+h.pwMax||0);h.hp=Math.min(Math.max(0,+h.hp||0),h.hpMax);h.pw=Math.min(Math.max(0,+h.pw||0),h.pwMax);h.pot=Math.max(0,+h.pot||0);h.gold=Math.max(0,+h.gold||0);h.nivel=Math.max(1,+h.nivel||1)}
+
+document.getElementById("stage").addEventListener("click",e=>{
+ const t=e.target.closest("button");if(!t)return;const h=H();
+ if(t.id==="stack"){fan=true;paintMeds();return}
+ if(t.id==="cfan"){fan=false;paintMeds();return}
+ if(t.id==="addh"){HS.push(mk({name:"Héroe "+(HS.length+1),c:HS.length}));save();openH(HS.length-1);mode="imp";paint();return}
+ if(t.dataset.h){openH(+t.dataset.h);return}
+ if(t.id==="dx"){closeD();return}
+ if(t.id==="dprev"&&cur>0){openH(cur-1);return}
+ if(t.id==="dnext"&&cur<HS.length-1){openH(cur+1);return}
+ if(t.dataset.inc){h[t.dataset.inc]=(+h[t.dataset.inc]||0)+(+t.dataset.d);clamp(h);save();paint();return}
+ if(t.dataset.st){const k=t.dataset.st;h.st=h.st.includes(k)?h.st.filter(x=>x!==k):[...h.st,k];save();paint();return}
+ if(t.dataset.mode){mode=mode===t.dataset.mode?"":t.dataset.mode;impRes=null;delArm=false;clamp(h);save();paint();return}
+ if(t.dataset.tab){tab=t.dataset.tab;paint();return}
+ if(t.dataset.del){h.sk.splice(+t.dataset.del,1);save();paint();return}
+ if(t.hasAttribute("data-addsk")){h.sk.push({g:tab,n:"Nueva habilidad",k:"",d:""});save();paint();return}
+ if(t.hasAttribute("data-noimg")){h.img="";save();paint();return}
+ if(t.hasAttribute("data-delh")){if(!delArm){delArm=true;paint();return}HS.splice(cur,1);if(!HS.length)HS.push(mk({name:"Héroe 1"}));cur=Math.max(0,cur-1);save();closeD();delArm=false;return}
+ if(t.hasAttribute("data-ex")){impTxt=EX;impRes=null;paint();return}
+ if(t.hasAttribute("data-read")){impRes=parseHero(impTxt);paint();return}
+ if(t.hasAttribute("data-apply")&&impRes&&!impRes.err){applyAF(h,impRes);h.af=impTxt;save();mode="";tab="regla";impRes=null;impTxt="";paint();return}
+});
+SC.addEventListener("click",closeD);
+document.getElementById("stage").addEventListener("input",e=>{const t=e.target,h=H();
+ if(t.id==="imptxt"){impTxt=t.value;const b=document.querySelector("[data-read]");if(b)b.disabled=!t.value.trim();return}
+ if(t.dataset.f){const k=t.dataset.f;h[k]=t.type==="number"?(t.value===""?"":+t.value):t.value;save();paintMeds();return}
+ if(t.dataset.sk){h.sk[+t.dataset.sk][t.dataset.sf]=t.value;save()}
+});
+document.getElementById("stage").addEventListener("change",e=>{const t=e.target,h=H();
+ if(t.id&&t.id.indexOf("o-")===0){OBJ[t.id.slice(2)]=t.checked;document.getElementById("o-xp").textContent=xpMesa();paint();return}
+ if(t.dataset.f){clamp(h);save();paint();return}
+ if(t.dataset.sk&&t.tagName==="SELECT"){save();return}
+ if(t.hasAttribute("data-img")&&t.files&&t.files[0]){const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);h.img=c.toDataURL("image/jpeg",.85);save();paint()};im.src=rd.result};rd.readAsDataURL(t.files[0])}
+});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(D_open)closeD();else if(fan){fan=false;paintMeds()}});
+document.getElementById("reset").onclick=()=>{HS=SAMPLE();cur=0;fan=false;save();closeD()};
+paintMeds();
+})();
+</script>
