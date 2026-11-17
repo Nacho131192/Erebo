@@ -656,7 +656,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .klay{position:absolute;inset:0}
 .klay.in{animation:kfade .8s ease}
 .klay img{position:absolute;right:0;top:0;height:100%;width:64%;object-fit:cover;object-position:50% 14%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 42%);mask-image:linear-gradient(90deg,transparent 0,#000 42%);filter:brightness(.62) saturate(.85) contrast(1.05)}
-.klay .kbk{position:absolute;right:8%;top:6%;width:min(34%,300px);opacity:.14;color:#c9a456}
+.klay .kbk{position:absolute;right:9%;top:7%;width:min(30%,330px);opacity:.24;transform:rotate(6deg);color:#c9a456}
 .klay .kbk svg{width:100%;height:auto;display:block}
 .camp::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(11,13,22,.95) 0,rgba(11,13,22,.55) 34%,transparent 60%),linear-gradient(90deg,rgba(11,13,22,.88),transparent 55%)}
 .kbrand{position:absolute;z-index:3;top:calc(30px + env(safe-area-inset-top,0px));left:max(56px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:13px;color:var(--pgold)}
@@ -676,10 +676,10 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .kinfo .klock{color:#cdb894;border-color:rgba(217,184,108,.3);background:rgba(255,255,255,.03)}
 .kinfo .klock svg{color:#b4404f}
 .kfan{position:absolute;left:66%;bottom:44px;z-index:3;width:0;height:var(--ch)}
-.kcard{position:absolute;left:calc(var(--cw) / -2);bottom:0;width:var(--cw);height:var(--ch);padding:0;border:0;border-radius:12px;background:#0f1628;transform-origin:50% 330%;transform:rotate(calc(var(--o) * 7deg));transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 14px 30px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.5);overflow:hidden;animation:kdeal .8s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 70ms + 100ms)}
+.kcard{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:absolute;left:calc(var(--cw) / -2);bottom:0;width:var(--cw);height:var(--ch);padding:0;border:0;border-radius:12px;background:#0f1628;transform-origin:50% 330%;transform:rotate(calc(var(--o) * 7deg)) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 14px 30px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.5);overflow:hidden;animation:kdeal .8s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 70ms + 100ms)}
 @keyframes kdeal{from{transform:rotate(0deg) translateY(120px);opacity:0}}
-.kcard:hover{transform:rotate(calc(var(--o) * 7deg)) translateY(-16px)}
-.kcard.on{transform:rotate(calc(var(--o) * 7deg)) translateY(-44px) scale(1.06);z-index:5;box-shadow:0 24px 50px rgba(0,0,0,.7),0 0 0 1.5px var(--gold),0 0 40px color-mix(in srgb,var(--cac) 55%,transparent)}
+.kcard:hover{transform:rotate(calc(var(--o) * 7deg)) translateY(-16px) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry))}
+.kcard.on{transform:rotate(calc(var(--o) * 7deg)) translateY(-44px) scale(1.06) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));z-index:5;box-shadow:0 24px 50px rgba(0,0,0,.7),0 0 0 1.5px var(--gold),0 0 40px color-mix(in srgb,var(--cac) 55%,transparent)}
 .kcard:focus-visible{outline:none;box-shadow:0 0 0 2px var(--gold),0 0 0 5px rgba(217,184,108,.3)}
 .kcard::after{content:"";position:absolute;inset:6px;border-radius:8px;border:1px solid rgba(217,184,108,.45);pointer-events:none}
 .kcard .kart{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--cac) 55%,#0f1628),#0f1628 75%)}
@@ -688,6 +688,19 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .kcard .kct{position:absolute;inset:auto 0 0;padding:36px 12px 16px;background:linear-gradient(0deg,rgba(11,14,24,.96) 30%,transparent);font:700 13.5px/1.2 var(--disp);letter-spacing:.04em;color:#f4e6cc;text-align:center;text-wrap:balance}
 .kcard .kct small{display:block;margin-top:5px;font:600 8.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#9aa6c2}
 .kcard .kback{position:absolute;inset:0;width:100%;height:100%;color:#c9a456}
+/* Reversos de Neth, brillo metálico e inclinación al pasar el ratón */
+.kcard .nbk{position:absolute;inset:0;width:100%;height:100%}
+.kcard.s-lock::after{display:none}
+.kcard.tilt{transition:transform .1s linear,box-shadow .4s}
+.ksh{position:absolute;inset:0;z-index:4;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,240,200,.3),transparent 45%),linear-gradient(115deg,transparent 25%,rgba(255,226,150,.22) 42%,rgba(160,190,255,.16) 50%,rgba(255,226,150,.2) 58%,transparent 75%);background-size:100% 100%,260% 260%;background-position:center,var(--mx) var(--my);mix-blend-mode:color-dodge}
+.kcard:hover .ksh{opacity:1}
+@media (hover:none){.ksh{display:none}}
+.nb-pulse{animation:nbp 4s ease-in-out infinite alternate}
+@keyframes nbp{from{opacity:.55}to{opacity:1}}
+.nb-drift{animation:nbd 7s linear infinite}
+@keyframes nbd{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+.klay .kbk svg{border-radius:18px}
+.kinfo .kmot{margin:-4px 0 0;font:italic 500 17px var(--serif);color:#8a96b4}
 .kcard.s-lock{background:radial-gradient(circle at 50% 45%,#1d2740,#0b0f1c 75%)}
 .kcard.s-lock .kcn{background:transparent;border-color:rgba(217,184,108,.3);color:#a8906c;top:auto;bottom:14px}
 .kcard .klv{position:absolute;left:50%;top:52px;transform:translateX(-50%);padding:3px 9px;border-radius:999px;background:#2f4f8f;color:#e6eeff;font:700 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 0 3px rgba(95,134,214,.25)}
@@ -1702,17 +1715,58 @@ const SHORT={open:"Disponible",live:"En curso",done:"Cumplida",lock:"Sellada"};
 const stl=i=>{const s=mst(i);return s==="live"?`Partida en curso · Ronda ${S.round}`:s==="done"?"Cumplida":s==="open"?"Lista para jugar":"Sellada"};
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 
+/* Reversos de las campañas selladas: colección «Neth, el borrado» (elegida 2026-11-17, maqueta docs/maquetas/reversos-cartas.html).
+   Eclipse con corona del color de la campaña, marco con tramos que faltan y el motivo (provisional) medio borrado. */
+const NBX={II:{acl:"#a9d38f",m:"Raíces",g:"root"},III:{acl:"#f19a7f",m:"Llama",g:"flame"},IV:{acl:"#a9c4e6",m:"Marea",g:"tide"},V:{acl:"#f1d58a",m:"Corona",g:"crown"}};
+const NBG={
+ root:"M0 20V-4M0 -4L-11 -15M0 -4L11 -15M0 4L-8 -3M0 4L8 -3M-6 -11L-10 -20M6 -11L10 -20M0 20L-11 26M0 20L11 26M0 20V28M-6 23L-15 22M6 23L15 22",
+ flame:"M0 24C-13 20 -15 6 -9 -5C-7 2 -4 4 -2 1C-5 -9 1 -17 6 -24C6 -13 15 -7 13 6C11 17 6 22 0 24ZM0 18C-5 16 -6 10 -3 5C-2 8 0 9 1 7C1 3 3 0 5 -2C6 4 8 8 6 13C5 16 3 17 0 18Z",
+ tide:"M7 -24A15 15 0 1 0 7 4A11 11 0 1 1 7 -24ZM-20 14Q-15 9 -10 14T0 14T10 14T20 14M-15 22Q-10 17 -5 22T5 22T15 22",
+ crown:"M-17 10L-19 -12L-8 -1L0 -18L8 -1L19 -12L17 10ZM-17 17H17M-11 4H11"};
+let NBU=0;
+function nbStar(x,y,r,fill){return `<path d="M${x} ${y-r}L${f(x+r*.22)} ${f(y-r*.22)}L${x+r} ${y}L${f(x+r*.22)} ${f(y+r*.22)}L${x} ${y+r}L${f(x-r*.22)} ${f(y+r*.22)}L${x-r} ${y}L${f(x-r*.22)} ${f(y-r*.22)}Z" fill="${fill}"/>`}
+function nethBack(c,k){const x=NBX[c.n],id="nb"+(NBU++)+"_",R=rng(90+k),cx=100,cy=140;
+ let rays="";for(let i=0;i<64;i++){const a=i/64*Math.PI*2+R()*.04,r0=58,r1=r0+6+R()*(i%4?14:30);rays+=`<path d="M${f(cx+r0*Math.sin(a))} ${f(cy-r0*Math.cos(a))}L${f(cx+r1*Math.sin(a))} ${f(cy-r1*Math.cos(a))}" stroke-opacity="${f(.15+R()*.45)}"/>`}
+ let arcs="";[[70,.2,1.3],[78,2.4,1.1],[86,4.1,.8],[94,1.2,.6]].forEach(([r,a0,len])=>{const a1=a0+len;arcs+=`<path d="M${f(cx+r*Math.sin(a0))} ${f(cy-r*Math.cos(a0))}A${r} ${r} 0 0 1 ${f(cx+r*Math.sin(a1))} ${f(cy-r*Math.cos(a1))}"/>`});
+ let parts="";for(let i=0;i<22;i++){const px=cx-46+R()*92,py=cy-20+R()*60,s=.8+R()*1.6;parts+=`<rect class="nb-drift" x="${f(px)}" y="${f(py)}" width="${f(s)}" height="${f(s)}" fill="${R()<.3?x.acl:"#d9b86c"}" style="animation-delay:-${f(R()*7)}s;animation-duration:${f(5+R()*5)}s"/>`}
+ let frag="";for(let i=0;i<10;i++){frag+=`<rect x="${f(150+R()*30)}" y="${f(40+R()*40)}" width="${f(1+R()*3)}" height="${f(1+R()*3)}" fill="#d9b86c" opacity="${f(.2+R()*.5)}"/>`}
+ const y=262,G=`url(#${id}g)`;
+ const num=`<path d="M66 ${y}H86M114 ${y}H134" stroke="#d9b86c" stroke-opacity=".55" stroke-width=".8"/>${nbStar(62,y,2.4,"#d9b86c")}${nbStar(138,y,2.4,"#d9b86c")}<text x="100" y="${y+4.5}" text-anchor="middle" fill="${G}" style="font:700 13px var(--disp);letter-spacing:.12em">${c.n}</text>`;
+ return `<svg class="nbk" viewBox="0 0 200 310" aria-hidden="true"><defs>
+ <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".35" stop-color="#c99a48"/><stop offset=".55" stop-color="#f1d48c"/><stop offset=".8" stop-color="#a87d34"/><stop offset="1" stop-color="#e8c97e"/></linearGradient>
+ <radialGradient id="${id}bg" cx=".5" cy=".46" r=".75"><stop offset="0" stop-color="#141b2f"/><stop offset=".55" stop-color="#0c1120"/><stop offset="1" stop-color="#080b15"/></radialGradient>
+ <radialGradient id="${id}ac" cx=".5" cy=".46" r=".5"><stop offset="0" stop-color="${c.ac}" stop-opacity=".34"/><stop offset="1" stop-color="${c.ac}" stop-opacity="0"/></radialGradient>
+ <filter id="${id}gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .8 0 0 0 0 .75 0 0 0 0 .6 0 0 0 .07 0"/></filter>
+ <radialGradient id="${id}ec" cx=".5" cy=".5" r=".5"><stop offset=".7" stop-color="#03050b"/><stop offset=".93" stop-color="#05070f"/><stop offset="1" stop-color="${c.ac}" stop-opacity=".6"/></radialGradient>
+ <radialGradient id="${id}co" cx=".5" cy=".5" r=".5"><stop offset=".45" stop-color="${c.ac}" stop-opacity=".55"/><stop offset=".7" stop-color="${c.ac}" stop-opacity=".12"/><stop offset="1" stop-color="${c.ac}" stop-opacity="0"/></radialGradient>
+ <filter id="${id}er" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="2" seed="${7+k}" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2.4 1.55" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+ <filter id="${id}bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter></defs>
+ <rect width="200" height="310" rx="12" fill="url(#${id}bg)"/><rect width="200" height="310" rx="12" fill="url(#${id}ac)"/><rect width="200" height="310" rx="12" filter="url(#${id}gr)"/>
+ <rect x="7" y="7" width="186" height="296" rx="9" fill="none" stroke="${G}" stroke-width="1.6" stroke-dasharray="120 7 30 4 60 11 200 5 90 14 70 6 300" stroke-dashoffset="${k*83}"/>
+ <rect x="13" y="13" width="174" height="284" rx="6" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width=".7" stroke-dasharray="40 6 3 6 90 9 140 22 60" stroke-dashoffset="${k*61}"/>
+ <g>${frag}</g>
+ <circle class="nb-pulse" cx="${cx}" cy="${cy}" r="92" fill="url(#${id}co)"/>
+ <g stroke="#d9b86c" stroke-width=".6">${rays}</g>
+ <g fill="none" stroke="${G}" stroke-width=".9" stroke-linecap="round" filter="url(#${id}er)">${arcs}</g>
+ <circle cx="${cx}" cy="${cy}" r="58" fill="url(#${id}ec)"/>
+ <circle class="nb-pulse" cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${x.acl}" stroke-width="2.4" filter="url(#${id}bl)"/>
+ <circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${G}" stroke-width="1.2" stroke-dasharray="70 6 30 3 110 9 60 4"/>
+ <g filter="url(#${id}er)"><g transform="translate(${cx} ${cy}) scale(1.25)" fill="none" stroke="${G}" stroke-width="1.36" stroke-linecap="round" stroke-linejoin="round"><path d="${NBG[x.g]}"/>${x.g==="crown"?[[-19,-12],[0,-18],[19,-12]].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="2" fill="${G}"/>`).join(""):""}</g></g>
+ <g>${parts}</g>
+ <g filter="url(#${id}er)"><text x="100" y="236" text-anchor="middle" fill="#d9b86c" fill-opacity=".85" style="font:600 7px var(--ui);letter-spacing:.42em">${x.m.toUpperCase()}</text></g>
+ <g filter="url(#${id}er)">${num}</g></svg>`}
+
 /* ===== baraja ===== */
 const K={sel:0};
 const BACK=(()=>{let r="";for(let k=0;k<16;k++){const a=k*Math.PI/8,r0=46,r1=k%2?53:61;r+=`<path d="M${f(78+r0*Math.sin(a))} ${f(120-r0*Math.cos(a))}L${f(78+r1*Math.sin(a))} ${f(120-r1*Math.cos(a))}"/>`}
  let lat="";for(let k=0;k<5;k++)lat+=`<path d="M${30+k*24} 22l6 6-6 6-6-6z"/><path d="M${30+k*24} 206l6 6-6 6-6-6z"/>`;
  return `<svg class="kback" viewBox="0 0 156 240" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="12" y="12" width="132" height="216" rx="5" opacity=".45"/>${lat}<circle cx="78" cy="120" r="40"/><circle cx="78" cy="120" r="34" stroke-dasharray="2 3" opacity=".7"/>${r}<circle cx="78" cy="120" r="19"/><circle cx="84" cy="115" r="17" fill="#0f1628" stroke-dasharray="2 2.4"/><path d="M78 52l3 8-3 8-3-8z M78 172l3 8-3 8-3-8z" fill="currentColor" opacity=".7"/></svg>`})();
 function kcard(c,i){const o=i-(CAMPS.length-1)/2;
- if(!c.on)return `<button class="kcard s-lock${K.sel===i?" on":""}" type="button" data-kc="${i}" role="option" aria-selected="${K.sel===i}" aria-label="Campaña ${c.n}: carta boca abajo" style="--o:${o};--i:${i};--cac:${c.ac}">${BACK}<span class="kcn">${c.n}</span></button>`;
- return `<button class="kcard${K.sel===i?" on":""}" type="button" data-kc="${i}" data-nav="home" role="option" aria-selected="${K.sel===i}" aria-label="Entrar en la campaña ${c.t}" style="--o:${o};--i:${i};--cac:${c.ac}"><span class="kart"><img src="${IMG_RETRATO}" alt=""></span><span class="kcn">${c.n}</span>${S.round?'<span class="klv">En curso</span>':""}<span class="kct">${c.t}<small>6 misiones</small></span></button>`}
-const klay=(i,cls="")=>CAMPS[i].on?`<div class="klay ${cls}"><img src="${IMG_RETRATO}" alt=""></div>`:`<div class="klay ${cls}"><div class="kbk">${BACK}</div></div>`;
+ if(!c.on)return `<button class="kcard s-lock${K.sel===i?" on":""}" type="button" data-kc="${i}" role="option" aria-selected="${K.sel===i}" aria-label="Campaña ${c.n}: carta boca abajo" style="--o:${o};--i:${i};--cac:${c.ac}">${nethBack(c,i)}<i class="ksh"></i></button>`;
+ return `<button class="kcard${K.sel===i?" on":""}" type="button" data-kc="${i}" data-nav="home" role="option" aria-selected="${K.sel===i}" aria-label="Entrar en la campaña ${c.t}" style="--o:${o};--i:${i};--cac:${c.ac}"><span class="kart"><img src="${IMG_RETRATO}" alt=""></span><span class="kcn">${c.n}</span>${S.round?'<span class="klv">En curso</span>':""}<span class="kct">${c.t}<small>6 misiones</small></span><i class="ksh"></i></button>`}
+const klay=(i,cls="")=>CAMPS[i].on?`<div class="klay ${cls}"><img src="${IMG_RETRATO}" alt=""></div>`:`<div class="klay ${cls}"><div class="kbk">${nethBack(CAMPS[i],i)}</div></div>`;
 function kinfo(i){const c=CAMPS[i];
- if(!c.on)return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Sellada</p><h2>Carta boca abajo</h2><p class="hook">Otra historia de Érebo, todavía por escribir.</p><div class="klock">${LOCK}<span>Esta campaña se descubrirá más adelante.</span></div>`;
+ if(!c.on)return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Sellada</p><h2>Carta boca abajo</h2><p class="hook">Otra historia de Érebo, todavía por escribir.</p><p class="kmot">Motivo del reverso: ${NBX[c.n].m.toLowerCase()}.</p><div class="klock">${LOCK}<span>Esta campaña se descubrirá más adelante.</span></div>`;
  return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Érebo</p><h2>${c.t}</h2><p class="hook">${c.h}</p><div class="kchips"><span><b>6</b> misiones</span><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span></div><p class="kstl${S.round?" live":""}"><i></i>${S.round?`Misión I en curso · Ronda ${S.round}`:"1 de 6 misiones disponibles"}</p><button class="kcta" type="button" data-nav="home"><span>Entrar en la campaña</span>${ARROW}</button>`}
 function camp(){const el=$("#camp");el.style.setProperty("--ac",CAMPS[K.sel].ac);
  el.innerHTML=`<div class="kbg" id="kbg">${klay(K.sel)}</div><header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Age of Fantasy: Quest</span></div></header><div class="kinfo" id="kinfo">${kinfo(K.sel)}</div><div class="kfan" role="listbox" aria-label="Campañas">${CAMPS.map(kcard).join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
@@ -1722,6 +1776,9 @@ function kselect(i){if(i===K.sel)return;K.sel=i;const el=$("#camp");
  const bg=$("#kbg");bg.insertAdjacentHTML("beforeend",klay(i,"in"));[...bg.children].slice(0,-1).forEach(l=>setTimeout(()=>l.remove(),800));
  const inf=$("#kinfo");inf.innerHTML=kinfo(i);inf.style.animation="none";void inf.offsetWidth;inf.style.animation="";
  if(innerWidth<=860){const c=el.querySelector(`.kcard[data-kc="${i}"]`);if(c)c.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"})}}
+/* Inclinación y brillo que siguen al ratón (no en táctil) */
+$("#camp").addEventListener("pointermove",e=>{if(e.pointerType==="touch"||innerWidth<=860)return;const c=e.target.closest(".kcard");if(!c)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.classList.add("tilt");c.style.setProperty("--ry",f((x-.5)*16)+"deg");c.style.setProperty("--rx",f((.5-y)*16)+"deg");c.style.setProperty("--mx",f(x*100)+"%");c.style.setProperty("--my",f(y*100)+"%")});
+$("#camp").addEventListener("pointerout",e=>{const c=e.target.closest(".kcard");if(c&&!c.contains(e.relatedTarget)){c.classList.remove("tilt");c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}});
 $("#camp").addEventListener("click",e=>{const c=e.target.closest(".kcard.s-lock");if(!c)return;const i=+c.dataset.kc;
  if(K.sel===i){c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake")}kselect(i)});
 document.addEventListener("keydown",e=>{if(VIEW!=="camp"||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;

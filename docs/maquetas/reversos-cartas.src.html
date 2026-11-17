@@ -1,0 +1,410 @@
+<title>Reversos de campaña</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Galería: cabecera, cuatro colecciones en pestañas, efectos, las cuatro cartas en grande (ampliables),
+   el abanico del selector de campañas a escala (1440×900) y notas. Un único aspecto nocturno azul y oro. */
+:root{color-scheme:dark;
+--night:#0b0d16;--navy:#141c31;--navy2:#1d2740;--line:#24304d;--txt:#ece3cf;--mu:#8a96b4;--mu2:#c3cbe0;
+--gold:#d9b86c;--gold2:#a87d34;--goldl:#f3dc9a;--wax:#8a2a35;
+--disp:Cinzel,Georgia,serif;--deco:"Cinzel Decorative",Cinzel,Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--ui:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1100px 620px at 50% -10%,#1f2a48,transparent 70%),var(--night);color:var(--txt);font:15px/1.55 var(--ui)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-block:40px 90px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:26px}
+.eb{margin:0;font:600 11px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:#8fa6d6}
+.top h1{margin:8px 0 12px;font:700 clamp(32px,5vw,54px)/1.05 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+.top p{margin:0;max-width:72ch;font:500 clamp(18px,2.1vw,21px)/1.45 var(--serif);color:var(--mu2)}
+h2.sec{margin:14px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;font:700 22px/1.2 var(--disp);letter-spacing:.06em}
+h2.sec small{font:italic 500 18px var(--serif);letter-spacing:0;color:var(--mu)}
+
+/* pestañas */
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tab{display:flex;flex-direction:column;gap:8px;text-align:left;padding:14px 16px 15px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(165deg,#18213a,#0f1526 75%);color:var(--mu2);transition:border-color .3s,box-shadow .3s,transform .3s;min-width:0}
+.tab:hover{transform:translateY(-2px)}
+.tab .th{display:flex;align-items:center;gap:10px}
+.tab b{font:700 14.5px/1.25 var(--disp);letter-spacing:.04em;color:var(--txt)}
+.tab .d{font:500 16px/1.3 var(--serif);color:var(--mu)}
+.tab .k{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;font:700 13px var(--disp);color:#1a1405;background:radial-gradient(circle at 34% 30%,#f3dc9a,#c99a48 60%,#8f6a1f);box-shadow:0 3px 8px rgba(0,0,0,.45)}
+.tab[aria-pressed="true"]{border-color:rgba(217,184,108,.6);background:linear-gradient(165deg,#22305a,#121a30);box-shadow:0 0 0 1px rgba(217,184,108,.2),0 14px 36px rgba(0,0,0,.45),0 0 44px rgba(95,134,214,.12)}
+.tab:not([aria-pressed="true"]) .k{filter:saturate(.3) brightness(.7)}
+@media (max-width:900px){.tabs{grid-template-columns:1fr 1fr}}
+@media (max-width:440px){.tabs{grid-template-columns:1fr}}
+
+/* controles */
+.ctl{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;justify-content:space-between}
+.grp{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.grp>span{font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.sw{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 8px;border-radius:999px;border:1px solid var(--line);background:#0f1526;font:600 12.5px var(--ui);color:var(--mu2)}
+.sw i{position:relative;width:30px;height:18px;border-radius:9px;background:#2a3554;transition:background .2s}
+.sw i::after{content:"";position:absolute;left:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#8a96b4;transition:transform .2s,background .2s}
+.sw[aria-pressed="true"]{border-color:rgba(217,184,108,.5);color:var(--txt)}
+.sw[aria-pressed="true"] i{background:#6b5226}
+.sw[aria-pressed="true"] i::after{transform:translateX(12px);background:var(--gold)}
+.hint{margin:0;font:italic 500 16px var(--serif);color:var(--mu)}
+
+/* cartas grandes */
+.deck{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;padding:30px 28px 26px;border-radius:16px;border:1px solid var(--line);background:radial-gradient(900px 400px at 50% 0%,rgba(95,134,214,.1),transparent 70%),#0d1322}
+.slot{display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+.cap{text-align:center}
+.cap b{display:block;font:700 13px var(--disp);letter-spacing:.12em;color:var(--txt)}
+.cap span{display:inline-flex;align-items:center;gap:7px;margin-top:4px;font:500 15.5px var(--serif);font-style:italic;color:var(--mu)}
+.cap span i{width:9px;height:9px;border-radius:50%;background:var(--ac)}
+@media (max-width:1000px){.deck{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.deck{grid-template-columns:1fr;padding:22px 16px}}
+
+/* carta (con inclinación y brillo) */
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;width:100%;max-width:240px;aspect-ratio:200/310;perspective:900px;border:0;padding:0;background:none;display:block}
+.card .tilt{position:relative;width:100%;height:100%;border-radius:12px;transform:rotateX(var(--rx)) rotateY(var(--ry));transform-style:preserve-3d;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.35)}
+.card:hover .tilt{transition:transform .08s linear,box-shadow .4s;box-shadow:0 26px 60px rgba(0,0,0,.7),0 0 0 1px rgba(217,184,108,.6),0 0 46px color-mix(in srgb,var(--ac) 35%,transparent)}
+.card svg{display:block;width:100%;height:100%;border-radius:12px}
+.card .sheen,.card .glare{position:absolute;inset:0;border-radius:12px;pointer-events:none;opacity:0;transition:opacity .35s}
+.card .sheen{background:linear-gradient(115deg,transparent 25%,rgba(255,226,150,.28) 42%,rgba(160,190,255,.2) 50%,rgba(255,226,150,.24) 58%,transparent 75%);background-size:260% 260%;background-position:var(--mx) var(--my);mix-blend-mode:color-dodge}
+.card .glare{background:radial-gradient(circle at var(--mx) var(--my),rgba(255,240,200,.32),transparent 42%);mix-blend-mode:overlay}
+.fx .card:hover .sheen,.fx .card:hover .glare{opacity:1}
+body:not(.fx) .card .tilt{transform:none!important}
+/* animaciones en reposo */
+.spin{transform-box:view-box;transform-origin:100px 150px;animation:spin 80s linear infinite}
+.spin.rev{animation-direction:reverse;animation-duration:55s}
+.spin.c140{transform-origin:100px 140px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tw{animation:tw 3.4s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.15}to{opacity:1}}
+.drift{animation:drift 7s linear infinite}
+@keyframes drift{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-70px);opacity:0}}
+.pulse{animation:pls 4s ease-in-out infinite alternate}
+@keyframes pls{from{opacity:.55}to{opacity:1}}
+.shim{animation:shim 6s ease-in-out infinite}
+@keyframes shim{0%,60%{transform:translateX(-260px)}100%{transform:translateX(260px)}}
+body:not(.anim) .spin,body:not(.anim) .tw,body:not(.anim) .drift,body:not(.anim) .pulse,body:not(.anim) .shim{animation:none}
+body:not(.anim) .drift{opacity:.6}
+body:not(.anim) .shim{opacity:0}
+@media (prefers-reduced-motion:reduce){.spin,.tw,.drift,.pulse,.shim{animation:none!important}.card .tilt{transition:none}}
+
+/* vista ampliada */
+.zoom{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));background:rgba(5,7,14,.86);backdrop-filter:blur(6px);animation:zin .3s ease}
+.zoom[hidden]{display:none}
+@keyframes zin{from{opacity:0}}
+.zin{display:flex;gap:34px;align-items:center;max-width:980px;width:100%}
+.zin .card{flex:none;width:min(380px,50vh);max-width:none}
+.zt{min-width:0}
+.zt .eb{color:var(--gold)}
+.zt h3{margin:6px 0 10px;font:700 30px/1.1 var(--disp);color:var(--txt)}
+.zt p{margin:0 0 12px;font:500 19px/1.45 var(--serif);color:var(--mu2)}
+.zt ul{margin:0;padding-left:18px;display:grid;gap:6px;font:500 17px/1.4 var(--serif);color:var(--mu2)}
+.zx{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#0f1526;display:grid;place-items:center;color:var(--mu2)}
+.zx svg{width:18px;height:18px}
+.znav{display:flex;gap:10px;margin-top:18px}
+.znav button{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f1526;font:600 12.5px var(--ui);color:var(--mu2)}
+@media (max-width:760px){.zin{flex-direction:column;gap:18px}.zin .card{width:min(300px,70vw)}.zt h3{font-size:24px}}
+
+/* escenario en contexto */
+.stage{position:relative;width:100%;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#05070d;box-shadow:0 0 0 1px var(--line),0 0 0 8px #0d1322,0 0 0 9px var(--line),0 40px 90px rgba(0,0,0,.65)}
+.scr{position:absolute;left:0;top:0;width:1440px;height:900px;transform-origin:0 0;transform:scale(var(--s,.8));overflow:hidden;--ac:#5f86d6;background:radial-gradient(900px 600px at 75% 30%,color-mix(in srgb,var(--ac) 22%,transparent),transparent 70%),radial-gradient(800px 500px at 0% 100%,rgba(217,184,108,.06),transparent 60%),#0b0d16;transition:background .6s}
+.chrome{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;font:600 11px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#6f7a96}
+.chrome i{font:italic 500 15px var(--serif);letter-spacing:0;text-transform:none;color:var(--mu)}
+.klay{position:absolute;inset:0;animation:zin .7s ease}
+.klay img{position:absolute;right:0;top:0;height:100%;width:64%;object-fit:cover;object-position:50% 14%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 42%);mask-image:linear-gradient(90deg,transparent 0,#000 42%);filter:brightness(.62) saturate(.85) contrast(1.05)}
+.klay .big{position:absolute;right:9%;top:7%;width:330px;opacity:.22;filter:blur(.3px);transform:rotate(6deg)}
+.klay .big svg{display:block;width:100%;height:auto;border-radius:18px}
+.scr::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(11,13,22,.95) 0,rgba(11,13,22,.55) 34%,transparent 60%),linear-gradient(90deg,rgba(11,13,22,.88),transparent 55%)}
+.kbrand{position:absolute;z-index:3;top:30px;left:56px;display:flex;align-items:center;gap:13px;color:var(--gold)}
+.kbrand svg{width:40px;height:40px;filter:drop-shadow(0 0 12px rgba(217,184,108,.35))}
+.kbrand b{display:block;font:700 24px/1 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kbrand span{display:block;margin-top:4px;font:600 10px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#8a96b4}
+.kinfo{position:absolute;z-index:2;left:56px;top:150px;width:450px;display:flex;flex-direction:column;gap:14px;animation:krise .55s cubic-bezier(.22,1,.36,1)}
+@keyframes krise{from{opacity:0;transform:translateY(10px)}}
+.kinfo .keb{margin:0;font:600 11px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:color-mix(in srgb,var(--ac) 60%,#efe3cc)}
+.kinfo .knum{position:absolute;left:-22px;top:-30px;z-index:-1;font:700 170px/1 var(--deco);color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--ac) 45%,transparent);opacity:.55}
+.kinfo h2{margin:0;font:700 54px/1.02 var(--deco);color:#f4e6cc;text-wrap:balance;text-shadow:0 4px 24px rgba(0,0,0,.6)}
+.kinfo .hook{margin:0;font:italic 500 21px/1.42 var(--serif);color:#d9cbb2}
+.kchips{display:flex;flex-wrap:wrap;gap:6px}
+.kchips span{border:1px solid rgba(217,184,108,.25);border-radius:999px;padding:3px 10px;font:500 12px var(--ui);color:#cdb894;background:rgba(255,255,255,.04)}
+.kchips b{color:#f1e2c4}
+.kstl{display:flex;align-items:center;gap:8px;margin:0;font:600 12px var(--ui);color:#cdb894}
+.kstl i{width:8px;height:8px;border-radius:50%;background:#5f8f6c;box-shadow:0 0 0 3px rgba(95,143,108,.2)}
+.kcta{align-self:flex-start;display:flex;align-items:center;gap:10px;padding:14px 26px;border:0;border-radius:8px;background:linear-gradient(180deg,#9a3442,#7a2431);color:#f8ead0;font:700 12.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px rgba(122,36,49,.35)}
+.kcta svg{width:16px;height:16px}
+.klock{display:flex;gap:10px;align-items:center;padding:11px 13px;border:1px dashed rgba(217,184,108,.3);border-radius:8px;font:500 13.5px/1.4 var(--ui);color:#cdb894;background:rgba(255,255,255,.03)}
+.klock svg{width:18px;height:18px;flex:none;color:var(--gold)}
+.kmot{font:italic 500 17px var(--serif);color:#8a96b4}
+.kfan{position:absolute;left:66%;bottom:44px;z-index:3;width:0;height:258px}
+.kcard{position:absolute;left:-84px;bottom:0;width:168px;height:258px;padding:0;border:0;border-radius:12px;background:#0f1628;transform-origin:50% 330%;transform:rotate(calc(var(--o) * 7deg));transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 14px 30px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.5);overflow:hidden;cursor:pointer}
+.kcard:hover{transform:rotate(calc(var(--o) * 7deg)) translateY(-16px)}
+.kcard.on{transform:rotate(calc(var(--o) * 7deg)) translateY(-44px) scale(1.06);z-index:5;box-shadow:0 24px 50px rgba(0,0,0,.7),0 0 0 1.5px var(--gold),0 0 40px color-mix(in srgb,var(--cac) 55%,transparent)}
+.kcard svg.bk{position:absolute;inset:0;width:100%;height:100%}
+.kcard .kart{position:absolute;inset:0}
+.kcard .kart img{width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.kcard .kart::after{content:"";position:absolute;inset:6px;border-radius:8px;border:1px solid rgba(217,184,108,.45)}
+.kcard .kcn{position:absolute;left:50%;top:14px;transform:translateX(-50%);display:grid;place-items:center;min-width:30px;height:30px;padding:0 6px;border-radius:999px;background:rgba(11,14,24,.8);border:1px solid rgba(217,184,108,.6);font:700 12px var(--disp);color:#f1e2c4}
+.kcard .kct{position:absolute;inset:auto 0 0;padding:36px 12px 16px;background:linear-gradient(0deg,rgba(11,14,24,.96) 30%,transparent);font:700 13.5px/1.2 var(--disp);letter-spacing:.04em;color:#f4e6cc;text-align:center}
+.kcard .kct small{display:block;margin-top:5px;font:600 8.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#9aa6c2}
+.khint{position:absolute;left:56px;bottom:32px;z-index:2;margin:0;display:flex;gap:8px;align-items:center;font:600 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#7a86a3}
+.khint kbd{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;border:1px solid #2c3a58;background:#111827;font:600 12px var(--ui);color:#c9d3ea}
+
+/* notas */
+.notes{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;padding:22px 24px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(165deg,#141c31,#0d1322)}
+.notes>div{min-width:0}
+.notes h2{margin:0 0 8px;font:700 19px/1.2 var(--disp);letter-spacing:.04em}
+.notes h3{margin:0 0 8px;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.notes .con h3{color:#e2a08f}
+.notes p{margin:0 0 12px;font:500 18px/1.45 var(--serif);color:var(--mu2)}
+.notes ul{margin:0;padding-left:18px;display:grid;gap:6px;font:500 16.5px/1.4 var(--serif);color:var(--mu2)}
+.notes ul li::marker{color:var(--gold2)}
+@media (max-width:900px){.notes{grid-template-columns:1fr}}
+.recipe{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;padding:16px 20px;border-radius:12px;border:1px dashed rgba(217,184,108,.45);background:#0f1526}
+.recipe p{margin:0;font:500 18px/1.4 var(--serif);color:var(--mu2);min-width:0}
+.recipe b{font:700 13px var(--disp);letter-spacing:.06em;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;border:1px solid rgba(217,184,108,.45);background:#141c31;font:600 12.5px var(--ui);color:var(--gold)}
+.btn svg{width:15px;height:15px}
+.phone{display:none;margin:0;font:italic 500 16px var(--serif);color:var(--mu)}
+@media (max-width:760px){.phone{display:block}}
+</style>
+
+<div class="wrap">
+ <header class="top">
+  <p class="eb">Érebo · Maquetas · Selector de campañas</p>
+  <h1>Reversos de las campañas</h1>
+  <p>Cuatro colecciones en azul nocturno y oro. En cada una, las campañas II a V tienen un reverso propio con su color de acento y un motivo: raíces, llama, marea y corona (provisionales, hasta que existan esas campañas). Pasa el ratón por encima para ver el brillo, pulsa una carta para verla en grande y mira abajo cómo quedan en el abanico.</p>
+ </header>
+
+ <h2 class="sec">Colecciones <small>elige una para ver sus cuatro reversos</small></h2>
+ <div class="tabs" id="tabs"></div>
+
+ <div class="ctl">
+  <div class="grp"><span>Efectos</span>
+   <button class="sw" type="button" id="swfx" aria-pressed="true"><i></i>Brillo e inclinación al pasar</button>
+   <button class="sw" type="button" id="swan" aria-pressed="true"><i></i>Animación en reposo</button>
+  </div>
+  <p class="hint">Pulsa una carta para verla en grande.</p>
+ </div>
+
+ <div class="deck" id="deck"></div>
+
+ <section class="notes" id="notes" aria-live="polite"></section>
+
+ <h2 class="sec">En el selector de campañas <small>el abanico real, con El Pueblo Sin Nombre boca arriba</small></h2>
+ <div>
+  <div class="chrome"><span id="lbl">Colección</span><i>Pantalla de ordenador · 1440 × 900</i></div>
+  <div class="stage" id="stage"><div class="scr" id="scr"></div></div>
+ </div>
+ <p class="phone">El selector está pensado para ordenador. En el móvil se ve a escala.</p>
+
+ <div class="recipe"><p id="recipe"></p><button class="btn" type="button" id="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar la elección</span></button></div>
+</div>
+
+<div class="zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Reverso en grande">
+ <button class="zx" type="button" data-zclose aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+ <div class="zin" id="zin"></div>
+</div>
+
+<script>
+const IMG="%%IMG%%";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const f=n=>+(+n).toFixed(1);
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const W=200,H=310;
+
+/* Campañas boca abajo: acento de color (el del selector) y motivo provisional */
+const CAMP=[
+ {n:"II",ac:"#6f9a5a",acl:"#a9d38f",m:"Raíces",g:"root",d:"Un árbol con las raíces al aire: tierra, selva y lo que crece sin permiso."},
+ {n:"III",ac:"#c9573f",acl:"#f19a7f",m:"Llama",g:"flame",d:"Una llama: guerra, asedio y lo que arde."},
+ {n:"IV",ac:"#6f8fb6",acl:"#a9c4e6",m:"Marea",g:"tide",d:"Luna creciente sobre las olas: mar, viaje y lo que trae la marea."},
+ {n:"V",ac:"#c9a24a",acl:"#f1d58a",m:"Corona",g:"crown",d:"Una corona: reinos, deudas y lo que se hereda."}];
+
+/* Motivos: trazo (caja de ±26) y estrellas para la versión de constelación */
+const GL={
+ root:"M0 20V-4M0 -4L-11 -15M0 -4L11 -15M0 4L-8 -3M0 4L8 -3M-6 -11L-10 -20M6 -11L10 -20M0 20L-11 26M0 20L11 26M0 20V28M-6 23L-15 22M6 23L15 22",
+ flame:"M0 24C-13 20 -15 6 -9 -5C-7 2 -4 4 -2 1C-5 -9 1 -17 6 -24C6 -13 15 -7 13 6C11 17 6 22 0 24ZM0 18C-5 16 -6 10 -3 5C-2 8 0 9 1 7C1 3 3 0 5 -2C6 4 8 8 6 13C5 16 3 17 0 18Z",
+ tide:"M7 -24A15 15 0 1 0 7 4A11 11 0 1 1 7 -24ZM-20 14Q-15 9 -10 14T0 14T10 14T20 14M-15 22Q-10 17 -5 22T5 22T15 22",
+ crown:"M-17 10L-19 -12L-8 -1L0 -18L8 -1L19 -12L17 10ZM-17 17H17M-11 4H11"};
+const GDOT={crown:[[-19,-12],[0,-18],[19,-12]],root:[],flame:[],tide:[]};
+const CON={
+ root:[[[0,27],[0,12],[0,-4],[-11,-15],[-10,-21]],[[0,-4],[11,-15],[10,-21]],[[0,27],[-12,26]],[[0,27],[12,26]]],
+ flame:[[[0,24],[-12,14],[-9,-5],[-2,1],[6,-24],[13,5],[0,24]]],
+ tide:[[[7,-24],[-6,-22],[-13,-10],[-8,2],[7,4]],[[-20,16],[-10,12],[0,16],[10,12],[20,16]]],
+ crown:[[[-17,10],[-19,-12],[-8,-1],[0,-18],[8,-1],[19,-12],[17,10],[-17,10]]]};
+
+/* piezas comunes */
+const goldDefs=id=>`<linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6e2a4"/><stop offset=".35" stop-color="#c99a48"/><stop offset=".55" stop-color="#f1d48c"/><stop offset=".8" stop-color="#a87d34"/><stop offset="1" stop-color="#e8c97e"/></linearGradient>`;
+const bgDefs=(id,c,dark)=>`<radialGradient id="${id}bg" cx=".5" cy=".46" r=".75"><stop offset="0" stop-color="${dark?"#141b2f":"#22305a"}"/><stop offset=".55" stop-color="${dark?"#0c1120":"#152039"}"/><stop offset="1" stop-color="#080b15"/></radialGradient><radialGradient id="${id}ac" cx=".5" cy=".46" r=".5"><stop offset="0" stop-color="${c.ac}" stop-opacity=".34"/><stop offset="1" stop-color="${c.ac}" stop-opacity="0"/></radialGradient>`;
+const grain=id=>`<filter id="${id}gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .8 0 0 0 0 .75 0 0 0 0 .6 0 0 0 .07 0"/></filter>`;
+const base=(id)=>`<rect width="${W}" height="${H}" rx="12" fill="url(#${id}bg)"/><rect width="${W}" height="${H}" rx="12" fill="url(#${id}ac)"/><rect width="${W}" height="${H}" rx="12" filter="url(#${id}gr)"/>`;
+const frame=(id,gap)=>`<rect x="7" y="7" width="186" height="296" rx="9" fill="none" stroke="url(#${id}g)" stroke-width="1.6"${gap?` stroke-dasharray="${gap}"`:""}/><rect x="13" y="13" width="174" height="284" rx="6" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width=".7"${gap?` stroke-dasharray="40 6 3 6 90 9"`:""}/>`;
+const glyph=(c,x,y,s,stroke,sw,extra="")=>`<g transform="translate(${x} ${y}) scale(${s})" fill="none" stroke="${stroke}" stroke-width="${f(sw/s)}" stroke-linecap="round" stroke-linejoin="round"${extra}><path d="${GL[c.g]}"/>${GDOT[c.g].map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="2" fill="${stroke}"/>`).join("")}</g>`;
+const star4=(x,y,r,fill,cls="")=>`<path${cls?` class="${cls}"`:""} d="M${x} ${y-r}L${f(x+r*.22)} ${f(y-r*.22)}L${x+r} ${y}L${f(x+r*.22)} ${f(y+r*.22)}L${x} ${y+r}L${f(x-r*.22)} ${f(y+r*.22)}L${x-r} ${y}L${f(x-r*.22)} ${f(y-r*.22)}Z" fill="${fill}"/>`;
+const numeral=(id,c,y=272)=>`<g><path d="M${100-34} ${y}H${100-14}M${100+14} ${y}H${100+34}" stroke="#d9b86c" stroke-opacity=".55" stroke-width=".8"/>${star4(100-38,y,2.4,"#d9b86c")}${star4(100+38,y,2.4,"#d9b86c")}<text x="100" y="${y+4.5}" text-anchor="middle" fill="url(#${id}g)" style="font:700 13px var(--disp);letter-spacing:.12em">${c.n}</text></g>`;
+const ring=(cx,cy,r,n,l1,l2,op=.6,w=.7)=>{let s="";for(let k=0;k<n;k++){const a=k/n*Math.PI*2,L=k%(n/4)===0?l2:k%2?l1*.6:l1;s+=`<path d="M${f(cx+r*Math.sin(a))} ${f(cy-r*Math.cos(a))}L${f(cx+(r+L)*Math.sin(a))} ${f(cy-(r+L)*Math.cos(a))}"/>`}return `<g stroke="#d9b86c" stroke-opacity="${op}" stroke-width="${w}">${s}</g>`};
+
+/* ===== Colección A: astral ===== */
+function astral(c,k,id){const R=rng(40+k);let st="";
+ for(let i=0;i<110;i++){const x=16+R()*168,y=16+R()*278,r=R()<.1?1.2:.3+R()*.55,o=f(.25+R()*.6);st+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="#f3e6c4" opacity="${o}"${R()<.22?` class="tw" style="animation-delay:-${f(R()*3.4)}s"`:""}/>`}
+ const cx=100,cy=140,sc=2.15;let lines="",dots="";
+ CON[c.g].forEach(ch=>{lines+=`<polyline points="${ch.map(p=>f(cx+p[0]*sc)+","+f(cy+p[1]*sc)).join(" ")}"/>`;ch.forEach((p,i)=>{dots+=`<circle cx="${f(cx+p[0]*sc)}" cy="${f(cy+p[1]*sc)}" r="${i%2?1.6:2.3}"/>`})});
+ let rose="";for(let i=0;i<8;i++){const L=i%2?40:70,w=i%2?5:8;rose+=`<g transform="rotate(${i*45} ${cx} ${cy})"><path d="M${cx} ${cy-L}L${cx+w} ${cy}H${cx}z" fill="#d9b86c" opacity=".16"/><path d="M${cx} ${cy-L}L${cx-w} ${cy}H${cx}z" fill="#d9b86c" opacity=".07"/></g>`}
+ const corners=[[24,24],[176,24],[24,286],[176,286]].map(p=>star4(p[0],p[1],5,`url(#${id}g)`)).join("");
+ return `<defs>${goldDefs(id)}${bgDefs(id,c)}${grain(id)}<filter id="${id}gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>${base(id)}
+ <g>${st}</g>${frame(id)}${corners}
+ <path d="M30 24H80M120 24H170M30 286H80M120 286H170" stroke="#d9b86c" stroke-opacity=".4" stroke-width=".6"/>
+ <g transform="translate(100 38)"><path d="M-6 -6A8 8 0 1 0 4 7A6.5 6.5 0 1 1 -6 -6Z" fill="url(#${id}g)"/></g>
+ ${rose}
+ <g class="spin c140"><circle cx="${cx}" cy="${cy}" r="74" fill="none" stroke="#d9b86c" stroke-opacity=".45" stroke-width=".8"/>${ring(cx,cy,74,72,3,7,.5,.6)}<circle cx="${cx}" cy="${cy}" r="66" fill="none" stroke="#d9b86c" stroke-opacity=".3" stroke-width=".6" stroke-dasharray="1 3"/></g>
+ <circle cx="${cx}" cy="${cy}" r="56" fill="none" stroke="${c.ac}" stroke-opacity=".35" stroke-width=".8"/>
+ <g stroke="${c.acl}" stroke-opacity=".75" stroke-width=".9" fill="none">${lines}</g>
+ <g fill="${c.acl}" filter="url(#${id}gl)" class="pulse">${dots}</g><g fill="#fff6dc">${dots}</g>
+ <text x="100" y="236" text-anchor="middle" fill="#d9b86c" fill-opacity=".85" style="font:600 7px var(--ui);letter-spacing:.42em">${c.m.toUpperCase()}</text>
+ ${numeral(id,c,262)}`}
+
+/* ===== Colección B: sello del Umbral ===== */
+function sello(c,k,id){const cx=100,cy=150;
+ let lat="";for(let i=0;i<6;i++){const x=34+i*26.4;lat+=`<path d="M${f(x)} 26l5 5-5 5-5-5z"/><path d="M${f(x)} 274l5 5-5 5-5-5z"/>`}
+ let side="";for(let y=50;y<262;y+=12)side+=`<circle cx="22" cy="${y}" r=".9"/><circle cx="178" cy="${y}" r=".9"/>`;
+ const poly=(n,r,rot=0)=>{let p=[];for(let i=0;i<n;i++){const a=rot+i/n*Math.PI*2;p.push(f(cx+r*Math.sin(a))+","+f(cy-r*Math.cos(a)))}return p.join(" ")};
+ const starP=(n,step,r,rot=0)=>{let d="";const pts=[];for(let i=0;i<n;i++){const a=rot+i/n*Math.PI*2;pts.push([cx+r*Math.sin(a),cy-r*Math.cos(a)])}let i=0;d=`M${f(pts[0][0])} ${f(pts[0][1])}`;for(let j=1;j<=n;j++){i=(i+step)%n;d+=`L${f(pts[i][0])} ${f(pts[i][1])}`}return d+"Z"};
+ let rays="";for(let i=0;i<24;i++){const a=i/24*Math.PI*2,r0=60,r1=i%2?66:76;rays+=`<path d="M${f(cx+r0*Math.sin(a))} ${f(cy-r0*Math.cos(a))}L${f(cx+r1*Math.sin(a))} ${f(cy-r1*Math.cos(a))}"/>`}
+ return `<defs>${goldDefs(id)}${bgDefs(id,c)}${grain(id)}<radialGradient id="${id}disc" cx=".4" cy=".35"><stop offset="0" style="stop-color:color-mix(in srgb,${c.ac} 60%,#1d2740)"/><stop offset="1" stop-color="#0b1020"/></radialGradient><radialGradient id="${id}disc2" cx=".4" cy=".35"><stop offset="0" stop-color="${c.ac}" stop-opacity=".55"/><stop offset="1" stop-color="#0b1020" stop-opacity="0"/></radialGradient></defs>${base(id)}
+ ${frame(id)}
+ <g fill="none" stroke="url(#${id}g)" stroke-width="1">${lat}</g><g fill="#d9b86c" opacity=".5">${side}</g>
+ <path d="M44 31H88M112 31H156M44 279H88M112 279H156" stroke="#d9b86c" stroke-opacity=".35" stroke-width=".6"/>
+ <g class="spin"><circle cx="${cx}" cy="${cy}" r="82" fill="none" stroke="#d9b86c" stroke-opacity=".28" stroke-width=".6" stroke-dasharray="2 4"/><g stroke="url(#${id}g)" stroke-width="1.1">${rays}</g></g>
+ <circle cx="${cx}" cy="${cy}" r="60" fill="none" stroke="url(#${id}g)" stroke-width="1.2"/>
+ <path d="${starP(12,5,58)}" fill="none" stroke="#d9b86c" stroke-opacity=".45" stroke-width=".7"/>
+ <polygon points="${poly(6,58)}" fill="none" stroke="#d9b86c" stroke-opacity=".3" stroke-width=".6"/>
+ <polygon points="${poly(6,58,Math.PI/6)}" fill="none" stroke="#d9b86c" stroke-opacity=".3" stroke-width=".6"/>
+ <g class="spin rev"><circle cx="${cx}" cy="${cy}" r="46" fill="none" stroke="#d9b86c" stroke-opacity=".55" stroke-width=".8" stroke-dasharray="1 3.2"/></g>
+ <circle cx="${cx}" cy="${cy}" r="36" fill="url(#${id}disc)" stroke="url(#${id}g)" stroke-width="1.6"/>
+ <circle cx="${cx}" cy="${cy}" r="36" fill="url(#${id}disc2)" class="pulse"/>
+ <circle cx="${cx}" cy="${cy}" r="31" fill="none" stroke="#d9b86c" stroke-opacity=".45" stroke-width=".6"/>
+ ${glyph(c,cx,cy,.95,`url(#${id}g)`,1.7)}
+ ${[0,90,180,270].map(a=>`<g transform="rotate(${a} ${cx} ${cy})">${star4(cx,cy-60,4.5,`url(#${id}g)`)}</g>`).join("")}
+ ${numeral(id,c,252)}`}
+
+/* ===== Colección C: grabado heráldico ===== */
+function grabado(c,k,id){const cx=100;
+ const fl=`<path d="M0 0C16 0 26 7 26 20C26 29 19 32 15 27C11 22 16 17 20 21M0 0C0 16 7 26 20 26C29 26 32 19 27 15C22 11 17 16 21 20M6 6C12 9 16 13 19 19" fill="none" stroke="url(#${id}g)" stroke-width="1.1" stroke-linecap="round"/><circle cx="3" cy="3" r="2.2" fill="url(#${id}g)"/>`;
+ const corners=[[18,18,1,1],[182,18,-1,1],[18,292,1,-1],[182,292,-1,-1]].map(([x,y,sx,sy])=>`<g transform="translate(${x} ${y}) scale(${sx} ${sy})">${fl}</g>`).join("");
+ let laurel="";for(let side of [-1,1]){for(let i=0;i<9;i++){const t=i/8,a=Math.PI*(.62+.62*t),r=58,x=cx+side*r*Math.cos(a)*-1,y=146+r*Math.sin(a)*-1+20;const rot=side*(t*120-30);laurel+=`<ellipse cx="${f(cx+side*(42+Math.sin(t*Math.PI)*12))}" cy="${f(206-t*92)}" rx="2.6" ry="6.5" transform="rotate(${f(side*(35-t*55))} ${f(cx+side*(42+Math.sin(t*Math.PI)*12))} ${f(206-t*92)})"/>`}
+  laurel+=`<path d="M${cx+side*30} 212Q${cx+side*58} 160 ${cx+side*44} 112" fill="none"/>`}
+ const shield="M-36 -42H36V2C36 30 0 48 0 48C0 48 -36 30 -36 2Z";
+ return `<defs>${goldDefs(id)}${bgDefs(id,c,true)}${grain(id)}
+  <pattern id="${id}h" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V4" stroke="#d9b86c" stroke-opacity=".07" stroke-width="1"/></pattern>
+  <pattern id="${id}h2" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><path d="M0 0V3" stroke="#000" stroke-opacity=".35" stroke-width=".8"/></pattern>
+  <linearGradient id="${id}sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:color-mix(in srgb,${c.ac} 70%,#1d2740)"/><stop offset="1" style="stop-color:color-mix(in srgb,${c.ac} 25%,#0b1020)"/></linearGradient>
+  <linearGradient id="${id}sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff3cf" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <clipPath id="${id}cl"><rect width="${W}" height="${H}" rx="12"/></clipPath></defs>${base(id)}
+ <rect x="13" y="13" width="174" height="284" rx="6" fill="url(#${id}h)"/>
+ <rect x="7" y="7" width="186" height="296" rx="9" fill="none" stroke="url(#${id}g)" stroke-width="2.2"/>
+ <rect x="12" y="12" width="176" height="286" rx="6" fill="none" stroke="url(#${id}g)" stroke-width=".7"/>
+ <rect x="22" y="22" width="156" height="266" rx="3" fill="none" stroke="#d9b86c" stroke-opacity=".4" stroke-width=".6"/>
+ ${corners}
+ <path d="M60 22h80M60 288h80" stroke="#0b0f1c" stroke-width="3"/>
+ <g transform="translate(100 22)"><path d="M-22 0h44" stroke="url(#${id}g)" stroke-width=".8"/>${star4(0,0,5,`url(#${id}g)`)}<circle cx="-26" r="1.6" fill="#d9b86c"/><circle cx="26" r="1.6" fill="#d9b86c"/></g>
+ <g style="fill:color-mix(in srgb,${c.ac} 55%,#d9b86c)" stroke="#0b0f1c" stroke-width=".4" opacity=".9">${laurel}</g>
+ <g fill="none" style="stroke:color-mix(in srgb,${c.ac} 55%,#d9b86c)" stroke-width="1" opacity=".9">${laurel.match(/<path[^>]*>/g).join("")}</g>
+ <g transform="translate(100 74)"><path d="M-14 6L-16 -6L-7 0L0 -10L7 0L16 -6L14 6Z" fill="url(#${id}g)"/><path d="M-14 9H14" stroke="url(#${id}g)" stroke-width="1.6"/></g>
+ <g transform="translate(100 146)"><path d="${shield}" fill="url(#${id}sh)"/><path d="${shield}" fill="url(#${id}h2)"/><path d="${shield}" fill="none" stroke="url(#${id}g)" stroke-width="2"/><path d="M-31 -37H31V2C31 26 0 42 0 42C0 42 -31 26 -31 2Z" fill="none" stroke="#d9b86c" stroke-opacity=".5" stroke-width=".6"/>${glyph(c,0,0,1.05,`url(#${id}g)`,1.9)}</g>
+ <g transform="translate(100 236)"><path d="M-58 -9H58L52 0L58 9H-58L-52 0Z" fill="#0d1426" stroke="url(#${id}g)" stroke-width="1"/><path d="M-58 -9L-66 -14L-62 -3L-70 4L-58 9M58 -9L66 -14L62 -3L70 4L58 9" fill="#0a0f1c" stroke="url(#${id}g)" stroke-width=".8"/><text y="3.8" text-anchor="middle" fill="url(#${id}g)" style="font:700 10px var(--disp);letter-spacing:.24em">CAMPAÑA ${c.n}</text></g>
+ <text x="100" y="268" text-anchor="middle" fill="#d9b86c" fill-opacity=".7" style="font:italic 600 11px var(--serif)">${c.m}</text>
+ <g clip-path="url(#${id}cl)"><rect class="shim" x="-120" y="-40" width="110" height="400" fill="url(#${id}sw)" transform="rotate(18 100 155)"/></g>`}
+
+/* ===== Colección D: Neth, el borrado ===== */
+function neth(c,k,id){const R=rng(90+k),cx=100,cy=140;
+ let rays="";for(let i=0;i<64;i++){const a=i/64*Math.PI*2+R()*.04,r0=58,r1=r0+6+R()*(i%4?14:30);rays+=`<path d="M${f(cx+r0*Math.sin(a))} ${f(cy-r0*Math.cos(a))}L${f(cx+r1*Math.sin(a))} ${f(cy-r1*Math.cos(a))}" stroke-opacity="${f(.15+R()*.45)}"/>`}
+ let arcs="";[[70,.2,1.3],[78,2.4,1.1],[86,4.1,.8],[94,1.2,.6]].forEach(([r,a0,len])=>{const a1=a0+len;arcs+=`<path d="M${f(cx+r*Math.sin(a0))} ${f(cy-r*Math.cos(a0))}A${r} ${r} 0 0 1 ${f(cx+r*Math.sin(a1))} ${f(cy-r*Math.cos(a1))}"/>`});
+ let parts="";for(let i=0;i<22;i++){const x=cx-46+R()*92,y=cy-20+R()*60,s=.8+R()*1.6;parts+=`<rect class="drift" x="${f(x)}" y="${f(y)}" width="${f(s)}" height="${f(s)}" fill="${R()<.3?c.acl:"#d9b86c"}" style="animation-delay:-${f(R()*7)}s;animation-duration:${f(5+R()*5)}s"/>`}
+ let frag="";for(let i=0;i<10;i++){const x=150+R()*30,y=40+R()*40;frag+=`<rect x="${f(x)}" y="${f(y)}" width="${f(1+R()*3)}" height="${f(1+R()*3)}" fill="#d9b86c" opacity="${f(.2+R()*.5)}"/>`}
+ return `<defs>${goldDefs(id)}${bgDefs(id,c,true)}${grain(id)}
+  <radialGradient id="${id}ec" cx=".5" cy=".5" r=".5"><stop offset=".7" stop-color="#03050b"/><stop offset=".93" stop-color="#05070f"/><stop offset="1" stop-color="${c.ac}" stop-opacity=".6"/></radialGradient>
+  <radialGradient id="${id}co" cx=".5" cy=".5" r=".5"><stop offset=".45" stop-color="${c.ac}" stop-opacity=".55"/><stop offset=".7" stop-color="${c.ac}" stop-opacity=".12"/><stop offset="1" stop-color="${c.ac}" stop-opacity="0"/></radialGradient>
+  <filter id="${id}er" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="2" seed="${7+k}" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 -2.4 1.55" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  <filter id="${id}bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter></defs>${base(id)}
+ <rect x="7" y="7" width="186" height="296" rx="9" fill="none" stroke="url(#${id}g)" stroke-width="1.6" stroke-dasharray="120 7 30 4 60 11 200 5 90 14 70 6 300" stroke-dashoffset="${k*83}"/>
+ <rect x="13" y="13" width="174" height="284" rx="6" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width=".7" stroke-dasharray="40 6 3 6 90 9 140 22 60" stroke-dashoffset="${k*61}"/>
+ <g>${frag}</g>
+ <circle cx="${cx}" cy="${cy}" r="92" fill="url(#${id}co)" class="pulse"/>
+ <g stroke="#d9b86c" stroke-width=".6">${rays}</g>
+ <g fill="none" stroke="url(#${id}g)" stroke-width=".9" stroke-linecap="round" filter="url(#${id}er)">${arcs}</g>
+ <circle cx="${cx}" cy="${cy}" r="58" fill="url(#${id}ec)"/>
+ <circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="${c.acl}" stroke-width="2.4" filter="url(#${id}bl)" class="pulse"/>
+ <circle cx="${cx}" cy="${cy}" r="58" fill="none" stroke="url(#${id}g)" stroke-width="1.2" stroke-dasharray="70 6 30 3 110 9 60 4"/>
+ <g filter="url(#${id}er)">${glyph(c,cx,cy,1.25,`url(#${id}g)`,1.7)}</g>
+ <g>${parts}</g>
+ <g filter="url(#${id}er)"><text x="100" y="236" text-anchor="middle" fill="#d9b86c" fill-opacity=".85" style="font:600 7px var(--ui);letter-spacing:.42em">${c.m.toUpperCase()}</text></g>
+ <g filter="url(#${id}er)">${numeral(id,c,262)}</g>`}
+
+const COL={
+ A:{t:"Carta astral",d:"Constelaciones en oro sobre el cielo del mapa nocturno.",fn:astral,
+  q:"El reverso como un trozo del cielo del mapa: cada campaña dibuja su motivo con estrellas, dentro de un anillo graduado.",
+  how:["Campo de estrellas que titilan y una rosa de los vientos muy tenue detrás.","Anillo graduado que gira muy despacio.","El motivo de la campaña es una constelación en su color de acento."],
+  pro:["Es la que mejor casa con el mapa nocturno nuevo.","Ligera y limpia: se lee bien incluso pequeña en el abanico."],
+  con:["El motivo pierde fuerza al tamaño del abanico (son puntos finos).","Menos «naipe» que el sello o el grabado."]},
+ B:{t:"Sello del Umbral",d:"Geometría sagrada alrededor de un disco con el motivo.",fn:sello,
+  q:"La evolución del reverso actual: un sello de geometría sagrada con el motivo de la campaña acuñado en un disco de su color.",
+  how:["Orla de rombos arriba y abajo, como el reverso actual.","Estrella de doce puntas, dos hexágonos y una corona de rayos que gira.","Disco central en el color de la campaña, con un brillo que respira."],
+  pro:["Continuidad con lo que ya tienes: el cambio se nota pero no rompe.","El disco de color identifica la campaña de un vistazo."],
+  con:["Es la más simétrica y ordenada; menos sorpresa.","Mucho detalle fino: hay que cuidar el grosor de las líneas en pantallas pequeñas."]},
+ C:{t:"Grabado heráldico",d:"Marco de filigrana, escudo y cinta, como un naipe de lujo.",fn:grabado,
+  q:"Un naipe impreso en una casa noble: filigranas en las esquinas, laurel, un escudo con el motivo y la cinta con el número de campaña.",
+  how:["Marco doble con volutas en las cuatro esquinas y trama de grabado de fondo.","Escudo en el color de la campaña, con rayado de grabado y el motivo en oro.","Cinta con «Campaña II» y un reflejo que cruza la carta de vez en cuando."],
+  pro:["La más «premium»: parece un objeto impreso y caro.","Nombra la campaña en la propia carta."],
+  con:["La más recargada: compite con la lámina de El Pueblo Sin Nombre.","El escudo da un aire más medieval que el resto de Érebo."]},
+ D:{t:"Neth, el borrado",d:"Eclipse, bordes que faltan y el motivo deshaciéndose.",fn:neth,
+  q:"Campañas que todavía no existen, como si Neth las hubiera borrado: un eclipse con la corona del color de la campaña y el dibujo a medio desaparecer.",
+  how:["Eclipse central con corona de luz en el color de la campaña.","Marco con tramos que faltan y arcos rotos alrededor.","El motivo y el número están erosionados; motas de oro suben del eclipse."],
+  pro:["Cuenta la historia: lo sellado aún no existe del todo.","La más atmosférica y distinta."],
+  con:["El motivo se reconoce peor (a propósito).","Cuando la campaña se desbloquee habrá que darle otra cara."]}};
+
+/* ---------- estado ---------- */
+const S={col:"A",fx:true,an:true,sel:0,zoom:-1};
+try{const j=JSON.parse(localStorage.getItem("psn-reversos")||"null");if(j)Object.assign(S,j,{zoom:-1,sel:0})}catch(e){}
+const save=()=>{try{localStorage.setItem("psn-reversos",JSON.stringify({col:S.col,fx:S.fx,an:S.an}))}catch(e){}};
+let uid=0;const back=(col,k)=>`<svg viewBox="0 0 ${W} ${H}" class="bk" aria-hidden="true">${COL[col].fn(CAMP[k],k,"b"+(uid++)+"_")}</svg>`;
+const cardH=(k,big)=>`<button class="card" type="button" data-k="${k}" style="--ac:${CAMP[k].ac}" aria-label="Reverso de la campaña ${CAMP[k].n}: ${CAMP[k].m}${big?"":", ver en grande"}"><span class="tilt">${back(S.col,k)}<i class="sheen"></i><i class="glare"></i></span></button>`;
+
+function paintTabs(){$("#tabs").innerHTML=Object.entries(COL).map(([k,c])=>`<button class="tab" type="button" data-col="${k}" aria-pressed="${S.col===k}"><span class="th"><span class="k">${k}</span><b>${c.t}</b></span><span class="d">${c.d}</span></button>`).join("")}
+function paintDeck(){$("#deck").innerHTML=CAMP.map((c,k)=>`<div class="slot">${cardH(k)}<div class="cap" style="--ac:${c.ac}"><b>CAMPAÑA ${c.n}</b><span><i></i>${c.m}</span></div></div>`).join("")}
+function paintNotes(){const n=COL[S.col];$("#notes").innerHTML=`<div><h2>${S.col} · ${n.t}</h2><p>${n.q}</p><h3>Cómo está hecha</h3><ul>${n.how.map(x=>`<li>${x}</li>`).join("")}</ul></div><div><h3>A favor</h3><ul>${n.pro.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="con"><h3>Lo que cuesta</h3><ul>${n.con.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+ $("#recipe").innerHTML=`<b>Tu elección</b><br>Reversos: ${S.col} · ${n.t} · Efectos: ${S.fx?"brillo al pasar":"sin brillo"}, ${S.an?"animación en reposo":"sin animación"}`;$("#lbl").textContent=`Colección ${S.col} · ${n.t}`}
+
+/* escena del selector de campañas */
+const SIG='<svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="24" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="27" cy="27" r="14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4"/><circle cx="27" cy="27" r="4.5" fill="currentColor"/><path d="M27 3v8M27 43v8M3 27h8M43 27h8" stroke="currentColor" stroke-width="1.6"/></svg>';
+const ARROW='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const LOCK='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>';
+function scene(){const s=S.sel,scr=$("#scr");scr.style.setProperty("--ac",s?CAMP[s-1].ac:"#5f86d6");
+ const lay=s?`<div class="klay"><div class="big">${back(S.col,s-1)}</div></div>`:`<div class="klay"><img src="${IMG}" alt=""></div>`;
+ const info=s?`<span class="knum" aria-hidden="true">${CAMP[s-1].n}</span><p class="keb">Campaña ${CAMP[s-1].n} · Sellada</p><h2>Carta boca abajo</h2><p class="hook">Otra historia de Érebo, todavía por escribir.</p><p class="kmot">Motivo del reverso: ${CAMP[s-1].m.toLowerCase()}.</p><div class="klock">${LOCK}<span>Esta campaña se descubrirá más adelante.</span></div>`
+  :`<span class="knum" aria-hidden="true">I</span><p class="keb">Campaña I · Érebo</p><h2>El Pueblo Sin Nombre</h2><p class="hook">Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre.</p><div class="kchips"><span><b>6</b> misiones</span><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span></div><p class="kstl"><i></i>1 de 6 misiones disponibles</p><button class="kcta" type="button"><span>Entrar en la campaña</span>${ARROW}</button>`;
+ const cards=[`<button class="kcard${s===0?" on":""}" type="button" data-sc="0" style="--o:-2;--cac:#5f86d6"><span class="kart"><img src="${IMG}" alt=""></span><span class="kcn">I</span><span class="kct">El Pueblo Sin Nombre<small>6 misiones</small></span></button>`]
+  .concat(CAMP.map((c,k)=>`<button class="kcard${s===k+1?" on":""}" type="button" data-sc="${k+1}" style="--o:${k-1};--cac:${c.ac}" aria-label="Campaña ${c.n}: carta boca abajo">${back(S.col,k)}</button>`));
+ scr.innerHTML=`${lay}<header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Age of Fantasy: Quest</span></div></header><div class="kinfo">${info}</div><div class="kfan">${cards.join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
+
+function paint(){document.body.classList.toggle("fx",S.fx);document.body.classList.toggle("anim",S.an);
+ $("#swfx").setAttribute("aria-pressed",S.fx);$("#swan").setAttribute("aria-pressed",S.an);
+ paintTabs();paintDeck();paintNotes();scene();if(S.zoom>=0)openZoom(S.zoom)}
+function openZoom(k){S.zoom=k;const c=CAMP[k],n=COL[S.col];
+ $("#zin").innerHTML=`${cardH(k,true)}<div class="zt"><p class="eb">Colección ${S.col} · ${n.t}</p><h3>Campaña ${c.n} · ${c.m}</h3><p>${c.d}</p><ul><li>Acento de color: <span style="color:${c.acl}">${c.ac}</span>.</li><li>Pasa el ratón por la carta para ver el brillo y la inclinación.</li></ul><div class="znav"><button type="button" data-zstep="-1">← Anterior</button><button type="button" data-zstep="1">Siguiente →</button></div></div>`;
+ const z=$("#zoom");z.hidden=false;document.documentElement.style.overflow="hidden";$("#zoom .zx").focus({preventScroll:true})}
+function closeZoom(){S.zoom=-1;$("#zoom").hidden=true;document.documentElement.style.overflow=""}
+
+/* inclinación y brillo que siguen al ratón */
+document.addEventListener("pointermove",e=>{if(!S.fx||e.pointerType==="touch")return;const c=e.target.closest&&e.target.closest(".card");if(!c)return;
+ const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+ c.style.setProperty("--ry",f((x-.5)*16)+"deg");c.style.setProperty("--rx",f((.5-y)*16)+"deg");c.style.setProperty("--mx",f(x*100)+"%");c.style.setProperty("--my",f(y*100)+"%")});
+document.addEventListener("pointerout",e=>{const c=e.target.closest&&e.target.closest(".card");if(c&&!c.contains(e.relatedTarget)){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}});
+
+document.addEventListener("click",e=>{const t=e.target;
+ const col=t.closest("[data-col]");if(col){S.col=col.dataset.col;save();paint();return}
+ if(t.closest("#swfx")){S.fx=!S.fx;save();paint();return}
+ if(t.closest("#swan")){S.an=!S.an;save();paint();return}
+ if(t.closest("[data-zclose]")||t.id==="zoom"){closeZoom();return}
+ const zs=t.closest("[data-zstep]");if(zs){openZoom((S.zoom+ +zs.dataset.zstep+4)%4);return}
+ const sc=t.closest("[data-sc]");if(sc){S.sel=+sc.dataset.sc;scene();return}
+ const cd=t.closest("#deck .card");if(cd){openZoom(+cd.dataset.k);return}
+ if(t.closest("#copy")){const txt=$("#recipe").innerText.replace(/\n/g," · ");const b=$("#copy span");
+  try{navigator.clipboard.writeText(txt).then(()=>{b.textContent="Copiada";setTimeout(()=>b.textContent="Copiar la elección",1800)},()=>{b.textContent="Selecciónala y cópiala"})}catch(err){b.textContent="Selecciónala y cópiala"}}});
+document.addEventListener("keydown",e=>{if(S.zoom<0)return;if(e.key==="Escape")closeZoom();else if(e.key==="ArrowRight")openZoom((S.zoom+1)%4);else if(e.key==="ArrowLeft")openZoom((S.zoom+3)%4)});
+const stage=$("#stage");new ResizeObserver(()=>stage.style.setProperty("--s",stage.clientWidth/1440)).observe(stage);
+paint();
+</script>
