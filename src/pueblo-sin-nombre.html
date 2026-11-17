@@ -203,6 +203,39 @@ td.num{font-family:var(--ui);font-size:14px;font-weight:600}
 .hfi{margin:10px 0 4px;padding:14px;border-radius:13px;border:1px solid #5b4a2a;background:linear-gradient(135deg,#2a2112,#1c1830)}
 .hfimg{margin:-14px -14px 12px;overflow:hidden;border-radius:12px 12px 0 0;border-bottom:1px solid #5b4a2a}
 .hfimg img{display:block;width:100%;height:auto}
+/* Oleadas: grupos (en mesa / recién llegadas), contador de copias y recuadro fijo del jefe */
+.grp{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:14px 0 2px;padding-top:10px;border-top:1px dashed #3a3358;font:600 11px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pmu)}
+.grp span{font:600 11.5px var(--num);letter-spacing:.04em;text-transform:none}
+.grp.new{color:var(--pgold)}
+.un.gone{opacity:.45}.un.gone b{text-decoration:line-through;text-decoration-color:var(--pmu)}
+.cnt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px;padding:6px 8px;border-radius:9px;background:var(--pcard2);border:1px solid #2f2848;font:600 11px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--pmu)}
+.cnt .segs{display:flex;gap:4px}
+.cnt .segs button{min-width:30px;height:28px;padding:0 8px;border-radius:7px;border:1px solid #3a3358;background:none;color:var(--pink);font:700 13px var(--num)}
+.cnt .segs button.on{background:var(--pvio);border-color:var(--pvio);color:#0c0a12}
+.cnt .segs button:hover:not(.on){border-color:var(--pvio)}
+.cnt .rm{margin-left:auto;border:1px solid #6b3a48;background:none;color:var(--pbad);border-radius:7px;padding:6px 10px;font:600 11px var(--ui);letter-spacing:.06em;text-transform:none}
+.cnt .rm:hover{background:rgba(236,138,160,.1)}
+.cnt.off{justify-content:space-between;letter-spacing:.04em;text-transform:none;font-size:12px}
+.cnts{display:grid;gap:6px;margin-top:8px}.cnts .cnt{margin-top:0}
+.cnt>span:first-child{min-width:66px}
+.wcard{scroll-margin-top:8px}
+.wcard h3 em{font:600 11.5px var(--num);letter-spacing:.02em;text-transform:none;color:var(--pmu)}
+.wsum{margin:0 0 10px;font-size:12.5px;line-height:1.5;color:var(--pmu)}
+.wtog{position:sticky;bottom:12px;z-index:4;display:flex;justify-content:flex-end;margin:14px -4px 0 0;pointer-events:none}
+.wtog button{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 8px 0 14px;border-radius:999px;border:1px solid var(--pgold);background:linear-gradient(180deg,#2a2150,#1c1830);color:var(--pgold);font:700 11.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 22px rgba(0,0,0,.55),0 0 0 4px rgba(12,10,18,.7)}
+.wtog button:hover{background:#2f2560}
+.wtog svg{width:16px;height:16px}
+.wtog button.ic{position:relative;width:46px;height:46px;padding:0;justify-content:center}
+.wtog button.ic svg{width:20px;height:20px}
+.wtog button.ic small{position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;font-size:11px}
+.wcard:not(.min) .un,.wcard:not(.min) .grp{padding-right:50px}
+.wtog small{display:grid;place-items:center;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--pgold);color:#1a1208;font:700 12px var(--num);letter-spacing:0}
+.hbx{position:sticky;top:-10px;z-index:3;display:flex;gap:12px;align-items:center;margin:0 0 12px;padding:10px;border-radius:12px;border:1px solid var(--pgold);background:linear-gradient(135deg,#2a2112,#1c1830);box-shadow:0 0 0 3px rgba(217,184,108,.08)}
+.hbx img{flex:none;width:64px;height:81px;object-fit:cover;border-radius:7px;border:1px solid #5b4a2a}
+.hbx>div{min-width:0}
+.hbx .hbt{margin:0;font:600 10.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--pgold)}
+.hbx b{display:block;margin-top:2px;font:700 15px var(--disp);color:var(--pink)}
+.hbx .chipsr{margin:6px 0 2px}.hbx .linkb{padding-left:0}
 .hfi h4{margin:0 0 8px;font:700 13px var(--ui);letter-spacing:.04em;color:var(--pgold)}
 .hfi .chipsr{margin:0 0 10px}
 .hfi p{margin:0 0 7px;font-size:12.5px;line-height:1.5;color:var(--pmu)}.hfi p b{color:var(--pink)}
@@ -437,7 +470,7 @@ const em=s=>esc(s).replace(/\b(Ambush|Caster|Fast|Fear|Stealth|Villain|Tough|Ren
 
 /* ---------- estado ---------- */
 const KEY="psn-m1-v2";
-const S0=()=>({d:3,pts:300,heroes:3,round:0,al:1,wave:0,noEn:false,mk:[0,0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},comp:{},shown:false,alw:[],alShow:false,manualPrim:false});
+const S0=()=>({d:3,pts:300,heroes:3,round:0,al:1,wave:0,noEn:false,mk:[0,0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},comp:{},table:[],shown:false,alw:[],alShow:false,manualPrim:false});
 function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&typeof j==="object"){const o=Object.assign(S0(),j);if(!(o.al>=1))o.al=1;return o}}catch(e){}return S0()}
 let S=load(),UI={open:false,sure:false};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
@@ -529,19 +562,39 @@ const HER={name:"Heraldo del Umbral",pts:150}; /* jefe de la casa: coste estimad
 /* Sorteo de una oleada: unidades al azar de la lista sin pasarse del valor.
    Primero usa copias que no hayan salido en oleadas anteriores; si no queda ninguna que quepa,
    recicla (la unidad solo se usa si ya fue eliminada). Nunca más copias de las que tienes en una misma oleada. */
+/* Copias de cada unidad que están ahora mismo en la mesa: las de oleadas anteriores (S.table)
+   y las vivas de la oleada en curso (salvo la que se está sorteando, skipK). */
+/* Miniaturas por unidad. "4x Huruk lanceros" son 4 unidades de MODELS miniaturas cada una.
+   De momento todas tienen 3 (decisión de Nacho, 2026-11-17); más adelante se afinará por unidad (p. ej. con el [n] de Army Forge). */
+const MODELS=3,modsOf=i=>MODELS;
+/* Miniaturas vivas de una unidad sorteada (e.m; sin valor = completa). */
+const aliveM=e=>e.d?0:(e.m==null?modsOf(e.i):e.m);
+function busy(skipK){
+ const b=ARMY.map(()=>0);
+ (S.table||[]).forEach(t=>{if(ARMY[t.i]&&t.m>0)b[t.i]++});
+ const ck=curW(),c=S.comp[ck];
+ if(S.shown&&c&&ck!==skipK&&!c.merged)c.u.forEach(e=>{if(aliveM(e)>0&&ARMY[e.i])b[e.i]++});
+ return b;
+}
+/* Al pasar a la siguiente oleada (o al llegar el jefe), las unidades que siguen vivas pasan a «En mesa» (S.table: una entrada por unidad, con sus miniaturas). */
+function mergeWave(k){
+ const c=S.comp[k];if(!c||c.merged)return;
+ S.table=(S.table||[]).filter(t=>t.m>0&&ARMY[t.i]);
+ c.u.forEach(e=>{const m=aliveM(e);if(m>0&&ARMY[e.i])S.table.push({i:e.i,m})});
+ S.table.sort((x,y)=>x.i-y.i);c.merged=true;
+}
+/* Sorteo: solo copias que no estén ya en la mesa (regla de la casa). Si no cabe ninguna, la oleada sale más corta. */
 function genComp(k,budget){
- const left=ARMY.map(a=>a.n),inW=ARMY.map(()=>0),u=[];
- const used=c=>c.u.forEach(e=>{if(!e.r&&left[e.i]>0)left[e.i]--});
- Object.keys(S.comp).filter(x=>x!=="boss"&&(k==="boss"||k==="al"||+x<k)).forEach(x=>used(S.comp[x]));
- (S.alw||[]).forEach(w=>used(w.c));
+ const bz=busy(k),left=ARMY.map((a,i)=>Math.max(0,a.n-bz[i])),u=[];
  let rem=budget;
- const draw=rec=>{const c=[];ARMY.forEach((a,i)=>{const n=rec?a.n-inW[i]:left[i];if(a.pts<=rem)for(let j=0;j<n;j++)c.push(i)});return c.length?c[Math.floor(Math.random()*c.length)]:-1};
- for(let g=0;g<300;g++){let r=false,i=draw(false);if(i<0){i=draw(true);r=true}if(i<0)break;if(!r)left[i]--;inW[i]++;u.push({i,r});rem-=ARMY[i].pts}
- if(!u.length&&ARMY.length&&budget>0){const i=ARMY.reduce((b,a,j)=>a.pts<ARMY[b].pts?j:b,0);u.push({i,r:left[i]<=0})}
+ const draw=()=>{const c=[];ARMY.forEach((a,i)=>{if(a.pts<=rem)for(let j=0;j<left[i];j++)c.push(i)});return c.length?c[Math.floor(Math.random()*c.length)]:-1};
+ for(let g=0;g<300;g++){const i=draw();if(i<0)break;left[i]--;u.push({i});rem-=ARMY[i].pts}
+ if(!u.length&&budget>0){let i=-1;ARMY.forEach((a,j)=>{if(left[j]>0&&(i<0||a.pts<ARMY[i].pts))i=j});if(i>=0)u.push({i})}
  if(k!=="boss"&&k%2===1&&u.length)u[Math.floor(Math.random()*u.length)].a=true;
- u.sort((x,y)=>x.i-y.i||(x.r-y.r)||((x.a?1:0)-(y.a?1:0)));
+ u.sort((x,y)=>x.i-y.i||((x.a?1:0)-(y.a?1:0)));
  return{b:budget,s:ASIG,u};
 }
+const wGroups=c=>{const g=[];c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i&&y.a===!!e.a);if(x)x.j.push(j);else g.push({i:e.i,a:!!e.a,j:[j]})});return g};
 function comp(k){
  const b=k==="boss"?Math.max(0,2*BUD()-HER.pts):BUD(),c=S.comp[k];
  if(!c||c.b!==b||c.s!==ASIG||c.u.some(e=>!ARMY[e.i])){S.comp[k]=genComp(k,b);delete S.rolls[k]}
@@ -592,6 +645,7 @@ function hist(k,t){S.hist.unshift(k+" "+t);S.hist=S.hist.slice(0,6)}
 /* ---------- acciones ---------- */
 function setNar(k){S.nar=k}
 function reinforce(){
+ if(S.shown)mergeWave(S.wave);
  S.shown=true;S.wave++;S.needEv=true;
  setNar(S.wave%2===1?"w1":"w2");
  S.alert="Entra la oleada "+(S.wave+1)+". Despliégala y tira un evento de Neth.";
@@ -613,7 +667,7 @@ function addAl(n){
 }
 function endRound(){
  S.alert="";
- if(S.armed&&!S.boss){S.boss=true;S.armed=false;S.round++;setNar("boss");S.needEv=false;S.alert="Llega la pelea de jefe: el Heraldo y su oleada de doble valor. No entran más refuerzos.";return}
+ if(S.armed&&!S.boss){if(S.shown)mergeWave(S.wave);S.shown=true;S.boss=true;S.armed=false;S.round++;setNar("boss");S.needEv=false;S.alert="Llega la pelea de jefe: el Heraldo y su oleada de doble valor. No entran más refuerzos.";return}
  const add=S.noEn?0:1;S.noEn=false; /* si se marcó Sin enemigos, el +2 ya se sumó */
  S.round++;
  if(S.boss)return;
@@ -654,6 +708,12 @@ const ACT={
  alHide:()=>{S.alShow=false},
  alHist:()=>{UI.alHist=!UI.alHist},
  reroll:()=>{const k=curW();delete S.comp[k];delete S.rolls[k]},
+ /* Miniaturas en mesa de una unidad: "t|i|n" (S.table[i]) o "w|j|n" (entrada j de la oleada en curso). n=0 la elimina del tablero. */
+ cnt:v=>{const[k,ix,m]=String(v).split("|"),n=Math.max(0,+m||0);
+  if(k==="t"){const t=(S.table||[])[+ix];if(t)t.m=Math.min(modsOf(t.i),n);return}
+  const c=S.comp[curW()];if(!c||c.merged)return;const e=c.u[+ix];if(e){delete e.d;e.m=Math.min(modsOf(e.i),n)}},
+ wTog:()=>{S.wMin=!S.wMin},
+ herT:()=>{UI.her=!UI.her},
  armyT:()=>{UI.army=!UI.army;UI.armyMsg=""},
  armySave:()=>{if(S.round)return;const el=$("#armyTxt");if(!el)return;const t=el.value,p=parseArmy(t);if(!p.units.length){UI.armyMsg="No he reconocido ninguna unidad. Cada una necesita una línea como: 3x Nombre [1] Q5+ D6+ | 25pts | reglas";return}try{localStorage.setItem(AKEY,t)}catch(e){}setArmy(t);UI.armyMsg="Lista cargada: "+p.units.length+" entradas."+(p.bad.length?" Se ignoraron "+p.bad.length+" líneas que no entendí.":"")+" Las oleadas se vuelven a sortear."},
  armyDef:()=>{if(S.round)return;try{localStorage.removeItem(AKEY)}catch(e){}setArmy(ARMY_DEF);UI.armyMsg="Lista de ejemplo restaurada."},
@@ -679,6 +739,8 @@ document.addEventListener("click",e=>{
  if(a==="CHm"){const x=+$("#chA").value,y=+$("#chB").value;if(!x){UI.chMsg="Elige el dado del contenido.";render();return}if(x<=5&&!y){UI.chMsg="Con "+x+" en el contenido hace falta el segundo dado (el objeto o el peligro).";render();return}UI.chMsg="";setCh(x,x<=5?y:0);save();render();return}
  if(ACT[a])ACT[a](v);
  save();render();
+ /* Al minimizar «Oleadas» con la tarjeta ya desplazada, vuelve a su cabecera para no quedarse en mitad del panel. */
+ if(a==="wTog"){const c=$("#wcard"),pb=$("#pbody");if(c&&c.getBoundingClientRect().top<pb.getBoundingClientRect().top)c.scrollIntoView({block:"start"})}
 });
 
 /* ---------- vistas: selector de misiones, pergamino y mesa ---------- */
@@ -725,9 +787,26 @@ function gauge(){
  return`<svg class="gauge" viewBox="0 0 250 132" role="img" aria-label="Alertness ${S.al} de 6">${p}<text x="125" y="108" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="46" fill="#ece7f5">${S.al}</text><text x="125" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#a59fba">de 6 · a 6 entran refuerzos</text></svg>`;
 }
 function prof(a){return"Q"+a.q+"+ D"+a.d+"+"+(a.rules?" · "+a.rules:"")+(a.w?" · "+a.w:"")}
-function unitRow(q,name,sub,place,rs,tags){
+function unitRow(q,name,sub,place,rs,tags,extra,cls){
  const chips=rs.map(r=>`<i class="${r.d>4&&r.t!=="a"?"ch":""}">${esc(posLabel(r))}</i>`).join("");
- return`<div class="un"><div class="q">${q}</div><div><b>${esc(name)}</b>${tags?` <span class="tgs">${tags}</span>`:""}<small>${em(sub)}</small><small>${esc(place)}</small>${chips?`<div class="chipsr">${chips}</div>`:""}</div></div>`;
+ return`<div class="un ${cls||""}"><div class="q">${q}</div><div><b>${esc(name)}</b>${tags?` <span class="tgs">${tags}</span>`:""}<small>${em(sub)}</small>${place?`<small>${esc(place)}</small>`:""}${chips?`<div class="chipsr">${chips}</div>`:""}${extra||""}</div></div>`;
+}
+/* Pestaña de cada unidad: cuántas miniaturas siguen en la mesa (de t a 1) o eliminarla del tablero. */
+function cntTab(kind,ix,n,t,lb){
+ if(!n)return`<div class="cnt off"><span>${lb} · eliminada del tablero</span><button class="pb sm gh" data-a="cnt" data-v="${kind}|${ix}|${t}" data-f="c${kind}${ix}u">Deshacer</button></div>`;
+ let s="";for(let m=t;m>=1;m--)s+=`<button type="button" class="${m===n?"on":""}" data-a="cnt" data-v="${kind}|${ix}|${m}" data-f="c${kind}${ix}_${m}" aria-pressed="${m===n}" aria-label="${lb}: ${m} ${m===1?"miniatura":"miniaturas"} en mesa">${m}</button>`;
+ return`<div class="cnt"><span>${lb}</span><div class="segs" role="group" aria-label="${lb}: miniaturas en mesa">${s}</div><button type="button" class="rm" data-a="cnt" data-v="${kind}|${ix}|0" data-f="c${kind}${ix}x">Eliminar del tablero</button></div>`;
+}
+/* Fila de una unidad del ejército con una pestaña por cada unidad sorteada (copias = [{kind,ix,m}]). */
+function armyRow(i,copies,place,rs,tags){
+ const a=ARMY[i],t=modsOf(i),live=copies.filter(c=>c.m>0).length;
+ const tabs=copies.map((c,q)=>cntTab(c.kind,c.ix,c.m,t,copies.length>1?"Unidad "+(q+1):"Miniaturas")).join("");
+ return unitRow(live,a.name,prof(a)+" · "+a.pts+" pts c/u · "+t+" miniaturas por unidad",place,rs,tags,`<div class="cnts">${tabs}</div>`,live?"":"gone");
+}
+/* Recuadro fijo del jefe: aparece al activar la pelea de jefe y se queda arriba de «Oleadas». */
+function bossBox(){
+ if(!S.armed&&!S.boss)return"";
+ return`<div class="hbx"><img src="${IMG_JEFE}" alt="" width="64" height="81"><div><p class="hbt">${S.boss?"Jefe en la mesa":"Llega al final de esta ronda"}</p><b>${HER.name}</b><div class="chipsr"><i>Calidad 3+</i><i>Defensa 3+</i><i class="ch">Tough(${TG[S.d-1]})</i><i>Fear(3)</i><i>Caster(3)</i></div><button class="linkb" type="button" data-a="herT" data-f="herT" aria-expanded="${!!UI.her}">${UI.her?"Ocultar la ficha":"Ver la ficha completa"}</button></div></div>${UI.her?herFicha():""}`;
 }
 /* Ficha del Heraldo: solo se ve en la mesa cuando entra en juego (en el pergamino está oculta). */
 function herFicha(){
@@ -739,17 +818,30 @@ function herFicha(){
  <p><b>Punto débil:</b> los ataques del héroe que lleve el diario del olvidado contra el Heraldo ganan AP(1).</p></div>`;
 }
 function waveCard(){
- if(!S.shown&&!S.boss&&S.wave===0)return`<section class="pc"><h3><span class="tt">Oleada actual</span></h3><p style="margin:0 0 12px;font-size:12.5px;line-height:1.5;color:var(--pmu)">Todavía no hay enemigos en la mesa. Elige antes la dificultad, los puntos de los héroes y tu ejército, y pulsa el botón para generar la primera oleada.</p><div class="cwrap"><button class="pb pr big" data-a="first" data-f="first">Primera oleada</button></div></section>`;
- const k=curW(),w=waveDef(k),ro=S.rolls[k]&&!Array.isArray(S.rolls[k])?S.rolls[k]:null,g=[];
- w.c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i&&y.r===!!e.r&&y.a===!!e.a);if(x)x.j.push(j);else g.push({i:e.i,r:!!e.r,a:!!e.a,j:[j]})});
+ if(!S.shown&&!S.boss&&S.wave===0)return`<section class="pc"><h3><span class="tt">Oleadas</span></h3>${bossBox()}<p style="margin:0 0 12px;font-size:12.5px;line-height:1.5;color:var(--pmu)">Todavía no hay enemigos en la mesa. Elige antes la dificultad, los puntos de los héroes y tu ejército, y pulsa el botón para generar la primera oleada.</p><div class="cwrap"><button class="pb pr big" data-a="first" data-f="first">Primera oleada</button></div></section>`;
+ const k=curW(),w=waveDef(k),ro=S.rolls[k]&&!Array.isArray(S.rolls[k])?S.rolls[k]:null,g=wGroups(w.c);
+ /* En mesa: lo que sigue vivo de oleadas anteriores, agrupado por unidad. */
+ const T=(S.table||[]).map((t,ix)=>({t,ix})).filter(o=>ARMY[o.t.i]&&o.t.m!=null);
+ let old="";
+ if(T.length){const n=T.filter(o=>o.t.m>0).length,G=[];
+  T.forEach(o=>{const x=G.find(y=>y.i===o.t.i);const c={kind:"t",ix:o.ix,m:o.t.m};if(x)x.c.push(c);else G.push({i:o.t.i,c:[c]})});
+  old=`<p class="grp">En mesa · oleadas anteriores<span>${n} ${n===1?"unidad":"unidades"}</span></p>`+G.map(x=>armyRow(x.i,x.c,"",[],"")).join("")}
+ /* Recién llegadas: la oleada en curso, una pestaña por unidad sorteada. */
  let h="";
  if(w.her)h+=unitRow(1,HER.name,"Q3+ D3+ · Villain, Fear(3), Stealth, Caster(3), Tough("+TG[S.d-1]+") · "+HER.pts+" pts (estimado)",PLACE.c,ro&&ro.h?[ro.h]:[],"");
- if(w.her)h+=herFicha();
- g.forEach(x=>{const a=ARMY[x.i];
-  h+=unitRow(x.j.length,a.name,prof(a)+" · "+a.pts+" pts c/u",(x.r?"Reciclada: úsala solo si ya fue eliminada. ":"")+PLACE[x.a?"a":w.p],ro?x.j.map(j=>ro.u[j]).filter(Boolean):[],(x.a?`<i class="tg">Ambush</i>`:"")+(x.r?`<i class="tg rc">Reciclada</i>`:""))});
- if(!h)h=`<p style="margin:6px 0;font-size:12.5px;color:var(--pbad)">No hay unidades en tu lista. Pégala en «Ejército enemigo».</p>`;
+ g.forEach(x=>{h+=armyRow(x.i,x.j.map(j=>({kind:"w",ix:j,m:aliveM(w.c.u[j])})),PLACE[x.a?"a":w.p],ro?x.j.map(j=>ro.u[j]).filter(Boolean):[],x.a?`<i class="tg">Ambush</i>`:"")});
+ if(!ARMY.length)h=`<p style="margin:6px 0;font-size:12.5px;color:var(--pbad)">No hay unidades en tu lista. Pégala en «Ejército enemigo».</p>`;
+ else if(!g.length)h+=`<p style="margin:6px 0;font-size:12.5px;line-height:1.5;color:var(--pbad)">No quedan copias libres que quepan en esta oleada. Elimina del tablero las unidades que hayan caído y pulsa «Otra composición».</p>`;
  const tot=w.c.u.reduce((s,e)=>s+ARMY[e.i].pts,0)+(w.her?HER.pts:0),n=w.c.u.length+(w.her?1:0);
- return`<section class="pc"><h3><span class="tt">Oleada actual</span></h3><p style="margin:0 0 6px;font-size:12.5px;color:var(--pmu)">Valor de la oleada: <b style="color:var(--pink)">${w.budget} pts</b> (${k==="boss"?"el doble de ":""}${PC[S.d-1]}% de ${S.pts}). Sorteadas: <b style="color:var(--pink)">${n} unidades · ${tot} pts</b>.</p>${h}<p style="margin:8px 0 10px;font-size:12.5px;line-height:1.5;color:var(--pmu)">${em(w.surprise)}</p><div class="row"><button class="pb sm" data-a="pos" data-f="pos">Sortear posiciones</button><button class="pb sm gh" data-a="reroll" data-f="reroll">Otra composición</button>${S.boss?"":`<button class="pb sm" data-a="next" data-f="next">Siguiente oleada</button>`}</div></section>`;
+ const lbl=k==="boss"?"Oleada del jefe":k===0?"Centinelas":"Refuerzos "+k;
+ /* Unidades vivas en mesa (anteriores + recién llegadas) para el resumen y el botón de minimizar. */
+ const onT=T.filter(o=>o.t.m>0).length+w.c.u.filter(e=>aliveM(e)>0).length+(w.her&&!S.dead?1:0);
+ const sum=`${onT} ${onT===1?"unidad":"unidades"} en mesa`;
+ const body=S.wMin?`<p class="wsum">Última oleada: ${lbl}. Pulsa «Mostrar oleadas» para ver las unidades.</p>`:`<p style="margin:0 0 6px;font-size:12.5px;color:var(--pmu)">Valor de la última oleada: <b style="color:var(--pink)">${w.budget} pts</b> (${k==="boss"?"el doble de ":""}${PC[S.d-1]}% de ${S.pts}). Sorteadas: <b style="color:var(--pink)">${n} unidades · ${tot} pts</b>.</p>${old}<p class="grp new">${T.length?"Recién llegadas · ":""}${lbl}<span>${n} ${n===1?"unidad":"unidades"}</span></p>${h}<p style="margin:8px 0 10px;font-size:12.5px;line-height:1.5;color:var(--pmu)">${em(w.surprise)}</p>`;
+ /* Botón para minimizar/mostrar: va al final de la tarjeta y, si la tarjeta es más alta que la pantalla, se queda pegado abajo (sticky). */
+ /* Abierta: botón redondo que flota abajo a la derecha, en un margen reservado (no tapa unidades). Minimizada: píldora con texto. */
+ const tog=`<div class="wtog"><button type="button" class="${S.wMin?"":"ic"}" data-a="wTog" data-f="wTog" aria-expanded="${!S.wMin}" aria-controls="wcard" aria-label="${S.wMin?"Mostrar oleadas":"Minimizar oleadas"} (${sum})" title="${S.wMin?"Mostrar oleadas":"Minimizar oleadas"}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${S.wMin?"M6 9l6 6 6-6":"M6 15l6-6 6 6"}"/></svg>${S.wMin?"Mostrar oleadas":""}<small>${onT}</small></button></div>`;
+ return`<section class="pc wcard${S.wMin?" min":""}" id="wcard"><h3><span class="tt">Oleadas</span><em>${sum}</em></h3>${bossBox()}${body}<div class="row"><button class="pb sm" data-a="pos" data-f="pos">Sortear posiciones</button><button class="pb sm gh" data-a="reroll" data-f="reroll">Otra composición</button>${S.boss?"":`<button class="pb sm" data-a="next" data-f="next">Siguiente oleada</button>`}</div>${tog}</section>`;
 }
 function armyBlock(){
  const n=ARMY.reduce((s,a)=>s+a.n,0),tot=ARMY.reduce((s,a)=>s+a.n*a.pts,0),lk=!!S.round;
@@ -775,9 +867,9 @@ function alertBox(){
  const L=S.alw||[];let h="";
  const w=L[L.length-1];
  if(w&&S.alShow){
-  const g=[];w.c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i&&y.r===!!e.r);if(x)x.j.push(j);else g.push({i:e.i,r:!!e.r,j:[j]})});
+  const g=[];w.c.u.forEach((e,j)=>{const x=g.find(y=>y.i===e.i);if(x)x.j.push(j);else g.push({i:e.i,j:[j]})});
   const tot=w.c.u.reduce((s,e)=>s+ARMY[e.i].pts,0);
-  h+=`<div class="alw"><div class="alwh"><b>Refuerzos por alerta ${L.length}</b><span>${w.c.u.length} unidades · ${tot} pts</span></div>${g.map(x=>{const a=ARMY[x.i];return unitRow(x.j.length,a.name,prof(a)+" · "+a.pts+" pts c/u",(x.r?"Reciclada: úsala solo si ya fue eliminada. ":"")+PLACE.c,w.r?x.j.map(j=>w.r[j]):[],x.r?`<i class="tg rc">Reciclada</i>`:"")}).join("")}<div class="row" style="justify-content:center;margin-top:10px"><button class="pb sm" data-a="alPos" data-f="alPos">Sortear posiciones</button><button class="pb sm gh" data-a="alHide" data-f="alHide">Ya están en la mesa</button></div></div>`;
+  h+=`<div class="alw"><div class="alwh"><b>Refuerzos por alerta ${L.length}</b><span>${w.c.u.length} unidades · ${tot} pts</span></div>${g.map(x=>{const a=ARMY[x.i];return unitRow(x.j.length,a.name,prof(a)+" · "+a.pts+" pts c/u",PLACE.c,w.r?x.j.map(j=>w.r[j]):[],"")}).join("")}<div class="row" style="justify-content:center;margin-top:10px"><button class="pb sm" data-a="alPos" data-f="alPos">Sortear posiciones</button><button class="pb sm gh" data-a="alHide" data-f="alHide">Ya están en la mesa</button></div></div>`;
  }
  if(L.length){
   h+=`<div class="cwrap" style="margin-top:12px"><button class="linkb" data-a="alHist" data-f="alHist" aria-expanded="${!!UI.alHist}">${UI.alHist?"Ocultar refuerzos generados":"Ver refuerzos generados ("+L.length+")"}</button></div>`;
@@ -912,7 +1004,7 @@ function buildSheet(){
  h+=sec("enemigos","Oleadas","Lo que el pueblo ha olvidado",`<div class="mons"><div class="mon">${cMon("bor")}<h3>Borrados</h3><p>Figuras grises que recuerdan a medias cómo caminar. Espectros o muertos vivientes de rostro liso.</p></div><div class="mon">${cMon("cul")}<h3>Cultistas del Umbral</h3><p>Túnicas negras con el signo del Umbral en las mangas. Cantan una sola nota. Un <i>Caster</i> los guía.</p></div><div class="mon">${cMon("ani")}<h3>Animales deformados</h3><p>Perros del pueblo con la carne torcida y los ojos blancos. Rápidos (<i>Fast</i>) y mal afinados.</p></div></div>
  <div class="body"><p>Ten al menos 2 o 3 veces más unidades que héroes, y puntos para 2 o 3 oleadas completas.</p><p><b class="hl">Tamaño de oleada.</b> Porcentaje de los puntos totales de los héroes. Ejemplo: con 300 puntos de héroes, una oleada de nivel 2 vale 150 puntos.</p></div><div class="bars" id="bars"></div>
  <div class="body"><p><b class="hl">Centinelas.</b> Antes de empezar se despliegan en el centro de un cuadrante al azar: un dado por unidad, con 1-4 va al cuadrante con ese número y con 5-6 eliges. El PDF no fija cuántos son, así que usa el tamaño de una oleada.</p><p><b class="hl">Alertness.</b> Al final de cada ronda sube 1, o 2 si no queda ningún enemigo en la mesa. Al llegar a 6 entra una oleada de refuerzos y la Alertness vuelve a 0.</p><p><b class="hl">Refuerzos.</b> Cada unidad entra a 6&quot; o menos de una esquina al azar: con 1-4 va a la esquina con ese número y con 5-6 eliges.</p></div>
- <div class="tw"><table id="wvt"></table></div><p class="small">El panel de juego sortea al azar las unidades de cada oleada con tu propia lista de Army Forge (pégala en «Ejército enemigo»), sin pasarse de su valor. Los Borrados, animales y cultistas son el papel que hacen en la historia: tus miniaturas los representan. Si ya no quedan copias libres de una unidad, sale como <b class="hl">reciclada</b>: úsala solo si ya fue eliminada. El Heraldo cuenta como 150 pts (estimación de la casa).</p>`);
+ <div class="tw"><table id="wvt"></table></div><p class="small">El panel de juego sortea al azar las unidades de cada oleada con tu propia lista de Army Forge (pégala en «Ejército enemigo»), sin pasarse de su valor. Los Borrados, animales y cultistas son el papel que hacen en la historia: tus miniaturas los representan. Solo salen copias que no estén ya en la mesa: en «Oleadas» marca cuántas siguen en pie o elimínalas del tablero, y las que caen vuelven a estar disponibles. El Heraldo cuenta como 150 pts (estimación de la casa).</p>`);
  $("#sheet").innerHTML=h;
 }
 function paintSheet(){
