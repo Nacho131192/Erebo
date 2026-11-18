@@ -152,6 +152,8 @@ Estado guardado en `localStorage` (clave `psn-m1-v2`, con try/catch; botón "Nue
 ```
 CLAUDE.md                      este archivo
 docs/mision-1.md               texto completo de la misión (fuente de verdad)
+docs/age-of-fantasy-quest-heroes.md  clases, habilidades, niveles, tienda y hechizos de AoF: Quest
+                               (datos de Army Forge traducidos al español, 2026-11-18; consulta)
 src/pueblo-sin-nombre.html     página final lista para abrir
 src/template/final-tpl.html    plantilla (CSS, HTML, JS)
 src/template/data.js           datos extraídos de la misión
