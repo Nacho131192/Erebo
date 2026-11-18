@@ -12,6 +12,8 @@ out=s.replace("%%DATA%%",rd("data.js")).replace("%%SCENE%%",sc).replace("%%PORTR
 import base64
 def img(n): return "data:image/jpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","web",n),"rb").read()).decode()
 out=out.replace("%%IMG_RETRATO%%",img("heraldo.jpg")).replace("%%IMG_JEFE%%",img("heraldo-jefe.jpg"))
+# Fondo del tablero táctico (boceto MX-CRUZ2-A, 900 px). Sus obstáculos están calcados a mano en BOBS de la plantilla.
+out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg"))
 # Narraciones (assets/audio/, MP3): también como data URI. Clave = texto de la mesa (start = Antes de empezar, r1 = Ronda 1…).
 def aud(n): return "data:audio/mpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","audio",n),"rb").read()).decode()
 out=out.replace("%%AUD_START%%",aud("antes-de-empezar.mp3"))

@@ -91,7 +91,8 @@ html.lock{overflow:hidden}
 .back:hover{border-color:var(--pgold)}.back:hover svg{transform:translateX(-3px)}
 
 /* Las fichas de héroe solo se ven con la mesa de juego abierta. */
-body:not(:has(#panel.open)) #hfLayer{display:none}
+/* Fichas de héroe: en la mesa y en la página de la misión (cartas). */
+body:not(:has(#panel.open)):not(:has(#mis:not([hidden]))) #hfLayer{display:none}
 /* El Heraldo, dentro del prólogo */
 .heri{margin-top:34px}.heri>.orn{margin:0 auto 18px}
 .herb{text-align:center;max-width:52ch;margin:0 auto 26px!important}
@@ -676,10 +677,14 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .kinfo .klock{color:#cdb894;border-color:rgba(217,184,108,.3);background:rgba(255,255,255,.03)}
 .kinfo .klock svg{color:#b4404f}
 .kfan{position:absolute;left:66%;bottom:44px;z-index:3;width:0;height:var(--ch)}
-.kcard{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:absolute;left:calc(var(--cw) / -2);bottom:0;width:var(--cw);height:var(--ch);padding:0;border:0;border-radius:12px;background:#0f1628;transform-origin:50% 330%;transform:rotate(calc(var(--o) * 7deg)) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 14px 30px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.5);overflow:hidden;animation:kdeal .8s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 70ms + 100ms)}
+.kcard{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:absolute;left:calc(var(--cw) / -2);bottom:0;width:var(--cw);height:var(--ch);padding:0;border:0;border-radius:12px;background:#0f1628;transform-origin:50% 330%;transform:rotate(calc(var(--o) * 7deg)) translateY(-280%) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(280%);transition:transform .55s cubic-bezier(.22,1,.36,1),box-shadow .4s;box-shadow:0 14px 30px rgba(0,0,0,.6),0 0 0 1px rgba(217,184,108,.5);overflow:hidden;animation:kdeal .8s cubic-bezier(.22,1,.36,1) backwards;animation-delay:calc(var(--i) * 70ms + 100ms)}
 @keyframes kdeal{from{transform:rotate(0deg) translateY(120px);opacity:0}}
-.kcard:hover{transform:rotate(calc(var(--o) * 7deg)) translateY(-16px) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry))}
-.kcard.on{transform:rotate(calc(var(--o) * 7deg)) translateY(-44px) scale(1.06) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));z-index:5;box-shadow:0 24px 50px rgba(0,0,0,.7),0 0 0 1.5px var(--gold),0 0 40px color-mix(in srgb,var(--cac) 55%,transparent)}
+/* La inclinación gira alrededor del centro de la carta (el giro del abanico usa un origen muy por debajo):
+   por eso se lleva al centro (-280 %) antes de inclinar y se devuelve después. */
+/* Zona invisible bajo la carta para que, al subir con el hover, no se pierda el ratón por abajo. */
+.kcard::before{content:"";position:absolute;left:0;right:0;top:100%;height:48px}
+.kcard:hover{transform:rotate(calc(var(--o) * 7deg)) translateY(-16px) translateY(-280%) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(280%)}
+.kcard.on{transform:rotate(calc(var(--o) * 7deg)) translateY(-44px) scale(1.06) translateY(-280%) perspective(800px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(280%);z-index:5;box-shadow:0 24px 50px rgba(0,0,0,.7),0 0 0 1.5px var(--gold),0 0 40px color-mix(in srgb,var(--cac) 55%,transparent)}
 .kcard:focus-visible{outline:none;box-shadow:0 0 0 2px var(--gold),0 0 0 5px rgba(217,184,108,.3)}
 .kcard::after{content:"";position:absolute;inset:6px;border-radius:8px;border:1px solid rgba(217,184,108,.45);pointer-events:none}
 .kcard .kart{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,color-mix(in srgb,var(--cac) 55%,#0f1628),#0f1628 75%)}
@@ -967,7 +972,8 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 .fab.locked .fring{filter:grayscale(.7) brightness(.8)}
 .fab.locked .ftx small{color:var(--pgold)}
 .fab .flk{display:inline-block;width:11px;height:11px;margin-right:5px;vertical-align:-1px}
-@media (max-width:1180px){.qrow{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-top:34px;padding-bottom:30px;scrollbar-width:none}.qrow::-webkit-scrollbar{display:none}.qcard{scroll-snap-align:center}.qrow::before,.qrow::after{content:"";flex:1 0 0}}
+/* Seis cartas (tres grandes) necesitan unos 1470 px: por debajo, la fila pasa a carrusel deslizable para que no se corte. */
+@media (max-width:1500px){.qrow{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-top:34px;padding-bottom:30px;scrollbar-width:none}.qrow::-webkit-scrollbar{display:none}.qcard{scroll-snap-align:center}.qrow::before,.qrow::after{content:"";flex:1 0 0}}
 @media (max-width:760px){
  .qhero{height:auto;min-height:420px}
  .qart{width:100%;-webkit-mask:linear-gradient(0deg,transparent,#000 55%);mask:linear-gradient(0deg,transparent,#000 55%)}
@@ -1015,10 +1021,10 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 .ptl small{color:#8fa6d6}
 .pst span{background:rgba(12,18,34,.7);border-color:var(--pline2);color:var(--pmu2)}
 .pst .mp i{background:#25304f}
-/* tarjetas con marco de Neth (borde dorado con tramos que faltan) */
+/* tarjetas con marco dorado completo (2026-11-18: antes tenía tramos que faltaban) */
 .pc{position:relative;border:0;border-radius:16px;background:linear-gradient(180deg,rgba(23,32,58,.88),rgba(13,19,36,.92));box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04)}
 .pc::before,.fn::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
- background:conic-gradient(from 18deg,rgba(217,184,108,.5) 0 16%,transparent 16% 19%,rgba(217,184,108,.32) 19% 47%,transparent 47% 49.5%,rgba(217,184,108,.45) 49.5% 72%,transparent 72% 76%,rgba(217,184,108,.3) 76% 100%);
+ background:linear-gradient(160deg,rgba(217,184,108,.62),rgba(217,184,108,.36) 50%,rgba(217,184,108,.55));
  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
 .pc h3 .tt{border-color:rgba(217,184,108,.75);font-weight:700;letter-spacing:.2em}
 .pc h3 em{color:var(--pmu)}
@@ -1114,7 +1120,15 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 .bmap{display:block;width:100%;height:auto;filter:drop-shadow(0 24px 50px rgba(0,0,0,.55))}
 .bmap .bz{cursor:pointer}
 .bmap .bz:hover{fill:rgba(217,184,108,.06)}
-.bmap .btk{cursor:pointer}
+.bmap .btk{cursor:grab;touch-action:none}
+.bmap .btk.drag{cursor:grabbing}.bmap .btk.drag .bb{stroke:#fff;stroke-width:2.4}
+.panel.bdrag .bmap .bz:hover{fill:transparent}
+.bsb{margin-left:auto;display:flex;gap:6px;flex:none}
+.bsel b.bdist{display:inline;font-size:inherit;color:#f3dc9a}.bsel b.bdist.run{color:#c9b8ff}
+.bmap .btk.cut .bb{stroke:#c9b8ff;stroke-width:2.6}
+/* Con el tablero táctico abierto no se ven los medallones de héroe. */
+.hf-meds{transition:bottom .4s cubic-bezier(.22,1,.36,1),opacity .3s,visibility 0s}
+body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bopen) .hf-meds{opacity:0;visibility:hidden;pointer-events:none;transition:bottom .4s cubic-bezier(.22,1,.36,1),opacity .25s,visibility 0s .25s}
 .bmap .btk:hover .bb{stroke:#fff}
 .bmap .brs{cursor:pointer}
 .panel:not(.bpick) .bmap .bz{cursor:default}.panel:not(.bpick) .bmap .bz:hover{fill:transparent}
@@ -1176,7 +1190,7 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 
 <script>
 %%DATA%%
-const SCENE=`%%SCENE%%`,PORTRAIT=`%%PORTRAIT%%`,IMG_RETRATO="%%IMG_RETRATO%%",IMG_JEFE="%%IMG_JEFE%%";
+const SCENE=`%%SCENE%%`,PORTRAIT=`%%PORTRAIT%%`,IMG_RETRATO="%%IMG_RETRATO%%",IMG_JEFE="%%IMG_JEFE%%",IMG_TABLERO="%%IMG_TABLERO%%";
 /* Narración grabada por texto de la mesa (clave de S.nar). Los textos sin audio mantienen el aviso de «próximamente». */
 const AUD={start:"%%AUD_START%%"};
 let NA=null,NAK="";
@@ -1303,7 +1317,7 @@ function busy(skipK){
 function mergeWave(k){
  const c=S.comp[k];if(!c||c.merged)return;
  S.table=(S.table||[]).filter(t=>t.m>0&&ARMY[t.i]);
- c.u.forEach(e=>{const m=aliveM(e);if(m>0&&ARMY[e.i])S.table.push({i:e.i,m,p:e.p})});
+ c.u.forEach(e=>{const m=aliveM(e);if(m>0&&ARMY[e.i])S.table.push(e.p0?{i:e.i,m,p:e.p,p0:e.p0}:{i:e.i,m,p:e.p})});
  S.table.sort((x,y)=>x.i-y.i);c.merged=true;
 }
 /* Sorteo: solo copias que no estén ya en la mesa (regla de la casa). Si no cabe ninguna, la oleada sale más corta. */
@@ -1461,8 +1475,13 @@ const ACT={
  board:()=>{UI.board=!UI.board;UI.bsel=null;if(UI.board)requestAnimationFrame(()=>{const x=$("#bdrw .px");if(x)x.focus({preventScroll:true})});else $("#btab").focus({preventScroll:true})},
  bsel:v=>{UI.bsel=UI.bsel===v?null:v},
  bq:v=>{const u=UI.bsel&&bFind(UI.bsel);if(u){u.e.p={z:"q",d:+v};UI.bsel=null}},
- bc:v=>{const u=UI.bsel&&bFind(UI.bsel);if(u){u.e.p={z:"c",d:+v};UI.bsel=null}else S.hc=S.hc===+v?0:+v},
- hc:v=>{S.hc=S.hc===+v?0:+v},
+ /* Vuelve la unidad a donde empezó la ronda. */
+ /* Muestra encima de la imagen lo que bloquea el paso (forma real y holgura). */
+ bobs:()=>{UI.bobs=!UI.bobs},
+ bundo:v=>{const u=bFind(v);if(u&&bOrig(u.e)){u.e.p={z:"x",x:u.e.p0.x,y:u.e.p0.y};delete u.e.p0}},
+ bc:v=>{const u=UI.bsel&&bFind(UI.bsel);if(u){const c=BCC[+v-1];bMove(u.key,c[0]+(c[0]<300?22:-22),c[1]+(c[1]<300?22:-22));UI.bsel=null}else{S.hc=S.hc===+v?0:+v;S.hpos={}}},
+ /* Elegir otra esquina vuelve a desplegar a los héroes allí. */
+ hc:v=>{S.hc=S.hc===+v?0:+v;S.hpos={}},
  reset:()=>{if(!UI.sure){UI.sure=true;UI.sureR=false;setTimeout(()=>{UI.sure=false;render()},3500);return}narStop();S=S0();UI.sure=false;try{localStorage.removeItem(KEY)}catch(e){}}
 };
 function tumble(kind,done){
@@ -1478,6 +1497,8 @@ document.addEventListener("click",e=>{
  if(!b)return;
  const a=b.dataset.a,v=b.dataset.v;
  if(evLock()&&!EV_OK.has(a)&&$("#panel").contains(b)){e.preventDefault();return}
+ /* Tablero: tocar un punto con una ficha elegida la lleva allí. */
+ if(a==="bpt"){if(!UI.bsel)return;const sv=b.ownerSVGElement,m=sv&&sv.getScreenCTM();if(!m)return;const q=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());bMove(UI.bsel,q.x,q.y);UI.bsel=null;save();render();return}
  if(a==="SECm"){if(!S.prim||S.secRolled)return;const x=+$("#secA").value;if(!x){UI.secMsg="Elige el resultado del dado.";render();return}UI.secMsg="";prepSec(x);save();render();return}
  if(a==="SEC"){if(!S.prim||S.secRolled)return;tumble("SEC",()=>{prepSec();save();render()});return}
  if(a==="CH"){UI.chMsg="";tumble("CH",()=>{setCh();save();render()});return}
@@ -1500,9 +1521,9 @@ function swapView(from,to,after){
  from.classList.remove("enter");from.classList.add("leave");swapT=setTimeout(go,230);
 }
 function toTop(y){window.scrollTo({top:y,left:0,behavior:"instant"})}
-/* Lectura obligatoria: la mesa de juego no se abre hasta leer la Historia y la Preparación
+/* Lectura obligatoria: la mesa de juego no se abre hasta leer la Historia, los Objetivos y la Preparación
    (salvo que ya haya una partida empezada). Se guarda aparte; «Nueva partida» no la borra. */
-const QREQ=["pro","prep"],QRL={pro:"la Historia",prep:"la Preparación"};
+const QREQ=["pro","obj","prep"],QRL={pro:"la Historia",obj:"los Objetivos",prep:"la Preparación"};
 let QRD={};try{QRD=JSON.parse(localStorage.getItem("psn-m1-read")||"{}")||{}}catch(e){QRD={}}
 function mesaLocked(){return !S.round&&QREQ.some(k=>!QRD[k])}
 function qMissing(){return QREQ.filter(k=>!QRD[k]).map(k=>`<b>${QRL[k]}</b>`)}
@@ -1512,7 +1533,7 @@ function qReadPaint(){
   b.classList.toggle("read",r);b.querySelector(".req").textContent=r?"✓ Leída":"Obligatoria";b.querySelector(".rd").textContent=r?"Volver a leer":"Leer"});
  const h=$("#sheet .qhint");if(!h)return;const m=qMissing();
  h.classList.toggle("ok",!mesaLocked()&&!S.round);
- h.innerHTML=S.round?"Elige una carta para leerla. La partida sigue en la mesa de juego.":m.length?`Antes de abrir la mesa de juego, leed ${m.join(" y ")}. El resto de cartas son de consulta.`:"Ya podéis abrir la mesa de juego. El resto de cartas quedan para consultar cuando haga falta."}
+ h.innerHTML=S.round?"Elige una carta para leerla. La partida sigue en la mesa de juego.":m.length?`Antes de abrir la mesa de juego, leed ${m.length>1?m.slice(0,-1).join(", ")+" y "+m[m.length-1]:m[0]}. El resto de cartas son de consulta.`:"Ya podéis abrir la mesa de juego. El resto de cartas quedan para consultar cuando haga falta."}
 function mesaNudge(){
  const f=$("#fab");if(f.animate&&!REDUCE)f.animate([{transform:"none"},{transform:"translateX(-7px)"},{transform:"translateX(7px)"},{transform:"translateX(-4px)"},{transform:"none"}],{duration:420});
  const h=$("#sheet .qhint");if(h)h.scrollIntoView({behavior:REDUCE?"auto":"smooth",block:"center"});
@@ -1542,7 +1563,7 @@ function NAV(t){
  const from=$(VW[VIEW]),to=$(VW[t]);
  if(VIEW==="m1"){closeMesa();if(typeof qClose==="function")qClose();misY=window.scrollY}
  VIEW=t;
- if(t==="home")HOME.map();else if(t==="camp")HOME.camp();
+ if(t==="home"){HOME.closePop();HOME.map()}else if(t==="camp")HOME.camp();
  swapView(from,to,()=>{if(t==="m1"){toTop(misY);$("#mis .back").focus({preventScroll:true})}else{toTop(0);if(t==="home")HOME.mapAfter();else HOME.focusCamp()}});
 }
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#panel").classList.contains("open")){e.preventDefault();if(UI.board){UI.board=false;UI.bsel=null;paintBoard();$("#btab").focus({preventScroll:true});return}closeMesa()}});
@@ -1574,38 +1595,175 @@ function sigil(s,col){col=col||"#d9b86c";return`<svg viewBox="0 0 54 54" aria-hi
 
 /* ---------- Tablero táctico (pestaña flotante) ----------
    Mesa de 48" con cuadrantes I-IV y esquinas 1-4 en sentido horario desde el noroeste.
-   Cada unidad en mesa lleva su posición en e.p ({z:"q"|"c",d:1-4} o {z:"a"} para Ambush), que se rellena
-   al sortear posiciones o al moverla a mano (tocar ficha y luego un cuadrante o una esquina). Es orientativo. */
+   Cada unidad en mesa lleva su posición en e.p: {z:"q"|"c",d:1-4} tras sortear (cuadrante o esquina), {z:"a"} para Ambush
+   o {z:"x",x,y} (punto exacto, en unidades del tablero) cuando se arrastra o se coloca a mano. e.p0={r,x,y} guarda
+   dónde empezó a moverse en la ronda r, para medir lo que lleva recorrido. Es orientativo. */
 const BQC=[[150,150],[450,150],[450,450],[150,450]],BCC=[[58,58],[542,58],[542,542],[58,542]],BOFF=[[0,0],[44,14],[-38,28],[12,-42],[-30,-38],[40,-30],[-44,-6],[28,40]];
-const BRP=[[232,248],[404,372],[338,104]];
+const BRP=[[232,248],[404,372],[302,118]];
+/* Escala: el tablero mide 600 unidades = 48″, así que 1″ = 12,5 y cada cuadro de la rejilla (75) son 6″. */
+const BIN=600/48;
+/* Movimiento de la unidad: [avanzar, correr o cargar] en pulgadas; Fast suma 2″/4″ y Slow resta 2″/4″. */
+const bSpd=i=>{const r=(ARMY[i]&&ARMY[i].rules)||"";return/\bFast\b/.test(r)?[8,16]:/\bSlow\b/.test(r)?[4,8]:[6,12]};
+const bIn=n=>(Math.round(n*10)/10).toLocaleString("es-ES",{maximumFractionDigits:1})+"″";
+const bClamp=v=>Math.max(18,Math.min(582,v));
+/* Origen del movimiento de esta ronda (o null si aún no se ha movido). */
+const bOrig=e=>e.p0&&e.p0.r===S.round?(typeof bOut==="function"?bOut([e.p0.x,e.p0.y]):[e.p0.x,e.p0.y]):null;
+/* Posición de cada ficha en el tablero: exacta si se movió a mano; si no, repartida dentro de su cuadrante o esquina. */
+function bLayout(U){const cnt={},pos={};
+ U.forEach(u=>{const p=u.e.p;if(u.g==="hero"&&!p){pos[u.key]=bOut(bHeroHome(u.hi));return}if(!p||p.z==="a")return;if(p.z==="x"){pos[u.key]=bOut([p.x,p.y]);return}
+  const z=p.z+p.d,k=cnt[z]=(cnt[z]||0),o=BOFF[k%BOFF.length],c=p.z==="q"?BQC[p.d-1]:BCC[p.d-1];cnt[z]++;
+  const s=p.z==="c"?.8:1;pos[u.key]=bOut([c[0]+o[0]*s,c[1]+o[1]*s])});
+ return pos}
+/* Tope de movimiento por ronda: el de correr o cargar de la unidad, y nunca más de 16″. */
+const BMAX=16;
+/* Movimiento de un héroe con las mismas reglas: 6″/12″, Fast +2″/+4″, Slow −2″/−4″; Debilitado mueve la mitad;
+   inconsciente (0 heridas) no se mueve. Las reglas salen de su ficha (h.sk, las que importa de Army Forge). */
+function bSpdH(h){if(hfKo(h))return[0,0];const r=(h.sk||[]).filter(x=>x.g==="regla").map(x=>x.n).join(" ");
+ let s=/\bFast\b/.test(r)?[8,16]:/\bSlow\b/.test(r)?[4,8]:[6,12];if((h.st||[]).includes("de"))s=s.map(v=>v/2);return s}
+/* Velocidad y tope de una ficha del tablero (u.h = héroe; si no, unidad enemiga de ARMY). Nunca más de 16″. */
+const bSpdU=u=>u.h?bSpdH(u.h):bSpd(u.i),bLimU=u=>Math.min(BMAX,bSpdU(u)[1]);
+
+/* ---------- Elementos del mapa que cortan el paso ----------
+   Fondo: assets/web/tablero.jpg (boceto MX-CRUZ2-A, elegido por Nacho el 2026-11-18). Esta lista es el calco de esa imagen
+   y es lo que bloquea el movimiento; si cambia la imagen, hay que volver a calcarla.
+   Casa u objeto: rectángulo {x,y,w,h}. Muro: tramos {pts:[[x,y],…], t: grosor}. Árbol, pozo u objeto redondo: círculo {x,y,r}.
+   Unidades del tablero (600 = 48″, 12,5 = 1″). Con «Ver obstáculos» en el tablero se ven encima de la imagen. */
+const BOBS=[
+ /* casas (planta en el suelo) */
+ {k:"casa",x:150,y:68,w:76,h:76},{k:"casa",x:52,y:162,w:106,h:100},{k:"casa",x:382,y:68,w:76,h:82},
+ {k:"casa",x:442,y:158,w:98,h:92},{k:"casa",x:425,y:405,w:103,h:108},{k:"casa",x:80,y:398,w:106,h:112},
+ /* muros de piedra (en diagonal donde la imagen los tuerce) */
+ {k:"muro",t:11,pts:[[140,77],[165,52],[277,52],[277,180],[233,212]]},
+ {k:"muro",t:10,pts:[[77,124],[95,114]]},
+ {k:"muro",t:11,pts:[[367,212],[328,178],[328,53],[437,53],[460,80]]},
+ {k:"muro",t:10,pts:[[508,118],[542,160]]},
+ {k:"muro",t:11,pts:[[541,316],[542,440],[526,452]]},
+ {k:"muro",t:11,pts:[[367,388],[328,415],[330,555],[472,555]]},
+ {k:"muro",t:11,pts:[[62,316],[60,445],[75,460]]},
+ {k:"muro",t:11,pts:[[55,480],[122,543],[278,545],[277,457]]},
+ /* árboles (el tronco y lo más espeso de la copa) */
+ {k:"arbol",x:102,y:47,r:18},{k:"arbol",x:75,y:135,r:10},{k:"arbol",x:170,y:320,r:18},{k:"arbol",x:455,y:333,r:18},{k:"arbol",x:375,y:462,r:13},
+ /* el pozo de la plaza y objetos sueltos */
+ {k:"pozo",x:300,y:300,r:29},{k:"obj",x:342,y:147,r:8},
+ {k:"obj",x:232,y:150,w:26,h:24},{k:"obj",x:98,y:352,w:30,h:42},{k:"obj",x:213,y:503,w:34,h:28},{k:"obj",x:400,y:488,w:25,h:30}];
+/* Holgura: el centro de la ficha no se acerca a menos de esto de un obstáculo: el radio de una peana de 32 mm (≈0,63″). */
+const BCL=8;
+/* Cada obstáculo, ensanchado con la holgura c, como uno o varios polígonos convexos: el círculo, un dodecágono que lo envuelve;
+   el muro, un rectángulo girado por tramo (alargado en los extremos para cerrar las esquinas). c=0 da la forma sin ensanchar. */
+function bPolys(o,c){if(c==null)c=BCL;
+ if(o.r){const n=12,R=(o.r+c)/Math.cos(Math.PI/n);return[Array.from({length:n},(_,i)=>{const a=2*Math.PI*i/n+Math.PI/n;return[o.x+R*Math.cos(a),o.y+R*Math.sin(a)]})]}
+ if(o.pts){const h=(o.t||10)/2+c,out=[];for(let i=1;i<o.pts.length;i++){const[a,b]=[o.pts[i-1],o.pts[i]],dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l,nx=-uy*h,ny=ux*h,ex=ux*h,ey=uy*h;
+  out.push([[a[0]-ex+nx,a[1]-ey+ny],[b[0]+ex+nx,b[1]+ey+ny],[b[0]+ex-nx,b[1]+ey-ny],[a[0]-ex-nx,a[1]-ey-ny]])}return out}
+ return[[[o.x-c,o.y-c],[o.x+o.w+c,o.y-c],[o.x+o.w+c,o.y+o.h+c],[o.x-c,o.y+o.h+c]]]}
+/* ¿El segmento a-b entra en el polígono? (ejes separadores; rozar el borde no cuenta). */
+function bHit(a,b,P){const ax=[];for(let i=0;i<P.length;i++){const p=P[i],q=P[(i+1)%P.length],dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy)||1;ax.push([-dy/l,dx/l])}
+ const sx=b[0]-a[0],sy=b[1]-a[1],sl=Math.hypot(sx,sy);if(sl>1e-6)ax.push([-sy/sl,sx/sl]);
+ for(const[nx,ny]of ax){let mn=1e9,mx=-1e9;for(const p of P){const d=p[0]*nx+p[1]*ny;if(d<mn)mn=d;if(d>mx)mx=d}
+  const s1=a[0]*nx+a[1]*ny,s2=b[0]*nx+b[1]*ny;if(Math.max(s1,s2)<=mn+.4||mx<=Math.min(s1,s2)+.4)return false}
+ return true}
+/* Grafo de visibilidad: esquinas de los obstáculos ensanchados que se ven entre sí. Se rehace solo si cambia BOBS. */
+let BNAV=null;
+function bNav(){const k=JSON.stringify(BOBS);if(BNAV&&BNAV.k===k)return BNAV;
+ const P=BOBS.flatMap(o=>bPolys(o)),N=[];
+ P.forEach(pl=>{const cx=pl.reduce((s,p)=>s+p[0],0)/pl.length,cy=pl.reduce((s,p)=>s+p[1],0)/pl.length;
+  pl.forEach(([x,y])=>{const dx=x-cx,dy=y-cy,l=Math.hypot(dx,dy)||1,n=[x+dx/l*1.5,y+dy/l*1.5];if(n[0]<18||n[0]>582||n[1]<18||n[1]>582)return;if(P.some(q=>bHit(n,n,q)))return;N.push(n)})});
+ const blk=(a,b)=>P.some(q=>bHit(a,b,q)),V=N.map(()=>[]);
+ for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++)if(!blk(N[i],N[j])){const d=Math.hypot(N[i][0]-N[j][0],N[i][1]-N[j][1]);V[i].push([j,d]);V[j].push([i,d])}
+ return BNAV={k,P,N,V,blk,from:{}}}
+/* Saca un punto de dentro de un obstáculo al borde más cercano (y dentro del tablero). */
+function bOut(p){const{P}=bNav();p=[bClamp(p[0]),bClamp(p[1])];
+ for(let it=0;it<3;it++){const pl=P.find(q=>bHit(p,p,q));if(!pl)break;let best=null,bd=1e9;
+  const c=pl.reduce((s,v)=>[s[0]+v[0]/pl.length,s[1]+v[1]/pl.length],[0,0]);
+  for(let i=0;i<pl.length;i++){const a=pl[i],b=pl[(i+1)%pl.length],dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy))),q=[a[0]+t*dx,a[1]+t*dy],d=Math.hypot(q[0]-p[0],q[1]-p[1]);
+   if(d<bd){bd=d;best=q}}
+  /* un poco más allá del borde, alejándose del centro del obstáculo */
+  const dx=best[0]-c[0],dy=best[1]-c[1],l=Math.hypot(dx,dy)||1;p=[bClamp(best[0]+dx/l*2),bClamp(best[1]+dy/l*2)]}
+ return p}
+/* Distancias desde un origen a todas las esquinas del grafo (Dijkstra, con caché por origen). */
+function bFrom(s){const nav=bNav(),key=s[0].toFixed(1)+","+s[1].toFixed(1);if(nav.from[key])return nav.from[key];
+ const{N,V,blk}=nav,n=N.length,dist=new Array(n).fill(Infinity),prev=new Array(n).fill(-1),done=new Array(n).fill(false);
+ N.forEach((q,i)=>{if(!blk(s,q))dist[i]=Math.hypot(q[0]-s[0],q[1]-s[1])});
+ for(;;){let u=-1;for(let i=0;i<n;i++)if(!done[i]&&dist[i]<Infinity&&(u<0||dist[i]<dist[u]))u=i;if(u<0)break;done[u]=true;
+  for(const[v,d]of V[u])if(dist[u]+d<dist[v]){dist[v]=dist[u]+d;prev[v]=u}}
+ const keys=Object.keys(nav.from);if(keys.length>40)delete nav.from[keys[0]];
+ return nav.from[key]={s,dist,prev}}
+/* Camino más corto de o a t rodeando obstáculos: {pts, len} en unidades del tablero (null si no se puede llegar). */
+function bPath(o,t){const nav=bNav(),s=bOut(o);t=bOut(t);const lead=Math.hypot(s[0]-o[0],s[1]-o[1]),head=lead>.5?[o,s]:[o];
+ if(!nav.blk(s,t))return{pts:[...head,t],len:lead+Math.hypot(t[0]-s[0],t[1]-s[1])};
+ const F=bFrom(s);let bi=-1,bd=Infinity;
+ nav.N.forEach((q,i)=>{if(F.dist[i]===Infinity)return;const d=F.dist[i]+Math.hypot(t[0]-q[0],t[1]-q[1]);if(d<bd&&!nav.blk(q,t)){bd=d;bi=i}});
+ if(bi<0)return null;const mid=[];for(let i=bi;i>=0;i=F.prev[i])mid.unshift(nav.N[i]);
+ return{pts:[...head,...mid,t],len:lead+bd}}
+/* Lo más lejos que llega por ese camino sin pasar de lim pulgadas: {pts, len, end, cut}. */
+function bReach(o,t,lim){const p=bPath(o,t);if(!p)return null;const L=lim*BIN;if(p.len<=L+.01)return{...p,end:p.pts[p.pts.length-1],cut:false};
+ const pts=[p.pts[0]];let acc=0;for(let i=1;i<p.pts.length;i++){const a=p.pts[i-1],b=p.pts[i],d=Math.hypot(b[0]-a[0],b[1]-a[1]);
+  if(acc+d>=L){const f=(L-acc)/(d||1),e=[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];pts.push(e);return{pts,len:L,end:e,cut:true}}acc+=d;pts.push(b)}
+ return{...p,end:p.pts[p.pts.length-1],cut:false}}
+/* Zona a la que llega de verdad (rodeando obstáculos), en celdas de 0,5″: oro = avanzar, naranja = correr o cargar. Con caché. */
+const BREG={};
+function bRegion(o,sp,lim){const key=o.map(v=>v.toFixed(1))+"|"+sp+"|"+lim+"|"+bNav().k.length;if(BREG[key])return BREG[key];
+ const g=6.25,R=lim*BIN,nav=bNav(),s=bOut(o),F=bFrom(s),lead=Math.hypot(s[0]-o[0],s[1]-o[1]),rows=[[],[]];
+ const dTo=c=>{if(nav.P.some(q=>bHit(c,c,q)))return Infinity;if(!nav.blk(s,c))return lead+Math.hypot(c[0]-s[0],c[1]-s[1]);let b=Infinity;
+  nav.N.forEach((q,i)=>{const d=F.dist[i];if(d===Infinity)return;const e=d+Math.hypot(c[0]-q[0],c[1]-q[1]);if(e<b&&!nav.blk(q,c))b=e});return lead+b};
+ const y0=Math.floor(Math.max(12,o[1]-R)/g)*g;
+ for(let iy=0;y0+iy*g<Math.min(588,o[1]+R);iy++){const y=y0+iy*g;let run=[null,null];
+  /* cada franja solapa un poco con la siguiente para que no queden rayas entre filas */
+  const flush=(k,x)=>{if(run[k]!==null){rows[k].push(`M${run[k].toFixed(2)} ${y.toFixed(2)}H${x.toFixed(2)}v${g+.4}H${run[k].toFixed(2)}z`);run[k]=null}};
+  for(let x=Math.max(12,o[0]-R);x<Math.min(588,o[0]+R)+g;x+=g){const c=[x+g/2,y+g/2],d=Math.hypot(c[0]-o[0],c[1]-o[1])>R||x>=Math.min(588,o[0]+R)?Infinity:dTo(c),
+    band=d<=sp[0]*BIN?0:d<=R?1:-1;
+   for(let k=0;k<2;k++){if(band===k){if(run[k]===null)run[k]=x}else flush(k,x)}}}
+ const keys=Object.keys(BREG);if(keys.length>30)delete BREG[keys[0]];
+ return BREG[key]=`<g filter="url(#bsoft)"><path d="${rows[1].join("")}" fill="rgba(70,40,150,.30)"/><path d="${rows[0].join("")}" fill="rgba(255,236,170,.42)"/></g>`}
+/* Mueve una unidad hacia un punto. Si ya estaba en el tablero, va por el camino más corto que rodea los obstáculos y se para
+   al llegar a su tope de la ronda (contado desde donde empezó la ronda). Si venía de la bandeja, se coloca sin límite. */
+function bMove(key,x,y){const U=bAll(),u=U.find(q=>q.key===key);if(!u)return;const cur=bLayout(U)[key];let e;
+ if(!cur)e=bOut([x,y]);else{const r=bReach(bOrig(u.e)||cur,[x,y],bLimU(u));if(!r)return;e=r.end}
+ if(!bOrig(u.e)){const c=cur||e;u.e.p0={r:S.round,x:c[0],y:c[1]}}
+ u.e.p={z:"x",x:Math.round(e[0]*10)/10,y:Math.round(e[1]*10)/10}}
+const bPts=pts=>pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ");
+/* Zona alcanzable, anillos de referencia y, si se ha movido, el camino con la distancia recorrida. */
+function bRings(o,r,sp,lim){if(!(lim>0))return"";const[ox,oy]=o,a=sp[0]*BIN,R=lim*BIN,lab=(t,yy,col)=>`<text x="${ox}" y="${yy}" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11" fill="${col}" paint-order="stroke" stroke="#0a0f1f" stroke-width="3">${t}</text>`;
+ const ly=(rad,dy)=>oy-rad-6>12?oy-rad-6:oy+rad+dy;
+ let h=`<g clip-path="url(#bclip)">${bRegion(o,sp,lim)}<circle cx="${ox}" cy="${oy}" r="${R}" fill="none" stroke="rgba(201,184,255,.8)" stroke-width="1.2" stroke-dasharray="6 5"/><circle cx="${ox}" cy="${oy}" r="${a}" fill="none" stroke="rgba(243,220,154,.6)" stroke-width="1.1" stroke-dasharray="2 4"/></g>`
+  +lab(`${sp[0]}″ avanzar`,ly(a,16),"#f3dc9a")+lab(`${lim}″ máx. (correr o cargar)`,ly(R,16),"#c9b8ff");
+ if(r&&r.len/BIN>=.1){const d=r.len/BIN,col=d<=sp[0]+.05?"#f3dc9a":"#c9b8ff",e=r.pts[r.pts.length-1],b=r.pts[r.pts.length-2]||o,mx=(e[0]+b[0])/2,my=(e[1]+b[1])/2,t=bIn(d)+(r.cut?" · máx.":""),w=r.cut?84:54;
+  h+=`<circle cx="${ox}" cy="${oy}" r="5" fill="none" stroke="${col}" stroke-width="1.5"/><polyline points="${bPts(r.pts)}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linejoin="round" stroke-dasharray="5 4"/>`
+   +r.pts.slice(1,-1).map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.5" fill="${col}"/>`).join("")
+   +`<g transform="translate(${mx.toFixed(1)} ${my.toFixed(1)})"><rect x="${-w/2}" y="-11" width="${w}" height="22" rx="11" fill="#0a0f1f" stroke="${col}"/><text y="4" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="11.5" fill="${col}">${t}</text></g>`}
+ return h}
 function bUnits(){const out=[];
  (S.table||[]).forEach((t,ix)=>{if(ARMY[t.i]&&t.m>0)out.push({key:"t"+ix,e:t,i:t.i,m:t.m,g:"old"})});
  const k=curW(),c=S.comp[k];if((S.shown||S.boss)&&c&&!c.merged)c.u.forEach((e,j)=>{const m=aliveM(e);if(m>0&&ARMY[e.i])out.push({key:"w"+j,e,i:e.i,m,g:"new",amb:!!e.a})});
  return out}
-const bFind=key=>bUnits().find(u=>u.key===key);
-const bZone=p=>!p||p.z==="a"?"":p.z==="q"?"cuadrante "+["I","II","III","IV"][p.d-1]:"esquina "+p.d;
+/* Héroes en el tablero (solo con una esquina elegida): posición propia en S.hpos[i] = {n: nombre, p, p0}.
+   Si cambia el héroe de ese hueco (otro nombre), vuelve a su esquina. */
+function bHeroes(){if(!S.hc)return[];S.hpos=S.hpos||{};
+ return HS.slice(0,4).map((h,i)=>{let e=S.hpos[i];if(!e||e.n!==h.name)e=S.hpos[i]={n:h.name};return{key:"h"+i,e,h,hi:i,g:"hero"}})}
+/* Sitio de un héroe que aún no se ha movido: junto a la esquina de los héroes. */
+function bHeroHome(i){const hp=BCC[(S.hc||1)-1],o=[[0,0],[34,8],[8,34],[34,34]][i]||[0,0],sx=hp[0]<300?1:-1,sy=hp[1]<300?1:-1;return[hp[0]+sx*(o[0]+6),hp[1]+sy*(o[1]+6)]}
+const bAll=()=>bUnits().concat(bHeroes());
+const bFind=key=>bAll().find(u=>u.key===key);
+const bZone=p=>!p||p.z==="a"?"":p.z==="x"?"cuadrante "+["I","II","III","IV"][p.y<300?(p.x<300?0:1):(p.x<300?3:2)]:p.z==="q"?"cuadrante "+["I","II","III","IV"][p.d-1]:"esquina "+p.d;
 function brz(x,y,lit){return(lit?`<circle cx="${x}" cy="${y-8}" r="16" fill="url(#bgl)"/><path d="M${x} ${y-27}c-7 8-9 14-4 20c-4-6 4-10 4-20z" fill="url(#bfl)"/>`:`<path d="M${x-2} ${y-8}q-4-8 2-14q5-6 0-12" fill="none" stroke="#4a5677" stroke-width="1.2" opacity=".7"/>`)+`<path d="M${x-12} ${y-6}h24l-4 7h-16z" fill="${lit?"#c99a48":"#3a4566"}" stroke="${lit?"#f3dc9a":"#55618a"}" stroke-width=".8"/><path d="M${x-6} ${y+1}l-5 12M${x+6} ${y+1}l5 12M${x} ${y+1}v12" stroke="${lit?"#a87d34":"#3a4566"}" stroke-width="1.4"/>`}
-function boardSvg(){const U=bUnits(),cnt={},pos={},night=stage()==="Noche";
- U.forEach(u=>{const p=u.e.p;if(!p||p.z==="a")return;const z=p.z+p.d,k=cnt[z]=(cnt[z]||0),o=BOFF[k%BOFF.length],c=p.z==="q"?BQC[p.d-1]:BCC[p.d-1];cnt[z]++;
-  const s=p.z==="c"?.8:1;pos[u.key]=[Math.max(18,Math.min(582,c[0]+o[0]*s)),Math.max(18,Math.min(582,c[1]+o[1]*s))]});
- const hc=S.hc||0,hp=hc?BCC[hc-1]:null,houses=[[60,70,70,44],[200,40,54,60],[380,60,80,46],[500,200,52,70],[70,330,50,64],[220,420,70,48],[360,490,60,50],[480,380,56,48],[210,250,40,30]];
+function boardSvg(){const U=bUnits(),H=bHeroes(),A=U.concat(H),pos=bLayout(A),night=stage()==="Noche";
+ const su=UI.bsel&&A.find(u=>u.key===UI.bsel&&pos[u.key]);
+ const hc=S.hc||0,hp=hc?BCC[hc-1]:null,well=BOBS.find(o=>o.k==="pozo");
  return`<svg class="bmap" viewBox="-30 -30 660 680" role="img" aria-label="Tablero de 48 pulgadas con cuadrantes y fichas"><defs>
  <radialGradient id="bbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient>
- <pattern id="bgrid" width="75" height="75" patternUnits="userSpaceOnUse"><path d="M75 0H0V75" fill="none" stroke="rgba(217,184,108,.08)"/></pattern>
+ <pattern id="bgrid" width="75" height="75" patternUnits="userSpaceOnUse"><path d="M75 0H0V75" fill="none" stroke="rgba(255,248,225,.16)"/></pattern>
  <radialGradient id="bvis"><stop offset=".7" stop-color="#ffd27a" stop-opacity=".08"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
- <linearGradient id="bfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="bgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".45"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
+ <linearGradient id="bfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="bgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".45"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient><clipPath id="bclip"><rect width="600" height="600"/></clipPath><filter id="bsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter></defs>
  <rect x="-22" y="-22" width="644" height="644" rx="14" fill="#0a0f1f" stroke="rgba(217,184,108,.35)"/>
- <rect width="600" height="600" fill="url(#bbg)"/><rect width="600" height="600" fill="url(#bgrid)"/>
- ${BQC.map((c,i)=>`<rect class="bz" data-a="bq" data-v="${i+1}" x="${c[0]-150}" y="${c[1]-150}" width="300" height="300" fill="transparent"/>`).join("")}
+ <rect width="600" height="600" fill="url(#bbg)"/><image href="${IMG_TABLERO}" width="600" height="600" preserveAspectRatio="none"/><rect width="600" height="600" fill="url(#bgrid)"/>
+ <rect class="bz bpt" data-a="bpt" width="600" height="600" fill="transparent"/>
  <path d="M300 0V600M0 300H600" stroke="rgba(217,184,108,.45)" stroke-dasharray="6 6" pointer-events="none"/>
- ${houses.map(([x,y,w,h])=>`<g pointer-events="none"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="rgba(217,184,108,.05)" stroke="rgba(217,184,108,.38)" stroke-width="1.2"/><path d="M${x} ${y}L${x+w} ${y+h}" stroke="rgba(217,184,108,.15)"/></g>`).join("")}
- ${["I","II","III","IV"].map((t,i)=>`<text x="${BQC[i][0]}" y="${BQC[i][1]+(i<2?-96:110)}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="22" fill="rgba(217,184,108,.28)" letter-spacing="4" pointer-events="none">${t}</text>`).join("")}
- ${[[0,0],[600,0],[600,600],[0,600]].map(([x,y],i)=>`<path d="${x?"M600":"M0"} ${y?525:75}A75 75 0 0 ${i%2?1:0} ${x?525:75} ${y}" fill="none" stroke="rgba(217,184,108,.5)" stroke-dasharray="3 4" pointer-events="none"/><g class="bz" data-a="bc" data-v="${i+1}" transform="translate(${x?612:-12} ${y?614:-10})"><circle r="13" fill="${hc===i+1?"#c99a48":"#0a0f1f"}" stroke="#d9b86c"/><text y="4.5" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="12" fill="${hc===i+1?"#1a1208":"#d9b86c"}">${i+1}</text></g>`).join("")}
- <g transform="translate(300 300)" pointer-events="none"><circle r="26" fill="#060912" stroke="#d9b86c" stroke-width="1.4"/><circle r="18" fill="none" stroke="rgba(167,139,250,.6)"/><text y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="14" fill="#c3cbe0">el pozo</text></g>
- ${night&&hp?`<g pointer-events="none"><circle cx="${hp[0]}" cy="${hp[1]}" r="150" fill="url(#bvis)" stroke="rgba(255,210,122,.35)" stroke-dasharray="4 6"/></g>`:""}
+ ${UI.bobs?`<g pointer-events="none">${BOBS.flatMap(o=>bPolys(o)).map(pl=>`<path d="M${pl.map(q=>q[0].toFixed(1)+" "+q[1].toFixed(1)).join("L")}z" fill="rgba(255,90,110,.1)" stroke="rgba(255,110,130,.55)" stroke-dasharray="3 3"/>`).join("")}${BOBS.flatMap(o=>bPolys(o,0)).map(pl=>`<path d="M${pl.map(q=>q[0].toFixed(1)+" "+q[1].toFixed(1)).join("L")}z" fill="rgba(255,90,110,.28)" stroke="#ff6e82" stroke-width="1.2"/>`).join("")}</g>`:""}
+ ${night?H.filter(u=>!hfKo(u.h)).map(u=>{const[x,y]=pos[u.key];return`<g pointer-events="none" clip-path="url(#bclip)"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="150" fill="url(#bvis)" stroke="rgba(255,210,122,.3)" stroke-dasharray="4 6"/></g>`}).join(""):""}
  ${BRP.map(([x,y],i)=>`<g class="brs" data-a="mk" data-v="${i}" role="button" aria-label="${MK[i]}${S.mk[i]?" (recuperado)":""}"><rect x="${x-18}" y="${y-30}" width="36" height="50" fill="transparent"/>${brz(x,y,!!S.mk[i])}<text x="${x}" y="${y+27}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="11" fill="${S.mk[i]?"#f3dc9a":"#8f9abb"}">${["I","II","III"][i]}</text></g>`).join("")}
  ${S.boss&&!S.dead?`<g transform="translate(300 300)" pointer-events="none"><circle r="44" fill="none" stroke="#a78bfa" stroke-width="2" opacity=".6"><animate attributeName="r" values="34;54;34" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="2.4s" repeatCount="indefinite"/></circle><circle r="30" fill="#140c26" stroke="#c9b8ff" stroke-width="2"/><text y="7" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="20" fill="#c9b8ff">H</text></g>`:""}
- ${hp?HS.slice(0,4).map((h,i)=>{const o=[[0,0],[34,8],[8,34],[34,34]][i],sx=hp[0]<300?1:-1,sy=hp[1]<300?1:-1,x=hp[0]+sx*(o[0]+6),y=hp[1]+sy*(o[1]+6);return`<g transform="translate(${x} ${y})" pointer-events="none"><circle r="16" fill="#0a0f1f"/><circle r="14" fill="${hfKo(h)?"#55618a":"#c99a48"}" stroke="#f3dc9a" stroke-width="1.5"/><text y="4.5" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="12" fill="#1a1208">${esc(ini(h.name)[0])}</text></g>`}).join(""):""}
+ ${A.filter(u=>pos[u.key]&&u!==su&&bOrig(u.e)).map(u=>{const o=bOrig(u.e),c=pos[u.key],k=u.g==="hero"?"#f3dc9a":"#c9b8ff";if(Math.hypot(c[0]-o[0],c[1]-o[1])<1)return"";const p=bPath(o,c);return`<g pointer-events="none" opacity=".55"><circle cx="${o[0]}" cy="${o[1]}" r="4" fill="none" stroke="${k}"/><polyline points="${bPts(p?p.pts:[o,c])}" fill="none" stroke="${k}" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="3 4"/></g>`}).join("")}
+ <g class="bmv" pointer-events="none">${su?(()=>{const o=bOrig(su.e)||pos[su.key];return bRings(o,bOrig(su.e)?bPath(o,pos[su.key]):null,bSpdU(su),bLimU(su))})():""}</g>
+ ${H.map(u=>{const[x,y]=pos[u.key],h=u.h,ko=hfKo(h),sel=UI.bsel===u.key;return`<g class="btk bhero${ko?" ko":""}" data-a="bsel" data-v="${u.key}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" role="button" aria-label="${esc(h.name)}${ko?" (inconsciente)":""}">${sel?`<circle r="22" fill="none" stroke="#fff" stroke-width="1.6"/>`:""}<circle r="16" fill="#0a0f1f"/><circle class="bb" r="14" fill="${ko?"#55618a":"#c99a48"}" stroke="#f3dc9a" stroke-width="1.5"/><text y="4.5" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="12" fill="#1a1208">${esc(ini(h.name)[0])}</text></g>`}).join("")}
  ${U.filter(u=>pos[u.key]).map(u=>{const[x,y]=pos[u.key],a=ARMY[u.i],sel=UI.bsel===u.key,nw=u.g==="new";return`<g class="btk" data-a="bsel" data-v="${u.key}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" role="button" aria-label="${esc(a.name)}">${sel?`<circle r="26" fill="none" stroke="#fff" stroke-width="1.6"/>`:""}<circle r="19" fill="#000" opacity=".45" transform="translate(2 4)"/><circle class="bb" r="19" fill="${nw?"#8a2a45":"#4a2fa8"}" stroke="${nw?"#ec8aa0":"#c9b8ff"}" stroke-width="1.6"/><text y="4.5" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="12" fill="#fff">${esc(ini(a.name))}</text>${modsOf(u.i)>1?`<g transform="translate(14 -14)"><circle r="8" fill="#0a0f1f" stroke="#d9b86c"/><text y="3.5" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9.5" fill="#d9b86c">${u.m}</text></g>`:""}</g>`}).join("")}
  <g transform="translate(572 -8)" opacity=".85" pointer-events="none"><path d="M0 -12L4 0 0 12-4 0z" fill="#d9b86c"/></g>
  <text x="300" y="640" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="14" fill="#8f9abb">48″ × 48″ · cuadrantes I–IV y esquinas 1–4 en sentido horario desde el noroeste</text></svg>`}
@@ -1614,6 +1772,27 @@ const BTABI='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="cur
 function placeBtab(){const t=$("#btab"),m=$("#hfMeds");if(!t||!m||t.hidden)return;const r=m.getBoundingClientRect();if(!r.height){t.style.bottom="";return}
  t.style.bottom=Math.max(0,Math.round(innerHeight-r.top+(innerWidth<=640?14:20)))+"px"}
 addEventListener("resize",()=>placeBtab());
+/* Arrastrar fichas por el tablero: mientras se arrastra no se repinta; se mueve la ficha y se dibujan los anillos y la distancia
+   en .bmv. Al soltar se guarda (bMove) y se repinta. Un toque sin arrastre sigue siendo un clic normal (elegir ficha). */
+{let dg=null,skip=false;
+ const pt=(sv,e)=>new DOMPoint(e.clientX,e.clientY).matrixTransform(sv.getScreenCTM().inverse());
+ document.addEventListener("pointerdown",e=>{const g=e.target.closest&&e.target.closest("#bdrw .btk");if(!g||e.button>0)return;
+  const sv=g.ownerSVGElement,U=bAll(),u=U.find(q=>q.key===g.dataset.v),c=u&&bLayout(U)[u.key];if(!c||!(bLimU(u)>0))return;
+  const p=pt(sv,e);dg={g,sv,u,c,o:bOrig(u.e)||c,dx:p.x-c[0],dy:p.y-c[1],sx:e.clientX,sy:e.clientY,on:false,id:e.pointerId}});
+ document.addEventListener("pointermove",e=>{if(!dg||e.pointerId!==dg.id)return;
+  if(!dg.on){if(Math.hypot(e.clientX-dg.sx,e.clientY-dg.sy)<6)return;dg.on=true;try{dg.g.setPointerCapture(e.pointerId)}catch(_){}dg.g.parentNode.appendChild(dg.g);dg.g.classList.add("drag");$("#panel").classList.add("bdrag")}
+  e.preventDefault();const p=pt(dg.sv,e),sp=bSpdU(dg.u),lim=bLimU(dg.u);
+  /* La ficha sigue al puntero por el camino que rodea los obstáculos y se queda en su tope si se pide más. */
+  const r=bReach(dg.o,[p.x-dg.dx,p.y-dg.dy],lim);if(!r)return;dg.x=r.end[0];dg.y=r.end[1];
+  dg.g.setAttribute("transform",`translate(${dg.x.toFixed(1)} ${dg.y.toFixed(1)})`);dg.g.classList.toggle("cut",r.cut);
+  const m=dg.sv.querySelector(".bmv");if(m)m.innerHTML=bRings(dg.o,r,sp,lim)},{passive:false});
+ const end=e=>{if(!dg||e.pointerId!==dg.id)return;const d=dg;dg=null;$("#panel").classList.remove("bdrag");if(!d.on)return;
+  skip=true;setTimeout(()=>{skip=false},0);if(e.type==="pointercancel"){render();return}
+  bMove(d.u.key,d.x,d.y);UI.bsel=null;save();render()};
+ document.addEventListener("pointerup",end);document.addEventListener("pointercancel",end);
+ /* Tras arrastrar, el clic que sigue no debe elegir la ficha. */
+ document.addEventListener("click",e=>{if(skip&&e.target.closest&&e.target.closest("#bdrw")){e.stopImmediatePropagation();e.preventDefault();skip=false}},true);
+}
 function paintBoard(){
  const p=$("#panel"),t=$("#btab"),d=$("#bdrw");
  if(!S.round){UI.board=false;UI.bsel=null}
@@ -1631,8 +1810,8 @@ function paintBoard(){
  d.innerHTML=`<div class="bdh"><button class="px" type="button" data-a="board" data-f="bclose" aria-label="Cerrar el tablero"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div><small>Ronda ${S.round} · ${esc(stage())}${stage()==="Noche"?" · visión 12″":""}</small><b>Tablero táctico</b></div></div>
  <div class="bdb">${boardSvg()}
  <div class="blg"><span><i style="background:#4a2fa8"></i>En mesa</span><span><i style="background:#8a2a45"></i>Recién llegadas</span><span><i style="background:#c99a48"></i>Héroes</span><span><i style="background:#ec8c45"></i>Rastros</span></div>
- ${sel?(()=>{const a=ARMY[sel.i];return`<div class="bsel">${sigil(ini(a.name),"#c9b8ff").replace("<svg ",'<svg style="flex:none;width:40px;height:40px" ')}<div><b>${esc(a.name)}</b>${sel.m}/${modsOf(sel.i)} ${modsOf(sel.i)===1?"miniatura":"miniaturas"} · Q${a.q}+ D${a.d}+ · ${bZone(sel.e.p)||"sin posición"}<br>Toca un cuadrante o una esquina para moverla.</div><button class="pb sm gh" type="button" data-a="bsel" data-v="${sel.key}" style="margin-left:auto">Soltar</button></div>`})():`<p class="bhint">Toca una ficha y luego un <b>cuadrante</b> o una <b>esquina</b> para moverla. Toca un <b>brasero</b> para marcar su rastro. Las posiciones son orientativas: manda la mesa de verdad.</p>`}
- <div class="row" style="margin-top:12px;justify-content:space-between"><button class="pb sm" type="button" data-a="pos" data-f="bpos" ${S.shown||S.boss?"":"disabled"}>Sortear posiciones de la oleada</button><span class="bhc"><span style="font:600 11px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pmu)">Esquina de los héroes</span><span class="seg2">${[1,2,3,4].map(i=>`<button type="button" data-a="hc" data-v="${i}" aria-pressed="${S.hc===i}" aria-label="Héroes en la esquina ${i}">${i}</button>`).join("")}</span></span></div>
+ ${sel?(()=>{const hh=sel.h,a=hh?{name:hh.name}:ARMY[sel.i],cp=bLayout(bAll())[sel.key],zn=cp?bZone({z:"x",x:cp[0],y:cp[1]}):"";return`<div class="bsel${hh?" hero":""}">${sigil(ini(a.name),hh?"#f3dc9a":"#c9b8ff").replace("<svg ",'<svg style="flex:none;width:40px;height:40px" ')}<div><b>${esc(a.name)}</b>${hh?`Héroe · Cal ${hh.cal}+ Def ${hh.def}+ · ${hh.hp}/${hh.hpMax} heridas${(hh.st||[]).includes("de")?" · Debilitado":""}`:`${sel.m}/${modsOf(sel.i)} ${modsOf(sel.i)===1?"miniatura":"miniaturas"} · Q${a.q}+ D${a.d}+`} · ${zn||"sin posición"}<br>${(()=>{const sp=bSpdU(sel),o=bOrig(sel.e),c=cp;if(hh&&hfKo(hh))return"Inconsciente: no puede moverse hasta que recupere alguna herida.";if(!c)return"Toca un punto del tablero o una esquina para colocarla.";const lim=bLimU(sel),pp=o&&bPath(o,c),d=pp?pp.len/BIN:0,why=[];if(hh){const r=(hh.sk||[]).filter(x=>x.g==="regla").map(x=>x.n).join(" ");if(/\bFast\b/.test(r))why.push("Fast");if(/\bSlow\b/.test(r))why.push("Slow");if((hh.st||[]).includes("de"))why.push("Debilitado: la mitad")}else if(sp[0]!==6)why.push(sp[0]>6?"Fast":"Slow");return`Avanzar ${bIn(sp[0])} · máximo ${bIn(lim)} por ronda (correr o cargar)${why.length?" · "+why.join(", "):""}. ${d>=.1?`Esta ronda lleva <b class="bdist${d>sp[0]+.05?" run":""}">${bIn(d)}</b>${d>=lim-.05?" (al máximo)":` · le quedan ${bIn(lim-d)}`}.`:"Arrástrala o toca un punto del tablero."}`})()}</div><span class="bsb">${bOrig(sel.e)?`<button class="pb sm gh" type="button" data-a="bundo" data-v="${sel.key}">Deshacer</button>`:""}<button class="pb sm gh" type="button" data-a="bsel" data-v="${sel.key}">Soltar</button></span></div>`})():`<p class="bhint"><b>Arrastra</b> una ficha (enemigo o <b>héroe</b>) para moverla: hasta <b>12″</b> por ronda (16″ Fast, 8″ Slow; Debilitado, la mitad), rodeando casas, muros y el pozo. Sombreado: <b>oro</b> avanzar, <b>violeta</b> correr o cargar. Cada cuadro mide 6″. Toca un <b>brasero</b> para marcar su rastro.</p>`}
+ <div class="row" style="margin-top:12px;justify-content:space-between"><button class="pb sm" type="button" data-a="pos" data-f="bpos" ${S.shown||S.boss?"":"disabled"}>Sortear posiciones de la oleada</button><button class="pb sm gh" type="button" data-a="bobs" aria-pressed="${!!UI.bobs}">${UI.bobs?"Ocultar obstáculos":"Ver obstáculos"}</button><span class="bhc"><span style="font:600 11px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pmu)">Esquina de los héroes</span><span class="seg2">${[1,2,3,4].map(i=>`<button type="button" data-a="hc" data-v="${i}" aria-pressed="${S.hc===i}" aria-label="Héroes en la esquina ${i}">${i}</button>`).join("")}</span></span></div>
  <p class="bsec">Sin posición en el tablero · ${tray.length}</p><div class="btray">${tray.length?tray.map(chip).join(""):`<span class="none">Todas las unidades tienen sitio (${placed}).</span>`}</div></div>`;
  const nb=d.querySelector(".bdb");if(nb)nb.scrollTop=keep;
 }
@@ -1763,7 +1942,7 @@ function finalCard(){
 /* Bloqueo al empezar: hasta tirar (o aplicar a mano) el primer evento de Neth solo se puede usar ese dado, el audio y la cabecera. */
 /* Mientras haya un evento de Neth pendiente (al empezar y cada vez que entran refuerzos). «Declarar derrota» nunca se bloquea. */
 const evLock=()=>S.round>0&&S.needEv;
-const EV_OK=new Set(["EV","EVm","play","pause","stop","reset","restart","ok","defeat","board","bsel"]);
+const EV_OK=new Set(["EV","EVm","play","pause","stop","reset","restart","ok","defeat","board","bsel","bpt","bq","bc","bundo","bobs"]);
 /* Reparto de tarjetas en columnas: cada una va a la columna más baja (en orden), para que no queden huecos grandes antes del botín.
    Solo se recoloca si mejora claramente, para que las tarjetas no salten de sitio con cambios pequeños. */
 function packCols(pb){
@@ -1783,8 +1962,8 @@ function render(){
  $("#pst").innerHTML=S.round?`<span>Ronda <b>${S.round}</b></span><span>${esc(stage())}</span><span>Alerta <b>${S.al}</b>${mp}</span>`:`<span>Preparación</span><span>Alerta <b>${S.al}</b>${mp}</span>`;
  $("#pact").innerHTML=`${S.round?`<button class="pb sm gh" data-a="restart" data-f="restart" title="Empieza de nuevo con la misma dificultad, puntos y héroes">${UI.sureR?"¿Seguro? Pulsa otra vez":"Reiniciar"}</button>`:""}<button class="pb sm gh" data-a="reset" data-f="reset">${UI.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>`;
  const lk=mesaLocked();$("#fab").classList.toggle("locked",lk);
- $("#fab").innerHTML=fabRing()+`<span class="ftx"><b>Mesa de juego</b><small>${S.round?`Ronda ${S.round} · Alerta ${S.al}/6`:lk?`<svg class="flk" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Lee Historia y Preparación`:"Preparar la partida"}</small></span>`;
- $("#fab").setAttribute("aria-label",S.round?`Abrir la mesa de juego. Ronda ${S.round}, alerta ${S.al} de 6`:lk?"Mesa de juego bloqueada: primero leed la Historia y la Preparación":"Abrir la mesa de juego");
+ $("#fab").innerHTML=fabRing()+`<span class="ftx"><b>Mesa de juego</b><small>${S.round?`Ronda ${S.round} · Alerta ${S.al}/6`:lk?`<svg class="flk" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Lee las cartas obligatorias`:"Preparar la partida"}</small></span>`;
+ $("#fab").setAttribute("aria-label",S.round?`Abrir la mesa de juego. Ronda ${S.round}, alerta ${S.al} de 6`:lk?"Mesa de juego bloqueada: primero leed la Historia, los Objetivos y la Preparación":"Abrir la mesa de juego");
  if(typeof qReadPaint==="function"&&$("#sheet .qhint"))qReadPaint();
  const alert=S.alert?`<div class="alert"><b>${esc(S.alert)}</b><div class="row" style="margin-top:8px"><button class="pb sm" data-a="ok" data-f="ok">Entendido</button></div></div>`:"";
  const nk=S.nar,nt=DATA.narMap[nk]||"";
@@ -2082,17 +2261,17 @@ function qMap(){let s=`<svg viewBox="0 0 300 300" role="img" aria-label="Mesa de
 const QCARDS=[
  {k:"pro",big:1,n:"Capítulo I",t:"El contrato del Filo",p:"Una aldea que nadie recuerda y un saquito de plata.",sl:"I",
   h:()=>`<div class="qpro">${DATA.pro.map((p,i)=>`<p${i?"":' class="dc"'}>${esc(p)}</p>`).join("")}</div>`},
- {k:"her",big:1,img:1,n:"Lo que se cuenta",t:"El Heraldo",p:"Nadie sabe cómo se llama.",sl:"H",
-  h:()=>`<p class="qbridge">${QHER.bridge}</p><div class="qher"><div class="qpor"><img src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"></div><div><h3>Lo que se cuenta del Heraldo</h3>${QHER.p.map(p=>`<p>${p}</p>`).join("")}<p class="n">${QHER.n}</p></div></div><blockquote class="qq"><p>${QHER.q}</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`},
- {k:"obj",n:"Capítulo II",t:"Objetivos",p:"Tres rastros, una salida y un jefe opcional.",sl:"II",
+ {k:"obj",big:1,n:"Capítulo II",t:"Objetivos",p:"Tres rastros, una salida y un jefe opcional.",sl:"II",
   h:()=>{const ob=DATA.obj.map(l=>{const i=l.indexOf(": ");return[l.slice(0,i),cap(l.slice(i+2))]});
    const xr=[["Principal",2],["Secundario",1],["Jefe destruido",2],["Máximo de XP",5],["Paga de riesgo (oro)",5]];
    return `<div class="qgrid">${ob.slice(0,4).map((o,i)=>`<div class="qpn"><div class="qob"><span class="qseal">${["I","II","III","IV"][i]}</span><div><h3>${esc(o[0])}</h3><p>${esc(o[1])}</p></div></div></div>`).join("")}</div>
    <div class="qgrid"><div class="qpn"><p class="qh4">Objetivo secundario · 1d6</p><table class="qtbl"><tr><th>1d6</th><th>Objetivo</th></tr>${DATA.sec.map((s,i)=>`<tr><td>${i+1}</td><td><b>${esc(s[0])}.</b> ${esc(s[1])}</td></tr>`).join("")}</table></div><div class="qpn"><p class="qh4">XP y oro por héroe</p><table class="qtbl"><tr><th>Recompensa</th>${[1,2,3,4].map(i=>`<th class="n">Nv. ${i}</th>`).join("")}</tr>${xr.map(r=>`<tr><td>${r[0]}</td>${[1,2,3,4].map(i=>`<td class="n">${r[1]*i}</td>`).join("")}</tr>`).join("")}</table></div></div>
    <div class="qgrid">${ob.slice(4).map(o=>`<div class="qpn"><div class="qob"><div><h3>${esc(o[0])}</h3><p>${esc(o[1])}</p></div></div></div>`).join("")}</div>`}},
- {k:"prep",n:"Capítulo III",t:"Preparación",p:"Mesa de 48\", cuadrantes y esquinas.",sl:"III",
+ {k:"prep",big:1,n:"Capítulo III",t:"Preparación",p:"Mesa de 48\", cuadrantes y esquinas.",sl:"III",
   h:()=>{const pr=DATA.prep,st=pr.slice(1).map(l=>{const m=l.match(/^\d\. ([^:]+): (.*)$/);return[m[1],cap(m[2])]}).filter(s=>!/Despliegue enemigo/.test(s[0]));
    return `<p class="qlead">${esc(pr[0].replace(/^Mesa: /,"La mesa: "))}</p><div class="qprep"><div class="qpn">${qMap()}</div><ol class="qsteps">${st.map(s=>`<li><span><b>${esc(s[0])}.</b> ${esc(s[1])}</span></li>`).join("")}</ol></div>`}},
+ {k:"her",img:1,n:"Lo que se cuenta",t:"El Heraldo",p:"Nadie sabe cómo se llama.",sl:"H",
+  h:()=>`<p class="qbridge">${QHER.bridge}</p><div class="qher"><div class="qpor"><img src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"></div><div><h3>Lo que se cuenta del Heraldo</h3>${QHER.p.map(p=>`<p>${p}</p>`).join("")}<p class="n">${QHER.n}</p></div></div><blockquote class="qq"><p>${QHER.q}</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`},
  {k:"ev",n:"Capítulo IV",t:"Eventos de Neth",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
   h:()=>`<span class="qhr">Regla de la casa</span><p class="qlead">Neth no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de Neth. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
    <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se lee</p><p class="qtx">Se tiran 2d6 de uno en uno. El <b>primer dado</b> dice qué clase de cosa ocurre (las familias de abajo) y el <b>segundo</b>, cuál de las seis: del 11 al 66.</p></div><div class="qpn"><p class="qh4">Cuánto dura</p><p class="qtx">Los efectos que dicen «hasta el siguiente evento» duran hasta que se vuelva a tirar. Los estados se quitan como siempre. «Al azar» se sortea con un dado entre los héroes o los cuadrantes.</p></div></div>
@@ -2213,11 +2392,11 @@ const BACK=(()=>{let r="";for(let k=0;k<16;k++){const a=k*Math.PI/8,r0=46,r1=k%2
  return `<svg class="kback" viewBox="0 0 156 240" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="12" y="12" width="132" height="216" rx="5" opacity=".45"/>${lat}<circle cx="78" cy="120" r="40"/><circle cx="78" cy="120" r="34" stroke-dasharray="2 3" opacity=".7"/>${r}<circle cx="78" cy="120" r="19"/><circle cx="84" cy="115" r="17" fill="#0f1628" stroke-dasharray="2 2.4"/><path d="M78 52l3 8-3 8-3-8z M78 172l3 8-3 8-3-8z" fill="currentColor" opacity=".7"/></svg>`})();
 function kcard(c,i){const o=i-(CAMPS.length-1)/2;
  if(!c.on)return `<button class="kcard s-lock${K.sel===i?" on":""}" type="button" data-kc="${i}" role="option" aria-selected="${K.sel===i}" aria-label="Campaña ${c.n}: carta boca abajo" style="--o:${o};--i:${i};--cac:${c.ac}">${nethBack(c,i)}<i class="ksh"></i></button>`;
- return `<button class="kcard${K.sel===i?" on":""}" type="button" data-kc="${i}" data-nav="home" role="option" aria-selected="${K.sel===i}" aria-label="Entrar en la campaña ${c.t}" style="--o:${o};--i:${i};--cac:${c.ac}"><span class="kart"><img src="${IMG_RETRATO}" alt=""></span><span class="kcn">${c.n}</span>${S.round?'<span class="klv">En curso</span>':""}<span class="kct">${c.t}<small>6 misiones</small></span><i class="ksh"></i></button>`}
+ return `<button class="kcard${K.sel===i?" on":""}" type="button" data-kc="${i}" role="option" aria-selected="${K.sel===i}" aria-label="Campaña ${c.n}: ${c.t}" style="--o:${o};--i:${i};--cac:${c.ac}"><span class="kart"><img src="${IMG_RETRATO}" alt=""></span><span class="kcn">${c.n}</span>${S.round?'<span class="klv">En curso</span>':""}<span class="kct">${c.t}<small>6 misiones</small></span><i class="ksh"></i></button>`}
 const klay=(i,cls="")=>CAMPS[i].on?`<div class="klay ${cls}"><img src="${IMG_RETRATO}" alt=""></div>`:`<div class="klay ${cls}"><div class="kbk">${nethBack(CAMPS[i],i)}</div></div>`;
 function kinfo(i){const c=CAMPS[i];
  if(!c.on)return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Sellada</p><h2>Carta boca abajo</h2><p class="hook">Otra historia de Érebo, todavía por escribir.</p><p class="kmot">Motivo del reverso: ${NBX[c.n].m.toLowerCase()}.</p><div class="klock">${LOCK}<span>Esta campaña se descubrirá más adelante.</span></div>`;
- return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Érebo</p><h2>${c.t}</h2><p class="hook">${c.h}</p><div class="kchips"><span><b>6</b> misiones</span><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span></div><p class="kstl${S.round?" live":""}"><i></i>${S.round?`Misión I en curso · Ronda ${S.round}`:"1 de 6 misiones disponibles"}</p><button class="kcta" type="button" data-nav="home"><span>Entrar en la campaña</span>${ARROW}</button>`}
+ return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Érebo</p><h2>${c.t}</h2><p class="hook">${c.h}</p><div class="kchips"><span><b>6</b> misiones</span></div><p class="kstl${S.round?" live":""}"><i></i>${S.round?`Misión I en curso · Ronda ${S.round}`:"1 de 6 misiones desbloqueadas"}</p><button class="kcta" type="button" data-nav="home"><span>Entrar en la campaña</span>${ARROW}</button>`}
 function camp(){const el=$("#camp");el.style.setProperty("--ac",CAMPS[K.sel].ac);
  el.innerHTML=`<div class="kbg" id="kbg">${klay(K.sel)}</div><header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Age of Fantasy: Quest</span></div></header><div class="kinfo" id="kinfo">${kinfo(K.sel)}</div><div class="kfan" role="listbox" aria-label="Campañas">${CAMPS.map(kcard).join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
 function kselect(i){if(i===K.sel)return;K.sel=i;const el=$("#camp");
@@ -2227,17 +2406,20 @@ function kselect(i){if(i===K.sel)return;K.sel=i;const el=$("#camp");
  const inf=$("#kinfo");inf.innerHTML=kinfo(i);inf.style.animation="none";void inf.offsetWidth;inf.style.animation="";
  if(innerWidth<=860){const c=el.querySelector(`.kcard[data-kc="${i}"]`);if(c)c.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"})}}
 /* Inclinación y brillo que siguen al ratón (no en táctil) */
-$("#camp").addEventListener("pointermove",e=>{if(e.pointerType==="touch"||innerWidth<=860)return;const c=e.target.closest(".kcard");if(!c)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.classList.add("tilt");c.style.setProperty("--ry",f((x-.5)*16)+"deg");c.style.setProperty("--rx",f((.5-y)*16)+"deg");c.style.setProperty("--mx",f(x*100)+"%");c.style.setProperty("--my",f(y*100)+"%")});
+$("#camp").addEventListener("pointermove",e=>{if(e.pointerType==="touch"||innerWidth<=860)return;const c=e.target.closest(".kcard");if(!c)return;/* Se mide sobre la carta sin inclinar: centro de su caja y giro del abanico deshecho, para que el movimiento sea igual en toda la carta. */const r=c.getBoundingClientRect(),a=-(parseFloat(c.style.getPropertyValue("--o"))||0)*7*Math.PI/180,dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),lx=dx*Math.cos(a)-dy*Math.sin(a),ly=dx*Math.sin(a)+dy*Math.cos(a),cl=v=>Math.max(0,Math.min(1,v)),x=cl(.5+lx/c.offsetWidth),y=cl(.5+ly/c.offsetHeight);c.classList.add("tilt");c.style.setProperty("--ry",f((x-.5)*16)+"deg");c.style.setProperty("--rx",f((.5-y)*16)+"deg");c.style.setProperty("--mx",f(x*100)+"%");c.style.setProperty("--my",f(y*100)+"%")});
 $("#camp").addEventListener("pointerout",e=>{const c=e.target.closest(".kcard");if(c&&!c.contains(e.relatedTarget)){c.classList.remove("tilt");c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")}});
-$("#camp").addEventListener("click",e=>{const c=e.target.closest(".kcard.s-lock");if(!c)return;const i=+c.dataset.kc;
- if(K.sel===i){c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake")}kselect(i)});
+/* Las cartas solo eligen campaña; se entra únicamente con el botón «Entrar en la campaña» (decisión de Nacho, 2026-11-18).
+   Si se vuelve a tocar la carta disponible ya elegida, el botón late para señalar por dónde se entra. */
+$("#camp").addEventListener("click",e=>{const c=e.target.closest(".kcard");if(!c)return;const i=+c.dataset.kc;
+ if(K.sel===i){if(c.classList.contains("s-lock")){c.classList.remove("shake");void c.offsetWidth;c.classList.add("shake")}else{const b=$("#camp .kinfo .kcta");if(b&&b.animate&&!REDUCE)b.animate([{transform:"none",filter:"none"},{transform:"scale(1.07)",filter:"brightness(1.3)"},{transform:"none",filter:"none"}],{duration:520,iterations:2})}}kselect(i)});
 document.addEventListener("keydown",e=>{if(VIEW!=="camp"||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
  if((typeof HF!=="undefined"&&HF.open)||/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return;
  e.preventDefault();const i=Math.max(0,Math.min(CAMPS.length-1,K.sel+(e.key==="ArrowRight"?1:-1)));kselect(i);
  if(document.activeElement.classList.contains("kcard")){const c=$(`.kcard[data-kc="${i}"]`);if(c)c.focus({preventScroll:true})}});
 
 /* ===== mapa ===== */
-const M={sel:0,open:true};
+/* La ficha de la misión empieza cerrada: al entrar se ve el mapa (decisión de Nacho, 2026-11-18). */
+const M={sel:0,open:false};
 const P=[[395,598],[652,498],[316,408],[614,312],[360,212],[590,106]],VK=[500,742];
 const WP=[VK,[452,676],P[0],[528,566],P[1],[486,462],P[2],[468,352],P[3],[488,256],P[4],[470,150],P[5]];
 const SEG=(()=>{const o=[];for(let i=0;i<WP.length-1;i++){const p0=WP[i-1]||WP[i],p1=WP[i],p2=WP[i+1],p3=WP[i+2]||p2;o.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}return o})();
@@ -2390,6 +2572,8 @@ $("#home").addEventListener("keydown",e=>{const p=e.target.closest(".pin");if(p&
 let sig="";const sigNow=()=>[S.round,S.al,S.prim,S.end,S.defeat,S.dead,S.secDone,(S.mk||[]).join("")].join("|");
 return{
  camp,map,mapAfter,
+ /* Al entrar en el mapa, la ficha de la misión siempre empieza cerrada. */
+ closePop(){M.open=false},
  build(){sig=sigNow();camp()},
  /* Tras cada cambio de la partida: repinta la vista visible solo si algo de lo que muestra ha cambiado. */
  paint(){const s=sigNow();if(s===sig)return;sig=s;if(VIEW==="camp")camp();else if(VIEW==="home"){map();mapAfter()}},
