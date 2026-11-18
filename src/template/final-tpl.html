@@ -939,15 +939,34 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .qsteps li{counter-increment:qs;display:flex;gap:14px;font:500 18px/1.5 var(--serif);color:var(--qtx2)}
 .qsteps li::before{content:counter(qs);flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1.4px var(--qgd);font:700 13px var(--disp);color:var(--qgd);margin-top:2px}
 .qsteps b{color:var(--qtx)}
-.qpicks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:8px}
-.qpick{padding:30px 18px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
-.qpick .lb{position:absolute;top:-10px;left:50%;transform:translateX(-50%);padding:3px 11px;border-radius:999px;font:600 9.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;background:#10162a;box-shadow:inset 0 0 0 1px rgba(217,184,108,.3);color:var(--qgd)}
-.qpick .dv{display:grid;place-items:center;min-width:48px;height:48px;padding:0 10px;margin-bottom:6px;border-radius:12px;box-shadow:inset 0 0 0 1.5px var(--qgd);font:700 15px var(--disp);color:var(--qgd);white-space:nowrap}
-.qpick.worst .dv{box-shadow:inset 0 0 0 1.5px #e08a8a;color:#e8a0a0}
-.qpick.best .dv{box-shadow:inset 0 0 0 1.5px #8fd1ae;color:#a6dcbf}
-.qpick h3{margin:0;font:700 15px/1.25 var(--disp);color:var(--qtx)}
-.qpick p{margin:0;font:500 16px/1.4 var(--serif);color:var(--qtx2)}
-.qpick small{font:600 10px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--qmu)}
+/* Eventos de Neth y Cofres: familias de resultados explicadas */
+.qhr{display:inline-block;margin:0 0 16px;padding:3px 11px;border-radius:999px;font:600 9.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;background:#10162a;box-shadow:inset 0 0 0 1px rgba(217,184,108,.3);color:var(--qgd)}
+.qfams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}
+.qfam{padding:22px 22px 20px;display:flex;gap:16px;align-items:flex-start;min-width:0}
+.qfam.w{grid-column:1/-1}
+.qfam .dv{flex:none;display:grid;place-items:center;min-width:58px;height:48px;padding:0 10px;border-radius:12px;box-shadow:inset 0 0 0 1.5px var(--qgd);font:700 14px var(--disp);color:var(--qgd);white-space:nowrap}
+.qfam.bad .dv{box-shadow:inset 0 0 0 1.5px #e08a8a;color:#e8a0a0}
+.qfam.good .dv{box-shadow:inset 0 0 0 1.5px #8fd1ae;color:#a6dcbf}
+.qfam.odd .dv{box-shadow:inset 0 0 0 1.5px #b9a2f0;color:#cdbdf6}
+.qfam>div{min-width:0}
+.qfam h3{margin:0 0 6px;font:700 17px/1.25 var(--disp);color:var(--qtx)}
+.qfam .fl{margin:0 0 10px;font:italic 500 17.5px/1.45 var(--serif);color:var(--qmu)}
+.qfam p{margin:0;font:500 17px/1.5 var(--serif);color:var(--qtx2)}
+.qfam small{display:block;margin-top:10px;font:600 10px/1.5 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--qgd)}
+p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
+.qlead b,p.qtx b{font-weight:700;color:var(--qgd)}
+.qnote{margin:26px 0 0;text-align:center;font:italic 500 17px/1.5 var(--serif);color:var(--qmu)}
+/* lectura obligatoria antes de la mesa de juego */
+.qcard .req{position:absolute;top:12px;right:12px;z-index:2;padding:3px 9px;border-radius:999px;font:600 8.5px var(--ui);letter-spacing:.18em;text-transform:uppercase;background:rgba(6,7,12,.8);box-shadow:inset 0 0 0 1px rgba(217,184,108,.55);color:var(--qgd)}
+.qcard.read .req{box-shadow:inset 0 0 0 1px rgba(143,209,174,.6);color:#a6dcbf}
+.qcard.read .rd{color:#a6dcbf}
+.qhint b{font-style:normal;font-weight:700;color:var(--qgd)}
+.qhint.ok{color:#a6dcbf}
+.fab.locked{color:#d9d3ea;background:linear-gradient(180deg,#4d4863 0,#3a3550 50%,#2c2840 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 0 0 1px rgba(217,184,108,.35),0 12px 30px rgba(0,0,0,.45)}
+.fab.locked:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 0 0 1px rgba(217,184,108,.6),0 16px 34px rgba(0,0,0,.5)}
+.fab.locked .fring{filter:grayscale(.7) brightness(.8)}
+.fab.locked .ftx small{color:var(--pgold)}
+.fab .flk{display:inline-block;width:11px;height:11px;margin-right:5px;vertical-align:-1px}
 @media (max-width:1180px){.qrow{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-top:34px;padding-bottom:30px;scrollbar-width:none}.qrow::-webkit-scrollbar{display:none}.qcard{scroll-snap-align:center}.qrow::before,.qrow::after{content:"";flex:1 0 0}}
 @media (max-width:760px){
  .qhero{height:auto;min-height:420px}
@@ -965,8 +984,8 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
  .qrd .rft{padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
  .qher,.qprep{grid-template-columns:minmax(0,1fr)}
  .qpor{height:320px;max-width:260px;margin:0 auto;width:100%}
- .qgrid,.qpicks{grid-template-columns:minmax(0,1fr)}
- .qpick{margin-top:6px}
+ .qgrid,.qfams{grid-template-columns:minmax(0,1fr)}
+ .qfam{padding:18px 16px;gap:12px}
  .qpro p{font-size:19px}
 }
 @media (prefers-reduced-motion:reduce){.qv *,.qov *{animation:none!important}}
@@ -1315,7 +1334,26 @@ function swapView(from,to,after){
  from.classList.remove("enter");from.classList.add("leave");swapT=setTimeout(go,230);
 }
 function toTop(y){window.scrollTo({top:y,left:0,behavior:"instant"})}
+/* Lectura obligatoria: la mesa de juego no se abre hasta leer la Historia y la Preparación
+   (salvo que ya haya una partida empezada). Se guarda aparte; «Nueva partida» no la borra. */
+const QREQ=["pro","prep"],QRL={pro:"la Historia",prep:"la Preparación"};
+let QRD={};try{QRD=JSON.parse(localStorage.getItem("psn-m1-read")||"{}")||{}}catch(e){QRD={}}
+function mesaLocked(){return !S.round&&QREQ.some(k=>!QRD[k])}
+function qMissing(){return QREQ.filter(k=>!QRD[k]).map(k=>`<b>${QRL[k]}</b>`)}
+function qMark(k){if(!QREQ.includes(k)||QRD[k])return;QRD[k]=1;try{localStorage.setItem("psn-m1-read",JSON.stringify(QRD))}catch(e){}qReadPaint();render()}
+function qReadPaint(){
+ document.querySelectorAll("#sheet .qcard[data-q]").forEach(b=>{const c=QCARDS[+b.dataset.q];if(!QREQ.includes(c.k))return;const r=!!QRD[c.k];
+  b.classList.toggle("read",r);b.querySelector(".req").textContent=r?"✓ Leída":"Obligatoria";b.querySelector(".rd").textContent=r?"Volver a leer":"Leer"});
+ const h=$("#sheet .qhint");if(!h)return;const m=qMissing();
+ h.classList.toggle("ok",!mesaLocked()&&!S.round);
+ h.innerHTML=S.round?"Elige una carta para leerla. La partida sigue en la mesa de juego.":m.length?`Antes de abrir la mesa de juego, leed ${m.join(" y ")}. El resto de cartas son de consulta.`:"Ya podéis abrir la mesa de juego. El resto de cartas quedan para consultar cuando haga falta."}
+function mesaNudge(){
+ const f=$("#fab");if(f.animate&&!REDUCE)f.animate([{transform:"none"},{transform:"translateX(-7px)"},{transform:"translateX(7px)"},{transform:"translateX(-4px)"},{transform:"none"}],{duration:420});
+ const h=$("#sheet .qhint");if(h)h.scrollIntoView({behavior:REDUCE?"auto":"smooth",block:"center"});
+ document.querySelectorAll("#sheet .qcard[data-q]").forEach(b=>{const c=QCARDS[+b.dataset.q];if(QREQ.includes(c.k)&&!QRD[c.k]&&b.animate&&!REDUCE)
+  b.animate([{filter:"none"},{filter:"brightness(1.45) drop-shadow(0 0 18px rgba(217,184,108,.8))"},{filter:"none"}],{duration:900,iterations:2})})}
 function openMesa(){
+ if(mesaLocked()){mesaNudge();return}
  const p=$("#panel");if(p.classList.contains("open"))return;
  p.inert=false;$("#mis").inert=true;document.documentElement.classList.add("lock");
  p.classList.add("open","intro");$("#fab").setAttribute("aria-expanded","true");
@@ -1491,8 +1529,10 @@ function render(){
  const mp=`<i class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</i>`;
  $("#pst").innerHTML=S.round?`<span>Ronda <b>${S.round}</b></span><span>${esc(stage())}</span><span>Alerta <b>${S.al}</b>${mp}</span>`:`<span>Preparación</span><span>Alerta <b>${S.al}</b>${mp}</span>`;
  $("#pact").innerHTML=`${S.round?`<button class="pb sm gh" data-a="restart" data-f="restart" title="Empieza de nuevo con la misma dificultad, puntos y héroes">${UI.sureR?"¿Seguro? Pulsa otra vez":"Reiniciar"}</button>`:""}<button class="pb sm gh" data-a="reset" data-f="reset">${UI.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>`;
- $("#fab").innerHTML=fabRing()+`<span class="ftx"><b>Mesa de juego</b><small>${S.round?`Ronda ${S.round} · Alerta ${S.al}/6`:"Preparar la partida"}</small></span>`;
- $("#fab").setAttribute("aria-label",S.round?`Abrir la mesa de juego. Ronda ${S.round}, alerta ${S.al} de 6`:"Abrir la mesa de juego");
+ const lk=mesaLocked();$("#fab").classList.toggle("locked",lk);
+ $("#fab").innerHTML=fabRing()+`<span class="ftx"><b>Mesa de juego</b><small>${S.round?`Ronda ${S.round} · Alerta ${S.al}/6`:lk?`<svg class="flk" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Lee Historia y Preparación`:"Preparar la partida"}</small></span>`;
+ $("#fab").setAttribute("aria-label",S.round?`Abrir la mesa de juego. Ronda ${S.round}, alerta ${S.al} de 6`:lk?"Mesa de juego bloqueada: primero leed la Historia y la Preparación":"Abrir la mesa de juego");
+ if(typeof qReadPaint==="function"&&$("#sheet .qhint"))qReadPaint();
  const alert=S.alert?`<div class="alert"><b>${esc(S.alert)}</b><div class="row" style="margin-top:8px"><button class="pb sm" data-a="ok" data-f="ok">Entendido</button></div></div>`:"";
  const nk=S.nar,nt=DATA.narMap[nk]||"";
  if(UI.au&&NAK!==nk)narStop();
@@ -1749,18 +1789,21 @@ function cMon(i){
 /* Tres ejemplos de una tabla: lo mejor para los héroes, lo peor y uno al azar (cambia en cada visita). */
 const pickRnd=a=>a[Math.floor(Math.random()*a.length)];
 function picks(L){return`<div class="picks">${L.map(x=>`<div class="pick ${x.k}"><span class="lb">${x.l}</span><div class="seal ${x.k==="best"?"g":x.k==="rnd"?"v":""}">${x.d}</div><h3>${esc(x.t)}</h3><p>${esc(x.x)}</p>${x.s?`<small>${esc(x.s)}</small>`:""}</div>`).join("")}</div>`}
-function eventPicks(){
- const E=n=>DATA.ev.find(e=>e[0]===n),b=E("66"),w=E("14"),r=pickRnd(DATA.ev.filter(e=>e!==b&&e!==w));
- return[{k:"best",l:"Lo mejor",d:b[0],t:b[1],x:b[2]},{k:"worst",l:"Lo peor",d:w[0],t:w[1],x:w[2]},{k:"rnd",l:"Al azar",d:r[0],t:r[1],x:r[2]}];
-}
-function chestPicks(){
- const rg=r=>r[0]===r[1]?r[0]:r[0]+"-"+r[1],all=[];
- PEL.filter(r=>r[2]!=="Ninguno").forEach(r=>all.push({d:"1-2 · "+rg(r),t:"Peligro · "+r[2],x:r[3],s:"Peligro"}));
- [[3,ELX,"Bolsa de elixires"],[4,BMB,"Bolsa de bombas"],[5,POC,"Caja de pociones"]].forEach(([a,T,n])=>T.forEach(r=>all.push({d:a+" · "+rg(r),t:r[2],x:r[3],s:n})));
- all.push({d:"6",t:"Tesoro maldito",x:"Los héroes obtienen 5 × D de oro (D es el nivel de dificultad) y surge un Borrado débil junto al héroe que abrió el cofre.",s:"Tesoro maldito"});
- const b=all.find(c=>c.t==="Poción de salud"),w=all.find(c=>c.t==="Peligro · Afligido"),r=pickRnd(all.filter(c=>c!==b&&c!==w));
- return[Object.assign({k:"best",l:"Lo mejor"},b),Object.assign({k:"worst",l:"Lo peor"},w),Object.assign({k:"rnd",l:"Al azar"},r)];
-}
+/* Eventos de Neth y Cofres: en vez de muestras de la tabla, qué significa cada familia de resultados (k: bad/good/odd, w: a todo lo ancho). */
+const QEV=[
+ {k:"bad",d:"1",t:"El vacío golpea",f:"Algo invisible empuja desde dentro de las paredes, y el cuerpo es lo primero que lo nota.",x:"Le toca a un héroe al azar: queda Aturdido, Afectado o Debilitado, sufre D3 heridas o tiene −1 a Fuerza o a Voluntad.",s:"Malo · un héroe"},
+ {k:"bad",d:"2",t:"El Umbral susurra",f:"Las voces no dicen nada. Pero se quedan contigo cuando ya se han ido.",x:"Le toca a un héroe al azar: sufre D3 impactos, pierde D3 de poder, queda Afligido, Aturdido o Enfermo, o tiene −1 a Destreza.",s:"Malo · un héroe"},
+ {k:"odd",w:1,d:"3",t:"El pueblo se deshace",f:"Las calles se olvidan de sí mismas. Un muro que ayer estaba ahí ya no recuerda haber estado nunca.",x:"Afecta a la mesa entera, a héroes y enemigos por igual: un cuadrante al azar pasa a ser terreno peligroso o difícil, o todos tienen −1 a Defensa, −1 a impactar, −1 a la moral o −6\" de alcance al disparar.",s:"Para todos · héroes y enemigos"},
+ {k:"good",d:"4",t:"Lo que el pueblo recuerda",f:"No todo se ha perdido. Algo, en algún sitio, todavía sabe quiénes sois.",x:"Pequeñas ayudas: un héroe gana +1 a la moral o a Destreza, +6\" de alcance o D3 de poder; aparecen D3 fichas de búsqueda nuevas, o una unidad enemiga al azar queda Aturdida.",s:"Bueno"},
+ {k:"good",d:"5",t:"Ecos que protegen",f:"Los muertos sin nombre no eligen bando… casi nunca.",x:"Un héroe al azar recibe una bendición: +1 a Fuerza, Voluntad o Defensa, +1 a impactar en cuerpo a cuerpo o al disparar, o se mueve más deprisa.",s:"Bueno · un héroe"},
+ {k:"good",w:1,d:"6",t:"Hallazgos entre la ceniza",f:"Lo olvidado a veces deja cosas atrás, como quien se marcha con prisa.",x:"Un héroe al azar recibe algo: un Elixir de poder, una Bomba aturdidora, una Poción de salud, 15 de oro o D3 de XP. O se revela qué guardan D3 fichas de búsqueda.",s:"Bueno · un héroe"}];
+const QCH=[
+ {k:"bad",d:"1-2",t:"Peligro",f:"La tapa cede y sale un aliento frío que huele a ceniza.",x:"Un tercio de las veces no pasa nada. Si no, el héroe que lo abre queda Afligido, Enfermo, Afectado o Debilitado.",s:"Malo · quien lo abre"},
+ {k:"good",d:"3",t:"Bolsa de elixires",f:"Frascos todavía tibios, como si alguien acabara de dejarlos.",x:"Refuerzos para un momento clave: +1 a impactar o +1 a Fuerza, Destreza y Voluntad hasta el final de la ronda, o recuperar D3+3 de poder.",s:"Bueno · para un empujón"},
+ {k:"good",d:"4",t:"Bolsa de bombas",f:"Envueltas en trapos, con nombres escritos que ya nadie sabe leer.",x:"Para manejar al enemigo: atraerlo con ruido lejos de los héroes, llenar un círculo de grasa (terreno difícil) o dejar Aturdida a una unidad.",s:"Bueno · para controlar"},
+ {k:"good",d:"5",t:"Caja de pociones",f:"Cristal verde, tapones de cera y una etiqueta borrada a medias.",x:"Para salvar a alguien: quitar todos los estados, recuperar 3 heridas o teletransportarse junto a una esquina para escapar.",s:"Bueno · para curar o huir"},
+ {k:"odd",w:1,d:"6",t:"Tesoro maldito",f:"Oro que pesa más de lo que debería. Y algo, debajo, que no quería que lo despertaran.",x:"Los héroes ganan 5 × D de oro (D es el nivel de dificultad)… y aparece un Borrado débil junto al héroe que lo abrió.",s:"Recompensa con precio"}];
+function qFams(L){return `<div class="qfams">${L.map(x=>`<div class="qpn qfam ${x.k}${x.w?" w":""}"><span class="dv">${x.d}</span><div><h3>${x.t}</h3><p class="fl">${x.f}</p><p>${x.x}</p><small>${x.s}</small></div></div>`).join("")}</div>`}
 /* Página de la misión: portada, seis cartas sobre la mesa y panel de lectura (ambiente Neth). */
 const QI={
  x:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
@@ -1778,7 +1821,6 @@ function qMap(){let s=`<svg viewBox="0 0 300 300" role="img" aria-label="Mesa de
  s+=`<circle cx="150" cy="150" r="13" fill="#03050b" stroke="#d9b86c" stroke-width="1.2"/><circle cx="150" cy="150" r="19" fill="none" stroke="#5f86d6" stroke-opacity=".6"/>`;
  [[110,190],[190,110],[60,140]].forEach(([x,y])=>s+=`<path d="M${x} ${y-7}l7 12h-14z" fill="#c9573f" opacity=".85"/>`);
  return `<div class="qmap">${s}</svg><p>Numeración sugerida, en el sentido de las agujas del reloj. Rombos: fichas de búsqueda · Triángulos: centinelas · Arcos: esquinas a 6" · Centro: el pozo</p></div>`}
-function qPicks(L){return `<div class="qpicks">${L.map(x=>`<div class="qpn qpick ${x.k}"><span class="lb">${x.l}</span><span class="dv">${x.d}</span><h3>${esc(x.t)}</h3><p>${esc(x.x)}</p>${x.s?`<small>${esc(x.s)}</small>`:""}</div>`).join("")}</div>`}
 const QCARDS=[
  {k:"pro",big:1,n:"Capítulo I",t:"El contrato del Filo",p:"Una aldea que nadie recuerda y un saquito de plata.",sl:"I",
   h:()=>`<div class="qpro">${DATA.pro.map((p,i)=>`<p${i?"":' class="dc"'}>${esc(p)}</p>`).join("")}</div>`},
@@ -1794,17 +1836,25 @@ const QCARDS=[
   h:()=>{const pr=DATA.prep,st=pr.slice(1).map(l=>{const m=l.match(/^\d\. ([^:]+): (.*)$/);return[m[1],cap(m[2])]}).filter(s=>!/Despliegue enemigo/.test(s[0]));
    return `<p class="qlead">${esc(pr[0].replace(/^Mesa: /,"La mesa: "))}</p><div class="qprep"><div class="qpn">${qMap()}</div><ol class="qsteps">${st.map(s=>`<li><span><b>${esc(s[0])}.</b> ${esc(s[1])}</span></li>`).join("")}</ol></div>`}},
  {k:"ev",n:"Capítulo IV",t:"Eventos de Neth",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
-  h:()=>`<p class="qlead">Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entran refuerzos. Los efectos con duración terminan en el siguiente evento. Estas son tres de las treinta y seis posibilidades; la mesa de juego tira las demás por ti.</p>${qPicks(eventPicks())}`},
+  h:()=>`<span class="qhr">Regla de la casa</span><p class="qlead">Neth no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de Neth. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
+   <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se lee</p><p class="qtx">Se tiran 2d6 de uno en uno. El <b>primer dado</b> dice qué clase de cosa ocurre (las familias de abajo) y el <b>segundo</b>, cuál de las seis: del 11 al 66.</p></div><div class="qpn"><p class="qh4">Cuánto dura</p><p class="qtx">Los efectos que dicen «hasta el siguiente evento» duran hasta que se vuelva a tirar. Los estados se quitan como siempre. «Al azar» se sortea con un dado entre los héroes o los cuadrantes.</p></div></div>
+   <p class="qh4" style="margin:30px 0 14px">Lo que puede pasar, según el primer dado</p>${qFams(QEV)}
+   <blockquote class="qq"><p>Primero olvidas el camino de vuelta. Luego, a quién ibas a volver a ver.</p><cite>Dicho del Culto del Umbral</cite></blockquote>
+   <p class="qnote">La mitad de las veces el pueblo os echa una mano. La mesa de juego tira el evento por vosotros y os dice a qué héroe o a qué cuadrante le toca.</p>`},
  {k:"ch",n:"Capítulo V",t:"Cofres",p:"Lo que guardan las casas vacías.",sl:"V",
-  h:()=>`<p class="qlead">Cada ficha de búsqueda es un cofre. Un héroe gasta una acción de habilidad (Descubrir): a 6" o menos y con línea de visión pasa una tirada de Wil, y a 1" o menos no necesita tirada. Después se tira el contenido y, si hace falta, el objeto. Esto es solo una muestra; la mesa de juego tira el resto por ti.</p>${qPicks(chestPicks())}`}];
+  h:()=>`<span class="qhr">Regla de la casa</span><p class="qlead">Las casas del pueblo siguen llenas de cosas que nadie echa de menos. Cada ficha de búsqueda es un cofre: puede guardar justo lo que os hacía falta… o algo que llevaba demasiado tiempo esperando a que alguien lo abriera.</p>
+   <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se abre</p><p class="qtx">Un héroe gasta una acción de habilidad (<b>Descubrir</b>): a 6" o menos y con línea de visión, pasa una tirada de Wil; a 1" o menos, no necesita tirada.</p></div><div class="qpn"><p class="qh4">Qué se tira</p><p class="qtx">Un d6 dice <b>qué hay dentro</b> (abajo). Del 1 al 5 se tira otro d6 para saber <b>qué objeto o qué peligro</b> exactamente; con un 6 no hace falta.</p></div></div>
+   <p class="qh4" style="margin:30px 0 14px">Lo que puede haber dentro</p>${qFams(QCH)}
+   <blockquote class="qq"><p>En este pueblo nadie cierra con llave. Lo que hay dentro ya se encarga de que nadie lo abra.</p><cite>Advertencia del Filo</cite></blockquote>
+   <p class="qnote">Los nombres de los objetos son del Campaign Builder; sus efectos, de la casa. La mesa de juego tira el contenido y el objeto por vosotros.</p>`}];
 const Q={open:-1,from:null};
 function qMotes(n,seed){let z=seed;const R=()=>{z=(z*9301+49297)%233280;return z/233280};let s="";for(let i=0;i<n;i++)s+=`<i style="left:${(R()*100).toFixed(1)}%;top:${(25+R()*75).toFixed(1)}%;animation-duration:${(6+R()*8).toFixed(1)}s;animation-delay:-${(R()*10).toFixed(1)}s"></i>`;return `<div class="qmotes" aria-hidden="true">${s}</div>`}
 function buildSheet(){
- const row=QCARDS.map((c,k)=>`<button class="qcard${c.big?" big":""}" type="button" data-q="${k}" style="--i:${k}" aria-haspopup="dialog"><span class="ic${c.img?" im":""}">${c.img?`<img src="${IMG_RETRATO}" alt="">`:QI[c.k]}</span><span class="nm">${c.n}</span><h3>${c.t}</h3><p>${c.p}</p><span class="rd">Leer</span></button>`).join("");
- $("#sheet").innerHTML=`${qMotes(30,13)}<div class="qhero"><div class="qart"><img src="${IMG_JEFE}" width="640" height="808" alt=""></div><div class="qecl" aria-hidden="true"></div><div class="qtop"><button class="back" type="button" data-nav="home" aria-label="Volver al mapa de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button></div><div class="qht"><p class="qeb">Misión I · Ruptura de Neth</p><h1 class="qgt qer">El pueblo vacío</h1><p class="sub">Un contrato del Filo, una Ruptura de Neth y un pueblo que ya no recuerda su nombre.</p></div></div><div class="qrow" role="list" aria-label="Capítulos de la misión">${row}</div><p class="qhint">Elige una carta para leerla. Empieza por las dos primeras: son la historia.</p>`}
+ const row=QCARDS.map((c,k)=>`<button class="qcard${c.big?" big":""}" type="button" data-q="${k}" style="--i:${k}" aria-haspopup="dialog">${QREQ.includes(c.k)?'<span class="req"></span>':""}<span class="ic${c.img?" im":""}">${c.img?`<img src="${IMG_RETRATO}" alt="">`:QI[c.k]}</span><span class="nm">${c.n}</span><h3>${c.t}</h3><p>${c.p}</p><span class="rd">Leer</span></button>`).join("");
+ $("#sheet").innerHTML=`${qMotes(30,13)}<div class="qhero"><div class="qart"><img src="${IMG_JEFE}" width="640" height="808" alt=""></div><div class="qecl" aria-hidden="true"></div><div class="qtop"><button class="back" type="button" data-nav="home" aria-label="Volver al mapa de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button></div><div class="qht"><p class="qeb">Misión I · Ruptura de Neth</p><h1 class="qgt qer">El pueblo vacío</h1><p class="sub">Un contrato del Filo, una Ruptura de Neth y un pueblo que ya no recuerda su nombre.</p></div></div><div class="qrow" role="list" aria-label="Capítulos de la misión">${row}</div><p class="qhint" aria-live="polite"></p>`;qReadPaint()}
 function qOpen(k){if(k<0||k>=QCARDS.length)return;const first=Q.open<0;Q.open=k;if(first)Q.from=document.activeElement;const c=QCARDS[k],ov=$("#qov");
  ov.innerHTML=`<div class="qpn qrd" role="dialog" aria-modal="true" aria-labelledby="qrdt"><div class="rhd"><span class="qseal">${c.sl}</span><div><p class="qeb">${c.n}</p><h2 class="qgt qer" id="qrdt">${c.t}</h2></div><button class="qx" type="button" data-qclose aria-label="Cerrar">${QI.x}</button></div><div class="rbd" tabindex="-1">${c.h()}</div><div class="rft"><button type="button" data-q="${k-1}"${k?"":" disabled"}>← ${k?QCARDS[k-1].t:""}</button><button type="button" data-q="${k+1}"${k<QCARDS.length-1?"":" disabled"}>${k<QCARDS.length-1?QCARDS[k+1].t:""} →</button></div></div>`;
- ov.hidden=false;$("#col").inert=true;$("#fab").inert=true;document.documentElement.classList.add("lock");requestAnimationFrame(()=>{const b=ov.querySelector(".qx");if(b)b.focus({preventScroll:true})})}
+ qMark(c.k);ov.hidden=false;$("#col").inert=true;$("#fab").inert=true;document.documentElement.classList.add("lock");requestAnimationFrame(()=>{const b=ov.querySelector(".qx");if(b)b.focus({preventScroll:true})})}
 function qClose(){if(Q.open<0)return;const k=Q.open;Q.open=-1;const ov=$("#qov");ov.hidden=true;ov.innerHTML="";$("#col").inert=false;$("#fab").inert=false;document.documentElement.classList.remove("lock");
  const c=$(`.qcard[data-q="${k}"]`)||Q.from;if(c)c.focus({preventScroll:true})}
 document.addEventListener("click",e=>{if(VIEW!=="m1")return;const t=e.target;
