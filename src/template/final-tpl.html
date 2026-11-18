@@ -990,6 +990,161 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 }
 @media (prefers-reduced-motion:reduce){.qv *,.qov *{animation:none!important}}
 @media (prefers-reduced-motion:reduce){.camp *,.mapv *{animation:none!important;transition:none!important}}
+
+/* =====================================================================================================
+   Mesa de juego · «Sala de guerra» (2026-11-18, elegida de docs/maquetas/mesa-juego.html):
+   noche azul y oro del mapa + violeta de la mesa + marcos rotos de Neth. La luz cambia con Noche/Alba/Día
+   (data-ph en #panel). Alerta con el eclipse de Neth, dados de hueso, unidades en filas con sello,
+   y el tablero táctico en una pestaña flotante a la derecha (#btab / #bdrw).
+   ===================================================================================================== */
+:root{--pbg:#06070c;--pcard:#111a2f;--pcard2:#16213b;--pline:#24304d;--pline2:#33416a;--pmu:#8f9abb;--pmu2:#c3cbe0}
+.panel{overflow:hidden;--sky:#0a1020;--sky2:#17264a;--hz:rgba(95,134,214,.22);--amb:#7d9be0;--star:.9;
+ background:radial-gradient(900px 420px at 50% -8%,var(--hz),transparent 70%),linear-gradient(180deg,var(--sky2) 0,var(--sky) 46%,#06070c 100%)}
+.panel[data-ph="Alba"]{--sky:#120d1e;--sky2:#3b2448;--hz:rgba(236,150,160,.24);--amb:#e7a08a;--star:.35}
+.panel[data-ph="Día"]{--sky:#11131a;--sky2:#2d2a24;--hz:rgba(217,184,108,.2);--amb:#d9b86c;--star:0}
+.psky{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.psky::before{content:"";position:absolute;inset:0;opacity:var(--star);transition:opacity 1.2s;
+ background-image:radial-gradient(1px 1px at 12% 18%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 28% 8%,#fff7 50%,transparent 51%),radial-gradient(1.4px 1.4px at 44% 22%,#fffa 50%,transparent 51%),radial-gradient(1px 1px at 61% 12%,#fff6 50%,transparent 51%),radial-gradient(1.2px 1.2px at 77% 26%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 88% 9%,#fff7 50%,transparent 51%),radial-gradient(1px 1px at 6% 40%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 93% 44%,#fff5 50%,transparent 51%),radial-gradient(1px 1px at 36% 36%,#fff4 50%,transparent 51%),radial-gradient(1px 1px at 70% 40%,#fff4 50%,transparent 51%)}
+.psky::after{content:"";position:absolute;inset:0;opacity:.4;mix-blend-mode:overlay;background:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .6 0 0 0 .3 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+.psky i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#c9b8ff;box-shadow:0 0 8px #a78bfa;opacity:0;animation:pmote 14s linear infinite}
+@keyframes pmote{0%{transform:translate(0,0);opacity:0}12%{opacity:.7}100%{transform:translate(30px,-90vh);opacity:0}}
+.phead,.pbody{position:relative;z-index:1}
+.phead{background:linear-gradient(180deg,rgba(6,8,15,.92),rgba(8,11,22,.72));border-bottom-color:rgba(217,184,108,.16)}
+.phead::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(217,184,108,.55) 30%,rgba(167,139,250,.5) 70%,transparent)}
+.px{border-color:var(--pline2);background:radial-gradient(circle at 35% 30%,#1c2645,#0c1222)}
+.ptl small{color:#8fa6d6}
+.pst span{background:rgba(12,18,34,.7);border-color:var(--pline2);color:var(--pmu2)}
+.pst .mp i{background:#25304f}
+/* tarjetas con marco de Neth (borde dorado con tramos que faltan) */
+.pc{position:relative;border:0;border-radius:16px;background:linear-gradient(180deg,rgba(23,32,58,.88),rgba(13,19,36,.92));box-shadow:0 18px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04)}
+.pc::before,.fn::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+ background:conic-gradient(from 18deg,rgba(217,184,108,.5) 0 16%,transparent 16% 19%,rgba(217,184,108,.32) 19% 47%,transparent 47% 49.5%,rgba(217,184,108,.45) 49.5% 72%,transparent 72% 76%,rgba(217,184,108,.3) 76% 100%);
+ -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.pc h3 .tt{border-color:rgba(217,184,108,.75);font-weight:700;letter-spacing:.2em}
+.pc h3 em{color:var(--pmu)}
+/* botones */
+.pb{border-color:#4a3d8f;background:rgba(20,16,40,.6);color:#d6ccff;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.pb:hover{background:#231c45;border-color:var(--pvio)}
+.pb.pr{border:0;color:#120c26;background:linear-gradient(180deg,#c9b8ff 0,#a78bfa 45%,#8a6cf0 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(60,30,140,.25),0 0 0 1px rgba(167,139,250,.5),0 10px 26px rgba(110,80,220,.35)}
+.pb.pr:hover{background:linear-gradient(180deg,#d6caff 0,#b49cfb 45%,#977cf2 100%);transform:translateY(-1px)}
+.pb.gh{border-color:var(--pline2);background:rgba(12,18,34,.6);color:var(--pmu2)}
+.pb.gh:hover{border-color:rgba(217,184,108,.5);color:var(--pgold);background:rgba(20,28,50,.8)}
+.pb:disabled:hover{transform:none}
+.stp button,.dsel,#armyTxt,.mkr,.res{border-color:var(--pline2)}
+.seals button{border-color:var(--pline2)}
+/* texto de la ronda: cinta con el pozo a la izquierda */
+.narb{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;padding:20px 26px}
+.narb .nic{width:56px;height:56px;color:var(--pgold);opacity:.9}
+.narb .nic svg{width:100%;height:100%}
+.narb h3{margin-bottom:8px}
+.narb .plays,.narb>.play{align-self:center}
+.narb .play{width:40px;height:40px;border-color:rgba(217,184,108,.7);background:radial-gradient(circle at 35% 30%,#24305a,#0e1428)}
+.nar{color:var(--pink);text-wrap:pretty}
+/* Ronda y alerta (eclipse de Neth) */
+.vig{display:flex;flex-direction:column;align-items:center;text-align:center}
+.vig h3{align-self:stretch}
+.ecw{width:214px;height:214px;margin:0 auto 4px}
+.ecw svg{width:100%;height:100%;display:block}
+.phs{display:flex;align-items:center;gap:12px;width:100%;margin:8px 0 0;padding:12px 14px;border-radius:12px;background:rgba(8,12,24,.55);border:1px solid var(--pline);text-align:left}
+.phs svg{flex:none;width:34px;height:34px;color:var(--amb)}
+.phs b{display:block;font:700 13px var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--pgold)}
+.phs small{display:block;font-size:12px;line-height:1.4;color:var(--pmu2)}
+.alrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;width:100%;margin-top:12px;gap:8px}
+.alrow .tog{margin:0;font-size:12.5px}
+.alrow .tog input{width:17px;height:17px}
+.vig .go{margin-top:16px;width:100%}
+.vig .gow{width:100%}
+.vig .nxt{width:100%;text-align:center;border-top:0;padding-top:0;margin-top:10px}
+.vig .alw,.vig .cwrap,.vig .alh{width:100%;text-align:left}
+/* unidades: fila con sello */
+.un{grid-template-columns:50px minmax(0,1fr);gap:4px 14px;padding:12px 2px;border-top-color:rgba(51,65,106,.5)}
+.un .q{position:relative;width:46px;height:46px;padding:0}
+.un .q svg{width:46px;height:46px;display:block}
+.un .q b{position:absolute;right:-4px;bottom:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;display:grid;place-items:center;font:700 11px/1 var(--num);color:#1a1208;background:linear-gradient(180deg,#f3dc9a,#c99a48);box-shadow:0 2px 6px rgba(0,0,0,.45)}
+.un.gone .q{filter:grayscale(1);opacity:.5}
+.un.gone .q b{background:#3a4566;color:var(--pmu2)}
+.grp{color:var(--pmu)}
+.grp.new{color:var(--pvio)}
+/* dados de hueso */
+.dice2{flex:none;display:flex;gap:6px}
+.bone{display:block;width:42px;height:42px;border-radius:10px;background:linear-gradient(145deg,#f6ecd2,#d8c49a);box-shadow:inset 0 -3px 0 rgba(120,90,40,.35),inset 0 1px 0 #fff,0 6px 14px rgba(0,0,0,.45)}
+.bone svg{width:100%;height:100%;display:block}
+.dice2.ghost .bone{opacity:.22;filter:grayscale(.6)}
+.dice2.tmb .bone{animation:bshake .11s linear infinite}
+@keyframes bshake{0%{transform:rotate(-8deg) translateY(-2px)}50%{transform:rotate(7deg) translateY(1px)}100%{transform:rotate(-8deg) translateY(-2px)}}
+.dice2.land .bone{animation:bland .6s cubic-bezier(.3,1.4,.5,1)}
+.dice2.land .bone:nth-child(2){animation-delay:.07s}
+@keyframes bland{0%{transform:translate(-26px,-20px) rotate(-160deg) scale(.7);opacity:0}60%{transform:translate(3px,1px) rotate(10deg)}100%{transform:none}}
+.res{background:rgba(10,15,30,.75);border-color:#2a3557}
+.res.bad{border-color:rgba(236,138,160,.45);background:linear-gradient(135deg,rgba(80,24,40,.35),rgba(10,15,30,.75))}
+.res.ok{border-color:rgba(134,209,174,.4);background:linear-gradient(135deg,rgba(24,70,54,.35),rgba(10,15,30,.75))}
+.res.all{border-color:rgba(167,139,250,.45);background:linear-gradient(135deg,rgba(60,40,120,.35),rgba(10,15,30,.75))}
+.rtg{display:block;margin-bottom:2px;font:700 9.5px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--pmu)}
+.res.bad .rtg{color:var(--pbad)}.res.ok .rtg{color:var(--pok)}.res.all .rtg{color:#c9b8ff}
+/* objetivos */
+.mkr{background:rgba(10,15,30,.6);border-color:var(--pline)}
+.mkr.on{border-color:rgba(217,184,108,.6);background:linear-gradient(120deg,rgba(80,60,20,.35),rgba(10,15,30,.6))}
+.exit{border-color:rgba(217,184,108,.4);background:linear-gradient(135deg,rgba(60,48,20,.45),rgba(14,20,40,.8))}
+/* botín: franja a lo ancho */
+.fn{position:relative;border:0;background:linear-gradient(120deg,rgba(60,46,16,.4),rgba(13,19,36,.92) 45%);display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;padding:16px 22px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+.fn h3{margin:0}
+.fn>p{flex-basis:100%;order:3;margin:0}
+.fn .xp{flex:1 1 280px;margin:0}
+.fn .xp div{background:rgba(8,12,24,.5)}
+.fn .defw{margin:0;order:2}
+.alert{background:linear-gradient(135deg,#2a2150,#121a30);border-color:rgba(217,184,108,.5);box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 40px rgba(167,139,250,.18)}
+/* pestaña flotante del tablero táctico: a la derecha, por encima de los medallones de héroe */
+.btab{position:absolute;z-index:6;right:0;bottom:calc(128px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border:1px solid rgba(217,184,108,.55);border-right:0;border-radius:14px 0 0 14px;background:linear-gradient(160deg,#1f2c58,#0d1428);color:var(--pgold);box-shadow:-10px 14px 34px rgba(0,0,0,.55),0 0 30px rgba(95,134,214,.18);transition:padding .3s cubic-bezier(.22,1,.36,1),opacity .3s,transform .3s}
+.btab:hover{padding-right:24px}
+.btab svg{flex:none;width:30px;height:30px}
+.btab b{display:block;font:700 11px/1.15 var(--ui);letter-spacing:.18em;text-transform:uppercase}
+.btab small{display:block;margin-top:2px;font:600 11px var(--num);color:var(--pmu2);letter-spacing:.02em}
+.btab[hidden]{display:none}
+.panel.bopen .btab{opacity:0;pointer-events:none;transform:translateX(30px)}
+.btab{transition:padding .3s cubic-bezier(.22,1,.36,1),opacity .3s,transform .3s,bottom .4s cubic-bezier(.22,1,.36,1)}
+.bscrim{position:absolute;inset:0;z-index:7;background:rgba(3,5,10,.5);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.panel.bopen .bscrim{opacity:1;visibility:visible;transition:opacity .35s}
+.bdrw{position:absolute;z-index:8;top:0;right:0;bottom:0;width:min(640px,100%);display:flex;flex-direction:column;background:linear-gradient(180deg,#111a33,#080b16);border-left:1px solid rgba(217,184,108,.3);box-shadow:-30px 0 80px rgba(0,0,0,.6);transform:translateX(104%);visibility:hidden;transition:transform .5s cubic-bezier(.22,1,.36,1),visibility 0s linear .5s}
+.panel.bopen .bdrw{transform:none;visibility:visible;transition:transform .5s cubic-bezier(.22,1,.36,1),visibility 0s}
+.bdh{flex:none;display:flex;align-items:center;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) 14px 18px;border-bottom:1px solid rgba(217,184,108,.16)}
+.bdh .px{width:40px;height:40px}
+.bdh small{display:block;font:600 10px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:#8fa6d6}
+.bdh b{display:block;font:700 17px/1.1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--pgold)}
+.bdb{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:16px max(18px,env(safe-area-inset-right,0px)) calc(130px + env(safe-area-inset-bottom,0px)) 18px;scrollbar-width:thin;scrollbar-color:#2b3557 transparent}
+.bmap{display:block;width:100%;height:auto;filter:drop-shadow(0 24px 50px rgba(0,0,0,.55))}
+.bmap .bz{cursor:pointer}
+.bmap .bz:hover{fill:rgba(217,184,108,.06)}
+.bmap .btk{cursor:pointer}
+.bmap .btk:hover .bb{stroke:#fff}
+.bmap .brs{cursor:pointer}
+.panel:not(.bpick) .bmap .bz{cursor:default}.panel:not(.bpick) .bmap .bz:hover{fill:transparent}
+.blg{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;margin:10px 0 0;font:600 11px var(--ui);color:var(--pmu)}
+.blg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.bhint{margin:12px 0 0;padding:10px 12px;border-radius:11px;border:1px solid var(--pline);background:rgba(8,12,24,.55);font-size:12.5px;line-height:1.5;color:var(--pmu2)}
+.bhint b{color:var(--pgold);font-weight:600}
+.bsec{margin:16px 0 8px;font:700 10px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--pmu)}
+.btray{display:flex;flex-wrap:wrap;gap:6px}
+.btray button{display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 5px;border-radius:999px;border:1px solid var(--pline2);background:rgba(12,18,34,.7);font:600 12px var(--ui);color:var(--pmu2)}
+.btray button i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 9.5px var(--num);font-style:normal;color:#fff;background:radial-gradient(circle at 35% 30%,#9a7cf5,#4a2fa8)}
+.btray button.n i{background:radial-gradient(circle at 35% 30%,#ec8aa0,#8a2a45)}
+.btray button.on{border-color:var(--pgold);color:var(--pgold)}
+.btray .none{font:italic 500 15px var(--serif);color:var(--pmu)}
+.bsel{display:flex;gap:12px;align-items:center;margin-top:12px;padding:10px 12px;border-radius:12px;border:1px solid rgba(167,139,250,.55);background:linear-gradient(120deg,rgba(60,40,120,.3),rgba(10,15,30,.7));font-size:12.5px;color:var(--pmu2)}
+.bsel b{display:block;font-size:13.5px;color:var(--pink)}
+.bhc{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bhc .seg2{display:inline-flex;padding:3px;border-radius:999px;border:1px solid var(--pline2);background:rgba(8,12,24,.7)}
+.bhc .seg2 button{border:0;background:none;width:32px;height:28px;border-radius:999px;font:700 12px var(--num);color:var(--pmu)}
+.bhc .seg2 button[aria-pressed="true"]{background:linear-gradient(180deg,#f3dc9a,#c99a48);color:#1a1208}
+@media (max-width:640px){
+ .narb{grid-template-columns:minmax(0,1fr) auto;padding:16px;gap:12px}
+ .narb .nic{display:none}
+ .ecw{width:180px;height:180px}
+ .btab{padding:9px 12px 9px 10px;bottom:calc(132px + env(safe-area-inset-bottom,0px))}
+ .btab span{display:none}
+ .btab svg{width:28px;height:28px}
+ .bdrw{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.psky i{animation:none;opacity:0}.bdrw,.bscrim,.btab{transition:none}.dice2 .bone{animation:none!important}}
 </style>
 
 <div class="view camp" id="camp"></div>
@@ -1002,7 +1157,11 @@ p.qtx{margin:0;font:500 17.5px/1.5 var(--serif);color:var(--qtx2)}
 </div>
 <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="ptitle" inert>
 <header class="phead"><button class="px" id="px" type="button" data-nav="close" aria-label="Cerrar la mesa de juego y volver al pergamino"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="ptl"><small>Misión I · El pueblo vacío</small><h2 id="ptitle">Mesa de juego</h2></div><div class="pst" id="pst"></div><div id="pact"></div></header>
+<div class="psky" aria-hidden="true"><i style="left:6%;animation-delay:-1s"></i><i style="left:17%;animation-delay:-8s;animation-duration:17s"></i><i style="left:29%;animation-delay:-4s"></i><i style="left:41%;animation-delay:-11s;animation-duration:12s"></i><i style="left:53%;animation-delay:-6s;animation-duration:16s"></i><i style="left:64%;animation-delay:-2s"></i><i style="left:76%;animation-delay:-9s;animation-duration:13s"></i><i style="left:88%;animation-delay:-5s;animation-duration:18s"></i><i style="left:95%;animation-delay:-12s"></i></div>
 <div class="pbody" id="pbody"></div>
+<button class="btab" id="btab" type="button" data-a="board" aria-controls="bdrw" aria-expanded="false" hidden></button>
+<div class="bscrim" data-a="board" aria-hidden="true"></div>
+<aside class="bdrw" id="bdrw" aria-label="Tablero táctico" inert></aside>
 </aside>
 <!-- Fichas de héroe: fuera de la mesa para que se vean en todas las pantallas (selector, pergamino y mesa). -->
 <div class="hf-layer" id="hfLayer">
@@ -1144,7 +1303,7 @@ function busy(skipK){
 function mergeWave(k){
  const c=S.comp[k];if(!c||c.merged)return;
  S.table=(S.table||[]).filter(t=>t.m>0&&ARMY[t.i]);
- c.u.forEach(e=>{const m=aliveM(e);if(m>0&&ARMY[e.i])S.table.push({i:e.i,m})});
+ c.u.forEach(e=>{const m=aliveM(e);if(m>0&&ARMY[e.i])S.table.push({i:e.i,m,p:e.p})});
  S.table.sort((x,y)=>x.i-y.i);c.merged=true;
 }
 /* Sorteo: solo copias que no estén ya en la mesa (regla de la casa). Si no cabe ninguna, la oleada sale más corta. */
@@ -1184,6 +1343,7 @@ const PLACE={q:"Centro de un cuadrante. Un dado por unidad.",c:"A 6\" o menos de
 function rollPos(){
  const k=curW(),w=waveDef(k);
  S.rolls[k]={u:w.c.u.map(e=>{if(e.a){const d3=R(3);return{t:"a",d:d3,at:S.round+d3}}return{t:w.p,d:R(6)}}),h:w.her?{t:"c",d:R(6)}:null};
+ S.rolls[k].u.forEach((r,j)=>{const e=w.c.u[j];if(!e)return;e.p=r.t==="a"?{z:"a",at:r.at}:r.d<=4?{z:r.t,d:r.d}:null});
 }
 function posLabel(r){
  if(r.t==="a")return"Ronda "+r.at+" · D3="+r.d;
@@ -1207,7 +1367,7 @@ function rollChest(A,B){
  else{t="bad";title="Tesoro maldito";text="Los héroes obtienen "+5*S.d+" de oro y surge un Borrado débil junto al héroe que abrió el cofre."}
  return{a,b,t,title,text,x}
 }
-function setEv(x,y){const n=x*10+y,e2=neth(n);S.ev={n,t:e2[1],x:e2[2],tone:n<40?"bad":"ok",extra:evExtra(e2[2])};S.needEv=false;hist("Evento",n+" "+e2[1])}
+function setEv(x,y){const n=x*10+y,e2=neth(n);S.ev={n,t:e2[1],x:e2[2],tone:x<=2?"bad":x===3?"all":"ok",extra:evExtra(e2[2])};S.needEv=false;hist("Evento",n+" "+e2[1])}
 function setCh(x,y){S.ch=rollChest(x,y);hist("Cofre",S.ch.a+(S.ch.b?"/"+S.ch.b:"")+" "+S.ch.title)}
 const dsel=(id,l)=>`<label class="dl"><small>${l}</small><select id="${id}" class="dsel" data-f="${id}"><option value="">–</option>${[1,2,3,4,5,6].map(n=>`<option>${n}</option>`).join("")}</select></label>`;
 function hist(k,t){S.hist.unshift(k+" "+t);S.hist=S.hist.slice(0,6)}
@@ -1298,12 +1458,18 @@ const ACT={
  armySave:()=>{if(S.round)return;const el=$("#armyTxt");if(!el)return;const t=el.value,p=parseArmy(t);if(!p.units.length){UI.armyMsg="No he reconocido ninguna unidad. Cada una necesita una línea como: 3x Nombre [1] Q5+ D6+ | 25pts | reglas";return}try{localStorage.setItem(AKEY,t)}catch(e){}setArmy(t);UI.armyMsg="Lista cargada: "+p.units.length+" entradas."+(p.bad.length?" Se ignoraron "+p.bad.length+" líneas que no entendí.":"")+" Las oleadas se vuelven a sortear."},
  armyDef:()=>{if(S.round)return;try{localStorage.removeItem(AKEY)}catch(e){}setArmy(ARMY_DEF);UI.armyMsg="Lista de ejemplo restaurada."},
  ok:()=>{S.alert=""},
+ board:()=>{UI.board=!UI.board;UI.bsel=null;if(UI.board)requestAnimationFrame(()=>{const x=$("#bdrw .px");if(x)x.focus({preventScroll:true})});else $("#btab").focus({preventScroll:true})},
+ bsel:v=>{UI.bsel=UI.bsel===v?null:v},
+ bq:v=>{const u=UI.bsel&&bFind(UI.bsel);if(u){u.e.p={z:"q",d:+v};UI.bsel=null}},
+ bc:v=>{const u=UI.bsel&&bFind(UI.bsel);if(u){u.e.p={z:"c",d:+v};UI.bsel=null}else S.hc=S.hc===+v?0:+v},
+ hc:v=>{S.hc=S.hc===+v?0:+v},
  reset:()=>{if(!UI.sure){UI.sure=true;UI.sureR=false;setTimeout(()=>{UI.sure=false;render()},3500);return}narStop();S=S0();UI.sure=false;try{localStorage.removeItem(KEY)}catch(e){}}
 };
 function tumble(kind,done){
  const el=document.getElementById("die-"+kind);
  if(REDUCE||!el){done();return}
- let n=0;const iv=setInterval(()=>{el.textContent=kind==="EV"?R(6)+""+R(6):R(6);if(++n>9){clearInterval(iv);done()}},55);
+ const k=kind==="SEC"?1:2;el.classList.remove("ghost","land");el.classList.add("tmb");
+ let n=0;const iv=setInterval(()=>{el.innerHTML=Array.from({length:k},()=>face(R(6))).join("");if(++n>9){clearInterval(iv);UI.land=kind;done();setTimeout(()=>{UI.land=""},700)}},60);
 }
 document.addEventListener("click",e=>{
  const n=e.target.closest("[data-nav]");
@@ -1363,6 +1529,7 @@ function openMesa(){
 function closeMesa(){
  const p=$("#panel");if(!p.classList.contains("open"))return;
  if(typeof HF!=="undefined"){hfClose();HF.fan=false;hfMeds()}
+ UI.board=false;UI.bsel=null;if(typeof paintBoard==="function")paintBoard();
  if(UI.au){narStop();render()}
  p.classList.remove("open","intro");$("#mis").inert=false;document.documentElement.classList.remove("lock");
  $("#fab").setAttribute("aria-expanded","false");$("#fab").focus({preventScroll:true});
@@ -1378,11 +1545,97 @@ function NAV(t){
  if(t==="home")HOME.map();else if(t==="camp")HOME.camp();
  swapView(from,to,()=>{if(t==="m1"){toTop(misY);$("#mis .back").focus({preventScroll:true})}else{toTop(0);if(t==="home")HOME.mapAfter();else HOME.focusCamp()}});
 }
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#panel").classList.contains("open")){e.preventDefault();closeMesa()}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#panel").classList.contains("open")){e.preventDefault();if(UI.board){UI.board=false;UI.bsel=null;paintBoard();$("#btab").focus({preventScroll:true});return}closeMesa()}});
 let COLS=0;const MQ3=matchMedia("(min-width:1280px)"),MQ2=matchMedia("(min-width:760px)");
 const colsNow=()=>MQ3.matches?3:MQ2.matches?2:1;
 [MQ3,MQ2].forEach(m=>{const f=()=>{if(colsNow()!==COLS)render()};m.addEventListener?m.addEventListener("change",f):m.addListener(f)});
 
+/* ---------- Sala de guerra: piezas de dibujo (eclipse, dados de hueso, sellos, tablero) ---------- */
+const sArc=(cx,cy,r,a0,a1)=>{const p=a=>[cx+r*Math.cos((a-90)*Math.PI/180),cy+r*Math.sin((a-90)*Math.PI/180)];const[x0,y0]=p(a0),[x1,y1]=p(a1);return`M${x0.toFixed(2)} ${y0.toFixed(2)}A${r} ${r} 0 ${a1-a0>180?1:0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`};
+/* Eclipse de Neth: sol negro con seis tramos de corona; cada punto de alerta enciende uno. */
+function eclipseSvg(v,round){const L=[0,1,2,3,4,5];return`<svg viewBox="0 0 250 250" role="img" aria-label="Ronda ${round}, alerta ${v} de 6"><defs><radialGradient id="ecg"><stop offset=".55" stop-color="#a78bfa" stop-opacity="${(.08+v*.05).toFixed(2)}"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient><radialGradient id="ecs" cx=".4" cy=".35"><stop offset="0" stop-color="#151026"/><stop offset="1" stop-color="#020205"/></radialGradient></defs>
+ <circle cx="125" cy="125" r="122" fill="url(#ecg)"/>
+ ${L.map(i=>`<path d="${sArc(125,125,92,i*60+6,i*60+54)}" fill="none" stroke-width="${i<v?7:3}" stroke-linecap="round" stroke="${i<v?"#c9b8ff":"#2b3557"}"${i<v?` style="filter:drop-shadow(0 0 8px #a78bfa)"`:""}/>`).join("")}
+ ${L.map(i=>{const a=(i*60+30-90)*Math.PI/180,r1=i<v?116:108;return`<line x1="${(125+100*Math.cos(a)).toFixed(1)}" y1="${(125+100*Math.sin(a)).toFixed(1)}" x2="${(125+r1*Math.cos(a)).toFixed(1)}" y2="${(125+r1*Math.sin(a)).toFixed(1)}" stroke="${i<v?"#d9b86c":"#33416a"}" stroke-width="2"/>`}).join("")}
+ <circle cx="125" cy="125" r="74" fill="url(#ecs)" stroke="rgba(217,184,108,.35)"/>
+ <text x="125" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" letter-spacing="3" font-weight="600" fill="#8f9abb">RONDA</text><text x="125" y="152" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="48" font-weight="700" fill="#f3eefe">${round}</text><text x="125" y="173" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#c9b8ff">alerta ${v}/6</text></svg>`}
+const PHI={Noche:'<svg viewBox="0 0 48 48" aria-hidden="true" fill="none"><circle cx="24" cy="24" r="22" fill="currentColor" opacity=".08"/><path d="M30 10a14 14 0 1 0 8 22A12 12 0 0 1 30 10z" fill="currentColor" opacity=".9"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="38" cy="38" r="1.2" fill="currentColor"/></svg>',
+ Alba:'<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 32a14 14 0 0 1 28 0" fill="currentColor" fill-opacity=".25"/><path d="M4 32h40M8 38h32M24 8v6M10 14l4 4M38 14l-4 4"/></svg>',
+ "Día":'<svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="24" cy="24" r="9" fill="currentColor" fill-opacity=".35"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/></svg>'};
+const WELL='<svg viewBox="0 0 56 56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="28" cy="38" rx="18" ry="6"/><path d="M10 38v-8c0-3 8-6 18-6s18 3 18 6v8"/><ellipse cx="28" cy="30" rx="18" ry="6" fill="currentColor" fill-opacity=".15"/><path d="M14 28V12h28v16M10 12h36M28 12v10"/></svg>';
+/* Dado de hueso: cara con puntos (el 1 en rojo). */
+const PIPS={1:[[50,50]],2:[[30,30],[70,70]],3:[[28,28],[50,50],[72,72]],4:[[30,30],[70,30],[30,70],[70,70]],5:[[28,28],[72,28],[50,50],[28,72],[72,72]],6:[[30,26],[70,26],[30,50],[70,50],[30,74],[70,74]]};
+const face=n=>`<span class="bone"><svg viewBox="0 0 100 100" aria-hidden="true">${(PIPS[n]||[]).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="${n===1?"#8a2a35":"#2b1d12"}"/>`).join("")}</svg></span>`;
+function bone(vals,id,cls){return`<div class="dice2 ${cls||""}" id="${id}" role="img" aria-label="${vals.join(" y ")}">${vals.map(face).join("")}</div>`}
+const FAM={bad:"Malo para un héroe",all:"Para todos",ok:"Bueno"};
+/* Sello hexagonal con las iniciales de la unidad. */
+function ini(name){const w=String(name).replace(/\(.*?\)/g,"").split(/\s+/).filter(x=>x&&!/^(de|del|la|las|el|los|en|con|y)$/i.test(x));return((w[0]||"?")[0]+((w[1]||"")[0]||"")).toUpperCase()}
+function sigil(s,col){col=col||"#d9b86c";return`<svg viewBox="0 0 54 54" aria-hidden="true"><path d="M27 3l21 12v24L27 51 6 39V15z" fill="rgba(10,15,30,.9)" stroke="${col}" stroke-width="1.3"/><path d="M27 9l16 9v18L27 45 11 36V18z" fill="none" stroke="${col}" stroke-opacity=".35"/><text x="27" y="32" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="14" fill="${col}">${esc(s)}</text></svg>`}
+
+/* ---------- Tablero táctico (pestaña flotante) ----------
+   Mesa de 48" con cuadrantes I-IV y esquinas 1-4 en sentido horario desde el noroeste.
+   Cada unidad en mesa lleva su posición en e.p ({z:"q"|"c",d:1-4} o {z:"a"} para Ambush), que se rellena
+   al sortear posiciones o al moverla a mano (tocar ficha y luego un cuadrante o una esquina). Es orientativo. */
+const BQC=[[150,150],[450,150],[450,450],[150,450]],BCC=[[58,58],[542,58],[542,542],[58,542]],BOFF=[[0,0],[44,14],[-38,28],[12,-42],[-30,-38],[40,-30],[-44,-6],[28,40]];
+const BRP=[[232,248],[404,372],[338,104]];
+function bUnits(){const out=[];
+ (S.table||[]).forEach((t,ix)=>{if(ARMY[t.i]&&t.m>0)out.push({key:"t"+ix,e:t,i:t.i,m:t.m,g:"old"})});
+ const k=curW(),c=S.comp[k];if((S.shown||S.boss)&&c&&!c.merged)c.u.forEach((e,j)=>{const m=aliveM(e);if(m>0&&ARMY[e.i])out.push({key:"w"+j,e,i:e.i,m,g:"new",amb:!!e.a})});
+ return out}
+const bFind=key=>bUnits().find(u=>u.key===key);
+const bZone=p=>!p||p.z==="a"?"":p.z==="q"?"cuadrante "+["I","II","III","IV"][p.d-1]:"esquina "+p.d;
+function brz(x,y,lit){return(lit?`<circle cx="${x}" cy="${y-8}" r="16" fill="url(#bgl)"/><path d="M${x} ${y-27}c-7 8-9 14-4 20c-4-6 4-10 4-20z" fill="url(#bfl)"/>`:`<path d="M${x-2} ${y-8}q-4-8 2-14q5-6 0-12" fill="none" stroke="#4a5677" stroke-width="1.2" opacity=".7"/>`)+`<path d="M${x-12} ${y-6}h24l-4 7h-16z" fill="${lit?"#c99a48":"#3a4566"}" stroke="${lit?"#f3dc9a":"#55618a"}" stroke-width=".8"/><path d="M${x-6} ${y+1}l-5 12M${x+6} ${y+1}l5 12M${x} ${y+1}v12" stroke="${lit?"#a87d34":"#3a4566"}" stroke-width="1.4"/>`}
+function boardSvg(){const U=bUnits(),cnt={},pos={},night=stage()==="Noche";
+ U.forEach(u=>{const p=u.e.p;if(!p||p.z==="a")return;const z=p.z+p.d,k=cnt[z]=(cnt[z]||0),o=BOFF[k%BOFF.length],c=p.z==="q"?BQC[p.d-1]:BCC[p.d-1];cnt[z]++;
+  const s=p.z==="c"?.8:1;pos[u.key]=[Math.max(18,Math.min(582,c[0]+o[0]*s)),Math.max(18,Math.min(582,c[1]+o[1]*s))]});
+ const hc=S.hc||0,hp=hc?BCC[hc-1]:null,houses=[[60,70,70,44],[200,40,54,60],[380,60,80,46],[500,200,52,70],[70,330,50,64],[220,420,70,48],[360,490,60,50],[480,380,56,48],[210,250,40,30]];
+ return`<svg class="bmap" viewBox="-30 -30 660 680" role="img" aria-label="Tablero de 48 pulgadas con cuadrantes y fichas"><defs>
+ <radialGradient id="bbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient>
+ <pattern id="bgrid" width="75" height="75" patternUnits="userSpaceOnUse"><path d="M75 0H0V75" fill="none" stroke="rgba(217,184,108,.08)"/></pattern>
+ <radialGradient id="bvis"><stop offset=".7" stop-color="#ffd27a" stop-opacity=".08"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+ <linearGradient id="bfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="bgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".45"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
+ <rect x="-22" y="-22" width="644" height="644" rx="14" fill="#0a0f1f" stroke="rgba(217,184,108,.35)"/>
+ <rect width="600" height="600" fill="url(#bbg)"/><rect width="600" height="600" fill="url(#bgrid)"/>
+ ${BQC.map((c,i)=>`<rect class="bz" data-a="bq" data-v="${i+1}" x="${c[0]-150}" y="${c[1]-150}" width="300" height="300" fill="transparent"/>`).join("")}
+ <path d="M300 0V600M0 300H600" stroke="rgba(217,184,108,.45)" stroke-dasharray="6 6" pointer-events="none"/>
+ ${houses.map(([x,y,w,h])=>`<g pointer-events="none"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="rgba(217,184,108,.05)" stroke="rgba(217,184,108,.38)" stroke-width="1.2"/><path d="M${x} ${y}L${x+w} ${y+h}" stroke="rgba(217,184,108,.15)"/></g>`).join("")}
+ ${["I","II","III","IV"].map((t,i)=>`<text x="${BQC[i][0]}" y="${BQC[i][1]+(i<2?-96:110)}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="22" fill="rgba(217,184,108,.28)" letter-spacing="4" pointer-events="none">${t}</text>`).join("")}
+ ${[[0,0],[600,0],[600,600],[0,600]].map(([x,y],i)=>`<path d="${x?"M600":"M0"} ${y?525:75}A75 75 0 0 ${i%2?1:0} ${x?525:75} ${y}" fill="none" stroke="rgba(217,184,108,.5)" stroke-dasharray="3 4" pointer-events="none"/><g class="bz" data-a="bc" data-v="${i+1}" transform="translate(${x?612:-12} ${y?614:-10})"><circle r="13" fill="${hc===i+1?"#c99a48":"#0a0f1f"}" stroke="#d9b86c"/><text y="4.5" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="12" fill="${hc===i+1?"#1a1208":"#d9b86c"}">${i+1}</text></g>`).join("")}
+ <g transform="translate(300 300)" pointer-events="none"><circle r="26" fill="#060912" stroke="#d9b86c" stroke-width="1.4"/><circle r="18" fill="none" stroke="rgba(167,139,250,.6)"/><text y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="14" fill="#c3cbe0">el pozo</text></g>
+ ${night&&hp?`<g pointer-events="none"><circle cx="${hp[0]}" cy="${hp[1]}" r="150" fill="url(#bvis)" stroke="rgba(255,210,122,.35)" stroke-dasharray="4 6"/></g>`:""}
+ ${BRP.map(([x,y],i)=>`<g class="brs" data-a="mk" data-v="${i}" role="button" aria-label="${MK[i]}${S.mk[i]?" (recuperado)":""}"><rect x="${x-18}" y="${y-30}" width="36" height="50" fill="transparent"/>${brz(x,y,!!S.mk[i])}<text x="${x}" y="${y+27}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="11" fill="${S.mk[i]?"#f3dc9a":"#8f9abb"}">${["I","II","III"][i]}</text></g>`).join("")}
+ ${S.boss&&!S.dead?`<g transform="translate(300 300)" pointer-events="none"><circle r="44" fill="none" stroke="#a78bfa" stroke-width="2" opacity=".6"><animate attributeName="r" values="34;54;34" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="2.4s" repeatCount="indefinite"/></circle><circle r="30" fill="#140c26" stroke="#c9b8ff" stroke-width="2"/><text y="7" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="20" fill="#c9b8ff">H</text></g>`:""}
+ ${hp?HS.slice(0,4).map((h,i)=>{const o=[[0,0],[34,8],[8,34],[34,34]][i],sx=hp[0]<300?1:-1,sy=hp[1]<300?1:-1,x=hp[0]+sx*(o[0]+6),y=hp[1]+sy*(o[1]+6);return`<g transform="translate(${x} ${y})" pointer-events="none"><circle r="16" fill="#0a0f1f"/><circle r="14" fill="${hfKo(h)?"#55618a":"#c99a48"}" stroke="#f3dc9a" stroke-width="1.5"/><text y="4.5" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="12" fill="#1a1208">${esc(ini(h.name)[0])}</text></g>`}).join(""):""}
+ ${U.filter(u=>pos[u.key]).map(u=>{const[x,y]=pos[u.key],a=ARMY[u.i],sel=UI.bsel===u.key,nw=u.g==="new";return`<g class="btk" data-a="bsel" data-v="${u.key}" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" role="button" aria-label="${esc(a.name)}">${sel?`<circle r="26" fill="none" stroke="#fff" stroke-width="1.6"/>`:""}<circle r="19" fill="#000" opacity=".45" transform="translate(2 4)"/><circle class="bb" r="19" fill="${nw?"#8a2a45":"#4a2fa8"}" stroke="${nw?"#ec8aa0":"#c9b8ff"}" stroke-width="1.6"/><text y="4.5" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="12" fill="#fff">${esc(ini(a.name))}</text>${modsOf(u.i)>1?`<g transform="translate(14 -14)"><circle r="8" fill="#0a0f1f" stroke="#d9b86c"/><text y="3.5" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9.5" fill="#d9b86c">${u.m}</text></g>`:""}</g>`}).join("")}
+ <g transform="translate(572 -8)" opacity=".85" pointer-events="none"><path d="M0 -12L4 0 0 12-4 0z" fill="#d9b86c"/></g>
+ <text x="300" y="640" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="14" fill="#8f9abb">48″ × 48″ · cuadrantes I–IV y esquinas 1–4 en sentido horario desde el noroeste</text></svg>`}
+const BTABI='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="26" height="26" rx="3"/><path d="M16 3v26M3 16h26" stroke-dasharray="2 2.5" opacity=".7"/><circle cx="16" cy="16" r="3"/><circle cx="9" cy="9" r="2.2" fill="currentColor"/><circle cx="23" cy="22" r="2.2" fill="#ec8aa0" stroke="#ec8aa0"/><circle cx="22" cy="9" r="2.2" fill="#a78bfa" stroke="#a78bfa"/></svg>';
+/* La pestaña del tablero va siempre justo encima de los medallones de héroe: del montón cerrado o, con los héroes abiertos, del botón + de crear héroe. */
+function placeBtab(){const t=$("#btab"),m=$("#hfMeds");if(!t||!m||t.hidden)return;const r=m.getBoundingClientRect();if(!r.height){t.style.bottom="";return}
+ t.style.bottom=Math.max(0,Math.round(innerHeight-r.top+(innerWidth<=640?14:20)))+"px"}
+addEventListener("resize",()=>placeBtab());
+function paintBoard(){
+ const p=$("#panel"),t=$("#btab"),d=$("#bdrw");
+ if(!S.round){UI.board=false;UI.bsel=null}
+ const on=!!UI.board;
+ t.hidden=!S.round;p.classList.toggle("bopen",on);p.classList.toggle("bpick",!!UI.bsel);t.setAttribute("aria-expanded",on);d.inert=!on;
+ const U=bUnits(),placed=U.filter(u=>u.e.p&&u.e.p.z!=="a").length;
+ t.innerHTML=`${BTABI}<span><b>Tablero</b><small>${U.length} ${U.length===1?"unidad":"unidades"} en mesa</small></span>`;
+ t.setAttribute("aria-label",`Abrir el tablero táctico (${U.length} unidades en mesa)`);
+ placeBtab();
+ if(!on)return;
+ const sel=UI.bsel?bFind(UI.bsel):null;if(UI.bsel&&!sel){UI.bsel=null;p.classList.remove("bpick")}
+ const tray=U.filter(u=>!u.e.p||u.e.p.z==="a");
+ const chip=u=>{const a=ARMY[u.i];return`<button type="button" class="${u.g==="new"?"n":""} ${UI.bsel===u.key?"on":""}" data-a="bsel" data-v="${u.key}"><i>${esc(ini(a.name))}</i>${esc(a.name)}${u.e.p&&u.e.p.z==="a"?` · Ambush, ronda ${u.e.p.at}`:""}</button>`};
+ const keep=d.querySelector(".bdb")?d.querySelector(".bdb").scrollTop:0;
+ d.innerHTML=`<div class="bdh"><button class="px" type="button" data-a="board" data-f="bclose" aria-label="Cerrar el tablero"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div><small>Ronda ${S.round} · ${esc(stage())}${stage()==="Noche"?" · visión 12″":""}</small><b>Tablero táctico</b></div></div>
+ <div class="bdb">${boardSvg()}
+ <div class="blg"><span><i style="background:#4a2fa8"></i>En mesa</span><span><i style="background:#8a2a45"></i>Recién llegadas</span><span><i style="background:#c99a48"></i>Héroes</span><span><i style="background:#ec8c45"></i>Rastros</span></div>
+ ${sel?(()=>{const a=ARMY[sel.i];return`<div class="bsel">${sigil(ini(a.name),"#c9b8ff").replace("<svg ",'<svg style="flex:none;width:40px;height:40px" ')}<div><b>${esc(a.name)}</b>${sel.m}/${modsOf(sel.i)} ${modsOf(sel.i)===1?"miniatura":"miniaturas"} · Q${a.q}+ D${a.d}+ · ${bZone(sel.e.p)||"sin posición"}<br>Toca un cuadrante o una esquina para moverla.</div><button class="pb sm gh" type="button" data-a="bsel" data-v="${sel.key}" style="margin-left:auto">Soltar</button></div>`})():`<p class="bhint">Toca una ficha y luego un <b>cuadrante</b> o una <b>esquina</b> para moverla. Toca un <b>brasero</b> para marcar su rastro. Las posiciones son orientativas: manda la mesa de verdad.</p>`}
+ <div class="row" style="margin-top:12px;justify-content:space-between"><button class="pb sm" type="button" data-a="pos" data-f="bpos" ${S.shown||S.boss?"":"disabled"}>Sortear posiciones de la oleada</button><span class="bhc"><span style="font:600 11px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--pmu)">Esquina de los héroes</span><span class="seg2">${[1,2,3,4].map(i=>`<button type="button" data-a="hc" data-v="${i}" aria-pressed="${S.hc===i}" aria-label="Héroes en la esquina ${i}">${i}</button>`).join("")}</span></span></div>
+ <p class="bsec">Sin posición en el tablero · ${tray.length}</p><div class="btray">${tray.length?tray.map(chip).join(""):`<span class="none">Todas las unidades tienen sitio (${placed}).</span>`}</div></div>`;
+ const nb=d.querySelector(".bdb");if(nb)nb.scrollTop=keep;
+}
 /* ---------- panel ---------- */
 function gauge(){
  const cx=125,cy=118,r=92;let p="";
@@ -1394,7 +1647,7 @@ function gauge(){
 function prof(a){return"Q"+a.q+"+ D"+a.d+"+"+(a.rules?" · "+a.rules:"")+(a.w?" · "+a.w:"")}
 function unitRow(q,name,sub,place,rs,tags,extra,cls){
  const chips=rs.map(r=>`<i class="${r.d>4&&r.t!=="a"?"ch":""}">${esc(posLabel(r))}</i>`).join("");
- return`<div class="un ${cls||""}"><div class="q">${q}</div><div><b>${esc(name)}</b>${tags?` <span class="tgs">${tags}</span>`:""}<small>${em(sub)}</small>${place?`<small>${esc(place)}</small>`:""}${chips?`<div class="chipsr">${chips}</div>`:""}${extra||""}</div></div>`;
+ return`<div class="un ${cls||""}"><div class="q">${sigil(ini(name),name===HER.name?"#c9b8ff":"#d9b86c")}<b>${q}</b></div><div><b>${esc(name)}</b>${tags?` <span class="tgs">${tags}</span>`:""}<small>${em(sub)}</small>${place?`<small>${esc(place)}</small>`:""}${chips?`<div class="chipsr">${chips}</div>`:""}${extra||""}</div></div>`;
 }
 /* Pestaña de cada unidad: cuántas miniaturas siguen en la mesa (de t a 1) o eliminarla del tablero. */
 function cntTab(kind,ix,n,t,lb){
@@ -1489,8 +1742,8 @@ function objCard(){
  const mk=MK.map((m,i)=>`<label class="ck mkr ${S.mk[i]?"on":""}"><input type="checkbox" data-a="mk" data-v="${i}" data-f="mk${i}" ${S.mk[i]?"checked":""}><span><b>${m}</b><small>${S.mk[i]?"Arrancado al olvido.":"Aún lo guarda la ceniza."}</small></span></label>`).join("");
  let sec;
  if(S.secRolled){const o=DATA.sec[S.sec-1];
-  sec=`<div class="res"><div class="die" id="die-SEC">${S.sec}</div><div><b>${esc(o[0])}</b><p>${esc(o[1])}</p></div></div><label class="ck" style="margin-top:10px"><input type="checkbox" data-a="secDone" data-f="sd" ${S.secDone?"checked":""}><span>Objetivo secundario cumplido</span></label>`}
- else sec=`<div class="res ${S.prim?"":"dim"}"><div class="die" id="die-SEC">1d6</div><div><b>Por preparar</b><p>${S.prim?"Tira 1d6 para elegir el objetivo. Al prepararlo, la Alertness sube 3.":"Se prepara cuando los tres rastros estén en vuestras manos."}</p></div></div><div class="dctl ctr"><button class="pb pr sm ${S.prim?"pulse":""}" data-a="SEC" data-f="SEC" ${S.prim?"":"disabled"}>Preparar objetivo secundario</button></div>${S.prim?`<div class="dctl man"><span class="or">Manual</span>${dsel("secA","Objetivo (1d6)")}<button class="pb sm gh" data-a="SECm" data-f="SECm">Aplicar</button></div>${UI.secMsg?`<p class="dmsg">${esc(UI.secMsg)}</p>`:""}`:""}`;
+  sec=`<div class="res">${bone([S.sec],"die-SEC")}<div><b>${esc(o[0])}</b><p>${esc(o[1])}</p></div></div><label class="ck" style="margin-top:10px"><input type="checkbox" data-a="secDone" data-f="sd" ${S.secDone?"checked":""}><span>Objetivo secundario cumplido</span></label>`}
+ else sec=`<div class="res ${S.prim?"":"dim"}">${bone([6],"die-SEC","ghost")}<div><b>Por preparar</b><p>${S.prim?"Tira 1d6 para elegir el objetivo. Al prepararlo, la Alertness sube 3.":"Se prepara cuando los tres rastros estén en vuestras manos."}</p></div></div><div class="dctl ctr"><button class="pb pr sm ${S.prim?"pulse":""}" data-a="SEC" data-f="SEC" ${S.prim?"":"disabled"}>Preparar objetivo secundario</button></div>${S.prim?`<div class="dctl man"><span class="or">Manual</span>${dsel("secA","Objetivo (1d6)")}<button class="pb sm gh" data-a="SECm" data-f="SECm">Aplicar</button></div>${UI.secMsg?`<p class="dmsg">${esc(UI.secMsg)}</p>`:""}`:""}`;
  let boss="";
  if(S.prim&&S.secDone&&!S.armed&&!S.boss)boss=`<div style="margin-top:12px"><button class="pb sm" data-a="arm" data-f="arm">Activar pelea de jefe</button></div>`;
  else if(S.armed&&!S.boss)boss=`<p style="margin:12px 0 0;font-size:12.5px;color:var(--pgold)">El jefe llega al final de esta ronda.</p>`;
@@ -1510,14 +1763,14 @@ function finalCard(){
 /* Bloqueo al empezar: hasta tirar (o aplicar a mano) el primer evento de Neth solo se puede usar ese dado, el audio y la cabecera. */
 /* Mientras haya un evento de Neth pendiente (al empezar y cada vez que entran refuerzos). «Declarar derrota» nunca se bloquea. */
 const evLock=()=>S.round>0&&S.needEv;
-const EV_OK=new Set(["EV","EVm","play","pause","stop","reset","restart","ok","defeat"]);
+const EV_OK=new Set(["EV","EVm","play","pause","stop","reset","restart","ok","defeat","board","bsel"]);
 /* Reparto de tarjetas en columnas: cada una va a la columna más baja (en orden), para que no queden huecos grandes antes del botín.
    Solo se recoloca si mejora claramente, para que las tarjetas no salten de sitio con cambios pequeños. */
 function packCols(pb){
  const cols=[...pb.querySelectorAll(".mcol")];if(cols.length<2)return;
  const G=16,hOf=c=>[...c.children].reduce((s,n)=>s+n.offsetHeight,0)+G*Math.max(0,c.children.length-1);
  const now=Math.max(...cols.map(hOf));
- const order=["round","al","wave","obj","dice"],el={};pb.querySelectorAll(".mc").forEach(n=>el[n.dataset.k]=n);
+ const order=["vig","wave","dice","obj"],el={};pb.querySelectorAll(".mc").forEach(n=>el[n.dataset.k]=n);
  const H=cols.map(()=>-G),L=cols.map(()=>[]);
  order.forEach(k=>{if(!el[k])return;let j=0;H.forEach((h,i)=>{if(h<H[j]-1)j=i});L[j].push(k);H[j]+=el[k].offsetHeight+G});
  if(now-Math.max(...H)<120)return;
@@ -1541,8 +1794,8 @@ function render(){
   ISTOP='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5" fill="currentColor"/></svg>';
  const auBtns=!AUD[nk]?`<button class="play" type="button" data-a="play" data-f="play" aria-label="Reproducir el texto (el audio llegará más adelante)" title="Audio: próximamente">${IPLAY}</button>`
   :`<span class="plays">${UI.au==="play"?`<button class="play np" type="button" data-a="pause" data-f="play" aria-label="Pausar la narración">${IPAUSE}</button>`:`<button class="play" type="button" data-a="play" data-f="play" aria-label="${UI.au?"Seguir con la narración":"Escuchar la narración"}">${IPLAY}</button>`}${UI.au?`<button class="play np" type="button" data-a="stop" data-f="play" aria-label="Parar la narración">${ISTOP}</button>`:""}</span>`;
- const ev=S.ev?`<div class="res"><div class="die ${S.ev.tone}" id="die-EV">${S.ev.n}</div><div><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res"><div class="die" id="die-EV">2d6</div><div><b>Evento de Neth</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
- const ch=S.ch?`<div class="res"><div class="die ${S.ch.t}" id="die-CH">${S.ch.a}${S.ch.b?"·"+S.ch.b:""}</div><div><b>${esc(S.ch.title)}</b><p>${esc(S.ch.text)}</p></div></div>`:`<div class="res"><div class="die" id="die-CH">1d6</div><div><b>Cofre</b><p>Un héroe lo abre con la acción Descubrir. Se tira el contenido y después el objeto.</p></div></div>`;
+ const ev=S.ev?`<div class="res ${S.ev.tone}">${bone([Math.floor(S.ev.n/10),S.ev.n%10],"die-EV",UI.land==="EV"?"land":"")}<div><span class="rtg">${S.ev.n} · ${FAM[S.ev.tone]||""}</span><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res">${bone([6,6],"die-EV","ghost")}<div><b>Evento de Neth</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
+ const ch=S.ch?`<div class="res ${S.ch.t}">${bone(S.ch.b?[S.ch.a,S.ch.b]:[S.ch.a],"die-CH",UI.land==="CH"?"land":"")}<div><span class="rtg">Contenido ${S.ch.a}${S.ch.b?" · objeto "+S.ch.b:""}</span><b>${esc(S.ch.title)}</b><p>${esc(S.ch.text)}</p></div></div>`:`<div class="res">${bone([6,6],"die-CH","ghost")}<div><b>Cofre</b><p>Un héroe lo abre con la acción Descubrir. Se tira el contenido y después el objeto.</p></div></div>`;
  const C={};
  C.cfg=`<section class="pc"><h3><span class="tt">Configuración de partida</span></h3><div class="seals" role="group" aria-label="Dificultad">${[1,2,3,4].map(i=>`<button data-a="d" data-v="${i}" data-f="d${i}" class="${S.d===i?"on":""}" aria-label="Dificultad ${i}" aria-pressed="${S.d===i}" ${S.round?"disabled":""}>${i}</button>`).join("")}</div><p style="margin:8px 0 0;font-size:12.5px;color:var(--pmu)">${DN[S.d-1]} (${PC[S.d-1]}% fuerza de enemigos)</p>
  <div class="stp"><span>Puntos de los héroes</span><button data-a="pts" data-v="-25" data-f="pm" ${S.round?"disabled":""} aria-label="Menos puntos">−</button><b>${S.pts}</b><button data-a="pts" data-v="25" data-f="pp" ${S.round?"disabled":""} aria-label="Más puntos">+</button></div>
@@ -1551,8 +1804,12 @@ function render(){
  C.al=`<section class="pc"><h3><span class="tt">Nivel de alerta</span></h3>${gauge()}
  <div class="row" style="margin-top:10px;justify-content:center"><button class="pb sm gh" data-a="alAdj" data-v="-1" data-f="am" aria-label="Quitar 1 de Alertness">−1</button><button class="pb sm gh" data-a="alAdj" data-v="1" data-f="ap" aria-label="Sumar 1 de Alertness">+1</button></div>
  <label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>Sin enemigos en mesa (+2)</span></label>${alertBox()}</section>`;
+ {const st=stage(),g=STG[st];C.vig=`<section class="pc vig"><h3><span class="tt">Ronda y alerta</span><em>${nRef()} ${nRef()===1?"refuerzo":"refuerzos"}</em></h3><div class="ecw">${eclipseSvg(S.al,S.round)}</div>
+ <div class="phs">${PHI[st]}<div><b>${st}</b><small>${g.fx.map(f=>esc(f[0])).join(" · ")}</small></div></div>
+ <div class="alrow"><label class="tog"><input type="checkbox" data-a="noEn" data-f="noEn" ${S.noEn?"checked":""}><span>Sin enemigos en mesa (+2)</span></label><span class="row"><button class="pb sm gh" data-a="alAdj" data-v="-1" data-f="am" aria-label="Quitar 1 de Alertness">−1</button><button class="pb sm gh" data-a="alAdj" data-v="1" data-f="ap" aria-label="Sumar 1 de Alertness">+1</button></span></div>
+ <div class="gow"><button class="pb pr mid go" data-a="end" data-f="end">Avanzar ronda</button></div><p class="nxt">${esc(g.next)} Al avanzar, +1 a la alerta.</p>${alertBox()}</section>`}
  C.wave=waveCard();
- C.txt=`<section class="pc"><h3><span class="tt">Lo que recuerda el pueblo</span>${auBtns}</h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></section>`;
+ C.txt=`<section class="pc narb"><span class="nic">${WELL}</span><div><h3><span class="tt">Lo que recuerda el pueblo</span></h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></div>${auBtns}</section>`;
  C.obj=objCard();
  C.dice=`<section class="pc">
  <div class="dblk evb"><h3><span class="tt">Evento de Neth</span><em>2d6</em></h3><div aria-live="polite">${ev}</div><div class="dctl ctr">${S.needEv?`<p class="dnote" role="status">Toca tirar el evento de Neth</p>`:""}<button class="pb pr sm ${S.needEv?"pulse":""}" data-a="EV" data-f="EV">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("evA","Decenas")}${dsel("evB","Unidades")}<button class="pb sm gh" data-a="EVm" data-f="EVm">Aplicar</button></div>${UI.evMsg?`<p class="dmsg">${esc(UI.evMsg)}</p>`:""}</div>
@@ -1563,11 +1820,12 @@ function render(){
  /* Antes de empezar, la mesa es solo la pantalla de configuración; al empezar, desaparece y salen el resto de tarjetas. */
  /* El texto de la ronda va siempre arriba, a lo ancho de todas las columnas. */
  /* El botín de la misión va siempre abajo, también a lo ancho. */
- const L0=COLS===3?[["round","al"],["wave"],["obj","dice"]]:COLS===2?[["round","al","obj"],["wave","dice"]]:[["round","al","wave","obj","dice"]];
+ const L0=COLS===3?[["vig"],["wave"],["dice","obj"]]:COLS===2?[["vig","dice"],["wave","obj"]]:[["vig","dice","wave","obj"]];
  const L=UI.lay&&UI.lay.cols===COLS?UI.lay.L:L0,lock=evLock();
  pb.innerHTML=!S.round?`<div class="setupw">${alert}${C.cfg}</div>`
   :`<div class="pwrap c${COLS} ${lock?"evlock":""}">${alert}<div class="txtw">${C.txt}</div><div class="mgrid" style="--cols:${COLS}">${L.map((col,i)=>`<div class="mcol" style="--c:${i}">${col.map(k=>`<div class="mc" data-k="${k}">${C[k]||""}</div>`).join("")}</div>`).join("")}</div><div class="finw">${C.fin}</div></div>`;
  if(S.round){if(lock)pb.querySelectorAll('.mcol>.mc:not([data-k="dice"]),.dblk:not(.evb)').forEach(n=>n.inert=true);packCols(pb)}
+ $("#panel").dataset.ph=stage();paintBoard();
  pb.scrollTop=keep;
  paintHome();
  if(f){const t=document.querySelector('[data-f="'+f+'"]');if(t)t.focus({preventScroll:true})}
@@ -1669,7 +1927,7 @@ function hfWeapon(k){let rng="",atk="",ap="";const spe=[];
  const c=(l,v)=>`<span><small>${l}</small><b class="${v?"":"no"}">${v?esc(v):"—"}</b></span>`;
  return`<div class="hf-wp">${c("RNG",rng)}${c("ATK",atk)}${c("AP",ap)}${c("SPE",spe.join(", "))}</div>`}
 
-function hfMeds(){const M=$("#hfMeds");if(!M)return;
+function hfMeds(){const M=$("#hfMeds");if(!M)return;document.body.classList.toggle("hffan",!!HF.fan);if(typeof placeBtab==="function"){placeBtab();requestAnimationFrame(()=>placeBtab())}
  if(!HF.fan){const n=HS.length,sh=HS.slice(0,3);
   M.innerHTML=`<button type="button" class="hf-stack" data-hf="fan" aria-expanded="false" aria-label="Mostrar ${n===1?"el héroe":"los "+n+" héroes"}" style="height:${66+(sh.length-1)*12}px">${sh.map((h,i)=>`<span class="hf-coin" style="top:${(sh.length-1-i)*12}px;z-index:${5-i}">${hfMed(h,"s"+i)}</span>`).join("")}<span class="hf-cnt">${n}</span></button>`;return}
  M.innerHTML=`<button type="button" class="hf-add" data-hf="add" aria-label="Añadir un héroe" title="Añadir héroe">${HI.add}</button><div class="hf-fan">${HS.map((h,i)=>`<button type="button" class="hf-mrow ${HF.open&&i===HF.cur?"on":""}" data-hf="open" data-i="${i}" style="--i:${HS.length-i}" aria-label="Abrir la ficha de ${esc(h.name)}"><span class="hf-nm"><b>${esc(h.name)}</b>${hfKo(h)?`<small class="ko">Inconsciente</small>`:`<small class="${h.st.length?"st":""}">${h.hp}/${h.hpMax} heridas${h.st.length?" · "+h.st.length+" estado"+(h.st.length>1?"s":""):""}</small>`}</span>${hfMed(h,"f"+i)}</button>`).join("")}</div><button type="button" class="hf-cf" data-hf="unfan" aria-label="Recoger los medallones">${HI.x}</button>`}
