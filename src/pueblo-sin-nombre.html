@@ -1614,6 +1614,8 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-hcw{display:flex;flex-direction:column}
 .tv-pend{display:block;margin:3px 4px 0;font-size:10.5px;color:var(--mu2);letter-spacing:.02em;line-height:1.3}
 .tv-hbtn{margin:6px 0 0;width:100%}
+.tv-tick{display:flex;align-items:center;gap:8px;width:100%;margin:4px 0 12px;padding:10px 12px;border-radius:12px;border:1px solid var(--line2);background:var(--card2);color:var(--ink);font-size:13px;text-align:left}
+.tv-tick.on{border-color:var(--gold);background:linear-gradient(90deg,rgba(217,184,108,.14),var(--card2));color:var(--gold2)}
 .tv-xbtn{margin:4px 0 0;width:100%;padding:6px 10px;font-size:12px;color:var(--gold2)}
 .tv-wt td{color:var(--ink)}.tv-wt th{color:var(--mu2)}
 /* ---- reglas de un enemigo desplegables ---- */
@@ -3477,10 +3479,8 @@ async function fight(A,B,kind,fo){G.offerIgnore=null;const melee=kind==="melee",
  const res=async(X,Y,ws,o,lab)=>{const r=await strike(X,Y,ws,o);wound(Y,r.wounds);L.steps.push({who:X.name,to:Y.name,lab,...r});return r.wounds};
  let tA=0,tB=0;
  if(!melee){tB+=await res(A,B,wA,{},"dispara")}
- else{const counter=false;/* Contraataque: quitado (pendiente de revisar). */
-  const back=async()=>{if(!B.ko())tA+=await res(B,A,oneW(B,A,B.ws.filter(isMelee),true,false),{melee:true},"devuelve los golpes")};
-  if(counter){const cw=B.ws.find(w=>isMelee(w)&&wHas(w,"Counter"));L.steps.push({note:`${B.name} tiene Counter (${cw?"en el arma "+cw.n:"por su regla"}) y golpea primero.`});await back();if(!A.ko())tB+=await res(A,B,wA,{melee:true,charge:ch,pre:fo&&fo.pre},"golpea")}
-  else{tB+=await res(A,B,wA,{melee:true,charge:ch,pre:fo&&fo.pre},"golpea");await back()}
+ else{/* Cuerpo a cuerpo: una sola ronda. Ataca el que activa y el defensor solo tira para bloquear; no devuelve golpes. */
+  tB+=await res(A,B,wA,{melee:true,charge:ch,pre:fo&&fo.pre},"golpea");
   A.g.fat=G.round;if(!B.ko())B.g.fat=G.round;
   /* si nadie cae, el que carga se separa 1″ */
   if(ch&&!A.ko()&&!B.ko()){const dx=A.x-B.x,dy=A.y-B.y,l=Math.hypot(dx,dy)||1,p=tOut([A.x+dx/l*BIN,A.y+dy/l*BIN]);A.g.x=p[0];A.g.y=p[1]}}
@@ -3553,7 +3553,7 @@ const usedA=gh=>(gh.done||[]).reduce((s,k)=>s+(ACOST[k]||1),0);
 const leftA=gh=>2+(gh.ex?1:0)-usedA(gh);
 const canExtra=gh=>{const h=heroOf(gh);return!!h&&!gh.ex&&h.pw>=3};
 /* Acciones que aún puede gastar ahora (con la acción extra, si puede pagarla). */
-const freeA=gh=>leftA(gh)>0?leftA(gh):(canExtra(gh)?1:0);
+const freeA=gh=>Math.max(0,leftA(gh));
 const CONTACT=2;   /* pulgadas: a menos de esto es cuerpo a cuerpo (Atacar); a más, hay que cargar (prueba: 2″, antes 1″) */
 const atkTargets=a=>liveUnits().filter(u=>gap(a,u)<=CONTACT+.01);
 function moveLim(a,k){const s=speed(a);return k==="adv"?s[0]:k==="rush"||k==="chg"?s[1]:0}
@@ -3736,7 +3736,7 @@ function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(h.st.includes("at")&&!A)return`<div class="tv-box warn"><b>${esc(h.name)} está Aturdido</b><p>Tiene que pasar esta activación quieto para recuperarse (Core Rules).</p><button type="button" class="tv-btn" data-tv="rally">Quedarse quieto y recuperarse</button></div>`;
  if(!A){const done=gh.done||[],Lf=freeA(gh);return`${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  <p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Acción extra (3 de poder)"}</p><div class="tv-acts">${ACTS.map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,dis=(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="rest"&&done.length>0);
+  ${usedA(gh)===2&&(gh.ex||canExtra(gh))?`<p class="tv-lab">Acción extra</p><button type="button" class="tv-tick${gh.ex?" on":""}" data-tv="xtick">${gh.ex?"☑":"☐"} Gastar 3 de poder en una acción extra</button>`:`<p class="tv-lab">${Lf>=2?"Elige su acción":"Le queda una acción"}</p>`}<div class="tv-acts">${ACTS.map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,dis=(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="rest"&&done.length>0);
    return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de 2″)"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a menos de 2″</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).join("")}</div>
   <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="endact">${done.length?"Terminar activación":"No hacer nada"}</button></div>`}
  const k=A.k,lab=ACTS.find(x=>x[0]===k)[1];
@@ -3883,23 +3883,27 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"heroinfo":U.hinfo=(G.heroes[+ds.i]||{}).id||null;break;
  case"hiclose":U.hinfo=null;break;
  case"wpn":if(G.act)G.act.wi=+ds.w;break;
+ /* Casilla de acción extra del panel: marcarla gasta 3 de poder; desmarcarla antes de elegir acción los devuelve. */
+ case"xtick":{const gh=G.heroes[G.cur];if(!gh||G.phase!=="heroes"||G.act)break;const h=heroOf(gh);
+  if(gh.exOpen){h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;gh.exOpen=false;hfSync();log(`${h.name} desmarca la acción extra y recupera los 3 de poder.`,"hr");break}
+  if(!canExtra(gh)){toast("Ese héroe no tiene 3 de poder para una acción extra.");break}
+  h.pw-=3;gh.ex=true;gh.exOpen=true;hfSync();log(`${h.name} marca una acción extra (3 de poder).`,"hr");break}
  /* Acción extra (3 de poder) desde la tarjeta del héroe: si ya terminó sus acciones, vuelve a abrir su activación. */
  case"xtra":{const i=+ds.i,gh=G.heroes[i];
   if(G.phase!=="heroes"||!gh||!canExtra(gh)){toast("Ese héroe no tiene 3 de poder para una acción extra.");break}
   if(G.cur>=0&&G.cur!==i){toast("Termina antes la activación del héroe que está actuando.");break}
   if(G.cur===i&&G.act){toast("Termina antes la acción que está haciendo.");break}
   if(G.cur!==i){const a=actor(gh.id);if(!a||a.ko())break;G.cur=i;G.act=null;U.dest=null;U.sel=gh.id;if(!gh.stc)heroStart(gh);if(actor(gh.id).ko()){endAct(gh);break}}
-  gh.act=1;const h=heroOf(gh);h.pw-=3;gh.ex=true;hfSync();log(`${h.name} gasta 3 de poder para una acción extra.`,"hr");break}
+  gh.act=1;const h=heroOf(gh);h.pw-=3;gh.ex=true;gh.exOpen=true;hfSync();log(`${h.name} gasta 3 de poder para una acción extra.`,"hr");break}
  case"toheroes":toHeroes();break;
  case"hero":{const i=+ds.i,gh=G.heroes[i],a=actor(gh.id);if(G.phase!=="heroes"||!a||a.ko()||gh.act===2||(G.cur>=0&&G.cur!==i))return;if(G.cur===i)break;G.cur=i;G.act=null;U.dest=null;U.sel=gh.id;if(!gh.stc)heroStart(gh);if(actor(gh.id).ko()){endAct(gh)}break}
  case"rally":{const gh=G.heroes[G.cur],h=heroOf(gh);h.st=h.st.filter(s=>s!=="at");log(`${h.name} pasa la activación quieto y deja de estar Aturdido.`,"hr");hfSync();endAct(gh);break}
  case"unimp":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,v=d3(),lost=Math.min(h.pw,v);h.pw-=lost;if(v>lost)wound(a,v-lost);h.st=h.st.filter(s=>s!=="ac");log(`${h.name} gasta ${v} de poder y deja de estar Afectado${v>lost?` (agotamiento: ${v-lost} heridas)`:""}.`,"hr");hfSync();checkOver();break}
  case"act":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,kk=ds.k;
-  if(kk!=="rest"&&ACOST[kk]>freeA(gh)){toast(freeA(gh)<=0?"No le quedan acciones en esta activación.":`Esa acción necesita ${ACOST[kk]} acciones.`);return}
-  let paid=false;
-  if(kk!=="rest"&&leftA(gh)<=0){h.pw-=3;gh.ex=true;paid=true;hfSync();log(`${h.name} gasta 3 de poder para una acción extra.`,"hr")}
+  if(kk!=="rest"&&ACOST[kk]>freeA(gh)){toast(usedA(gh)>=2&&canExtra(gh)?"Marca primero la acción extra (3 de poder).":freeA(gh)<=0?"No le quedan acciones en esta activación.":`Esa acción necesita ${ACOST[kk]} acciones.`);return}
+  gh.exOpen=false;
   if(kk==="rest"){h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
-  G.act={k:kk,st:kk==="hold"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid};U.dest=null;break}
+  G.act={k:kk,st:kk==="hold"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;break}
  case"cancel":{if(!G.act||G.act.mv)return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
  case"mvskip":G.act.st="shoot";U.dest=null;break;
  case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id),k2=G.act.k,r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
@@ -3926,7 +3930,7 @@ function act(k,b){const ds=b&&b.dataset||{};
 /* Tras una acción: puede hacer otra gastando 3 de poder (una sola), o terminar. */
 function finishAction(gh,k,rest){gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
  /* Descansar: no se puede hacer nada más (ni antes ni después). Si ya no quedan acciones, termina salvo que pueda pagar la extra. */
- if(rest||G.over||!h||hfKo(h)||freeA(gh)<=0){endAct(gh);return}}
+ if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh))){endAct(gh);return}}
 function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(REDUCE||!ds.length){done();return}let n=0;
  const it=setInterval(()=>{ds.forEach(d=>{d.classList.remove("q");d.innerHTML=dots(d6())});if(++n>9){clearInterval(it);done()}},70)}
 let TT=0;function toast(t){let el=$(".tv-toast");if(!el){el=document.createElement("div");el.className="tv-toast";ROOT.appendChild(el)}el.textContent=t;el.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>el.classList.remove("on"),2400)}
