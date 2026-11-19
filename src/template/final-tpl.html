@@ -1159,6 +1159,8 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
  .bdrw{width:100%}
 }
 @media (prefers-reduced-motion:reduce){.psky i{animation:none;opacity:0}.bdrw,.bscrim,.btab{transition:none}.dice2 .bone{animation:none!important}}
+/* ---------- creador de héroes ---------- */
+%%HC_CSS%%
 </style>
 
 <div class="view camp" id="camp"></div>
@@ -1187,6 +1189,8 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 <div class="hf-db" id="hfDb"></div>
 </aside>
 </div>
+
+<div id="hc" hidden></div>
 
 <script>
 %%DATA%%
@@ -2161,7 +2165,7 @@ $("#hfLayer").addEventListener("click",e=>{
  const b=e.target.closest("[data-hf]");if(!b)return;const a=b.dataset.hf,h=hfH();
  if(a==="fan"){HF.fan=true;hfMeds();return}
  if(a==="unfan"){HF.fan=false;hfMeds();return}
- if(a==="add"){HS.push(hfMk({name:"Héroe "+(HS.length+1),c:HS.length}));hfSave();hfOpen(HS.length-1);HF.mode="imp";hfPaint();return}
+ if(a==="add"){HC.open();return}
  if(a==="open"){hfOpen(+b.dataset.i);return}
  if(a==="close"){hfClose();return}
  if(a==="prev"&&HF.cur>0){hfOpen(HF.cur-1);return}
@@ -2189,9 +2193,12 @@ $("#hfLayer").addEventListener("change",e=>{const t=e.target,h=hfH();
  if(t.hasAttribute("data-hfimg")&&t.files&&t.files[0]){const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext("2d").drawImage(im,0,0,c.width,c.height);h.img=c.toDataURL("image/jpeg",.85);hfSave();hfPaint()};im.src=rd.result};rd.readAsDataURL(t.files[0])}
 });
 /* Escape: primero cierra la ficha, luego recoge los medallones; solo después cierra la mesa (si está abierta). */
-document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;
+document.addEventListener("keydown",e=>{if(e.key!=="Escape"||HC.isOpen())return;
  if(HF.open){e.preventDefault();e.stopImmediatePropagation();hfClose();const s=$(".hf-mrow.on")||$(".hf-stack");if(s)s.focus({preventScroll:true})}
  else if(HF.fan){e.preventDefault();e.stopImmediatePropagation();HF.fan=false;hfMeds()}},true);
+
+const HCDATA=%%HCDATA%%;
+%%HC_JS%%
 
 /* ---------- hoja de pergamino ---------- */
 const ORN='<svg class="orn" viewBox="0 0 320 22" aria-hidden="true"><path d="M4 11h124M192 11h124" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M160 2l9 9-9 9-9-9z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="160" cy="11" r="2.4" fill="currentColor"/><path d="M134 11c8-8 14 8 22 0M164 11c8 8 14-8 22 0" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';

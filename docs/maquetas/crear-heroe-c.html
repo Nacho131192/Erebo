@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>
+<title>Crear un héroe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Concepto: la mesa de juego de la Sala de guerra con una ventana de creación encima. Tres estructuras (baraja, atlas, hoja en vivo) comparten datos, escudos y glifos. Noche azul y oro, como el resto de pantallas de Érebo. */
+:root{
+  color-scheme:dark;
+  --bg:#080a12;--card:#0f1628;--card2:#141d36;--line:#222c4a;--line2:#34406a;
+  --ink:#e9ebf5;--mu:#94a0c2;--mu2:#6c789c;--gold:#d9b86c;--gold2:#f0d79a;--goldd:#8f6a1f;
+  --blue:#5f86d6;--bad:#ec8aa0;--ok:#86d1ae;--sky:#8fb6f0;--vio:#a78bfa;
+  --disp:Cinzel,Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;--ui:Inter,system-ui,sans-serif;--num:"Space Grotesk",Inter,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:radial-gradient(1000px 520px at 85% -8%,rgba(95,134,214,.14),transparent 62%),radial-gradient(800px 480px at -6% 106%,rgba(217,184,108,.07),transparent 60%),var(--bg);color:var(--ink);font:400 15px/1.5 var(--ui)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:34px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+
+/* ---------- cabecera de la maqueta ---------- */
+.top{display:flex;flex-direction:column;gap:10px;max-width:800px}
+.eb{font:600 11px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.top h1{margin:0;font:700 clamp(30px,5vw,44px)/1.08 var(--disp);letter-spacing:.06em;color:var(--gold);text-wrap:balance}
+.top p{margin:0;font:500 clamp(18px,2.2vw,21px)/1.5 var(--serif);color:#cfd6ee;max-width:66ch}
+.bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.seg{display:inline-flex;padding:3px;border-radius:999px;border:1px solid var(--line);background:#0b1020;gap:2px}
+.seg button{height:30px;padding:0 14px;border-radius:999px;border:0;background:transparent;font:600 12px var(--ui);color:var(--mu);white-space:nowrap}
+.seg button[aria-pressed=true]{background:#232b49;color:var(--gold2)}
+.bar .note{font:600 12px var(--ui);color:var(--mu2)}
+.bar .btn{margin-left:auto}
+
+/* ---------- botones y piezas comunes ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--line2);background:#141b33;font:600 13px var(--ui);color:#d8def2;transition:transform .15s,border-color .2s,background .2s}
+.btn:hover:not(:disabled){border-color:#5a6aa0;transform:translateY(-1px)}
+.btn.pri{border-color:#b08a3e;background:linear-gradient(180deg,#e2c377,#b88f3d);color:#1a1405;letter-spacing:.06em;text-transform:uppercase;font-size:12px;font-weight:700}
+.btn.pri:hover:not(:disabled){background:linear-gradient(180deg,#f0d79a,#c79c48)}
+.btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.chip{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.03);font:600 11.5px var(--ui);color:#cdd5ee;white-space:nowrap}
+.chip.sp{border-color:#6b5a9a;color:#d4c6ff;background:rgba(167,139,250,.08)}
+.chip.go{border-color:#8f6a1f;color:var(--gold2);background:rgba(217,184,108,.07)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.lab{font:600 10.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--mu)}
+.glyph{display:block;flex:none}
+.wseg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:3px;border-radius:12px;border:1px solid var(--line);background:#0a0f1e}
+.wseg button{min-height:30px;padding:4px 12px;border-radius:9px;border:0;background:transparent;font:600 12px var(--ui);color:var(--mu);text-align:left}
+.wseg button[aria-pressed=true]{background:#232b49;color:var(--gold2)}
+
+/* atributos */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px}
+.st{position:relative;padding:10px 6px 9px;border-radius:12px;border:1px solid var(--line);background:#0d1326;text-align:center}
+.st small{display:block;font:600 9.5px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.st b{display:block;margin-top:2px;font:700 25px/1.15 var(--num);color:#e6e9f6}
+.st.dim b{color:#7a86aa}
+.st.up{border-color:#8f6a1f;background:linear-gradient(#1b1a20,#0d1326)}
+.st.up b{color:var(--gold2)}
+.st i{position:absolute;top:5px;right:7px;font:700 10px var(--num);font-style:normal;color:var(--gold)}
+.sg.c{grid-template-columns:repeat(4,minmax(0,1fr))}
+.feat{padding:14px 15px;border-radius:14px;border:1px solid #6b5a9a55;background:linear-gradient(160deg,rgba(167,139,250,.1),rgba(13,19,38,.6))}
+.feat .tg{font:600 10px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#cdbcff}
+.feat b{display:block;margin-top:3px;font:600 15px var(--disp);letter-spacing:.04em;color:#efe7ff}
+.feat em{font:italic 500 15px var(--serif);color:#a99ccf;margin-left:6px}
+.feat p{margin:6px 0 0;font:400 13px/1.5 var(--ui);color:#cfd6ee}
+.sks{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.sk{display:flex;flex-direction:column;gap:6px;padding:12px 13px;border-radius:12px;border:1px solid var(--line);background:#0d1326}
+.sk b{font:600 14px var(--disp);letter-spacing:.04em;color:#f1e8d0}
+.sk em{font:italic 500 14.5px var(--serif);color:var(--mu);margin-left:5px}
+.sk p{margin:0;font:400 12.5px/1.5 var(--ui);color:#bcc5e2}
+.sk .hd{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.at{flex:none;font:700 9.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:99px;border:1px solid}
+.at.f{color:var(--bad);border-color:#7a3a4c}.at.d{color:var(--ok);border-color:#2f6a55}.at.v{color:var(--sky);border-color:#3a5a8c}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 9px}
+.sec-h small{font:500 15px var(--serif);color:var(--mu)}
+
+/* ---------- la mesa (escenario) ---------- */
+.stage{position:relative;height:clamp(680px,90vh,790px);border-radius:18px;overflow:hidden;border:1px solid var(--line2);background:#070910;container:stage/inline-size;box-shadow:0 24px 60px rgba(0,0,0,.55);transition:width .35s ease}
+.stage[data-vp=m]{width:390px;max-width:100%;height:812px;margin-inline:auto}
+.mesa{position:absolute;inset:0;background:radial-gradient(520px 320px at 36% 48%,rgba(217,184,108,.09),transparent 70%),linear-gradient(rgba(95,134,214,.07) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(95,134,214,.07) 1px,transparent 1px) 0 0/48px 48px,#0a0d18}
+.mesa .well{position:absolute;left:38%;top:46%;width:150px;height:150px;border-radius:50%;border:2px solid #3a4670;background:radial-gradient(circle,#05060b 40%,#101830 70%);box-shadow:0 0 60px rgba(95,134,214,.18)}
+.mbar{position:absolute;inset:0 0 auto;display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(8,10,18,.88)}
+.mbar .x0{width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);background:#121935;flex:none}
+.mbar small{display:block;font:600 9.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.mbar b{display:block;font:700 14px var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.mbar .chips{margin-left:auto}
+.meds{position:absolute;right:22px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.addb{position:relative;width:56px;height:56px;border-radius:50%;border:1px solid #b08a3e;background:linear-gradient(180deg,#e2c377,#b88f3d);color:#1a1405;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.addb::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(217,184,108,.5);animation:ping 2.2s ease-out infinite}
+.addb:hover{background:linear-gradient(180deg,#f0d79a,#c79c48)}
+.addb svg{width:26px;height:26px}
+.stackc{position:relative;width:62px}
+.coin{position:absolute;left:0;width:62px;height:62px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.55));animation:drop .5s cubic-bezier(.2,.9,.2,1)}
+.cnt{position:absolute;right:-6px;bottom:-4px;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:#232b49;border:1px solid var(--line2);font:700 11px/20px var(--num);text-align:center;color:var(--gold2)}
+.hint{position:absolute;right:96px;bottom:36px;max-width:220px;text-align:right;font:500 18px/1.3 var(--serif);color:#aab4d4}
+.toast{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:9;padding:10px 18px;border-radius:999px;border:1px solid #8f6a1f;background:#17141c;font:600 13px var(--ui);color:var(--gold2);box-shadow:0 10px 30px rgba(0,0,0,.5);animation:rise .3s}
+
+/* ---------- ventana de creación ---------- */
+.veil{position:absolute;inset:0;z-index:5;background:rgba(4,5,10,.7);backdrop-filter:blur(3px);animation:fade .25s}
+.win{position:absolute;inset:14px;z-index:6;display:grid;grid-template-rows:auto minmax(0,1fr) auto;border-radius:18px;border:1px solid #3a4670;background:radial-gradient(900px 420px at 90% -10%,rgba(95,134,214,.17),transparent 62%),radial-gradient(700px 380px at -8% 112%,rgba(217,184,108,.08),transparent 60%),#0b0e1b;box-shadow:0 30px 80px rgba(0,0,0,.65),inset 0 0 0 1px rgba(217,184,108,.12);overflow:hidden;animation:pop .38s cubic-bezier(.2,.8,.2,1)}
+.wh{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--line);background:rgba(8,10,18,.5)}
+.wh .wtt small{display:block;font:600 9.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--mu)}
+.wh .wtt b{display:block;font:700 15px var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.steps{display:flex;align-items:center;gap:10px}
+.sp{display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 14px 0 6px;border-radius:999px;border:1px solid var(--line);background:#0d1326;font:600 12px var(--ui);color:var(--mu)}
+.sp i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 11px var(--num);font-style:normal;background:#1a2240;color:var(--mu)}
+.sp[aria-current=step]{border-color:var(--gold);color:var(--gold2)}
+.sp[aria-current=step] i{background:var(--gold);color:#1a1405}
+.sp.done i{background:#2f4f8f;color:#fff}
+.sp:disabled{opacity:.45;cursor:not-allowed}
+.sl{width:28px;height:1px;background:var(--line2)}
+.xb{justify-self:end;width:36px;height:36px;border-radius:50%;border:1px solid var(--line2);background:#141b33;display:grid;place-items:center;color:var(--mu)}
+.xb:hover{color:var(--ink);border-color:#5a6aa0}
+.wb{min-height:0;overflow:auto;padding:16px 22px;scrollbar-width:thin;scrollbar-color:#34406a transparent}
+.wf{display:flex;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid var(--line);background:rgba(8,10,18,.55)}
+.wf .sum{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;flex:1}
+.fs{display:inline-flex;align-items:center;gap:8px;min-width:0}
+.fs b{font:600 13px var(--disp);letter-spacing:.05em;color:#efe6cc;white-space:nowrap}
+.fs small{font:500 15px var(--serif);color:var(--mu);white-space:nowrap}
+.fs.mu b{color:var(--mu2);font-family:var(--ui);font-weight:500;letter-spacing:0}
+.sep{font-style:normal;color:var(--mu2)}
+.wf .btns{display:flex;gap:10px;flex:none}
+
+/* perfil de la raza y fila de reglas (comunes) */
+.prof{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.pv{display:flex;flex-direction:column;gap:2px}
+.pv small{font:600 9.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--mu)}
+.pv b{font:700 20px/1.15 var(--num);color:#e6e9f6}
+.pv b.sm{font:500 13px/1.4 var(--ui);color:#cfd6ee}
+
+/* ================= C · Hoja en vivo ================= */
+.wb.c{padding:0;overflow:hidden}
+.cw{display:grid;grid-template-columns:minmax(0,410px) minmax(0,1fr);height:100%}
+.cl{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line)}
+.cl .sr{flex:none;padding:14px 16px 10px;display:flex;flex-direction:column;gap:10px}
+.cl .sr input{width:100%;height:40px;padding:0 14px 0 38px;border-radius:12px;border:1px solid var(--line2);background:#0a0f1e url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a0c2' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") 12px 50%/18px no-repeat;color:var(--ink)}
+.cl .sr input::placeholder{color:var(--mu2)}
+.cl .lst{flex:1;min-height:0;overflow:auto;padding:0 10px 14px;scrollbar-width:thin;scrollbar-color:#34406a transparent}
+.fh{display:flex;align-items:center;gap:10px;width:100%;padding:10px 8px;border:0;background:transparent;text-align:left;font:700 12px var(--disp);letter-spacing:.16em;text-transform:uppercase;color:#b9a063;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1;background:#0b0e1b}
+.fh .glyph{width:20px;height:20px}
+.fh em{margin-left:auto;font:600 11px var(--num);font-style:normal;color:var(--mu2)}
+.fh .cv{transition:transform .2s;color:var(--mu2);width:14px;height:14px}
+.fh[aria-expanded=true] .cv{transform:rotate(90deg)}
+.rr{display:flex;flex-direction:column;border-radius:12px;border:1px solid transparent;margin:3px 0}
+.rr>button{display:flex;align-items:center;gap:11px;width:100%;padding:7px 9px;border:0;border-radius:11px;background:transparent;text-align:left}
+.rr>button:hover{background:#121a33}
+.rr b{font:600 13.5px var(--disp);letter-spacing:.03em;color:#e9e0c8}
+.rr small{display:block;font:500 12px var(--ui);color:var(--mu)}
+.rr.sel{border-color:#8f6a1f;background:linear-gradient(#17161d,#0d1326)}
+.rr.sel>button:hover{background:transparent}
+.rr .rd{padding:2px 12px 12px 10px;display:flex;flex-direction:column;gap:10px}
+.rr .rd .pv b{font-size:17px}
+.ctl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:6px 14px 16px;overflow:auto;align-content:start}
+.ct{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px 10px;border-radius:14px;border:1px solid var(--line);background:#0d1326;text-align:center;transition:border-color .2s,transform .2s}
+.ct:hover{border-color:#5a6aa0;transform:translateY(-2px)}
+.ct .gl{width:44px;height:44px;border-radius:50%;border:1px solid #8f6a1f;background:radial-gradient(circle,#1c1b22,#0c1124);display:grid;place-items:center;color:var(--gold2)}
+.ct .gl .glyph{width:26px;height:26px}
+.ct b{font:600 12.5px var(--disp);letter-spacing:.04em;color:#efe6cc}
+.ct .cm{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.ct .cm i{font:600 9.5px var(--ui);font-style:normal;padding:1px 6px;border-radius:99px;border:1px solid var(--line2);color:#aeb8d8}
+.ct[aria-pressed=true]{border-color:var(--gold);background:linear-gradient(#1b1a20,#0d1326);box-shadow:0 0 0 1px rgba(217,184,108,.35)}
+.cr{min-width:0;overflow:auto;padding:18px 24px;scrollbar-width:thin;scrollbar-color:#34406a transparent}
+.sheet{display:flex;flex-direction:column;gap:18px;padding:20px;border-radius:18px;border:1px solid #3a4670;background:linear-gradient(170deg,#10172b,#0a0e1c);box-shadow:inset 0 0 0 1px rgba(217,184,108,.08)}
+.sh1{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center}
+.por{position:relative;display:block;width:96px;height:96px;border-radius:50%;border:0;cursor:pointer;padding:4px;background:conic-gradient(var(--gold),#6b5a9a,var(--gold),#2f4f8f,var(--gold))}
+.por>.pi{width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 30%,#1a2240,#080b16);display:grid;place-items:end center}
+.por .pi svg{width:78%;height:auto}
+.por .cr2{position:absolute;right:-6px;bottom:-4px}
+.sh1 input{width:100%;height:42px;padding:0 12px;border-radius:10px;border:1px solid transparent;background:transparent;font:700 19px var(--disp);letter-spacing:.03em;color:var(--gold2)}
+.sh1 input:hover,.sh1 input:focus{border-color:var(--line2);background:#0a0f1e;outline:none}
+.sh1 .sub{padding:0 12px;font:500 17px/1.3 var(--serif);color:#c3cbe6}
+.sh1 .sub .pvw{display:inline-block;margin-left:8px;font:700 9.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--sky);border:1px solid #3a5a8c;border-radius:99px;padding:1px 8px}
+.seal{width:62px;height:62px;border-radius:50%;border:2px solid #8a2a35;background:radial-gradient(circle at 35% 30%,#b0394a,#6a1d2a);display:grid;place-items:center;text-align:center;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+.seal small{display:block;font:700 8.5px var(--ui);letter-spacing:.14em;color:#f0c9cf}
+.seal b{display:block;font:700 20px/1 var(--num);color:#fff}
+.emp{padding:34px 10px;text-align:center;font:500 19px/1.4 var(--serif);color:var(--mu)}
+
+/* ---------- animaciones ---------- */
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(var(--ty,0))}}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes ping{0%{transform:scale(.9);opacity:.9}80%,100%{transform:scale(1.35);opacity:0}}
+@keyframes drop{from{opacity:0;transform:translateY(-26px) scale(.9)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- notas bajo el escenario ---------- */
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nt{padding:18px 20px;border-radius:16px;border:1px solid var(--line);background:var(--card)}
+.nt h2{margin:0 0 10px;font:700 14px var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.nt ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px;font:400 13.5px/1.55 var(--ui);color:#c3cbe6}
+.nt li::marker{color:var(--goldd)}
+.nt b{color:#e8eaf6;font-weight:600}
+@media (max-width:820px){.notes{grid-template-columns:1fr}.bar .btn{margin-left:0}}
+/* ---------- ventana estrecha (móvil) ---------- */
+@container stage (max-width:760px){
+  .win{inset:0;border-radius:0;border:0}
+  .wh{grid-template-columns:1fr auto;padding:10px 12px}
+  .wh .steps{grid-column:1/-1;grid-row:2;justify-content:center}
+  .wh .wtt small{display:none}
+  .sp{height:30px;padding:0 11px 0 5px}
+  .wb{padding:12px 14px}
+  .wf{flex-wrap:wrap;padding:10px 12px;gap:8px}
+  .wf .sum{flex:1 1 100%;order:-1}
+  .wf .btns{flex:1;display:flex}.wf .btns .btn{flex:1}
+  .meds{right:14px;bottom:14px}.hint{display:none}
+  .mbar .chips{display:none}
+  .acard{width:148px;height:216px}.acard.cl{width:108px;height:150px}
+  .adet,.a2{grid-template-columns:1fr}
+  .adet .id{flex-wrap:nowrap}
+  .bmap{display:none}.bwrap.hf .bmap{margin:0}.bfolio{display:none}
+  .wb.b{overflow:auto}
+  .bwrap{position:static;display:block}
+  .blist{display:block;padding:10px 10px 18px}
+  .wb.b2{grid-template-columns:1fr;gap:12px;align-items:start}
+  .b2 .pn{align-self:auto}
+  .b2 .wheel{order:-1;max-width:420px}
+  .b2 .sg{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .cw{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+  .wb.c{overflow:auto}
+  .cl{border-right:0;border-bottom:1px solid var(--line)}
+  .cl .lst{max-height:none;overflow:visible}
+  .cr{overflow:visible;padding:14px}
+  .sh1{grid-template-columns:auto minmax(0,1fr)}
+  .seal{display:none}
+  .sheet{padding:14px}
+  .sg{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* ---------- novedades: explicaciones, arma, habilidades elegibles, foto ---------- */
+.hr{justify-self:end;display:flex;align-items:center;gap:10px}
+.msw{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--line);background:#0b1020}
+.msw span{padding:0 8px 0 10px;font:600 9.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--mu2)}
+.msw button{height:26px;padding:0 11px;border:0;border-radius:99px;background:transparent;font:600 11.5px var(--ui);color:var(--mu)}
+.msw button[aria-pressed=true]{background:#232b49;color:var(--gold2)}
+button.chip{font-family:var(--ui)}
+.rl,.tt{cursor:help;border-style:dashed}
+.rl:hover,.tt:hover,.rl[aria-expanded=true],.tt:focus-visible{border-color:var(--gold);color:var(--gold2);background:rgba(217,184,108,.08)}
+#pop{position:absolute;z-index:30;padding:12px 14px 13px;border-radius:12px;border:1px solid #8f6a1f;background:#10162b;box-shadow:0 14px 36px rgba(0,0,0,.6);animation:fade .15s}
+#pop b{font:600 13px var(--disp);letter-spacing:.04em;color:var(--gold2)}
+#pop em{font:italic 500 14.5px var(--serif);color:var(--mu);margin-left:7px}
+#pop p{margin:6px 0 0;font:400 12.5px/1.5 var(--ui);color:#cfd6ee}
+dl.ex{margin:10px 0 0;display:flex;flex-direction:column;gap:8px}
+.ex>div{padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:#0d1326}
+.ex dt{font:600 12.5px var(--disp);letter-spacing:.04em;color:var(--gold2)}
+.ex dt em{font:italic 500 14.5px var(--serif);color:var(--mu);margin-left:7px;letter-spacing:0}
+.ex dd{margin:3px 0 0;font:400 12.5px/1.5 var(--ui);color:#bcc5e2}
+.wtw{overflow-x:auto;margin-top:4px}
+table.wt{width:100%;border-collapse:collapse;font:500 13px var(--ui)}
+.wt th,.wt td{padding:8px 8px;border-bottom:1px solid var(--line);text-align:center;font-variant-numeric:tabular-nums}
+.wt thead th{font:600 9.5px var(--ui);letter-spacing:.16em;color:var(--mu)}
+.wt tbody th{text-align:left;font:600 13px var(--disp);letter-spacing:.03em;color:#efe6cc}
+.wt td{font:600 14px var(--num);color:#e6e9f6}
+.wt td.spe{text-align:left}
+.wt .chip{margin:2px 5px 2px 0}
+.wt .tt.n{display:inline-block;min-width:26px;padding:1px 6px;border-radius:8px;border:1px dashed var(--line2)}
+.sk.pick{position:relative;text-align:left;padding-left:42px;cursor:pointer;transition:border-color .2s,background .2s}
+.sk.pick:hover{border-color:#5a6aa0}
+.sk.pick .ck{position:absolute;left:13px;top:14px;width:19px;height:19px;border-radius:6px;border:1.5px solid var(--line2);display:grid;place-items:center;color:#1a1405}
+.sk.pick[aria-pressed=true]{border-color:var(--gold);background:linear-gradient(#1b1a20,#0d1326)}
+.sk.pick[aria-pressed=true] .ck{background:var(--gold);border-color:var(--gold)}
+.okc{color:var(--ok)!important}
+.por img{width:100%;height:100%;object-fit:cover;display:block}
+.por .cam{position:absolute;left:50%;bottom:9px;transform:translateX(-50%);padding:2px 10px;border-radius:99px;background:rgba(5,6,11,.88);border:1px solid #8f6a1f;font:600 10px var(--ui);color:var(--gold2);white-space:nowrap;opacity:1;transition:opacity .2s}
+.por.has .cam{opacity:0}
+.por:hover .cam,.por:focus-visible .cam{opacity:1}
+.por .cr2{position:absolute;right:-6px;bottom:-4px;z-index:1}
+.phint{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-top:-6px;padding:0 4px;font:400 12px/1.5 var(--ui);color:var(--mu2)}
+.phint .er{color:var(--bad);font-weight:600}
+.lk{border:0;background:transparent;padding:0;font:600 12px var(--ui);color:var(--sky);text-decoration:underline;text-underline-offset:3px}
+@container stage (max-width:760px){
+  .msw span{display:none}
+  .wh{grid-template-columns:1fr auto}
+}
+</style>
+
+<main class="wrap">
+  <header class="top">
+    <span class="eb">Érebo · Maqueta · Héroes</span>
+    <h1>Crear un héroe</h1>
+    <p>La hoja en vivo, ya con los cambios que pediste: tabla del arma, reglas explicadas de dos maneras para comparar, habilidades que se eligen, oro a 0 y foto del héroe. Pulsa el «+» dorado de la mesa.</p>
+  </header>
+
+  
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Tamaño de pantalla">
+      <button type="button" data-vp="d" aria-pressed="true">Escritorio</button>
+      <button type="button" data-vp="m" aria-pressed="false">Móvil</button>
+    </div>
+    <span class="note" id="dnote"></span>
+    <button class="btn" type="button" id="reopen">Abrir la ventana otra vez</button>
+  </div>
+
+  <section class="stage" id="stage" data-vp="d" aria-label="Mesa de juego con la ventana de creación">
+    <div class="mesa">
+      <div class="well"></div>
+      <div class="mbar"><span class="x0"></span><div><small>Misión I · Mesa de juego</small><b>El pueblo vacío</b></div><div class="chips"><span class="chip">Ronda 1</span><span class="chip">Alerta 1/6</span></div></div>
+      <p class="hint" id="hint">Pulsa «+» para crear un héroe</p>
+      <div class="meds" id="meds"></div>
+    </div>
+    <div id="layer"></div>
+  </section>
+
+  <section class="notes">
+    <div class="nt"><h2>Qué hay de nuevo</h2><ul>
+      <li><b>Arma base:</b> tabla con RNG, ATK, AP y SPE. «Gran pulso mágico (A8, Imparable)» pasa a ATK 8 y SPE Imparable.</li>
+      <li><b>Reglas especiales y reglas del arma:</b> explicadas de dos maneras. Cámbialas con el interruptor «Reglas» de la cabecera de la ventana.</li>
+      <li><b>Habilidades:</b> las eliges tú (1 o 2 de 3, según la clase). «Crear héroe» se activa al completarlas.</li>
+      <li><b>Oro inicial:</b> siempre 0.</li>
+      <li><b>Foto:</b> pulsa el círculo del retrato y sube una imagen. Se recorta al centro en cuadrado y se guarda a 400 × 400 px.</li>
+      <li><b>Al elegir clase:</b> la vista baja sola hasta la ficha (en móvil se nota; en escritorio sube la ficha al principio).</li>
+    </ul></div>
+    <div class="nt"><h2>Cómo comparar las dos explicaciones</h2><ul>
+      <li><b>Ventanita:</b> en el arma, pasa el ratón por una regla del SPE (o tócala). En las reglas especiales, pulsa el nombre y se abre un recuadro justo debajo. Se cierra al pulsar otra vez, al pulsar fuera o con Escape.</li>
+      <li><b>Debajo:</b> cada regla aparece escrita bajo la tabla del arma y bajo las reglas, con su nombre original en inglés.</li>
+      <li><b>Prueba con:</b> Bestias › Saurios › Mago-rana (Gran pulso mágico, Miedo, Andarín, Primigenio, Impávido).</li>
+      <li><b>Los textos:</b> son un resumen propio en español de las reglas de Army Forge, no una traducción literal.</li>
+    </ul></div>
+  </section>
+</main>
+
+<script>const DATA={"classes":[{"n":"Bárbaro","en":"Barbarian","desc":"Combatientes implacables a los que les encanta meterse de lleno en la lucha, impulsados por su rabia y su furia.","bonus":["Cal +1","1 habilidad y Pod +1","Fue +2","Frenesí bárbaro","Furia (Fue)"],"skills":[{"n":"Furia","en":"Rage","a":"Fuerza (Fue)","t":"El Héroe sufre 1 herida y obtiene +2 para impactar cuerpo a cuerpo al cargar, hasta el final de la ronda."},{"n":"Temerario","en":"Reckless","a":"Destreza (Des)","t":"Hasta el final de la ronda, siempre que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos una herida, causa una herida adicional; pero siempre que sufra al menos una herida, sufre una herida adicional."},{"n":"Desafío","en":"Challenge","a":"Voluntad (Vol)","t":"Elige dos unidades enemigas a 12\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son atraídas hasta 6\" directamente hacia el Héroe."}],"feat":{"n":"Frenesí bárbaro","en":"Barbaric Frenzy","t":"Una vez por partida, al activarse, el Héroe recupera D3 de Poder."}},{"n":"Bardo","en":"Bard","desc":"Oradores e intérpretes que usan su ingenio, sus hechizos y su saber para superar situaciones difíciles.","bonus":["2 habilidades","Pod +2","Des +1","Vol +1","Restauración bárdica","Inspirar (Des)","Canción de salud (Vol)"],"skills":[{"n":"Melodía distractora","en":"Distracting Tune","a":"Fuerza (Fue)","t":"Elige una unidad enemiga a 9\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 en las tiradas de Defensa la próxima vez que sea atacada."},{"n":"Inspirar","en":"Inspire","a":"Destreza (Des)","t":"Elige otras dos unidades aliadas a 9\" o menos, que obtienen +1 en su próxima tirada de atributo cada una."},{"n":"Canción de salud","en":"Song of Health","a":"Voluntad (Vol)","t":"Elige otros dos héroes aliados a 9\" o menos, que recuperan 1 herida cada uno."}],"feat":{"n":"Restauración bárdica","en":"Bardic Restoration","t":"Una vez por partida, al activarse, otros dos héroes a 9\" o menos recuperan 1 de Poder cada uno."}},{"n":"Brujo","en":"Warlock","desc":"Lanzadores de hechizos oscuros que sellan pactos con entidades poderosas, con las que intercambian favores a cambio de dones y hechizos.","bonus":["Lanzador(1)","1 habilidad y Pod +1","Vol +2","Pacto del brujo","Protección oscura (Vol)"],"skills":[{"n":"Pacto de fuerza","en":"Pact of Strength","a":"Fuerza (Fue)","t":"El Héroe sufre 1 herida, y el próximo hechizo que lance antes del final de la ronda obtiene PA(+2)."},{"n":"Respiro diabólico","en":"Fiendish Respite","a":"Destreza (Des)","t":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, recupera D3+1 de Poder."},{"n":"Protección oscura","en":"Dark Warding","a":"Voluntad (Vol)","t":"El Héroe sufre 1 herida y obtiene +2 en las tiradas de Defensa hasta el final de la ronda."}],"feat":{"n":"Pacto del brujo","en":"Warlock's Pact","t":"Una vez por partida, al activarse, el Héroe sufre 1 herida y después causa 1 herida a una unidad enemiga a 6\" o menos."}},{"n":"Clérigo","en":"Cleric","desc":"Devotos de su deidad, capaces de reforzar a su grupo y curar sus heridas, o de abatir a sus enemigos con la ira divina.","bonus":["1 habilidad y Pod +1","Cal +1","Vol +2","Bendición del clérigo","Palabra sanadora (Vol)"],"skills":[{"n":"Guía","en":"Guidance","a":"Fuerza (Fue)","t":"Elige otras dos unidades aliadas a 6\" o menos, que obtienen +1 en su próxima tirada de atributo cada una."},{"n":"Escudo de fe","en":"Shield of Faith","a":"Destreza (Des)","t":"Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas de Def la próxima vez que reciba impactos."},{"n":"Palabra sanadora","en":"Healing Word","a":"Voluntad (Vol)","t":"Elige dos héroes aliados a 6\" o menos, que recuperan 1 herida cada uno."}],"feat":{"n":"Bendición del clérigo","en":"Cleric's Blessing","t":"Una vez por partida, al activarse, dos héroes a 6\" o menos recuperan 1 herida cada uno."}},{"n":"Druida","en":"Druid","desc":"Nómadas consagrados a las fuerzas de la naturaleza, capaces de adoptar forma de bestia para combatir o para otras utilidades.","bonus":["Lanzador(1)","2 habilidades","Des +1","Vol +1","Trampa druídica","Piel de corteza (Des)","Nube de niebla (Vol)"],"skills":[{"n":"Látigo de espinas","en":"Thorn Whip","a":"Fuerza (Fue)","t":"Elige una unidad enemiga a 9\" o menos, que sufre un impacto y después es atraída hasta 6\" directamente hacia el Héroe."},{"n":"Piel de corteza","en":"Barkskin","a":"Destreza (Des)","t":"El Héroe obtiene +1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda."},{"n":"Nube de niebla","en":"Fog Cloud","a":"Voluntad (Vol)","t":"Coloca un marcador de nube de niebla a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno de cobertura para las unidades aliadas hasta el final de la ronda."}],"feat":{"n":"Trampa druídica","en":"Druidic Trap","t":"Una vez por partida, al activarse, la zona a 3\" o menos del Héroe cuenta como Terreno peligroso para las unidades enemigas hasta el final de la ronda."}},{"n":"Explorador","en":"Ranger","desc":"Cazadores letales que combinan de forma única el conocimiento de la naturaleza salvaje con sus habilidades marciales.","bonus":["Cal +1","2 habilidades","Fue +1","Des +1","Precisión del explorador","Bestia de caza (Fue)","Ataque pavoroso (Des)"],"skills":[{"n":"Bestia de caza","en":"Hunting Beast","a":"Fuerza (Fue)","t":"Elige una unidad enemiga a 6\" o menos, que sufre 2 impactos."},{"n":"Ataque pavoroso","en":"Dread Attack","a":"Destreza (Des)","t":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde más de 12\", ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado."},{"n":"Ungüento curativo","en":"Healing Ointment","a":"Voluntad (Vol)","t":"Elige una unidad aliada a 3\" o menos, que recupera 1 herida y pierde un estado."}],"feat":{"n":"Precisión del explorador","en":"Ranger's Precision","t":"Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto al disparar, causa un impacto adicional."}},{"n":"Guerrero","en":"Fighter","desc":"Combatientes hábiles que confían en sus armaduras y armas pesadas para abatir a sus enemigos.","bonus":["Cal +1","1 habilidad y Pod +1","Fue +2","Poderío combativo","Superioridad en combate (Fue)"],"skills":[{"n":"Superioridad en combate","en":"Combat Superiority","a":"Fuerza (Fue)","t":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional."},{"n":"Evasivo","en":"Evasive","a":"Destreza (Des)","t":"Hasta el final de la ronda, la próxima vez que un enemigo ataque al Héroe, obtiene -1 para impactar."},{"n":"Reagrupar","en":"Rally","a":"Voluntad (Vol)","t":"Los Héroes pueden usar esta acción de Habilidad incluso estando Acobardados. El Héroe deja de estar Acobardado."}],"feat":{"n":"Poderío combativo","en":"Fighting Might","t":"Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional."}},{"n":"Hechicero","en":"Sorcerer","desc":"Lanzadores de hechizos que extraen su poder de su interior y lo canalizan a través de sí mismos y de sus instrumentos.","bonus":["Lanzador(1)","2 habilidades","Fue +1","Vol +1","Proyectiles hechiceros","Mareas del caos (Fue)","Hechizo lejano (Vol)"],"skills":[{"n":"Mareas del caos","en":"Tides of Chaos","a":"Fuerza (Fue)","t":"Hasta el final de la ronda, el Héroe recupera D3+2 de Poder la próxima vez que lance con éxito un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo no consiga lanzar el hechizo."},{"n":"Afinidad metódica","en":"Methodical Affinity","a":"Destreza (Des)","t":"El Héroe puede gastar X de Poder (máx. 3) y obtiene +X+1 en su próxima tirada de atributo."},{"n":"Hechizo lejano","en":"Distant Spell","a":"Voluntad (Vol)","t":"El Héroe puede gastar X de Poder (máx. 3), y hasta el final de la ronda obtiene +X×6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas."}],"feat":{"n":"Proyectiles hechiceros","en":"Sorcerous Bolts","t":"Una vez por partida, al activarse, el Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 12\" o menos, que sufre X+1 impactos."}},{"n":"Mago","en":"Wizard","desc":"Guardianes de secretos arcanos y conocimientos olvidados, que manipulan los hechizos con astucia.","bonus":["Lanzador(1)","2 habilidades","Des +1","Vol +1","Foco del mago","Encantamiento (Des)","Arcanos (Vol)"],"skills":[{"n":"Conjuración","en":"Conjuration","a":"Fuerza (Fue)","t":"Hasta el final de la ronda, el Héroe obtiene +6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas."},{"n":"Encantamiento","en":"Enchantment","a":"Destreza (Des)","t":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que haga un chequeo de moral. Si lo falla, queda Acobardado."},{"n":"Arcanos","en":"Arcana","a":"Voluntad (Vol)","t":"El Héroe gasta D3 de Poder, y hasta el final de la ronda obtiene +1 en las tiradas de lanzamiento de hechizos; además, si gasta fichas para modificar tiradas de lanzamiento enemigas, el enemigo obtiene un -1 adicional."}],"feat":{"n":"Foco del mago","en":"Wizarding Focus","t":"Una vez por partida, al activarse, el Héroe obtiene una ficha de hechizo."}},{"n":"Monje","en":"Monk","desc":"Artistas marciales que confían en el poder de su propio cuerpo para lograr resultados impresionantes.","bonus":["2 habilidades","Cal +1","Fue +1","Des +1","Meditación del monje","Ráfaga de golpes (Fue)","Reflejos relámpago (Des)"],"skills":[{"n":"Ráfaga de golpes","en":"Flurry of Blows","a":"Fuerza (Fue)","t":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional."},{"n":"Reflejos relámpago","en":"Lightning Reflexes","a":"Destreza (Des)","t":"Hasta el final de la ronda, al recibir un impacto, tira un dado. Con 6+ se ignora."},{"n":"Golpe marcial","en":"Martial Strike","a":"Voluntad (Vol)","t":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo, tras resolver el combate, la unidad enemiga es empujada 6\" directamente en dirección contraria."}],"feat":{"n":"Meditación del monje","en":"Monk's Meditation","t":"Una vez por partida, al activarse, el Héroe recupera D3 heridas."}},{"n":"Paladín","en":"Paladin","desc":"Guerreros que refuerzan sus esfuerzos con una dedicación inquebrantable, obteniendo dones y fuerza especiales gracias a su devoción.","bonus":["Cal +1","1 habilidad y Pod +1","Vol +2","Grito del paladín","Arma ancestral (Vol)"],"skills":[{"n":"Golpe vengativo","en":"Vengeful Strike","a":"Fuerza (Fue)","t":"Hasta el final de la ronda, siempre que el Héroe ataque cuerpo a cuerpo a un enemigo Acobardado o le dispare desde 12\" o menos, obtiene +1 para impactar."},{"n":"Protección devota","en":"Devoted Warding","a":"Destreza (Des)","t":"Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, siempre que reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0)."},{"n":"Arma ancestral","en":"Ancient Weapon","a":"Voluntad (Vol)","t":"Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas para impactar la próxima vez que ataque."}],"feat":{"n":"Grito del paladín","en":"Paladin Shout","t":"Una vez por partida, al activarse, dos héroes a 3\" o menos pueden moverse hasta 6\" cada uno."}},{"n":"Pícaro","en":"Rogue","desc":"Agentes sigilosos con un don para detectar las debilidades del enemigo y aprovecharlas.","bonus":["1 habilidad y Pod +1","Cal +1","Des +2","Paso del pícaro","Juego de manos (Des)"],"skills":[{"n":"Embaucador","en":"Trickster","a":"Fuerza (Fue)","t":"Coloca un marcador de embaucador a 3\" o menos. Los enemigos tratan el marcador como un Héroe hasta el final de la ronda. Retira el marcador si un enemigo lo ataca o se mueve a 1\" o menos de él."},{"n":"Juego de manos","en":"Sleight of Hand","a":"Destreza (Des)","t":"El Héroe puede recoger una ficha de Búsqueda en línea de visión y a 1\" o menos, y puede modificar hasta en +2/-2 la tirada para ver qué contiene."},{"n":"Golpe despiadado","en":"Vicious Strike","a":"Voluntad (Vol)","t":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda."}],"feat":{"n":"Paso del pícaro","en":"Rogue Step","t":"Una vez por partida, al activarse, hasta el final de la ronda los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo."}}],"facs":[{"n":"Bestias","en":"Beastfolk","races":[{"n":"Hombres bestia","en":"Beastmen","types":[{"n":"Señor de las bestias ndoli","en":"Ndoli Beast Lord","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Bestial"],"tough":9},{"n":"Maestro de caza waheni","en":"Waheni Hunt Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Bestial"],"tough":9},{"n":"Jefe centauro ndwari","en":"Ndwari Centaur Boss","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Rápido","Luchador impredecible","Bestial"],"tough":9},{"n":"Jefe bruto kemba","en":"Kemba Brute Boss","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Furioso","Bestial"],"tough":18}]},{"n":"Hombres rata","en":"Ratmen","types":[{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Escabullirse"],"tough":9},{"n":"Maestro de batalla","en":"Battle Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Escabullirse"],"tough":9}]},{"n":"Saurios","en":"Saurians","types":[{"n":"Campeón geco","en":"Gecko Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Primigenio"],"tough":9},{"n":"Veterano saurio","en":"Saurian Veteran","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Primigenio"],"tough":9},{"n":"Veterano caimán","en":"Gator Veteran","cal":6,"def":6,"w":"Guja de serpientes maestra (A2, Explosión(3), Perdición)","rules":["Miedo(1)","Impávido","Primigenio"],"tough":18},{"n":"Mago-rana","en":"Frog-Mage","cal":6,"def":6,"w":"Gran pulso mágico (A8, Imparable)","rules":["Miedo(1)","Andarín","Primigenio","Impávido"],"tough":18}]}]},{"n":"Caos","en":"Havoc","races":[{"n":"Discípulos de la Guerra","en":"War Disciples","types":[{"n":"Maestro del Caos de la Guerra","en":"War Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Guerra"],"tough":9},{"n":"Maestro del Caos elegido de la Guerra","en":"War Chosen Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Experto versátil","Ligado a la Guerra"],"tough":9},{"n":"Campeón bárbaro de la Guerra","en":"War Barbarian Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Ligado a la Guerra"],"tough":9}]},{"n":"Discípulos de la Lujuria","en":"Lust Disciples","types":[{"n":"Maestro del Caos de la Lujuria","en":"Lust Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Lujuria"],"tough":9},{"n":"Maestro del Caos elegido de la Lujuria","en":"Lust Chosen Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Experto versátil","Ligado a la Lujuria"],"tough":9},{"n":"Campeón bárbaro de la Lujuria","en":"Lust Barbarian Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Ligado a la Lujuria"],"tough":9}]},{"n":"Discípulos de la Plaga","en":"Plague Disciples","types":[{"n":"Maestro del Caos de la Plaga","en":"Plague Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Plaga"],"tough":9},{"n":"Maestro del Caos elegido de la Plaga","en":"Plague Chosen Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Experto versátil","Ligado a la Plaga"],"tough":9},{"n":"Campeón bárbaro de la Plaga","en":"Plague Barbarian Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Ligado a la Plaga"],"tough":9}]},{"n":"Discípulos del Cambio","en":"Change Disciples","types":[{"n":"Maestro del Caos del Cambio","en":"Change Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado al Cambio"],"tough":9},{"n":"Campeón hombre-pájaro del Cambio","en":"Change Birdman Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado al Cambio"],"tough":9},{"n":"Maestro del Caos elegido del Cambio","en":"Change Chosen Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Experto versátil","Ligado al Cambio"],"tough":9},{"n":"Campeón bárbaro del Cambio","en":"Change Barbarian Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Ligado al Cambio"],"tough":9}]},{"n":"Guerreros del Caos","en":"Havoc Warriors","types":[{"n":"Maestro del Caos elegido","en":"Chosen Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado al Caos","Experto versátil"],"tough":9},{"n":"Maestro del Caos","en":"Havoc Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado al Caos"],"tough":9},{"n":"Campeón bárbaro","en":"Barbarian Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Ligado al Caos"],"tough":9},{"n":"Heraldo del Caos","en":"Harbinger of Havoc","cal":6,"def":6,"w":"2x Martillo demoníaco (A1, PA(1), Explosión(3)), Pisotón (A2, PA(1))","rules":["Miedo(1)","Ligado al Caos"],"tough":18}]}]},{"n":"Demonios","en":"Daemons","races":[{"n":"Demonios de la Guerra","en":"Daemons of War","types":[{"n":"Campeón de la Guerra","en":"Champion of War","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Guerra"],"tough":9},{"n":"Campeón de la furia de la Guerra","en":"Fury Champion of War","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Volador","Explorador","Ligado a la Guerra"],"tough":9},{"n":"Heraldo de la Guerra","en":"Harbinger of War","cal":6,"def":6,"w":"2x Martillo demoníaco (A1, PA(1), Explosión(3)), Pisotón (A2, PA(1))","rules":["Miedo(1)","Ligado a la Guerra"],"tough":18},{"n":"Campeón del tri-sabueso","en":"Tri-Hound Champion","cal":6,"def":6,"w":"Garras de llamas (A6, Estocada)","rules":["Miedo(1)","Ligado a la Guerra"],"tough":18}]},{"n":"Demonios de la Lujuria","en":"Daemons of Lust","types":[{"n":"Campeón de la Lujuria","en":"Champion of Lust","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Lujuria"],"tough":9},{"n":"Sirena infernal","en":"Infernal Siren","cal":6,"def":6,"w":"Arpa infernal (18\", A3, Imparable), Golpe (A1)","rules":["Ligado a la Lujuria"],"tough":9},{"n":"Campeón de la furia de la Lujuria","en":"Fury Champion of Lust","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Volador","Explorador","Ligado a la Lujuria"],"tough":9},{"n":"Heraldo de la Lujuria","en":"Harbinger of Lust","cal":6,"def":6,"w":"2x Martillo demoníaco (A1, PA(1), Explosión(3)), Pisotón (A2, PA(1))","rules":["Miedo(1)","Ligado a la Lujuria"],"tough":18}]},{"n":"Demonios de la Plaga","en":"Daemons of Plague","types":[{"n":"Campeón de la Plaga","en":"Champion of Plague","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado a la Plaga"],"tough":9},{"n":"Campeón de la furia de la Plaga","en":"Fury Champion of Plague","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Volador","Explorador","Ligado a la Plaga"],"tough":9},{"n":"Cosechador de la Plaga","en":"Plague Harvester","cal":6,"def":6,"w":"Guadaña de la Plaga (A1, PA(2), Letal(3), Perdición)","rules":["Ligado a la Plaga"],"tough":9},{"n":"Heraldo de la Plaga","en":"Harbinger of Plague","cal":6,"def":6,"w":"2x Martillo demoníaco (A1, PA(1), Explosión(3)), Pisotón (A2, PA(1))","rules":["Miedo(1)","Ligado a la Plaga"],"tough":18}]},{"n":"Demonios del Cambio","en":"Daemons of Change","types":[{"n":"Campeón del Cambio","en":"Champion of Change","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Ligado al Cambio"],"tough":9},{"n":"Campeón horror del Cambio","en":"Horror Champion of Change","cal":6,"def":6,"w":"Bolas de fuego (12\", A1, Asalto), Garras de horror (A3, Triturar)","rules":["Ligado al Cambio"],"tough":9},{"n":"Campeón de la furia del Cambio","en":"Fury Champion of Change","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Volador","Explorador","Ligado al Cambio"],"tough":9},{"n":"Heraldo del Cambio","en":"Harbinger of Change","cal":6,"def":6,"w":"2x Martillo demoníaco (A1, PA(1), Explosión(3)), Pisotón (A2, PA(1))","rules":["Miedo(1)","Ligado al Cambio"],"tough":18}]}]},{"n":"Elfos","en":"Elves","races":[{"n":"Altos elfos","en":"High Elves","types":[{"n":"Alto noble","en":"High Noble","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Alta cuna"],"tough":9},{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Alta cuna"],"tough":9}]},{"n":"Elfos abisales","en":"Deep-Sea Elves","types":[{"n":"Maestro del mar","en":"Sea Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Paso de ola"],"tough":9},{"n":"Erudito","en":"Scholar","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Paso de ola"],"tough":9}]},{"n":"Elfos oscuros","en":"Dark Elves","types":[{"n":"Capitán oscuro","en":"Dark Captain","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Hostigador"],"tough":9},{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Hostigador"],"tough":9},{"n":"Dama serpiente","en":"Snake Lady","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Andarín","Hostigador"],"tough":18}]},{"n":"Elfos silvanos","en":"Wood Elves","types":[{"n":"Campeón de la arboleda","en":"Grove Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Velo salvaje"],"tough":9},{"n":"Líder del claro","en":"Glade Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Velo salvaje"],"tough":9},{"n":"Anciano eterno","en":"Eternal Elder","cal":6,"def":6,"w":"Garras afiladas (A4)","rules":["Esquiva","Andarín","Velo salvaje"],"tough":9},{"n":"Anciano hombre-árbol","en":"Treeman Elder","cal":6,"def":6,"w":"Rama tejedora (9\", A4, Imparable), Raíz estranguladora (A1, Perdición)","rules":["Furioso","Andarín","Velo salvaje"],"tough":9}]}]},{"n":"Enanos","en":"Dwarves","races":[{"n":"Enanos","en":"Dwarves","types":[{"n":"Campeón enano","en":"Dwarf Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Lento","Robusto"],"tough":9},{"n":"Señor berserker","en":"Berserker Lord","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Furioso","Asesino cuerpo a cuerpo","Lento","Robusto"],"tough":9},{"n":"Campeón con traje de vapor","en":"Steam-Suit Champion","cal":6,"def":6,"w":"Puños de traje de vapor (A8)","rules":["Lento","Impávido","Robusto"],"tough":18}]},{"n":"Enanos de la ciudad celeste","en":"Sky-City Dwarves","types":[{"n":"Capitán celeste","en":"Sky-Captain","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Bucanero"],"tough":9},{"n":"Maestro de globos","en":"Balloon Master","cal":6,"def":6,"w":"Arnés de abordaje (12\", A3, Asalto), Martillo celeste maestro (A1, PA(2), Explosión(3))","rules":["Volador","Explorador","Bucanero"],"tough":18}]},{"n":"Enanos del Caos","en":"Havoc Dwarves","types":[{"n":"Campeón de hierro","en":"Iron Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Ligado al Caos"],"tough":9},{"n":"Líder abisal","en":"Abyssal Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Ligado al Caos"],"tough":9},{"n":"Campeón centauro toro","en":"Bull Centaur Champion","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Miedo(1)","Furioso","Ligado al Caos","Explorador"],"tough":18}]},{"n":"Enanos volcánicos","en":"Volcanic Dwarves","types":[{"n":"Campeón de magma","en":"Magma Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Furioso","Lento","Juramentado del draco"],"tough":9},{"n":"Líder volcánico","en":"Volcanic Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Furioso","Lento","Juramentado del draco"],"tough":9}]}]},{"n":"Forasteros","en":"Outsiders","races":[{"n":"Acechadores de las sombras","en":"Shadow Stalkers","types":[{"n":"Campeón segador","en":"Reaper Champion","cal":6,"def":6,"w":"Gran guja segadora maestra (A1, PA(2), Explosión(3))","rules":["Asesino cuerpo a cuerpo","Nacido de las sombras"],"tough":9},{"n":"Campeón del azote","en":"Scourge Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Nacido de las sombras"],"tough":9},{"n":"Campeón fantasma","en":"Phantom Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Etéreo","Nacido de las sombras","Resistencia a hechizos"],"tough":9},{"n":"Campeón espectro","en":"Spectre Champion","cal":6,"def":6,"w":"Varita de acechador maestra (12\", A4, Destructivo), Golpe (A1)","rules":["Etéreo","Nacido de las sombras","Resistencia a hechizos"],"tough":9},{"n":"Campeón carnicero","en":"Butcher Champion","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Miedo(1)","Arrasar(6)","Nacido de las sombras"],"tough":18}]},{"n":"Celadores eternos","en":"Eternal Wardens","types":[{"n":"Élite guardiana","en":"Guardian Elite","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Impávido","Celador"],"tough":9},{"n":"Señor eterno","en":"Eternal Lord","cal":6,"def":6,"w":"Ballesta del trueno (24\", A2, PA(1), Aplastar), Golpe (A2)","rules":["Impávido","Celador"],"tough":18},{"n":"Caballero celador","en":"Warden Knight","cal":6,"def":6,"w":"Ballesta del trueno (24\", A2, PA(1), Aplastar), Golpe (A2)","rules":["Impávido","Furioso","Celador"],"tough":18}]},{"n":"Imperio del Dragón","en":"Dragon Empire","types":[{"n":"Capitán dracónido","en":"Dragonkin Captain","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Guerrero real"],"tough":9},{"n":"Señor dracónido","en":"Dragonkin Lord","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Guerrero real","Impávido"],"tough":9}]},{"n":"Medianos","en":"Halflings","types":[{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Afortunado","Lento"],"tough":9},{"n":"Líder","en":"Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Afortunado"],"tough":9}]},{"n":"Ogros","en":"Ogres","types":[{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Destructor"],"tough":18},{"n":"Maestro de la tribu","en":"Tribe Master","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Destructor","Arrasar(6)"],"tough":18}]}]},{"n":"Gremios","en":"Guilds","races":[{"n":"Alianzas menudas","en":"Shortling Alliances","types":[{"n":"Líder menudo","en":"Shortling Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Tenaz"],"tough":9},{"n":"Campeón menudo","en":"Shortling Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Tenaz"],"tough":9}]},{"n":"Cazatesoros","en":"Treasure Hunters","types":[{"n":"Líder cazador","en":"Hunter Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Corredor"],"tough":9},{"n":"Campeón cazador","en":"Hunter Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Corredor"],"tough":9}]},{"n":"Clanes brutos","en":"Brute Clans","types":[{"n":"Líder bruto","en":"Brute Leader","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Coraje bruto"],"tough":18},{"n":"Campeón bruto","en":"Brute Champion","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Coraje bruto"],"tough":18}]},{"n":"Fanáticos enloquecidos","en":"Crazed Zealots","types":[{"n":"Líder fanático","en":"Zealot Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Enloquecido"],"tough":9},{"n":"Campeón fanático","en":"Zealot Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Enloquecido"],"tough":9}]},{"n":"Federaciones comerciales","en":"Trade Federations","types":[{"n":"Líder de la Federación","en":"Federation Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Equipo exótico"],"tough":9},{"n":"Campeón de la Federación","en":"Federation Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Equipo exótico"],"tough":9}]},{"n":"Guardias a sueldo","en":"Hired Guards","types":[{"n":"Líder de la guardia","en":"Guard Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Guardián"],"tough":9},{"n":"Campeón de la guardia","en":"Guard Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Guardián"],"tough":9}]},{"n":"Mercenarios","en":"Mercenaries","types":[{"n":"Líder mercenario","en":"Mercenary Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Curtido en batalla"],"tough":9},{"n":"Campeón mercenario","en":"Mercenary Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Curtido en batalla"],"tough":9},{"n":"Asalariado mercenario","en":"Mercenary Hireling","cal":6,"def":6,"w":"Lanza (A3, Contraataque, Afianzado(1))","rules":["Curtido en batalla"],"tough":9}]},{"n":"Saqueadores de las afueras","en":"Outskirt Raiders","types":[{"n":"Líder saqueador","en":"Raider Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Saqueador"],"tough":9},{"n":"Campeón saqueador","en":"Raider Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Andarín","Saqueador"],"tough":9}]},{"n":"Sindicatos ocultos","en":"Hidden Syndicates","types":[{"n":"Líder del sindicato","en":"Syndicate Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Niebla lúgubre"],"tough":9},{"n":"Campeón del sindicato","en":"Syndicate Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Niebla lúgubre"],"tough":9}]},{"n":"Tribus furiosas","en":"Furious Tribes","types":[{"n":"Líder de la tribu","en":"Tribe Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Salvaje"],"tough":9},{"n":"Campeón de la tribu","en":"Tribe Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Salvaje"],"tough":9}]},{"n":"Uniones mercantes","en":"Merchant Unions","types":[{"n":"Líder mercader","en":"Merchant Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Asalto de la unión"],"tough":9},{"n":"Campeón mercader","en":"Merchant Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Asalto de la unión"],"tough":9}]}]},{"n":"Humanos","en":"Humans","races":[{"n":"Ducados de Vinci","en":"Duchies of Vinci","types":[{"n":"Líder Vinci","en":"Vinci Leader","cal":6,"def":6,"w":"Cuchillas de brazo dobles (A4)","rules":["Tecnología Vinci"],"tough":9},{"n":"Erudito Vinci","en":"Vinci Scholar","cal":6,"def":6,"w":"Arma de mano maestra (A3, PA(1), Parada(3))","rules":["Tecnología Vinci"],"tough":9}]},{"n":"Imperio humano","en":"Human Empire","types":[{"n":"Maestro de batalla","en":"Battle Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Mantener la línea"],"tough":9},{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Mantener la línea"],"tough":9}]},{"n":"Reino de los Ángeles","en":"Kingdom of Angels","types":[{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Bendición angélica"],"tough":9},{"n":"Abadesa","en":"Abbess","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","Bendición angélica"],"tough":9},{"n":"Ángel supremo","en":"High Angel","cal":6,"def":6,"w":"Martillo ardiente maestro (A2, Explosión(3), Perdición)","rules":["Volador","Bendición angélica"],"tough":18}]},{"n":"Reinos caballerescos","en":"Chivalrous Kingdoms","types":[{"n":"Campeón supremo","en":"High Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Juramento del Valle"],"tough":9},{"n":"Defensor del Valle","en":"Vale Defender","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Juramento del Valle"],"tough":9}]}]},{"n":"No muertos","en":"Undead","races":[{"n":"No muertos fantasmales","en":"Ghostly Undead","types":[{"n":"Campeón","en":"Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Etéreo","Espíritu empíreo"],"tough":9},{"n":"Líder sombrío","en":"Grim Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Etéreo","Furioso","Espíritu empíreo"],"tough":9},{"n":"Banshee ancestral","en":"Ancient Banshee","cal":6,"def":6,"w":"Grito de banshee (9\", A4, Perdición), Golpe (A1)","rules":["Etéreo","Espíritu empíreo","Resistencia a hechizos"],"tough":9},{"n":"Espectro ancestral","en":"Ancient Wraith","cal":6,"def":6,"w":"Hoces segadoras dobles (A4, Triturar)","rules":["Emboscada","Etéreo","Espíritu empíreo","Resistencia a hechizos"],"tough":9}]},{"n":"No muertos momificados","en":"Mummified Undead","types":[{"n":"Campeón real","en":"Royal Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Legión real"],"tough":9},{"n":"Líder esqueleto","en":"Skeleton Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Legión real"],"tough":9}]},{"n":"No muertos osificados","en":"Ossified Undead","types":[{"n":"Maestro de huesos","en":"Bone Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Osificado"],"tough":9},{"n":"Heraldo de la muerte","en":"Herald of Death","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Lento","Luchador impredecible","Osificado"],"tough":9},{"n":"Gran acechador","en":"Great Stalker","cal":6,"def":6,"w":"Hojas de acechador (A8)","rules":["Lento","Luchador impredecible","Osificado"],"tough":18}]},{"n":"No muertos vampíricos","en":"Vampiric Undead","types":[{"n":"Campeón esqueleto","en":"Skeleton Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["No muerto maldito"],"tough":9},{"n":"Líder drenado","en":"Drained Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["No muerto maldito"],"tough":9},{"n":"Maestro vampiro","en":"Vampire Master","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Furioso","No muerto maldito"],"tough":9},{"n":"Campeón necrófago","en":"Ghoul Champion","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Regeneración","Andarín","No muerto maldito"],"tough":9},{"n":"Campeón hombre lobo","en":"Werewolf Champion","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Explorador","Andarín","No muerto maldito"],"tough":18}]}]},{"n":"Pielesverdes","en":"Greenskins","races":[{"n":"Goblins","en":"Goblins","types":[{"n":"Líder goblin","en":"Goblin Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Travieso"],"tough":9},{"n":"Jefe trol","en":"Troll Boss","cal":6,"def":6,"w":"Lanzar rocas (12\", A2, Explosión(3), Indirecto), Golpe (A2)","rules":["Regeneración","Travieso"],"tough":18}]},{"n":"Orcos","en":"Orcs","types":[{"n":"Jefe de la Guardia de Hierro","en":"Iron Guard Boss","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Asesino cuerpo a cuerpo","Feroz"],"tough":9},{"n":"Jefe orco","en":"Orc Boss","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Feroz"],"tough":9},{"n":"Líder orco","en":"Orc Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Feroz"],"tough":9},{"n":"Líder de los hobciénagas","en":"Hobswampling Leader","cal":6,"def":6,"w":"Armas de mano dobles (A4)","rules":["Feroz","Explorador"],"tough":9},{"n":"Jefe orco bruto","en":"Brute Orc Boss","cal":6,"def":6,"w":"Armas de mano dobles (A8)","rules":["Feroz"],"tough":18}]}]},{"n":"Otras facciones","en":"Otras facciones","races":[{"n":"Demonios de la Grieta","en":"Rift Daemons","types":[]},{"n":"Gremios del Nexo","en":"Guilds of the Nexus","types":[]}]}]};</script>
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- datos ---------- */
+const D=DATA;
+D.facs=D.facs.map(f=>({...f,races:f.races.filter(r=>r.types.length)})).filter(f=>f.races.length);
+const RACES=[];
+D.facs.forEach((f,fi)=>f.races.forEach((r,ri)=>{r.fi=fi;r.ri=ri;r.fac=f;r.id=RACES.length;RACES.push(r)}));
+const HUES={"Bestias":30,"Caos":318,"Demonios":2,"Elfos":150,"Enanos":42,"Forasteros":180,"Gremios":205,"Humanos":228,"No muertos":270,"Pielesverdes":88};
+const hueF=fi=>HUES[D.facs[fi].n]??220;
+const NAMES=["Aldric","Brenna","Corvin","Dahlia","Eldrin","Fenna","Garrick","Hilda","Ivor","Kaelen","Lysa","Morwen","Neris","Orsin","Pella","Quillon","Rhosyn","Soren","Talia","Ulric","Vessa","Wren","Ysolde","Zarek","Tamsin","Ilvane"];
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+
+/* ---------- glifos de facción y de clase (rejilla de 48) ---------- */
+const FG={
+"Bestias":'<path d="M9 9C6 22 13 28 24 28s18-6 15-19"/><path d="M15 28l3 12 6 4 6-4 3-12"/><circle cx="19" cy="31" r="1.2"/><circle cx="29" cy="31" r="1.2"/>',
+"Caos":'<path d="M24 5v38M5 24h38M11 11l26 26M37 11L11 37"/><circle cx="24" cy="24" r="4"/>',
+"Demonios":'<path d="M9 10c1 9 5 12 10 12M39 10c-1 9-5 12-10 12"/><path d="M24 12c5 8 8 12 6 20-1 6-4 9-6 9s-5-3-6-9c-2-8 1-12 6-20z"/>',
+"Elfos":'<path d="M32 6A18 18 0 1 0 32 42 14 14 0 1 1 32 6z"/><path d="M36 14l1.6 3.4 3.7.5-2.7 2.6.7 3.7-3.3-1.8-3.3 1.8.7-3.7-2.7-2.6 3.7-.5z"/>',
+"Enanos":'<path d="M13 9h22v11H13z"/><path d="M24 20v22M17 42h14M13 14H8m27 0h5"/>',
+"Forasteros":'<path d="M24 4l4 16 16 4-16 4-4 16-4-16L4 24l16-4z"/>',
+"Gremios":'<circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="9"/><path d="M24 16v16"/>',
+"Humanos":'<path d="M8 37V15l9 9 7-13 7 13 9-9v22z"/><path d="M8 42h32"/>',
+"No muertos":'<path d="M12 26c0-11 24-11 24 0v6h-6v6H18v-6h-6z"/><circle cx="18" cy="26" r="3"/><circle cx="30" cy="26" r="3"/><path d="M24 30v3"/>',
+"Pielesverdes":'<path d="M7 22c4-9 30-9 34 0"/><path d="M13 22l-2 16 9-12M35 22l2 16-9-12"/><path d="M19 22h10"/>'};
+const CG={
+"Bárbaro":'<path d="M14 42L30 12"/><path d="M28 10C38 6 43 17 37 25l-8-7z"/>',
+"Bardo":'<circle cx="18" cy="31" r="9"/><circle cx="18" cy="31" r="2.6"/><path d="M25 24L38 11M36 7l5 5"/>',
+"Brujo":'<path d="M4 25c8-13 32-13 40 0-8 13-32 13-40 0z"/><circle cx="24" cy="25" r="5"/><path d="M24 6v5M13 10l2 4M35 10l-2 4"/>',
+"Clérigo":'<circle cx="24" cy="24" r="7"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4"/>',
+"Druida":'<path d="M9 38C8 19 22 8 40 8c0 19-10 32-31 30z"/><path d="M9 38l20-20"/>',
+"Explorador":'<path d="M14 7c20 6 20 28 0 34"/><path d="M14 7v34M6 24h34M34 18l6 6-6 6"/>',
+"Guerrero":'<path d="M24 4l4 5v21h-8V9z"/><path d="M13 30h22M24 30v10"/><circle cx="24" cy="43" r="2"/>',
+"Hechicero":'<path d="M24 4c6 9 14 13 12 25-2 11-22 12-24 0-2-9 8-12 12-25z"/><path d="M24 24c3 4 5 6 4 10-1 3-6 3-7 0-1-3 1-5 3-10z"/>',
+"Mago":'<path d="M13 43L29 15"/><circle cx="32" cy="11" r="5"/><path d="M9 11l1.5 3.5L14 16l-3.5 1.5L9 21l-1.5-3.5L4 16l3.5-1.5z"/>',
+"Monje":'<path d="M24 41c-8-3-12-11-8-20 3 3 6 7 8 12 2-5 5-9 8-12 4 9 0 17-8 20z"/><path d="M24 33V13M10 33c-3-5-3-10 0-13M38 33c3-5 3-10 0-13"/>',
+"Paladín":'<path d="M24 5l16 6v13c0 9-7 16-16 20-9-4-16-11-16-20V11z"/><path d="M24 14v19M16 22h16"/>',
+"Pícaro":'<path d="M40 8L19 29M14 27l7 7M18 30L9 39"/><path d="M40 8l-3 8-5-5z"/>'};
+const gsvg=(inner,s)=>`<svg class="glyph" viewBox="0 0 48 48" width="${s}" height="${s}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+const fGl=(fi,s=20)=>gsvg(FG[D.facs[fi].n]||FG["Forasteros"],s);
+const cGl=(c,s=28)=>gsvg(CG[c.n]||CG["Guerrero"],s);
+const CHEV='<svg class="cv" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+
+/* ---------- escudo heráldico por raza ---------- */
+let CID=0;
+function crestInner(r){
+  const id="cr"+(CID++),h=hueF(r.fi)+(r.ri%3)*7,div=(r.ri*3+r.fi)%8;
+  const A=`hsl(${h} 40% 16%)`,B=`hsl(${h} 48% 34%)`;
+  const sh="M32 3L58 11V36C58 54 46 66 32 73 18 66 6 54 6 36V11Z";
+  const F=[
+    '<rect x="0" y="0" width="32" height="80"/>','<rect x="0" y="0" width="64" height="38"/>','<path d="M0 0H64V76Z"/>',
+    '<path d="M6 54L32 32l26 22v10L32 42 6 64z"/>','<path d="M28 0h8v80h-8zM0 30h64v8H0z"/>',
+    '<path d="M0 8L8 0l56 68-8 8zM56 0l8 8L8 76 0 68z"/>','<path d="M0 0h32v38H0zM32 38h32v40H32z"/>','<path d="M14 0h8v80h-8zM42 0h8v80h-8z"/>'][div];
+  const glyph=FG[r.fac.n]||FG["Forasteros"];
+  return `<defs><clipPath id="${id}"><path d="${sh}"/></clipPath></defs><g clip-path="url(#${id})"><rect width="64" height="80" fill="${A}"/><g fill="${B}">${F}</g><circle cx="32" cy="37" r="15" fill="${A}" opacity=".88"/></g><g transform="translate(20 25) scale(.5)" fill="none" stroke="#f3e2b0" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">${glyph}</g><path d="${sh}" fill="none" stroke="#d9b86c" stroke-width="2.4"/><path d="M32 8L53 14V36C53 50 44 60 32 66 20 60 11 50 11 36V14Z" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width="1"/>`;
+}
+const crest=(r,w=48)=>`<svg class="glyph" viewBox="0 0 64 76" width="${w}" height="${Math.round(w*76/64)}" aria-hidden="true">${crestInner(r)}</svg>`;
+const fig=(h)=>`<svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 6c9 0 15 7 15 17 0 7-2 11-4 15l11 26H10l11-26c-2-4-4-8-4-15C17 13 23 6 32 6z" fill="hsl(${h} 28% 24%)"/><ellipse cx="32" cy="26" rx="8" ry="10" fill="#05060b"/><path d="M23 44c5 4 13 4 18 0" fill="none" stroke="#d9b86c" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+
+/* ---------- cálculo de la ficha inicial ---------- */
+function mods(c){
+  const m={cal:0,fue:0,des:0,vol:0,pod:0,hab:0,lanz:0};
+  c.bonus.forEach(b=>{let x;
+    if((x=b.match(/^(Cal|Fue|Des|Vol|Pod) \+(\d)$/)))m[x[1].toLowerCase()]+=+x[2];
+    else if((x=b.match(/(\d) habilidad(?:es)?/))){m.hab=+x[1];const p=b.match(/Pod \+(\d)/);if(p)m.pod+=+p[1]}
+    else if(/^Lanzador\(\d\)/.test(b))m.lanz=1;
+  });
+  return m;
+}
+const modChips=c=>{const m=mods(c),o=[];if(m.cal)o.push("Cal +"+m.cal);if(m.fue)o.push("Fue +"+m.fue);if(m.des)o.push("Des +"+m.des);if(m.vol)o.push("Vol +"+m.vol);if(m.pod)o.push("Pod +"+m.pod);if(m.lanz)o.push("Lanzador");return o};
+function statsFor(t,c){
+  const m=c?mods(c):{cal:0,fue:0,des:0,vol:0,pod:0,hab:0,lanz:0};
+  const v=(b,d)=>Math.max(2,b-d);
+  return{cal:v(t.cal,m.cal),def:t.def,fue:v(6,m.fue),des:v(6,m.des),vol:v(6,m.vol),hp:t.tough,pod:m.pod,lanz:m.lanz,hab:m.hab,
+    dc:t.cal-v(t.cal,m.cal),df:6-v(6,m.fue),dd:6-v(6,m.des),dv:6-v(6,m.vol)};
+}
+const hpTxt=r=>{const a=r.types.map(t=>t.tough);const lo=Math.min(...a),hi=Math.max(...a);return "Resistente "+(lo===hi?lo:lo+"–"+hi)};
+const profTxt=r=>r.types.length+" perfil"+(r.types.length>1?"es":"");
+
+function statGrid(t,c,cls=""){
+  const s=statsFor(t,c);
+  const T=[["Calidad",s.cal+"+",s.dc],["Defensa",s.def+"+",0],["Fuerza",s.fue+"+",s.df],["Destreza",s.des+"+",s.dd],["Voluntad",s.vol+"+",s.dv]];
+  const one=(l,v,d,x="")=>`<div class="st ${d?"up":""} ${x}"><small>${l}</small><b>${v}</b>${d?`<i>▲${d}</i>`:""}</div>`;
+  return `<div class="sg ${cls}">${T.map(([l,v,d])=>one(l,v,d,c?"":(l==="Fuerza"||l==="Destreza"||l==="Voluntad"?"dim":""))).join("")}${one("Heridas",s.hp,0)}${one("Poder",s.pod,s.pod,c||s.pod?"":"dim")}</div>`;
+}
+const featBlock=c=>c.feat?`<div class="feat"><span class="tg">Dote de clase · una vez por partida</span><b>${esc(c.feat.n)}<em>${esc(c.feat.en)}</em></b><p>${esc(c.feat.t)}</p></div>`:"";
+const ATC={"Fuerza":"f","Destreza":"d","Voluntad":"v"};
+const CHECK='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+/* ---------- explicaciones de reglas (resumen propio; descripciones consultadas en Army Forge) ---------- */
+const RG={
+/* armas */
+"AP":["AP","La víctima resta {x} a sus tiradas de Defensa al bloquear los impactos de esta arma."],
+"Imparable":["Unstoppable","Ignora la Regeneración y todos los modificadores negativos, salvo los de las reglas del propio portador."],
+"Explosión":["Blast","Ignora la cobertura. Cada impacto se multiplica por {x}, sin pasar del número de miniaturas de la unidad objetivo."],
+"Letal":["Deadly","Cada herida se asigna a una sola miniatura y se multiplica por {x}. Se resuelve primero y, si la miniatura muere, el exceso no pasa a otras."],
+"Perdición":["Bane","Ignora la Regeneración y obliga al objetivo a repetir sus 6 naturales de Defensa."],
+"Desgarrador":["Rending","Ignora la Regeneración. Cada 6 natural al impactar da AP(+4) a ese impacto."],
+"Asalto":["Assault","El arma cuenta a la vez como arma a distancia y como arma cuerpo a cuerpo."],
+"Contraataque":["Counter","Golpea primero cuando la cargan, salvo que la unidad esté fatigada."],
+"Afianzado":["Brace","Los enemigos que cargan restan {x} a sus tiradas de Impacto, salvo que la unidad esté fatigada."],
+"Aplastar":["Smash","Si ataca desde más de la mitad de su alcance, el objetivo repite los 6 naturales de Defensa."],
+"Destructivo":["Destructive","Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1)."],
+"Estocada":["Thrust","Al cargar, +1 a impactar y AP(+1) en cuerpo a cuerpo."],
+"Indirecto":["Indirect","Al disparar con una acción de Mantener posición, puede apuntar a enemigos sin línea de visión e ignora la cobertura que bloquea la vista."],
+"Parada":["Parry","Al recibir impactos en cuerpo a cuerpo, tira {x} dados por miniatura (hasta tantos como impactos). Cada 6+ anula un impacto."],
+"Triturar":["Shred","Por cada 1 natural en las tiradas de bloqueo del objetivo, el arma causa 1 herida extra."],
+"Preciso":["Precise","+1 a impactar."],
+/* ficha */
+"Resistente":["Tough","Heridas que aguanta antes de quedar inconsciente. Es el valor de Heridas de la ficha."],
+"Lanzador":["Caster","Puede lanzar hechizos gastando Poder. Los hechizos disponibles dependen de la facción de la raza; el número marca su nivel de lanzador."],
+/* reglas de raza */
+"Afortunado":["Lucky","Al disparar o cargar a enemigos a más de 9″ (disparo) o 6″ (carga), cada 6 natural al impactar causa 1 impacto extra."],
+"Alta cuna":["Highborn","+4″ de alcance al disparar y +2″ al cargar."],
+"Andarín":["Strider","Ignora los efectos del terreno difícil."],
+"Arrasar":["Ravage","Una vez por ronda, en su turno de golpear en cuerpo a cuerpo y antes de atacar, tira {x} dados (si no está fatigada). Por cada 6+ el objetivo sufre 1 herida."],
+"Asalto de la unión":["Union Assault","Tras desplegarse, puede recolocarse hasta 9″ de su posición, a más de 9″ de enemigos que no tengan Vanguardia."],
+"Asesino cuerpo a cuerpo":["Melee Slayer","Al cargar, sus armas ganan AP(+2) si la mayoría de la unidad objetivo tiene Resistente(3) o más."],
+"Bendición angélica":["Angelic Blessing","Cada herida que recibe se tira aparte: si es de un hechizo se ignora con 2+; si no, y la disparan o cargan desde lejos (más de 9″ o 6″), se ignora con 6+."],
+"Bestial":["Bestial","Al atacar, el objetivo repite los 6 naturales de Defensa."],
+"Bucanero":["Buccaneer","+1 a impactar al disparar a enemigos a más de 9″."],
+"Celador":["Warden","Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."],
+"Coraje bruto":["Brute Courage","Si empieza la ronda acobardada, tira un dado: con 4+ deja de estarlo."],
+"Corredor":["Runner","Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."],
+"Curtido en batalla":["Battle-Hardened","+1 a las tiradas de moral cuando la disparan o cargan desde lejos (más de 9″ o 6″)."],
+"Destructor":["Destroyer","Al disparar o cargar desde lejos (más de 9″ o 6″), cada 1 natural en los bloqueos del objetivo causa 1 herida extra."],
+"Emboscada":["Ambush","Puede apartarse antes del despliegue y entrar en cualquier ronda después de la primera, a más de 9″ de los enemigos. No toma objetivos esa ronda."],
+"Enloquecido":["Crazed","Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."],
+"Equipo exótico":["Exotic Gear","Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar, al disparar o cargar desde lejos."],
+"Escabullirse":["Scurry","Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."],
+"Espíritu empíreo":["Empyrean Spirit","Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."],
+"Esquiva":["Dodge","Mientras no esté fatigada, los enemigos tienen -1 a impactar contra ella en cuerpo a cuerpo."],
+"Etéreo":["Ethereal","Una vez por activación, antes de atacar, puede recolocarse hasta 6″. Si lo hace, se mueve -6″ al Avanzar y al Correr o Cargar hasta el final de esa activación."],
+"Experto versátil":["Versatile Expert","Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar."],
+"Explorador":["Scout","Puede apartarse y desplegarse después de todas las demás unidades, a menos de 9″ de su zona y a más de 9″ de enemigos que no sean Exploradores."],
+"Feroz":["Ferocious","Al disparar o cargar desde lejos (más de 9″ o 6″), cada 6 natural al impactar causa 1 impacto extra."],
+"Furioso":["Furious","Al cargar, cada 6 natural al impactar causa 1 impacto extra."],
+"Guardián":["Guardian","Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."],
+"Guerrero real":["Royal Warrior","Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."],
+"Hostigador":["Harassing","Una vez por ronda puede moverse hasta 3″ después de disparar o de estar en cuerpo a cuerpo."],
+"Impávido":["Fearless","Cuando falla un chequeo de moral, tira un dado: con 4+ cuenta como superado."],
+"Juramentado del draco":["Drakesworn","Tras desplegarse, puede recolocarse hasta 9″ de su posición, a más de 9″ de enemigos que no tengan Vanguardia."],
+"Juramento del Valle":["Vale Oath","Si empieza la ronda acobardada, tira un dado: con 4+ deja de estarlo."],
+"Legión real":["Royal Legion","+4″ de alcance al disparar y +2″ al cargar."],
+"Lento":["Slow","Se mueve -2″ al Avanzar y -4″ al Correr o Cargar."],
+"Ligado a la Guerra":["Warbound","Al disparar o cargar desde lejos (más de 9″ o 6″), cada 1 natural en los bloqueos del objetivo causa 1 herida extra."],
+"Ligado a la Lujuria":["Lustbound","Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."],
+"Ligado a la Plaga":["Plaguebound","Cada herida que recibe se ignora con 6+."],
+"Ligado al Cambio":["Changebound","Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."],
+"Ligado al Caos":["Havocbound","Al disparar o cargar desde lejos (más de 9″ o 6″), sus armas ganan AP(+1)."],
+"Luchador impredecible":["Unpredictable Fighter","En cuerpo a cuerpo tira un dado: con 1-3, AP(+1) en sus armas; con 4-6, +1 a impactar."],
+"Mantener la línea":["Hold the Line","+1 a las tiradas de moral cuando la disparan o cargan desde lejos (más de 9″ o 6″)."],
+"Miedo":["Fear","En cuerpo a cuerpo, los enemigos cuentan con +{x} a sus heridas al decidir quién gana el combate."],
+"Nacido de las sombras":["Shadowborn","Los enemigos que le disparan tienen -4″ de alcance y los que le cargan -2″ (mínimo 6″)."],
+"Niebla lúgubre":["Gloom-Mist","Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."],
+"No muerto maldito":["Cursed Undead","Cada herida que recibe se ignora con 6+."],
+"Osificado":["Ossified","Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."],
+"Paso de ola":["Wave-Step","Al activarse, puede moverse hasta D3″ adicionales."],
+"Primigenio":["Primal","Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."],
+"Regeneración":["Regeneration","Cada herida que recibe se ignora con 5+."],
+"Resistencia a hechizos":["Spell Resistance","Las heridas de hechizos se ignoran con 2+; las demás, con 6+."],
+"Robusto":["Sturdy","+1 a las tiradas de Defensa cuando la disparan o cargan desde lejos (más de 9″ o 6″)."],
+"Rápido":["Fast","Se mueve +2″ al Avanzar y +4″ al Correr o Cargar."],
+"Salvaje":["Savage","Al disparar o cargar desde lejos (más de 9″ o 6″), cada 6 natural al impactar causa 1 impacto extra."],
+"Saqueador":["Raider","Al atacar, el objetivo repite los 6 naturales de Defensa."],
+"Tecnología Vinci":["Vinci Tech","Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar, al disparar o cargar desde lejos."],
+"Tenaz":["Tenacious","+1 a las tiradas de Defensa cuando la disparan o cargan desde lejos (más de 9″ o 6″)."],
+"Travieso":["Mischievous","Al atacar, el objetivo repite los 6 naturales de Defensa."],
+"Velo salvaje":["Wild Veil","Los enemigos que le disparan tienen -4″ de alcance y los que le cargan -2″ (mínimo 6″)."],
+"Volador":["Flying","Puede atravesar unidades y terreno, e ignora el terreno difícil y el peligroso."]
+};
+const rk=n=>n.replace(/\(.*\)/,"").trim();
+const rv=n=>{const m=n.match(/\((\d+)\)/);return m?m[1]:""};
+function rtext(label){const g=RG[rk(label)];return g?{n:label,en:g[0],t:g[1].replace(/\{x\}/g,rv(label)||"X")}:{n:label,en:"",t:"Todavía sin descripción."}}
+const popOn=()=>ST.mode==="pop";
+const exRow=x=>{const g=rtext(x);return `<div><dt>${esc(x)}${g.en?`<em>${esc(g.en)}</em>`:""}</dt><dd>${esc(g.t)}</dd></div>`};
+
+/* arma: "Gran pulso mágico (A8, Imparable)" → nombre, RNG, ATK, AP, SPE */
+function splitTop(s){const o=[];let d=0,c="";for(const ch of s){if(ch==="(")d++;if(ch===")")d--;if(ch===","&&d===0){o.push(c.trim());c=""}else c+=ch}o.push(c.trim());return o.filter(Boolean)}
+function parseW(str){
+  return splitTop(str).map(p=>{
+    const m=p.match(/^(?:(\d+)x\s+)?(.*?)\s*\((.*)\)$/);
+    if(!m)return{n:p,cnt:1,rng:"—",atk:"—",ap:"—",spe:[]};
+    let rng="—",atk="—",ap="—";const spe=[];
+    splitTop(m[3]).forEach(s=>{
+      if(/^\d+"$/.test(s))rng=s;
+      else if(/^A\d+$/.test(s))atk=s.slice(1);
+      else if(/^PA\(\d+\)$/.test(s))ap=s.match(/\d+/)[0];
+      else spe.push(s);
+    });
+    return{n:m[2],cnt:+(m[1]||1),rng,atk,ap,spe};
+  });
+}
+const tipChip=l=>popOn()?`<span class="chip tt" tabindex="0" role="button" data-wr="${esc(l)}">${esc(l)}</span>`:`<span class="chip">${esc(l)}</span>`;
+function weaponBlock(t,compact){
+  if(compact)return `<div class="chips"><span class="chip">${esc(t.w)}</span></div>`;
+  const ws=parseW(t.w);
+  const rows=ws.map(w=>`<tr><th scope="row">${w.cnt>1?w.cnt+"× ":""}${esc(w.n)}</th><td>${w.rng}</td><td>${w.atk}</td><td>${w.ap==="—"?"—":(popOn()?`<span class="tt n" tabindex="0" role="button" data-wr="AP(${w.ap})">${w.ap}</span>`:w.ap)}</td><td class="spe">${w.spe.length?w.spe.map(tipChip).join(""):"—"}</td></tr>`).join("");
+  const tbl=`<div class="wtw"><table class="wt"><thead><tr><th></th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  if(popOn())return tbl;
+  const lab=[];ws.forEach(w=>{if(w.ap!=="—"&&!lab.includes("AP("+w.ap+")"))lab.push("AP("+w.ap+")");w.spe.forEach(s=>{if(!lab.includes(s))lab.push(s)})});
+  return tbl+(lab.length?`<dl class="ex">${lab.map(exRow).join("")}</dl>`:"");
+}
+const ruleItems=(t,c)=>{const a=["Resistente("+t.tough+")"].concat(t.rules);if(c&&mods(c).lanz)a.push("Lanzador(1)");return a};
+function rulesBlock(t,c,compact){
+  const items=ruleItems(t,c);
+  if(compact)return `<div class="chips">${items.map(x=>`<span class="chip ${/^Lanzador/.test(x)?"sp":""}">${esc(x)}</span>`).join("")}</div>`;
+  if(popOn())return `<div class="chips">${items.map(x=>`<button type="button" class="chip rl ${/^Lanzador/.test(x)?"sp":""}" data-rl="${esc(x)}" aria-expanded="false">${esc(x)}</button>`).join("")}</div>`;
+  return `<dl class="ex">${items.map(exRow).join("")}</dl>`;
+}
+const typeSeg=(r)=>r.types.length>1?`<div class="wseg" role="group" aria-label="Perfil de la raza">${r.types.map((t,i)=>`<button type="button" data-act="type" data-i="${i}" aria-pressed="${i===ST.type}">${esc(t.n)}</button>`).join("")}</div>`:`<span class="chip go">${esc(r.types[0].n)}</span>`;
+function skillsPick(c,pv){
+  const n=mods(c).hab,on=pv?[]:ST.picks;
+  return `<div><div class="sec-h"><span class="lab">Habilidades iniciales</span><small class="${!pv&&on.length===n?"okc":""}">${pv?`Elegirás ${n} de 3`:`Elegidas ${on.length} de ${n}`}</small></div><div class="sks">${c.skills.map((s,i)=>{
+    const a=s.a.split(" ")[0],sel=on.includes(i);
+    const inner=`<div class="hd"><span><b>${esc(s.n)}</b><em>${esc(s.en)}</em></span><span class="at ${ATC[a]||"f"}">${esc(a)}</span></div><p>${esc(s.t)}</p>`;
+    return pv?`<div class="sk">${inner}</div>`:`<button type="button" class="sk pick" data-act="pick" data-i="${i}" aria-pressed="${sel}"><span class="ck">${sel?CHECK:""}</span>${inner}</button>`;
+  }).join("")}</div></div>`;
+}
+
+/* ---------- estado ---------- */
+const ST={vp:"d",open:false,step:1,race:null,type:0,cls:null,name:"",q:"",openF:new Set([0]),hov:null,anim:true,created:[],mode:"pop",picks:[],photo:null,perr:""};
+const R=()=>ST.race!=null?RACES[ST.race]:null;
+const T=()=>{const r=R();return r?r.types[Math.min(ST.type,r.types.length-1)]:null};
+const C=()=>ST.cls!=null?D.classes[ST.cls]:null;
+const needPicks=()=>{const c=C();return c?mods(c).hab:0};
+
+/* ---------- ventana: cabecera y pie ---------- */
+function head(){
+  const t1=ST.step===1?"Elige tu linaje":"Elige tu senda";
+  const msw=`<div class="msw" role="group" aria-label="Cómo se explican las reglas (solo en la maqueta)"><span>Reglas</span><button type="button" data-act="mode" data-v="pop" aria-pressed="${ST.mode==="pop"}">Ventanita</button><button type="button" data-act="mode" data-v="list" aria-pressed="${ST.mode==="list"}">Debajo</button></div>`;
+  return `<div class="wh"><div class="wtt"><small>Nuevo héroe</small><b>${t1}</b></div>
+  <div class="steps"><button class="sp ${ST.step>1?"done":""}" type="button" data-act="step" data-s="1" ${ST.step===1?'aria-current="step"':""}><i>${ST.step>1?"✓":"1"}</i>Raza</button><span class="sl"></span><button class="sp" type="button" data-act="step" data-s="2" ${ST.step===2?'aria-current="step"':""} ${ST.race==null?"disabled":""}><i>2</i>Clase</button></div>
+  <div class="hr">${msw}<button class="xb" type="button" data-act="close" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>`;
+}
+function foot(){
+  const r=R(),c=C(),t=T();
+  const parts=[];
+  if(r)parts.push(`<span class="fs">${crest(r,22)}<b>${esc(r.n)}</b><small>${esc(t.n)}</small></span>`);
+  if(c&&ST.step===2)parts.push(`<span class="fs">${cGl(c,22)}<b>${esc(c.n)}</b></span>`);
+  const need=needPicks(),ok=!!c&&ST.picks.length===need;
+  if(c&&ST.step===2)parts.push(`<span class="chip ${ok?"go":""}">Habilidades ${ST.picks.length}/${need}</span>`);
+  const sum=parts.length?parts.join('<i class="sep">›</i>'):'<span class="fs mu"><b>Aún no has elegido nada</b></span>';
+  const b=ST.step===1?`<button class="btn pri" type="button" data-act="next" ${r?"":"disabled"}>Siguiente →</button>`:`<button class="btn" type="button" data-act="back">← Atrás</button><button class="btn pri" type="button" data-act="create" ${ok?"":"disabled"} ${c&&!ok?`title="Elige ${need} habilidades"`:""}>Crear héroe</button>`;
+  return `<div class="wf"><div class="sum">${sum}</div><div class="btns">${b}</div></div>`;
+}
+
+/* ================= lista de razas ================= */
+function raceList(){
+  const q=ST.q.trim().toLowerCase();
+  let out="";
+  D.facs.forEach((f,fi)=>{
+    const rs=f.races.filter(r=>!q||(r.n+" "+r.en+" "+f.n).toLowerCase().includes(q));
+    if(!rs.length)return;
+    const open=q?true:ST.openF.has(fi);
+    out+=`<button class="fh" type="button" data-act="openf" data-f="${fi}" aria-expanded="${open}">${CHEV}${fGl(fi,20)}${esc(f.n)}<em>${rs.length}</em></button>`;
+    if(open)out+=rs.map(r=>{
+      const sel=ST.race===r.id,t=sel?T():null;
+      return `<div class="rr ${sel?"sel":""}"><button type="button" data-act="race" data-id="${r.id}" data-pv="r${r.id}">${crest(r,30)}<span><b>${esc(r.n)}</b><small>${hpTxt(r)} · ${profTxt(r)}</small></span></button>${sel?`<div class="rd"><div class="prof">${typeSeg(r)}</div><div class="prof"><div class="pv"><small>Calidad</small><b>${t.cal}+</b></div><div class="pv"><small>Defensa</small><b>${t.def}+</b></div><div class="pv"><small>Heridas</small><b>${t.tough}</b></div></div><div><div class="lab" style="margin-bottom:4px">Arma base</div>${weaponBlock(t)}</div><div><div class="lab" style="margin-bottom:8px">Reglas especiales</div>${rulesBlock(t,null)}</div></div>`:""}</div>`;
+    }).join("");
+  });
+  return out||`<p class="emp">Ninguna raza coincide con «${esc(ST.q)}».</p>`;
+}
+
+/* ================= hoja en vivo ================= */
+function effective(){
+  const h=ST.hov;
+  let r=R(),t=T(),c=C(),pv=false;
+  if(h&&h.k==="r"&&h.i!==ST.race){r=RACES[h.i];t=r.types[0];pv=true}
+  if(h&&h.k==="c"&&h.i!==ST.cls){c=D.classes[h.i];pv=true}
+  return{r,t,c,pv};
+}
+const PHOTO_HINT="Foto cuadrada, de 400 × 400 px o más (mínimo 200 × 200). JPG, PNG o WebP, hasta 5 MB. Se recorta al centro y se guarda a 400 × 400.";
+function sheetParts(){
+  const {r,t,c,pv}=effective(),full=ST.step===2;
+  const por=`<button type="button" class="por ${ST.photo?"has":""}" data-act="photo" aria-label="${ST.photo?"Cambiar la foto del héroe":"Subir una foto del héroe"}"><span class="pi">${ST.photo?`<img src="${ST.photo}" alt="Foto del héroe">`:fig(r?hueF(r.fi):225)}</span><span class="cam">${ST.photo?"Cambiar":"Subir foto"}</span>${r?`<span class="cr2">${crest(r,30)}</span>`:""}</button>`;
+  const sub=r?`${esc(r.n)} · ${esc(t.n)}${c?` · ${esc(c.n)}`:""}${pv?'<span class="pvw">Vista previa</span>':""}`:"Elige una raza para empezar";
+  const hint=`<span>${ST.perr?`<b class="er">${esc(ST.perr)}</b>`:PHOTO_HINT}</span>${ST.photo?`<button type="button" class="lk" data-act="unphoto">Quitar foto</button>`:""}`;
+  let body="";
+  if(!r)body=`<p class="emp">La ficha se irá rellenando con lo que elijas.<br>Pasa el ratón por la lista para ver cada opción.</p>`;
+  else body=`<div><div class="sec-h"><span class="lab">Características</span><small>${c?"Con los bonos de "+esc(c.n):"Solo la raza"}</small></div>${statGrid(t,c)}</div>
+    <div><div class="sec-h"><span class="lab">Arma base</span></div>${weaponBlock(t,!full)}</div>
+    <div><div class="sec-h"><span class="lab">Reglas especiales</span></div>${rulesBlock(t,c,!full)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
+    ${c&&full?skillsPick(c,pv):`<div><div class="sec-h"><span class="lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
+    <div><div class="sec-h"><span class="lab">Equipo</span></div><div class="chips"><span class="chip go">Oro inicial: 0</span></div></div>`;
+  return{por,sub,body,hint};
+}
+function C1(){return `<div class="sr"><input id="srch" type="search" placeholder="Buscar raza o facción…" value="${esc(ST.q)}" aria-label="Buscar raza" autocomplete="off"></div><div class="lst" data-keep="lst" id="rlist">${raceList()}</div>`}
+function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>`<button class="ct" type="button" data-act="cls" data-i="${i}" data-pv="c${i}" aria-pressed="${ST.cls===i}"><span class="gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`).join("")}</div>`}
+function bodyC(){
+  const p=sheetParts();
+  return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre del héroe" maxlength="24" aria-label="Nombre del héroe"><div class="sub" id="shsub">${p.sub}</div></div><div class="seal"><div><small>NIVEL</small><b>1</b></div></div></div><div class="phint" id="shhint">${p.hint}</div><input type="file" id="pfile" accept="image/jpeg,image/png,image/webp" hidden><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
+}
+function paintSheet(){
+  const p=sheetParts();
+  const a=$("#shpor"),b=$("#shsub"),c=$("#shbody"),h=$("#shhint");
+  if(a)a.innerHTML=p.por;if(b)b.innerHTML=p.sub;if(c)c.innerHTML=p.body;if(h)h.innerHTML=p.hint;
+  if(POP&&!POP.el.isConnected)hidePop();
+}
+
+/* ---------- ventanita de explicación ---------- */
+let POP=null;
+function showPop(el,label,pinned){
+  const w=$("#win");if(!w)return;
+  let p=$("#pop");
+  if(!p){p=document.createElement("div");p.id="pop";p.setAttribute("role","tooltip");w.appendChild(p)}
+  const g=rtext(label);
+  p.innerHTML=`<b>${esc(g.n)}</b>${g.en?`<em>${esc(g.en)}</em>`:""}<p>${esc(g.t)}</p>`;
+  p.hidden=false;
+  const wr=w.getBoundingClientRect(),er=el.getBoundingClientRect(),pw=Math.min(300,wr.width-24);
+  p.style.width=pw+"px";
+  p.style.left=Math.max(12,Math.min(er.left-wr.left,wr.width-pw-12))+"px";
+  let top=er.bottom-wr.top+8;
+  p.style.top=top+"px";
+  const h=p.offsetHeight;if(top+h>wr.height-8)p.style.top=Math.max(8,er.top-wr.top-h-8)+"px";
+  $$(".rl[aria-expanded=true]").forEach(x=>x.setAttribute("aria-expanded","false"));
+  if(pinned&&el.classList.contains("rl"))el.setAttribute("aria-expanded","true");
+  POP={el,label,pinned:!!pinned};
+}
+function hidePop(){
+  const p=$("#pop");if(p)p.hidden=true;
+  $$(".rl[aria-expanded=true]").forEach(x=>x.setAttribute("aria-expanded","false"));
+  POP=null;
+}
+function togglePop(el){
+  if(POP&&POP.el===el&&POP.pinned){hidePop();return}
+  showPop(el,el.dataset.rl||el.dataset.wr,true);
+}
+
+/* ---------- foto ---------- */
+async function takePhoto(f){
+  ST.perr="";
+  if(!f)return;
+  if(!/^image\/(jpeg|png|webp)$/.test(f.type)){ST.perr="Formato no válido. Usa JPG, PNG o WebP.";paintSheet();return}
+  if(f.size>5*1024*1024){ST.perr="La foto pesa más de 5 MB.";paintSheet();return}
+  const url=URL.createObjectURL(f);
+  try{
+    const img=new Image();img.src=url;await img.decode();
+    const w=img.naturalWidth,h=img.naturalHeight;
+    if(Math.min(w,h)<200){ST.perr="Es muy pequeña ("+w+" × "+h+"). Mínimo 200 × 200 px.";paintSheet();return}
+    const s=Math.min(w,h),cv=document.createElement("canvas");cv.width=cv.height=400;
+    cv.getContext("2d").drawImage(img,(w-s)/2,(h-s)/2,s,s,0,0,400,400);
+    ST.photo=cv.toDataURL("image/jpeg",.85);
+  }catch(_){ST.perr="No se pudo leer la imagen."}
+  URL.revokeObjectURL(url);
+  paintSheet();
+}
+
+/* ================= ventana ================= */
+function render(){
+  const w=$("#win");if(!w)return;
+  const keep={};$$("[data-keep]",w).forEach(e=>keep[e.dataset.keep]=[e.scrollLeft,e.scrollTop]);
+  const wb0=$("#wb");const wbs=wb0?wb0.scrollTop:0;
+  POP=null;
+  w.innerHTML=head()+`<div class="wb c${ST.anim?" anim":""}" id="wb">${bodyC()}</div>`+foot();
+  $$("[data-keep]",w).forEach(e=>{const k=keep[e.dataset.keep];if(k){e.scrollLeft=k[0];e.scrollTop=k[1]}});
+  if(wb0)$("#wb").scrollTop=wbs;
+  ST.anim=false;
+}
+function openWin(){
+  ST.open=true;ST.anim=true;
+  if(!$("#win")){
+    $("#layer").innerHTML=`<div class="veil" id="veil"></div><div class="win" id="win" role="dialog" aria-modal="true" aria-label="Crear héroe"></div>`;
+  }
+  render();
+  const x=$(".xb");if(x)x.focus({preventScroll:true});
+}
+function closeWin(){ST.open=false;POP=null;$("#layer").innerHTML="";$("#hint").style.display=""}
+function toast(t){const o=document.createElement("div");o.className="toast";o.textContent=t;$("#stage").appendChild(o);setTimeout(()=>o.remove(),2600)}
+/* al elegir clase, la vista baja hasta la ficha con toda la información */
+function goSheet(){
+  const wb=$("#wb"),sh=$(".sheet"),cw=$(".cw");if(!wb||!sh||!cw)return;
+  const stacked=getComputedStyle(cw).gridTemplateColumns.trim().split(/\s+/).length===1;
+  if(stacked)wb.scrollBy({top:sh.getBoundingClientRect().top-wb.getBoundingClientRect().top-8,behavior:"smooth"});
+  else{const cr=$(".cr");if(cr)cr.scrollTo({top:0,behavior:"smooth"})}
+}
+
+/* ---------- medallones de la mesa ---------- */
+function coin(h,inner){return `<svg viewBox="0 0 64 64" width="62" height="62" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="hsl(${h} 34% 18%)" stroke="#d9b86c" stroke-width="2.4"/><circle cx="32" cy="32" r="25" fill="none" stroke="#d9b86c" stroke-opacity=".35"/>${inner}</svg>`}
+function paintMeds(){
+  const list=[{h:36,inner:'<text x="32" y="41" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="26" fill="#f0d79a">W</text>'}].concat(ST.created.map((x,i)=>({h:hueF(x.r.fi),inner:x.ph?`<clipPath id="pc${i}"><circle cx="32" cy="32" r="25"/></clipPath><image href="${x.ph}" x="7" y="7" width="50" height="50" preserveAspectRatio="xMidYMid slice" clip-path="url(#pc${i})"/>`:`<g transform="translate(17 17) scale(.625)" fill="none" stroke="#f0d79a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${CG[x.c.n]}</g>`})));
+  const n=list.length,gap=12;
+  $("#meds").innerHTML=`<button class="addb" type="button" id="add" aria-label="Añadir un héroe" title="Añadir héroe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="stackc" style="height:${62+(n-1)*gap}px">${list.map((x,i)=>`<span class="coin" style="top:${(n-1-i)*gap}px;z-index:${i+1}">${coin(x.h,x.inner)}</span>`).join("")}<span class="cnt">${n}</span></div>`;
+}
+
+/* ---------- acciones ---------- */
+const ACT={
+  close:closeWin,
+  mode(b){ST.mode=b.dataset.v;render()},
+  step(b){const s=+b.dataset.s;if(s===1||ST.race!=null){ST.anim=true;ST.step=s;ST.hov=null;render()}},
+  next(){if(ST.race!=null){ST.anim=true;ST.step=2;ST.hov=null;render()}},
+  back(){ST.anim=true;ST.step=1;ST.hov=null;render()},
+  race(b){const id=+b.dataset.id;if(ST.race!==id){ST.race=id;ST.type=0}ST.hov=null;ST.openF.add(RACES[id].fi);render()},
+  type(b){ST.type=+b.dataset.i;render()},
+  cls(b){const i=+b.dataset.i;if(ST.cls!==i){ST.cls=i;ST.picks=[]}ST.hov=null;render();requestAnimationFrame(goSheet)},
+  pick(b){
+    const i=+b.dataset.i,n=needPicks(),k=ST.picks.indexOf(i);
+    if(k>=0)ST.picks.splice(k,1);else{ST.picks.push(i);if(ST.picks.length>n)ST.picks.shift()}
+    render();
+  },
+  openf(b){const f=+b.dataset.f;ST.openF.has(f)?ST.openF.delete(f):ST.openF.add(f);render()},
+  photo(){const f=$("#pfile");if(f)f.click()},
+  unphoto(){ST.photo=null;ST.perr="";paintSheet()},
+  create(){
+    const r=R(),c=C();if(!r||!c||ST.picks.length!==needPicks())return;
+    const nm=(ST.name||"").trim()||rnd(NAMES);
+    ST.created.push({r,c,t:T(),n:nm,ph:ST.photo,picks:ST.picks.slice()});
+    ST.race=null;ST.cls=null;ST.type=0;ST.step=1;ST.name="";ST.hov=null;ST.picks=[];ST.photo=null;ST.perr="";
+    closeWin();paintMeds();toast(nm+" se une a la mesa (maqueta)");
+  }
+};
+document.addEventListener("click",e=>{
+  const t=e.target;
+  const w=$("#win");
+  const tg=t.closest&&t.closest(".rl,.tt");
+  if(tg&&w&&w.contains(tg)){togglePop(tg);return}
+  if(POP&&!(t.closest&&t.closest("#pop")))hidePop();
+  if(t.closest("#add")){$("#hint").style.display="none";openWin();return}
+  if(t.id==="veil"){closeWin();return}
+  const b=t.closest("#win [data-act]");
+  if(b&&ACT[b.dataset.act]){ACT[b.dataset.act](b);return}
+  const v=t.closest("[data-vp]");
+  if(v){ST.vp=v.dataset.vp;$("#stage").dataset.vp=ST.vp;$$("[data-vp]").forEach(x=>x.setAttribute("aria-pressed",x===v));return}
+  if(t.closest("#reopen")){openWin()}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){if(POP){hidePop();return}if(ST.open){closeWin();return}}
+  if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("tt")){e.preventDefault();togglePop(e.target)}
+});
+document.addEventListener("input",e=>{
+  if(e.target.id==="srch"){ST.q=e.target.value;hidePop();const l=$("#rlist");if(l)l.innerHTML=raceList()}
+  if(e.target.id==="hname")ST.name=e.target.value;
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="pfile"){const f=e.target.files&&e.target.files[0];e.target.value="";takePhoto(f)}
+});
+document.addEventListener("mouseover",e=>{
+  const p=e.target.closest&&e.target.closest("[data-pv]");
+  if(p){const k=p.dataset.pv[0],i=+p.dataset.pv.slice(1);if(!ST.hov||ST.hov.k!==k||ST.hov.i!==i){ST.hov={k,i};paintSheet()}}
+  const tt=e.target.closest&&e.target.closest(".tt");
+  if(tt&&(!POP||!POP.pinned))showPop(tt,tt.dataset.wr,false);
+});
+document.addEventListener("mouseout",e=>{
+  const p=e.target.closest&&e.target.closest("[data-pv]");
+  if(p){const to=e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest("[data-pv]");if(!to){ST.hov=null;paintSheet()}}
+  const tt=e.target.closest&&e.target.closest(".tt");
+  if(tt&&POP&&!POP.pinned&&POP.el===tt)hidePop();
+});
+
+$("#dnote").textContent=RACES.length+" razas · "+D.classes.length+" clases · "+D.facs.length+" facciones";
+paintMeds();
+openWin();
+$("#hint").style.display="none";
+})();
+</script>
+
+</body></html>
