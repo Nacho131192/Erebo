@@ -215,7 +215,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
  .tv-sact{grid-area:act;border-left:0;border-right:1px solid var(--line)}
  .tv-slog{grid-area:log}
 }
-@media (min-width:901px) and (max-width:1179px){
+@media (min-width:901px){
  .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto minmax(0,1fr);grid-template-areas:"board act" "board log"}
  .tv-sact{max-height:60vh;border-right:0;border-left:1px solid var(--line)}
  .tv-slog{border-top:1px solid var(--line)}
@@ -243,7 +243,48 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 
 /* ---- cartel de acciones pendientes bajo cada tarjeta de héroe ---- */
 .tv-hcw{display:flex;flex-direction:column}
-.tv-pend{margin:-3px 10px 0;padding:7px 10px 5px;border-radius:0 0 11px 11px;border:1px solid rgba(243,207,122,.45);border-top:0;background:rgba(243,207,122,.1);color:#f3dc9a;font-size:11.5px;font-weight:600;letter-spacing:.02em;line-height:1.3}
+.tv-pend{display:block;margin:3px 4px 0;font-size:10.5px;color:var(--mu2);letter-spacing:.02em;line-height:1.3}
+.tv-hbtn{margin:6px 0 0;width:100%}
+.tv-xbtn{margin:4px 0 0;width:100%;padding:6px 10px;font-size:12px;color:var(--gold2)}
+.tv-wt td{color:var(--ink)}.tv-wt th{color:var(--mu2)}
+/* ---- reglas de un enemigo desplegables ---- */
+.tv-rl{margin:5px 0;padding:6px 10px;border-radius:10px;background:var(--card)}
+.tv-rl summary{cursor:pointer;color:var(--gold2);font-weight:600;font-size:13px}
+.tv-rl p{margin:6px 0 2px;color:var(--mu);font-size:12.5px}
+/* ---- ataque conjunto: los dados de cada unidad, separados ---- */
+.tv-dgroup{margin:0 0 10px;padding:8px 10px;border-radius:14px;border:1px solid var(--line2);background:rgba(255,255,255,.02)}
+.tv-dgroup>small{display:block;margin-bottom:6px;font:600 11px Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.tv-dgroup .tv-dgrid{margin:0}
+/* ---- elegir arma para Atacar o Cargar ---- */
+.tv-wpns{display:grid;gap:6px;margin-top:6px}
+.tv-wpn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:8px 12px;border-radius:10px;border:1px solid var(--line2);background:var(--card);text-align:left}
+.tv-wpn b{display:block;font-weight:600;color:var(--ink)}.tv-wpn small{color:var(--mu);font-size:12px}
+.tv-wpn.on{border-color:var(--gold);background:linear-gradient(90deg,rgba(217,184,108,.14),var(--card))}
+/* ---- tirada de Neth en el centro de la pantalla ---- */
+.tv-evfx{position:absolute;inset:0;z-index:35;display:grid;place-items:center;padding:16px;background:rgba(3,4,9,.6);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);cursor:pointer}
+.tv-evfxc{width:min(480px,100%);padding:24px 22px;border-radius:22px;border:1px solid var(--gold);background:radial-gradient(420px 200px at 50% 0,rgba(167,139,250,.16),transparent 70%),#0d1426;box-shadow:0 30px 70px rgba(0,0,0,.75);text-align:center;animation:tv-tray .35s cubic-bezier(.22,1,.36,1);cursor:default}
+.tv-evfxc.bad{border-color:rgba(255,138,154,.7)}.tv-evfxc.ok{border-color:rgba(134,209,174,.7)}.tv-evfxc.all{border-color:rgba(167,139,250,.7)}
+.tv-evfxc .tv-dd{display:flex;justify-content:center;gap:14px;margin:12px 0}
+.tv-evfxc .tv-die{width:72px;height:72px;font-size:26px}
+.tv-evfxc h3{margin:6px 0 8px;font:700 22px/1.2 Cinzel,Georgia,serif;color:var(--gold2)}
+.tv-evfxc p{margin:0;color:var(--mu);font-size:13.5px}
+.tv-evfxc .tv-eff{margin-top:12px;padding:10px 12px;border-radius:12px;background:#0a0f1f;color:var(--ink);font-weight:500}
+.tv-evfxc small{display:block;margin-top:12px;color:var(--mu2);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+/* ---- ficha completa del héroe ---- */
+.tv-hveil{position:absolute;inset:0;z-index:45;display:grid;place-items:center;padding:16px}
+.tv-hscrim{position:absolute;inset:0;background:rgba(3,4,9,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer}
+.tv-hmod{position:relative;width:min(640px,100%);max-height:88vh;overflow-y:auto;padding:20px 22px;border-radius:20px;border:1px solid rgba(217,184,108,.7);background:#0d1426;box-shadow:0 30px 70px rgba(0,0,0,.75);animation:tv-tray .35s cubic-bezier(.22,1,.36,1)}
+.tv-hmh{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center}
+.tv-hmh .tv-ix{position:static}
+.tv-hpic{width:64px;height:64px;border-radius:14px;overflow:hidden;display:grid;place-items:center;background:#2a2347;border:1px solid var(--line2)}
+.tv-hpic img{width:100%;height:100%;object-fit:cover}.tv-hpic i{font:700 18px "Space Grotesk",sans-serif;font-style:normal;color:var(--gold2)}
+.tv-hmod .tv-qd{margin:8px 0 0}
+.tv-hmod .tv-lab{margin-top:14px}
+.tv-hl{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.tv-hl li{padding:7px 10px;border-radius:10px;background:var(--card);font-size:13px}
+.tv-hl li b{color:var(--gold2);font-weight:600}
+.tv-hl li span{display:block;margin-top:2px;color:var(--mu);font-size:12.5px}
+.tv-hl li.tv-none{color:var(--mu2)}
 
 /* ---- el héroe que aún no se ha activado parpadea con suavidad en el tablero ---- */
 .tv-hero.nudge{animation:tv-nudgeop 2.8s ease-in-out infinite}

@@ -2626,7 +2626,7 @@ buildHome();buildSheet();render();
  const curve=t=>t<.35?t/.35*.38:t<.7?.38+(t-.35)/.35*.34:t<.9?.72+(t-.7)/.2*.2:.92+(t-.9)/.1*.08;
  const tick=now=>{const t=Math.min(1,(now-T0)/TOTAL),v=Math.round(curve(t)*100);
   bar.style.width=v+"%";pct.textContent=v+" %";pb.setAttribute("aria-valuenow",v);
-  if(!REDUCE)setPh(Math.min(order.length-1,Math.floor(t*4.2)));
+  /* la frase de la carga se queda la misma durante toda la barra */
   if(t<1)requestAnimationFrame(tick);else if(!done){done=true;setTimeout(()=>{L.classList.add("out");setTimeout(()=>{L.hidden=true},700)},REDUCE?0:450)}};
  requestAnimationFrame(tick)})();
 </script>
