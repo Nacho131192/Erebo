@@ -194,7 +194,7 @@ Llega con la pelea de jefe, en una oleada de doble valor junto a Borrados y cult
 - **Silencio (3 fichas):** todos los héroes a 9" pasan una tirada de Wil o pierden D3 de poder.
 - **Punto débil:** los ataques del héroe que lleve el diario del olvidado contra el Heraldo ganan AP(1).
 - **Ajuste por dificultad:** Tough(7) en nivel 1, Tough(9) en nivel 2, Tough(10) en nivel 3 y Tough(12) en nivel 4.
-**Cómo actúa en la mesa:** como *Caster(3)* de la IA, gana 3 fichas de hechizo al empezar cada ronda, elige un hechizo al azar y gasta todas sus fichas al activarse para lanzarlo. Tira un dado y, con 4+, el hechizo surte efecto sobre un objetivo en línea de visión. Un héroe con *Caster* a 18" o menos y en línea de visión puede gastar fichas de hechizo para restarle -1 a esa tirada por ficha. Con *Tough(9)* o más no puede quedar Aturdido, y cada chequeo de moral fallido le causa D3 heridas.
+**Cómo actúa en la mesa:** como *Caster(3)* de la IA, gana 3 fichas de hechizo al empezar cada ronda, elige un hechizo al azar y gasta todas sus fichas al activarse para lanzarlo. Tira un dado y, con 4+, el hechizo surte efecto sobre un objetivo en línea de visión. Un héroe con *Caster* a 18" o menos y en línea de visión puede gastar fichas de hechizo para restarle -1 a esa tirada por ficha. Con *Tough(9)* o más no puede quedar Aturdido, y cada chequeo de moral fallido le causa D3 heridas (regla oficial de las Core Rules para cualquier enemigo con Tough 9+).
 
 ## Narración
 
@@ -244,6 +244,6 @@ Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostr
 
 ## Notas
 
-- Son reglas de la casa los eventos de Neth, las sorpresas por oleada, el tesoro maldito, el diario del olvidado y las estadísticas del Heraldo. Todo lo demás sigue el Campaign Builder v2.1.0 de OPR.
-- La tabla de eventos de Neth adapta la del modo horda al tema de la misión.
+- Son reglas de la casa: el contenido de la tabla de eventos de Neth, qué unidad lleva *Ambush* y la sorpresa del *Caster* en las oleadas, el tesoro maldito y los efectos de los objetos de los cofres, el diario del olvidado y las estadísticas del Heraldo. Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
+- Son oficiales (aunque antes se marcaban como de la casa): tirar un evento 2d6 al empezar la ronda 1 y cada vez que entran refuerzos (eventos aleatorios del Campaign Builder; la tabla de Neth adapta la oficial al tema de la misión); que una unidad de la IA con *Ambush* entre D3 rondas después de su oleada a 6" de un Objetivo de IA, y que un enemigo con *Tough(9)* o más no quede Aturdido y sufra D3 heridas al fallar la moral (Core Rules); y la tabla de contenido de las fichas de búsqueda (Peligro, elixires, bombas, pociones y oro; el tesoro maldito sustituye al oro).
 - Hermano Ocaso, el villano de la campaña, es un nombre inventado y aparece en la misión final.

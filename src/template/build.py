@@ -7,7 +7,7 @@ s=rd("final-tpl.html")
 old=rd("old-scene-source.html")
 sc=re.search(r"<svg class='scene'.*?</svg>",old,re.S).group(0)
 po=re.search(r"<svg class='por'.*?</svg>",old,re.S).group(0)
-out=s.replace("%%HC_CSS%%",rd("creador.css")).replace("%%HC_JS%%",rd("creador.js")).replace("%%HCDATA%%",rd("heroes-data.json").strip()).replace("%%DATA%%",rd("data.js")).replace("%%SCENE%%",sc).replace("%%PORTRAIT%%",po)
+out=s.replace("%%HC_CSS%%",rd("creador.css")).replace("%%HC_JS%%",rd("creador.js")).replace("%%TV_CSS%%",rd("tablero.css")).replace("%%TV_JS%%",rd("tablero.js")).replace("%%HCDATA%%",rd("heroes-data.json").strip()).replace("%%DATA%%",rd("data.js")).replace("%%SCENE%%",sc).replace("%%PORTRAIT%%",po)
 # Láminas (assets/web/, ya optimizadas): se incrustan como data URI porque el artefacto no puede cargar archivos sueltos.
 import base64
 def img(n): return "data:image/jpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","web",n),"rb").read()).decode()

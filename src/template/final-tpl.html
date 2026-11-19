@@ -1161,6 +1161,8 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 @media (prefers-reduced-motion:reduce){.psky i{animation:none;opacity:0}.bdrw,.bscrim,.btab{transition:none}.dice2 .bone{animation:none!important}}
 /* ---------- creador de héroes ---------- */
 %%HC_CSS%%
+/* ---------- tablero virtual (prototipo) ---------- */
+%%TV_CSS%%
 </style>
 
 <div class="view camp" id="camp"></div>
@@ -1191,6 +1193,9 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 </div>
 
 <div id="hc" hidden></div>
+<!-- Tablero virtual (prototipo): botón flotante abajo a la izquierda, en todas las pantallas. -->
+<button class="tvfab" id="tvFab" type="button" aria-controls="tv" aria-expanded="false" aria-label="Abrir el tablero virtual"></button>
+<div id="tv" hidden></div>
 
 <script>
 %%DATA%%
@@ -1855,7 +1860,7 @@ function herFicha(){
  <p><b>Reglas especiales:</b> <i>Villain</i>, <i>Fear</i>(3), <i>Stealth</i>, <i>Tough</i>(${TG[S.d-1]}), <i>Caster</i>(3). Con <i>Villain</i>, las unidades de IA a 12" usan su Calidad en moral si es mejor, mientras no esté Aturdido.</p>
  <p><b>Hoz del vacío</b> (cuerpo a cuerpo): 4 ataques, AP(2), <i>Rending</i>.</p>
  <ul><li><b>Olvido · 1</b>Un héroe a 12" pasa una tirada de Wil o pierde su siguiente acción de habilidad.</li><li><b>Borrado · 2</b>Un héroe a 12" recibe 3 impactos con AP(1).</li><li><b>Silencio · 3</b>Todos los héroes a 9" pasan una tirada de Wil o pierden D3 de poder.</li></ul>
- <p><b>Cómo actúa:</b> gana 3 fichas de hechizo al empezar cada ronda, elige un hechizo al azar y gasta todas sus fichas al activarse. Con 4+ surte efecto sobre un objetivo en línea de visión. Un héroe con <i>Caster</i> a 18" puede gastar fichas para restarle -1 por ficha. Con <i>Tough</i>(9) o más no queda Aturdido, y cada moral fallido le causa D3 heridas.</p>
+ <p><b>Cómo actúa:</b> gana 3 fichas de hechizo al empezar cada ronda, elige un hechizo al azar y gasta todas sus fichas al activarse. Con 4+ surte efecto sobre un objetivo en línea de visión. Un héroe con <i>Caster</i> a 18" puede gastar fichas para restarle -1 por ficha. Con <i>Tough</i>(9) o más no queda Aturdido, y cada moral fallido le causa D3 heridas (regla oficial para cualquier enemigo con Tough 9+).</p>
  <p><b>Punto débil:</b> los ataques del héroe que lleve el diario del olvidado contra el Heraldo ganan AP(1).</p></div>`;
 }
 function waveCard(){
@@ -2199,6 +2204,7 @@ document.addEventListener("keydown",e=>{if(e.key!=="Escape"||HC.isOpen())return;
 
 const HCDATA=%%HCDATA%%;
 %%HC_JS%%
+%%TV_JS%%
 
 /* ---------- hoja de pergamino ---------- */
 const ORN='<svg class="orn" viewBox="0 0 320 22" aria-hidden="true"><path d="M4 11h124M192 11h124" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M160 2l9 9-9 9-9-9z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="160" cy="11" r="2.4" fill="currentColor"/><path d="M134 11c8-8 14 8 22 0M164 11c8 8 14-8 22 0" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';
@@ -2280,13 +2286,13 @@ const QCARDS=[
  {k:"her",img:1,n:"Lo que se cuenta",t:"El Heraldo",p:"Nadie sabe cómo se llama.",sl:"H",
   h:()=>`<p class="qbridge">${QHER.bridge}</p><div class="qher"><div class="qpor"><img src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"></div><div><h3>Lo que se cuenta del Heraldo</h3>${QHER.p.map(p=>`<p>${p}</p>`).join("")}<p class="n">${QHER.n}</p></div></div><blockquote class="qq"><p>${QHER.q}</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`},
  {k:"ev",n:"Capítulo IV",t:"Eventos de Neth",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
-  h:()=>`<span class="qhr">Regla de la casa</span><p class="qlead">Neth no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de Neth. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
+  h:()=>`<span class="qhr">Regla oficial · tabla de la casa</span><p class="qlead">Neth no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de Neth. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
    <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se lee</p><p class="qtx">Se tiran 2d6 de uno en uno. El <b>primer dado</b> dice qué clase de cosa ocurre (las familias de abajo) y el <b>segundo</b>, cuál de las seis: del 11 al 66.</p></div><div class="qpn"><p class="qh4">Cuánto dura</p><p class="qtx">Los efectos que dicen «hasta el siguiente evento» duran hasta que se vuelva a tirar. Los estados se quitan como siempre. «Al azar» se sortea con un dado entre los héroes o los cuadrantes.</p></div></div>
    <p class="qh4" style="margin:30px 0 14px">Lo que puede pasar, según el primer dado</p>${qFams(QEV)}
    <blockquote class="qq"><p>Primero olvidas el camino de vuelta. Luego, a quién ibas a volver a ver.</p><cite>Dicho del Culto del Umbral</cite></blockquote>
    <p class="qnote">La mitad de las veces el pueblo os echa una mano. La mesa de juego tira el evento por vosotros y os dice a qué héroe o a qué cuadrante le toca.</p>`},
  {k:"ch",n:"Capítulo V",t:"Cofres",p:"Lo que guardan las casas vacías.",sl:"V",
-  h:()=>`<span class="qhr">Regla de la casa</span><p class="qlead">Las casas del pueblo siguen llenas de cosas que nadie echa de menos. Cada ficha de búsqueda es un cofre: puede guardar justo lo que os hacía falta… o algo que llevaba demasiado tiempo esperando a que alguien lo abriera.</p>
+  h:()=>`<span class="qhr">Regla oficial · contenido de la casa</span><p class="qlead">Las casas del pueblo siguen llenas de cosas que nadie echa de menos. Cada ficha de búsqueda es un cofre: puede guardar justo lo que os hacía falta… o algo que llevaba demasiado tiempo esperando a que alguien lo abriera.</p>
    <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se abre</p><p class="qtx">Un héroe gasta una acción de habilidad (<b>Descubrir</b>): a 6" o menos y con línea de visión, pasa una tirada de Wil; a 1" o menos, no necesita tirada.</p></div><div class="qpn"><p class="qh4">Qué se tira</p><p class="qtx">Un d6 dice <b>qué hay dentro</b> (abajo). Del 1 al 5 se tira otro d6 para saber <b>qué objeto o qué peligro</b> exactamente; con un 6 no hace falta.</p></div></div>
    <p class="qh4" style="margin:30px 0 14px">Lo que puede haber dentro</p>${qFams(QCH)}
    <blockquote class="qq"><p>En este pueblo nadie cierra con llave. Lo que hay dentro ya se encarga de que nadie lo abra.</p><cite>Advertencia del Filo</cite></blockquote>
