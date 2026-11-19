@@ -197,12 +197,12 @@ function parseW(str){
     return{n:m[2],cnt:+(m[1]||1),rng,atk,ap,spe};
   });
 }
-const tipChip=l=>`<button type="button" class="chip tt" data-wr="${esc(l)}" aria-expanded="false">${esc(l)}</button>`;
+const tipChip=l=>`<button type="button" class="chip hc-tt" data-wr="${esc(l)}" aria-expanded="false">${esc(l)}</button>`;
 function weaponBlock(t,compact){
-  if(compact)return `<div class="chips"><span class="chip">${esc(t.w)}</span></div>`;
+  if(compact)return `<div class="hc-chips"><span class="chip">${esc(t.w)}</span></div>`;
   const ws=parseW(t.w);
-  const rows=ws.map(w=>`<tr><th scope="row">${w.cnt>1?w.cnt+"× ":""}${esc(w.n)}</th><td>${w.rng}</td><td>${w.atk}</td><td>${w.ap==="—"?"—":`<button type="button" class="tt n" data-wr="AP(${w.ap})" aria-expanded="false">${w.ap}</button>`}</td><td class="spe">${w.spe.length?w.spe.map(tipChip).join(""):"—"}</td></tr>`).join("");
-  const tbl=`<div class="wtw"><table class="wt"><thead><tr><th></th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  const rows=ws.map(w=>`<tr><th scope="row">${w.cnt>1?w.cnt+"× ":""}${esc(w.n)}</th><td>${w.rng}</td><td>${w.atk}</td><td>${w.ap==="—"?"—":`<button type="button" class="hc-tt hc-n" data-wr="AP(${w.ap})" aria-expanded="false">${w.ap}</button>`}</td><td class="spe">${w.spe.length?w.spe.map(tipChip).join(""):"—"}</td></tr>`).join("");
+  const tbl=`<div class="wtw"><table class="hc-wt"><thead><tr><th></th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   if(popOn())return tbl;
   const lab=[];ws.forEach(w=>{if(w.ap!=="—"&&!lab.includes("AP("+w.ap+")"))lab.push("AP("+w.ap+")");w.spe.forEach(s=>{if(!lab.includes(s))lab.push(s)})});
   return tbl+(lab.length?`<dl class="ex">${lab.map(exRow).join("")}</dl>`:"");
@@ -210,17 +210,17 @@ function weaponBlock(t,compact){
 const ruleItems=(t,c)=>{const a=["Resistente("+t.tough+")"].concat(t.rules);if(c&&mods(c).lanz)a.push("Lanzador(1)");return a};
 function rulesBlock(t,c,compact){
   const items=ruleItems(t,c);
-  if(compact)return `<div class="chips">${items.map(x=>`<span class="chip ${/^Lanzador/.test(x)?"sp":""}">${esc(x)}</span>`).join("")}</div>`;
-  if(popOn())return `<div class="chips">${items.map(x=>`<button type="button" class="chip rl ${/^Lanzador/.test(x)?"sp":""}" data-rl="${esc(x)}" aria-expanded="false">${esc(x)}</button>`).join("")}</div>`;
+  if(compact)return `<div class="hc-chips">${items.map(x=>`<span class="chip ${/^Lanzador/.test(x)?"sp":""}">${esc(x)}</span>`).join("")}</div>`;
+  if(popOn())return `<div class="hc-chips">${items.map(x=>`<button type="button" class="chip rl ${/^Lanzador/.test(x)?"sp":""}" data-rl="${esc(x)}" aria-expanded="false">${esc(x)}</button>`).join("")}</div>`;
   return `<dl class="ex">${items.map(exRow).join("")}</dl>`;
 }
-const typeSeg=(r)=>r.types.length>1?`<div class="wseg" role="group" aria-label="Perfil de la raza">${r.types.map((t,i)=>`<button type="button" data-act="type" data-i="${i}" aria-pressed="${i===ST.type}">${esc(t.n)}</button>`).join("")}</div>`:`<span class="chip go">${esc(r.types[0].n)}</span>`;
+const typeSeg=(r)=>r.types.length>1?`<div class="wseg" role="group" aria-label="Perfil de la raza">${r.types.map((t,i)=>`<button type="button" data-act="type" data-i="${i}" aria-pressed="${i===ST.type}">${esc(t.n)}</button>`).join("")}</div>`:`<span class="chip hc-go">${esc(r.types[0].n)}</span>`;
 function skillsPick(c,pv){
   const n=mods(c).hab,on=pv?[]:ST.picks;
-  return `<div><div class="sec-h"><span class="lab">Habilidades iniciales</span><small class="${!pv&&on.length===n?"okc":""}">${pv?`Elegirás ${n} de 3`:`Elegidas ${on.length} de ${n}`}</small></div><div class="sks">${c.skills.map((s,i)=>{
+  return `<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span><small class="${!pv&&on.length===n?"okc":""}">${pv?`Elegirás ${n} de 3`:`Elegidas ${on.length} de ${n}`}</small></div><div class="sks">${c.skills.map((s,i)=>{
     const a=s.a.split(" ")[0],sel=on.includes(i);
     const inner=`<div class="hd"><span><b>${esc(s.n)}</b><em>${esc(s.en)}</em></span><span class="at ${ATC[a]||"f"}">${esc(a)}</span></div><p>${esc(s.t)}</p>`;
-    return pv?`<div class="sk">${inner}</div>`:`<button type="button" class="sk pick" data-act="pick" data-i="${i}" aria-pressed="${sel}"><span class="ck">${sel?CHECK:""}</span>${inner}</button>`;
+    return pv?`<div class="sk">${inner}</div>`:`<button type="button" class="sk hc-pick" data-act="pick" data-i="${i}" aria-pressed="${sel}"><span class="hc-ck">${sel?CHECK:""}</span>${inner}</button>`;
   }).join("")}</div></div>`;
 }
 
@@ -235,7 +235,7 @@ const needPicks=()=>{const c=C();return c?mods(c).hab:0};
 function head(){
   const t1=ST.step===1?"Elige tu linaje":"Elige tu senda";
   return `<div class="wh"><div class="wtt"><small>Nuevo héroe</small><b>${t1}</b></div>
-  <div class="steps"><button class="sp ${ST.step>1?"done":""}" type="button" data-act="step" data-s="1" ${ST.step===1?'aria-current="step"':""}><i>${ST.step>1?"✓":"1"}</i>Raza</button><span class="sl"></span><button class="sp" type="button" data-act="step" data-s="2" ${ST.step===2?'aria-current="step"':""} ${ST.race==null?"disabled":""}><i>2</i>Clase</button></div>
+  <div class="hc-steps"><button class="sp ${ST.step>1?"done":""}" type="button" data-act="step" data-s="1" ${ST.step===1?'aria-current="step"':""}><i>${ST.step>1?"✓":"1"}</i>Raza</button><span class="sl"></span><button class="sp" type="button" data-act="step" data-s="2" ${ST.step===2?'aria-current="step"':""} ${ST.race==null?"disabled":""}><i>2</i>Clase</button></div>
   <div class="hr"><button class="xb" type="button" data-act="close" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>`;
 }
 function foot(){
@@ -244,7 +244,7 @@ function foot(){
   if(r)parts.push(`<span class="fs">${crest(r,22)}<b>${esc(r.n)}</b><small>${esc(t.n)}</small></span>`);
   if(c&&ST.step===2)parts.push(`<span class="fs">${cGl(c,22)}<b>${esc(c.n)}</b></span>`);
   const need=needPicks(),ok=!!c&&ST.picks.length===need;
-  if(c&&ST.step===2)parts.push(`<span class="chip ${ok?"go":""}">Habilidades ${ST.picks.length}/${need}</span>`);
+  if(c&&ST.step===2)parts.push(`<span class="chip ${ok?"hc-go":""}">Habilidades ${ST.picks.length}/${need}</span>`);
   const sum=parts.length?parts.join('<i class="sep">›</i>'):'<span class="fs mu"><b>Aún no has elegido nada</b></span>';
   const b=ST.step===1?`<button class="btn pri" type="button" data-act="next" ${r?"":"disabled"}>Siguiente →</button>`:`<button class="btn" type="button" data-act="back">← Atrás</button><button class="btn pri" type="button" data-act="create" ${ok?"":"disabled"} ${c&&!ok?`title="Elige ${need} habilidades"`:""}>Crear héroe</button>`;
   return `<div class="wf"><div class="sum">${sum}</div><div class="btns">${b}</div></div>`;
@@ -261,7 +261,7 @@ function raceList(){
     out+=`<button class="fh" type="button" data-act="openf" data-f="${fi}" aria-expanded="${open}">${CHEV}${fGl(fi,20)}${esc(f.n)}<em>${rs.length}</em></button>`;
     if(open)out+=rs.map(r=>{
       const sel=ST.race===r.id,t=sel?T():null;
-      return `<div class="rr ${sel?"sel":""}"><button type="button" data-act="race" data-id="${r.id}">${crest(r,30)}<span><b>${esc(r.n)}</b><small>${hpTxt(r)} · ${profTxt(r)}</small></span></button>${sel?`<div class="rd"><div class="prof">${typeSeg(r)}</div><div class="prof"><div class="pv"><small>Calidad</small><b>${t.cal}+</b></div><div class="pv"><small>Defensa</small><b>${t.def}+</b></div><div class="pv"><small>Heridas</small><b>${t.tough}</b></div></div><div><div class="lab" style="margin-bottom:4px">Arma base</div>${weaponBlock(t)}</div><div><div class="lab" style="margin-bottom:8px">Reglas especiales</div>${rulesBlock(t,null)}</div></div>`:""}</div>`;
+      return `<div class="rr ${sel?"hc-sel":""}"><button type="button" data-act="race" data-id="${r.id}">${crest(r,30)}<span><b>${esc(r.n)}</b><small>${hpTxt(r)} · ${profTxt(r)}</small></span></button>${sel?`<div class="hc-rd"><div class="prof">${typeSeg(r)}</div><div class="prof"><div class="pv"><small>Calidad</small><b>${t.cal}+</b></div><div class="pv"><small>Defensa</small><b>${t.def}+</b></div><div class="pv"><small>Heridas</small><b>${t.tough}</b></div></div><div><div class="hc-lab" style="margin-bottom:4px">Arma base</div>${weaponBlock(t)}</div><div><div class="hc-lab" style="margin-bottom:8px">Reglas especiales</div>${rulesBlock(t,null)}</div></div>`:""}</div>`;
     }).join("");
   });
   return out||`<p class="emp">Ninguna raza coincide con «${esc(ST.q)}».</p>`;
@@ -278,23 +278,23 @@ function effective(){
 const PHOTO_HINT="Foto cuadrada, de 400 × 400 px o más (mínimo 200 × 200). JPG, PNG o WebP, hasta 5 MB. Se recorta al centro y se guarda a 400 × 400.";
 function sheetParts(){
   const {r,t,c,pv}=effective(),full=ST.step===2;
-  const por=`<button type="button" class="por ${ST.photo?"has":""}" data-act="photo" aria-label="${ST.photo?"Cambiar la foto del héroe":"Subir una foto del héroe"}"><span class="pi">${ST.photo?`<img src="${ST.photo}" alt="Foto del héroe">`:fig(r?hueF(r.fi):225)}</span><span class="cam">${ST.photo?"Cambiar":"Subir foto"}</span>${r?`<span class="cr2">${crest(r,30)}</span>`:""}</button>`;
+  const por=`<button type="button" class="hc-por ${ST.photo?"has":""}" data-act="photo" aria-label="${ST.photo?"Cambiar la foto del héroe":"Subir una foto del héroe"}"><span class="pi">${ST.photo?`<img src="${ST.photo}" alt="Foto del héroe">`:fig(r?hueF(r.fi):225)}</span><span class="cam">${ST.photo?"Cambiar":"Subir foto"}</span>${r?`<span class="cr2">${crest(r,30)}</span>`:""}</button>`;
   const sub=r?`${esc(r.n)} · ${esc(t.n)}${c?` · ${esc(c.n)}`:""}${pv?'<span class="pvw">Vista previa</span>':""}`:"Elige una raza para empezar";
-  const hint=`<span>${ST.perr?`<b class="er">${esc(ST.perr)}</b>`:PHOTO_HINT}</span>${ST.photo?`<button type="button" class="lk" data-act="unphoto">Quitar foto</button>`:""}`;
+  const hint=`<span>${ST.perr?`<b class="er">${esc(ST.perr)}</b>`:PHOTO_HINT}</span>${ST.photo?`<button type="button" class="hc-lk" data-act="unphoto">Quitar foto</button>`:""}`;
   let body="";
   if(!r)body=`<p class="emp">La ficha se irá rellenando con lo que elijas.<br>Pasa el ratón por la lista para ver cada opción.</p>`;
-  else body=`<div><div class="sec-h"><span class="lab">Características</span><small>${c?"Con los bonos de "+esc(c.n):"Solo la raza"}</small></div>${statGrid(t,c)}</div>
-    <div><div class="sec-h"><span class="lab">Arma base</span></div>${weaponBlock(t,!full)}</div>
-    <div><div class="sec-h"><span class="lab">Reglas especiales</span></div>${rulesBlock(t,c,!full)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
-    ${c&&full?skillsPick(c,pv):`<div><div class="sec-h"><span class="lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
-    <div><div class="sec-h"><span class="lab">Equipo</span></div><div class="chips"><span class="chip go">Oro inicial: 0</span></div></div>`;
+  else body=`<div><div class="sec-h"><span class="hc-lab">Características</span><small>${c?"Con los bonos de "+esc(c.n):"Solo la raza"}</small></div>${statGrid(t,c)}</div>
+    <div><div class="sec-h"><span class="hc-lab">Arma base</span></div>${weaponBlock(t,!full)}</div>
+    <div><div class="sec-h"><span class="hc-lab">Reglas especiales</span></div>${rulesBlock(t,c,!full)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
+    ${c&&full?skillsPick(c,pv):`<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
+    <div><div class="sec-h"><span class="hc-lab">Equipo</span></div><div class="hc-chips"><span class="chip hc-go">Oro inicial: 0</span></div></div>`;
   return{por,sub,body,hint};
 }
 function C1(){return `<div class="sr"><input id="srch" type="search" placeholder="Buscar raza o facción…" value="${esc(ST.q)}" aria-label="Buscar raza" autocomplete="off"></div><div class="lst" data-keep="lst" id="rlist">${raceList()}</div>`}
-function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>`<button class="ct" type="button" data-act="cls" data-i="${i}" aria-pressed="${ST.cls===i}"><span class="gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`).join("")}</div>`}
+function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>`<button class="ct" type="button" data-act="cls" data-i="${i}" aria-pressed="${ST.cls===i}"><span class="hc-gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`).join("")}</div>`}
 function bodyC(){
   const p=sheetParts();
-  return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre" maxlength="24" aria-label="Nombre del héroe"><div class="sub" id="shsub">${p.sub}</div></div><div class="seal"><div><small>NIVEL</small><b>1</b></div></div></div><div class="phint" id="shhint">${p.hint}</div><input type="file" id="pfile" accept="image/jpeg,image/png,image/webp" hidden><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
+  return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="hc-sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre" maxlength="24" aria-label="Nombre del héroe"><div class="hc-sub" id="shsub">${p.sub}</div></div><div class="hc-seal"><div><small>NIVEL</small><b>1</b></div></div></div><div class="phint" id="shhint">${p.hint}</div><input type="file" id="pfile" accept="image/jpeg,image/png,image/webp" hidden><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
 }
 function paintSheet(){
   const p=sheetParts();
@@ -318,13 +318,13 @@ function showPop(el,label,pinned){
   let top=er.bottom-wr.top+8;
   p.style.top=top+"px";
   const h=p.offsetHeight;if(top+h>wr.height-8)p.style.top=Math.max(8,er.top-wr.top-h-8)+"px";
-  $$("[aria-expanded=true].rl,[aria-expanded=true].tt").forEach(x=>x.setAttribute("aria-expanded","false"));
+  $$("[aria-expanded=true].rl,[aria-expanded=true].hc-tt").forEach(x=>x.setAttribute("aria-expanded","false"));
   el.setAttribute("aria-expanded","true");
   POP={el,label,pinned:!!pinned};
 }
 function hidePop(){
   const p=$("#pop");if(p)p.hidden=true;
-  $$("[aria-expanded=true].rl,[aria-expanded=true].tt").forEach(x=>x.setAttribute("aria-expanded","false"));
+  $$("[aria-expanded=true].rl,[aria-expanded=true].hc-tt").forEach(x=>x.setAttribute("aria-expanded","false"));
   POP=null;
 }
 function togglePop(el){
@@ -372,7 +372,7 @@ function openWin(){
 function closeWin(){ST.open=false;POP=null;ROOT.hidden=true;ROOT.innerHTML="";document.body.style.overflow=""}
 /* al elegir clase, la vista baja hasta la ficha con toda la información */
 function goSheet(){
-  const wb=$("#wb"),sh=$(".sheet"),cw=$(".cw");if(!wb||!sh||!cw)return;
+  const wb=$("#wb"),sh=$(".hc-sheet"),cw=$(".cw");if(!wb||!sh||!cw)return;
   const stacked=getComputedStyle(cw).gridTemplateColumns.trim().split(/\s+/).length===1;
   if(stacked)wb.scrollBy({top:sh.getBoundingClientRect().top-wb.getBoundingClientRect().top-8,behavior:"smooth"});
   else{const cr=$(".cr");if(cr)cr.scrollTo({top:0,behavior:"smooth"})}
@@ -421,7 +421,7 @@ const ACT={
 };
 ROOT.addEventListener("click",e=>{
   const t=e.target;
-  const tg=t.closest(".rl,.tt");
+  const tg=t.closest(".rl,.hc-tt");
   if(tg){togglePop(tg);return}
   if(POP&&!t.closest("#pop"))hidePop();
   if(t.id==="veil"){closeWin();return}
