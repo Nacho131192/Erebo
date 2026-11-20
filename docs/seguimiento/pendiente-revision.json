@@ -1,0 +1,119 @@
+{
+  "file": "pendiente-revision.pdf",
+  "title": "Pendiente de revisión",
+  "subtitle": "Dudas de reglas para consultar con un experto · Tablero virtual de Age of Fantasy: Quest",
+  "live": "Documento vivo: estas dudas siguen abiertas y la lista se irá ampliando. Escribe la respuesta en su recuadro y marca «Resuelto» cuando esté decidido.",
+  "legend": "Cada punto dice qué hace ahora la aplicación y qué dice la norma (Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR), para poder comparar.",
+  "check_label": "Resuelto",
+  "notes_label": "Respuesta",
+  "sections": [
+    {
+      "id": "r1",
+      "title": "Unidades enemigas",
+      "goal": "",
+      "items": [
+        {
+          "id": "r-tough",
+          "tag": "Urgente",
+          "done": false,
+          "text": "Tough(X) en las unidades de varias miniaturas: ¿es por miniatura o de la unidad entera? Ejemplo: Goblins arqueros [3] con Tough(3). Ahora la aplicación da Tough(3) a cada goblin: 9 heridas en total y cae un goblin cada 3 heridas. Si fuera de la unidad entera, serían 3 heridas en total y cada goblin caería con 1. Los ataques ya se cuentan como de la unidad entera (A6 = 2 dados por goblin).",
+          "notes": ""
+        },
+        {
+          "id": "r-huida",
+          "tag": "",
+          "done": false,
+          "text": "Moral fallida de una unidad enemiga: ahora huye y sale de la mesa. La norma dice que queda Aturdida (Shaken) y, si tiene Tough 9+, sufre D3 heridas en vez de quedar Aturdida.",
+          "notes": ""
+        },
+        {
+          "id": "r-umbral",
+          "tag": "",
+          "done": false,
+          "text": "Cuándo se tira la moral: ahora, una unidad de varias miniaturas cuando le queda una; de una miniatura, al perder 2/3 de sus heridas; los héroes nunca. La norma dice a la mitad o menos, también para los héroes.",
+          "notes": ""
+        },
+        {
+          "id": "r-contra",
+          "tag": "",
+          "done": false,
+          "text": "Devolver golpes en cuerpo a cuerpo: ahora el defensor solo tira defensa y no devuelve golpes. La norma dice que los defensores devuelven los golpes (Counter les deja golpear primero).",
+          "notes": ""
+        }
+      ],
+      "done_when": ""
+    },
+    {
+      "id": "r2",
+      "title": "Combate y movimiento",
+      "goal": "",
+      "items": [
+        {
+          "id": "r-arma",
+          "tag": "",
+          "done": false,
+          "text": "Una sola arma por acción (también al disparar). La norma dice que se disparan todas las armas a distancia y que en cuerpo a cuerpo se golpea con todas las armas.",
+          "notes": ""
+        },
+        {
+          "id": "r-contacto",
+          "tag": "",
+          "done": false,
+          "text": "Distancia de contacto: por dentro 1,5 pulgadas (los textos dicen 1). La norma dice 1 pulgada y que se golpea a 3 pulgadas o menos tras cargar.",
+          "notes": ""
+        },
+        {
+          "id": "r-alerta",
+          "tag": "",
+          "done": false,
+          "text": "Alerta con dado al final de la ronda (1-5 = +1, 6 = +2). La norma dice +1 fijo por ronda (+2 sin enemigos, eso sí se aplica).",
+          "notes": ""
+        },
+        {
+          "id": "r-criticos",
+          "tag": "",
+          "done": false,
+          "text": "Críticos: ahora cada 6 natural al impactar solo se salva con otro 6 (no cuentan los de un atacante agotado o aturdido ni los impactos extra). La norma no tiene críticos: un 6 solo importa para reglas como Rending, Furious o Surge.",
+          "notes": ""
+        }
+      ],
+      "done_when": ""
+    },
+    {
+      "id": "r3",
+      "title": "Supuestos de la campaña",
+      "goal": "",
+      "items": [
+        {
+          "id": "r-heraldo",
+          "tag": "",
+          "done": false,
+          "text": "El Heraldo del Umbral cuenta como 150 puntos (estimado; no existe en Army Forge). En dificultad 1 la oleada del jefe es solo el Heraldo.",
+          "notes": ""
+        },
+        {
+          "id": "r-numeracion",
+          "tag": "",
+          "done": false,
+          "text": "Cuadrantes y esquinas numerados del 1 al 4 en sentido horario desde el noroeste (el PDF solo dice «numéralos de 1 a 4»).",
+          "notes": ""
+        },
+        {
+          "id": "r-centinelas",
+          "tag": "",
+          "done": false,
+          "text": "Cantidad de centinelas igual al tamaño de una oleada (el PDF no la fija).",
+          "notes": ""
+        },
+        {
+          "id": "r-creador",
+          "tag": "",
+          "done": false,
+          "text": "Creador de héroes: Fuerza, Destreza y Voluntad parten de 6+ y cada +1 de la clase baja un escalón; el Poder es el bono de la clase.",
+          "notes": ""
+        }
+      ],
+      "done_when": ""
+    }
+  ]
+}

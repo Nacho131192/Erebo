@@ -150,7 +150,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-act{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;border-radius:12px;border:1px solid var(--line2);background:var(--card2);text-align:left;transition:border-color .2s,transform .15s}
 .tv-act:hover:not(:disabled){border-color:var(--gold);transform:translateY(-1px)}
 .tv-act b{font:700 14px Cinzel,Georgia,serif;color:var(--gold2)}.tv-act small{font-size:11.5px;color:var(--mu);line-height:1.35}.tv-act em{font-style:normal;font-size:11px;color:var(--en2)}
-.tv-act.chg b{color:#ffb3bf}.tv-act:disabled{opacity:.45}
+.tv-act.chg b{color:#ffb3bf}.tv-act.shoot b{color:#a9d4ff}.tv-act:disabled{opacity:.45}
 .tv-act.rest{grid-column:1/-1}
 .tv-box{margin:12px 0 0;padding:12px 14px;border-radius:14px;border:1px solid var(--line2);background:var(--card2)}
 .tv-box b{display:block;color:var(--gold2)}.tv-box p{margin:4px 0 0;color:var(--mu);font-size:13px}
@@ -325,3 +325,14 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-confc b{display:block;font:700 19px Cinzel,Georgia,serif;color:var(--gold2)}
 .tv-confc p{margin:8px 0 4px;color:var(--mu);font-size:14px}
 @media (prefers-reduced-motion:reduce){.tv-hero.nudge,.tv-hero.nudge .tv-halo,.tv-dx.rol,.tv-dtray{animation:none}}
+
+/* contador de acciones del héroe */
+.tv-acc{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin-top:6px;font-size:11px;color:var(--mu)}
+.tv-acc b{font-weight:600;color:#f0d79a}.tv-acc small{display:inline;font-size:10.5px;color:var(--mu2)}
+.tv-accp{display:inline-flex;gap:4px}
+.tv-accp i{width:16px;height:8px;border-radius:4px;border:1px solid rgba(240,215,154,.55)}
+.tv-accp i.f{background:linear-gradient(180deg,#f6e2a8,#c9a24f);box-shadow:0 0 6px rgba(240,215,154,.45)}
+.tv-accp i.u{background:#2a3150;border-color:rgba(255,255,255,.14)}
+.tv-accp i.x{background:repeating-linear-gradient(135deg,#2a3150 0 3px,#1a1f36 3px 6px);border-color:rgba(255,255,255,.1)}
+.tv-accp i.ex{border-style:dashed;border-color:#b79cff}.tv-accp i.ex.f{background:linear-gradient(180deg,#d9c9ff,#8a6ad8);box-shadow:0 0 6px rgba(180,150,255,.45)}
+.tv-hc.done .tv-acc b{color:var(--mu)}

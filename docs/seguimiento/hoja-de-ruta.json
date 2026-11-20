@@ -1,0 +1,416 @@
+{
+  "file": "hoja-de-ruta.pdf",
+  "title": "Hoja de ruta del tablero virtual",
+  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest",
+  "live": "Documento vivo: todo lo que hay aquí sigue pendiente de trabajo y se irá revisando, tachando y ampliando. Marca la casilla de cada punto cuando esté hecho.",
+  "legend": "[Oficial] = Core Rules o Campaign Builder de OPR.   [Casa] = regla de la casa.   Una fase cada vez; dentro de cada fase, un punto cada vez. Al acabar cada punto: probar en el navegador, apuntarlo en CLAUDE.md y hacer commit en prueba-juego.",
+  "check_label": "Hecho",
+  "notes_label": "Notas",
+  "sections": [
+    {
+      "id": "f0",
+      "title": "Fase 0 · Asentar lo que ya hay",
+      "goal": "Revisar lo hecho en los últimos commits y ajustarlo a lo acordado.",
+      "items": [
+        {
+          "id": "f0-alerta",
+          "tag": "Casa",
+          "done": true,
+          "text": "Alerta: dado al final de la ronda (1-5 = +1, 6 = +2). Sin enemigos en la mesa no se tira: cartel y +2 [Oficial]."
+        },
+        {
+          "id": "f0-contacto",
+          "tag": "Casa",
+          "done": true,
+          "text": "Distancia de contacto 1,5 pulgadas por dentro; los textos dicen siempre 1 pulgada."
+        },
+        {
+          "id": "f0-moral",
+          "tag": "Casa",
+          "done": true,
+          "text": "Moral: los héroes no tiran; unidad de varias miniaturas, cuando le queda una; de una miniatura, al perder 2/3 de sus heridas. Si falla, huye."
+        },
+        {
+          "id": "f0-ataques",
+          "tag": "",
+          "done": true,
+          "text": "Ataques de las unidades enemigas: la A del perfil es de la unidad entera y se reparte entre sus miniaturas."
+        },
+        {
+          "id": "f0-tough",
+          "tag": "",
+          "done": false,
+          "text": "Heridas (Tough) de las unidades de varias miniaturas: decidir si son por miniatura o de la unidad entera (ver la lista de revisión)."
+        },
+        {
+          "id": "f0-pruebas",
+          "tag": "",
+          "done": false,
+          "text": "Probar lo que nunca se probó: Cargar con la bandeja de dados, varios héroes a la vez, tiradas grandes, varias oleadas."
+        },
+        {
+          "id": "f0-claude",
+          "tag": "",
+          "done": true,
+          "text": "Poner CLAUDE.md al día con todo lo anterior."
+        }
+      ],
+      "done_when": "Una partida de 3-4 rondas sin objetivos funciona según la norma acordada.",
+      "notes": ""
+    },
+    {
+      "id": "f05",
+      "title": "Fase 0.5 · Combate a distancia",
+      "goal": "Terminar el combate de héroes y enemigos con las armas a distancia.",
+      "items": [
+        {
+          "id": "f05-heroe",
+          "tag": "Oficial",
+          "done": true,
+          "text": "El héroe dispara con Mantener o tras Avanzar; elige el arma si tiene varias. Una sola arma por acción [Casa]."
+        },
+        {
+          "id": "f05-ia",
+          "tag": "Casa",
+          "done": true,
+          "text": "La IA elige arma: al azar en dificultad 1-2; la de más daño esperado en 3-4."
+        },
+        {
+          "id": "f05-reglas",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Reglas de las armas: Blast (reparto y tope por miniaturas), Indirect, Unstoppable, Rending, Reliable, Relentless, Stealth, noche y alba."
+        },
+        {
+          "id": "f05-disparar",
+          "tag": "",
+          "done": true,
+          "text": "Botón Disparar en el panel del héroe (Mantener ya solo se queda quieto)."
+        },
+        {
+          "id": "f05-dadosia",
+          "tag": "Casa",
+          "done": true,
+          "text": "Los dados de los enemigos (ataque y defensa) los tira siempre la IA; el jugador solo tira los de sus héroes."
+        },
+        {
+          "id": "f05-criticos",
+          "tag": "Casa",
+          "done": true,
+          "text": "Críticos: cada 6 natural al impactar solo se salva con otro 6, para héroes y enemigos."
+        },
+        {
+          "id": "f05-contador",
+          "tag": "",
+          "done": true,
+          "text": "Contador de acciones en la tarjeta de cada héroe (le quedan, gastadas, perdidas y la extra con 3 de poder)."
+        },
+        {
+          "id": "f05-cobertura",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Cobertura: +1 a la defensa contra disparos detrás de casas o dentro de terreno de cobertura (pasa a la fase 6 si no se hace antes)."
+        }
+      ],
+      "done_when": "Héroes e IA disparan con sus armas reales y los dados salen como dice la norma.",
+      "notes": ""
+    },
+    {
+      "id": "f1",
+      "title": "Fase 1 · Objetivo principal: los tres rastros",
+      "goal": "",
+      "items": [
+        {
+          "id": "f1-marcadores",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Colocar los 3 marcadores en el mapa."
+        },
+        {
+          "id": "f1-descubrir",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Acción Descubrir para retirar un marcador."
+        },
+        {
+          "id": "f1-sinatajo",
+          "tag": "Casa",
+          "done": false,
+          "text": "El principal solo se cumple al retirar los 3 (sin la tirada de 5+)."
+        },
+        {
+          "id": "f1-diario",
+          "tag": "Casa",
+          "done": false,
+          "text": "Diario del olvidado: lo lleva quien retira el último; AP(1) contra el Heraldo."
+        },
+        {
+          "id": "f1-contador",
+          "tag": "",
+          "done": false,
+          "text": "Contador «Rastros n/3» en el panel y en el registro."
+        }
+      ],
+      "done_when": "Se pueden retirar los tres rastros y el juego anuncia el principal cumplido.",
+      "notes": ""
+    },
+    {
+      "id": "f2",
+      "title": "Fase 2 · Fichas de búsqueda y cofres",
+      "goal": "",
+      "items": [
+        {
+          "id": "f2-fichas",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Colocar D3 + número de héroes fichas de búsqueda."
+        },
+        {
+          "id": "f2-abrir",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Abrirlas con una acción (Descubrir)."
+        },
+        {
+          "id": "f2-tablas",
+          "tag": "Casa",
+          "done": false,
+          "text": "Tabla de contenido y subtablas: peligro, elixires, bombas, pociones, tesoro maldito (5×D de oro y un Borrado débil)."
+        },
+        {
+          "id": "f2-usar",
+          "tag": "",
+          "done": false,
+          "text": "Inventario del héroe y usar objetos en la partida."
+        }
+      ],
+      "done_when": "Un héroe abre un cofre, guarda lo que sale y lo usa.",
+      "notes": ""
+    },
+    {
+      "id": "f3",
+      "title": "Fase 3 · Objetivo secundario",
+      "goal": "",
+      "items": [
+        {
+          "id": "f3-preparar",
+          "tag": "Casa",
+          "done": false,
+          "text": "Se prepara al cumplir el principal: d6 tirado o a mano, y +3 de Alertness [Oficial]."
+        },
+        {
+          "id": "f3-seis",
+          "tag": "",
+          "done": false,
+          "text": "Programar los 6 resultados de la tabla de la misión, uno a uno."
+        },
+        {
+          "id": "f3-aviso",
+          "tag": "",
+          "done": false,
+          "text": "Marcador o condición en el mapa y aviso al cumplirlo."
+        }
+      ],
+      "done_when": "Se pueden jugar y cumplir los 6 secundarios.",
+      "notes": ""
+    },
+    {
+      "id": "f4",
+      "title": "Fase 4 · Escapar, derrota y recompensas",
+      "goal": "",
+      "items": [
+        {
+          "id": "f4-escapar",
+          "tag": "Casa",
+          "done": false,
+          "text": "Escapar del pueblo: todos a 6 pulgadas de la misma esquina y sin enemigos alrededor."
+        },
+        {
+          "id": "f4-derrota",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Derrota: todos inconscientes a la vez; se repite el capítulo."
+        },
+        {
+          "id": "f4-xp",
+          "tag": "Oficial",
+          "done": false,
+          "text": "XP (2×D principal, D secundario, máximo 5×D) y oro de riesgo 5×D a las fichas."
+        },
+        {
+          "id": "f4-recuperar",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Al terminar, recuperar 3 heridas y 3 de poder."
+        },
+        {
+          "id": "f4-mapa",
+          "tag": "",
+          "done": false,
+          "text": "Marcar la misión cumplida en el mapa de misiones."
+        }
+      ],
+      "done_when": "HITO: la Misión 1 se puede jugar entera en la aplicación (sin jefe).",
+      "notes": ""
+    },
+    {
+      "id": "f5",
+      "title": "Fase 5 · Más acciones de los héroes",
+      "goal": "",
+      "items": [
+        {
+          "id": "f5-generales",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Acciones generales: Empujar, Escabullirse y revivir a un aliado inconsciente."
+        },
+        {
+          "id": "f5-habilidades",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Habilidades del héroe: primero las activas, después las pasivas."
+        },
+        {
+          "id": "f5-panel",
+          "tag": "",
+          "done": false,
+          "text": "Panel de acciones que solo muestra lo que se puede hacer en ese momento."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f6",
+      "title": "Fase 6 · Terreno y enemigos más listos",
+      "goal": "",
+      "items": [
+        {
+          "id": "f6-terreno",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Cobertura, terreno difícil y peligroso, línea de visión más fina."
+        },
+        {
+          "id": "f6-ambush",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Ambush (D3 rondas después, a 6 pulgadas de un Objetivo de IA) y Scout."
+        },
+        {
+          "id": "f6-sorpresas",
+          "tag": "Casa",
+          "done": false,
+          "text": "Sorpresas por oleada (unidad con Ambush; Caster que da +1 a los Borrados)."
+        },
+        {
+          "id": "f6-objia",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Objetivos de IA: la IA protege los marcadores en vez de ir siempre al héroe más cercano."
+        },
+        {
+          "id": "f6-cohesion",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Cohesión por miniatura, si hace falta."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f7",
+      "title": "Fase 7 · Magia",
+      "goal": "Va antes del jefe porque el Heraldo lanza hechizos.",
+      "items": [
+        {
+          "id": "f7-heroes",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Caster de los héroes: fichas de hechizo, poder, alcance y tirada."
+        },
+        {
+          "id": "f7-ia",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Caster de la IA: elige un hechizo al azar y gasta todas sus fichas."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f8",
+      "title": "Fase 8 · Pelea de jefe (opcional)",
+      "goal": "",
+      "items": [
+        {
+          "id": "f8-activar",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Se activa tras los dos objetivos; al final de esa ronda llega una oleada de doble valor y no entran más refuerzos."
+        },
+        {
+          "id": "f8-heraldo",
+          "tag": "Casa",
+          "done": false,
+          "text": "Heraldo del Umbral: Tough según dificultad, Fear, Stealth, hoz AP(2) Rending; hechizos Olvido, Borrado y Silencio."
+        },
+        {
+          "id": "f8-tough9",
+          "tag": "Oficial",
+          "done": false,
+          "text": "No queda Aturdido con Tough 9+; cada moral fallida le hace D3 heridas."
+        },
+        {
+          "id": "f8-diario",
+          "tag": "Casa",
+          "done": false,
+          "text": "El Diario del olvidado da AP(1) contra él."
+        },
+        {
+          "id": "f8-final",
+          "tag": "Oficial",
+          "done": false,
+          "text": "Final con el Heraldo destruido: +2×D de XP."
+        }
+      ],
+      "done_when": "HITO: la Misión 1 completa, con jefe.",
+      "notes": ""
+    },
+    {
+      "id": "f9",
+      "title": "Fase 9 · Pulido",
+      "goal": "",
+      "items": [
+        {
+          "id": "f9-equilibrio",
+          "tag": "",
+          "done": false,
+          "text": "Equilibrio: probar las 4 dificultades y el Tough del Heraldo."
+        },
+        {
+          "id": "f9-narracion",
+          "tag": "",
+          "done": false,
+          "text": "Narración de cada ronda dentro del tablero."
+        },
+        {
+          "id": "f9-arte",
+          "tag": "",
+          "done": false,
+          "text": "Parte artística (mapa, fichas, sonido), móvil y táctil."
+        },
+        {
+          "id": "f9-mesa",
+          "tag": "",
+          "done": false,
+          "text": "Decidir si el tablero virtual sustituye a la mesa o conviven."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    }
+  ]
+}
