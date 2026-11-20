@@ -75,6 +75,20 @@
           "done": false,
           "text": "Críticos: ahora cada 6 natural al impactar solo se salva con otro 6 (no cuentan los de un atacante agotado o aturdido ni los impactos extra). La norma no tiene críticos: un 6 solo importa para reglas como Rending, Furious o Surge.",
           "notes": ""
+        },
+        {
+          "id": "r-cobertura",
+          "tag": "",
+          "done": false,
+          "text": "Cobertura: ahora las casas cortan la línea de visión (no se puede disparar detrás) y el terreno bajo (el pozo) da +1 a la defensa contra disparos si el objetivo está dentro o a 1 pulgada o menos detrás y la línea de tiro lo cruza; Blast la ignora. La norma dice +1 a la defensa en terreno de cobertura o detrás de bloqueadores de visión, sin impedir el disparo; Indirect ignora la cobertura de los bloqueadores de visión.",
+          "notes": ""
+        },
+        {
+          "id": "r-rastro",
+          "tag": "",
+          "done": false,
+          "text": "Recuperar un rastro: el héroe a 1 pulgada (por dentro 1,5, medido desde su peana) gasta una acción de habilidad y pasa una tirada de Voluntad; si falla, puede gastar 2 de poder (regla general de los héroes). No se tira el dado extra de «búsqueda por zonas» porque la casa descarta el atajo del 5+. Además los rastros no estorban a nadie.",
+          "notes": ""
         }
       ],
       "done_when": ""
@@ -114,6 +128,49 @@
         }
       ],
       "done_when": ""
+    },
+    {
+      "id": "r4",
+      "title": "Reglas y habilidades",
+      "goal": "",
+      "done_when": "",
+      "items": [
+        {
+          "id": "r-lobo",
+          "tag": "",
+          "done": false,
+          "text": "Scout (montura de araña de los goblins en lobo): el reglamento dice «puede desplegarse en cualquier punto completamente a 9″» y no aclara a 9″ de qué. Se ha entendido como un solo uso al desplegarse, hasta 9″ de donde saldría, hacia el héroe más cercano y sin acabar a menos de 9″ de él (esto último es un supuesto de la casa). La IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2. ¿Es correcto? Los lobos no llevan Fast: se mueven 6″/12″. (La descripción de Scout del creador de héroes dice «a menos de 9″ de su zona y a más de 9″ de enemigos», lo que apoya el supuesto de no acabar a menos de 9″ de un héroe.)",
+          "notes": ""
+        },
+        {
+          "id": "r-sindescr",
+          "tag": "",
+          "done": false,
+          "text": "Reglas sin descripción en la investigación guardada (no he querido inventarlas): Instinctive, Hero, Caster Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal. Hace falta su texto de Army Forge. Intenté leerlas en la web de One Page Rules y no me dejó.",
+          "notes": ""
+        },
+        {
+          "id": "r-pasivas",
+          "tag": "",
+          "done": false,
+          "text": "Ahora se aplican reglas que antes no contaban y suben el daño de los enemigos: Ferocious (cada 6 desde lejos, un impacto extra), Mischievous (repetir los 6 de defensa), Parry, Brace, Wild Veil… ¿Se ha entendido bien «desde lejos» como disparo a más de 9″ o carga desde más de 6″?",
+          "notes": ""
+        },
+        {
+          "id": "r-habilidad1",
+          "tag": "",
+          "done": false,
+          "text": "Las habilidades de héroe cuestan 1 acción (la norma dice una acción más una de habilidad) y las dotes no cuestan nada. Como los héroes no tiran moral (regla de la casa), seis habilidades no tienen efecto: Voluntad de acero, Reagrupar, Fortaleza, Burla, Maldición rencorosa y Suprimir.",
+          "notes": ""
+        },
+        {
+          "id": "r-contraataque",
+          "tag": "",
+          "done": false,
+          "text": "Counter: como el defensor no devuelve golpes (regla de la casa), la regla Counter no hace nada. ¿Se mantiene así?",
+          "notes": ""
+        }
+      ]
     }
   ]
 }

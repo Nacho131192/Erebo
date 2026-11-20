@@ -447,5 +447,5 @@ function open(){
   ST.openF=new Set([0]);
   openWin();
 }
-return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext};
+return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG};
 })();

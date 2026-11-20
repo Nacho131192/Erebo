@@ -4,10 +4,10 @@
 << /Type /Catalog /Pages 2 0 R /AcroForm 3 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [33 0 R 55 0 R 77 0 R 85 0 R] /Count 4 >>
+<< /Type /Pages /Kids [33 0 R 51 0 R 74 0 R 95 0 R 101 0 R] /Count 5 >>
 endobj
 3 0 obj
-<< /Fields [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 27 0 R 28 0 R 29 0 R 30 0 R 31 0 R 32 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 41 0 R 42 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 51 0 R 52 0 R 53 0 R 54 0 R 57 0 R 58 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R 73 0 R 74 0 R 75 0 R 76 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R] /NeedAppearances true /DA (/Helv 9 Tf 0 g) /DR << /Font << /Helv 86 0 R /ZaDb 13 0 R >> >> >>
+<< /Fields [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 27 0 R 28 0 R 29 0 R 30 0 R 31 0 R 32 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 41 0 R 42 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 53 0 R 54 0 R 55 0 R 56 0 R 57 0 R 58 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R 73 0 R 76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R 87 0 R 88 0 R 89 0 R 90 0 R 91 0 R 92 0 R 93 0 R 94 0 R 97 0 R 98 0 R 99 0 R 100 0 R] /NeedAppearances true /DA (/Helv 9 Tf 0 g) /DR << /Font << /Helv 102 0 R /ZaDb 13 0 R >> >> >>
 endobj
 4 0 obj
 << /Title <FEFF0048006F006A006100200064006500200072007500740061002000640065006C0020007400610062006C00650072006F0020007600690072007400750061006C> /Producer (tools/seguimiento.py) >>
@@ -52,7 +52,7 @@ stream
 endstream
 endobj
 16 0 obj
-<<  /Length 6472 >>
+<<  /Length 6779 >>
 stream
 0.07 0.1 0.19 rg 0 723.89 595.28 118 re f
 0.72 0.56 0.25 RG 1.2 w 50 723.89 m 545.28 723.89 l S
@@ -119,11 +119,15 @@ BT /F1 9.5 Tf 0.55 0.56 0.6 rg 106.10 129.89 Td (Críticos: cada 6 natural al imp
 0.55 0.56 0.6 RG 0.7 w 72.00 133.09 m 464.61 133.09 l S
 BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 111.39 Td (Contador de acciones en la tarjeta de cada héroe \(le quedan, gastadas, perdidas y la extra con 3 de poder\).) Tj ET
 0.55 0.56 0.6 RG 0.7 w 72.00 114.59 m 526.14 114.59 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 92.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 92.89 Td (Cobertura: +1 a la defensa contra disparos detrás de casas o dentro de terreno de cobertura \(pasa a) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 80.39 Td (la fase 6 si no se hace antes\).) Tj ET
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 92.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 92.89 Td (Cobertura: las casas cortan la línea de visión \(no se dispara detrás\); el terreno bajo \(el pozo, y lo que) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 96.09 m 535.62 96.09 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 80.39 Td (se añada: muros, arbustos\) da +1 a la defensa contra disparos y se puede disparar a través. Blast la ignora) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 83.59 m 524.27 83.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 67.89 Td ([Casa].) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 71.09 m 102.10 71.09 l S
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 1 de 4) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 1 de 5) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
@@ -173,376 +177,502 @@ endobj
 << /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 33 0 R /Rect [50.00 108.89 62.00 120.89] /T (c-f05-contador) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 32 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 33 0 R /Rect [50.00 90.39 62.00 102.39] /T (c-f05-cobertura) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 33 0 R /Rect [50.00 90.39 62.00 102.39] /T (c-f05-cobertura) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 33 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 16 0 R /Annots [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 27 0 R 28 0 R 29 0 R 30 0 R 31 0 R 32 0 R] >>
 endobj
 34 0 obj
-<<  /Length 4351 >>
+<<  /Length 4360 >>
 stream
 BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 775.89 Td (Hecha cuando: Héroes e IA disparan con sus armas reales y los dados salen como dice la norma.) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 761.89 Td (Notas:) Tj ET
 BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 693.89 Td (Fase 1 · Objetivo principal: los tres rastros) Tj ET
 0.72 0.56 0.25 RG 0.9 w 50 687.89 m 545.28 687.89 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 672.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 672.39 Td (Colocar los 3 marcadores en el mapa.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 653.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 653.89 Td (Acción Descubrir para retirar un marcador.) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 635.39 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 635.39 Td (El principal solo se cumple al retirar los 3 \(sin la tirada de 5+\).) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 616.89 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 616.89 Td (Diario del olvidado: lo lleva quien retira el último; AP\(1\) contra el Heraldo.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 598.39 Td (Contador «Rastros n/3» en el panel y en el registro.) Tj ET
-BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 579.39 Td (Hecha cuando: Se pueden retirar los tres rastros y el juego anuncia el principal cumplido.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 565.39 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 497.39 Td (Fase 2 · Fichas de búsqueda y cofres) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 491.39 m 545.28 491.39 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 475.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 475.89 Td (Colocar D3 + número de héroes fichas de búsqueda.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 457.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 457.39 Td (Abrirlas con una acción \(Descubrir\).) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 438.89 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 438.89 Td (Tabla de contenido y subtablas: peligro, elixires, bombas, pociones, tesoro maldito \(5×D de oro y un) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 426.39 Td (Borrado débil\).) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 407.89 Td (Inventario del héroe y usar objetos en la partida.) Tj ET
-BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 388.89 Td (Hecha cuando: Un héroe abre un cofre, guarda lo que sale y lo usa.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 374.89 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 306.89 Td (Fase 3 · Objetivo secundario) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 300.89 m 545.28 300.89 l S
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 285.39 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 285.39 Td (Se prepara al cumplir el principal: d6 tirado o a mano, y +3 de Alertness [Oficial].) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 266.89 Td (Programar los 6 resultados de la tabla de la misión, uno a uno.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 248.39 Td (Marcador o condición en el mapa y aviso al cumplirlo.) Tj ET
-BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 229.39 Td (Hecha cuando: Se pueden jugar y cumplir los 6 secundarios.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 215.39 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 147.39 Td (Fase 4 · Escapar, derrota y recompensas) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 141.39 m 545.28 141.39 l S
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 125.89 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 125.89 Td (Escapar del pueblo: todos a 6 pulgadas de la misma esquina y sin enemigos alrededor.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 107.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 107.39 Td (Derrota: todos inconscientes a la vez; se repite el capítulo.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 88.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 88.89 Td (XP \(2×D principal, D secundario, máximo 5×D\) y oro de riesgo 5×D a las fichas.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 70.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 70.39 Td (Al terminar, recuperar 3 heridas y 3 de poder.) Tj ET
+BT /F3 9 Tf 0.55 0.56 0.6 rg 50.00 672.89 Td (Hecho el 20-11-2026 salvo el efecto del diario, que espera a la pelea de jefe.) Tj ET
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 658.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 658.39 Td (Colocar los 3 rastros como braseros: un cuadrante distinto cada uno, pegados a una casa, al azar en) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 661.59 m 536.17 661.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 645.89 Td (cada partida; no estorban al moverse ni al disparar.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 649.09 m 288.49 649.09 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 627.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 627.39 Td (Acción «Recuperar rastro» \(habilidad\): a 1 pulgada de un rastro, tirada de Voluntad \(2 de poder para) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 630.59 m 534.06 630.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 614.89 Td (superarla\); el brasero se enciende.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 618.09 m 218.78 618.09 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 596.39 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 106.10 596.39 Td (El principal solo se cumple al retirar los 3 \(sin la tirada de 5+\).) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 599.59 m 365.59 599.59 l S
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 577.89 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 577.89 Td (Diario del olvidado: lo lleva quien retira el último \(ya se anota y se avisa\); falta el AP\(1\) contra el) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 565.39 Td (Heraldo, que va con la pelea de jefe.) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 546.89 Td (Contador «Rastros n/3» en el panel y en el registro.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 550.09 m 289.55 550.09 l S
+BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 527.89 Td (Hecha cuando: Se pueden retirar los tres rastros y el juego anuncia el principal cumplido.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 513.89 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 445.89 Td (Fase 2 · Fichas de búsqueda y cofres) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 439.89 m 545.28 439.89 l S
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 424.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 424.39 Td (Colocar D3 + número de héroes fichas de búsqueda.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 405.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 405.89 Td (Abrirlas con una acción \(Descubrir\).) Tj ET
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 387.39 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 387.39 Td (Tabla de contenido y subtablas: peligro, elixires, bombas, pociones, tesoro maldito \(5×D de oro y un) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 374.89 Td (Borrado débil\).) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 356.39 Td (Inventario del héroe y usar objetos en la partida.) Tj ET
+BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 337.39 Td (Hecha cuando: Un héroe abre un cofre, guarda lo que sale y lo usa.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 323.39 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 255.39 Td (Fase 3 · Objetivo secundario) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 249.39 m 545.28 249.39 l S
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 233.89 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 233.89 Td (Se prepara al cumplir el principal: d6 tirado o a mano, y +3 de Alertness [Oficial].) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 215.39 Td (Programar los 6 resultados de la tabla de la misión, uno a uno.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 196.89 Td (Marcador o condición en el mapa y aviso al cumplirlo.) Tj ET
+BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 177.89 Td (Hecha cuando: Se pueden jugar y cumplir los 6 secundarios.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 163.89 Td (Notas:) Tj ET
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 2 de 4) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 2 de 5) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
 35 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 55 0 R /Rect [72.00 725.89 545.28 757.89] /T (n-f05) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 51 0 R /Rect [72.00 725.89 545.28 757.89] /T (n-f05) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 36 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 669.89 62.00 681.89] /T (c-f1-marcadores) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 655.89 62.00 667.89] /T (c-f1-marcadores) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 37 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 651.39 62.00 663.39] /T (c-f1-descubrir) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 624.89 62.00 636.89] /T (c-f1-descubrir) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 38 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 632.89 62.00 644.89] /T (c-f1-sinatajo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 593.89 62.00 605.89] /T (c-f1-sinatajo) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 39 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 614.39 62.00 626.39] /T (c-f1-diario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 575.39 62.00 587.39] /T (c-f1-diario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 40 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 595.89 62.00 607.89] /T (c-f1-contador) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 544.39 62.00 556.39] /T (c-f1-contador) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 41 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 55 0 R /Rect [72.00 529.39 545.28 561.39] /T (n-f1) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 51 0 R /Rect [72.00 477.89 545.28 509.89] /T (n-f1) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 42 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 473.39 62.00 485.39] /T (c-f2-fichas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 421.89 62.00 433.89] /T (c-f2-fichas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 43 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 454.89 62.00 466.89] /T (c-f2-abrir) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 403.39 62.00 415.39] /T (c-f2-abrir) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 44 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 436.39 62.00 448.39] /T (c-f2-tablas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 384.89 62.00 396.89] /T (c-f2-tablas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 45 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 405.39 62.00 417.39] /T (c-f2-usar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 353.89 62.00 365.89] /T (c-f2-usar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 46 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 55 0 R /Rect [72.00 338.89 545.28 370.89] /T (n-f2) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 51 0 R /Rect [72.00 287.39 545.28 319.39] /T (n-f2) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 47 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 282.89 62.00 294.89] /T (c-f3-preparar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 231.39 62.00 243.39] /T (c-f3-preparar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 48 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 264.39 62.00 276.39] /T (c-f3-seis) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 212.89 62.00 224.89] /T (c-f3-seis) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 49 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 245.89 62.00 257.89] /T (c-f3-aviso) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 51 0 R /Rect [50.00 194.39 62.00 206.39] /T (c-f3-aviso) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 50 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 55 0 R /Rect [72.00 179.39 545.28 211.39] /T (n-f3) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 51 0 R /Rect [72.00 127.89 545.28 159.89] /T (n-f3) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 51 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 123.39 62.00 135.39] /T (c-f4-escapar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 34 0 R /Annots [35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 41 0 R 42 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R] >>
 endobj
 52 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 104.89 62.00 116.89] /T (c-f4-derrota) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<<  /Length 6232 >>
+stream
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 761.89 Td (Fase 4 · Escapar, derrota y recompensas) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 755.89 m 545.28 755.89 l S
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 740.39 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 740.39 Td (Escapar del pueblo: todos a 6 pulgadas de la misma esquina y sin enemigos alrededor.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 721.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 721.89 Td (Derrota: todos inconscientes a la vez; se repite el capítulo.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 703.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 703.39 Td (XP \(2×D principal, D secundario, máximo 5×D\) y oro de riesgo 5×D a las fichas.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 684.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 684.89 Td (Al terminar, recuperar 3 heridas y 3 de poder.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 666.39 Td (Marcar la misión cumplida en el mapa de misiones.) Tj ET
+BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 647.39 Td (Hecha cuando: HITO: la Misión 1 se puede jugar entera en la aplicación \(sin jefe\).) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 633.39 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 565.39 Td (Fase 5 · Más acciones de los héroes) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 559.39 m 545.28 559.39 l S
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 543.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 543.89 Td (Acciones generales: Empujar, Escabullirse y revivir a un aliado inconsciente.) Tj ET
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 525.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 525.39 Td (Habilidades del héroe: se usan desde el panel y las ventanas \(ver la fase 5.5\).) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 528.59 m 440.07 528.59 l S
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 506.89 Td (Panel de acciones que solo muestra lo que se puede hacer en ese momento.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 489.89 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 421.89 Td (Fase 5.5 · Reglas y habilidades de héroes y enemigos) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 415.89 m 545.28 415.89 l S
+BT /F3 9 Tf 0.55 0.56 0.6 rg 50.00 400.89 Td (Catálogo en español e inglés, ventanita al pulsar, uso de las habilidades y reglas pasivas en el combate.) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 386.39 Td (Ventana al pulsar una regla o habilidad \(héroes, enemigos y reglas de armas\): qué significa y si el tablero la) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 389.59 m 526.09 389.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 373.89 Td (aplica sola.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 377.09 m 119.52 377.09 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 355.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 355.39 Td (Usar habilidades de héroe: tirada de su característica \(1 de poder si falla\), objetivos a su alcance,) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 358.59 m 520.31 358.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 342.89 Td (poder X, y la pestaña se resalta mientras el efecto está activo.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 346.09 m 333.91 346.09 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 324.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 324.39 Td (Dotes de clase: una vez por partida, al activarse, sin acción ni tirada.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 327.59 m 399.92 327.59 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 305.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 305.89 Td (Efectos de las habilidades: bonos y penalizadores, impactos y heridas extra, curas, poder, empujar y) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 309.09 m 534.57 309.09 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 293.39 Td (atraer, moral de enemigos, colocarse, cargar o disparar al instante y acciones encadenadas.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 296.59 m 461.67 296.59 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 274.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 274.89 Td (Reglas pasivas: Ferocious, Mischievous, Dodge, Parry, Brace, Deadly, Wild Veil, Guardian, Sturdy,) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 278.09 m 527.66 278.09 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 262.39 Td (Runner y otras 40, tanto para enemigos como para héroes \(los del creador, en español\).) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 265.59 m 444.26 265.59 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 243.89 Td (Registro de actividad: los nombres de habilidades, dotes y reglas salen subrayados y al pulsarlos se abre su) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 247.09 m 528.20 247.09 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 231.39 Td (ventana.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 234.59 m 108.44 234.59 l S
+BT /F2 9.5 Tf 0.55 0.56 0.6 rg 72.00 212.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 110.57 212.89 Td (Scout: un solo uso al desplegarse \(hasta 9"\), la IA lo usa siempre en dificultad 3-4 y una de cada dos) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 216.09 m 535.33 216.09 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 200.39 Td (veces en 1-2; héroes con Scout, hasta 19" de su esquina.) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 203.59 m 315.12 203.59 l S
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 181.89 Td (Descripciones que faltan: Instinctive, Hero, Caster Group, Good Fighter, Takedown Strike, Takedown,) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 169.39 Td (Bounding, Crossing Attack y Traversal.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 150.89 Td (Zonas y marcadores temporales \(terreno difícil, peligroso o de cobertura, señuelos, imagen especular\): 14) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 138.39 Td (habilidades se resuelven a mano.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 119.89 Td (Habilidades de fichas de búsqueda \(Inspeccionar, Pájaro rastreador, Visión mental, Juego de manos\): esperan) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 107.39 Td (a la fase 2.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 88.89 Td (Habilidades de hechizos \(unas 20\): esperan a la fase 7.) Tj ET
+BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 3 de 5) Tj ET
+0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
+endstream
 endobj
 53 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 86.39 62.00 98.39] /T (c-f4-xp) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 737.89 62.00 749.89] /T (c-f4-escapar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 54 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 55 0 R /Rect [50.00 67.89 62.00 79.89] /T (c-f4-recuperar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 719.39 62.00 731.39] /T (c-f4-derrota) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 55 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 34 0 R /Annots [35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 41 0 R 42 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 51 0 R 52 0 R 53 0 R 54 0 R] >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 700.89 62.00 712.89] /T (c-f4-xp) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 56 0 obj
-<<  /Length 4358 >>
-stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Marcar la misión cumplida en el mapa de misiones.) Tj ET
-BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 757.39 Td (Hecha cuando: HITO: la Misión 1 se puede jugar entera en la aplicación \(sin jefe\).) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 743.39 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 675.39 Td (Fase 5 · Más acciones de los héroes) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 669.39 m 545.28 669.39 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 653.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 653.89 Td (Acciones generales: Empujar, Escabullirse y revivir a un aliado inconsciente.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 635.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 635.39 Td (Habilidades del héroe: primero las activas, después las pasivas.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 616.89 Td (Panel de acciones que solo muestra lo que se puede hacer en ese momento.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 599.89 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 531.89 Td (Fase 6 · Terreno y enemigos más listos) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 525.89 m 545.28 525.89 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 510.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 510.39 Td (Cobertura, terreno difícil y peligroso, línea de visión más fina.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 491.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 491.89 Td (Ambush \(D3 rondas después, a 6 pulgadas de un Objetivo de IA\) y Scout.) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 473.39 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 473.39 Td (Sorpresas por oleada \(unidad con Ambush; Caster que da +1 a los Borrados\).) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 454.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 454.89 Td (Objetivos de IA: la IA protege los marcadores en vez de ir siempre al héroe más cercano.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 436.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 436.39 Td (Cohesión por miniatura, si hace falta.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 419.39 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 351.39 Td (Fase 7 · Magia) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 345.39 m 545.28 345.39 l S
-BT /F3 9 Tf 0.55 0.56 0.6 rg 50.00 330.39 Td (Va antes del jefe porque el Heraldo lanza hechizos.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 315.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 315.89 Td (Caster de los héroes: fichas de hechizo, poder, alcance y tirada.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 297.39 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 297.39 Td (Caster de la IA: elige un hechizo al azar y gasta todas sus fichas.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 280.39 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 212.39 Td (Fase 8 · Pelea de jefe \(opcional\)) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 206.39 m 545.28 206.39 l S
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 190.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 190.89 Td (Se activa tras los dos objetivos; al final de esa ronda llega una oleada de doble valor y no entran más) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 178.39 Td (refuerzos.) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 159.89 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 159.89 Td (Heraldo del Umbral: Tough según dificultad, Fear, Stealth, hoz AP\(2\) Rending; hechizos Olvido,) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 147.39 Td (Borrado y Silencio.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 128.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 128.89 Td (No queda Aturdido con Tough 9+; cada moral fallida le hace D3 heridas.) Tj ET
-BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 110.39 Td ([Casa]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 110.39 Td (El Diario del olvidado da AP\(1\) contra él.) Tj ET
-BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 91.89 Td ([Oficial]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 91.89 Td (Final con el Heraldo destruido: +2×D de XP.) Tj ET
-BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 3 de 4) Tj ET
-0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
-endstream
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 682.39 62.00 694.39] /T (c-f4-recuperar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 57 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-f4-mapa) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 663.89 62.00 675.89] /T (c-f4-mapa) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 58 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 77 0 R /Rect [72.00 707.39 545.28 739.39] /T (n-f4) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 74 0 R /Rect [72.00 597.39 545.28 629.39] /T (n-f4) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 59 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 651.39 62.00 663.39] /T (c-f5-generales) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 541.39 62.00 553.39] /T (c-f5-generales) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 60 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 632.89 62.00 644.89] /T (c-f5-habilidades) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 522.89 62.00 534.89] /T (c-f5-habilidades) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 61 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 614.39 62.00 626.39] /T (c-f5-panel) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 504.39 62.00 516.39] /T (c-f5-panel) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 62 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 77 0 R /Rect [72.00 563.89 545.28 595.89] /T (n-f5) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 74 0 R /Rect [72.00 453.89 545.28 485.89] /T (n-f5) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 63 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 507.89 62.00 519.89] /T (c-f6-terreno) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 383.89 62.00 395.89] /T (c-f55-ventana) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 64 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 489.39 62.00 501.39] /T (c-f6-ambush) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 352.89 62.00 364.89] /T (c-f55-uso) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 65 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 470.89 62.00 482.89] /T (c-f6-sorpresas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 321.89 62.00 333.89] /T (c-f55-dotes) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 66 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 452.39 62.00 464.39] /T (c-f6-objia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 303.39 62.00 315.39] /T (c-f55-efectos) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 67 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 433.89 62.00 445.89] /T (c-f6-cohesion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 272.39 62.00 284.39] /T (c-f55-pasivas) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 68 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 77 0 R /Rect [72.00 383.39 545.28 415.39] /T (n-f6) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 241.39 62.00 253.39] /T (c-f55-registro) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 69 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 313.39 62.00 325.39] /T (c-f7-heroes) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 210.39 62.00 222.39] /T (c-f55-scout) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 70 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 294.89 62.00 306.89] /T (c-f7-ia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 179.39 62.00 191.39] /T (c-f55-descr) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 71 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 77 0 R /Rect [72.00 244.39 545.28 276.39] /T (n-f7) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 148.39 62.00 160.39] /T (c-f55-zonas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 72 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 188.39 62.00 200.39] /T (c-f8-activar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 117.39 62.00 129.39] /T (c-f55-fichas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 73 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 157.39 62.00 169.39] /T (c-f8-heraldo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 74 0 R /Rect [50.00 86.39 62.00 98.39] /T (c-f55-hechizos) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 74 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 126.39 62.00 138.39] /T (c-f8-tough9) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 52 0 R /Annots [53 0 R 54 0 R 55 0 R 56 0 R 57 0 R 58 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R 73 0 R] >>
 endobj
 75 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 107.89 62.00 119.89] /T (c-f8-diario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
-endobj
-76 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 77 0 R /Rect [50.00 89.39 62.00 101.39] /T (c-f8-final) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
-endobj
-77 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 56 0 R /Annots [57 0 R 58 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R 73 0 R 74 0 R 75 0 R 76 0 R] >>
-endobj
-78 0 obj
-<<  /Length 1061 >>
+<<  /Length 4447 >>
 stream
-BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 775.89 Td (Hecha cuando: HITO: la Misión 1 completa, con jefe.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 761.89 Td (Notas:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 693.89 Td (Fase 9 · Pulido) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 687.89 m 545.28 687.89 l S
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.39 Td (Equilibrio: probar las 4 dificultades y el Tough del Heraldo.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 653.89 Td (Narración de cada ronda dentro del tablero.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 635.39 Td (Parte artística \(mapa, fichas, sonido\), móvil y táctil.) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 616.89 Td (Decidir si el tablero virtual sustituye a la mesa o conviven.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 599.89 Td (Notas:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Reglas de raza sin aplicar: despliegue \(Scout, Ambush, Union Assault...\), ataques extra \(Crazed, Primal, Royal) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (Warrior\), Ravage, Hostigador, Etéreo, Equipo exótico y similares que se eligen al activarse.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 745.39 Td (Monturas: los goblins en lobo llevan una montura de araña cuya regla es Scout \(un solo uso al desplegarse, no) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 732.89 Td (cambia el movimiento\). Aplicado: la IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 715.89 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 647.89 Td (Fase 6 · Terreno y enemigos más listos) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 641.89 m 545.28 641.89 l S
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 626.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 626.39 Td (Cobertura, terreno difícil y peligroso, línea de visión más fina.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 607.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 607.89 Td (Ambush \(D3 rondas después, a 6 pulgadas de un Objetivo de IA\) y Scout.) Tj ET
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 589.39 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 589.39 Td (Sorpresas por oleada \(unidad con Ambush; Caster que da +1 a los Borrados\).) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 570.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 570.89 Td (Objetivos de IA: la IA protege los marcadores en vez de ir siempre al héroe más cercano.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 552.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 552.39 Td (Cohesión por miniatura, si hace falta.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 535.39 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 467.39 Td (Fase 7 · Magia) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 461.39 m 545.28 461.39 l S
+BT /F3 9 Tf 0.55 0.56 0.6 rg 50.00 446.39 Td (Va antes del jefe porque el Heraldo lanza hechizos.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 431.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 431.89 Td (Caster de los héroes: fichas de hechizo, poder, alcance y tirada.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 413.39 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 413.39 Td (Caster de la IA: elige un hechizo al azar y gasta todas sus fichas.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 396.39 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 328.39 Td (Fase 8 · Pelea de jefe \(opcional\)) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 322.39 m 545.28 322.39 l S
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 306.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 306.89 Td (Se activa tras los dos objetivos; al final de esa ronda llega una oleada de doble valor y no entran más) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 294.39 Td (refuerzos.) Tj ET
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 275.89 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 275.89 Td (Heraldo del Umbral: Tough según dificultad, Fear, Stealth, hoz AP\(2\) Rending; hechizos Olvido,) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 263.39 Td (Borrado y Silencio.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 244.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 244.89 Td (No queda Aturdido con Tough 9+; cada moral fallida le hace D3 heridas.) Tj ET
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 226.39 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 226.39 Td (El Diario del olvidado da AP\(1\) contra él.) Tj ET
+BT /F2 9.5 Tf 0.16 0.36 0.66 rg 72.00 207.89 Td ([Oficial]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 110.57 207.89 Td (Final con el Heraldo destruido: +2×D de XP.) Tj ET
+BT /F2 9 Tf 0.72 0.56 0.25 rg 72.00 188.89 Td (Hecha cuando: HITO: la Misión 1 completa, con jefe.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 174.89 Td (Notas:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 106.89 Td (Fase 9 · Pulido) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 100.89 m 545.28 100.89 l S
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 85.39 Td (Equilibrio: probar las 4 dificultades y el Tough del Heraldo.) Tj ET
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 4 de 4) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 4 de 5) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
+76 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-f55-resto) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+77 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 742.89 62.00 754.89] /T (c-f55-monturas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+78 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 95 0 R /Rect [72.00 679.89 545.28 711.89] /T (n-f55) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
 79 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 85 0 R /Rect [72.00 725.89 545.28 757.89] /T (n-f8) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 623.89 62.00 635.89] /T (c-f6-terreno) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 80 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 85 0 R /Rect [50.00 669.89 62.00 681.89] /T (c-f9-equilibrio) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 605.39 62.00 617.39] /T (c-f6-ambush) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 81 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 85 0 R /Rect [50.00 651.39 62.00 663.39] /T (c-f9-narracion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 586.89 62.00 598.89] /T (c-f6-sorpresas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 82 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 85 0 R /Rect [50.00 632.89 62.00 644.89] /T (c-f9-arte) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 568.39 62.00 580.39] /T (c-f6-objia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 83 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 85 0 R /Rect [50.00 614.39 62.00 626.39] /T (c-f9-mesa) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 549.89 62.00 561.89] /T (c-f6-cohesion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 84 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 85 0 R /Rect [72.00 563.89 545.28 595.89] /T (n-f9) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 95 0 R /Rect [72.00 499.39 545.28 531.39] /T (n-f6) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 85 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 78 0 R /Annots [79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R] >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 429.39 62.00 441.39] /T (c-f7-heroes) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 86 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 410.89 62.00 422.89] /T (c-f7-ia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+87 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 95 0 R /Rect [72.00 360.39 545.28 392.39] /T (n-f7) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+88 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 304.39 62.00 316.39] /T (c-f8-activar) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+89 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 273.39 62.00 285.39] /T (c-f8-heraldo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+90 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 242.39 62.00 254.39] /T (c-f8-tough9) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+91 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 223.89 62.00 235.89] /T (c-f8-diario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+92 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 205.39 62.00 217.39] /T (c-f8-final) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+93 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 95 0 R /Rect [72.00 138.89 545.28 170.89] /T (n-f8) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+94 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 95 0 R /Rect [50.00 82.89 62.00 94.89] /T (c-f9-equilibrio) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+95 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 75 0 R /Annots [76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R 87 0 R 88 0 R 89 0 R 90 0 R 91 0 R 92 0 R 93 0 R 94 0 R] >>
+endobj
+96 0 obj
+<<  /Length 652 >>
+stream
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Narración de cada ronda dentro del tablero.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 757.89 Td (Parte artística \(mapa, fichas, sonido\), móvil y táctil.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 739.39 Td (Decidir si el tablero virtual sustituye a la mesa o conviven.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 722.39 Td (Notas:) Tj ET
+BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Hoja de ruta del tablero virtual · Documento vivo: se sigue trabajando en él · Actualizado 20/11/2026) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 5 de 5) Tj ET
+0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
+endstream
+endobj
+97 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 101 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-f9-narracion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+98 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 101 0 R /Rect [50.00 755.39 62.00 767.39] /T (c-f9-arte) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+99 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 101 0 R /Rect [50.00 736.89 62.00 748.89] /T (c-f9-mesa) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+100 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 101 0 R /Rect [72.00 686.39 545.28 718.39] /T (n-f9) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+101 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 96 0 R /Annots [97 0 R 98 0 R 99 0 R 100 0 R] >>
+endobj
+102 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
 endobj
 xref
-0 87
+0 103
 0000000000 65535 f 
 0000000015 00000 n 
 0000000080 00000 n 
-0000000159 00000 n 
-0000000715 00000 n 
-0000000911 00000 n 
-0000000931 00000 n 
-0000000951 00000 n 
-0000000971 00000 n 
-0000000991 00000 n 
-0000001011 00000 n 
-0000001109 00000 n 
-0000001212 00000 n 
-0000001318 00000 n 
-0000001392 00000 n 
-0000001539 00000 n 
-0000001782 00000 n 
-0000008308 00000 n 
-0000008563 00000 n 
-0000008820 00000 n 
-0000009074 00000 n 
-0000009330 00000 n 
-0000009586 00000 n 
-0000009844 00000 n 
-0000010099 00000 n 
-0000010306 00000 n 
-0000010561 00000 n 
-0000010813 00000 n 
-0000011069 00000 n 
-0000011327 00000 n 
-0000011584 00000 n 
-0000011842 00000 n 
-0000012100 00000 n 
-0000012360 00000 n 
-0000012639 00000 n 
-0000017044 00000 n 
-0000017252 00000 n 
-0000017513 00000 n 
-0000017773 00000 n 
-0000018032 00000 n 
-0000018289 00000 n 
-0000018548 00000 n 
-0000018755 00000 n 
-0000019012 00000 n 
-0000019268 00000 n 
-0000019525 00000 n 
-0000019780 00000 n 
-0000019987 00000 n 
-0000020246 00000 n 
-0000020501 00000 n 
-0000020757 00000 n 
-0000020964 00000 n 
-0000021222 00000 n 
-0000021480 00000 n 
-0000021731 00000 n 
-0000021989 00000 n 
-0000022296 00000 n 
-0000026708 00000 n 
-0000026963 00000 n 
-0000027170 00000 n 
-0000027430 00000 n 
-0000027692 00000 n 
-0000027948 00000 n 
-0000028155 00000 n 
-0000028413 00000 n 
-0000028670 00000 n 
-0000028930 00000 n 
-0000029186 00000 n 
-0000029445 00000 n 
-0000029652 00000 n 
-0000029909 00000 n 
-0000030162 00000 n 
-0000030369 00000 n 
-0000030627 00000 n 
-0000030885 00000 n 
-0000031142 00000 n 
-0000031399 00000 n 
-0000031654 00000 n 
-0000031961 00000 n 
-0000033076 00000 n 
-0000033283 00000 n 
-0000033544 00000 n 
-0000033804 00000 n 
-0000034059 00000 n 
-0000034314 00000 n 
-0000034521 00000 n 
-0000034730 00000 n 
+0000000167 00000 n 
+0000000823 00000 n 
+0000001019 00000 n 
+0000001039 00000 n 
+0000001059 00000 n 
+0000001079 00000 n 
+0000001099 00000 n 
+0000001119 00000 n 
+0000001217 00000 n 
+0000001320 00000 n 
+0000001426 00000 n 
+0000001500 00000 n 
+0000001647 00000 n 
+0000001890 00000 n 
+0000008723 00000 n 
+0000008978 00000 n 
+0000009235 00000 n 
+0000009489 00000 n 
+0000009745 00000 n 
+0000010001 00000 n 
+0000010259 00000 n 
+0000010514 00000 n 
+0000010721 00000 n 
+0000010976 00000 n 
+0000011228 00000 n 
+0000011484 00000 n 
+0000011742 00000 n 
+0000011999 00000 n 
+0000012257 00000 n 
+0000012515 00000 n 
+0000012773 00000 n 
+0000013052 00000 n 
+0000017466 00000 n 
+0000017674 00000 n 
+0000017933 00000 n 
+0000018191 00000 n 
+0000018448 00000 n 
+0000018705 00000 n 
+0000018962 00000 n 
+0000019169 00000 n 
+0000019426 00000 n 
+0000019682 00000 n 
+0000019939 00000 n 
+0000020194 00000 n 
+0000020401 00000 n 
+0000020660 00000 n 
+0000020915 00000 n 
+0000021171 00000 n 
+0000021378 00000 n 
+0000021657 00000 n 
+0000027943 00000 n 
+0000028201 00000 n 
+0000028459 00000 n 
+0000028712 00000 n 
+0000028972 00000 n 
+0000029227 00000 n 
+0000029434 00000 n 
+0000029694 00000 n 
+0000029954 00000 n 
+0000030210 00000 n 
+0000030417 00000 n 
+0000030674 00000 n 
+0000030927 00000 n 
+0000031182 00000 n 
+0000031439 00000 n 
+0000031696 00000 n 
+0000031954 00000 n 
+0000032209 00000 n 
+0000032466 00000 n 
+0000032723 00000 n 
+0000032981 00000 n 
+0000033239 00000 n 
+0000033553 00000 n 
+0000038054 00000 n 
+0000038311 00000 n 
+0000038571 00000 n 
+0000038779 00000 n 
+0000039037 00000 n 
+0000039294 00000 n 
+0000039554 00000 n 
+0000039810 00000 n 
+0000040069 00000 n 
+0000040276 00000 n 
+0000040533 00000 n 
+0000040786 00000 n 
+0000040993 00000 n 
+0000041251 00000 n 
+0000041509 00000 n 
+0000041766 00000 n 
+0000042023 00000 n 
+0000042279 00000 n 
+0000042486 00000 n 
+0000042745 00000 n 
+0000043045 00000 n 
+0000043750 00000 n 
+0000044011 00000 n 
+0000044267 00000 n 
+0000044523 00000 n 
+0000044732 00000 n 
+0000044929 00000 n 
 trailer
-<< /Size 87 /Root 1 0 R /Info 4 0 R >>
+<< /Size 103 /Root 1 0 R /Info 4 0 R >>
 startxref
-34828
+45028
 %%EOF

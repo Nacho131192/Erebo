@@ -108,8 +108,8 @@
         {
           "id": "f05-cobertura",
           "tag": "Oficial",
-          "done": false,
-          "text": "Cobertura: +1 a la defensa contra disparos detrás de casas o dentro de terreno de cobertura (pasa a la fase 6 si no se hace antes)."
+          "done": true,
+          "text": "Cobertura: las casas cortan la línea de visión (no se dispara detrás); el terreno bajo (el pozo, y lo que se añada: muros, arbustos) da +1 a la defensa contra disparos y se puede disparar a través. Blast la ignora [Casa]."
         }
       ],
       "done_when": "Héroes e IA disparan con sus armas reales y los dados salen como dice la norma.",
@@ -118,36 +118,36 @@
     {
       "id": "f1",
       "title": "Fase 1 · Objetivo principal: los tres rastros",
-      "goal": "",
+      "goal": "Hecho el 20-11-2026 salvo el efecto del diario, que espera a la pelea de jefe.",
       "items": [
         {
           "id": "f1-marcadores",
           "tag": "Oficial",
-          "done": false,
-          "text": "Colocar los 3 marcadores en el mapa."
+          "done": true,
+          "text": "Colocar los 3 rastros como braseros: un cuadrante distinto cada uno, pegados a una casa, al azar en cada partida; no estorban al moverse ni al disparar."
         },
         {
           "id": "f1-descubrir",
           "tag": "Oficial",
-          "done": false,
-          "text": "Acción Descubrir para retirar un marcador."
+          "done": true,
+          "text": "Acción «Recuperar rastro» (habilidad): a 1 pulgada de un rastro, tirada de Voluntad (2 de poder para superarla); el brasero se enciende."
         },
         {
           "id": "f1-sinatajo",
           "tag": "Casa",
-          "done": false,
+          "done": true,
           "text": "El principal solo se cumple al retirar los 3 (sin la tirada de 5+)."
         },
         {
           "id": "f1-diario",
           "tag": "Casa",
           "done": false,
-          "text": "Diario del olvidado: lo lleva quien retira el último; AP(1) contra el Heraldo."
+          "text": "Diario del olvidado: lo lleva quien retira el último (ya se anota y se avisa); falta el AP(1) contra el Heraldo, que va con la pelea de jefe."
         },
         {
           "id": "f1-contador",
           "tag": "",
-          "done": false,
+          "done": true,
           "text": "Contador «Rastros n/3» en el panel y en el registro."
         }
       ],
@@ -267,14 +267,101 @@
         {
           "id": "f5-habilidades",
           "tag": "Oficial",
-          "done": false,
-          "text": "Habilidades del héroe: primero las activas, después las pasivas."
+          "done": true,
+          "text": "Habilidades del héroe: se usan desde el panel y las ventanas (ver la fase 5.5)."
         },
         {
           "id": "f5-panel",
           "tag": "",
           "done": false,
           "text": "Panel de acciones que solo muestra lo que se puede hacer en ese momento."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f55",
+      "title": "Fase 5.5 · Reglas y habilidades de héroes y enemigos",
+      "goal": "Catálogo en español e inglés, ventanita al pulsar, uso de las habilidades y reglas pasivas en el combate.",
+      "items": [
+        {
+          "id": "f55-ventana",
+          "tag": "",
+          "done": true,
+          "text": "Ventana al pulsar una regla o habilidad (héroes, enemigos y reglas de armas): qué significa y si el tablero la aplica sola."
+        },
+        {
+          "id": "f55-uso",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Usar habilidades de héroe: tirada de su característica (1 de poder si falla), objetivos a su alcance, poder X, y la pestaña se resalta mientras el efecto está activo."
+        },
+        {
+          "id": "f55-dotes",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Dotes de clase: una vez por partida, al activarse, sin acción ni tirada."
+        },
+        {
+          "id": "f55-efectos",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Efectos de las habilidades: bonos y penalizadores, impactos y heridas extra, curas, poder, empujar y atraer, moral de enemigos, colocarse, cargar o disparar al instante y acciones encadenadas."
+        },
+        {
+          "id": "f55-pasivas",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Reglas pasivas: Ferocious, Mischievous, Dodge, Parry, Brace, Deadly, Wild Veil, Guardian, Sturdy, Runner y otras 40, tanto para enemigos como para héroes (los del creador, en español)."
+        },
+        {
+          "id": "f55-registro",
+          "tag": "",
+          "done": true,
+          "text": "Registro de actividad: los nombres de habilidades, dotes y reglas salen subrayados y al pulsarlos se abre su ventana."
+        },
+        {
+          "id": "f55-scout",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Scout: un solo uso al desplegarse (hasta 9″), la IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2; héroes con Scout, hasta 19″ de su esquina."
+        },
+        {
+          "id": "f55-descr",
+          "tag": "",
+          "done": false,
+          "text": "Descripciones que faltan: Instinctive, Hero, Caster Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal."
+        },
+        {
+          "id": "f55-zonas",
+          "tag": "",
+          "done": false,
+          "text": "Zonas y marcadores temporales (terreno difícil, peligroso o de cobertura, señuelos, imagen especular): 14 habilidades se resuelven a mano."
+        },
+        {
+          "id": "f55-fichas",
+          "tag": "",
+          "done": false,
+          "text": "Habilidades de fichas de búsqueda (Inspeccionar, Pájaro rastreador, Visión mental, Juego de manos): esperan a la fase 2."
+        },
+        {
+          "id": "f55-hechizos",
+          "tag": "",
+          "done": false,
+          "text": "Habilidades de hechizos (unas 20): esperan a la fase 7."
+        },
+        {
+          "id": "f55-resto",
+          "tag": "",
+          "done": false,
+          "text": "Reglas de raza sin aplicar: despliegue (Scout, Ambush, Union Assault…), ataques extra (Crazed, Primal, Royal Warrior), Ravage, Hostigador, Etéreo, Equipo exótico y similares que se eligen al activarse."
+        },
+        {
+          "id": "f55-monturas",
+          "tag": "",
+          "done": false,
+          "text": "Monturas: los goblins en lobo llevan una montura de araña cuya regla es Scout (un solo uso al desplegarse, no cambia el movimiento). Aplicado: la IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2."
         }
       ],
       "done_when": "",

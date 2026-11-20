@@ -1706,6 +1706,67 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-accp i.ex{border-style:dashed;border-color:#b79cff}.tv-accp i.ex.f{background:linear-gradient(180deg,#d9c9ff,#8a6ad8);box-shadow:0 0 6px rgba(180,150,255,.45)}
 .tv-hc.done .tv-acc b{color:var(--mu)}
 
+/* rastros del pueblo (braseros) y cobertura */
+.tv-trk{pointer-events:none}
+.tv-trkr{fill:none;stroke:rgba(236,140,69,.0);stroke-width:1.2;stroke-dasharray:4 4}
+.tv-trk.near .tv-trkr{stroke:rgba(255,196,110,.85);animation:tvtrk 1.4s ease-in-out infinite}
+.tv-trk.on .tv-trkr{display:none}
+.tv-trkn{font:700 11px "Cinzel",serif;text-anchor:middle;fill:#8f9abb}.tv-trk.on .tv-trkn{fill:#f3dc9a}
+.tv-fl{transform-box:fill-box;transform-origin:50% 100%;animation:tvfl 1.5s ease-in-out infinite}.tv-fl.f2{animation-duration:1.1s}
+@keyframes tvfl{0%,100%{transform:scaleY(1) skewX(0)}35%{transform:scaleY(1.12) skewX(-4deg)}70%{transform:scaleY(.94) skewX(4deg)}}
+@keyframes tvtrk{0%,100%{opacity:.45}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.tv-fl,.tv-trk.near .tv-trkr{animation:none}}
+.tv-well text.sm{font-size:10px;opacity:.65;letter-spacing:.06em}
+.tv-act.obj{grid-column:1/-1}.tv-act.obj b{color:#ffcf8a}
+.tv-rk b{color:#ffcf8a}.tv-rk.ok b{color:#9be28f}
+.tv-trkb{margin:0 0 10px;padding:9px 12px;border-radius:12px;background:rgba(236,140,69,.09);border:1px solid rgba(236,140,69,.35)}
+.tv-trkb small{display:block;color:var(--mu);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tv-trkb b{display:block;color:#ffcf8a;font-weight:600}.tv-trkb span{display:block;margin-top:2px;font-size:12px;color:var(--mu)}
+.tv-trkb.ok{background:rgba(120,200,120,.09);border-color:rgba(130,210,130,.4)}.tv-trkb.ok b{color:#a9e8a0}
+
+/* «Recuperar rastro» destaca cuando se puede usar: borde y brillo dorado que respira */
+.tv-act.obj:not(:disabled){border-color:#ffcf8a;background:linear-gradient(180deg,rgba(255,207,138,.2),rgba(236,140,69,.1));animation:tvglow 1.7s ease-in-out infinite;position:relative}
+.tv-act.obj:not(:disabled) b{color:#fff3c9;text-shadow:0 0 10px rgba(255,200,120,.8)}
+.tv-act.obj:not(:disabled)::after{content:"Disponible";position:absolute;top:8px;right:10px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1a1206;background:#ffcf8a;border-radius:9px;padding:1px 8px}
+@keyframes tvglow{0%,100%{box-shadow:0 0 0 1px rgba(255,207,138,.55),0 0 10px 1px rgba(255,190,100,.35)}50%{box-shadow:0 0 0 2px rgba(255,220,160,.95),0 0 26px 6px rgba(255,190,100,.7)}}
+@media (prefers-reduced-motion:reduce){.tv-act.obj:not(:disabled){animation:none;box-shadow:0 0 0 2px rgba(255,220,160,.9),0 0 18px 4px rgba(255,190,100,.5)}}
+/* cartel «Objetivo principal cumplido» */
+.tv-prim{position:fixed;inset:0;z-index:95;display:grid;place-items:center;pointer-events:auto;cursor:pointer;background:radial-gradient(60% 60% at 50% 45%,rgba(12,18,38,.55),rgba(5,7,14,.78));animation:tvprim 6.2s both}
+@keyframes tvprim{0%{opacity:0}6%{opacity:1}88%{opacity:1}100%{opacity:0}}
+.tv-primc{max-width:min(460px,88vw);text-align:center;padding:22px 26px 18px;border-radius:20px;background:linear-gradient(180deg,#141c36,#0d1226);border:1.5px solid #d9b86c;box-shadow:0 0 0 6px rgba(217,184,108,.1),0 18px 60px rgba(0,0,0,.6),0 0 60px rgba(255,170,80,.25);animation:tvprimpop .55s cubic-bezier(.2,1.3,.4,1) both}
+@keyframes tvprimpop{0%{transform:scale(.7) translateY(14px)}100%{transform:none}}
+.tv-primi{display:block;margin:-6px auto 2px}.tv-primc h3{margin:2px 0 4px;font:700 24px "Cinzel",serif;color:#f6e2a8;letter-spacing:.03em}
+.tv-primc p{margin:0 0 10px;color:#c3cbe0;font-size:14px}.tv-primc small{display:block;margin-top:10px;color:#7f89a8;font-size:11px}
+.tv-diary{margin-top:6px;padding:11px 13px;border-radius:12px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.45);text-align:left}
+.tv-diary b{display:block;color:#e6dcff;font-size:14px;margin-bottom:3px}.tv-diary span{display:block;color:#c3cbe0;font-size:12.5px;line-height:1.45}
+@media (prefers-reduced-motion:reduce){.tv-prim,.tv-primc{animation:none}}
+
+/* reglas y habilidades: etiquetas pulsables y su ventana */
+.tv-rchips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px}
+.tv-rchip{font:600 12.5px/1 Inter,system-ui,sans-serif;color:var(--gold2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;transition:border-color .15s,background .15s}
+.tv-rchip:hover{border-color:var(--gold2);background:rgba(217,184,108,.12)}
+.tv-rchip.on{color:#1a1206;background:linear-gradient(180deg,#ffe3a6,#e0a94d);border-color:#fff0c4;box-shadow:0 0 14px rgba(255,200,110,.55)}
+.tv-rchip i{font-style:normal;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;margin-left:7px;padding:2px 6px;border-radius:8px;background:rgba(26,18,6,.2)}
+.tv-rveil{position:absolute;inset:0;z-index:50;display:grid;place-items:center;padding:16px}
+.tv-rscrim{position:absolute;inset:0;background:rgba(3,4,9,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);cursor:pointer}
+.tv-rmod{position:relative;width:min(520px,100%);max-height:88vh;overflow-y:auto;padding:20px 22px;border-radius:20px;border:1px solid rgba(217,184,108,.7);background:#0d1426;box-shadow:0 30px 70px rgba(0,0,0,.75)}
+.tv-rmod header{position:relative;padding-right:34px}.tv-rmod .tv-ix{position:absolute;top:-4px;right:-6px}
+.tv-rtext{margin:12px 0 8px;font-size:15px;line-height:1.55;color:var(--ink)}.tv-rtext.none{color:#f0c78a;font-size:13.5px}
+.tv-st{display:inline-block;margin:4px 0 8px;font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--mu)}.tv-st.ok{background:rgba(120,200,120,.14);color:#a9e8a0}
+
+/* uso de habilidades: avisos y efectos activos */
+.tv-note{margin:8px 0;padding:9px 12px;border-radius:10px;background:rgba(240,199,138,.1);border:1px solid rgba(240,199,138,.35);color:#f0d9b0;font-size:13px;line-height:1.5}
+.tv-sub.why{color:#f0b3b3}
+.tv-rchip[disabled]{opacity:.4;cursor:not-allowed}
+.tv-fxr{display:flex;flex-wrap:wrap;gap:4px;margin:5px 4px 0}
+.tv-fxp{font-style:normal;font-size:10.5px;font-weight:600;letter-spacing:.02em;color:#1a1206;background:linear-gradient(180deg,#ffe3a6,#d9a24c);border-radius:999px;padding:2px 9px;box-shadow:0 0 8px rgba(255,200,110,.4)}
+
+.tv-rchip.sm{padding:3px 9px;font-size:11px;margin:1px 2px 1px 0}
+.tv-wt td .tv-rchip{display:inline-block}
+/* nombres de habilidades y reglas en el registro: subrayados y pulsables */
+.tv-lk{all:unset;cursor:pointer;color:var(--gold2);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.tv-lk:hover,.tv-lk:focus-visible{color:#fff;text-decoration-style:solid}
+
 </style>
 
 <div class="view camp" id="camp"></div>
@@ -3197,7 +3258,7 @@ function open(){
   ST.openF=new Set([0]);
   openWin();
 }
-return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext};
+return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG};
 })();
 
 /* ============================================================================================
@@ -3231,11 +3292,11 @@ const SPREAD=[[0,0],[30,10],[-26,22],[8,-30],[-24,-24],[30,-22],[-32,-4],[20,30]
 
 /* ---------------------------------------------------------------- estado */
 const G0=()=>({v:1,phase:"setup",d:1,hsel:null,ptsOv:0,round:0,al:1,nref:0,needEv:true,hc:0,hcRoll:0,
- units:[],heroes:[],ev:null,mod:null,log:[],seq:1,cur:-1,act:null,last:null,over:"",aiDone:[],endInfo:null});
+ units:[],heroes:[],ev:null,mod:null,log:[],seq:1,cur:-1,act:null,last:null,over:"",aiDone:[],endInfo:null,tracks:[],prim:false,diary:""});
 function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&j.v===1)return Object.assign(G0(),j)}catch(e){}return G0()}
 let G=load();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(G))}catch(e){}}
-const U={open:false,sel:"",dest:null,drag:null,busy:false,sure:false,obs:false,tab:"log",info:"",dice:null,confirm:false,hinfo:null,evfx:null};
+const U={open:false,sel:"",dest:null,drag:null,busy:false,sure:false,obs:false,tab:"log",info:"",dice:null,confirm:false,hinfo:null,evfx:null,wilAsk:null,prim:null,rinfo:null};
 
 /* ---------------------------------------------------------------- reglas y perfiles */
 function splitTop(s){const o=[];let d=0,b="";for(const c of String(s||"")){if(c==="(")d++;else if(c===")")d=Math.max(0,d-1);if(c===","&&!d){if(b.trim())o.push(b.trim());b=""}else b+=c}if(b.trim())o.push(b.trim());return o}
@@ -3265,7 +3326,39 @@ const wsel=(a,A)=>{const mw=a.ws.filter(isMelee);return mw.length?mw[Math.min((A
 
 /* Héroe de la partida → su ficha en HS (por nombre, por si se borró o reordenó alguno). */
 function heroOf(gh){let h=HS[gh.hi];if(!h||h.name!==gh.n){const i=HS.findIndex(x=>x.name===gh.n);if(i>=0){gh.hi=i;h=HS[i]}else h=null}return h}
-const hRules=h=>(h.sk||[]).filter(s=>s.g==="regla").map(s=>s.n).join(", ");
+/* ---------------------------------------------------------------- catálogo de reglas y habilidades
+   Un solo catálogo para héroes y enemigos, en español e inglés (las unidades de Army Forge traen los nombres en inglés y los héroes
+   del creador en español). Habilidades de clase, comunes y dotes: docs/age-of-fantasy-quest-heroes.md (tools/extraer-habilidades.py →
+   habilidades-base.json). Reglas especiales: el resumen del creador (HC.rg, consultado en Army Forge) y RX, que completa las del
+   reglamento (Core Rules v2.1.0) que aquel no trae. Lo que no está en ninguna parte se dice sin inventarlo. */
+const SKD={"skills":[{"n":"Furia","en":"Rage","a":"Fuerza","e":"El Héroe sufre 1 herida y obtiene +2 para impactar cuerpo a cuerpo al cargar, hasta el final de la ronda.","cls":"Bárbaro","tier":0},{"n":"Temerario","en":"Reckless","a":"Destreza","e":"Hasta el final de la ronda, siempre que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos una herida, causa una herida adicional; pero siempre que sufra al menos una herida, sufre una herida adicional.","cls":"Bárbaro","tier":0},{"n":"Desafío","en":"Challenge","a":"Voluntad","e":"Elige dos unidades enemigas a 12\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son atraídas hasta 6\" directamente hacia el Héroe.","cls":"Bárbaro","tier":0},{"n":"Frenesí de sangre","en":"Blood Frenzy","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos una herida cuerpo a cuerpo, causa dos heridas adicionales, pero sufre una herida.","cls":"Bárbaro","tier":1},{"n":"Instinto salvaje","en":"Feral Instinct","a":"Destreza","e":"Hasta el final de la ronda, los enemigos obtienen -1 para impactar al atacar al Héroe cuerpo a cuerpo o al dispararle desde 12\" o menos.","cls":"Bárbaro","tier":1},{"n":"Golpe certero","en":"Aimed Strike","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.","cls":"Bárbaro","tier":1},{"n":"Intimidante","en":"Intimidating","a":"Fuerza","e":"Elige dos unidades enemigas a 3\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.","cls":"Bárbaro","tier":2},{"n":"Despiadado","en":"Vicious","a":"Destreza","e":"Hasta el final de la ronda, siempre que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional; pero siempre que reciba al menos un impacto, recibe un impacto adicional.","cls":"Bárbaro","tier":2},{"n":"Ataque aturdido","en":"Dazed Attack","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa dos impactos adicionales, pero sufre una herida.","cls":"Bárbaro","tier":2},{"n":"Brutal","en":"Brutal","a":"Fuerza","e":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.","cls":"Bárbaro","tier":3},{"n":"Grito furioso","en":"Furious Shout","a":"Destreza","e":"Elige dos unidades enemigas a 3\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son empujadas 6\" directamente en dirección contraria.","cls":"Bárbaro","tier":3},{"n":"Endurecerse","en":"Toughen Up","a":"Voluntad","e":"El Héroe sufre 1 herida, y hasta el final de la ronda obtiene +2 en las tiradas de Def cuerpo a cuerpo o cuando le disparen desde 12\" o menos.","cls":"Bárbaro","tier":3},{"n":"Melodía distractora","en":"Distracting Tune","a":"Fuerza","e":"Elige una unidad enemiga a 9\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 en las tiradas de Defensa la próxima vez que sea atacada.","cls":"Bardo","tier":0},{"n":"Inspirar","en":"Inspire","a":"Destreza","e":"Elige otras dos unidades aliadas a 9\" o menos, que obtienen +1 en su próxima tirada de atributo cada una.","cls":"Bardo","tier":0},{"n":"Canción de salud","en":"Song of Health","a":"Voluntad","e":"Elige otros dos héroes aliados a 9\" o menos, que recuperan 1 herida cada uno.","cls":"Bardo","tier":0},{"n":"Canción repulsora","en":"Repelling Song","a":"Fuerza","e":"Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son empujadas 6\" directamente en dirección contraria.","cls":"Bardo","tier":1},{"n":"Melodía curativa","en":"Curing Melody","a":"Destreza","e":"Elige otras dos unidades aliadas a 9\" o menos, que pierden un estado cada una.","cls":"Bardo","tier":1},{"n":"Persuadir","en":"Persuade","a":"Voluntad","e":"Elige una unidad enemiga a 12\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 para impactar hasta el final de la ronda.","cls":"Bardo","tier":1},{"n":"Motivar","en":"Motivate","a":"Fuerza","e":"Elige otra unidad aliada a 9\" o menos, que obtiene +2 en las tiradas para impactar la próxima vez que ataque.","cls":"Bardo","tier":2},{"n":"Canción del miedo","en":"Song of Fear","a":"Destreza","e":"Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.","cls":"Bardo","tier":2},{"n":"Encantar","en":"Charm","a":"Voluntad","e":"Elige una unidad enemiga a 6\" o menos, que no puede elegir al Héroe como objetivo hasta el final de la ronda.","cls":"Bardo","tier":2},{"n":"Canción del descanso","en":"Song of Rest","a":"Fuerza","e":"Elige otros dos héroes aliados a 9\" o menos, que recuperan 1 de Poder cada uno.","cls":"Bardo","tier":3},{"n":"Burla","en":"Mockery","a":"Destreza","e":"Elige dos unidades enemigas a 9\" o menos, que obtienen -1 en su próxima tirada de atributo cada una.","cls":"Bardo","tier":3},{"n":"Canción protectora","en":"Warding Song","a":"Voluntad","e":"Elige otra unidad aliada a 9\" o menos, que obtiene +2 en las tiradas de Def la próxima vez que reciba impactos.","cls":"Bardo","tier":3},{"n":"Pacto de fuerza","en":"Pact of Strength","a":"Fuerza","e":"El Héroe sufre 1 herida, y el próximo hechizo que lance antes del final de la ronda obtiene PA(+2).","cls":"Brujo","tier":0},{"n":"Respiro diabólico","en":"Fiendish Respite","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, recupera D3+1 de Poder.","cls":"Brujo","tier":0},{"n":"Protección oscura","en":"Dark Warding","a":"Voluntad","e":"El Héroe sufre 1 herida y obtiene +2 en las tiradas de Defensa hasta el final de la ronda.","cls":"Brujo","tier":0},{"n":"Sacrificio oscuro","en":"Dark Sacrifice","a":"Fuerza","e":"El Héroe sufre 1 herida y después causa 1 herida a una unidad enemiga a 6\" o menos.","cls":"Brujo","tier":1},{"n":"Maldición feérica","en":"Fey Curse","a":"Destreza","e":"Elige una unidad enemiga a 12\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 para impactar hasta el final de la ronda.","cls":"Brujo","tier":1},{"n":"Pacto de sabiduría","en":"Pact of Wisdom","a":"Voluntad","e":"El Héroe sufre 1 herida, y hasta el final de la ronda obtiene +1 en las tiradas de lanzamiento de hechizos; además, si gasta fichas para modificar tiradas de lanzamiento enemigas, el enemigo obtiene un -1 adicional.","cls":"Brujo","tier":1},{"n":"Truco diabólico","en":"Fiendish Cantrip","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, obtiene una ficha de hechizo y pierde 1 de Poder.","cls":"Brujo","tier":2},{"n":"Transferencia oscura","en":"Dark Transfer","a":"Destreza","e":"El Héroe sufre 1 herida, y otro Héroe a 3\" o menos recupera D3+1 heridas.","cls":"Brujo","tier":2},{"n":"Susurros feéricos","en":"Fey Whispers","a":"Voluntad","e":"Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.","cls":"Brujo","tier":2},{"n":"Dominación feérica","en":"Fey Domination","a":"Fuerza","e":"Elige una unidad enemiga a 6\" o menos, que no puede elegir al Héroe como objetivo hasta el final de la ronda.","cls":"Brujo","tier":3},{"n":"Pacto de habilidad","en":"Pact of Skill","a":"Destreza","e":"El Héroe sufre D3 heridas, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo enemigo adicional.","cls":"Brujo","tier":3},{"n":"Bendición diabólica","en":"Fiendish Blessing","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, recupera D3 heridas.","cls":"Brujo","tier":3},{"n":"Guía","en":"Guidance","a":"Fuerza","e":"Elige otras dos unidades aliadas a 6\" o menos, que obtienen +1 en su próxima tirada de atributo cada una.","cls":"Clérigo","tier":0},{"n":"Escudo de fe","en":"Shield of Faith","a":"Destreza","e":"Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas de Def la próxima vez que reciba impactos.","cls":"Clérigo","tier":0},{"n":"Palabra sanadora","en":"Healing Word","a":"Voluntad","e":"Elige dos héroes aliados a 6\" o menos, que recuperan 1 herida cada uno.","cls":"Clérigo","tier":0},{"n":"Golpe divino","en":"Divine Strike","a":"Fuerza","e":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.","cls":"Clérigo","tier":1},{"n":"Curar heridas","en":"Cure Wounds","a":"Destreza","e":"Elige otro Héroe aliado a 3\" o menos, que pierde todos sus estados.","cls":"Clérigo","tier":1},{"n":"Multiplicar","en":"Multiply","a":"Voluntad","e":"Coloca un marcador de multiplicación a 3\" o menos. Los enemigos tratan el marcador como un Héroe hasta el final de la ronda. Retira el marcador si un enemigo lo ataca o se mueve a 1\" o menos de él.","cls":"Clérigo","tier":1},{"n":"Protección sagrada","en":"Holy Protection","a":"Fuerza","e":"Elige una unidad aliada a 6\" o menos, que no puede ser elegida como objetivo por los enemigos hasta el final de la ronda.","cls":"Clérigo","tier":2},{"n":"Bendecir","en":"Bless","a":"Destreza","e":"Elige otra unidad aliada a 6\" o menos, que obtiene +1 para impactar hasta el final de la ronda.","cls":"Clérigo","tier":2},{"n":"Espíritus guardianes","en":"Spirit Guardians","a":"Voluntad","e":"Coloca un marcador de espíritus guardianes a 6\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.","cls":"Clérigo","tier":2},{"n":"Perdición","en":"Bane","a":"Fuerza","e":"Elige una unidad enemiga a 12\" o menos, que obtiene -1 para impactar hasta el final de la ronda.","cls":"Clérigo","tier":3},{"n":"Proyectil guía","en":"Guiding Bolt","a":"Destreza","e":"Elige una unidad enemiga a 6\" o menos. Todas las unidades aliadas obtienen +1 para impactarla hasta el final de la ronda.","cls":"Clérigo","tier":3},{"n":"Reanimación opulenta","en":"Opulent Revival","a":"Voluntad","e":"Reanima a todos los héroes inconscientes a 6\" o menos, que recuperan D3 heridas cada uno.","cls":"Clérigo","tier":3},{"n":"Látigo de espinas","en":"Thorn Whip","a":"Fuerza","e":"Elige una unidad enemiga a 9\" o menos, que sufre un impacto y después es atraída hasta 6\" directamente hacia el Héroe.","cls":"Druida","tier":0},{"n":"Piel de corteza","en":"Barkskin","a":"Destreza","e":"El Héroe obtiene +1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.","cls":"Druida","tier":0},{"n":"Nube de niebla","en":"Fog Cloud","a":"Voluntad","e":"Coloca un marcador de nube de niebla a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno de cobertura para las unidades aliadas hasta el final de la ronda.","cls":"Druida","tier":0},{"n":"Crecimiento de pinchos","en":"Spike Growth","a":"Fuerza","e":"Coloca un marcador de crecimiento de pinchos a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno difícil para los enemigos hasta el final de la ronda.","cls":"Druida","tier":1},{"n":"Forma de lobo","en":"Wolf Form","a":"Destreza","e":"El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.","cls":"Druida","tier":1},{"n":"Recuperación natural","en":"Natural Recovery","a":"Voluntad","e":"El Héroe obtiene una ficha de hechizo y pierde D3 de Poder.","cls":"Druida","tier":1},{"n":"Baya de poder","en":"Power Berry","a":"Fuerza","e":"Elige una unidad aliada a 3\" o menos, que recupera 1 herida y pierde un estado.","cls":"Druida","tier":2},{"n":"Plaga de insectos","en":"Insect Plague","a":"Destreza","e":"Elige dos unidades enemigas a 9\" o menos, que sufren 1 impacto cada una.","cls":"Druida","tier":2},{"n":"Forma de pantera","en":"Panther Form","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.","cls":"Druida","tier":2},{"n":"Forma de oso","en":"Bear Form","a":"Fuerza","e":"Hasta el final de la ronda, siempre que el Héroe reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).","cls":"Druida","tier":3},{"n":"Muro de espinas","en":"Wall of Thorns","a":"Destreza","e":"Coloca un marcador de muro de espinas a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.","cls":"Druida","tier":3},{"n":"Círculo de esporas","en":"Circle of Spores","a":"Voluntad","e":"Coloca un marcador de esporas sobre dos unidades enemigas a 9\" o menos. Cuando esas unidades se activen, tira un dado por cada marcador: con 4+ se retira el marcador; si no, la unidad sufre 1 impacto.","cls":"Druida","tier":3},{"n":"Bestia de caza","en":"Hunting Beast","a":"Fuerza","e":"Elige una unidad enemiga a 6\" o menos, que sufre 2 impactos.","cls":"Explorador","tier":0},{"n":"Ataque pavoroso","en":"Dread Attack","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde más de 12\", ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.","cls":"Explorador","tier":0},{"n":"Ungüento curativo","en":"Healing Ointment","a":"Voluntad","e":"Elige una unidad aliada a 3\" o menos, que recupera 1 herida y pierde un estado.","cls":"Explorador","tier":0},{"n":"Ráfaga del acechador","en":"Stalker's Flurry","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga disparando, puede disparar inmediatamente a otra unidad enemiga.","cls":"Explorador","tier":1},{"n":"Mascota acechadora","en":"Stalking Pet","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde más de 12\", si causa al menos un impacto, causa un impacto adicional.","cls":"Explorador","tier":1},{"n":"Marca del cazador","en":"Hunter's Mark","a":"Voluntad","e":"Elige una unidad enemiga a más de 12\". El Héroe obtiene +D3 para impactar al atacarla hasta el final de la ronda.","cls":"Explorador","tier":1},{"n":"Voluntad de acero","en":"Steel Will","a":"Fuerza","e":"Los Héroes pueden usar esta acción de Habilidad incluso estando Acobardados. El Héroe deja de estar Acobardado.","cls":"Explorador","tier":2},{"n":"Disparo de oleada","en":"Surge Shot","a":"Destreza","e":"El Héroe puede hacer inmediatamente una acción de Mantener posición y disparar a un objetivo a 12\" o menos.","cls":"Explorador","tier":2},{"n":"Pájaro rastreador","en":"Tracking Bird","a":"Voluntad","e":"El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 18\" o menos.","cls":"Explorador","tier":2},{"n":"Matagigantes","en":"Giant Killer","a":"Fuerza","e":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.","cls":"Explorador","tier":3},{"n":"Manto umbrío","en":"Umbral Shroud","a":"Destreza","e":"Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.","cls":"Explorador","tier":3},{"n":"Andanada","en":"Volley","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe dispare a una unidad enemiga, tras resolver el ataque, puede disparar inmediatamente a otra unidad enemiga a 3\" o menos de la primera.","cls":"Explorador","tier":3},{"n":"Superioridad en combate","en":"Combat Superiority","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional.","cls":"Guerrero","tier":0},{"n":"Evasivo","en":"Evasive","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que un enemigo ataque al Héroe, obtiene -1 para impactar.","cls":"Guerrero","tier":0},{"n":"Reagrupar","en":"Rally","a":"Voluntad","e":"Los Héroes pueden usar esta acción de Habilidad incluso estando Acobardados. El Héroe deja de estar Acobardado.","cls":"Guerrero","tier":0},{"n":"Ataque desarmante","en":"Disarming Attack","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo obtiene -1 para impactar hasta el final de la ronda.","cls":"Guerrero","tier":1},{"n":"Ataque de barrido","en":"Sweeping Attack","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe cargue contra una unidad enemiga, tras resolver el combate, puede hacer inmediatamente otra acción de Cargar contra otra unidad enemiga a 3\" o menos.","cls":"Guerrero","tier":1},{"n":"Provocar","en":"Taunt","a":"Voluntad","e":"Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son atraídas hasta 6\" directamente hacia el Héroe.","cls":"Guerrero","tier":1},{"n":"Indomable","en":"Indomitable","a":"Fuerza","e":"Hasta el final de la ronda, siempre que el Héroe reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).","cls":"Guerrero","tier":2},{"n":"Ataque amenazador","en":"Menacing Attack","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.","cls":"Guerrero","tier":2},{"n":"Ataque implacable","en":"Relentless Attack","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga cuerpo a cuerpo, puede hacer inmediatamente otra acción de Cargar contra otra unidad enemiga.","cls":"Guerrero","tier":2},{"n":"Carga de oleada","en":"Surge Charge","a":"Fuerza","e":"El Héroe puede hacer inmediatamente una acción de Cargar contra un objetivo a 6\" o menos.","cls":"Guerrero","tier":3},{"n":"Segundo aliento","en":"Second Wind","a":"Destreza","e":"El Héroe recupera D3+1 heridas y pierde 1 de Poder.","cls":"Guerrero","tier":3},{"n":"Ataque de empuje","en":"Pushing Attack","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, tras resolver el combate, la unidad enemiga es empujada 6\" directamente en dirección contraria.","cls":"Guerrero","tier":3},{"n":"Mareas del caos","en":"Tides of Chaos","a":"Fuerza","e":"Hasta el final de la ronda, el Héroe recupera D3+2 de Poder la próxima vez que lance con éxito un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo no consiga lanzar el hechizo.","cls":"Hechicero","tier":0},{"n":"Afinidad metódica","en":"Methodical Affinity","a":"Destreza","e":"El Héroe puede gastar X de Poder (máx. 3) y obtiene +X+1 en su próxima tirada de atributo.","cls":"Hechicero","tier":0},{"n":"Hechizo lejano","en":"Distant Spell","a":"Voluntad","e":"El Héroe puede gastar X de Poder (máx. 3), y hasta el final de la ronda obtiene +X×6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas.","cls":"Hechicero","tier":0},{"n":"Resiliencia práctica","en":"Practical Resilience","a":"Fuerza","e":"El Héroe puede gastar X de Poder (máx. 3) para obtener +X+1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.","cls":"Hechicero","tier":1},{"n":"Hechizo gemelo","en":"Twin Spell","a":"Destreza","e":"El Héroe gasta D3+2 de Poder, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo enemigo adicional.","cls":"Hechicero","tier":1},{"n":"Golpe relámpago","en":"Lightning Strike","a":"Voluntad","e":"El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 6\" o menos, que sufre X+1 impactos con PA(3).","cls":"Hechicero","tier":1},{"n":"Hechizo potenciado","en":"Heightened Spell","a":"Fuerza","e":"El Héroe pierde X de Poder, y el próximo hechizo que lance antes del final de la ronda obtiene PA(+X).","cls":"Hechicero","tier":2},{"n":"Furia de la tormenta","en":"Storm Fury","a":"Destreza","e":"El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 9\" o menos, que sufre X+1 impactos con PA(1).","cls":"Hechicero","tier":2},{"n":"Curación laboriosa","en":"Laborious Healing","a":"Voluntad","e":"Hasta el final de la ronda, el Héroe recupera D3+1 heridas la próxima vez que lance con éxito un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo no consiga lanzar el hechizo.","cls":"Hechicero","tier":2},{"n":"Onda atronadora","en":"Thunderwave","a":"Fuerza","e":"El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 3\" o menos, que sufre X+2 impactos.","cls":"Hechicero","tier":3},{"n":"Suerte apañada","en":"Tinkered Luck","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe no consiga lanzar un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo consiga lanzar el hechizo, puedes repetir esa tirada de lanzamiento.","cls":"Hechicero","tier":3},{"n":"Alas artesanas","en":"Crafted Wings","a":"Voluntad","e":"El Héroe puede gastar X de Poder (máx. 3) y después puede colocarse en cualquier punto a 5+X\" o menos.","cls":"Hechicero","tier":3},{"n":"Conjuración","en":"Conjuration","a":"Fuerza","e":"Hasta el final de la ronda, el Héroe obtiene +6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas.","cls":"Mago","tier":0},{"n":"Encantamiento","en":"Enchantment","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que haga un chequeo de moral. Si lo falla, queda Acobardado.","cls":"Mago","tier":0},{"n":"Arcanos","en":"Arcana","a":"Voluntad","e":"El Héroe gasta D3 de Poder, y hasta el final de la ronda obtiene +1 en las tiradas de lanzamiento de hechizos; además, si gasta fichas para modificar tiradas de lanzamiento enemigas, el enemigo obtiene un -1 adicional.","cls":"Mago","tier":0},{"n":"Adivinación","en":"Divination","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo, el objetivo recupera D3+1 de Poder.","cls":"Mago","tier":1},{"n":"Abjuración","en":"Abjuration","a":"Destreza","e":"El Héroe recupera D3+1 heridas y pierde 1 de Poder.","cls":"Mago","tier":1},{"n":"Transmutación","en":"Transmutation","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo, uno de los objetivos recupera D3 heridas.","cls":"Mago","tier":1},{"n":"Recuperación","en":"Recovery","a":"Fuerza","e":"El Héroe recupera D3+1 de Poder.","cls":"Mago","tier":2},{"n":"Evocación","en":"Evocation","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance un hechizo que tenga como objetivo a enemigos, ese hechizo obtiene PA(+D3).","cls":"Mago","tier":2},{"n":"Ilusión","en":"Illusion","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que obtenga -1 para impactar hasta el final de la ronda.","cls":"Mago","tier":2},{"n":"Nigromancia","en":"Necromancy","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que sufra D3 impactos.","cls":"Mago","tier":3},{"n":"Duplicación","en":"Duplication","a":"Destreza","e":"El Héroe pierde D3 de Poder, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo aliado adicional.","cls":"Mago","tier":3},{"n":"Preparación","en":"Preparation","a":"Voluntad","e":"El Héroe obtiene una ficha de hechizo y pierde D3 de Poder.","cls":"Mago","tier":3},{"n":"Ráfaga de golpes","en":"Flurry of Blows","a":"Fuerza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional.","cls":"Monje","tier":0},{"n":"Reflejos relámpago","en":"Lightning Reflexes","a":"Destreza","e":"Hasta el final de la ronda, al recibir un impacto, tira un dado. Con 6+ se ignora.","cls":"Monje","tier":0},{"n":"Golpe marcial","en":"Martial Strike","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo, tras resolver el combate, la unidad enemiga es empujada 6\" directamente en dirección contraria.","cls":"Monje","tier":0},{"n":"Atletismo","en":"Athletics","a":"Fuerza","e":"El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.","cls":"Monje","tier":1},{"n":"Manto de sombra","en":"Cloak of Shadow","a":"Destreza","e":"Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.","cls":"Monje","tier":1},{"n":"Descanso elemental","en":"Elemental Rest","a":"Voluntad","e":"El Héroe puede gastar X de Poder (máx. 3) para recuperar X+2 heridas.","cls":"Monje","tier":1},{"n":"Golpe elemental","en":"Elemental Strike","a":"Fuerza","e":"El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 12\" o menos, que sufre X+1 impactos.","cls":"Monje","tier":2},{"n":"Derribar","en":"Topple","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.","cls":"Monje","tier":2},{"n":"Suprimir","en":"Suppress","a":"Voluntad","e":"Elige una unidad enemiga a 9\" o menos, que obtiene -2 en las tiradas de lanzamiento de hechizos hasta el final de la ronda.","cls":"Monje","tier":2},{"n":"Visión mental","en":"Mind Vision","a":"Fuerza","e":"El Héroe puede recoger una ficha de Búsqueda en línea de visión y a 1\" o menos, y puede modificar en +2/-2 la tirada para ver qué contiene.","cls":"Monje","tier":3},{"n":"Protección elemental","en":"Elemental Protection","a":"Destreza","e":"El Héroe puede gastar X de Poder (máx. 3) para obtener +X+1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.","cls":"Monje","tier":3},{"n":"Paso sombrío","en":"Shadow Step","a":"Voluntad","e":"El Héroe puede colocarse en cualquier punto a 2D3+1\" o menos.","cls":"Monje","tier":3},{"n":"Golpe vengativo","en":"Vengeful Strike","a":"Fuerza","e":"Hasta el final de la ronda, siempre que el Héroe ataque cuerpo a cuerpo a un enemigo Acobardado o le dispare desde 12\" o menos, obtiene +1 para impactar.","cls":"Paladín","tier":0},{"n":"Protección devota","en":"Devoted Warding","a":"Destreza","e":"Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, siempre que reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).","cls":"Paladín","tier":0},{"n":"Arma ancestral","en":"Ancient Weapon","a":"Voluntad","e":"Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas para impactar la próxima vez que ataque.","cls":"Paladín","tier":0},{"n":"Control rencoroso","en":"Spiteful Control","a":"Fuerza","e":"Elige dos unidades enemigas a 3\" o menos, que no pueden moverse hasta el final de la ronda.","cls":"Paladín","tier":1},{"n":"Velocidad ancestral","en":"Ancient Speed","a":"Destreza","e":"Elige otra unidad aliada a 6\" o menos. La unidad obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.","cls":"Paladín","tier":1},{"n":"Maldición rencorosa","en":"Spiteful Curse","a":"Voluntad","e":"Elige dos unidades enemigas a 6\" o menos, que obtienen -1 en su próxima tirada de atributo cada una.","cls":"Paladín","tier":1},{"n":"Reprimenda devota","en":"Devoted Rebuke","a":"Fuerza","e":"Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que un enemigo la ataque, la unidad enemiga sufre D3 impactos.","cls":"Paladín","tier":2},{"n":"Voto rencoroso","en":"Spiteful Vow","a":"Destreza","e":"Elige una unidad enemiga a 6\" o menos. Hasta el final de la ronda, la próxima vez que una unidad aliada le cause al menos una herida, le causa una herida adicional.","cls":"Paladín","tier":2},{"n":"Poderío vengativo","en":"Vengeful Might","a":"Voluntad","e":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.","cls":"Paladín","tier":2},{"n":"Aura ancestral","en":"Ancient Aura","a":"Fuerza","e":"Elige otra unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que esa unidad ataque y cause al menos un impacto, causa un impacto adicional.","cls":"Paladín","tier":3},{"n":"Prisa vengativa","en":"Vengeful Haste","a":"Destreza","e":"El Héroe obtiene +D3\" al Avanzar y +2D3\" al Correr/Cargar la próxima vez que se mueva, hasta el final de la ronda.","cls":"Paladín","tier":3},{"n":"Aura devota","en":"Devoted Aura","a":"Voluntad","e":"Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que recupere heridas, recupera dos heridas adicionales.","cls":"Paladín","tier":3},{"n":"Embaucador","en":"Trickster","a":"Fuerza","e":"Coloca un marcador de embaucador a 3\" o menos. Los enemigos tratan el marcador como un Héroe hasta el final de la ronda. Retira el marcador si un enemigo lo ataca o se mueve a 1\" o menos de él.","cls":"Pícaro","tier":0},{"n":"Juego de manos","en":"Sleight of Hand","a":"Destreza","e":"El Héroe puede recoger una ficha de Búsqueda en línea de visión y a 1\" o menos, y puede modificar hasta en +2/-2 la tirada para ver qué contiene.","cls":"Pícaro","tier":0},{"n":"Golpe despiadado","en":"Vicious Strike","a":"Voluntad","e":"Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.","cls":"Pícaro","tier":0},{"n":"Ataque furtivo","en":"Sneak Attack","a":"Fuerza","e":"Hasta el final de la ronda, el Héroe obtiene +1 para impactar al cargar contra enemigos que no tenían línea de visión hacia el Héroe cuando este se activó.","cls":"Pícaro","tier":1},{"n":"Eludir","en":"Elude","a":"Destreza","e":"Hasta el final de la ronda, los enemigos obtienen -1 para impactar al atacar al Héroe cuerpo a cuerpo o al dispararle desde 12\" o menos.","cls":"Pícaro","tier":1},{"n":"Ocultarse","en":"Hide","a":"Voluntad","e":"Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.","cls":"Pícaro","tier":1},{"n":"Arrancada","en":"Dash","a":"Fuerza","e":"El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.","cls":"Pícaro","tier":2},{"n":"Paso difuso","en":"Blurred Step","a":"Destreza","e":"El Héroe puede colocarse en cualquier punto a 2D3+1\" o menos.","cls":"Pícaro","tier":2},{"n":"Golpe y huida","en":"Hit & Run","a":"Voluntad","e":"Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo, tras resolver el ataque, el Héroe puede moverse hasta 6\".","cls":"Pícaro","tier":2},{"n":"Esquivar objetivo","en":"Dodge Target","a":"Fuerza","e":"Elige una unidad enemiga a 12\" o menos, que obtiene -1 para impactar hasta el final de la ronda.","cls":"Pícaro","tier":3},{"n":"Asesinato","en":"Assassination","a":"Destreza","e":"Hasta el final de la ronda, la próxima vez que el Héroe dispare a un enemigo que no tenía línea de visión hacia el Héroe cuando este se activó y cause al menos un impacto, causa un impacto adicional.","cls":"Pícaro","tier":3},{"n":"Infiltrarse","en":"Infiltrate","a":"Voluntad","e":"El Héroe obtiene +3\" al Avanzar y +6\" al Correr/Cargar hasta el final de la ronda, pero no puede moverse si en algún momento quedara dentro de la línea de visión enemiga.","cls":"Pícaro","tier":3},{"n":"Descanso de batalla","en":"Battle Rest","a":"Fuerza","e":"El Héroe recupera D3+1 de Poder.","cls":"Comunes","tier":0},{"n":"Protector","en":"Protector","a":"Fuerza","e":"El Héroe obtiene +1 en las tiradas de Def hasta el final de la ronda.","cls":"Comunes","tier":0},{"n":"Toque curativo","en":"Curing Touch","a":"Destreza","e":"El Héroe pierde un estado. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos.","cls":"Comunes","tier":0},{"n":"Concentración","en":"Concentrate","a":"Destreza","e":"El Héroe sufre 1 herida y obtiene +2 en su próxima tirada de atributo.","cls":"Comunes","tier":0},{"n":"Toque sanador","en":"Healing Touch","a":"Voluntad","e":"El Héroe recupera D3 heridas. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos.","cls":"Comunes","tier":0},{"n":"Inspeccionar","en":"Inspect","a":"Voluntad","e":"El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 9\" o menos, y puede modificar en +1/-1 la tirada para ver qué contiene.","cls":"Comunes","tier":0},{"n":"Esprint","en":"Sprint","a":"Fuerza","e":"El Héroe obtiene +2\" al Avanzar y +4\" al Correr/Cargar la próxima vez que se mueva, hasta el final de la ronda.","cls":"Comunes","tier":1},{"n":"Onda de choque","en":"Shockwave","a":"Fuerza","e":"Elige una unidad enemiga a 3\" o menos, que es empujada 6\" directamente en dirección contraria.","cls":"Comunes","tier":1},{"n":"Trampero","en":"Trapper","a":"Destreza","e":"La zona a 3\" o menos del Héroe cuenta como Terreno difícil para los enemigos hasta el final de la ronda.","cls":"Comunes","tier":1},{"n":"Distracción","en":"Distraction","a":"Destreza","e":"Coloca un marcador de distracción a 12\" o menos. Los enemigos tratan el marcador más cercano como el objetivo de la IA. Retira el marcador al final de 3 rondas, o cuando un enemigo se mueva a 1\" o menos de él.","cls":"Comunes","tier":1},{"n":"Resucitar","en":"Resurrect","a":"Voluntad","e":"Reanima a un Héroe inconsciente a 3\" o menos, que recupera D3+1 heridas.","cls":"Comunes","tier":1},{"n":"Pacificar","en":"Pacify","a":"Voluntad","e":"Elige una unidad enemiga a 6\" o menos, que obtiene -1 para impactar hasta el final de la ronda.","cls":"Comunes","tier":1},{"n":"Imparable","en":"Unstoppable","a":"Fuerza","e":"El Héroe no se fatiga hasta el final de la ronda.","cls":"Comunes","tier":2},{"n":"Paralizar","en":"Transfix","a":"Fuerza","e":"Elige una unidad enemiga a 9\" o menos, que no puede moverse hasta el final de la ronda.","cls":"Comunes","tier":2},{"n":"Imagen especular","en":"Mirror Image","a":"Destreza","e":"Coloca un marcador de imagen especular a 3\" o menos. Los enemigos tratan el marcador como un Héroe. Retira el marcador al final de 3 rondas, o cuando un enemigo se mueva a 1\" o menos de él.","cls":"Comunes","tier":2},{"n":"Salto","en":"Leap","a":"Destreza","e":"El Héroe supera automáticamente todas las tiradas de salto hasta el final de la ronda.","cls":"Comunes","tier":2},{"n":"Santuario","en":"Sanctuary","a":"Voluntad","e":"La zona a 3\" o menos del Héroe cuenta como Terreno de cobertura para las unidades aliadas hasta el final de la ronda.","cls":"Comunes","tier":2},{"n":"Fortaleza","en":"Fortitude","a":"Voluntad","e":"El Héroe supera automáticamente todos los chequeos de moral hasta el final de la ronda.","cls":"Comunes","tier":2},{"n":"Aterrorizar","en":"Terrify","a":"Fuerza","e":"Elige una unidad enemiga a 3\" o menos, que debe hacer un chequeo de moral. Si lo falla, queda Acobardada.","cls":"Comunes","tier":3},{"n":"Golpe giratorio","en":"Swinging Strike","a":"Fuerza","e":"La zona a 3\" o menos del Héroe cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.","cls":"Comunes","tier":3},{"n":"Tiro lejano","en":"Longshot","a":"Destreza","e":"El Héroe obtiene +6\" de alcance hasta el final de la ronda.","cls":"Comunes","tier":3},{"n":"Desplazamiento","en":"Shift","a":"Destreza","e":"El Héroe puede colocarse en cualquier punto a D3+3\" o menos.","cls":"Comunes","tier":3},{"n":"Silencio","en":"Silence","a":"Voluntad","e":"Elige una unidad enemiga a 18\" o menos, que obtiene -1 en las tiradas de lanzamiento de hechizos hasta el final de la ronda.","cls":"Comunes","tier":3},{"n":"Confusión","en":"Confusion","a":"Voluntad","e":"Elige una unidad enemiga a 6\" o menos, que los enemigos tratan como un Héroe hasta el final de la ronda, o hasta que los enemigos la ataquen una vez.","cls":"Comunes","tier":3}],"feats":[{"n":"Frenesí bárbaro","en":"Barbaric Frenzy","e":"Una vez por partida, al activarse, el Héroe recupera D3 de Poder.","cls":"Bárbaro"},{"n":"Restauración bárdica","en":"Bardic Restoration","e":"Una vez por partida, al activarse, otros dos héroes a 9\" o menos recuperan 1 de Poder cada uno.","cls":"Bardo"},{"n":"Pacto del brujo","en":"Warlock's Pact","e":"Una vez por partida, al activarse, el Héroe sufre 1 herida y después causa 1 herida a una unidad enemiga a 6\" o menos.","cls":"Brujo"},{"n":"Bendición del clérigo","en":"Cleric's Blessing","e":"Una vez por partida, al activarse, dos héroes a 6\" o menos recuperan 1 herida cada uno.","cls":"Clérigo"},{"n":"Trampa druídica","en":"Druidic Trap","e":"Una vez por partida, al activarse, la zona a 3\" o menos del Héroe cuenta como Terreno peligroso para las unidades enemigas hasta el final de la ronda.","cls":"Druida"},{"n":"Precisión del explorador","en":"Ranger's Precision","e":"Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto al disparar, causa un impacto adicional.","cls":"Explorador"},{"n":"Poderío combativo","en":"Fighting Might","e":"Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.","cls":"Guerrero"},{"n":"Proyectiles hechiceros","en":"Sorcerous Bolts","e":"Una vez por partida, al activarse, el Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 12\" o menos, que sufre X+1 impactos.","cls":"Hechicero"},{"n":"Foco del mago","en":"Wizarding Focus","e":"Una vez por partida, al activarse, el Héroe obtiene una ficha de hechizo.","cls":"Mago"},{"n":"Meditación del monje","en":"Monk's Meditation","e":"Una vez por partida, al activarse, el Héroe recupera D3 heridas.","cls":"Monje"},{"n":"Grito del paladín","en":"Paladin Shout","e":"Una vez por partida, al activarse, dos héroes a 3\" o menos pueden moverse hasta 6\" cada uno.","cls":"Paladín"},{"n":"Paso del pícaro","en":"Rogue Step","e":"Una vez por partida, al activarse, hasta el final de la ronda los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.","cls":"Pícaro"}]};
+const RX={
+ "Impact":["Impacto","Al cargar, antes de que ataque nadie y salvo que esté fatigada, tira X dados: cada 2+ causa 1 impacto al objetivo."],
+ "Stealth":["Sigilo","Si la disparan desde más de 9″, los enemigos tienen -1 a impactar."],
+ "Reliable":["Fiable","Ataca con Calidad 2+."],
+ "Surge":["Oleada","Por cada 6 natural al impactar, el arma causa 1 impacto extra (solo el impacto original cuenta como 6 para otras reglas)."],
+ "Relentless":["Implacable","Al disparar a enemigos a más de 9″, cada 6 natural al impactar causa 1 impacto extra."],
+ "Villain":["Villano","Las unidades de la IA a 6″ usan la Calidad del Villano en sus chequeos de moral si es mejor que la suya, mientras él no esté acobardado."],
+ "Immobile":["Inmóvil","Solo puede usar la acción Mantener."],
+ "Limited":["Limitado","Solo puede usarse una vez por misión."],
+ "Spell Amplifier":["Amplificador de hechizos","+1 a las tiradas de lanzamiento de hechizos."],
+ "Defense":["Defensa","+X a las tiradas de Defensa."]};
+const nrm=t=>String(t||"").replace(/\(.*?\)/g,"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9 ]/g," ").replace(/\s+/g," ").trim().toLowerCase();
+let CAT=null;
+function cat(){if(CAT)return CAT;const C={sk:{},rg:{}};
+ SKD.skills.forEach(x=>{C.sk[nrm(x.n)]=C.sk[nrm(x.en)]=x});
+ SKD.feats.forEach(f=>{const e={...f,a:"",tier:-1,dote:true};C.sk[nrm(f.n)]=C.sk[nrm(f.en)]=e});
+ const R=(typeof HC!=="undefined"&&HC.rg)||{};Object.keys(R).forEach(es=>{const[en,t]=R[es];C.rg[nrm(es)]=C.rg[nrm(en)]={n:es,en,t}});
+ Object.keys(RX).forEach(en=>{const[es,t]=RX[en];if(!C.rg[nrm(en)])C.rg[nrm(en)]={n:es,en,t};if(!C.rg[nrm(es)])C.rg[nrm(es)]=C.rg[nrm(en)]});
+ return CAT=C}
+/* ¿Qué es esta etiqueta? Habilidad de clase, común, dote o regla; con su texto si lo tenemos. */
+function ruleInfo(label){const C=cat(),k=nrm(label),x=((String(label).match(/\((\d+)\)/)||[])[1])||"",sk=C.sk[k];
+ if(sk)return{kind:sk.dote?"dote":sk.cls==="Comunes"?"comun":"hab",n:sk.n,en:sk.en,t:sk.e,a:sk.a,cls:sk.cls,tier:sk.tier,x};
+ const r=C.rg[k];if(r)return{kind:"regla",n:r.n,en:r.en,t:r.t.replace(/\{x\}/g,x||"X"),x};
+ return{kind:"regla",n:label,en:"",t:"",x,none:true}}
+/* Nombre de regla en inglés (el idioma del motor), conservando el número: «Furioso» → «Furious», «Miedo(2)» → «Fear(2)». */
+function canonRule(n){const m=String(n).match(/^(.*?)(\(.*\))?$/),r=cat().rg[nrm(m[1])];return r&&r.en?r.en+(m[2]||""):String(n)}
+const hRules=h=>(h.sk||[]).filter(s=>s.g==="regla").map(s=>canonRule(s.n)).join(", ");
 const hWeapons=h=>(h.sk||[]).filter(s=>s.g==="equipo"&&s.k&&s.k!=="Consumible"&&/A\d/.test(s.k)).map(s=>weapon(s.n,s.k));
 const uArmy=u=>ARMY[u.i]||{name:u.nm,q:5,d:5,rules:"",w:"",mod:1};
 
@@ -3284,8 +3377,63 @@ const liveUnits=()=>G.units.filter(u=>u.hp>0).map(u=>actor(u.id));
 
 /* Movimiento: [avanzar, correr o cargar]. Fast +2/+4, Slow −2/−4; Debilitado mueve la mitad; evento 52 +2/+4. Tope 16″ (como la mesa). */
 function speed(a){if(a.ko())return[0,0];let s=hasR(a.rules,"Fast")||hasR(a.rules,"Rápido")?[8,16]:hasR(a.rules,"Slow")||hasR(a.rules,"Lento")?[4,8]:[6,12];
- if(a.kind==="h"){const m=G.mod;if(m&&m.k==="mov"&&m.h===a.g.hi)s=[s[0]+2,s[1]+4];if(a.h.st.includes("de"))s=s.map(v=>v/2)}
+ if(has(a,"Runner")||has(a,"Scurry")||has(a,"Lustbound"))s=[s[0]+1,s[1]+2];
+ if(a.kind==="h"){const m=G.mod;if(m&&m.k==="mov"&&m.h===a.g.hi)s=[s[0]+2,s[1]+4]}
+ fxOf(a).filter(e=>e.k==="mv").forEach(e=>{s=[s[0]+(e.adv||0),s[1]+(e.rush||0)]});
+ if(a.kind==="h"&&a.h.st.includes("de"))s=s.map(v=>v/2);
  return[Math.min(16,s[0]),Math.min(16,s[1])]}
+
+const fxOf=a=>(a&&a.g&&a.g.fx)||[];
+const fxActive=(id,label)=>{const a=id&&actor(id);if(!a)return false;const n=ruleInfo(label).n;return fxOf(a).some(e=>e.id===n)};
+/* ---------------------------------------------------------------- efectos activos y reglas pasivas
+   Cada héroe (G.heroes[i].fx) y cada unidad (G.units[i].fx) lleva una lista de efectos {id (la habilidad que lo puso), k (tipo), v, w (cuándo
+   vale), once (se gasta al usarse), until:"round" (se acaba al final de la ronda)}. Tipos:
+   hit/ap/range/mv/nofat/stat (del que los lleva) · xhit/xwound (impactos o heridas extra si hace al menos uno) · xhitTaken/xwoundTaken (los que
+   recibe de más) · evade (resta al impactar al que le ataca) · hitTaken (suma al impactar contra él) · def/apRed/ignore (su defensa) · hide/untarget/
+   noTarget (los enemigos no lo eligen) · nomove · spores · thorns · healBonus · onKill/cowerAfter/pushAfter/debuffOnHit/chain (tras atacar).
+   Condiciones w: all, melee, charge, shoot, mshort (cuerpo a cuerpo o disparo a 12″ o menos), mfar, sfar, shaken, cunseen, sunseen. */
+const wOk=(w,c)=>{switch(w){case"melee":return c.melee;case"charge":return c.melee&&c.charge;case"shoot":return!c.melee;
+ case"mshort":return c.melee||c.gap<=12;case"mfar":return c.melee||c.gap>12;case"sfar":return!c.melee&&c.gap>12;
+ case"shaken":return!!c.shaken&&(c.melee||c.gap<=12);case"cunseen":return c.melee&&c.charge&&!!c.unseen;case"sunseen":return!c.melee&&!!c.unseen;default:return true}};
+const fxList=(a,k,c)=>{c=c||{melee:true,gap:0};return fxOf(a).filter(e=>e.k===k&&wOk(e.w,c)&&(!e.vs||e.vs===c.vs))};
+function fxSum(a,k,c,used){const l=fxList(a,k,c);if(used)l.forEach(e=>{if(e.once)used.push([a,e])});return l.reduce((s,e)=>s+(+e.v||0),0)}
+const fxHas=(a,k)=>fxOf(a).some(e=>e.k===k);
+function fxAdd(a,e){const g=a.g;g.fx=g.fx||[];g.fx.push({until:"round",...e})}
+function fxDrop(used){used.forEach(([a,e])=>{const l=a.g.fx||[],i=l.indexOf(e);if(i>=0)l.splice(i,1)})}
+const isFat=a=>a.g.fat===G.round&&!fxHas(a,"nofat");
+const has=(a,n)=>hasR(a.rules,n);
+function ctxOf(A,B,o){o=o||{};const gp=gap(A,B);return{melee:!!o.melee,charge:!!o.charge,gap:gp,far:o.melee?(!!o.charge&&(o.cd||0)>6):gp>9,vs:B.id,shaken:B.sh(),unseen:A.kind==="h"&&!(A.g.seen||[]).includes(B.id)}}
+/* Reglas pasivas (heroes y enemigos). «Desde lejos» = disparo a más de 9″ o carga desde más de 6″. */
+const ruleHit=(A,B,c)=>{let m=0;if(c.melee&&has(B,"Dodge")&&!isFat(B))m-=1;if(c.far&&(has(B,"Empyrean Spirit")||has(B,"Changebound")||has(B,"Gloom-Mist")))m-=1;if(!c.melee&&c.gap>9&&has(A,"Buccaneer"))m+=1;return m};
+const ruleDef=(T,c)=>c.far&&(has(T,"Sturdy")||has(T,"Tenacious"))?1:0;
+const ruleAp=(A,T,c)=>(c.far&&has(A,"Havocbound")?1:0)+(c.melee&&c.charge&&has(A,"Melee Slayer")&&T.tou>=3?2:0);
+const ruleApRed=T=>(has(T,"Guardian")||has(T,"Warden")||has(T,"Ossified"))?1:0;
+const ruleRegen=T=>has(T,"Regeneration")?5:(has(T,"Cursed Undead")||has(T,"Plaguebound"))?6:0;
+const rngRed=b=>(has(b,"Wild Veil")||has(b,"Shadowborn"))?4:0;
+/* Empuja o atrae a una unidad enemiga en línea recta (hasta d pulgadas); si cae en un obstáculo, al borde. */
+function shove(T,H,d,toward){const dx=H.x-T.x,dy=H.y-T.y,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L;let nx,ny;
+ if(toward){const mv=Math.min(d*BIN,Math.max(0,L-(T.r+H.r+BIN)));nx=T.x+ux*mv;ny=T.y+uy*mv}else{nx=T.x-ux*d*BIN;ny=T.y-uy*d*BIN}
+ const p=freeSpot(tOut([nx,ny]),T.r,T.id);T.g.x=p[0];T.g.y=p[1];log(`${T.name} es ${toward?"atraída":"empujada"} ${inch(Math.hypot(p[0]-T.x,p[1]-T.y)/BIN)} ${toward?"hacia":"lejos de"} ${H.name}.`,"ok")}
+/* Chequeo de moral de una unidad enemiga provocado por una habilidad (lo tira la IA). True = aguanta. */
+async function moralTest(B,why){const m=moraleMod(B),pass=x=>!B.sh()&&(x===6||(x!==1&&x+m>=B.q));
+ const[r]=await rollDice({n:1,own:false,title:`Moral de ${B.name}`,sub:`${why}. Calidad ${B.q}+${m?(m>0?", +":", ")+m:""}${B.sh()?" · Aturdida: falla seguro":""}`,need:`${Math.max(2,Math.min(6,B.q-m))}+ aguanta`,ok:pass});
+ let ok=pass(r);if(!ok&&hasR(B.rules,"Fearless")&&d6()>=4)ok=true;
+ log(`Moral de ${B.name} (${B.q}+): ${r}${m?(m>0?"+":"")+m:""} → ${ok?"aguanta":"falla"}.`,"ok");endDice();return ok}
+/* N impactos (con AP) de una habilidad sobre un actor: la defensa se tira en la bandeja. Devuelve las heridas. */
+async function autoHits(src,T,n,ap){n=Math.max(0,n|0);if(n<=0||T.ko())return 0;const dm=defMod(T),reg=ruleRegen(T),red=ruleApRed(T),ape=Math.max(0,(ap||0)-red);
+ const blk=r=>r===6||(r!==1&&r-ape+dm>=T.d);
+ const v=await rollDice({n,own:T.kind==="h",title:`${T.name} se defiende de ${src}`,sub:`${n} impacto${n>1?"s":""} · Defensa ${T.d}+${ap?`, AP(${ap})`:""}${dm?(dm>0?", +":", ")+dm+" a la defensa":""}`,need:`${Math.max(2,Math.min(6,T.d+ape-dm))}+ se salva`,ok:blk});
+ let w=0;v.forEach(r=>{if(!blk(r)){if(reg&&d6()>=reg)return;w++}});endDice();wound(T,w);hfSync();
+ log(`${src}: ${T.name} recibe ${n} impacto${n>1?"s":""} y sufre ${w} herida${w===1?"":"s"}.`,"sho");
+ if(T.kind==="u"&&w>0){const mo=await morale(T,w,0);if(mo)log(mo,"sho")}
+ return w}
+/* Antes de activarse una unidad: sus marcadores de esporas (Círculo de esporas) se tiran. */
+async function sporeCheck(a){for(const e of fxOf(a).filter(e=>e.k==="spores")){if(a.ko())break;const r=d6();
+ if(r>=4){a.g.fx.splice(a.g.fx.indexOf(e),1);log(`${a.name}: se retira un marcador de esporas (${r}).`,"ok")}else{log(`${a.name}: marcador de esporas (${r}): 1 impacto.`,"ok");await autoHits("Círculo de esporas",a,1,0)}}}
+function aiTargets(a){return liveHeroes().filter(h=>!fxOf(h).some(e=>e.k==="untarget"||(e.k==="hide"&&!e.broken))&&!fxOf(a).some(e=>e.k==="noTarget"&&e.hero===h.id))}
+const ghOf=h=>G.heroes.find(g=>{const x=HS[g.hi];return x===h||(x&&x.name===h.name)});
+function statUsed(h){const g=ghOf(h);if(g&&g.fx)g.fx=g.fx.filter(e=>e.k!=="stat")}
+const useMv=gh=>{gh.fx=(gh.fx||[]).filter(e=>!(e.k==="mv"&&e.once))};
 
 /* ---------------------------------------------------------------- geometría */
 const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
@@ -3312,6 +3460,14 @@ function freeSpot(p,r,self){const occ=actors().filter(o=>o.id!==self);
 const TOBS=[[60,70,70,44],[200,40,54,60],[380,60,80,46],[500,200,52,70],[70,330,50,64],[220,420,70,48],[360,490,60,50],[480,380,56,48],[210,250,40,30]]
  .map(([x,y,w,h])=>({k:"casa",x,y,w,h})).concat([{k:"pozo",x:300,y:300,r:26}]);
 const TCL=8;   /* holgura: radio de una peana de 32 mm (≈0,63″) */
+/* Terreno de COBERTURA (decisión de Nacho, 2026-11-20): bajo (un muro, un arbusto, el pozo…), se ve por encima, así que se puede
+   disparar a través, pero quien está dentro o pegado detrás tiene +1 a la defensa contra disparos. Las casas, en cambio, cortan la
+   línea de visión (ver los()): detrás de una casa no se puede disparar. Mismo formato que TOBS ({k,x,y,r} o {k,x,y,w,h}); para añadir
+   un muro o un arbusto basta con añadirlo aquí (y a TOBS si además debe cortar el paso). Blast ignora la cobertura. */
+const TCOV=[{k:"pozo",x:300,y:300,r:26}];
+/* ¿Está B protegido de un disparo de A? La línea de tiro cruza la cobertura y B está dentro o a 1″ o menos detrás de ella. */
+function inCover(A,B){const p=[A.x,A.y],q=[B.x,B.y];
+ return TCOV.some(o=>bPolys(o,B.r+BIN).some(pl=>bHit(q,q,pl))&&bPolys(o,0).some(pl=>bHit(p,q,pl)))}
 let TNAV=null;
 function tNav(){if(TNAV)return TNAV;
  const P=TOBS.flatMap(o=>bPolys(o,TCL)),N=[];
@@ -3390,24 +3546,36 @@ function deploySentries(){const ids=drawWave(budget()),cnt=[0,0,0,0];
 function reinforce(){const ids=drawWave(budget()),hs=liveHeroes(),cnt=[0,0,0,0],placed=[];
  const far=()=>{let b=0,bd=-1;CC.forEach((c,k)=>{const d=hs.reduce((m,h)=>Math.min(m,Math.hypot(h.x-c[0],h.y-c[1])),1e9);if(d>bd){bd=d;b=k}});return b};
  ids.forEach(i=>{const u=mkUnit(i),r=d4(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
-  const p=freeSpot([CC[c][0]+Math.abs(o[0])*s*.8+6*s,CC[c][1]+Math.abs(o[1])*t*.8+6*t],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.fresh=G.round+1;G.units.push(u);placed.push(u.nm+" → esquina "+(c+1))});
+  const p=freeSpot([CC[c][0]+Math.abs(o[0])*s*.8+6*s,CC[c][1]+Math.abs(o[1])*t*.8+6*t],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.fresh=G.round+1;G.units.push(u);placed.push(u.nm+" → esquina "+(c+1)+(scoutDeploy(u)?" (Scout)":""))});
  G.nref++;G.needEv=true;
  log(`Refuerzos: ${ids.length?placed.join(" · "):"no queda ninguna unidad libre en la lista"}.`,"al");return ids.length}
-/* Al colocar un héroe en el despliegue, no puede alejarse más de 10″ de la esquina elegida. */
-function heroClamp(id,q){if(id[0]!=="h"||!G.hc)return q;const c=CC[G.hc-1],dx=q[0]-c[0],dy=q[1]-c[1],L=Math.hypot(dx,dy),R=10*BIN;
+/* Scout (Core Rules): «puede desplegarse en cualquier punto completamente a 9″» de donde saldría. Es un solo uso, al desplegarse
+   (no cambia el movimiento). Decisión de la IA: dificultad 3-4 siempre; 1-2, una de cada dos veces. Lo coloca hacia el héroe más
+   cercano, sin dejarlo a menos de 9″ de él (supuesto de la casa). Devuelve true si se ha movido. */
+function scoutDeploy(u){if(u.scouted)return false;const a=actor(u.id);if(!a||!has(a,"Scout"))return false;u.scouted=true;
+ const use=G.d>=3||Math.random()<.5;if(!use){log(`${u.nm} podía usar Scout y esta vez no lo usa.`,"rd");return false}
+ const hs=liveHeroes();if(!hs.length)return false;
+ const h=hs.reduce((b,x)=>Math.hypot(x.x-u.x,x.y-u.y)<Math.hypot(b.x-u.x,b.y-u.y)?x:b),d=Math.hypot(h.x-u.x,h.y-u.y);
+ const step=Math.min(9*BIN,Math.max(0,d-(9*BIN+a.r+h.r)));
+ if(step<BIN){log(`${u.nm} usa Scout, pero ya está a menos de 9″ de un héroe y no gana nada.`,"rd");return false}
+ const p=freeSpot([u.x+(h.x-u.x)/d*step,u.y+(h.y-u.y)/d*step],a.r,u.id);const m=Math.hypot(p[0]-u.x,p[1]-u.y)/BIN;u.x=p[0];u.y=p[1];u.scout=true;
+ log(`${u.nm} usa Scout: se despliega ${m.toFixed(1).replace(".",",")}″ más cerca de ${h.name}.`,"rd");return true}
+/* Al colocar un héroe en el despliegue, no puede alejarse más de 10″ de la esquina elegida (19″ con Scout). */
+function heroClamp(id,q){if(id[0]!=="h"||!G.hc)return q;const ha=actor(id),c=CC[G.hc-1],dx=q[0]-c[0],dy=q[1]-c[1],L=Math.hypot(dx,dy),R=(ha&&has(ha,"Scout")?19:10)*BIN;
  return L<=R?q:[c[0]+dx/L*R,c[1]+dy/L*R]}
 function placeHeroes(c){G.hc=c;const s=CC[c-1][0]<300?1:-1,t=CC[c-1][1]<300?1:-1,o=[[14,14],[44,16],[16,44],[44,44]];
  G.heroes.forEach((gh,k)=>{const p=tOut([CC[c-1][0]+o[k%4][0]*s,CC[c-1][1]+o[k%4][1]*t]);gh.x=p[0];gh.y=p[1]})}
 
 /* ---------------------------------------------------------------- tiradas */
 /* Tirada de característica de un héroe (Str/Dex/Wil): eventos y Afectado (−1 a todas) cuentan. 6 siempre pasa, 1 siempre falla. */
-function statTest(h,k,label){const r=d6();let m=0;const ev=G.mod;if(ev&&ev.k==="st"&&ev.s===k&&(ev.h<0||ev.h===HS.indexOf(h)))m+=ev.v;if(h.st.includes("ac"))m-=1;
+function statMod(h,k){let m=0;const ev=G.mod;if(ev&&ev.k==="st"&&ev.s===k&&(ev.h<0||ev.h===HS.indexOf(h)))m+=ev.v;if(h.st.includes("ac"))m-=1;const g=ghOf(h);if(g)(g.fx||[]).forEach(e=>{if(e.k==="stat")m+=e.v});return m}
+function statTest(h,k,label){const r=d6(),m=statMod(h,k);statUsed(h);
  const ok=r===6||(r!==1&&r+m>=h[k]);return{r,m,ok,txt:`${label} ${h[k]}+: ${r}${m?(m>0?"+":"")+m:""} → ${ok?"pasa":"falla"}`}}
 const hitMod=(a,melee)=>{let m=0;const ev=G.mod;if(ev){if(ev.k==="hit")m+=ev.v;if(a.kind==="h"&&ev.h===a.g.hi&&ev.k==="hitm"&&melee)m+=ev.v;if(a.kind==="h"&&ev.h===a.g.hi&&ev.k==="hits"&&!melee)m+=ev.v}if(a.kind==="h"&&a.h.st.includes("ac"))m-=1;return m};
 const defMod=b=>{let m=0;const ev=G.mod;if(ev){if(ev.k==="def")m+=ev.v;if(b.kind==="h"&&ev.h===b.g.hi&&ev.k==="defh")m+=ev.v}m+=ruleN(b.rules,"Defense");if(b.kind==="h"&&b.h.st.includes("ac"))m-=1;return m};
-const rngMod=a=>{const ev=G.mod;let m=0;if(ev){if(ev.k==="rng")m+=ev.v;if(a.kind==="h"&&ev.h===a.g.hi&&ev.k==="rngh")m+=ev.v}return m};
+const rngMod=a=>{const ev=G.mod;let m=0;if(ev){if(ev.k==="rng")m+=ev.v;if(a.kind==="h"&&ev.h===a.g.hi&&ev.k==="rngh")m+=ev.v}m+=fxOf(a).filter(e=>e.k==="range").reduce((t,e)=>t+e.v,0)+((has(a,"Highborn")||has(a,"Royal Legion"))?4:0);return m};
 const moraleMod=a=>{const ev=G.mod;let m=0;if(ev){if(ev.k==="mor")m+=ev.v;if(a.kind==="h"&&ev.h===a.g.hi&&ev.k==="morh")m+=ev.v}if(a.kind==="h"&&a.h.st.includes("ac"))m-=1;return m};
-const inRange=(a,b,w)=>gap(a,b)<=w.rng+rngMod(a)+.01;
+const inRange=(a,b,w)=>gap(a,b)<=w.rng+rngMod(a)-rngRed(b)+.01;
 /* ¿Puede disparar a b con el arma w? A tiro y a la vista. Indirect: con Mantener puede disparar sin línea de visión
    (las casas no la cortan), pero de noche sigue sin ver más allá de 12″. */
 const wCan=(a,b,w,hold)=>isRanged(w)&&inRange(a,b,w)&&(los(a,b)||(hold&&wHas(w,"Indirect")&&(!night()||gap(a,b)<=12)));
@@ -3425,11 +3593,14 @@ function oneW(A,B,ws,melee,charge){if(ws.length<=1)return ws;
  if(A.kind==="u"&&G.d<=2)return[ws[Math.floor(Math.random()*ws.length)]];
  let best=ws[0],be=-1;
  ws.forEach(w=>{const e=expDmg(A,B,[w],melee,charge);if(e>be){be=e;best=w}});return[best]}
-/* Planes de ataque de A contra B (un plan por arma): cuántos dados, qué impacta y cómo se muestran. Lo usan strike y el ataque conjunto. */
-function planAtk(A,B,ws,o){const melee=!!o.melee,fat=melee&&(A.g.fat===G.round||A.sh()),sh=A.sh(),ownA=A.kind==="h";
+/* Planes de ataque de A contra B (un plan por arma): cuántos dados, qué impacta y cómo se muestran. Lo usan strike y el ataque conjunto.
+   o.used: lista donde se anotan los efectos de un solo uso que se han gastado (strike los quita al acabar el combate). */
+function planAtk(A,B,ws,o){const melee=!!o.melee,fat=melee&&(isFat(A)||A.sh()),sh=A.sh(),ownA=A.kind==="h",c=ctxOf(A,B,o),Uu=o.used;
  return ws.map(w=>{const n=nAtk(A,w);let Q=wHas(w,"Reliable")?2:A.q,m=hitMod(A,melee);
   if(!melee){if(night()||dawn())m-=1;if(hasR(B.rules,"Stealth")&&gap(A,B)>9)m-=1}
-  /* Unstoppable: ignora los modificadores negativos que no son suyos (noche, Stealth, eventos). */
+  m+=fxSum(A,"hit",c,Uu)-fxSum(B,"evade",c,Uu)+fxSum(B,"hitTaken",c,Uu)+ruleHit(A,B,c);
+  if(melee&&o.upf>=4)m+=1;
+  /* Unstoppable: ignora los modificadores negativos que no son suyos (noche, Stealth, eventos, habilidades). */
   if(wHas(w,"Unstoppable")&&m<0)m=0;
   if(melee&&o.charge&&wHas(w,"Thrust"))m+=1;
   const only6=fat||(sh&&melee),hitOk=r=>only6?r===6:(r===6||(r!==1&&r+m>=Q));
@@ -3444,11 +3615,13 @@ async function preRollGroup(B,list){
  const groups=list.map((x,i)=>({label:x.A.name,n:plans[i].reduce((s,p)=>s+p.n,0)})).filter(g=>g.n>0);
  const v=dieP.length?await rollDice({n:dieP.length,own:false,title:`Ataque conjunto contra ${B.name}`,sub:"Cada grupo de dados es una unidad: un dado impacta según lo que marca su tirada.",need:"",ok:(r,i)=>dieP[i].hitOk(r),groups}):[];
  let k=0;return plans.map(ps=>ps.map(p=>{const arr=v.slice(k,k+p.n);k+=p.n;return arr}))}
-async function strike(A,B,ws,o){o=o||{};const melee=!!o.melee,out={hits:0,wounds:0,att:0,rolls:[],blocks:[],lines:[]};
- const fat=melee&&(A.g.fat===G.round||A.sh()),sh=A.sh();
- const ownA=A.kind==="h",ownB=B.kind==="h";
- /* Impact(X) al cargar, antes de golpear (salvo agotado): X dados, cada 2+ es un impacto (AP 0). */
- const imp=o.charge&&!fat?ruleN(A.rules,"Impact"):0;
+async function strike(A,B,ws,o){o=o||{};const melee=!!o.melee,out={hits:0,wounds:0,att:0,rolls:[],blocks:[],lines:[],selfW:0};
+ const Uu=o.used=o.used||[];
+ const fat=melee&&(isFat(A)||A.sh()),sh=A.sh();
+ const ownA=A.kind==="h",c=ctxOf(A,B,o);
+ if(melee&&has(A,"Unpredictable Fighter")){o.upf=d6();out.lines.push(`Luchador impredecible: ${o.upf} → ${o.upf>=4?"+1 a impactar":"AP(+1)"}`)}
+ /* Impact(X) al cargar, antes de golpear (salvo agotado): X dados, cada 2+ es un impacto (AP 0). Brace(X) del defensor resta dados. */
+ const imp=o.charge&&!fat?Math.max(0,ruleN(A.rules,"Impact")-(isFat(B)?0:ruleN(B.rules,"Brace"))):0;
  const pool=[];
  if(imp){const v=await rollDice({n:imp,own:ownA,title:`${A.name}: Impact(${imp})`,sub:`Al cargar, cada dado es un impacto con 2+ (AP 0) contra ${B.name}.`,need:"2+ impacta",ok:r=>r>=2});
   const h=v.filter(r=>r>=2).length;pool.push({w:{n:"Impact",ap:0,sp:[]},hits:h,six:0,crit:0,att:imp});out.att+=imp;out.lines.push(`Impact(${imp}): ${h} impactos`)}
@@ -3460,12 +3633,15 @@ async function strike(A,B,ws,o){o=o||{};const melee=!!o.melee,out={hits:0,wounds
   if(melee&&o.charge&&hasR(A.rules,"Furious"))h+=fatSix;
   if(wHas(w,"Surge"))h+=fatSix;
   if(!melee&&wHas(w,"Relentless")&&gap(A,B)>9)h+=fatSix;
+  if(c.far&&(has(A,"Ferocious")||has(A,"Savage")||has(A,"Lucky")))h+=fatSix;
   const rend=wHas(w,"Rending")&&!fat?six:0;
   /* Críticos (regla de la casa, decisión de Nacho 2026-11-20): cada 6 natural al impactar es un crítico y ese impacto
-     solo se salva con otro 6. Vale para héroes y enemigos. Como en la norma con los 6, no cuentan los de un atacante
-     agotado o aturdido (solo impacta con 6) ni los impactos extra de Furious, Surge, Relentless o Blast. */
+     solo se salva con otro 6. Vale para héroes y enemigos. No cuentan los de un atacante agotado o aturdido (solo impacta
+     con 6) ni los impactos extra de reglas y habilidades. */
   const crit=P.only6?0:six;
   out.att+=n;out.crit=(out.crit||0)+crit;out.lines.push(`${w.n}: ${atkWhy(A,w)} = ${n} ataques (${Q}+${m?(m>0?" +":" ")+m:""}${fat?", solo 6":""}) → ${h} impactos${crit?` (${crit} ${crit>1?"críticos":"crítico"})`:""}`);
+  /* Habilidades: «si causa al menos un impacto, causa uno adicional» (y los que el defensor recibe de más). */
+  if(h>0){const x=fxSum(A,"xhit",c,Uu),xt=fxSum(B,"xhitTaken",c,Uu);if(x||xt){h+=x+xt;out.lines.push(`Habilidades: +${x+xt} impacto${x+xt>1?"s":""} adicional${x+xt>1?"es":""}`)}}
   /* Blast(X): cada impacto se multiplica por X y se reparte por igual entre el objetivo y las demás unidades enemigas a 3″
      o menos de él; ninguna recibe más impactos que miniaturas tiene (un héroe, como mucho 1). */
   const bl=wN(w,"Blast");
@@ -3479,22 +3655,39 @@ async function strike(A,B,ws,o){o=o||{};const melee=!!o.melee,out={hits:0,wounds
  /* Defensa: cada impacto, una tirada de Defensa (+AP). Rending: los 6 ganan AP(+4). Shred: cada 1 hace 1 herida más. */
  out.extra=[];
  for(const p of pool){const w=p.w,T=p.to||B;if(p.hits<=0)continue;
-  const dm=defMod(T),regen=hasR(T.rules,"Regeneration"),ownT=T.kind==="h";
-  /* Los primeros p.crit dados son los de los impactos críticos: solo los salva un 6. */
-  const cr=p.crit||0,apOf=k=>w.ap+(melee&&o.charge&&wHas(w,"Thrust")?1:0)+(k<p.six?4:0),blkOf=(r,k)=>k<cr?r===6:(r===6||(r!==1&&r-apOf(k)+dm>=T.d));
-  const groups=cr?[{label:`${cr>1?"Críticos":"Crítico"}: solo se salva con 6`,n:cr},{label:"Impactos normales",n:p.hits-cr}].filter(g=>g.n>0):null;
-  const v=await rollDice({n:p.hits,own:ownT,groups,title:`${T.name} se defiende de ${A.name}`,
-   sub:`${A.name} ${T===B?"ataca":"le alcanza con la explosión de"} ${w.n}: ${p.hits} impactos (un dado por impacto) · Defensa ${T.d}+${w.ap?`, AP(${w.ap})`:""}${dm?(dm>0?", +":", ")+dm+" a la defensa":""}${cr?` · ${cr} ${cr>1?"críticos":"crítico"}: solo con 6`:""}${p.six?` · ${p.six} con Rending (AP +4)`:""}`,
-   need:cr===p.hits?"solo el 6 se salva":`${Math.max(2,Math.min(6,T.d+apOf(cr)-dm))}+ se salva${cr?" · críticos, solo el 6":""}`,ok:blkOf});
-  let wds=0;
-  for(let k=0;k<p.hits;k++){let r=v[k];if(wHas(w,"Bane")&&r===6)r=d6();const blk=blkOf(r,k);if(T===B&&out.blocks.length<40)out.blocks.push({r,ok:!blk});
-   if(!blk){let wd=1+(wHas(w,"Shred")&&r===1?1:0);if(regen&&!(k<p.six)&&!wHas(w,"Bane")&&!wHas(w,"Unstoppable")&&!wHas(w,"Rending")){let s=0;for(let j=0;j<wd;j++)if(d6()>=5)s++;wd-=s}wds+=wd}}
-  if(T===B){out.wounds+=wds;out.hits+=p.hits}
-  else{out.extra.push({to:T,hits:p.hits,wounds:wds});out.lines.push(`${T.name} (explosión): ${p.hits} impactos → ${wds} heridas`)}}
+  const cT=T===B?c:ctxOf(A,T,o),cv=!melee&&!wHas(w,"Blast")&&inCover(A,T)?1:0,dm=defMod(T)+cv+fxSum(T,"def",cT,Uu)+ruleDef(T,cT),regT=ruleRegen(T),ownT=T.kind==="h";
+  const apB=fxSum(A,"ap",cT,Uu)+ruleAp(A,T,cT)+(melee&&o.upf>=1&&o.upf<=3?1:0),red=Math.max(fxSum(T,"apRed",cT,Uu),ruleApRed(T));
+  const thr=melee&&o.charge&&wHas(w,"Thrust")?1:0,rr6=wHas(w,"Bane")||has(A,"Mischievous")||has(A,"Bestial")||has(A,"Raider");
+  /* Parry(X): al recibir impactos en cuerpo a cuerpo, X dados por miniatura (hasta tantos como impactos); cada 6+ anula uno. */
+  let hitsN=p.hits;const par=melee?ruleN(T.rules,"Parry"):0;
+  if(par>0){const pd=Math.min(hitsN,par*Math.max(1,T.models()));let ig=0;for(let j=0;j<pd;j++)if(d6()>=6)ig++;if(ig){hitsN-=ig;out.lines.push(`${T.name}: Parry, ${ig} ${ig>1?"impactos anulados":"impacto anulado"}`)}}
+  if(hitsN<=0){if(T===B)out.hits+=0;continue}
+  /* Los primeros cr dados son los de los impactos críticos: solo los salva un 6. */
+  const cr=Math.min(p.crit||0,hitsN),apOf=k=>Math.max(0,w.ap+apB+thr+(k<p.six?4:0)-red),blkOf=(r,k)=>k<cr?r===6:(r===6||(r!==1&&r-apOf(k)+dm>=T.d));
+  const groups=cr?[{label:`${cr>1?"Críticos":"Crítico"}: solo se salva con 6`,n:cr},{label:"Impactos normales",n:hitsN-cr}].filter(g=>g.n>0):null;
+  const apShow=Math.max(0,w.ap+apB+thr-red);
+  const v=await rollDice({n:hitsN,own:ownT,groups,title:`${T.name} se defiende de ${A.name}`,
+   sub:`${A.name} ${T===B?"ataca":"le alcanza con la explosión de"} ${w.n}: ${hitsN} impactos (un dado por impacto) · Defensa ${T.d}+${apShow?`, AP(${apShow})`:""}${dm?(dm>0?", +":", ")+dm+" a la defensa":""}${cv?" (cobertura)":""}${cr?` · ${cr} ${cr>1?"críticos":"crítico"}: solo con 6`:""}${p.six?` · ${p.six} con Rending (AP +4)`:""}`,
+   need:cr===hitsN?"solo el 6 se salva":`${Math.max(2,Math.min(6,T.d+apOf(cr)-dm))}+ se salva${cr?" · críticos, solo el 6":""}`,ok:blkOf});
+  let wds=0,ign=0;const ig=fxList(T,"ignore",cT)[0],far=cT.far&&(has(A,"Destroyer")||has(A,"Warbound"));
+  for(let k=0;k<hitsN;k++){let r=v[k];if(r===6&&(wHas(w,"Bane")||(rr6&&k>=cr)))r=d6();const blk=blkOf(r,k);if(T===B&&out.blocks.length<40)out.blocks.push({r,ok:!blk});
+   if(!blk){if(ig&&d6()>=ig.v){ign++;continue}
+    let wd=1+((wHas(w,"Shred")||far)&&r===1?1:0);if(regT&&!(k<p.six)&&!wHas(w,"Bane")&&!wHas(w,"Unstoppable")&&!wHas(w,"Rending")){let s=0;for(let j=0;j<wd;j++)if(d6()>=regT)s++;wd-=s}
+    const dl=wN(w,"Deadly");if(dl&&wd>0)wd=Math.min(wd*dl,Math.max(1,T.tou));
+    wds+=wd}}
+  if(ign)out.lines.push(`${T.name}: ${ign} ${ign>1?"impactos ignorados":"impacto ignorado"} (habilidad)`);
+  /* Habilidades: herida adicional si hace al menos una (y la que el defensor recibe de más). */
+  if(wds>0){const xw=fxSum(A,"xwound",cT,Uu),xt=fxSum(T,"xwoundTaken",cT,Uu);if(xw||xt){wds+=xw+xt;out.lines.push(`Habilidades: +${xw+xt} herida${xw+xt>1?"s":""} adicional${xw+xt>1?"es":""}`)}}
+  if(T===B){out.wounds+=wds;out.hits+=hitsN}
+  else{out.extra.push({to:T,hits:hitsN,wounds:wds});out.lines.push(`${T.name} (explosión): ${hitsN} impactos → ${wds} heridas`)}}
+ /* Reprimenda devota: quien ataca al protegido sufre D3 impactos. */
+ const th=fxList(B,"thorns",c);th.forEach(e=>{if(e.once)Uu.push([B,e])});if(th.length)out.thorn=th.reduce((t,e)=>t+rollSpec(e.v),0);
+ /* Heridas que la propia habilidad cuesta al disparar su efecto (Frenesí de sangre, Ataque aturdido…). */
+ Uu.forEach(([a,e])=>{if(a.g===A.g&&e.sw&&!e.swDone){out.selfW+=e.sw;e.swDone=1}});
  return out}
 /* Daño esperado (para que la IA elija entre disparar y cargar). */
 function expDmg(A,B,ws,melee,charge){let e=0;ws.forEach(w=>{const n=nAtk(A,w);let Q=wHas(w,"Reliable")?2:A.q,m=hitMod(A,melee);if(!melee&&(night()||dawn()))m-=1;
- const ph=Math.min(5,Math.max(1,7-Q+m))/6,pw=1-Math.min(5,Math.max(1,7-(B.d+w.ap)))/6;e+=n*((ph-1/6)*pw+(1/6)*(5/6))});
+ const ph=Math.min(5,Math.max(1,7-Q+m))/6,pw=1-Math.min(5,Math.max(1,7-(B.d+w.ap+(!melee&&!wHas(w,"Blast")&&inCover(A,B)?1:0))))/6;e+=n*((ph-1/6)*pw+(1/6)*(5/6))});
  if(charge)e+=ruleN(A.rules,"Impact")*5/6*(1-Math.min(5,Math.max(1,7-B.d))/6);return e}
 function wound(B,n){if(n<=0)return;if(B.kind==="h"){B.h.hp=Math.max(0,B.h.hp-n);hfClamp(B.h);if(hfKo(B.h)){log(`${B.name} cae inconsciente.`,"bad")}}
  else{B.g.hp=Math.max(0,B.g.hp-n);if(B.g.hp<=0)log(`${B.name}: unidad destruida.`,"ok")}}
@@ -3521,19 +3714,35 @@ async function morale(B,took,fear){if(B.kind==="h"||B.ko()||took<=0)return null;
 async function fight(A,B,kind,fo){G.offerIgnore=null;const melee=kind==="melee",ch=!fo||fo.charge!==false,L={kind,a:A.name,b:B.name,aK:A.kind,steps:[],morale:[],charge:ch};
  /* Disparo: solo armas a tiro y a la vista (Indirect sin vista si mantiene). Una sola arma por acción (la elegida o la mejor). */
  const wA=fo&&fo.only?[fo.only]:oneW(A,B,melee?A.ws.filter(isMelee):shootWs(A,B,fo&&fo.hold),melee,ch);
- const hitX=[];   /* otras unidades alcanzadas por Blast: también pueden tener que tirar moral */
- const res=async(X,Y,ws,o,lab)=>{const r=await strike(X,Y,ws,o);wound(Y,r.wounds);(r.extra||[]).forEach(e=>{wound(e.to,e.wounds);if(e.wounds)hitX.push(e)});L.steps.push({who:X.name,to:Y.name,lab,...r});return r.wounds};
+ const hitX=[],used=[];   /* hitX: otras unidades alcanzadas por Blast (también pueden tener que tirar moral); used: efectos de un solo uso gastados */
+ const res=async(X,Y,ws,o,lab)=>{o.used=used;o.cd=fo&&fo.cd;const r=await strike(X,Y,ws,o);wound(Y,r.wounds);(r.extra||[]).forEach(e=>{wound(e.to,e.wounds);if(e.wounds)hitX.push(e)});
+  if(r.selfW){wound(X,r.selfW);log(`${X.name} sufre ${r.selfW} herida${r.selfW>1?"s":""} por el coste de su habilidad.`,"hr")}
+  if(r.thorn)L.thorn=(L.thorn||0)+r.thorn;
+  L.steps.push({who:X.name,to:Y.name,lab,...r});return r.wounds};
+ /* Atacar rompe el «Manto» de un héroe escondido: ya ha elegido objetivo. */
+ if(A.kind==="h")fxOf(A).forEach(e=>{if(e.k==="hide")e.broken=true});
  let tA=0,tB=0;
  if(!melee){tB+=await res(A,B,wA,{},"dispara")}
  else{/* Cuerpo a cuerpo: una sola ronda. Ataca el que activa y el defensor solo tira para bloquear; no devuelve golpes. */
   tB+=await res(A,B,wA,{melee:true,charge:ch,pre:fo&&fo.pre},"golpea");
-  A.g.fat=G.round;if(!B.ko())B.g.fat=G.round;
+  if(!fxHas(A,"nofat"))A.g.fat=G.round;if(!B.ko()&&!fxHas(B,"nofat"))B.g.fat=G.round;
   /* si nadie cae, el que carga se separa 1″ */
   if(ch&&!A.ko()&&!B.ko()){const dx=A.x-B.x,dy=A.y-B.y,l=Math.hypot(dx,dy)||1,p=tOut([A.x+dx/l*BIN,A.y+dy/l*BIN]);A.g.x=p[0];A.g.y=p[1]}}
  const fA=ruleN(A.rules,"Fear"),fB=ruleN(B.rules,"Fear");
  const mB=await morale(B,tB,melee?fA:0);if(mB)L.morale.push(mB);
  for(const e of hitX){const X=actor(e.to.id);if(X){const mX=await morale(X,e.wounds,0);if(mX)L.morale.push(mX)}}
  if(melee){const mA=await morale(A,tA,fB);if(mA)L.morale.push(mA)}
+ /* Efectos de habilidades que se disparan después de atacar (se evalúan con la distancia y el tipo de este ataque). */
+ const c0=ctxOf(A,B,{melee,charge:ch,cd:fo&&fo.cd}),post=k=>{const l=fxList(A,k,c0);l.forEach(e=>{if(e.once)used.push([A,e])});return l};
+ if(B.ko()){for(const e of post("onKill"))await runOps(A,A,e.ops,{id:e.id})}
+ else{post("pushAfter").forEach(e=>shove(B,A,e.v,false));
+  for(const e of post("cowerAfter")){if(B.ko())break;const ok=await moralTest(B,`${A.name} lo amenaza (${e.id})`);if(!ok){B.g.sh=true;log(`${B.name} queda Aturdida.`,"ok")}}
+  post("debuffOnHit").forEach(e=>{fxAdd(B,{...e.fx,id:e.id});log(`${B.name}: ${e.id} (-1 a impactar hasta el final de la ronda).`,"ok")})}
+ const chn=post("chain").find(e=>(e.when!=="kill"||B.ko())&&((e.kind==="shoot"&&!melee)||(e.kind==="chg"&&melee&&ch)||e.kind==="move"));
+ if(chn)L.chain={kind:chn.kind,r:chn.r,id:chn.id,from:B.id,fp:[B.x,B.y]};
+ /* Reprimenda devota: quien atacó al protegido sufre D3 impactos (si es una unidad enemiga). */
+ if(L.thorn&&A.kind==="u"&&!A.ko())await autoHits(`Reprimenda devota (${B.name})`,A,L.thorn,0);
+ fxDrop(used);
  L.tA=tA;L.tB=tB;G.last=L;
  const sum=L.steps.filter(s=>s.lab).map(s=>`${s.who} ${s.lab}: ${s.hits} impactos, ${s.wounds} heridas`).join(" · ");
  log(`${melee?(ch?"Cuerpo a cuerpo":"Ataque en contacto"):"Disparo"} · ${sum}${L.morale.length?" · "+L.morale.join(" · "):""}`,melee?"mel":"sho");
@@ -3566,14 +3775,14 @@ function rollEvent(a,b){const n=a*10+b,e=(DATA.ev||[]).find(x=>x[0]===String(n))
  log(`Evento de Neth ${n} · ${e[1]}: ${eff}`,"ev");hfSync();checkOver()}
 
 /* ---------------------------------------------------------------- flujo de la ronda */
-function startGame(){G.round=1;G.al=1;G.phase=G.needEv?"event":"heroes";G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.ex=false});G.units.forEach(u=>{u.pick=false});log("Empieza la partida. Ronda 1 · Noche.","rd")}
+function startGame(){G.round=1;G.al=1;G.phase=G.needEv?"event":"heroes";G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.ex=false});G.units.forEach(u=>{u.pick=false});G.units.slice().forEach(u=>{if(!u.fresh)scoutDeploy(u)});log("Empieza la partida. Ronda 1 · Noche.","rd")}
 function toHeroes(){G.phase="heroes";G.cur=-1;G.act=null;G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.stc=false;h.ex=false})}
 function heroesDone(){return G.heroes.every(gh=>{const a=actor(gh.id);return!a||a.ko()||gh.act===2})}
 /* Fin de ronda: Alertness +1 (o +2 si no queda ningún enemigo). A 6 entran refuerzos y vuelve a 1 (regla de la casa: cuenta de 1 a 6). */
 /* Fin de ronda: un dado de alerta (se tira en el centro, o lo metes tú). De 1 a 5, la alerta sube 1; con un 6, sube 2.
    A 6 entran refuerzos y vuelve a 1 (regla de la casa: cuenta de 1 a 6). */
 /* Sin enemigos en la mesa al acabar la ronda (oficial: +2): no se tira el dado; sale un cartel y la alerta sube 2. */
-async function endRound(){G.units.forEach(u=>{u.act=false});G.phase="end";const none=!liveUnits().length;G.endInfo={r:G.round,add:0,pending:!none,none};paint();
+async function endRound(){G.units.forEach(u=>{u.act=false;u.fx=(u.fx||[]).filter(e=>e.until!=="round")});G.heroes.forEach(h=>{h.fx=(h.fx||[]).filter(e=>e.until!=="round")});G.phase="end";const none=!liveUnits().length;G.endInfo={r:G.round,add:0,pending:!none,none};paint();
  const v=none?0:(await rollDice({n:1,own:true,title:`Dado de alerta · fin de la ronda ${G.round}`,sub:"De 1 a 5, la alerta sube 1. Con un 6, sube 2.",need:"1-5 → +1 · 6 → +2",ok:r=>r===6}))[0];
  U.busy=false;
  const add=none||v===6?2:1;let al=G.al+add,rf=false;
@@ -3586,9 +3795,43 @@ function nextRound(){G.round++;G.endInfo=null;G.last=null;G.aiDone=[];log(`Ronda
 function checkOver(){if(G.phase==="setup"||G.phase==="deploy"||G.over)return;if(G.heroes.length&&!liveHeroes().length){G.over="lost";log("Todos los héroes están inconscientes a la vez: derrota. Hay que repetir el capítulo.","bad")}}
 function hfSync(){try{hfSave();hfMeds();if(HF.open)hfPaint()}catch(e){}}
 
+/* Un «pling» corto de dos notas, sintetizado (sin archivos). Si el navegador no deja sonar, no pasa nada. */
+let AC=null;
+function pling(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();const t0=AC.currentTime;
+ [[1318.5,0],[1760,.13]].forEach(([f,d])=>{const o=AC.createOscillator(),g=AC.createGain();o.type="sine";o.frequency.value=f;o.connect(g);g.connect(AC.destination);
+  g.gain.setValueAtTime(0,t0+d);g.gain.linearRampToValueAtTime(.22,t0+d+.012);g.gain.exponentialRampToValueAtTime(.0001,t0+d+.9);o.start(t0+d);o.stop(t0+d+1)})}catch(e){}}
+const DIARY={n:"Diario del olvidado",k:"Objeto de misión",d:"Sus páginas siguen intactas aunque el Vacío borró casi todo lo demás. Es un objeto de misión: se usará en la siguiente. Contra el Heraldo del Umbral da AP(1) a los ataques de quien lo lleva en la pelea de jefe."};
+/* ---------------------------------------------------------------- rastros del pueblo (objetivo principal)
+   Tres braseros, cada uno en un cuadrante distinto y pegado a una casa (decisión de Nacho, 2026-11-20). Se colocan al azar al
+   desplegar. No bloquean el paso ni la vista: héroes y enemigos pasan y se paran encima. Un héroe a OBJD o menos gasta una acción de
+   habilidad y pasa una tirada de Voluntad (misión 1); con éxito, el brasero se enciende. Con los tres encendidos se cumple el principal
+   (regla de la casa: sin la tirada de 5+). */
+function placeTracks(){const houses=TOBS.filter(o=>o.k==="casa"),P=tNav().P,d=TCL+11;
+ const okPt=(p,q)=>p[0]>=30&&p[0]<=570&&p[1]>=30&&p[1]<=570&&quadOf(p[0],p[1])===q&&!P.some(pl=>bHit(p,p,pl))&&CC.every(c=>Math.hypot(c[0]-p[0],c[1]-p[1])>=100);
+ const spots=o=>{const r=[];for(const t of[.25,.5,.75])r.push([o.x+o.w*t,o.y-d],[o.x+o.w*t,o.y+o.h+d],[o.x-d,o.y+o.h*t],[o.x+o.w+d,o.y+o.h*t]);return r};
+ for(let tries=0;tries<20;tries++){const qs=[0,1,2,3].sort(()=>Math.random()-.5),res=[];
+  for(const q of qs){if(res.length===3)break;const c=[];houses.forEach(o=>spots(o).forEach(p=>{if(okPt(p,q)&&res.every(r=>Math.hypot(r.x-p[0],r.y-p[1])>=150))c.push({x:+p[0].toFixed(1),y:+p[1].toFixed(1),q})}));
+   if(c.length)res.push(c[Math.floor(Math.random()*c.length)])}
+  if(res.length===3)return res.sort((a,b)=>a.q-b.q).map((t,i)=>({...t,i,on:false}))}
+ return[]}
+function ensureTracks(){if(G.phase!=="setup"&&!(G.tracks&&G.tracks.length))G.tracks=placeTracks()}
+function completeTrack(t,a){t.on=true;t.by=a.name;const n=G.tracks.filter(x=>x.on).length;log(`${a.name} recupera el ${ORD[t.i]} rastro (${n}/${G.tracks.length}). El brasero se enciende.`,"ok");
+ if(n===G.tracks.length&&!G.prim){G.prim=true;G.diary=a.name;log(`Objetivo principal cumplido: los tres rastros están recuperados. ${a.name} recoge el diario del olvidado.`,"ok");
+  if(!(a.h.sk||[]).some(x=>x.n===DIARY.n)){a.h.sk=a.h.sk||[];a.h.sk.push({g:"equipo",n:DIARY.n,k:DIARY.k,d:DIARY.d});hfSync()}
+  U.prim={hero:a.name,t0:Date.now()};pling();setTimeout(()=>{if(U.prim&&Date.now()-U.prim.t0>=PRIM_MS-80){U.prim=null;paint()}},PRIM_MS)}}
+/* Recuperar un rastro: acción de habilidad, tirada de Voluntad (la tira el jugador). Si falla, puede gastar 2 de poder para que cuente como superada. */
+async function doTrack(gh,a,t){const h=a.h,m=statMod(h,"vol"),pass=x=>x===6||(x!==1&&x+m>=h.vol);
+ G.act={k:"obj",st:"fight"};U.sel=a.id;paint();
+ const[r]=await rollDice({n:1,own:true,title:`${h.name} recupera el ${ORD[t.i]} rastro`,sub:`Acción de habilidad · tirada de Voluntad ${h.vol}+${m?(m>0?", +":", ")+m:""}`,need:`${Math.max(2,Math.min(6,h.vol-m))}+ pasa`,ok:pass});
+ endDice();U.busy=false;let ok=pass(r);
+ if(ok)completeTrack(t,a);
+ else{log(`${h.name} falla la tirada de Voluntad (${r}${m?(m>0?"+":"")+m:""}) y no recupera el rastro.`,"hr");
+  if(h.pw>=2&&await new Promise(res=>{U.wilAsk={name:h.name,pw:h.pw,res};paint()})){h.pw-=2;hfSync();log(`${h.name} gasta 2 de poder: la tirada cuenta como superada.`,"hr");completeTrack(t,a)}}
+ finishAction(gh,"obj");save();paint()}
+
 /* ---------------------------------------------------------------- activación de los héroes */
 /* Al activarse, primero los estados (Core Rules: Afligido Fue, Debilitado Des, Enfermo Vol; Aturdido = se queda quieto). */
-function heroStart(gh){const a=actor(gh.id),h=a.h;gh.act=1;gh.stc=true;const out=[];
+function heroStart(gh){const a=actor(gh.id),h=a.h;gh.act=1;gh.stc=true;gh.seen=liveUnits().filter(u=>los(u,a)).map(u=>u.id);const out=[];
  if(h.st.includes("af")){const t=statTest(h,"fue","Afligido · Fuerza");out.push(t.txt);if(t.ok)h.st=h.st.filter(s=>s!=="af");else{wound(a,1);out.push("1 herida")}}
  if(h.st.includes("de")){const t=statTest(h,"des","Debilitado · Destreza");out.push(t.txt);if(t.ok)h.st=h.st.filter(s=>s!=="de")}
  if(h.st.includes("en")){const t=statTest(h,"vol","Enfermo · Voluntad");out.push(t.txt);if(t.ok)h.st=h.st.filter(s=>s!=="en")}
@@ -3596,17 +3839,20 @@ function heroStart(gh){const a=actor(gh.id),h=a.h;gh.act=1;gh.stc=true;const out
 /* pulgadas entre peanas: a esta distancia o menos es cuerpo a cuerpo (Atacar); a más, hay que cargar.
    La norma dice 1″; prueba de Nacho: 1,5″ (antes 2″). Parámetro interno: al jugador se le sigue diciendo «1″» (CT). */
 const CONTACT=1.5,CT="1″";
-const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2]];
+const OBJD=CONTACT;   /* pulgadas, desde la peana del héroe hasta el rastro (interno, como CONTACT; el texto dice 1″) */
+const ORD=["primer","segundo","tercer"],PRIM_MS=6200;
+const trkNear=a=>(G.tracks||[]).filter(t=>!t.on&&Math.max(0,Math.hypot(a.x-t.x,a.y-t.y)-a.r)/BIN<=OBJD+.01);
+const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["obj","Recuperar rastro","Acción de habilidad: a "+CT+" de un rastro, pasa una tirada de Voluntad.",0],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2]];
 /* Acciones por activación: cada héroe tiene 2. Avanzar, Mantener y Atacar cuestan 1; Correr y Cargar cuestan 2 (usan las dos).
    Descansar ocupa la activación entera. Con 3 de poder gana una acción extra (1 acción). */
-const ACOST={rest:2,hold:1,shoot:1,adv:1,rush:2,atk:1,chg:2};
+const ACOST={rest:2,hold:1,shoot:1,obj:1,adv:1,rush:2,atk:1,chg:2};
 const usedA=gh=>(gh.done||[]).reduce((s,k)=>s+(ACOST[k]||1),0);
 const leftA=gh=>2+(gh.ex?1:0)-usedA(gh);
 const canExtra=gh=>{const h=heroOf(gh);return!!h&&!gh.ex&&h.pw>=3};
 /* Acciones que aún puede gastar ahora (con la acción extra, si puede pagarla). */
 const freeA=gh=>Math.max(0,leftA(gh));
 const atkTargets=a=>liveUnits().filter(u=>gap(a,u)<=CONTACT+.01);
-function moveLim(a,k){const s=speed(a);return k==="adv"?s[0]:k==="rush"||k==="chg"?s[1]:0}
+function moveLim(a,k){const A=G.act;if(A&&A.st==="move"&&A.lim!=null)return A.lim;const s=speed(a);return k==="adv"?s[0]:k==="rush"||k==="chg"?s[1]:0}
 /* Camino del héroe hasta p sin pasarse; no puede acabar a menos de 1″ de un enemigo (solo cargando). */
 function heroReach(a,p,lim){let r=tReach([a.x,a.y],p,lim);if(!r)return null;const en=liveUnits();
  const bad=q=>en.some(e=>Math.hypot(e.x-q[0],e.y-q[1])<a.r+e.r+BIN);
@@ -3614,23 +3860,26 @@ function heroReach(a,p,lim){let r=tReach([a.x,a.y],p,lim);if(!r)return null;cons
  const occ=actors().filter(o=>o.id!==a.id&&o.kind==="h");if(occ.some(o=>Math.hypot(o.x-r.end[0],o.y-r.end[1])<o.r+a.r)){const f=freeSpot(r.end,a.r,a.id);r={...r,end:f,pts:[...r.pts.slice(0,-1),f]}}
  return r}
 /* Camino para cargar contra B: hasta quedar en contacto, sin pasar del tope de correr o cargar. */
-function chargePath(a,b){const lim=moveLim(a,"chg");const p=tPath([a.x,a.y],[b.x,b.y]);if(!p)return null;const need=p.len-touch(a,b);if(need>lim*BIN+.5)return{ok:false,len:need};
+function chargePath(a,b,lim0){const lim=lim0!=null?lim0:Math.max(6,moveLim(a,"chg")+((has(a,"Highborn")||has(a,"Royal Legion"))?2:0)-((has(b,"Wild Veil")||has(b,"Shadowborn"))?2:0));const p=tPath([a.x,a.y],[b.x,b.y]);if(!p)return null;const need=p.len-touch(a,b);if(need>lim*BIN+.5)return{ok:false,len:need};
  const r=tReach([a.x,a.y],[b.x,b.y],Math.max(0,need)/BIN);return{ok:true,len:Math.max(0,need),pts:r?r.pts:[[a.x,a.y]],end:r?r.end:[a.x,a.y]}}
 /* Arma a distancia elegida por el héroe (la primera si solo tiene una) y enemigos a los que puede disparar con ella. */
 const rwOf=(a,A)=>{const rw=a.ws.filter(isRanged);return rw.length?rw[Math.min((A&&A.rw)||0,rw.length-1)]:null};
-function shootTargets(a){const A=G.act,w=rwOf(a,A),hold=!!A&&(A.k==="hold"||A.k==="shoot");return w?liveUnits().filter(u=>canShoot(a,u,hold,w)):[]}
-function chargeTargets(a){return liveUnits().filter(u=>gap(a,u)>CONTACT+.01).map(u=>({u,c:chargePath(a,u)})).filter(x=>x.c&&x.c.ok)}
+function shootTargets(a){const A=G.act,w=rwOf(a,A),hold=!!A&&(A.k==="hold"||A.k==="shoot");if(!w)return[];let L=liveUnits().filter(u=>canShoot(a,u,hold,w));
+ if(A&&A.rlim)L=L.filter(u=>gap(a,u)<=A.rlim+.01);
+ if(A&&A.chain)L=L.filter(u=>u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01));
+ return L}
+function chargeTargets(a){const A=G.act;return liveUnits().filter(u=>gap(a,u)>CONTACT+.01&&(!A||!A.chain||(u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01)))).map(u=>({u,c:chargePath(a,u,A&&A.lim)})).filter(x=>x.c&&x.c.ok)}
 function endAct(gh){gh.act=2;G.cur=-1;G.act=null;U.dest=null;U.sel="";if(heroesDone())log("Todos los héroes han actuado. Turno de la IA.","rd")}
 
 /* ---------------------------------------------------------------- IA */
 /* Diagrama de las Core Rules: si al moverse puede disparar o cargar a un héroe → avanzar y disparar al más cercano,
    mantener y disparar si ya está a tiro, o cargar al más cercano si hace más daño que disparando; si no, correr hacia
    el más cercano. Sin objetivos en el prototipo, el «AI Goal» es siempre el héroe más cercano (decisión de Nacho). */
-function aiPlan(a){const hs=liveHeroes();if(!hs.length)return{k:"idle",why:"No queda ningún héroe en pie."};
+function aiPlan(a){const hs=aiTargets(a);if(!hs.length)return{k:"idle",why:liveHeroes().length?"No puede elegir a ningún héroe como objetivo: están ocultos o protegidos.":"No queda ningún héroe en pie."};
  if(a.sh())return{k:"rally",why:"Está Aturdida: pasa la activación quieta y se recupera."};
  const P=hs.map(h=>({h,p:tPath([a.x,a.y],[h.x,h.y])})).filter(x=>x.p).sort((x,y)=>x.p.len-y.p.len);
  if(!P.length)return{k:"idle",why:"No encuentra camino hasta ningún héroe."};
- const cl=P[0].h,s=speed(a),rw=a.ws.filter(isRanged),mw=a.ws.filter(isMelee);
+ const frozen=fxHas(a,"nomove"),cl=P[0].h,s=frozen?[0,0]:speed(a),rw=a.ws.filter(isRanged),mw=a.ws.filter(isMelee);
  const sees=hs.some(h=>los(a,h)||gap(a,h)<=12);
  /* Ya en contacto (a CONTACT o menos de un héroe): ataca sin cargar. */
  const adj=mw.length?hs.filter(h=>gap(a,h)<=CONTACT+.01).sort((x,y)=>gap(a,x)-gap(a,y))[0]:null;
@@ -3640,13 +3889,14 @@ function aiPlan(a){const hs=liveHeroes();if(!hs.length)return{k:"idle",why:"No q
  let shoot=null;if(rw.length){const now=hs.filter(h=>canShoot(a,h,true)).sort((x,y)=>gap(a,x)-gap(a,y));
   if(now.length)shoot={k:"hold",t:now[0],to:[a.x,a.y],pts:[[a.x,a.y]]};
   else{const r=tReach([a.x,a.y],[cl.x,cl.y],s[0]);if(r){const stop=stopShort(a,r,cl);const g={...a,x:stop.end[0],y:stop.end[1]};const t=hs.filter(h=>canShoot(g,h,false)).sort((x,y)=>gap(g,x)-gap(g,y));if(t.length)shoot={k:"adv",t:t[0],to:stop.end,pts:stop.pts,g}}}}
- const cp=mw.length||ruleN(a.rules,"Impact")?chargePath(a,cl):null,charge=cp&&cp.ok?{k:"chg",t:cl,to:cp.end,pts:cp.pts}:null;
+ const cp=!frozen&&(mw.length||ruleN(a.rules,"Impact"))?chargePath(a,cl):null,charge=cp&&cp.ok?{k:"chg",t:cl,to:cp.end,pts:cp.pts}:null;
  /* Daño esperado con UNA arma (la mejor), igual que cuando ataca de verdad. */
  const best=(X,T,ws,mel,chg)=>ws.length?Math.max(...ws.map(w=>expDmg(X,T,[w],mel,chg))):(chg?expDmg(X,T,[],mel,chg):0);
  const eS=shoot?best(shoot.g||a,shoot.t,shootWs(shoot.g||a,shoot.t,shoot.k==="hold"),false,false):0,eC=charge?best(a,cl,mw,true,true):0;
  const base=sees?"Ve a un héroe":"No ve a ningún héroe, pero va a por el más cercano";
  if(charge&&(!shoot||eC>eS))return{...charge,why:`${base}: cargar hace más daño (≈${eC.toFixed(1)} heridas) que disparar${shoot?` (≈${eS.toFixed(1)})`:""}.`};
  if(shoot)return{...shoot,why:`${base}: ${shoot.k==="hold"?"ya está a tiro, se queda quieta y dispara":"avanza para ponerse a tiro y dispara"} (≈${eS.toFixed(1)} heridas).`};
+ if(frozen)return{k:"idle",why:"No puede moverse hasta el final de la ronda (habilidad de un héroe) y no tiene a nadie a tiro ni en contacto."};
  const r=tReach([a.x,a.y],[cl.x,cl.y],s[1]);const st=r?stopShort(a,r,cl):{end:[a.x,a.y],pts:[[a.x,a.y]]};
  return{k:"rush",t:cl,to:st.end,pts:st.pts,why:`${base}: no llega a disparar ni a cargar, así que corre hacia ${cl.name}.`}}
 /* Al correr o avanzar no se acaba a menos de 1″ de un héroe (eso solo cargando). */
@@ -3689,13 +3939,17 @@ function groupRow(D,row){const cells=row.split("</span>").filter(s=>s.trim()).ma
  return D.groups.map(g=>{const part=cells.slice(k,k+g.n).join("");k+=g.n;return`<div class="tv-dgroup"><small>${esc(g.label)}</small><div class="tv-dgrid">${part}</div></div>`}).join("")}
 function paintDice(){const el=$("#tvDice");if(!el)return;el.innerHTML=diceHTML();const D=U.dice;if(D&&D.st==="ask"&&!D.man){const b=el.querySelector("[data-tv=droll]");if(b)b.focus({preventScroll:true})}}
 const pendingHeroes=()=>G.heroes.filter(gh=>{const a=actor(gh.id);return a&&!a.ko()&&gh.act!==2});
+function primHTML(){const P=U.prim;if(!P)return"";const el=Math.max(0,(Date.now()-P.t0)/1000);
+ return`<div class="tv-prim" style="animation-delay:-${el.toFixed(2)}s" role="status" aria-live="polite" data-tv="primclose"><div class="tv-primc"><span class="tv-primi" aria-hidden="true"><svg viewBox="-16 -34 32 52" width="44" height="72">${tBraz(0,0,true)}</svg></span><p class="tv-lab">Misión I · El pueblo vacío</p><h3>Objetivo principal cumplido</h3><p>Los tres rastros están recuperados y los braseros arden.</p>
+ <div class="tv-diary"><b>${esc(P.hero)} ha conseguido el diario del olvidado</b><span>${esc(DIARY.d)}</span></div><small>Toca para cerrar</small></div></div>`}
+function wilHTML(){const w=U.wilAsk;return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Tirada de Voluntad fallida"><div class="tv-confc"><b>${esc(w.name)} falla la tirada de ${esc(w.what||"Voluntad")}</b><p>Puede gastar ${w.cost||2} de poder para que cuente como superada (Core Rules). Ahora tiene ${w.pw} de poder.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="wily">Gastar ${w.cost||2} de poder</button><button type="button" class="tv-ghostb" data-tv="wiln">No gastar</button></div></div></div>`}
 function confirmHTML(){const names=pendingHeroes().map(gh=>{const h=heroOf(gh);return esc(h?h.name:gh.n)});
  return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Confirmar el final del turno"><div class="tv-confc"><b>¿Terminar el turno de los héroes?</b><p>${names.join(", ")} todavía ${names.length>1?"tienen":"tiene"} acciones por hacer. Si terminas ahora las pierden y pasa el turno de la IA.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="toai2">Sí, terminar el turno</button><button type="button" class="tv-ghostb" data-tv="noconf">Volver</button></div></div></div>`}
 /* El turno de la IA va despacio para poder seguirlo: se ve qué unidad actúa y por qué, cómo se mueve, y cada dado, evento por evento. */
 async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.aiTot=liveUnits().length;paint();
  const W=ms=>sleep(REDUCE?0:ms);
  await W(1000);
- for(;;){if(G.over)break;const n=nextAI();if(!n)break;const a=n.u;a.g.act=true;U.sel=a.id;
+ for(;;){if(G.over)break;const n=nextAI();if(!n)break;const a=n.u;a.g.act=true;U.sel=a.id;await sporeCheck(a);if(a.ko()){G.aiDone.push(a.id);save();paint();continue}
   const pl=aiPlan(a);G.aiCur={id:a.id,k:pl.k,why:pl.why,t:pl.t?pl.t.name:""};paint();
   await W(1800);
   if(pl.k==="rally"){a.g.sh=false;log(`${a.name} se recupera (deja de estar Aturdida).`,"ai");paint();await W(1500)}
@@ -3713,7 +3967,7 @@ async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.a
     const pre=await preRollGroup(B,list.map((X,i)=>({A:X,ws:wsL[i]})));
     log(`${list.map(X=>X.name).join(", ")} atacan a ${B.name} a la vez.`,"ai");paint();
     for(let i=0;i<list.length;i++){const X=list[i];if(B.ko()||G.over)break;fxClash(X,B);await W(700);const L=await fight(X,B,"melee",{charge:false,pre:pre[i],only:wsL[i][0]});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(X,L.tA);await W(1200)}}
-   else if(A&&B){fxClash(A,B);await W(900);const L=await fight(A,B,"melee",{charge:pl.k==="chg"});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(A,L.tA);await W(2000)}}}
+   else if(A&&B){fxClash(A,B);await W(900);const L=await fight(A,B,"melee",{charge:pl.k==="chg",cd:pathLen(pl.pts)/BIN});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(A,L.tA);await W(2000)}}}
   G.aiDone.push(a.id);save();paint();await W(1200);if(G.over)break}
  G.aiCur=null;U.sel="";U.busy=false;if(!G.over)await endRound();save();paint()}
 const pathLen=pts=>{let s=0;for(let i=1;i<pts.length;i++)s+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);return s};
@@ -3750,23 +4004,32 @@ function boardSVG(){const A=actors();
  const q=QC.map((c,k)=>`<text class="tv-ql" x="${c[0]}" y="${c[1]}">${QN[k]}</text>`).join("")+CC.map((c,k)=>`<g class="tv-cn${G.hc===k+1?" on":""}" transform="translate(${c[0]<300?20:580} ${c[1]<300?20:580})"><circle r="11"/><text y="4">${k+1}</text></g>`).join("");
  const obs=U.obs?TOBS.map(o=>[bPolys(o,TCL),bPolys(o,0)].map((L,j)=>L.map(P=>`<polygon class="tv-ob ${o.k==="casa"?"los":""}${j?"":" cl"}" points="${P.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ")}"/>`).join("")).join("")).join(""):"";
  const town=TOBS.filter(o=>o.k==="casa").map(o=>`<g class="tv-house"><rect x="${o.x}" y="${o.y}" width="${o.w}" height="${o.h}"/><path d="M${o.x} ${o.y}L${o.x+o.w} ${o.y+o.h}"/></g>`).join("")
-  +`<g class="tv-well" transform="translate(300 300)"><circle r="26"/><circle r="18" class="in"/><text y="44">el pozo</text></g>`
+  +`<g class="tv-well" transform="translate(300 300)"><circle r="26"/><circle r="18" class="in"/><text y="44">el pozo</text><text y="58" class="sm">cobertura</text></g>`
   +[[0,0],[600,0],[600,600],[0,600]].map(([x,y],i)=>`<path class="tv-carc" d="${x?"M600":"M0"} ${y?525:75}A75 75 0 0 ${i%2?1:0} ${x?525:75} ${y}"/>`).join("");
  const fog=night()?`<rect width="600" height="600" class="tv-night"/>`:dawn()?`<rect width="600" height="600" class="tv-dawn"/>`:"";
- return`<svg class="tv-map" id="tvMap" viewBox="-6 -6 612 612" role="img" aria-label="Tablero de 48 pulgadas"><defs>${grid}<filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath></defs>
+ return`<svg class="tv-map" id="tvMap" viewBox="-6 -6 612 612" role="img" aria-label="Tablero de 48 pulgadas"><defs>${grid}<filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath><linearGradient id="tvbfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="tvbgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
  <rect x="-6" y="-6" width="612" height="612" rx="8" class="tv-frame"/>
  <rect width="600" height="600" fill="url(#tvbg)"/><rect width="600" height="600" fill="url(#tvgrid)"/>${fog}
- <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${q}${obs}
+ <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${tracksSVG()}${q}${obs}
  <rect class="tv-hit" width="600" height="600" data-tv="pt"/>
  <g id="tvOv">${overlay()}</g><g id="tvTrail"></g>
  <g id="tvToks">${A.filter(a=>a.kind==="u").map(unitTok).join("")}${A.filter(a=>a.kind==="h").map((a,k)=>heroTok(a,k)).join("")}</g>
  <g id="tvFx"></g></svg>`}
+function tBraz(x,y,lit){const C=lit?"#c99a48":"#3a4566",E=lit?"#f3dc9a":"#55618a";
+ return(lit?`<circle cx="${x}" cy="${y-8}" r="20" fill="url(#tvbgl)"/><path class="tv-fl" d="M${x} ${y-27}c-7 8-9 14-4 20c-4-6 4-10 4-20z" fill="url(#tvbfl)"/><path class="tv-fl f2" d="M${x+4} ${y-19}c-4 5-5 8-2 12c-2-3 3-6 2-12z" fill="#fff3c9" opacity=".75"/>`:`<path d="M${x-2} ${y-8}q-4-8 2-14q5-6 0-12" fill="none" stroke="#4a5677" stroke-width="1.2" opacity=".7"/>`)
+  +`<path d="M${x-12} ${y-6}h24l-4 7h-16z" fill="${C}" stroke="${E}" stroke-width=".8"/><path d="M${x-6} ${y+1}l-5 12M${x+6} ${y+1}l5 12M${x} ${y+1}v12" stroke="${lit?"#a87d34":"#3a4566"}" stroke-width="1.4"/>`}
+/* Los rastros: no reciben clics ni estorban (pointer-events none); el anillo señala hasta dónde llega un héroe. */
+function tracksSVG(){const gh=G.phase==="heroes"&&G.cur>=0?G.heroes[G.cur]:null,a=gh?actor(gh.id):null;
+ return(G.tracks||[]).map(t=>{const near=a&&!a.ko()&&trkNear(a).includes(t);
+  return`<g class="tv-trk${t.on?" on":""}${near?" near":""}" data-trk="${t.i}"><circle class="tv-trkr" cx="${t.x}" cy="${t.y}" r="${OBJD*BIN}"/>${tBraz(t.x,t.y,t.on)}<text class="tv-trkn" x="${t.x}" y="${t.y+27}">${["I","II","III"][t.i]}</text></g>`}).join("")}
 /* Capa de ayuda: zona alcanzable, camino elegido, objetivos a tiro o al alcance de la carga. */
 function overlay(){let s="";const gh=G.cur>=0?G.heroes[G.cur]:null,a=gh?actor(gh.id):null;
  if(G.phase==="heroes"&&a&&G.act){const k=G.act.k,st=G.act.st;
   if(st==="move"){const lim=moveLim(a,k),sp=[Math.min(speed(a)[0],lim),lim];s+=`<g clip-path="url(#tvclip)" class="tv-reg">${tRegion([a.x,a.y],sp,lim)}</g><circle cx="${a.x}" cy="${a.y}" r="${lim*BIN}" class="tv-rr"/>`;
    if(U.dest){const r=heroReach(a,U.dest,lim);if(r){const d=pathLen(r.pts)/BIN;const e=r.end,b=r.pts[r.pts.length-2]||[a.x,a.y];
     s+=`<polyline points="${r.pts.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ")}" class="tv-path"/><circle cx="${e[0].toFixed(1)}" cy="${e[1].toFixed(1)}" r="${a.r}" class="tv-ghost"/><g transform="translate(${((e[0]+b[0])/2).toFixed(1)} ${((e[1]+b[1])/2).toFixed(1)})"><rect x="-30" y="-11" width="60" height="22" rx="11" class="tv-pill"/><text class="tv-pt" y="4">${inch(d)}${r.cut?" · máx.":""}</text></g>`}}}
+  if(st==="tele"){const R2=G.act.lim*BIN;s+=`<circle cx="${a.x}" cy="${a.y}" r="${R2}" class="tv-rr"/>`;
+   if(U.dest){let dx=U.dest[0]-a.x,dy=U.dest[1]-a.y;const Lx=Math.hypot(dx,dy);if(Lx>R2){dx*=R2/Lx;dy*=R2/Lx}s+=`<line x1="${a.x}" y1="${a.y}" x2="${(a.x+dx).toFixed(1)}" y2="${(a.y+dy).toFixed(1)}" class="tv-path"/><circle cx="${(a.x+dx).toFixed(1)}" cy="${(a.y+dy).toFixed(1)}" r="${a.r}" class="tv-ghost"/>`}}
   if(st==="chg")chargeTargets(a).forEach(({u,c})=>{s+=`<polyline points="${c.pts.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ")}" class="tv-cpath"/><circle cx="${u.x}" cy="${u.y}" r="${u.r+9}" class="tv-tg chg" data-tv="tgt" data-id="${u.id}"/>`});
   if(st==="atk")atkTargets(a).forEach(u=>{s+=`<circle cx="${u.x}" cy="${u.y}" r="${u.r+9}" class="tv-tg chg" data-tv="tgt" data-id="${u.id}"/>`});
   if(st==="shoot"){const w0=rwOf(a,G.act),mx=w0?w0.rng+rngMod(a):0;if(mx>0)s+=`<circle cx="${a.x}" cy="${a.y}" r="${(Math.min(mx,night()?12:99)*BIN+a.r).toFixed(1)}" class="tv-rng"/>`;
@@ -3781,33 +4044,374 @@ function head(){const live=G.phase!=="setup"&&G.phase!=="deploy";
  const steps=live?`<ol class="tv-steps">${PH.map(([k,l],i)=>{const cur=G.phase===k,past=PH.findIndex(p=>p[0]===G.phase)>i,skip=k==="event"&&G.phase!=="event"&&!(G.ev&&G.ev.r===G.round);return`<li class="${cur?"cur":""}${past?" past":""}${skip&&!cur?" skip":""}"><b>${i+1}</b>${l}</li>`}).join("")}</ol>`:"";
  return`<header class="tv-head"><button type="button" class="tv-x" data-tv="close" aria-label="Cerrar el tablero virtual"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
  <div class="tv-tt"><small>Prototipo · Reglas de OPR v2.1</small><b>Tablero virtual</b></div>
- ${live?`<div class="tv-stat"><span><small>Ronda</small><b>${G.round}</b></span><span class="tv-tod ${tod()}"><small>Luz</small><b>${tod()}</b></span><span><small>Alertness</small>${pips()}</span></div>`:""}
+ ${live?`<div class="tv-stat"><span><small>Ronda</small><b>${G.round}</b></span><span class="tv-tod ${tod()}"><small>Luz</small><b>${tod()}</b></span><span><small>Alertness</small>${pips()}</span><span class="tv-rk${G.prim?" ok":""}"><small>Rastros</small><b>${(G.tracks||[]).filter(t=>t.on).length}/${(G.tracks||[]).length||3}</b></span></div>`:""}
  <div class="tv-hact">${live||G.phase==="deploy"?`<button type="button" class="tv-ghostb${U.sure?" arm":""}" data-tv="reset">${U.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>`:""}</div>${steps}</header>`}
 function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(),st=ko?"Inconsciente":gh.act===2?"Ya ha actuado":gh.act===1?"Activo":"Por activar";
  const canAct=G.phase==="heroes"&&!U.busy&&!ko&&gh.act!==2&&G.cur<0,pend=G.phase==="heroes"&&!ko&&gh.act!==2;
  return`<div class="tv-hcw"><button type="button" class="tv-hc${G.cur===i?" cur":""}${ko?" ko":""}${gh.act===2?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa">
  <span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span>
  <span class="tv-hn"><b>${esc(h.name)}</b><small>${st}${h.st.length?" · "+h.st.map(s=>ST_N[s]).join(", "):""}</small>
- <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${G.phase==="heroes"&&!ko?actCount(gh):""}</span></button>${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${G.phase==="heroes"&&canExtra(gh)?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?`<span class="tv-pend">Aún le quedan acciones por hacer</span>`:""}</div>`}
+ <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${G.phase==="heroes"&&!ko?actCount(gh):""}</span></button>${fxRow(gh)}${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${G.phase==="heroes"&&canExtra(gh)?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?`<span class="tv-pend">Aún le quedan acciones por hacer</span>`:""}</div>`}
 /* Contador de acciones del héroe: una pastilla por acción (2, o 3 con la extra). Dorada = le queda; apagada = gastada;
    tachada = perdida al terminar la activación sin usarla. */
 function actCount(gh){const tot=2+(gh.ex?1:0),used=Math.min(tot,usedA(gh)),fin=gh.act===2,left=fin?0:Math.max(0,tot-used);
  const pip=i=>`<i class="${i<used?"u":fin?"x":"f"}${i>=2?" ex":""}"></i>`;
  return`<span class="tv-acc" aria-label="Acciones: le ${left===1?"queda":"quedan"} ${left} de ${tot}"><span class="tv-accp">${Array.from({length:tot},(_,i)=>pip(i)).join("")}</span><b>${fin?"Sin acciones":left===1?"Le queda 1 acción":`Le quedan ${left} acciones`}</b>${!fin&&!gh.ex&&canExtra(gh)?`<small>+1 con 3 de poder</small>`:""}</span>`}
+/* Etiqueta pulsable de una regla o habilidad: abre su ventana. Resaltada si su efecto está activo. */
+function skillBar(gh,a){const sk=a.h.sk||[],hab=sk.filter(x=>x.g==="hab").map(x=>x.n),dot=sk.filter(x=>x.g==="regla"&&ruleInfo(x.n).kind==="dote").map(x=>x.n);
+ return`<p class="tv-lab">Habilidades · toca una para ver qué hace</p>${chipsOf(hab.concat(dot),a.id)}`}
+/* Registro: los nombres de habilidades, dotes y reglas (en español o inglés) salen subrayados y al pulsarlos abren su ventana. */
+let LKRE=null;
+function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantener","avanzar","correr","cargar","disparar","atacar","hero"]),set=new Set();
+  Object.values(C.sk).forEach(x=>{set.add(x.n);set.add(x.en)});Object.values(C.rg).forEach(x=>{if(x.en)set.add(x.en)});
+  const L=[...set].filter(n=>n&&n.length>=4&&!skip.has(nrm(n))).sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
+  LKRE=new RegExp("(?<![\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
+ return h.replace(LKRE,m=>`<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="">${m}</button>`)}
+function chip(label,o,cls){return`<button type="button" class="tv-rchip${fxActive(o,label)?" on":""}${cls?" "+cls:""}" data-tv="rinfo" data-l="${esc(label)}" data-o="${o||""}">${esc(label)}${fxActive(o,label)?`<i aria-hidden="true">activa</i>`:""}</button>`}
+function chipsOf(labels,o){return labels.length?`<div class="tv-rchips">${labels.map(l=>chip(l,o)).join("")}</div>`:`<p class="tv-sub">Ninguna.</p>`}
+const MOD_TAG={hab:"Habilidad de clase",comun:"Habilidad común",dote:"Dote de clase · una vez por partida",regla:"Regla especial"};
+/* La ventana de una regla o habilidad: qué significa y cómo se aplica en el tablero. */
+
+/* ---------------------------------------------------------------- habilidades de héroe: qué hace cada una en el tablero
+   Clave = nombre en español. Campos: cost {wd} (heridas que se paga) · x {max} (poder X a gastar) · self [ops] (sobre el héroe) · buff [efectos]
+   (los que se queda el héroe) · ally {n,r,self,ko,auto} / foe {n,r,min} + ops (a quien se elige) · place {v} (colocarse) · free {kind,r} (acción
+   inmediata) · special · later (afecta a hechizos o fichas de búsqueda: se anota) · manual (zonas y marcadores: a mano) · inert (sin efecto aquí).
+   Efecto: {k,v,w (cuándo),once,…} (ver «efectos activos»). Operaciones: heal, pw, cure, fx, hits, wound, push, pull, cower, moral. */
+const E=(k,v,w,x)=>({k,v:v||0,w:w||"all",...x});
+const O={fx:(k,v,w,x)=>({op:"fx",e:{k,v:v||0,w:w||"all",...x}}),moral:(...then)=>({op:"moral",then}),pull:v=>({op:"pull",v}),push:v=>({op:"push",v}),cow:{op:"cower"},
+ hits:(n,ap)=>({op:"hits",n,ap:ap||0}),wound:n=>({op:"wound",n}),heal:v=>({op:"heal",v}),pw:v=>({op:"pw",v}),pwLose:v=>({op:"pw",v,neg:1}),cure:{op:"cure"},cureAll:{op:"cure",all:1}};
+const ZN=t=>`Crea ${t} o un marcador temporal. El tablero todavía no tiene zonas ni marcadores temporales: resuélvelo a mano.`;
+const NO_MORAL="En este tablero los héroes no tiran moral, así que nunca quedan acobardados: esta habilidad no tiene efecto.";
+const NO_STAT="Los enemigos no hacen tiradas de característica en este tablero, así que esta habilidad no tiene efecto.";
+const NO_SPELL="Afecta a las tiradas de lanzamiento de hechizos de los enemigos, y los enemigos todavía no lanzan hechizos (fase 7): no tiene efecto por ahora.";
+const HS_="los hechizos",FT_="las fichas de búsqueda",SP_="las fichas de hechizo";
+const SKX={
+/* Bárbaro */
+"Furia":{cost:{wd:1},buff:[E("hit",2,"charge")]},
+"Temerario":{buff:[E("xwound",1,"mshort"),E("xwoundTaken",1)]},
+"Desafío":{foe:{n:2,r:12},ops:[O.moral(O.pull(6))]},
+"Frenesí de sangre":{buff:[E("xwound",2,"charge",{once:1,sw:1})]},
+"Instinto salvaje":{buff:[E("evade",1,"mshort")]},
+"Golpe certero":{buff:[E("xhit",1,"charge",{once:1})]},
+"Intimidante":{foe:{n:2,r:3},ops:[O.moral(O.cow)]},
+"Despiadado":{buff:[E("xhit",1,"mshort"),E("xhitTaken",1)]},
+"Ataque aturdido":{buff:[E("xhit",2,"charge",{once:1,sw:1})]},
+"Brutal":{buff:[E("ap",1)]},
+"Grito furioso":{foe:{n:2,r:3},ops:[O.moral(O.push(6))]},
+"Endurecerse":{cost:{wd:1},buff:[E("def",2,"mshort")]},
+/* Bardo */
+"Melodía distractora":{foe:{n:1,r:9},ops:[O.moral(O.fx("def",-2,"all",{once:1}))]},
+"Inspirar":{ally:{n:2,r:9},ops:[O.fx("stat",1,"all",{once:1})]},
+"Canción de salud":{ally:{n:2,r:9},ops:[O.heal(1)]},
+"Canción repulsora":{foe:{n:2,r:9},ops:[O.moral(O.push(6))]},
+"Melodía curativa":{ally:{n:2,r:9},ops:[O.cure]},
+"Persuadir":{foe:{n:1,r:12},ops:[O.moral(O.fx("hit",-2))]},
+"Motivar":{ally:{n:1,r:9},ops:[O.fx("hit",2,"all",{once:1})]},
+"Canción del miedo":{foe:{n:2,r:9},ops:[O.moral(O.cow)]},
+"Encantar":{foe:{n:1,r:6},ops:[O.fx("noTarget",0,"all",{hero:"@"})]},
+"Canción del descanso":{ally:{n:2,r:9},ops:[O.pw(1)]},
+"Burla":{inert:NO_STAT},
+"Canción protectora":{ally:{n:1,r:9},ops:[O.fx("def",2,"all",{once:1})]},
+/* Brujo */
+"Pacto de fuerza":{cost:{wd:1},later:HS_},
+"Respiro diabólico":{buff:[E("onKill",0,"all",{once:1,ops:[O.pw("D3+1")]})]},
+"Protección oscura":{cost:{wd:1},buff:[E("def",2)]},
+"Sacrificio oscuro":{cost:{wd:1},foe:{n:1,r:6},ops:[O.wound(1)]},
+"Maldición feérica":{foe:{n:1,r:12},ops:[O.moral(O.fx("hit",-2))]},
+"Pacto de sabiduría":{cost:{wd:1},later:HS_},
+"Truco diabólico":{later:SP_},
+"Transferencia oscura":{cost:{wd:1},ally:{n:1,r:3},ops:[O.heal("D3+1")]},
+"Susurros feéricos":{foe:{n:2,r:9},ops:[O.moral(O.cow)]},
+"Dominación feérica":{foe:{n:1,r:6},ops:[O.fx("noTarget",0,"all",{hero:"@"})]},
+"Pacto de habilidad":{cost:{wd:"D3"},later:HS_},
+"Bendición diabólica":{buff:[E("onKill",0,"all",{once:1,ops:[O.heal("D3")]})]},
+/* Clérigo */
+"Guía":{ally:{n:2,r:6},ops:[O.fx("stat",1,"all",{once:1})]},
+"Escudo de fe":{ally:{n:1,r:6},ops:[O.fx("def",2,"all",{once:1})]},
+"Palabra sanadora":{ally:{n:2,r:6,self:1},ops:[O.heal(1)]},
+"Golpe divino":{buff:[E("ap",1)]},
+"Curar heridas":{ally:{n:1,r:3},ops:[O.cureAll]},
+"Multiplicar":{manual:"Coloca un marcador señuelo a 3″ que los enemigos tratan como un héroe. El tablero todavía no tiene marcadores señuelo: resuélvelo a mano."},
+"Protección sagrada":{ally:{n:1,r:6,self:1},ops:[O.fx("untarget")]},
+"Bendecir":{ally:{n:1,r:6},ops:[O.fx("hit",1)]},
+"Espíritus guardianes":{manual:ZN("una zona de terreno peligroso")},
+"Perdición":{foe:{n:1,r:12},ops:[O.fx("hit",-1)]},
+"Proyectil guía":{foe:{n:1,r:6},ops:[O.fx("hitTaken",1)]},
+"Reanimación opulenta":{ally:{n:9,r:6,ko:1,auto:1},ops:[O.heal("D3")]},
+/* Druida */
+"Látigo de espinas":{foe:{n:1,r:9},ops:[O.hits(1),O.pull(6)]},
+"Piel de corteza":{buff:[E("def",1,"all",{once:1})]},
+"Nube de niebla":{manual:ZN("una zona de terreno de cobertura")},
+"Crecimiento de pinchos":{manual:ZN("una zona de terreno difícil")},
+"Forma de lobo":{buff:[E("mv",0,"all",{adv:1,rush:2})]},
+"Recuperación natural":{later:SP_,self:[O.pwLose("D3")]},
+"Baya de poder":{ally:{n:1,r:3,self:1},ops:[O.heal(1),O.cure]},
+"Plaga de insectos":{foe:{n:2,r:9},ops:[O.hits(1)]},
+"Forma de pantera":{buff:[E("xhit",1,"charge",{once:1})]},
+"Forma de oso":{buff:[E("apRed",1)]},
+"Muro de espinas":{manual:ZN("una zona de terreno peligroso")},
+"Círculo de esporas":{foe:{n:2,r:9},ops:[O.fx("spores",0,"all",{until:"game"})]},
+/* Explorador */
+"Bestia de caza":{foe:{n:1,r:6},ops:[O.hits(2)]},
+"Ataque pavoroso":{buff:[E("cowerAfter",0,"mfar",{once:1})]},
+"Ungüento curativo":{ally:{n:1,r:3,self:1},ops:[O.heal(1),O.cure]},
+"Ráfaga del acechador":{buff:[E("chain",0,"shoot",{once:1,kind:"shoot",when:"kill"})]},
+"Mascota acechadora":{buff:[E("xhit",1,"mfar",{once:1})]},
+"Marca del cazador":{foe:{n:1,r:99,min:12},special:"hunter"},
+"Voluntad de acero":{inert:NO_MORAL},
+"Disparo de oleada":{free:{kind:"shoot",r:12}},
+"Pájaro rastreador":{later:FT_},
+"Matagigantes":{buff:[E("ap",1)]},
+"Manto umbrío":{buff:[E("hide")]},
+"Andanada":{buff:[E("chain",0,"shoot",{once:1,kind:"shoot",r:3})]},
+/* Guerrero */
+"Superioridad en combate":{buff:[E("xhit",1,"mshort",{once:1})]},
+"Evasivo":{buff:[E("evade",1,"all",{once:1})]},
+"Reagrupar":{inert:NO_MORAL},
+"Ataque desarmante":{buff:[E("debuffOnHit",0,"mshort",{once:1,fx:{k:"hit",v:-1,w:"all"}})]},
+"Ataque de barrido":{buff:[E("chain",0,"charge",{once:1,kind:"chg",r:3})]},
+"Provocar":{foe:{n:2,r:9},ops:[O.moral(O.pull(6))]},
+"Indomable":{buff:[E("apRed",1)]},
+"Ataque amenazador":{buff:[E("cowerAfter",0,"mshort",{once:1})]},
+"Ataque implacable":{buff:[E("chain",0,"melee",{once:1,kind:"chg",when:"kill"})]},
+"Carga de oleada":{free:{kind:"chg",r:6}},
+"Segundo aliento":{self:[O.heal("D3+1"),O.pwLose(1)]},
+"Ataque de empuje":{buff:[E("pushAfter",6,"mshort",{once:1})]},
+/* Hechicero */
+"Mareas del caos":{later:HS_},
+"Afinidad metódica":{x:{max:3},self:[O.pwLose("X")],buff:[E("stat","X+1","all",{once:1})]},
+"Hechizo lejano":{x:{max:3},later:HS_,self:[O.pwLose("X")]},
+"Resiliencia práctica":{x:{max:3},self:[O.pwLose("X")],buff:[E("def","X+1","all",{once:1})]},
+"Hechizo gemelo":{later:HS_,self:[O.pwLose("D3+2")]},
+"Golpe relámpago":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:6},ops:[O.hits("X+1",3)]},
+"Hechizo potenciado":{x:{max:3},later:HS_,self:[O.pwLose("X")]},
+"Furia de la tormenta":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:9},ops:[O.hits("X+1",1)]},
+"Curación laboriosa":{later:HS_},
+"Onda atronadora":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:3},ops:[O.hits("X+2",0)]},
+"Suerte apañada":{later:HS_},
+"Alas artesanas":{x:{max:3},self:[O.pwLose("X")],place:{v:"5+X"}},
+/* Mago */
+"Conjuración":{later:HS_},
+"Encantamiento":{later:HS_},
+"Arcanos":{later:HS_,self:[O.pwLose("D3")]},
+"Adivinación":{later:HS_},
+"Abjuración":{self:[O.heal("D3+1"),O.pwLose(1)]},
+"Transmutación":{later:HS_},
+"Recuperación":{self:[O.pw("D3+1")]},
+"Evocación":{later:HS_},
+"Ilusión":{later:HS_},
+"Nigromancia":{later:HS_},
+"Duplicación":{later:HS_,self:[O.pwLose("D3")]},
+"Preparación":{later:SP_,self:[O.pwLose("D3")]},
+/* Monje */
+"Ráfaga de golpes":{buff:[E("xhit",1,"mshort",{once:1})]},
+"Reflejos relámpago":{buff:[E("ignore",6)]},
+"Golpe marcial":{buff:[E("pushAfter",6,"melee",{once:1})]},
+"Atletismo":{buff:[E("mv",0,"all",{adv:1,rush:2})]},
+"Manto de sombra":{buff:[E("hide")]},
+"Descanso elemental":{x:{max:3},self:[O.pwLose("X"),O.heal("X+2")]},
+"Golpe elemental":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:12},ops:[O.hits("X+1")]},
+"Derribar":{buff:[E("cowerAfter",0,"mshort",{once:1})]},
+"Suprimir":{inert:NO_SPELL},
+"Visión mental":{later:FT_},
+"Protección elemental":{x:{max:3},self:[O.pwLose("X")],buff:[E("def","X+1","all",{once:1})]},
+"Paso sombrío":{place:{v:"2D3+1"}},
+/* Paladín */
+"Golpe vengativo":{buff:[E("hit",1,"shaken")]},
+"Protección devota":{ally:{n:1,r:6,self:1},ops:[O.fx("apRed",1)]},
+"Arma ancestral":{ally:{n:1,r:6},ops:[O.fx("hit",2,"all",{once:1})]},
+"Control rencoroso":{foe:{n:2,r:3},ops:[O.fx("nomove")]},
+"Velocidad ancestral":{ally:{n:1,r:6},ops:[O.fx("mv",0,"all",{adv:1,rush:2})]},
+"Maldición rencorosa":{inert:NO_STAT},
+"Reprimenda devota":{ally:{n:1,r:6,self:1},ops:[O.fx("thorns","D3","all",{once:1})]},
+"Voto rencoroso":{foe:{n:1,r:6},ops:[O.fx("xwoundTaken",1,"all",{once:1})]},
+"Poderío vengativo":{buff:[E("ap",1)]},
+"Aura ancestral":{ally:{n:1,r:6},ops:[O.fx("xhit",1,"all",{once:1})]},
+"Prisa vengativa":{buff:[E("mv",0,"all",{advD:"D3",rushD:"2D3",once:1})]},
+"Aura devota":{ally:{n:1,r:6,self:1},ops:[O.fx("healBonus",2,"all",{once:1})]},
+/* Pícaro */
+"Embaucador":{manual:"Coloca un marcador señuelo a 3″ que los enemigos tratan como un héroe. El tablero todavía no tiene marcadores señuelo: resuélvelo a mano."},
+"Juego de manos":{later:FT_},
+"Golpe despiadado":{buff:[E("ap",1)]},
+"Ataque furtivo":{buff:[E("hit",1,"cunseen")]},
+"Eludir":{buff:[E("evade",1,"mshort")]},
+"Ocultarse":{buff:[E("hide")]},
+"Arrancada":{buff:[E("mv",0,"all",{adv:1,rush:2})]},
+"Paso difuso":{place:{v:"2D3+1"}},
+"Golpe y huida":{buff:[E("chain",0,"all",{once:1,kind:"move",r:6})]},
+"Esquivar objetivo":{foe:{n:1,r:12},ops:[O.fx("hit",-1)]},
+"Asesinato":{buff:[E("xhit",1,"sunseen",{once:1})]},
+"Infiltrarse":{buff:[E("mv",0,"all",{adv:3,rush:6})],manual:"Con esta habilidad no puede moverse si en algún momento quedara a la vista de un enemigo: compruébalo tú al mover."},
+/* Comunes */
+"Descanso de batalla":{self:[O.pw("D3+1")]},
+"Protector":{buff:[E("def",1)]},
+"Toque curativo":{ally:{n:1,r:3,self:1},ops:[O.cure]},
+"Concentración":{cost:{wd:1},buff:[E("stat",2,"all",{once:1})]},
+"Toque sanador":{ally:{n:1,r:3,self:1},ops:[O.heal("D3")]},
+"Inspeccionar":{later:FT_},
+"Esprint":{buff:[E("mv",0,"all",{adv:2,rush:4,once:1})]},
+"Onda de choque":{foe:{n:1,r:3},ops:[O.push(6)]},
+"Trampero":{manual:ZN("una zona de terreno difícil")},
+"Distracción":{manual:"Coloca un marcador de distracción a 12″ que los enemigos tratan como su objetivo. El tablero todavía no tiene marcadores: resuélvelo a mano."},
+"Resucitar":{ally:{n:1,r:3,ko:1},ops:[O.heal("D3+1")]},
+"Pacificar":{foe:{n:1,r:6},ops:[O.fx("hit",-1)]},
+"Imparable":{buff:[E("nofat")]},
+"Paralizar":{foe:{n:1,r:9},ops:[O.fx("nomove")]},
+"Imagen especular":{manual:"Coloca un marcador de imagen especular a 3″ que los enemigos tratan como un héroe. El tablero todavía no tiene marcadores: resuélvelo a mano."},
+"Salto":{inert:"El tablero todavía no tiene saltos ni desniveles, así que esta habilidad no tiene efecto por ahora."},
+"Santuario":{manual:ZN("una zona de terreno de cobertura")},
+"Fortaleza":{inert:NO_MORAL},
+"Aterrorizar":{foe:{n:1,r:3},ops:[O.moral(O.cow)]},
+"Golpe giratorio":{manual:ZN("una zona de terreno peligroso")},
+"Tiro lejano":{buff:[E("range",6)]},
+"Desplazamiento":{place:{v:"D3+3"}},
+"Silencio":{inert:NO_SPELL},
+"Confusión":{manual:"Una unidad enemiga pasa a contar como un héroe para los demás enemigos. La IA todavía no admite señuelos: resuélvelo a mano."},
+/* Dotes de clase (una vez por partida, al activarse; sin acción ni tirada) */
+"Frenesí bárbaro":{self:[O.pw("D3")]},
+"Restauración bárdica":{ally:{n:2,r:9},ops:[O.pw(1)]},
+"Pacto del brujo":{cost:{wd:1},foe:{n:1,r:6},ops:[O.wound(1)]},
+"Bendición del clérigo":{ally:{n:2,r:6,self:1},ops:[O.heal(1)]},
+"Trampa druídica":{manual:ZN("una zona de terreno peligroso")},
+"Precisión del explorador":{buff:[E("xhit",1,"shoot",{once:1})]},
+"Poderío combativo":{buff:[E("xhit",1,"melee",{once:1})]},
+"Proyectiles hechiceros":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:12},ops:[O.hits("X+1")]},
+"Foco del mago":{later:SP_},
+"Meditación del monje":{self:[O.heal("D3")]},
+"Grito del paladín":{manual:"Dos héroes a 3″ pueden moverse hasta 6″. El tablero todavía no permite mover a otros héroes fuera de su turno: queda para una versión futura."},
+"Paso del pícaro":{buff:[E("hide")]}};
+/* Reglas especiales que el tablero ya aplica solas (en inglés, sin número). */
+const RAUTO=new Set(["Fast","Scout","Slow","Tough","Fear","Fearless","Regeneration","Stealth","Furious","Impact","Surge","Relentless","Rending","Bane","Shred","Blast","Reliable","Thrust","Defense","Unstoppable","Indirect","Assault","AP","Parry","Brace","Deadly","Ferocious","Savage","Lucky","Destroyer","Warbound","Mischievous","Bestial","Raider","Dodge","Wild Veil","Shadowborn","Guardian","Warden","Ossified","Sturdy","Tenacious","Runner","Scurry","Lustbound","Highborn","Royal Legion","Buccaneer","Havocbound","Melee Slayer","Plaguebound","Cursed Undead","Changebound","Empyrean Spirit","Gloom-Mist","Unpredictable Fighter"].map(nrm));
+const isAuto=inf=>RAUTO.has(nrm(inf.en||inf.n));
+const skillFx=inf=>SKX[inf.n]||null;
+function rollSpec(v,X){if(typeof v==="number")return v;let t=String(v).replace(/X/g,X||0);if(t[0]==="-")return-rollSpec(t.slice(1),0);
+ const m=t.match(/^(\d*)D3(?:([+-])(\d+))?$/);if(m){const n=+(m[1]||1);let r=0;for(let i=0;i<n;i++)r+=d3();return r+(m[2]?(m[2]==="+"?1:-1)*+m[3]:0)}
+ const e=t.match(/^(-?\d+)([+-]\d+)?$/);return e?+e[1]+(+(e[2]||0)):(+t||0)}
+
+/* Quién puede ser objetivo de una habilidad: unidades enemigas o héroes dentro de su alcance (entre peanas). */
+function candsOf(a,SX){
+ if(SX.foe){const f=SX.foe;return liveUnits().filter(u=>{const g=gap(a,u);return g<=f.r+.01&&(!f.min||g>f.min)}).map(u=>({id:u.id,name:u.name,d:gap(a,u)})).sort((x,y)=>x.d-y.d)}
+ if(SX.ally){const f=SX.ally;return G.heroes.map(g=>actor(g.id)).filter(t=>t&&(f.ko?t.ko():!t.ko())&&(f.self||t.id!==a.id)&&(t.id===a.id||gap(a,t)<=f.r+.01)).map(t=>({id:t.id,name:t.name,d:t.id===a.id?0:gap(a,t)})).sort((x,y)=>x.d-y.d)}
+ return[]}
+/* ¿Por qué no se puede usar ahora? Cadena vacía = se puede. */
+function usableWhy(gh,a,inf,SX,R){
+ if(!gh||!a)return"Solo los héroes usan habilidades.";
+ if(SX.inert)return"";
+ if(G.phase!=="heroes")return"Solo se usan en el turno de los héroes.";
+ if(a.ko())return"Este héroe está inconsciente.";
+ if(G.cur<0||G.heroes[G.cur]!==gh)return"Activa primero a este héroe: pulsa «Activar» en su tarjeta.";
+ if(G.act)return"Termina antes la acción que está en curso.";
+ if(U.busy)return"Espera a que termine lo que está pasando.";
+ if(inf.kind==="dote"){if(gh.featUsed)return"Ya la usó en esta partida."}
+ else if(freeA(gh)<1)return"No le quedan acciones. Puede pagar 3 de poder por una acción extra (casilla del panel).";
+ if(SX.foe||SX.ally){const c=candsOf(a,SX);
+  if(!c.length)return SX.foe?(SX.foe.min?`No hay ninguna unidad enemiga a más de ${SX.foe.min}″.`:`No hay ninguna unidad enemiga a ${SX.foe.r}″ o menos.`):"No hay ningún héroe a su alcance.";
+  if(!(R.sel||[]).length&&!(SX.ally&&SX.ally.auto))return"Elige a quién va dirigida: toca los nombres de arriba."}
+ if(SX.x&&(R.x==null?1:R.x)>a.h.pw)return"No tiene tanto poder.";
+ return""}
+/* Parte de la ventana que deja usar la habilidad: objetivos, poder X, tirada y botón. */
+function useSection(R,inf,o){
+ if(inf.kind==="regla")return"";const SX=SKX[inf.n];if(!SX)return"";
+ const gh=o&&o.kind==="h"?o.g:null;let h="";
+ if(SX.inert)return`<p class="tv-note">${esc(SX.inert)}</p>`;
+ if(SX.later)h+=`<p class="tv-note">Afecta a ${SX.later}, que el tablero todavía no tiene. Puedes usarla: se paga su coste y queda anotada como activa, pero su efecto lo resuelves tú a mano.</p>`;
+ if(SX.manual)h+=`<p class="tv-note">${esc(SX.manual)}</p>`;
+ if(!gh)return h;
+ const c=candsOf(o,SX);if(R.sel==null)R.sel=(SX.ally&&SX.ally.auto)?c.map(t=>t.id):[];if(R.x==null)R.x=SX.x?Math.min(1,o.h.pw):0;
+ if(SX.foe||SX.ally){const n=(SX.ally&&SX.ally.auto)?c.length:(SX.foe||SX.ally).n;
+  h+=`<p class="tv-lab">${SX.foe?"Enemigos":"Héroes"} a su alcance${SX.ally&&SX.ally.auto?" (todos)":` · elige hasta ${n}`}</p><div class="tv-rchips">${c.length?c.map(t=>`<button type="button" class="tv-rchip${R.sel.includes(t.id)?" on":""}" data-tv="rsel" data-id="${t.id}">${esc(t.name)} · ${t.d?inch(t.d):"él mismo"}</button>`).join(""):`<span class="tv-sub">Nadie a su alcance.</span>`}</div>`}
+ if(SX.x){h+=`<p class="tv-lab">Poder que gasta (X) · tiene ${o.h.pw}</p><div class="tv-rchips">${[0,1,2,3].filter(v=>v<=SX.x.max).map(v=>`<button type="button" class="tv-rchip${R.x===v?" on":""}" data-tv="rx" data-v="${v}" ${v>o.h.pw?"disabled":""}>${v}</button>`).join("")}</div>`}
+ if(SX.place)h+=`<p class="tv-sub">Después de la tirada elegirás dónde se coloca, dentro de su alcance.</p>`;
+ if(SX.free)h+=`<p class="tv-sub">Tras la tirada hace inmediatamente ${SX.free.kind==="chg"?"una carga":"una acción de Mantener y disparar"} contra un objetivo a ${SX.free.r}″ o menos, sin gastar otra acción.</p>`;
+ const why=usableWhy(gh,o,inf,SX,R),key={Fuerza:"fue",Destreza:"des",Voluntad:"vol"}[inf.a],m=key?statMod(o.h,key):0;
+ h+=`<div class="tv-row"><button type="button" class="tv-btn" data-tv="ruse" ${why?"disabled":""}>${inf.kind==="dote"?"Usar la dote":"Usar la habilidad"}</button></div>`;
+ h+=why?`<p class="tv-sub why">${esc(why)}</p>`:inf.kind==="dote"?`<p class="tv-sub">Se aplica directamente, sin tirada.</p>`:`<p class="tv-sub">Tira ${esc(inf.a)} ${o.h[key]}+${m?(m>0?", +":", ")+m:""} (1 acción). Si falla, podrá gastar 1 de poder.</p>`;
+ return h}
+/* La ventana de una regla o habilidad: qué significa y cómo se aplica en el tablero. */
+function ruleModal(){const R=U.rinfo;if(!R)return"";const inf=ruleInfo(R.l),o=R.o?actor(R.o):null,SX=inf.kind!=="regla"?SKX[inf.n]:null;
+ const stOk=t=>`<span class="tv-st ok">${t}</span>`,stNo=t=>`<span class="tv-st">${t}</span>`;
+ const state=inf.kind==="regla"?(isAuto(inf)?stOk("Se aplica sola en el tablero"):stNo("Todavía no se aplica sola en el tablero")):
+  !SX?stNo("Sin datos de aplicación"):SX.inert?stNo("Sin efecto en este tablero"):(SX.later||SX.manual)?stNo("Se anota; el efecto se resuelve a mano"):stOk("Se aplica sola en el tablero");
+ const meta=inf.kind!=="regla"?`<p class="tv-sub">${inf.kind==="dote"?"Se usa al activarse, sin gastar acción ni tirada.":`Acción de habilidad (1 acción) · tirada de <b>${esc(inf.a)}</b>. Si falla, el héroe puede gastar 1 de poder para superarla.`}${inf.cls&&inf.cls!=="Comunes"?` · ${esc(inf.cls)}${inf.tier>0?`, tier ${inf.tier}`:""}`:""}</p>`:"";
+ return`<div class="tv-rveil"><div class="tv-rscrim" data-tv="rclose"></div><section class="tv-rmod" role="dialog" aria-modal="true" aria-label="${esc(R.l)}">
+  <header><p class="tv-lab">${MOD_TAG[inf.kind]}${o?` · ${esc(o.name)}`:""}</p><b class="tv-in">${esc(R.l)}</b>${inf.en&&nrm(inf.en)!==nrm(R.l)?`<small class="tv-sub">${esc(inf.en)}</small>`:""}<button type="button" class="tv-ix" data-tv="rclose" aria-label="Cerrar">×</button></header>
+  ${inf.t?`<p class="tv-rtext">${esc(inf.t)}</p>`:`<p class="tv-rtext none">Todavía no tengo la descripción de esta regla: no está en la investigación guardada. Cópiala de su ficha de Army Forge y dímela para añadirla. Queda apuntada como pendiente de revisión.</p>`}
+  ${meta}${state}${useSection(R,inf,o)}
+  <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="rclose">Cerrar</button></div></section></div>`}
+/* ---- aplicar los efectos de una habilidad ---- */
+async function runOps(src,tgt,ops,ctx){const X=(ctx&&ctx.X)||0,id=(ctx&&ctx.id)||"habilidad";
+ for(const op of ops||[]){switch(op.op){
+  case"heal":{if(tgt.kind!=="h")break;const h=tgt.h,gh=tgt.g;let n=rollSpec(op.v,X);const hb=fxOf(tgt).filter(e=>e.k==="healBonus");
+   if(hb.length){n+=hb.reduce((t,e)=>t+e.v,0);gh.fx=gh.fx.filter(e=>e.k!=="healBonus")}
+   const was=hfKo(h);h.hp=Math.min(h.hpMax,h.hp+n);hfSync();log(`${tgt.name} recupera ${n} herida${n>1?"s":""}${was&&h.hp>0?" y vuelve en sí":""} (${id}).`,"ok");break}
+  case"pw":{if(tgt.kind!=="h")break;const h=tgt.h,n=rollSpec(op.v,X);
+   if(op.neg){const lost=Math.min(h.pw,n);h.pw-=lost;if(n>lost){wound(tgt,n-lost);log(`${tgt.name} se queda sin poder y sufre ${n-lost} herida${n-lost>1?"s":""} por agotamiento.`,"bad")}log(`${tgt.name} gasta ${n} de poder (${id}).`,"hr")}
+   else{h.pw=Math.min(h.pwMax,h.pw+n);log(`${tgt.name} recupera ${n} de poder (${id}).`,"ok")}hfSync();break}
+  case"cure":{if(tgt.kind!=="h")break;const st=tgt.h.st,order=["af","en","de","at","ac"];
+   if(op.all)tgt.h.st=[];else{const k=order.find(x=>st.includes(x));if(k)tgt.h.st=st.filter(x=>x!==k)}hfSync();log(`${tgt.name} ${op.all?"pierde todos sus estados":"pierde un estado"} (${id}).`,"ok");break}
+  case"fx":{const e={...op.e,id};if(e.hero==="@")e.hero=src.id;if(typeof e.v==="string"&&!/^D/.test(e.v))e.v=rollSpec(e.v,X);fxAdd(tgt,e);log(`${tgt.name}: ${id}.`,"ok");break}
+  case"hits":await autoHits(id,tgt,rollSpec(op.n,X),op.ap);break;
+  case"wound":{const n=rollSpec(op.n,X);wound(tgt,n);hfSync();log(`${tgt.name} sufre ${n} herida${n>1?"s":""} (${id}).`,"sho");if(tgt.kind==="u"&&!tgt.ko()){const mo=await morale(tgt,n,0);if(mo)log(mo,"sho")}break}
+  case"push":case"pull":if(tgt.kind==="u"&&!tgt.ko())shove(tgt,src,op.v,op.op==="pull");break;
+  case"cower":tgt.g.sh=true;log(`${tgt.name} queda Aturdida (${id}).`,"ok");break;
+  case"moral":{const ok=await moralTest(tgt,`${src.name} usa ${id}`);if(!ok)await runOps(src,tgt,op.then,ctx);break}}}}
+async function applySkill(gh,a,inf,SX,R){const id=inf.n,x=R.x||0,h=a.h;
+ log(`${h.name} usa ${id}${SX.x?` (X = ${x})`:""}.`,"hr");
+ if(SX.cost&&SX.cost.wd){const w=rollSpec(SX.cost.wd,x);wound(a,w);hfSync();log(`${h.name} sufre ${w} herida${w>1?"s":""} (${id}).`,"hr")}
+ for(const op of SX.self||[])await runOps(a,a,[op],{id,X:x});
+ const buffs=(SX.buff||[]).slice();if(!buffs.length&&!SX.ops&&!SX.self&&!SX.place&&!SX.free&&!SX.special)buffs.push(E("nota"));
+ buffs.forEach(e=>{const f={...e,id};if(typeof f.v==="string")f.v=rollSpec(f.v,x);if(f.advD)f.adv=rollSpec(f.advD);if(f.rushD)f.rush=rollSpec(f.rushD);fxAdd(a,f)});
+ const sel=R.sel||[];
+ if(SX.special==="hunter"){const t=actor(sel[0]);if(t){const v=d3();fxAdd(a,{id,k:"hit",v,w:"all",vs:t.id});log(`${h.name} marca a ${t.name}: +${v} a impactarla hasta el final de la ronda.`,"ok")}}
+ if(SX.ally)for(const tid of sel){const t=actor(tid);if(t)await runOps(a,t,SX.ops,{id,X:x})}
+ if(SX.foe&&SX.ops)for(const tid of sel){const t=actor(tid);if(t&&!t.ko())await runOps(a,t,SX.ops,{id,X:x})}
+ if(SX.later)log(`${id}: su efecto sobre ${SX.later} se resuelve a mano; queda anotada como activa.`,"hr");
+ else if(SX.manual&&!SX.buff)log(`${id}: ${SX.manual}`,"hr");
+ hfSync();
+ if(SX.place){const lim=rollSpec(SX.place.v,x);log(`${h.name} puede colocarse en cualquier punto a ${lim}″ o menos.`,"hr");G.act={k:"sk",st:"tele",lim};U.dest=null}
+ else if(SX.free){G.act={k:SX.free.kind,st:SX.free.kind,free:true,wi:0,...(SX.free.kind==="chg"?{lim:SX.free.r}:{rlim:SX.free.r})};U.dest=null}}
+/* Usar una habilidad: tirada de su característica (la tira el jugador), pago de 1 de poder si falla, y sus efectos. Las dotes no piden tirada. */
+const askPay=(h,cost,what)=>new Promise(res=>{U.wilAsk={name:h.name,pw:h.pw,cost,what,res};paint()});
+async function useSkill(){const R=U.rinfo;if(!R||U.busy)return;const gh=G.heroes.find(x=>x.id===R.o),a=actor(R.o),inf=ruleInfo(R.l),SX=SKX[inf.n];
+ if(!gh||!a||!SX||usableWhy(gh,a,inf,SX,R))return;
+ const sel=(R.sel||[]).slice(),x=R.x||0,dote=inf.kind==="dote";U.rinfo=null;U.busy=true;G.act={k:"sk",st:"fight"};if(dote)gh.featUsed=true;paint();
+ if(!dote){const key={Fuerza:"fue",Destreza:"des",Voluntad:"vol"}[inf.a],h=a.h,m=statMod(h,key),pass=r=>r===6||(r!==1&&r+m>=h[key]);
+  const[r]=await rollDice({n:1,own:true,title:`${h.name} usa ${R.l}`,sub:`Acción de habilidad · tirada de ${inf.a} ${h[key]}+${m?(m>0?", +":", ")+m:""}`,need:`${Math.max(2,Math.min(6,h[key]-m))}+ pasa`,ok:pass});
+  endDice();statUsed(h);U.busy=false;let ok=pass(r);
+  if(!ok){log(`${h.name} falla la tirada de ${inf.a} (${r}${m?(m>0?"+":"")+m:""}) y no consigue usar ${R.l}.`,"hr");
+   if(h.pw>=1&&await askPay(h,1,inf.a)){h.pw-=1;hfSync();log(`${h.name} gasta 1 de poder: la tirada cuenta como superada.`,"hr");ok=true}}
+  if(!ok){finishAction(gh,"sk");save();paint();return}
+  U.busy=true}
+ await applySkill(gh,a,inf,SX,{sel,x});U.busy=false;
+ if(G.act&&G.act.st==="tele"){save();paint();return}
+ if(G.act&&G.act.free){if(!dote)gh.done=(gh.done||[]).concat("sk");save();paint();return}
+ if(dote){G.act=null;U.dest=null;const hh=heroOf(gh);if(!hh||hfKo(hh))endAct(gh)}else finishAction(gh,"sk");
+ save();paint()}
+/* Acción encadenada tras un ataque (Ráfaga del acechador, Ataque de barrido…): sigue contando como la misma acción. */
+function chainAct(a,ch,A0){const orig=A0.orig||A0.k,base={free:true,orig,chain:ch,wi:0};
+ if(ch.kind==="shoot")return{...base,k:"shoot",st:"shoot",rw:A0.rw};
+ if(ch.kind==="chg")return{...base,k:"chg",st:"chg",lim:moveLim(a,"chg")};
+ return{...base,k:"adv",st:"move",lim:ch.r||6}}
+const fin=(gh,A,rest)=>finishAction(gh,A.orig||A.k,rest,!!A.free&&!A.orig);
+const cxl=A=>A.free?`<button type="button" class="tv-ghostb" data-tv="nochain">${A.chain?"No encadenar":"Dejarlo"}</button>`:`<button type="button" class="tv-ghostb" data-tv="cancel">Cambiar de acción</button>`;
+/* Efectos activos, como etiquetas pequeñas (no pulsables) bajo la tarjeta del héroe o en la ficha de una unidad. */
+function fxRow(g){const ids=[...new Set(((g&&g.fx)||[]).filter(e=>e.id).map(e=>e.id))];return ids.length?`<span class="tv-fxr" aria-label="Efectos activos">${ids.map(i=>`<i class="tv-fxp">${esc(i)}</i>`).join("")}</span>`:""}
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(h.st.includes("at")&&!A)return`<div class="tv-box warn"><b>${esc(h.name)} está Aturdido</b><p>Tiene que pasar esta activación quieto para recuperarse (Core Rules).</p><button type="button" class="tv-btn" data-tv="rally">Quedarse quieto y recuperarse</button></div>`;
  if(!A){const done=gh.done||[],Lf=freeA(gh);return`${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${usedA(gh)===2&&(gh.ex||canExtra(gh))?`<p class="tv-lab">Acción extra</p><button type="button" class="tv-tick${gh.ex?" on":""}" data-tv="xtick">${gh.ex?"☑":"☐"} Gastar 3 de poder en una acción extra</button>`:`<p class="tv-lab">${Lf>=2?"Elige su acción":"Le queda una acción"}</p>`}<div class="tv-acts">${ACTS.map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="rest"&&done.length>0);
-   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).join("")}</div>
+  ${usedA(gh)===2&&(gh.ex||canExtra(gh))?`<p class="tv-lab">Acción extra</p><button type="button" class="tv-tick${gh.ex?" on":""}" data-tv="xtick">${gh.ex?"☑":"☐"} Gastar 3 de poder en una acción extra</button>`:`<p class="tv-lab">${Lf>=2?"Elige su acción":"Le queda una acción"}</p>`}<div class="tv-acts">${ACTS.map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||(k==="rest"&&done.length>0);
+   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los tres rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).join("")}</div>
+  ${skillBar(gh,a)}
   <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="endact">${done.length?"Terminar activación":"No hacer nada"}</button></div>`}
- const k=A.k,lab=ACTS.find(x=>x[0]===k)[1];
+ const k=A.k,lab=(ACTS.find(x=>x[0]===k)||[0,"Habilidad"])[1];
  if(A.st==="fight")return`<div class="tv-box"><b>${lab} · en curso</b><p>Se resuelve el combate: sigue los dados en la bandeja.</p></div>`;
- if(A.st==="atk"){const t=atkTargets(a);return`<div class="tv-box"><b>Atacar · cuerpo a cuerpo</b><p>${t.length?"Toca el enemigo al que golpea (marcado en rojo). No carga: sin bonos de carga.":"No hay ningún enemigo a "+CT+" o menos."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>a ${inch(gap(a,u))}</small></button>`).join("")}</div><div class="tv-row"><button type="button" class="tv-ghostb" data-tv="cancel">Cambiar de acción</button></div></div>`}
+ if(A.st==="atk"){const t=atkTargets(a);return`<div class="tv-box"><b>Atacar · cuerpo a cuerpo</b><p>${t.length?"Toca el enemigo al que golpea (marcado en rojo). No carga: sin bonos de carga.":"No hay ningún enemigo a "+CT+" o menos."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>a ${inch(gap(a,u))}</small></button>`).join("")}</div><div class="tv-row">${cxl(A)}</div></div>`}
+ if(A.st==="tele"){return`<div class="tv-box"><b>${esc(h.name)} se coloca · hasta ${inch(A.lim)}</b><p>Toca en el tablero el punto al que se coloca, dentro del círculo.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="teleok" ${U.dest?"":"disabled"}>Colocarse aquí</button><button type="button" class="tv-ghostb" data-tv="teleno">No moverse</button></div></div>`}
  if(A.st==="move"){const lim=moveLim(a,k);return`<div class="tv-box"><b>${lab} · hasta ${inch(lim)}</b><p>Toca o arrastra en el tablero hasta dónde mueve. El camino rodea casas, muros y árboles.</p>
-  <div class="tv-row"><button type="button" class="tv-btn" data-tv="mvok" ${U.dest?"":"disabled"}>${k==="adv"?"Mover y seguir":"Mover aquí"}</button>${k==="adv"?`<button type="button" class="tv-ghostb" data-tv="mvskip">No moverse</button>`:""}<button type="button" class="tv-ghostb" data-tv="cancel">Cambiar de acción</button></div></div>`}
- if(A.st==="chg"){const t=chargeTargets(a);return`<div class="tv-box"><b>Cargar · hasta ${inch(moveLim(a,"chg"))}</b><p>${t.length?"Toca el enemigo al que carga (marcado en rojo).":"No hay ningún enemigo al alcance."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(({u,c})=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>${inch(c.len/BIN)} hasta el contacto</small></button>`).join("")}</div><div class="tv-row"><button type="button" class="tv-ghostb" data-tv="cancel">Cambiar de acción</button></div></div>`}
+  <div class="tv-row"><button type="button" class="tv-btn" data-tv="mvok" ${U.dest?"":"disabled"}>${k==="adv"?"Mover y seguir":"Mover aquí"}</button>${k==="adv"&&!A.free?`<button type="button" class="tv-ghostb" data-tv="mvskip">No moverse</button>`:""}${cxl(A)}</div></div>`}
+ if(A.st==="chg"){const t=chargeTargets(a);return`<div class="tv-box"><b>Cargar · hasta ${inch(A.lim!=null?A.lim:moveLim(a,"chg"))}</b><p>${t.length?"Toca el enemigo al que carga (marcado en rojo).":"No hay ningún enemigo al alcance."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(({u,c})=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>${inch(c.len/BIN)} hasta el contacto</small></button>`).join("")}</div><div class="tv-row">${cxl(A)}</div></div>`}
  if(A.st==="shoot"){const t=shootTargets(a),rw=a.ws.filter(isRanged),w=rwOf(a,A),hold=k==="hold"||k==="shoot";
-  const why=u=>{const g=gap(a,u);return`a ${inch(g)}${!los(a,u)?" · sin verla (Indirect)":""}${!wHas(w,"Unstoppable")&&hasR(u.rules,"Stealth")&&g>9?" · Stealth −1":""}`};
+  const why=u=>{const g=gap(a,u);return`a ${inch(g)}${!los(a,u)?" · sin verla (Indirect)":""}${w&&!wHas(w,"Blast")&&inCover(a,u)?" · cobertura +1":""}${!wHas(w,"Unstoppable")&&hasR(u.rules,"Stealth")&&g>9?" · Stealth −1":""}`};
   const pen=w&&!wHas(w,"Unstoppable")&&(night()||dawn())?`<p class="tv-sub">${tod()}: −1 al impactar al disparar.</p>`:"";
   return`<div class="tv-box"><b>Disparar${w?` · ${esc(w.n)} (${w.rng+rngMod(a)}″)`:""}</b><p>${!rw.length?"No tiene armas a distancia.":t.length?"Toca el enemigo al que dispara (a tiro y a la vista).":`Ningún enemigo a tiro (${w.rng+rngMod(a)}″) y a la vista${night()?" (de noche se ve hasta 12″)":""}.`}${w&&wHas(w,"Indirect")?hold?" Indirect: al mantener puede disparar sin verlo.":" Indirect: solo dispara sin ver al objetivo si mantiene.":""}</p>${pen}${rwPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>${why(u)}</small></button>`).join("")}</div><div class="tv-row"><button type="button" class="tv-ghostb" data-tv="noshoot">No disparar</button></div></div>`}
  return""}
@@ -3819,7 +4423,7 @@ function unitInfo(id){const a=actor(id);if(!a)return"";const u=a.kind==="u"?a.g:
  return`<section class="tv-info"><button type="button" class="tv-ix" data-tv="noinfo" aria-label="Cerrar">×</button><p class="tv-lab">${a.kind==="h"?"Héroe":"Unidad enemiga"}</p><b class="tv-in">${esc(a.name)}</b>
  <div class="tv-qd"><span><small>Calidad</small>${a.q}+</span><span><small>Defensa</small>${a.d}+</span><span><small>${u?"Miniaturas":"Heridas"}</small>${u?a.models()+"/"+u.m0:a.h.hp+"/"+a.h.hpMax}</span><span><small>Mueve</small>${speed(a).map(inch).join(" / ")}</span></div>
  ${u?`<p class="tv-sub">Tough(${u.t}) por miniatura · ${u.hp} heridas por recibir${u.sh?" · <b>Aturdida</b>":""}${u.fat===G.round?" · agotada":""}</p>`:""}
- ${a.rules?`<div class="tv-rules">${splitTop(a.rules).map(lab=>{const r=(typeof HC!=="undefined"&&HC.rule)?HC.rule(lab):null;return`<details class="tv-rl"><summary>${esc(lab)}</summary><p>${esc(r&&r.t||"Todavía sin descripción.")}</p></details>`}).join("")}</div>`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${esc(w.sp.join(", "))||"—"}</td></tr>`).join("")}</table></section>`}
+ ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`<button type="button" class="tv-rchip sm" data-tv="rinfo" data-l="${esc(x)}" data-o="">${esc(x)}</button>`).join(" "):"—"}</td></tr>`).join("")}</table></section>`}
 function evCard(){const e=G.ev;const die=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
  if(!e||e.r!==G.round)return`<div class="tv-ev"><p class="tv-lab">Evento de Neth · ${G.round===1?"empieza la partida":"han entrado refuerzos"}</p><div class="tv-dd">${die(0)}${die(0)}</div><p>Se tiran dos dados de uno en uno: el primero son las decenas y el segundo las unidades (Campaign Builder).</p><button type="button" class="tv-btn big" data-tv="ev">Tirar el evento</button></div>`;
  return`<div class="tv-ev ${e.tone}"><p class="tv-lab">Evento de Neth ${e.n}</p><div class="tv-dd">${die(e.a)}${die(e.b)}</div><h3>${esc(e.t)}</h3><p>${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><button type="button" class="tv-btn big" data-tv="toheroes">Turno de los héroes</button></div>`}
@@ -3850,9 +4454,9 @@ function heroModal(){const gh=G.heroes.find(x=>x.id===U.hinfo),h=gh&&heroOf(gh);
   <div class="tv-qd"><span><small>Calidad</small>${h.cal}+</span><span><small>Defensa</small>${h.def}+</span><span><small>Fuerza</small>${h.fue}+</span><span><small>Destreza</small>${h.des}+</span><span><small>Voluntad</small>${h.vol}+</span></div>
   <div class="tv-qd"><span><small>Heridas</small>${h.hp}/${h.hpMax}</span><span><small>Poder</small>${h.pw}/${h.pwMax}</span><span><small>Pociones</small>${h.pot||0}</span><span><small>Oro</small>${h.gold||0}</span></div>
   <p class="tv-sub"><b>Estados:</b> ${st}</p>
-  <p class="tv-lab">Armas</p>${W.length?`<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${W.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td>${esc(w.sp.join(", "))||"—"}</td></tr>`).join("")}</table>`:`<p class="tv-sub">Sin armas.</p>`}
-  <p class="tv-lab">Reglas</p><ul class="tv-hl">${li(RU,s=>`<li><b>${esc(s.n)}</b>${s.d?`<span>${esc(s.d)}</span>`:""}</li>`)}</ul>
-  <p class="tv-lab">Habilidades</p><ul class="tv-hl">${li(HB,s=>`<li><b>${esc(s.n)}</b>${s.d?`<span>${esc(s.d)}</span>`:""}</li>`)}</ul>
+  <p class="tv-lab">Armas</p>${W.length?`<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${W.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`<button type="button" class="tv-rchip sm" data-tv="rinfo" data-l="${esc(x)}" data-o="">${esc(x)}</button>`).join(" "):"—"}</td></tr>`).join("")}</table>`:`<p class="tv-sub">Sin armas.</p>`}
+  <p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(RU.map(s=>s.n),gh.id)}
+  <p class="tv-lab">Habilidades · toca una para ver qué hace</p>${chipsOf(HB.map(s=>s.n),gh.id)}
   <p class="tv-lab">Equipo</p><ul class="tv-hl">${li(EQ,s=>`<li><b>${esc(s.n)}</b>${s.d?`<span>${esc(s.d)}</span>`:""}</li>`)}</ul>
  </section></div>`}
 function setupPanel(){const hs=HS,sel=selHeroes(),b=budget();
@@ -3863,7 +4467,7 @@ function setupPanel(){const hs=HS,sel=selHeroes(),b=budget();
  ${sel.some(h=>hfKo(h))?`<p class="tv-warnp">Hay héroes inconscientes (0 heridas). Cúralos en su ficha antes de empezar o no podrán moverse.</p>`:""}</div></div>
  <button type="button" class="tv-btn big" data-tv="deploy" ${sel.length?"":"disabled"}>Desplegar la mesa</button></div>`}
 function deployPanel(){const rolls=G.units.map(u=>`<li><b>${esc(u.nm)}</b><span>cuadrante ${QN[u.roll-1]}</span><i>${u.roll}</i></li>`).join("");
- return`<div class="tv-setup"><p class="tv-lab">Despliegue</p><h3>Centinelas y héroes</h3><p class="tv-sub">Cada centinela tira un dado de 1 a 4 y sale al centro de ese cuadrante, al azar. Puedes arrastrar cualquier ficha para colocarla antes de empezar; los héroes solo hasta 10″ de su esquina.</p>
+ return`<div class="tv-setup"><p class="tv-lab">Despliegue</p><h3>Centinelas y héroes</h3><p class="tv-sub">Cada centinela tira un dado de 1 a 4 y sale al centro de ese cuadrante, al azar. Puedes arrastrar cualquier ficha para colocarla antes de empezar; los héroes solo hasta 10″ de su esquina (19″ si tienen Scout). Al empezar, las unidades con Scout pueden adelantarse hasta 9″: la IA lo hace siempre en dificultad 3-4 y una de cada dos veces en 1-2.</p>
  <ul class="tv-rolls">${rolls||"<li>No cabía ninguna unidad en la oleada.</li>"}</ul>
  <p class="tv-lab">Esquina de los héroes</p>${G.hcRoll&&G.hcRoll<=4?`<p class="tv-sub">Dado: <b>${G.hcRoll}</b> → esquina ${G.hcRoll}.</p>`:`<p class="tv-sub">Dado: <b>${G.hcRoll}</b> → eliges tú.</p>`}
  <div class="tv-seg c4">${[1,2,3,4].map(c=>`<button type="button" class="${G.hc===c?"on":""}" data-tv="corner" data-c="${c}"><b>${c}</b><small>${["Noroeste","Noreste","Sureste","Suroeste"][c-1]}</small></button>`).join("")}</div>
@@ -3883,10 +4487,11 @@ function sideMain(){let main="";
  else if(G.phase==="end")main=endPanel();
  const mod=G.mod&&G.phase!=="setup"?`<div class="tv-mod"><small>Hasta el siguiente evento · ${G.mod.n}</small><b>${esc(G.mod.t)}</b></div>`:"";
  const info=U.info&&actor(U.info)?unitInfo(U.info):"";
- return`${mod}${main}${info}`}
+ const trk=G.phase!=="setup"&&G.phase!=="deploy"&&(G.tracks||[]).length?`<div class="tv-trkb${G.prim?" ok":""}"><small>Objetivo principal · Rastros del pueblo</small><b>${G.prim?"¡Cumplido! Los tres braseros arden.":`${G.tracks.filter(t=>t.on).length} de ${G.tracks.length} recuperados`}</b>${G.prim&&G.diary?`<span>${esc(G.diary)} lleva el diario del olvidado.</span>`:""}</div>`:"";
+ return`${mod}${trk}${main}${info}`}
 /* Columna del registro: último combate y todo lo que va pasando en la partida (lo más nuevo, arriba). */
 function sideLog(){
- const logH=`<section class="tv-log"><header><b>Registro de actividad</b>${G.log.length?`<small>${G.log.length}</small>`:""}</header>${G.log.length?`<ol>${G.log.map(l=>`<li class="${l.k}"><small>R${l.r}</small>${esc(l.t)}</li>`).join("")}</ol>`:`<p class="tv-empty">Aquí irá contándose todo lo que ocurra en la partida.</p>`}</section>`;
+ const logH=`<section class="tv-log"><header><b>Registro de actividad</b>${G.log.length?`<small>${G.log.length}</small>`:""}</header>${G.log.length?`<ol>${G.log.map(l=>`<li class="${l.k}"><small>R${l.r}</small>${linkNames(esc(l.t))}</li>`).join("")}</ol>`:`<p class="tv-empty">Aquí irá contándose todo lo que ocurra en la partida.</p>`}</section>`;
  return`${combatCard()}${logH}`}
 function legend(){return`<div class="tv-leg"><span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><i class="f"></i>Recién llegado</span><button type="button" class="tv-chipb${U.obs?" on":""}" data-tv="obs">${U.obs?"Ocultar":"Ver"} obstáculos</button><span class="tv-scale">Cuadro = 6″</span></div>`}
 
@@ -3895,7 +4500,7 @@ function paint(){if(!U.open)return;
  /* Si el enemigo cuya ficha está abierta cae o huye, la ficha se cierra con él. */
  if(U.info){const ia=actor(U.info);if(!ia||(ia.kind==="u"&&ia.ko()))U.info=""}
  const sa=$(".tv-sact"),sl=$(".tv-slog"),ta=sa?sa.scrollTop:0,tl=sl?sl.scrollTop:0;
- const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${evFxHTML()}${heroModal()}`;
+ const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.rinfo?ruleModal():""}${evFxHTML()}${heroModal()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
  ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw"><div class="tv-board">${boardSVG()}</div>${legend()}</div><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside><aside class="tv-side tv-slog" aria-label="Registro de actividad">${sideLog()}</aside></div>${extra}</section>`;
@@ -3903,7 +4508,7 @@ function paint(){if(!U.open)return;
 function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();const s=$(".tv-side .tv-box .tv-btn[data-tv=mvok]");if(s)s.disabled=!U.dest}
 function open(){if(U.open)return;U.open=true;
  /* fichas guardadas que hayan quedado dentro de una casa o del pozo (p. ej. de una partida con otro mapa): al borde */
- G.units.concat(G.heroes).forEach(o=>{const p=tOut([o.x,o.y]);o.x=p[0];o.y=p[1]});ROOT.hidden=false;FAB.setAttribute("aria-expanded","true");document.body.classList.add("tvopen");paint();requestAnimationFrame(()=>ROOT.classList.add("on"));setTimeout(()=>{const b=$(".tv-x");if(b)b.focus({preventScroll:true})},60);
+ G.units.concat(G.heroes).forEach(o=>{const p=tOut([o.x,o.y]);o.x=p[0];o.y=p[1]});ensureTracks();ROOT.hidden=false;FAB.setAttribute("aria-expanded","true");document.body.classList.add("tvopen");paint();requestAnimationFrame(()=>ROOT.classList.add("on"));setTimeout(()=>{const b=$(".tv-x");if(b)b.focus({preventScroll:true})},60);
  /* si se cerró la página en pleno turno de la IA, se retoma donde iba */
  if(G.phase==="ai"&&!U.busy&&!G.over)setTimeout(runAI,500)}
 function close(){if(!U.open)return;U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");setTimeout(()=>{if(!U.open){ROOT.hidden=true;ROOT.innerHTML=""}},380);FAB.focus({preventScroll:true})}
@@ -3912,7 +4517,7 @@ function close(){if(!U.open)return;U.open=false;ROOT.classList.remove("on");FAB.
 function svgPt(e){const svg=$("#tvMap");if(!svg)return null;const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return[q.x,q.y]}
 function bindBoard(){const svg=$("#tvMap");if(!svg)return;
  svg.addEventListener("pointerdown",e=>{if(U.busy)return;const tok=e.target.closest("[data-tok]"),id=tok&&tok.dataset.tok,p=svgPt(e);if(!p)return;
-  const gh=G.cur>=0?G.heroes[G.cur]:null,moving=G.phase==="heroes"&&G.act&&G.act.st==="move";
+  const gh=G.cur>=0?G.heroes[G.cur]:null,moving=G.phase==="heroes"&&G.act&&(G.act.st==="move"||G.act.st==="tele");
   if(G.phase==="deploy"&&id){U.drag={id,moved:false,dep:true};svg.setPointerCapture(e.pointerId);e.preventDefault();return}
   if(moving&&(!id||id===gh.id)){U.drag={id:gh.id,moved:false};U.dest=p;paintOv();svg.setPointerCapture(e.pointerId);e.preventDefault()}});
  svg.addEventListener("pointermove",e=>{if(!U.drag)return;const p=svgPt(e);if(!p)return;U.drag.moved=true;
@@ -3922,7 +4527,7 @@ function bindBoard(){const svg=$("#tvMap");if(!svg)return;
  svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
  svg.addEventListener("click",e=>{if(U.busy)return;const t=e.target.closest("[data-tv=tgt]");if(t){act("tgt",t);return}
   const tok=e.target.closest("[data-tok]");if(tok&&G.act&&(G.act.st==="shoot"||G.act.st==="chg"||G.act.st==="atk")&&tok.dataset.tok[0]==="u"){act("tgt",{dataset:{id:tok.dataset.tok}});return}
-  if(tok&&!(G.act&&G.act.st==="move")){const id=tok.dataset.tok;
+  if(tok&&!(G.act&&(G.act.st==="move"||G.act.st==="tele"))){const id=tok.dataset.tok;
    if(id[0]==="h"&&G.phase==="heroes"){const i=G.heroes.findIndex(x=>x.id===id);if(i>=0&&(G.cur<0)&&G.heroes[i].act!==2&&!actor(id).ko()){act("hero",{dataset:{i}});return}}
    if(G.phase!=="deploy"){U.info=U.info===id?"":id;paint()}}})}
 
@@ -3939,7 +4544,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"reset2":G=G0();U.info="";break;
  case"dif":G.d=+ds.d;break;
  case"hsel":{const n=ds.n;selHeroes();G.hsel=G.hsel.includes(n)?G.hsel.filter(x=>x!==n):G.hsel.concat(n).slice(-4);break}
- case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;
+ case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;G.prim=false;G.diary="";G.tracks=placeTracks();U.prim=null;hs.forEach(h=>{h.sk=(h.sk||[]).filter(x=>x.n!==DIARY.n)});hfSync();
   const n=deploySentries();const r=d6();G.hcRoll=r;G.hc=0;if(r<=4)placeHeroes(r);else{const far=[0,1,2,3].sort((x,y)=>{const s=c=>G.units.reduce((m,u)=>Math.min(m,Math.hypot(u.x-CC[c][0],u.y-CC[c][1])),1e9);return s(y)-s(x)})[0];placeHeroes(far+1)}
   G.phase="deploy";log(`Mesa preparada: ${n} centinelas (${budget()} pts) y héroes en la esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}.`,"rd");break}
  case"corner":placeHeroes(+ds.c);break;
@@ -3972,32 +4577,45 @@ function act(k,b){const ds=b&&b.dataset||{};
   gh.exOpen=false;
   if(kk==="rest"){h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
   if(kk==="hold"){log(`${h.name} se mantiene en su sitio.`,"hr");finishAction(gh,"hold");break}
+  if(kk==="obj"){const t=trkNear(a)[0];if(!t){toast("No hay ningún rastro a "+CT+" o menos.");break}doTrack(gh,a,t);return}
   G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;break}
- case"cancel":{if(!G.act||G.act.mv)return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
+ case"cancel":{if(!G.act||G.act.mv||G.act.free||G.act.st==="tele")return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
  case"mvskip":G.act.st="shoot";U.dest=null;break;
  case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id),k2=G.act.k,r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
   log(`${a.name} ${k2==="adv"?"avanza":"corre"} ${inch(pathLen(r.pts)/BIN)}.`,"hr");
-  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];U.busy=false;if(k2==="adv"){G.act={...keep,st:"shoot",mv:true}}else{G.act=null;finishAction(gh,k2)}save();paint()});return}
- case"noshoot":{const gh=G.heroes[G.cur];finishAction(gh,G.act.k);break}
+  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);U.busy=false;if(keep.free){fin(gh,keep)}else if(k2==="adv"){G.act={...keep,st:"shoot",mv:true}}else{G.act=null;finishAction(gh,k2)}save();paint()});return}
+ case"noshoot":{const gh=G.heroes[G.cur];fin(gh,G.act);break}
+ case"nochain":{const gh=G.heroes[G.cur];if(G.act&&G.act.free)fin(gh,G.act);break}
+ case"teleok":{const gh=G.heroes[G.cur],a=actor(gh.id),A=G.act;if(!A||A.st!=="tele"||!U.dest)return;let dx=U.dest[0]-a.x,dy=U.dest[1]-a.y;const Lx=Math.hypot(dx,dy),R2=A.lim*BIN;if(Lx>R2){dx*=R2/Lx;dy*=R2/Lx}
+  const pp=freeSpot(tOut([a.x+dx,a.y+dy]),a.r,a.id);gh.x=pp[0];gh.y=pp[1];log(`${a.name} se coloca ${inch(Math.hypot(pp[0]-a.x,pp[1]-a.y)/BIN)} más allá.`,"hr");U.dest=null;finishAction(gh,"sk");break}
+ case"teleno":{const gh=G.heroes[G.cur];U.dest=null;finishAction(gh,"sk");break}
+ case"rsel":{const R=U.rinfo;if(!R)break;const SX=SKX[ruleInfo(R.l).n],n=SX&&(SX.foe||SX.ally)?(SX.foe||SX.ally).n:1;R.sel=R.sel||[];
+  if(R.sel.includes(ds.id))R.sel=R.sel.filter(t=>t!==ds.id);else{R.sel.push(ds.id);if(R.sel.length>n)R.sel.shift()}break}
+ case"rx":{if(U.rinfo)U.rinfo.x=+ds.v;break}
+ case"ruse":useSkill();return;
  case"tgt":{const gh=G.heroes[G.cur],a=actor(gh.id),B=actor(ds.id);if(!gh||!a||!B||!G.act)return;
   const st=G.act.st,kk=G.act.k,W=wsel(a,G.act);
-  if(st==="shoot"){const RW=rwOf(a,G.act),hold=kk==="hold"||kk==="shoot";if(!RW||!canShoot(a,B,hold,RW))return;G.act={k:kk,st:"fight"};U.busy=true;U.dest=null;paint();
-   (async()=>{fxShot(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"shoot",{only:RW,hold});endDice();U.busy=false;finishAction(gh,kk);save();paint();const nb=actor(ds.id);if(nb)fxDmg(nb,L.tB)})();return}
-  if(st==="atk"){if(gap(a,B)>CONTACT+.01)return;log(`${a.name} ataca a ${B.name} (ya están en contacto, sin cargar).`,"hr");G.act={k:kk,st:"fight"};U.busy=true;paint();
-   (async()=>{fxClash(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"melee",{charge:false,only:W});endDice();U.busy=false;finishAction(gh,"atk");save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)})();return}
-  if(st==="chg"){const c=chargePath(a,B);if(!c||!c.ok||gap(a,B)<=CONTACT+.01)return;U.busy=true;log(`${a.name} carga ${inch(c.len/BIN)} contra ${B.name}.`,"hr");G.act={k:kk,st:"fight"};paint();
-   animPath(a.id,c.pts).then(async()=>{gh.x=c.end[0];gh.y=c.end[1];const A2=actor(gh.id),B2=actor(B.id);fxClash(A2,B2);await sleep(REDUCE?0:700);const L=await fight(A2,B2,"melee",{only:W});endDice();U.busy=false;finishAction(gh,"chg");save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)});return}
+  if(st==="shoot"){const RW=rwOf(a,G.act),hold=kk==="hold"||kk==="shoot";if(!RW||!canShoot(a,B,hold,RW))return;const A0=G.act;G.act={k:kk,st:"fight"};U.busy=true;U.dest=null;paint();
+   (async()=>{fxShot(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"shoot",{only:RW,hold});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(ds.id);if(nb)fxDmg(nb,L.tB)})();return}
+  if(st==="atk"){if(gap(a,B)>CONTACT+.01)return;log(`${a.name} ataca a ${B.name} (ya están en contacto, sin cargar).`,"hr");const A0=G.act;G.act={k:kk,st:"fight"};U.busy=true;paint();
+   (async()=>{fxClash(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"melee",{charge:false,only:W});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)})();return}
+  if(st==="chg"){const A0=G.act,c=chargePath(a,B,A0.lim);if(!c||!c.ok||gap(a,B)<=CONTACT+.01)return;U.busy=true;log(`${a.name} carga ${inch(c.len/BIN)} contra ${B.name}.`,"hr");G.act={k:kk,st:"fight"};paint();
+   animPath(a.id,c.pts).then(async()=>{gh.x=c.end[0];gh.y=c.end[1];useMv(gh);const A2=actor(gh.id),B2=actor(B.id);fxClash(A2,B2);await sleep(REDUCE?0:700);const L=await fight(A2,B2,"melee",{only:W,cd:c.len/BIN});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(A2,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)});return}
   return}
  case"ignsh":{const a=actor(G.offerIgnore);if(a&&a.h.pw>=2){a.h.pw-=2;a.h.st=a.h.st.filter(s=>s!=="at");log(`${a.name} gasta 2 de poder y no queda Aturdido.`,"hr");hfSync()}G.offerIgnore=null;break}
  case"endact":{const gh=G.heroes[G.cur];if(!(gh.done||[]).length)log(`${heroOf(gh).name} no hace nada.`,"hr");endAct(gh);break}
  case"toai":{if(pendingHeroes().length){U.confirm=true;paint();return}G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;save();runAI();return}
  case"toai2":{G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;save();runAI();return}
  case"noconf":break;
+ case"rinfo":U.rinfo={l:ds.l,o:ds.o||"",sel:[]};break;
+ case"rclose":U.rinfo=null;break;
+ case"primclose":U.prim=null;break;
+ case"wily":case"wiln":{const f=U.wilAsk;if(!f)break;U.wilAsk=null;f.res(k==="wily");return}
  case"next":nextRound();break;
  default:return}
  save();paint()}
 /* Tras una acción: puede hacer otra gastando 3 de poder (una sola), o terminar. */
-function finishAction(gh,k,rest){gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
+function finishAction(gh,k,rest,free){if(!free)gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
  /* Descansar: no se puede hacer nada más (ni antes ni después). Si ya no quedan acciones, termina salvo que pueda pagar la extra. */
  if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh))){endAct(gh);return}}
 function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(REDUCE||!ds.length){done();return}let n=0;
@@ -4010,6 +4628,9 @@ ROOT.addEventListener("change",e=>{const s=e.target.closest&&e.target.closest(".
 ROOT.addEventListener("toggle",e=>{if(e.target.classList&&e.target.classList.contains("tv-log"))U.logOpen=e.target.open},true);
 FAB.addEventListener("click",()=>U.open?close():open());
 document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!U.open)return;if(typeof HC!=="undefined"&&HC.isOpen&&HC.isOpen())return;e.preventDefault();e.stopImmediatePropagation();
+ if(U.wilAsk)return;
+ if(U.rinfo){U.rinfo=null;paint();return}
+ if(U.prim){U.prim=null;paint();return}
  if(U.confirm){U.confirm=false;paint();return}
  if(U.hinfo||U.evfx){U.hinfo=null;U.evfx=null;paint();return}
  if(U.dice)return;
