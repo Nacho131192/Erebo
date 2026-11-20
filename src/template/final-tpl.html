@@ -1181,6 +1181,20 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 %%HC_CSS%%
 /* ---------- tablero virtual (prototipo) ---------- */
 %%TV_CSS%%
+/* estados: explicación al pasar el ratón */
+.hf-chip{position:relative}
+.hf-stip{display:none;position:absolute;left:0;top:calc(100% + 6px);z-index:9;width:min(260px,70vw);padding:9px 11px;border-radius:10px;border:1px solid rgba(236,138,160,.45);background:#120e1f;box-shadow:0 12px 30px rgba(0,0,0,.6);color:#e7e0f5;font:400 12px/1.45 var(--ui);text-align:left;pointer-events:none}
+.hf-chip:hover .hf-stip,.hf-chip:focus-visible .hf-stip{display:block}
+/* campos bloqueados (nivel y puntos al editar) */
+.hf-lock input{opacity:.55;cursor:not-allowed;background:#0c0a14}
+.hf-lock small{font:400 10px var(--ui);letter-spacing:0;text-transform:none;color:var(--pmu)}
+/* XP y oro a mano */
+.hf-man{margin-top:12px;border:1px dashed #3a3358;border-radius:12px;padding:10px 12px}
+.hf-man summary{cursor:pointer;font:600 12px var(--ui);color:var(--pmu);list-style:none}
+.hf-man summary::-webkit-details-marker{display:none}
+.hf-man[open] summary{color:var(--pink);margin-bottom:8px}
+.hf-man .hf-note{margin:0 0 8px;font:400 11.5px/1.4 var(--ui);color:var(--pmu)}
+.hf-manr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 </style>
 
 <div class="view camp" id="camp"></div>
@@ -2053,6 +2067,8 @@ Dual Hand Weapons (A8)
 Consumables: 2x Health Potion
 Skills: Rage, Healing Touch`;
 const HF_ST=[["at","Aturdido"],["af","Afligido"],["en","Enfermo"],["de","Debilitado"],["ac","Afectado"]];
+/* Qué hace cada estado (petición de Nacho, 2026-11-20): se muestra al pasar el ratón o al enfocar la pastilla. */
+const HF_STX={at:"Aturdido: al activarse se queda quieto y pasa la activación sin hacer nada para recuperarse. Mientras dura, sus ataques solo impactan con 6.",af:"Afligido: al activarse debe superar una tirada de Fuerza para quitárselo. Si la falla, sufre 1 herida. Su Fuerza va en rojo mientras dura.",en:"Enfermo: al activarse debe superar una tirada de Voluntad para quitárselo. Su Voluntad va en rojo mientras dura.",de:"Debilitado: al activarse debe superar una tirada de Destreza para quitárselo. Mientras dura, mueve solo la mitad.",ac:"Afectado: −1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo."};
 const HF_STAT=[["cal","Calidad"],["def","Defensa"],["fue","Fuerza"],["des","Destreza"],["vol","Voluntad"]];
 const HF_TABS=[["regla","Reglas"],["hab","Habilidades"],["equipo","Equipo"]];
 const HF_PAL=[["#4a3a7a","#211a3a"],["#2f4a6e","#16223a"],["#5a3a2a","#2a1a12"],["#2e5a4a","#122a22"]];
@@ -2139,8 +2155,8 @@ function hfMeds(){const M=$("#hfMeds");if(!M)return;document.body.classList.togg
   M.innerHTML=`<button type="button" class="hf-stack" data-hf="fan" aria-expanded="false" aria-label="Mostrar ${n===1?"el héroe":"los "+n+" héroes"}" style="height:${66+(sh.length-1)*12}px">${sh.map((h,i)=>`<span class="hf-coin" style="top:${(sh.length-1-i)*12}px;z-index:${5-i}">${hfMed(h,"s"+i)}</span>`).join("")}<span class="hf-cnt">${n}</span></button>`;return}
  M.innerHTML=`<button type="button" class="hf-add" data-hf="add" aria-label="Añadir un héroe" title="Añadir héroe">${HI.add}</button><div class="hf-fan">${HS.map((h,i)=>`<button type="button" class="hf-mrow ${HF.open&&i===HF.cur?"on":""}" data-hf="open" data-i="${i}" style="--i:${HS.length-i}" aria-label="Abrir la ficha de ${esc(h.name)}"><span class="hf-nm"><b>${esc(h.name)}</b>${hfKo(h)?`<small class="ko">Inconsciente</small>`:`<small class="${h.st.length?"st":""}">${h.hp}/${h.hpMax} heridas${h.st.length?" · "+h.st.length+" estado"+(h.st.length>1?"s":""):""}</small>`}</span>${hfMed(h,"f"+i)}</button>`).join("")}</div><button type="button" class="hf-cf" data-hf="unfan" aria-label="Recoger los medallones">${HI.x}</button>`}
 
-function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><span>${l}</span><input data-hff="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`;
- return`<div class="hf-form"><div class="hf-fr">${f("name","Nombre")}</div><div class="hf-fr">${f("raza","Raza")}${f("prof","Profesión")}</div><div class="hf-fr">${f("nivel","Nivel","number",'min="1" max="10"')}${f("pts","Puntos","number",'min="0"')}</div>
+function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><span>${l}</span><input data-hff="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`,lk=(k,l)=>`<label class="hf-fl hf-lock"><span>${l} <small>🔒 lo pone Army Forge</small></span><input type="number" value="${esc(h[k])}" readonly tabindex="-1" aria-readonly="true"></label>`;
+ return`<div class="hf-form"><div class="hf-fr">${f("name","Nombre")}</div><div class="hf-fr">${f("raza","Raza")}${f("prof","Profesión")}</div><div class="hf-fr">${lk("nivel","Nivel")}${lk("pts","Puntos")}</div>
  <div class="hf-fr">${HF_STAT.map(([k,n])=>f(k,n,"number",'min="2" max="6"')).join("")}</div>
  <div class="hf-fr">${f("hpMax","Heridas máx.","number",'min="1" max="40"')}${f("pwMax","Poder máx.","number",'min="0" max="12"')}</div>
  <div class="hf-fl"><span>Retrato</span><div class="hf-row"><label class="hf-upl"><input type="file" accept="image/*" data-hfimg>${h.img?"Cambiar imagen":"Subir imagen"}</label>${h.img?`<button type="button" class="hf-sec" data-hf="noimg">Quitar imagen</button>`:""}</div></div>
@@ -2171,11 +2187,12 @@ function hfSheet(){const h=hfH(),x=hfX(),xm=5*S.d,m=HF.mode;
  if(m==="edit")return`<div class="hf-v">${head}${hfForm()}</div>`;
  const L=h.sk.filter(s=>s.g===HF.tab);
  return`<div class="hf-v">${head}
- <div class="hf-xp"><span class="hf-lbl"><span>XP de la campaña</span><b>${x} / ${xm} máx.</b></span><div class="hf-bar"><i style="width:${xm?x/xm*100:0}%"></i></div><small>Se suma sola en la mesa al cumplir objetivos y destruir al jefe.</small></div>
+ <div class="hf-xp"><span class="hf-lbl"><span>XP de la campaña</span><b>${x+(h.xpx||0)} / ${xm} máx.</b></span><div class="hf-bar"><i style="width:${xm?Math.min(100,(x+(h.xpx||0))/xm*100):0}%"></i></div><small>Se suma sola en la mesa al cumplir objetivos y destruir al jefe${h.xpx?` · ${h.xpx} XP añadidas a mano`:""}.</small></div>
+ <details class="hf-man"><summary>Añadir XP y oro de una misión jugada fuera de la web</summary><p class="hf-note">Apunta lo que ha ganado el héroe en una partida en casa. No cambia la mesa.</p><div class="hf-manr"><label class="hf-fl"><span>XP</span><input id="hfmXp" type="number" min="0" value="0"></label><label class="hf-fl"><span>Oro</span><input id="hfmGold" type="number" min="0" value="0"></label></div><button type="button" class="hf-eb" data-hf="addman">Añadir al héroe</button></details>
  <div class="hf-trk"><div class="hf-tk hp"><span class="hf-lbl">Heridas</span><span class="hf-big">${h.hp}<small> / ${h.hpMax}</small></span>${hfStp("hp",h.hp,1)}</div><div class="hf-tk pw"><span class="hf-lbl">Poder</span><span class="hf-big">${h.pw}<small> / ${h.pwMax}</small></span>${hfStp("pw",h.pw,1)}</div></div>
  <div class="hf-stt">${HF_STAT.map(([k,n])=>`<div class="${hfDebuff(h,k)?"dn":""}"><b>${esc(h[k])}+</b><span>${n}</span></div>`).join("")}</div>
  <div class="hf-mini"><div><span class="hf-lbl">Pociones</span>${hfStp("pot",h.pot)}</div><div><span class="hf-lbl">Oro</span>${hfStp("gold",h.gold)}</div></div>
- <div style="display:flex;flex-direction:column;gap:8px"><span class="hf-lbl">Estados</span><div class="hf-chips">${HF_ST.map(([k,n])=>`<button type="button" class="hf-chip ${h.st.includes(k)?"on":""}" data-hf="st" data-k="${k}" aria-pressed="${h.st.includes(k)}">${n}</button>`).join("")}</div></div>
+ <div style="display:flex;flex-direction:column;gap:8px"><span class="hf-lbl">Estados</span><div class="hf-chips">${HF_ST.map(([k,n])=>`<button type="button" class="hf-chip ${h.st.includes(k)?"on":""}" data-hf="st" data-k="${k}" aria-pressed="${h.st.includes(k)}" aria-describedby="hfst-${k}">${n}<span class="hf-stip" role="tooltip" id="hfst-${k}">${HF_STX[k]}</span></button>`).join("")}</div></div>
  <div class="hf-tabs" role="tablist">${HF_TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${HF.tab===k}" class="${HF.tab===k?"on":""}" data-hf="tab" data-k="${k}">${n}</button>`).join("")}</div>
  <div class="hf-sk">${L.length?L.map(s=>{const w=s.g==="equipo"&&s.k&&s.k!=="Consumible",t=hfExplain(s);
   return w?`<div><b>${esc(s.n)}</b>${hfWeapon(s.k)}${t?`<p>${esc(t)}</p>`:""}</div>`:`<div><b>${esc(s.n)}${s.k?`<span class="kw">${esc(s.k)}</span>`:""}</b>${t?`<p>${esc(t)}</p>`:s.g==="equipo"?"":`<p class="nd">Sin explicación todavía. Añádela con Editar.</p>`}</div>`}).join(""):`<span class="hf-empty">Nada anotado todavía.</span>`}</div></div>`}
@@ -2195,6 +2212,7 @@ $("#hfLayer").addEventListener("click",e=>{
  if(a==="prev"&&HF.cur>0){hfOpen(HF.cur-1);return}
  if(a==="next"&&HF.cur<HS.length-1){hfOpen(HF.cur+1);return}
  if(a==="inc"){h[b.dataset.k]=(+h[b.dataset.k]||0)+(+b.dataset.d);hfClamp(h)}
+ else if(a==="addman"){const xp=Math.max(0,parseInt(($("#hfmXp")||{}).value,10)||0),g=Math.max(0,parseInt(($("#hfmGold")||{}).value,10)||0);h.xpx=(h.xpx||0)+xp;h.gold=(+h.gold||0)+g}
  else if(a==="st"){const k=b.dataset.k;h.st=h.st.includes(k)?h.st.filter(x=>x!==k):[...h.st,k]}
  else if(a==="mode"){HF.mode=HF.mode===b.dataset.m?"":b.dataset.m;HF.res=null;HF.delArm=false;hfClamp(h)}
  else if(a==="tab")HF.tab=b.dataset.k;
@@ -2630,3 +2648,4 @@ buildHome();buildSheet();render();
   if(t<1)requestAnimationFrame(tick);else if(!done){done=true;setTimeout(()=>{L.classList.add("out");setTimeout(()=>{L.hidden=true},700)},REDUCE?0:450)}};
  requestAnimationFrame(tick)})();
 </script>
+

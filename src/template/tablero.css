@@ -208,16 +208,18 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){#tv,.tv-win,.tvfab{transition:none}.tv-tg,.tv-path,.tv-unit.fresh .tv-halo,.tv-hero.cur .tv-halo{animation:none}}
 
-/* ---- distribución en tres columnas: acciones | tablero | registro (escritorio) ---- */
+/* ---- distribución (escritorio): datos de los héroes a la izquierda | tablero | acciones y registro a la derecha ---- */
 @media (min-width:901px){
- .tv-body{grid-template-columns:minmax(310px,380px) minmax(0,1fr) minmax(290px,370px);grid-template-areas:"act board log"}
+ .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto minmax(0,1fr);grid-template-areas:"board hero" "board act" "board log"}
  .tv-boardw{grid-area:board}
- .tv-sact{grid-area:act;border-left:0;border-right:1px solid var(--line)}
- .tv-slog{grid-area:log}
+ .tv-shero{grid-area:hero;max-height:34vh;border-right:0;border-left:1px solid var(--line)}
+ .tv-sact{grid-area:act;max-height:46vh;border-right:0;border-left:1px solid var(--line)}
+ .tv-slog{grid-area:log;border-top:1px solid var(--line)}
 }
-@media (min-width:901px){
- .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto minmax(0,1fr);grid-template-areas:"board act" "board log"}
- .tv-sact{max-height:60vh;border-right:0;border-left:1px solid var(--line)}
+@media (min-width:1180px){
+ .tv-body{grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(330px,390px);grid-template-rows:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"hero board act" "hero board log"}
+ .tv-shero{max-height:none;border-left:0;border-right:1px solid var(--line)}
+ .tv-sact{max-height:none}
  .tv-slog{border-top:1px solid var(--line)}
 }
 .tv-log header{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;font-size:13px;color:var(--mu)}
@@ -402,12 +404,13 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-hero.done,.tv-unit.done{opacity:1;filter:brightness(.5) saturate(.55)}
 .tv-hero.done .tv-tn{opacity:.7}
 /* zona de despliegue de los héroes */
-.tv-dz circle{fill:rgba(240,215,154,.1);stroke:#f0d79a;stroke-width:1.6;stroke-dasharray:7 5;pointer-events:none;animation:tvdz 2.4s ease-in-out infinite}
-.tv-dz circle.sc{fill:rgba(167,139,250,.06);stroke:rgba(167,139,250,.6);stroke-width:1.2;stroke-dasharray:3 5;animation:none}
-@keyframes tvdz{0%,100%{fill-opacity:.7}50%{fill-opacity:1.6}}
+.tv-dz{pointer-events:none}
+.tv-dz .shade{fill:rgba(4,7,18,.5)}                                   /* el resto del tablero, más oscuro */
+.tv-dz .lit{fill:rgba(255,238,196,.2);stroke:none}                    /* la zona de despliegue, más clara */
+.tv-dz .ring{fill:none;stroke:#f6dc9a;stroke-width:2.6}               /* círculo de línea continua que la delimita */
+.tv-dz .sc{fill:rgba(167,139,250,.06);stroke:rgba(167,139,250,.6);stroke-width:1.2;stroke-dasharray:3 5}
 .tv-dzl{pointer-events:none}.tv-dzl rect{fill:#0b1122;stroke:#d9b86c;stroke-width:1.2}
 .tv-dzl text{font:700 11px Inter,system-ui,sans-serif;fill:#f0d79a;text-anchor:middle;letter-spacing:.03em}
-@media (prefers-reduced-motion:reduce){.tv-dz circle{animation:none}}
 /* disparo de Avanzar en el menú */
 .tv-advs{border-color:rgba(217,184,108,.7);background:rgba(217,184,108,.08)}
 /* ficha de un enemigo: ventana flotante con la X arriba a la derecha */
@@ -427,3 +430,34 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-ban.ev .tv-banc{border-color:rgba(167,139,250,.8)}.tv-ban.ev h3{color:#e1d6ff}.tv-ban.ev .tv-banr{background:#a78bfa}
 .tv-ban.end .tv-banr{animation-duration:3.2s}
 @media (prefers-reduced-motion:reduce){.tv-ban,.tv-banc,.tv-banr{animation:none}}
+
+/* ---- datos de los héroes (columna izquierda) ---- */
+.tv-hd{display:flex;flex-direction:column;gap:7px;padding:11px 12px;margin-top:9px;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+.tv-hd.cur{border-color:rgba(217,184,108,.75);box-shadow:0 0 0 2px rgba(217,184,108,.12)}.tv-hd.ko{opacity:.7}
+.tv-hdh{display:flex;align-items:center;gap:10px;text-align:left;width:100%}.tv-hdh b{display:block;font-weight:600}.tv-hdh small{color:var(--mu);font-size:11.5px}
+.tv-hd .tv-bars{display:flex;flex-direction:column;gap:4px}
+.tv-hds{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.tv-hds span{padding:4px 2px;border-radius:8px;background:var(--card2);text-align:center;font:700 13px "Space Grotesk",sans-serif}.tv-hds small{display:block;font:500 9.5px Inter,sans-serif;color:var(--mu2);letter-spacing:.06em;text-transform:uppercase}
+.tv-hdl{margin:0;font-size:11.5px;color:#c7cde2;line-height:1.45}.tv-hdl b{color:var(--gold2);font-weight:600}.tv-hdl small{color:var(--mu2)}
+.tv-hd .tv-acc{margin-top:0}
+.tv-shero>.tv-lab{margin-top:0}
+/* regla de medir */
+.tv-rpt{fill:#0a0f1f;stroke:#f0d79a;stroke-width:2;pointer-events:none}
+.tv-rln{stroke:#f0d79a;stroke-width:2;stroke-linecap:round;pointer-events:none}.tv-rln.live{stroke-dasharray:5 4;opacity:.8}
+.tv-rul{pointer-events:none}
+/* ⓘ en las listas de objetivos */
+.tv-ii{display:inline-grid;place-items:center;width:24px;height:24px;margin-left:8px;border-radius:50%;border:1px solid var(--line2);color:var(--gold2);font-size:14px;line-height:1;cursor:pointer;flex:none}.tv-ii:hover{background:rgba(217,184,108,.15)}
+.tv-tgt{align-items:center}
+/* cartel de «no hay acciones disponibles» */
+.tv-pend.none{color:#ff9aa8;font-weight:600}
+/* ventana de una oleada nueva */
+.tv-wmod{width:min(720px,100%)}
+.tv-wlist{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.tv-wcard{padding:11px 13px;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+.tv-wcard header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px}.tv-wcard header b{font-size:15px}
+.tv-wzone{padding:2px 10px;border-radius:999px;background:rgba(255,138,154,.14);border:1px solid rgba(255,138,154,.5);color:#ffc2cb;font-size:12px;font-weight:600}
+.tv-wcard .tv-qd{grid-template-columns:repeat(5,1fr)}
+.tv-wc{justify-content:center;margin-top:6px}
+@media (max-width:900px){.tv-hd{margin-top:8px}.tv-wcard .tv-qd{grid-template-columns:repeat(3,1fr)}}
+
+.tv-sc1 .tv-seg{grid-template-columns:repeat(5,1fr)}
+.tv-seg button.lock{opacity:.5;cursor:not-allowed;border-style:dashed}.tv-seg button.lock b{font-size:15px}
