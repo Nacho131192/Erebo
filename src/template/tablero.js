@@ -513,7 +513,7 @@ function rollEvent(a,b){const n=a*10+b,e=(DATA.ev||[]).find(x=>x[0]===String(n))
 
 /* ---------------------------------------------------------------- flujo de la ronda */
 function startGame(){G.round=1;G.al=1;G.phase=G.needEv?"event":"heroes";G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.ex=false});G.units.forEach(u=>{u.pick=false});G.units.slice().forEach(u=>{if(!u.fresh)scoutDeploy(u)});log("Empieza la partida. Ronda 1 · Noche.","rd")}
-function toHeroes(){G.phase="heroes";G.cur=-1;G.act=null;G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.stc=false;h.ex=false})}
+function toHeroes(){G.phase="heroes";G.cur=-1;G.act=null;G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.stc=false;h.ex=false;h.advShot=false})}
 function heroesDone(){return G.heroes.every(gh=>{const a=actor(gh.id);return!a||a.ko()||gh.act===2})}
 /* Fin de ronda: Alertness +1 (o +2 si no queda ningún enemigo). A 6 entran refuerzos y vuelve a 1 (regla de la casa: cuenta de 1 a 6). */
 /* Fin de ronda: un dado de alerta (se tira en el centro, o lo metes tú). De 1 a 5, la alerta sube 1; con un 6, sube 2.
@@ -606,7 +606,7 @@ function shootTargets(a){const A=G.act,w=rwOf(a,A),hold=!!A&&(A.k==="hold"||A.k=
  if(A&&A.chain)L=L.filter(u=>u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01));
  return L}
 function chargeTargets(a){const A=G.act;return liveUnits().filter(u=>gap(a,u)>CONTACT+.01&&(!A||!A.chain||(u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01)))).map(u=>({u,c:chargePath(a,u,A&&A.lim)})).filter(x=>x.c&&x.c.ok)}
-function endAct(gh){gh.act=2;G.cur=-1;G.act=null;U.dest=null;U.sel="";if(heroesDone())log("Todos los héroes han actuado. Turno de la IA.","rd")}
+function endAct(gh){gh.act=2;gh.advShot=false;G.cur=-1;G.act=null;U.dest=null;U.sel="";if(heroesDone()){log("Todos los héroes han actuado. Turno de los enemigos.","rd");setTimeout(autoAI,900)}}
 
 /* ---------------------------------------------------------------- IA */
 /* Diagrama de las Core Rules: si al moverse puede disparar o cargar a un héroe → avanzar y disparar al más cercano,
@@ -682,6 +682,26 @@ function primHTML(){const P=U.prim;if(!P)return"";const el=Math.max(0,(Date.now(
 function wilHTML(){const w=U.wilAsk;return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Tirada de Voluntad fallida"><div class="tv-confc"><b>${esc(w.name)} falla la tirada de ${esc(w.what||"Voluntad")}</b><p>Puede gastar ${w.cost||2} de poder para que cuente como superada (Core Rules). Ahora tiene ${w.pw} de poder.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="wily">Gastar ${w.cost||2} de poder</button><button type="button" class="tv-ghostb" data-tv="wiln">No gastar</button></div></div></div>`}
 function confirmHTML(){const names=pendingHeroes().map(gh=>{const h=heroOf(gh);return esc(h?h.name:gh.n)});
  return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Confirmar el final del turno"><div class="tv-confc"><b>¿Terminar el turno de los héroes?</b><p>${names.join(", ")} todavía ${names.length>1?"tienen":"tiene"} acciones por hacer. Si terminas ahora las pierden y pasa el turno de la IA.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="toai2">Sí, terminar el turno</button><button type="button" class="tv-ghostb" data-tv="noconf">Volver</button></div></div></div>`}
+/* ---------------------------------------------------------------- carteles de fase
+   Petición de Nacho (2026-11-20): en cada cambio de fase sale un cartel en el centro que se cierra al tocarlo o solo, a los pocos segundos. */
+const BAN_MS=2800;let BANT=0;
+function banner(o){return new Promise(res=>{clearTimeout(BANT);if(U.ban)U.ban.res();U.ban={...o,res};paint();BANT=setTimeout(banClose,REDUCE?1600:(o.ms||BAN_MS))})}
+function banClose(){clearTimeout(BANT);const b=U.ban;if(!b)return;U.ban=null;paint();b.res()}
+function banHTML(){const b=U.ban;if(!b)return"";
+ return`<div class="tv-ban ${b.k||""}" role="status" aria-live="polite" data-tv="banclose"><div class="tv-banc"><span class="tv-banr" aria-hidden="true" style="animation-duration:${b.ms||BAN_MS}ms"></span><p class="tv-lab">${esc(b.lab||"")}</p><h3>${esc(b.t)}</h3>${b.s?`<p>${esc(b.s)}</p>`:""}<small>Toca para seguir</small></div></div>`}
+const rdLab=()=>`Ronda ${G.round} · ${tod()}`;
+const heroBanner=()=>banner({k:"hr",lab:rdLab(),t:`Comienza la ronda ${G.round}`,s:"Turno de los héroes: actúan en el orden que quieras."});
+/* Al empezar una ronda: si toca evento de Neth, primero ese cartel; el de «Comienza la ronda» sale al cerrar el resultado del evento. */
+function roundBanner(){if(G.over)return Promise.resolve();return G.phase==="event"?banner({k:"ev",lab:rdLab(),t:"Evento de Neth",s:G.round===1?"Antes de empezar se tira el evento de Neth.":"Han entrado refuerzos: se tira el evento de Neth."}):heroBanner()}
+/* Turno de los enemigos: los héroes que no hayan terminado pierden lo que les quede. */
+async function toAI(){if(U.busy||G.phase!=="heroes"||G.over)return;U.busy=true;G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;U.dest=null;U.sel="";save();paint();
+ await banner({k:"ai",lab:rdLab(),t:"Turno de los enemigos",s:"La IA activa sus unidades, de la más cercana a un héroe a la más lejana."});U.busy=false;runAI()}
+/* Cuando todos los héroes han terminado, pasa solo al turno de los enemigos (espera a que se cierren dados y carteles). */
+function autoAI(){if(G.phase!=="heroes"||G.over||!heroesDone())return;if(U.busy||U.dice||U.wilAsk||U.prim||U.ban||U.evfx||U.confirm){setTimeout(autoAI,400);return}toAI()}
+/* Fin de ronda: cartel con lo que ha subido la alerta y, sin pulsar nada, empieza la siguiente. */
+async function endFlow(){endDice();const e=G.endInfo||{};if(G.over||e.pending)return;
+ await banner({k:"end",lab:`Fin de la ronda ${e.r}`,t:`Ronda ${e.r} terminada`,s:(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`),ms:e.rf?4400:3200});
+ if(G.phase!=="end")return;nextRound();save();paint();await roundBanner()}
 /* El turno de la IA va despacio para poder seguirlo: se ve qué unidad actúa y por qué, cómo se mueve, y cada dado, evento por evento. */
 async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.aiTot=liveUnits().length;paint();
  const W=ms=>sleep(REDUCE?0:ms);
@@ -706,7 +726,7 @@ async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.a
     for(let i=0;i<list.length;i++){const X=list[i];if(B.ko()||G.over)break;fxClash(X,B);await W(700);const L=await fight(X,B,"melee",{charge:false,pre:pre[i],only:wsL[i][0]});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(X,L.tA);await W(1200)}}
    else if(A&&B){fxClash(A,B);await W(900);const L=await fight(A,B,"melee",{charge:pl.k==="chg",cd:pathLen(pl.pts)/BIN});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(A,L.tA);await W(2000)}}}
   G.aiDone.push(a.id);save();paint();await W(1200);if(G.over)break}
- G.aiCur=null;U.sel="";U.busy=false;if(!G.over)await endRound();save();paint()}
+ G.aiCur=null;U.sel="";U.busy=false;if(!G.over)await endRound();save();paint();if(!G.over)await endFlow()}
 const pathLen=pts=>{let s=0;for(let i=1;i<pts.length;i++)s+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);return s};
 
 /* ---------------------------------------------------------------- animaciones del tablero */
@@ -730,7 +750,7 @@ const ini=s=>String(s).replace(/\(.*?\)/g,"").split(/\s+/).filter(w=>w&&!/^(de|d
 function ring(r,fr,col,w){const C=2*Math.PI*r;return`<circle r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="${w}"/><circle r="${r}" fill="none" stroke="${col}" stroke-width="${w}" stroke-dasharray="${(C*Math.max(0,Math.min(1,fr))).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90)" stroke-linecap="round"/>`}
 function heroTok(a,k){const h=a.h,gh=a.g,ko=a.ko(),fr=h.hpMax?h.hp/h.hpMax:0,cid="tvc"+k;
  const pic=h.img?`<clipPath id="${cid}"><circle r="${a.r-2}"/></clipPath><image href="${esc(h.img)}" x="${-a.r}" y="${-a.r}" width="${a.r*2}" height="${a.r*2}" clip-path="url(#${cid})" preserveAspectRatio="xMidYMid slice"/>`:`<circle r="${a.r-2}" fill="#2a2347"/><text class="tv-ti" y="3.6">${esc(ini(h.name))}</text>`;
- const cls=["tv-tok","tv-hero",ko?"ko":"",gh.act===2?"done":"",G.cur===G.heroes.indexOf(gh)?"cur":"",U.sel===a.id?"sel":"",h.st.includes("at")?"shk":"",G.phase==="heroes"&&gh.act===0&&!ko&&!U.dice?"nudge":""].join(" ");
+ const cls=["tv-tok","tv-hero",ko?"ko":"",G.phase==="heroes"&&gh.act===2&&!ko?"done":"",G.cur===G.heroes.indexOf(gh)?"cur":"",U.sel===a.id?"sel":"",h.st.includes("at")?"shk":"",G.phase==="heroes"&&gh.act===0&&!ko&&!U.dice?"nudge":""].join(" ");
  return`<g class="${cls}" data-tok="${a.id}" transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})"><circle class="tv-halo" r="${a.r+7}"/>${night()?`<circle class="tv-vis" r="${12*BIN+a.r}"/>`:""}<circle r="${a.r+1.5}" fill="#0b0f1e"/>${pic}${ring(a.r+1.8,fr,ko?"#5d5a6e":"#f0d79a",2.4)}${ko?`<path class="tv-kx" d="M-6 -6L6 6M6 -6L-6 6"/>`:""}<text class="tv-tn" y="${a.r+12}">${esc(h.name.split(" ")[0])}</text></g>`}
 function unitTok(a){const u=a.g,fr=u.hp/(u.m0*u.t),m=a.models(),fresh=u.fresh===G.round;
  const cls=["tv-tok","tv-unit",u.act&&G.phase==="ai"?"done":"",U.sel===a.id?"sel":"",u.sh?"shk":"",fresh?"fresh":"",u.pick&&G.phase==="deploy"?"pick":""].join(" ");
@@ -744,10 +764,13 @@ function boardSVG(){const A=actors();
   +`<g class="tv-well" transform="translate(300 300)"><circle r="26"/><circle r="18" class="in"/><text y="44">el pozo</text><text y="58" class="sm">cobertura</text></g>`
   +[[0,0],[600,0],[600,600],[0,600]].map(([x,y],i)=>`<path class="tv-carc" d="${x?"M600":"M0"} ${y?525:75}A75 75 0 0 ${i%2?1:0} ${x?525:75} ${y}"/>`).join("");
  const fog=night()?`<rect width="600" height="600" class="tv-night"/>`:dawn()?`<rect width="600" height="600" class="tv-dawn"/>`:"";
+ /* Zona de despliegue de los héroes (solo al desplegar): hasta 10″ de su esquina, y 19″ punteado si alguno tiene Scout. */
+ let dz="";if(G.phase==="deploy"&&G.hc){const c=CC[G.hc-1],R=10*BIN,sc=G.heroes.some(g=>{const x=actor(g.id);return x&&has(x,"Scout")}),sx=c[0]<300?1:-1,sy=c[1]<300?1:-1,lx=c[0]+sx*R*.62;
+  dz=`<g class="tv-dz" clip-path="url(#tvclip)">${sc?`<circle cx="${c[0]}" cy="${c[1]}" r="${19*BIN}" class="sc"/>`:""}<circle cx="${c[0]}" cy="${c[1]}" r="${R}"/></g><g class="tv-dzl" transform="translate(${lx.toFixed(1)} ${(c[1]+sy*(R+20)).toFixed(1)})"><rect x="-92" y="-13" width="184" height="26" rx="13"/><text y="4.5">Zona de despliegue · héroes</text></g>`}
  return`<svg class="tv-map" id="tvMap" viewBox="-6 -6 612 612" role="img" aria-label="Tablero de 48 pulgadas"><defs>${grid}<filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath><linearGradient id="tvbfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="tvbgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
  <rect x="-6" y="-6" width="612" height="612" rx="8" class="tv-frame"/>
  <rect width="600" height="600" fill="url(#tvbg)"/><rect width="600" height="600" fill="url(#tvgrid)"/>${fog}
- <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${tracksSVG()}${q}${obs}
+ <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${dz}${tracksSVG()}${q}${obs}
  <rect class="tv-hit" width="600" height="600" data-tv="pt"/>
  <g id="tvOv">${overlay()}</g><g id="tvTrail"></g>
  <g id="tvToks">${A.filter(a=>a.kind==="u").map(unitTok).join("")}${A.filter(a=>a.kind==="h").map((a,k)=>heroTok(a,k)).join("")}</g>
@@ -1135,11 +1158,11 @@ const cxl=A=>A.free?`<button type="button" class="tv-ghostb" data-tv="nochain">$
 function fxRow(g){const ids=[...new Set(((g&&g.fx)||[]).filter(e=>e.id).map(e=>e.id))];return ids.length?`<span class="tv-fxr" aria-label="Efectos activos">${ids.map(i=>`<i class="tv-fxp">${esc(i)}</i>`).join("")}</span>`:""}
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(h.st.includes("at")&&!A)return`<div class="tv-box warn"><b>${esc(h.name)} está Aturdido</b><p>Tiene que pasar esta activación quieto para recuperarse (Core Rules).</p><button type="button" class="tv-btn" data-tv="rally">Quedarse quieto y recuperarse</button></div>`;
- if(!A){const done=gh.done||[],Lf=freeA(gh);return`${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
+ if(!A){const done=gh.done||[],Lf=freeA(gh);return`${gh.advShot?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
   ${usedA(gh)===2&&(gh.ex||canExtra(gh))?`<p class="tv-lab">Acción extra</p><button type="button" class="tv-tick${gh.ex?" on":""}" data-tv="xtick">${gh.ex?"☑":"☐"} Gastar 3 de poder en una acción extra</button>`:`<p class="tv-lab">${Lf>=2?"Elige su acción":"Le queda una acción"}</p>`}<div class="tv-acts">${ACTS.map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||(k==="rest"&&done.length>0);
    return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los tres rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).join("")}</div>
   ${skillBar(gh,a)}
-  <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="endact">${done.length?"Terminar activación":"No hacer nada"}</button></div>`}
+  <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="endact">${gh.advShot&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div>`}
  const k=A.k,lab=(ACTS.find(x=>x[0]===k)||[0,"Habilidad"])[1];
  if(A.st==="fight")return`<div class="tv-box"><b>${lab} · en curso</b><p>Se resuelve el combate: sigue los dados en la bandeja.</p></div>`;
  if(A.st==="atk"){const t=atkTargets(a);return`<div class="tv-box"><b>Atacar · cuerpo a cuerpo</b><p>${t.length?"Toca el enemigo al que golpea (marcado en rojo). No carga: sin bonos de carga.":"No hay ningún enemigo a "+CT+" o menos."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>a ${inch(gap(a,u))}</small></button>`).join("")}</div><div class="tv-row">${cxl(A)}</div></div>`}
@@ -1157,10 +1180,11 @@ function combatCard(){const L=G.last;if(!L)return"";
  return`<section class="tv-cmb ${L.kind}"><p class="tv-lab">${L.kind==="melee"?"Cuerpo a cuerpo":"Disparo"} · ${esc(L.a)} → ${esc(L.b)}</p>${L.steps.map(s=>s.note?`<p class="tv-note">${esc(s.note)}</p>`:`<div class="tv-cs"><b>${esc(s.who)} ${s.lab}</b><span class="tv-big">${s.wounds}<small> heridas</small></span><small class="tv-sub">${s.att} ataques · ${s.hits} impactos</small>${dice(s.rolls,"Impactar (verdes = impactos)")}${dice(s.blocks,"Defensa (verdes = heridas)")}<ul>${s.lines.map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>`).join("")}
  ${L.morale.map(m=>`<p class="tv-mor">${esc(m)}</p>`).join("")}${G.offerIgnore&&actor(G.offerIgnore)&&actor(G.offerIgnore).h.pw>=2&&actor(G.offerIgnore).h.st.includes("at")?`<button type="button" class="tv-btn sm" data-tv="ignsh">Gastar 2 de poder: ${esc(actor(G.offerIgnore).name)} no queda Aturdido</button>`:""}</section>`}
 function unitInfo(id){const a=actor(id);if(!a)return"";const u=a.kind==="u"?a.g:null;
- return`<section class="tv-info"><button type="button" class="tv-ix" data-tv="noinfo" aria-label="Cerrar">×</button><p class="tv-lab">${a.kind==="h"?"Héroe":"Unidad enemiga"}</p><b class="tv-in">${esc(a.name)}</b>
+ /* Ventana flotante con la X en la esquina (petición de Nacho, 2026-11-20); se cierra también tocando fuera o con Escape. */
+ return`<div class="tv-hveil"><div class="tv-hscrim" data-tv="noinfo"></div><section class="tv-hmod tv-umod" role="dialog" aria-modal="true" aria-label="Ficha de ${esc(a.name)}"><button type="button" class="tv-ix" data-tv="noinfo" aria-label="Cerrar">×</button><p class="tv-lab">${a.kind==="h"?"Héroe":"Unidad enemiga"}</p><b class="tv-in">${esc(a.name)}</b>
  <div class="tv-qd"><span><small>Calidad</small>${a.q}+</span><span><small>Defensa</small>${a.d}+</span><span><small>${u?"Miniaturas":"Heridas"}</small>${u?a.models()+"/"+u.m0:a.h.hp+"/"+a.h.hpMax}</span><span><small>Mueve</small>${speed(a).map(inch).join(" / ")}</span></div>
  ${u?`<p class="tv-sub">Tough(${u.t}) por miniatura · ${u.hp} heridas por recibir${u.sh?" · <b>Aturdida</b>":""}${u.fat===G.round?" · agotada":""}</p>`:""}
- ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`<button type="button" class="tv-rchip sm" data-tv="rinfo" data-l="${esc(x)}" data-o="">${esc(x)}</button>`).join(" "):"—"}</td></tr>`).join("")}</table></section>`}
+ ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`<button type="button" class="tv-rchip sm" data-tv="rinfo" data-l="${esc(x)}" data-o="">${esc(x)}</button>`).join(" "):"—"}</td></tr>`).join("")}</table></section></div>`}
 function evCard(){const e=G.ev;const die=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
  if(!e||e.r!==G.round)return`<div class="tv-ev"><p class="tv-lab">Evento de Neth · ${G.round===1?"empieza la partida":"han entrado refuerzos"}</p><div class="tv-dd">${die(0)}${die(0)}</div><p>Se tiran dos dados de uno en uno: el primero son las decenas y el segundo las unidades (Campaign Builder).</p><button type="button" class="tv-btn big" data-tv="ev">Tirar el evento</button></div>`;
  return`<div class="tv-ev ${e.tone}"><p class="tv-lab">Evento de Neth ${e.n}</p><div class="tv-dd">${die(e.a)}${die(e.b)}</div><h3>${esc(e.t)}</h3><p>${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><button type="button" class="tv-btn big" data-tv="toheroes">Turno de los héroes</button></div>`}
@@ -1223,9 +1247,8 @@ function sideMain(){let main="";
  else if(G.phase==="ai")main=aiPanel();
  else if(G.phase==="end")main=endPanel();
  const mod=G.mod&&G.phase!=="setup"?`<div class="tv-mod"><small>Hasta el siguiente evento · ${G.mod.n}</small><b>${esc(G.mod.t)}</b></div>`:"";
- const info=U.info&&actor(U.info)?unitInfo(U.info):"";
  const trk=G.phase!=="setup"&&G.phase!=="deploy"&&(G.tracks||[]).length?`<div class="tv-trkb${G.prim?" ok":""}"><small>Objetivo principal · Rastros del pueblo</small><b>${G.prim?"¡Cumplido! Los tres braseros arden.":`${G.tracks.filter(t=>t.on).length} de ${G.tracks.length} recuperados`}</b>${G.prim&&G.diary?`<span>${esc(G.diary)} lleva el diario del olvidado.</span>`:""}</div>`:"";
- return`${mod}${trk}${main}${info}`}
+ return`${mod}${trk}${main}`}
 /* Columna del registro: último combate y todo lo que va pasando en la partida (lo más nuevo, arriba). */
 function sideLog(){
  const logH=`<section class="tv-log"><header><b>Registro de actividad</b>${G.log.length?`<small>${G.log.length}</small>`:""}</header>${G.log.length?`<ol>${G.log.map(l=>`<li class="${l.k}"><small>R${l.r}</small>${linkNames(esc(l.t))}</li>`).join("")}</ol>`:`<p class="tv-empty">Aquí irá contándose todo lo que ocurra en la partida.</p>`}</section>`;
@@ -1237,7 +1260,7 @@ function paint(){if(!U.open)return;
  /* Si el enemigo cuya ficha está abierta cae o huye, la ficha se cierra con él. */
  if(U.info){const ia=actor(U.info);if(!ia||(ia.kind==="u"&&ia.ko()))U.info=""}
  const sa=$(".tv-sact"),sl=$(".tv-slog"),ta=sa?sa.scrollTop:0,tl=sl?sl.scrollTop:0;
- const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.rinfo?ruleModal():""}${evFxHTML()}${heroModal()}`;
+ const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${evFxHTML()}${heroModal()}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
  ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw"><div class="tv-board">${boardSVG()}</div>${legend()}</div><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside><aside class="tv-side tv-slog" aria-label="Registro de actividad">${sideLog()}</aside></div>${extra}</section>`;
@@ -1247,7 +1270,8 @@ function open(){if(U.open)return;U.open=true;
  /* fichas guardadas que hayan quedado dentro de una casa o del pozo (p. ej. de una partida con otro mapa): al borde */
  G.units.concat(G.heroes).forEach(o=>{const p=tOut([o.x,o.y]);o.x=p[0];o.y=p[1]});ensureTracks();ROOT.hidden=false;FAB.setAttribute("aria-expanded","true");document.body.classList.add("tvopen");paint();requestAnimationFrame(()=>ROOT.classList.add("on"));setTimeout(()=>{const b=$(".tv-x");if(b)b.focus({preventScroll:true})},60);
  /* si se cerró la página en pleno turno de la IA, se retoma donde iba */
- if(G.phase==="ai"&&!U.busy&&!G.over)setTimeout(runAI,500)}
+ if(G.phase==="ai"&&!U.busy&&!G.over)setTimeout(runAI,500);
+ if(G.phase==="heroes"&&!G.over&&heroesDone())setTimeout(autoAI,700)}
 function close(){if(!U.open)return;U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");setTimeout(()=>{if(!U.open){ROOT.hidden=true;ROOT.innerHTML=""}},380);FAB.focus({preventScroll:true})}
 
 /* ---------------------------------------------------------------- tablero: toques y arrastre */
@@ -1260,13 +1284,15 @@ function bindBoard(){const svg=$("#tvMap");if(!svg)return;
  svg.addEventListener("pointermove",e=>{if(!U.drag)return;const p=svgPt(e);if(!p)return;U.drag.moved=true;
   if(U.drag.dep){const a=actor(U.drag.id);if(!a)return;const q=heroClamp(U.drag.id,tOut(p));a.g.x=q[0];a.g.y=q[1];const t=tokEl(a.id);if(t)t.setAttribute("transform",`translate(${q[0].toFixed(1)} ${q[1].toFixed(1)})`);return}
   U.dest=p;paintOv()});
- const up=e=>{if(!U.drag)return;const d=U.drag;U.drag=null;if(d.dep){if(d.moved){const a=actor(d.id);if(a){a.g.pick=false;const f=freeSpot([a.x,a.y],a.r,a.id);a.g.x=f[0];a.g.y=f[1]}save();paint()}else{U.info=d.id;paint()}return}paint()};
+ const up=e=>{if(!U.drag)return;const d=U.drag;U.drag=null;if(d.dep){if(d.moved){const a=actor(d.id);if(a){a.g.pick=false;const f=freeSpot([a.x,a.y],a.r,a.id);a.g.x=f[0];a.g.y=f[1]}save();paint()}else showInfo(d.id);return}paint()};
  svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
  svg.addEventListener("click",e=>{if(U.busy)return;const t=e.target.closest("[data-tv=tgt]");if(t){act("tgt",t);return}
   const tok=e.target.closest("[data-tok]");if(tok&&G.act&&(G.act.st==="shoot"||G.act.st==="chg"||G.act.st==="atk")&&tok.dataset.tok[0]==="u"){act("tgt",{dataset:{id:tok.dataset.tok}});return}
   if(tok&&!(G.act&&(G.act.st==="move"||G.act.st==="tele"))){const id=tok.dataset.tok;
    if(id[0]==="h"&&G.phase==="heroes"){const i=G.heroes.findIndex(x=>x.id===id);if(i>=0&&(G.cur<0)&&G.heroes[i].act!==2&&!actor(id).ko()){act("hero",{dataset:{i}});return}}
-   if(G.phase!=="deploy"){U.info=U.info===id?"":id;paint()}}})}
+   if(G.phase!=="deploy")showInfo(id)}})}
+/* Ficha flotante al tocar una ficha del tablero: la del héroe es su hoja completa; la de un enemigo, su perfil. */
+function showInfo(id){if(id[0]==="h"){U.info="";U.hinfo=id}else{U.hinfo=null;U.info=id}paint()}
 
 /* ---------------------------------------------------------------- acciones */
 function act(k,b){const ds=b&&b.dataset||{};
@@ -1285,10 +1311,10 @@ function act(k,b){const ds=b&&b.dataset||{};
   const n=deploySentries();const r=d6();G.hcRoll=r;G.hc=0;if(r<=4)placeHeroes(r);else{const far=[0,1,2,3].sort((x,y)=>{const s=c=>G.units.reduce((m,u)=>Math.min(m,Math.hypot(u.x-CC[c][0],u.y-CC[c][1])),1e9);return s(y)-s(x)})[0];placeHeroes(far+1)}
   G.phase="deploy";log(`Mesa preparada: ${n} centinelas (${budget()} pts) y héroes en la esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}.`,"rd");break}
  case"corner":placeHeroes(+ds.c);break;
- case"start":startGame();break;
+ case"start":startGame();save();paint();roundBanner();return;
  case"ev":{const a=d6(),bb=d6();U.busy=true;U.evfx={st:"roll"};paint();
-  rollAnim(()=>{U.busy=false;rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();U.evfx={st:"done"};paint();setTimeout(()=>{if(U.evfx&&U.evfx.st==="done"){U.evfx=null;paint()}},8000)},".tv-evfx .tv-die");return}
- case"evclose":U.evfx=null;break;
+  rollAnim(()=>{U.busy=false;rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();const F={st:"done"};U.evfx=F;paint();setTimeout(()=>{if(U.evfx===F)evDone()},8000)},".tv-evfx .tv-die");return}
+ case"evclose":evDone();return;
  case"heroinfo":U.hinfo=(G.heroes[+ds.i]||{}).id||null;break;
  case"hiclose":U.hinfo=null;break;
  case"wpn":if(G.act)G.act.wi=+ds.w;break;
@@ -1311,16 +1337,18 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"unimp":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,v=d3(),lost=Math.min(h.pw,v);h.pw-=lost;if(v>lost)wound(a,v-lost);h.st=h.st.filter(s=>s!=="ac");log(`${h.name} gasta ${v} de poder y deja de estar Afectado${v>lost?` (agotamiento: ${v-lost} heridas)`:""}.`,"hr");hfSync();checkOver();break}
  case"act":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,kk=ds.k;
   if(kk!=="rest"&&ACOST[kk]>freeA(gh)){toast(usedA(gh)>=2&&canExtra(gh)?"Marca primero la acción extra (3 de poder).":freeA(gh)<=0?"No le quedan acciones en esta activación.":`Esa acción necesita ${ACOST[kk]} acciones.`);return}
-  gh.exOpen=false;
+  gh.exOpen=false;gh.advShot=false;
   if(kk==="rest"){h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
   if(kk==="hold"){log(`${h.name} se mantiene en su sitio.`,"hr");finishAction(gh,"hold");break}
   if(kk==="obj"){const t=trkNear(a)[0];if(!t){toast("No hay ningún rastro a "+CT+" o menos.");break}doTrack(gh,a,t);return}
   G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;break}
  case"cancel":{if(!G.act||G.act.mv||G.act.free||G.act.st==="tele")return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
- case"mvskip":G.act.st="shoot";U.dest=null;break;
+ case"mvskip":{const gh=G.heroes[G.cur];U.dest=null;G.act=null;log(`${heroOf(gh).name} avanza sin moverse.`,"hr");gh.advShot=canShootAny(actor(gh.id));finishAction(gh,"adv");break}
+ /* Disparo que va con Avanzar: no gasta otra acción. */
+ case"advshot":{const gh=G.heroes[G.cur];if(!gh||!gh.advShot||G.act)break;G.act={k:"adv",st:"shoot",mv:true,free:true,wi:0};U.dest=null;break}
  case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id),k2=G.act.k,r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
   log(`${a.name} ${k2==="adv"?"avanza":"corre"} ${inch(pathLen(r.pts)/BIN)}.`,"hr");
-  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);U.busy=false;if(keep.free){fin(gh,keep)}else if(k2==="adv"){G.act={...keep,st:"shoot",mv:true}}else{G.act=null;finishAction(gh,k2)}save();paint()});return}
+  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);U.busy=false;if(keep.free){fin(gh,keep)}else{G.act=null;if(k2==="adv")gh.advShot=canShootAny(actor(gh.id));finishAction(gh,k2)}save();paint()});return}
  case"noshoot":{const gh=G.heroes[G.cur];fin(gh,G.act);break}
  case"nochain":{const gh=G.heroes[G.cur];if(G.act&&G.act.free)fin(gh,G.act);break}
  case"teleok":{const gh=G.heroes[G.cur],a=actor(gh.id),A=G.act;if(!A||A.st!=="tele"||!U.dest)return;let dx=U.dest[0]-a.x,dy=U.dest[1]-a.y;const Lx=Math.hypot(dx,dy),R2=A.lim*BIN;if(Lx>R2){dx*=R2/Lx;dy*=R2/Lx}
@@ -1341,35 +1369,41 @@ function act(k,b){const ds=b&&b.dataset||{};
   return}
  case"ignsh":{const a=actor(G.offerIgnore);if(a&&a.h.pw>=2){a.h.pw-=2;a.h.st=a.h.st.filter(s=>s!=="at");log(`${a.name} gasta 2 de poder y no queda Aturdido.`,"hr");hfSync()}G.offerIgnore=null;break}
  case"endact":{const gh=G.heroes[G.cur];if(!(gh.done||[]).length)log(`${heroOf(gh).name} no hace nada.`,"hr");endAct(gh);break}
- case"toai":{if(pendingHeroes().length){U.confirm=true;paint();return}G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;save();runAI();return}
- case"toai2":{G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;save();runAI();return}
+ case"toai":{if(pendingHeroes().length){U.confirm=true;paint();return}toAI();return}
+ case"toai2":U.confirm=false;toAI();return;
  case"noconf":break;
  case"rinfo":U.rinfo={l:ds.l,o:ds.o||"",sel:[]};break;
  case"rclose":U.rinfo=null;break;
  case"primclose":U.prim=null;break;
  case"wily":case"wiln":{const f=U.wilAsk;if(!f)break;U.wilAsk=null;f.res(k==="wily");return}
- case"next":nextRound();break;
+ case"next":nextRound();save();paint();roundBanner();return;
  default:return}
  save();paint()}
 /* Tras una acción: puede hacer otra gastando 3 de poder (una sola), o terminar. */
-function finishAction(gh,k,rest,free){if(!free)gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
- /* Descansar: no se puede hacer nada más (ni antes ni después). Si ya no quedan acciones, termina salvo que pueda pagar la extra. */
- if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh))){endAct(gh);return}}
+function finishAction(gh,k,rest,free){if(free||k!=="adv")gh.advShot=false;if(!free)gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
+ /* Descansar: no se puede hacer nada más (ni antes ni después). Si ya no quedan acciones, termina salvo que pueda pagar la extra
+    o que le quede el disparo de Avanzar (solo si tiene arma a distancia y algún enemigo a tiro y a la vista). */
+ if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh)&&!gh.advShot)){endAct(gh);return}}
+const canShootAny=a=>!!a&&!a.ko()&&a.ws.some(isRanged)&&liveUnits().some(u=>canShoot(a,u,false));
+/* Al cerrar el resultado del evento de Neth: cartel de que comienza la ronda (si ya es el turno de los héroes). */
+function evDone(){const was=!!U.evfx&&U.evfx.st==="done";U.evfx=null;paint();if(was&&G.phase==="heroes"&&!G.over)heroBanner()}
 function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(REDUCE||!ds.length){done();return}let n=0;
  const it=setInterval(()=>{ds.forEach(d=>{d.classList.remove("q");d.innerHTML=dots(d6())});if(++n>9){clearInterval(it);done()}},70)}
 let TT=0;function toast(t){let el=$(".tv-toast");if(!el){el=document.createElement("div");el.className="tv-toast";ROOT.appendChild(el)}el.textContent=t;el.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>el.classList.remove("on"),2400)}
 
-ROOT.addEventListener("click",e=>{const b=e.target.closest("[data-tv]");if(!b||b.closest("svg"))return;if(b.getAttribute("aria-disabled")==="true"||b.disabled)return;if(U.busy&&b.dataset.tv!=="close"&&!DICE_ACTS.has(b.dataset.tv))return;act(b.dataset.tv,b)});
+ROOT.addEventListener("click",e=>{const b=e.target.closest("[data-tv]");if(!b||b.closest("svg"))return;if(b.dataset.tv==="banclose"){banClose();return}if(b.getAttribute("aria-disabled")==="true"||b.disabled)return;if(U.busy&&b.dataset.tv!=="close"&&!DICE_ACTS.has(b.dataset.tv))return;act(b.dataset.tv,b)});
 /* Números metidos a mano en la bandeja de dados (sin repintar, para no perder el foco). */
 ROOT.addEventListener("change",e=>{const s=e.target.closest&&e.target.closest(".tv-dsel");if(!s||!U.dice)return;U.dice.mv[+s.dataset.i]=+s.value;const b=$("#tvDapply");if(b)b.disabled=!U.dice.mv.every(Boolean)});
 ROOT.addEventListener("toggle",e=>{if(e.target.classList&&e.target.classList.contains("tv-log"))U.logOpen=e.target.open},true);
 FAB.addEventListener("click",()=>U.open?close():open());
 document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!U.open)return;if(typeof HC!=="undefined"&&HC.isOpen&&HC.isOpen())return;e.preventDefault();e.stopImmediatePropagation();
+ if(U.ban){banClose();return}
  if(U.wilAsk)return;
  if(U.rinfo){U.rinfo=null;paint();return}
  if(U.prim){U.prim=null;paint();return}
  if(U.confirm){U.confirm=false;paint();return}
- if(U.hinfo||U.evfx){U.hinfo=null;U.evfx=null;paint();return}
+ if(U.hinfo){U.hinfo=null;paint();return}
+ if(U.evfx){if(U.evfx.st==="done")evDone();return}
  if(U.dice)return;
  if(U.info){U.info="";paint();return}if(G.act&&!G.act.mv&&!U.busy){act("cancel");return}close()},true);
 FAB.innerHTML=`<span class="tvf-ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4.5" y="4.5" width="23" height="23" rx="2.5"/><path d="M16 4.5v23M4.5 16h23"/><circle cx="10.5" cy="10.5" r="2.6" class="h"/><path d="M21.5 18.6l2.6 1.5v3l-2.6 1.5-2.6-1.5v-3z" class="e"/></svg></span><span class="tvf-tx"><b>Tablero</b><small>Prototipo</small></span>`;

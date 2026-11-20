@@ -397,3 +397,33 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 /* nombres de habilidades y reglas en el registro: subrayados y pulsables */
 .tv-lk{all:unset;cursor:pointer;color:var(--gold2);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;text-decoration-thickness:1.5px}
 .tv-lk:hover,.tv-lk:focus-visible{color:#fff;text-decoration-style:solid}
+
+/* 2026-11-20 · fichas que ya han actuado: algo más oscuras (héroes en su turno, enemigos en el de la IA) */
+.tv-hero.done,.tv-unit.done{opacity:1;filter:brightness(.5) saturate(.55)}
+.tv-hero.done .tv-tn{opacity:.7}
+/* zona de despliegue de los héroes */
+.tv-dz circle{fill:rgba(240,215,154,.1);stroke:#f0d79a;stroke-width:1.6;stroke-dasharray:7 5;pointer-events:none;animation:tvdz 2.4s ease-in-out infinite}
+.tv-dz circle.sc{fill:rgba(167,139,250,.06);stroke:rgba(167,139,250,.6);stroke-width:1.2;stroke-dasharray:3 5;animation:none}
+@keyframes tvdz{0%,100%{fill-opacity:.7}50%{fill-opacity:1.6}}
+.tv-dzl{pointer-events:none}.tv-dzl rect{fill:#0b1122;stroke:#d9b86c;stroke-width:1.2}
+.tv-dzl text{font:700 11px Inter,system-ui,sans-serif;fill:#f0d79a;text-anchor:middle;letter-spacing:.03em}
+@media (prefers-reduced-motion:reduce){.tv-dz circle{animation:none}}
+/* disparo de Avanzar en el menú */
+.tv-advs{border-color:rgba(217,184,108,.7);background:rgba(217,184,108,.08)}
+/* ficha de un enemigo: ventana flotante con la X arriba a la derecha */
+.tv-umod{padding-top:22px}.tv-umod>.tv-ix{position:absolute;top:12px;right:12px;width:34px;height:34px;font-size:20px;color:var(--gold2);border-color:rgba(217,184,108,.55);background:#0b1122;cursor:pointer;z-index:2}
+.tv-umod>.tv-ix:hover{background:rgba(217,184,108,.15)}.tv-umod .tv-in{display:block;padding-right:40px}
+/* carteles de cambio de fase */
+.tv-ban{position:absolute;inset:0;z-index:90;display:grid;place-items:center;padding:16px;cursor:pointer;background:radial-gradient(60% 55% at 50% 48%,rgba(10,15,32,.45),rgba(4,6,13,.7));animation:tvbanin .3s ease both}
+@keyframes tvbanin{from{opacity:0}to{opacity:1}}
+.tv-banc{position:relative;width:min(440px,92vw);text-align:center;padding:26px 26px 18px;border-radius:22px;border:1.5px solid var(--gold);background:linear-gradient(180deg,#141c36,#0c1226);box-shadow:0 0 0 6px rgba(217,184,108,.08),0 24px 70px rgba(0,0,0,.7);overflow:hidden;animation:tvprimpop .5s cubic-bezier(.2,1.3,.4,1) both}
+.tv-banc h3{margin:4px 0 6px;font:700 26px/1.2 Cinzel,Georgia,serif;color:#f6e2a8;letter-spacing:.03em}
+.tv-banc p{margin:0;color:#c3cbe0;font-size:14px;line-height:1.5}.tv-banc .tv-lab{margin:0;color:var(--gold2)}
+.tv-banc small{display:block;margin-top:14px;color:#7f89a8;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.tv-banr{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--gold);transform-origin:left;animation:tvbanbar 2.8s linear both}
+@keyframes tvbanbar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.tv-ban.hr .tv-banc{border-color:#d9b86c}
+.tv-ban.ai .tv-banc{border-color:rgba(255,138,154,.8);box-shadow:0 0 0 6px rgba(255,138,154,.08),0 24px 70px rgba(0,0,0,.7)}.tv-ban.ai h3{color:#ffc2cb}.tv-ban.ai .tv-banr{background:#ff8a9a}
+.tv-ban.ev .tv-banc{border-color:rgba(167,139,250,.8)}.tv-ban.ev h3{color:#e1d6ff}.tv-ban.ev .tv-banr{background:#a78bfa}
+.tv-ban.end .tv-banr{animation-duration:3.2s}
+@media (prefers-reduced-motion:reduce){.tv-ban,.tv-banc,.tv-banr{animation:none}}
