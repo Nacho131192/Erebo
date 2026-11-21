@@ -120,11 +120,11 @@
 - **La plata del contrato** (más de lo que valdría el trabajo): Lysa Brannoc interfirió en el contrato para **comprar parte de la deuda del Filo** y ganar influencia sobre su gente. Es un secreto de fondo; los héroes no lo saben.
 - **El diario del olvidado** tiene una letra que los héroes reconocen, aunque **no saben de quién es**: solo les suena.
 - La frase del prólogo **«un Primordial que no cayó del todo»** se queda tal cual.
+- El objetivo secundario se llama **«Contener el Olvido»** (antes «Custodios del Sello», que se cambió para no confundirlo con los Custodios del Muro; no tienen relación).
 
 **ABIERTO:**
 
-- **Nombre del objetivo secundario.** «Custodios del Sello» se va a cambiar para que no se confunda con los Custodios del Muro. Falta elegir el nombre nuevo.
-- **Geografía del prólogo.** Nacho dijo algo sobre colocar el muro al sur y la aldea al norte; sin confirmar. Ahora el texto ya dice que los héroes parten hacia el norte desde Varek's Hold.
+- **Geografía del prólogo.** Se trata más adelante (Nacho, 2026-11-22). Por ahora el texto dice que los héroes parten hacia el norte desde Varek's Hold.
 - Si se añade alguna pista en el texto de que la plata viene del Mercado, o se deja oculta.
 
 ## Decisiones entre las tres Voces

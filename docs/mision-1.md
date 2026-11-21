@@ -19,13 +19,13 @@ Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa emp
 ## Objetivos y recompensas
 
 - **Objetivo principal: búsqueda por zonas.** Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. El objetivo se cumple al retirar los tres marcadores (regla de la casa: no se usa la tirada de 5+). El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el **diario del olvidado**.
-- **Objetivo secundario:** Custodios del Sello (ver abajo). Se activa al cumplir el principal.
+- **Objetivo secundario:** Contener el Olvido (ver abajo). Se activa al cumplir el principal.
 - **Fin de la misión:** con el principal cumplido, todos los héroes deben estar a 6" o menos de la misma esquina y sin enemigos alrededor al final de una ronda (regla de la casa: sin enemigos alrededor). El secundario no es obligatorio.
 - **Pelea de jefe (opcional):** tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.
 - **Al terminar:** los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.
 - **Derrota:** si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo.
 
-**Objetivo secundario único: Custodios del Sello.** No se sortea. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Con éxito, la Ruptura queda contenida solo esa ronda: el nivel de alerta no sube y no entran refuerzos. Para mantenerla hay que volver a sellarla cada ronda. Si al final de una ronda nadie la ha sellado, la Ruptura se abre y el nivel de alerta sube 3 extra. Se cumple cuando el pozo ha estado sellado 3 rondas seguidas. Escapar no cambia: los héroes siguen necesitando estar a 6″ o menos de la misma esquina.
+**Objetivo secundario único: Contener el Olvido.** No se sortea. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Con éxito, la Ruptura queda contenida solo esa ronda: el nivel de alerta no sube y no entran refuerzos. Para mantenerla hay que volver a sellarla cada ronda. Si al final de una ronda nadie la ha sellado, la Ruptura se abre y el nivel de alerta sube 3 extra. Se cumple cuando el pozo ha estado sellado 3 rondas seguidas. Escapar no cambia: los héroes siguen necesitando estar a 6″ o menos de la misma esquina.
 
 ## Recompensas y XP
 
