@@ -6,9 +6,7 @@
 
 *Léelo antes de colocar las miniaturas.*
 
-Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en la del Muro simplemente se borra lo que había.
-
-Vosotros vivís en Varek's Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.
+Varek's Hold amanece como siempre, con la sombra de un muro que nadie construyó, el último resto de un Primordial que no cayó del todo, cayendo sobre los tejados. Es vuestra ciudad, aunque no siempre os quiera, y la gobiernan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana, antes de que el sol terminara de subir, os ha llamado la tercera.
 
 No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Quizá el remitente era alguien de su gremio, pero ya nadie está seguro: también a él lo han olvidado. La Voz del Mercado teme por sus rutas y ha preguntado más de una vez por este asunto. Una patrulla del Muro fue a mirar y volvió sin saber a qué había ido, y el Muro niega haber mandado a nadie fuera de sus dominios: lo que ocurre más allá de la frontera, dice, es cosa del Filo. Por eso el Filo no pide permiso a nadie. Todos los registros de aquel pueblo están en blanco, y no es un error.
 

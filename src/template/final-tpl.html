@@ -758,6 +758,25 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .midx .t small{display:block;margin-top:2px;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7a86a3}
 .midx .s-live .t small{color:#b7a2ff}
 .mhint{margin:auto 0 0;font:italic 500 16px/1.35 var(--serif);color:#6f7a96}
+/* Botón de lore del selector de misiones y su panel «Lo que aún se recuerda» */
+.mlore{display:flex;align-items:center;gap:12px;width:100%;margin-top:6px;padding:11px 14px;border:0;border-radius:10px;background:linear-gradient(180deg,rgba(217,184,108,.12),rgba(217,184,108,.05));box-shadow:inset 0 0 0 1px rgba(217,184,108,.38);color:#e9dcc2;text-align:left;cursor:pointer;transition:background .2s,box-shadow .2s}
+.mlore:hover,.mlore:focus-visible{background:linear-gradient(180deg,rgba(217,184,108,.2),rgba(217,184,108,.09));box-shadow:inset 0 0 0 1px rgba(226,195,127,.75),0 0 18px rgba(217,184,108,.18)}
+.mlore svg{flex:none;width:26px;height:26px;color:#d9b86c}
+.mlore b{display:block;font:600 15px/1.2 var(--disp);letter-spacing:.06em}
+.mlore small{display:block;margin-top:3px;font:600 9px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#8a96b4}
+#lorOv{position:fixed;inset:0;z-index:85;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(5,6,12,.84);backdrop-filter:blur(6px);animation:lorin .25s ease}
+@keyframes lorin{from{opacity:0}to{opacity:1}}
+#lorOv .lorc{position:relative;width:min(760px,100%);max-height:min(88vh,100%);overflow:auto;padding:34px 38px 30px;border-radius:14px;background:linear-gradient(180deg,#121830,#0c101f);box-shadow:inset 0 0 0 1px rgba(217,184,108,.4),0 24px 80px rgba(0,0,0,.6);color:#d6c9ae;overscroll-behavior:contain}
+#lorOv .lorx{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(217,184,108,.1);box-shadow:inset 0 0 0 1px rgba(217,184,108,.4);color:#e9dcc2;font:600 16px var(--ui);cursor:pointer}
+#lorOv .lorx:hover,#lorOv .lorx:focus-visible{background:rgba(217,184,108,.22)}
+#lorOv .keb{color:#8a96b4;font-size:10px}
+#lorOv h2{margin:6px 0 4px;font:700 28px/1.1 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+#lorOv .lorlead{margin:0 0 6px;font:italic 500 18px/1.4 var(--serif);color:#9aa6c4}
+#lorOv h3{margin:26px 0 8px;font:600 13px var(--disp);letter-spacing:.2em;text-transform:uppercase;color:#d9b86c}
+#lorOv p{margin:0 0 12px;font:500 19px/1.5 var(--serif);color:#d6c9ae;text-wrap:pretty}
+#lorOv p b{color:#f1e2c4}
+@media (max-width:560px){#lorOv .lorc{padding:30px 20px 24px}#lorOv h2{font-size:23px}#lorOv p{font-size:18px}}
+@media (prefers-reduced-motion:reduce){#lorOv{animation:none}}
 .mmapw{position:relative;min-height:0;min-width:0}
 .mmap{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 20px 28px rgba(0,0,0,.6)) drop-shadow(0 2px 2px rgba(0,0,0,.6))}
 .mmap text{font-family:var(--serif)}
@@ -847,6 +866,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
  .mpop::before,.mpop .mx{display:none}
  .midx{order:4;margin-top:0}
  .mhint{display:none}
+ .mlore{order:1}
  .mapv .mmap .pin.on .plab{opacity:1!important}
  .mmap .pin .plab{font-size:28px;stroke-width:7px}
  .mmap .pin .psub{display:none}
@@ -2840,7 +2860,7 @@ function popHTML(){const i=M.sel,m=MIS[i],st=mst(i);
 function idxHTML(){return `<p class="keb">La ruta hacia el norte</p>`+MIS.map((x,k)=>{const s=mst(k);return `<button type="button" class="s-${s}${k===M.sel?" on":""}" data-mi="${k}"><span class="n">${x.n}</span><span class="t">${x.t}<small>${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}</small></span></button>`}).join("")}
 function map(){const el=$("#home"),n=MIS.filter((_,i)=>mst(i)!=="lock").length;
  el.classList.toggle("popoff",!M.open);
- el.innerHTML=`<div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${MIS.map((_,i)=>{const s=mst(i);return `<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`}).join("")}</i></div></header><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un brasero del mapa o una misión de la lista para ver su ficha.</p></div><div class="mmapw">${mapSVG()}</div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>`;
+ el.innerHTML=`<div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${MIS.map((_,i)=>{const s=mst(i);return `<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`}).join("")}</i></div></header><button class="mlore" type="button" data-lore aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="14.6" cy="11" r="6.4" fill="currentColor"/></svg><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un brasero del mapa o una misión de la lista para ver su ficha.</p></div><div class="mmapw">${mapSVG()}</div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>`;
  lens(el.querySelector(".mmap"))}
 /* Coloca la ficha al lado del brasero elegido, con la flecha apuntándole; a la izquierda si el brasero está en la mitad derecha. */
 function placePop(){const v=$("#home"),pop=$("#mpop");if(!pop||v.hidden)return;
@@ -2868,7 +2888,32 @@ const $$m=s=>document.querySelectorAll("#home "+s);
 function mselect(i){M.sel=i;M.open=true;$("#home").classList.remove("popoff");$$m(".pin").forEach(p=>p.classList.toggle("on",+p.dataset.mi===i));
  $("#midx").innerHTML=idxHTML();const pop=$("#mpop");pop.innerHTML=popHTML();pop.style.animation="none";void pop.offsetWidth;pop.style.animation="";placePop();
  if(innerWidth<=860)window.scrollTo({top:pop.getBoundingClientRect().top+scrollY-12,behavior:"smooth"})}
-$("#home").addEventListener("click",e=>{if(e.target.closest("[data-nav]"))return;
+/* Panel de lore de la campaña: se abre desde el selector de misiones y se cierra con ✕, Escape o pulsando fuera. */
+const LORE=[
+ ["Cuando los Primordiales callaron",[
+  "Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman <b>Rupturas</b>, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en la Ruptura del Muro simplemente se borra lo que había."]],
+ ["Varek's Hold",[
+  "Es una ciudad con costa, amurallada y neutral, levantada contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí van a entenderse quienes no se fían unos de otros, y por eso nadie la reclama. Tiene siete distritos, un puerto donde se juntan almacenes, caravanas y aduana, y un barrio entero a los pies del muro.",
+  "Las decisiones sobre la ciudad y sus tierras solo valen si las <b>tres Voces</b> están de acuerdo. Nada se resuelve deprisa."]],
+ ["Las tres Voces",[
+  "<b>La Voz del Muro</b> sale de los Custodios, un cuerpo militar que se gobierna a sí mismo. Nadie sabe cuántos son. Se dice que seis o siete, pero ellos se conocen y no lo cuentan. Eligen a su Voz entre ellos.",
+  "<b>La Voz del Mercado</b> es la más a la vista. Los líderes de los nueve gremios mercantiles y bancarios la votan cada cuatro años, y solo gana quien consigue mayoría absoluta. Los pactos y las traiciones para sumar votos son tan públicos como los precios.",
+  "<b>La Voz del Filo</b> manda sobre la guardia y las compañías, y paga a quienes hacen lo que las otras dos no quieren que conste. Elige a quien la sucederá entre cinco candidatos que votan los oficiales, y hasta el día del juramento nadie sabe quién es."]],
+ ["El Muro",[
+  "Es colosal, casi sin puertas, y tras él los Custodios guardan algo que no enseñan a nadie. Dicen que es por la seguridad de la ciudad y de la tierra: que abrirlo traería males que nadie quiere ver. Peregrinos de toda la comarca vienen a verlo desde fuera, pero acercarse está prohibido. A quien lo intenta y cae en manos de los Custodios lo espera un calabozo y, después, un juicio de la Voz del Muro y sus tres oficiales de más rango."]],
+ ["Lo que se sabe del pueblo",[
+  "Al norte de la frontera hay una aldea de la que ya nadie habla. Un mercader dejó de recibir cartas de allí y, dos días después, olvidó que las esperaba. Quizá el remitente era de su gremio, pero ya nadie está seguro. Una patrulla del Muro fue a mirar y volvió sin saber a qué había ido, y el Muro niega que fuera cosa suya. Se dice que habrá cultistas del Umbral rondando, y que los registros del lugar están en blanco, y que no es un error."]]
+];
+let loreFrom=null;
+function loreClose(){const o=document.getElementById("lorOv");if(!o)return;o.remove();if(loreFrom&&document.contains(loreFrom))loreFrom.focus({preventScroll:true});loreFrom=null}
+function loreOpen(from){if(document.getElementById("lorOv"))return;loreFrom=from||null;
+ const o=document.createElement("div");o.id="lorOv";o.setAttribute("role","dialog");o.setAttribute("aria-modal","true");o.setAttribute("aria-label","Lo que aún se recuerda");
+ o.innerHTML=`<div class="lorc"><button class="lorx" type="button" aria-label="Cerrar">✕</button><p class="keb">Érebo · Campaña I</p><h2>Lo que aún se recuerda</h2><p class="lorlead">Lo que se cuenta en Varek's Hold, lo que queda de lo que se olvidó.</p>${LORE.map(s=>`<h3>${s[0]}</h3>${s[1].map(t=>`<p>${t}</p>`).join("")}`).join("")}</div>`;
+ o.addEventListener("click",e=>{if(e.target===o||e.target.closest(".lorx"))loreClose()});
+ document.body.appendChild(o);o.querySelector(".lorx").focus({preventScroll:true})}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("lorOv")){e.preventDefault();e.stopPropagation();loreClose()}},true);
+$("#home").addEventListener("click",e=>{const lb=e.target.closest("[data-lore]");if(lb){loreOpen(lb);return}
+ if(e.target.closest("[data-nav]"))return;
  if(e.target.closest("[data-mclose]")){M.open=false;$("#home").classList.add("popoff");return}
  const m=e.target.closest("[data-mi]");if(m)mselect(+m.dataset.mi)});
 $("#home").addEventListener("keydown",e=>{const p=e.target.closest(".pin");if(p&&(e.key==="Enter"||e.key===" ")){e.preventDefault();mselect(+p.dataset.mi)}});
