@@ -88,15 +88,40 @@
 
 ## Desempates
 
-**DECIDIDO (condición de Nacho):** los desempates del Muro y del Mercado no pueden ser pruebas físicas, peleas ni nada parecido. Deben ser algo lógico y adecuado a gente mayor. Se diseñan dos métodos distintos para cada uno y Nacho elige.
+**DECIDIDO (condición de Nacho):** los desempates del Muro y del Mercado no pueden ser pruebas físicas, peleas ni nada parecido. Deben ser algo lógico y adecuado a gente mayor.
 
-**ABIERTO:** ver los métodos propuestos en la conversación (pendientes de elegir).
+### Muro (empate entre Custodios)
+
+**DECIDIDO:** dos métodos encadenados.
+
+1. **Voto de la Voz saliente.** Si sigue viva y puede votar, su voto decide el empate. Se emite sin que se sepa cuál es.
+2. **Custodio más antiguo.** Si la Voz saliente ha muerto o no puede votar, desempata el Custodio con más años en el cuerpo (o el que juró primero).
+
+**PROPUESTA (gancho):** la Voz saliente es un blanco de presiones, y su muerte o incapacidad pasa el poder de desempate al veterano.
+
+### Mercado (empate o falta de mayoría absoluta)
+
+**DECIDIDO:** **segunda ronda con el candidato de menor deuda.** Entre los candidatos empatados gana el que tenga menos deudas con los demás gremios, certificado por los libros de cuentas.
+
+**PROPUESTA (gancho):** da pie a falsificar libros, comprar deudas ajenas o saldar deudas justo antes de la votación.
 
 ## Distritos de la ciudad
 
-**DECIDIDO:** la ciudad tiene **6 o 7 distritos**. No hay un distrito por Voz.
+**DECIDIDO:** Varek's Hold es una **ciudad con costa**. Tiene **siete distritos**, y no hay un distrito por Voz.
 
-**ABIERTO:** cuáles son, cómo se llaman y quién domina cada uno (propuestas en la conversación, pendientes de elegir).
+| # | Distrito | Qué es |
+|---|---|---|
+| 1 | **El Pie del Muro** | El barrio junto al muro, donde viven los Custodios y su cuerpo |
+| 2 | **La Plaza de las Voces** | Sede de las tres Voces y de los acuerdos |
+| 3 | **El Mercado Mayor** | Gremios, lonjas y banca |
+| 4 | **El Cuartel** | Guarnición y sede del Filo |
+| 5 | **El Barrio de los Oficios** | Artesanos y talleres |
+| 6 | **El Puerto** | Almacenes, caravanas y aduana, situado **en el puerto, en la costa** |
+| 7 | **El Arrabal** | El extrarradio pobre, sin muralla interna |
+
+**NOTA:** el distrito 6 se llamaba «Puerto Seco» en la propuesta. Como Nacho lo sitúa en el puerto, aquí aparece como **El Puerto**; el nombre es provisional.
+
+**ABIERTO:** nombres definitivos, quién domina cada distrito y cómo encajan la costa y el muro en el plano (dónde está el puerto respecto al muro).
 
 ## Resumen comparativo
 
@@ -109,8 +134,8 @@
 
 ## Preguntas abiertas
 
-1. **Muro:** método de desempate; si la Voz sale siempre de los propios Custodios.
-2. **Mercado:** método si nadie llega a la mayoría absoluta; reelección.
-3. **Distritos:** cuáles son los 6 o 7, sus nombres y quién domina cada uno.
+1. **Muro:** si la Voz sale siempre de los propios Custodios.
+2. **Mercado:** reelección de la Voz.
+3. **Distritos:** nombres definitivos, quién domina cada uno y dónde están el puerto y el muro respecto al plano.
 4. **El muro:** ¿zona prohibida, barrio construido a sus pies o lugar de peregrinación?
 5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos.
