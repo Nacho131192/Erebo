@@ -15,7 +15,7 @@ export function rng(seed) {
 export const r1 = (n) => Math.round(n * 10) / 10;
 
 /* Desplazamiento del punto medio sobre un polígono cerrado: da una costa irregular pero controlada. */
-export function displace(pts, rnd, amp, iters) {
+export function displace(pts, rnd, amp, iters, skip = () => false) {
   let p = pts;
   for (let it = 0; it < iters; it++) {
     const out = [];
@@ -23,6 +23,7 @@ export function displace(pts, rnd, amp, iters) {
       const a = p[i], b = p[(i + 1) % p.length];
       out.push(a);
       const dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy);
+      if (skip(a, b)) continue;
       const k = (rnd() - 0.5) * 2 * amp * len;
       out.push([(a[0] + b[0]) / 2 - (dy / len) * k, (a[1] + b[1]) / 2 + (dx / len) * k]);
     }

@@ -1,38 +1,47 @@
-# Mapa de Érebo: boceto del continente
+# Mapa de Érebo
 
-> Estado: bocetos para decidir (2026-11-22). Lo que viene del mapa político de `EREBO_CONTEXTO.md` está marcado como **BASE**. Todo lo demás (forma del continente, nombres, ciudades, tipos de Ruptura, lugares) es **PROPUESTA** de Claude, sin confirmar por Nacho.
+> Estado: segunda ronda de bocetos (2026-11-22). Nacho eligió el estilo **carta nocturna azul y oro** y pidió rehacer la geografía. Lo que viene del mapa político de `EREBO_CONTEXTO.md` está marcado como **BASE**; lo decidido por Nacho en esta conversación, como **DECIDIDO**; el resto (nombres, ciudades, forma de la costa, Rupturas inventadas) es **PROPUESTA** sin confirmar.
 
-## Imágenes
+## Qué decidió Nacho
 
-Todas en `docs/mapa/comp/` (PNG 1600×1100; las láminas de Rupturas, 1600×900):
+- **DECIDIDO:** estilo carta nocturna azul y oro.
+- **DECIDIDO:** el mundo no es una isla rodeada de agua. Es parte de algo mucho mayor: **al este y un poco al norte la tierra continúa**, sin cartografiar, y de momento no importa qué es. Al oeste y al sur hay mar.
+- **DECIDIDO:** un continente **más grande y con más geografía**.
+- **DECIDIDO:** el **Muro es un anillo** de muralla, como el de una ciudad, y **en el centro solo hay polvo**: como si se hubiera borrado lo que había dentro, sin que se sepa qué era.
+- **DECIDIDO:** las **Rupturas son siete** (una por Primordial). Puede haber más de una en el mismo reino o tierra.
+- **DECIDIDO:** **Ocaso no sale** en el mapamundi. Se hará más adelante, en mapas más cercanos.
+
+## Imágenes (docs/mapa/v2/comp/)
 
 | Archivo | Qué es |
 |---|---|
-| `pergamino.png` | Mapa en pergamino antiguo (tinta sepia) |
-| `nocturna.png` | Carta nocturna azul y oro (como el mapa de la web) |
-| `acuarela.png` | Tinta y acuarela |
-| `grabado.png` | Grabado oscuro, estilo grimdark |
-| `rupturas-pergamino.png`, `rupturas-nocturna.png` | Lámina de las cinco Rupturas |
+| `A.png` | **A · Costa abierta.** Mar al oeste y al sur; al este y al norte, tierra sin cartografiar con una llanura de ceniza y más cordilleras |
+| `B.png` | **B · Fiordos y archipiélago.** La costa noroeste se rompe en fiordos e islas; bosques al este y un lago interior |
+| `C.png` | **C · Mar interior.** Un mar cerrado, el Mar de Ceniza, en el noreste; cabos y calas al sur |
+| `D.png` | **D · Golfo del Alba y delta.** Un golfo profundo desde el norte, el Río Verde en delta al sureste y un yermo al este |
+| `rupturas.png` | Lámina de las siete Rupturas |
 
-Los fondos pintados sin rótulos están en `docs/mapa/ai/` y el mapa de referencia de colores planos, en `docs/mapa/ref/`.
+Los cuatro comparten el mismo mapa político y las mismas ciudades; cambian la costa, los accidentes y los lugares extra. Los fondos pintados sin rótulos están en `docs/mapa/v2/ai/` y los mapas de referencia, en `docs/mapa/v2/ref/`. (Los bocetos de la primera ronda siguen en `docs/mapa/comp/`, ya superados.)
 
-## Entidades políticas (BASE, de EREBO_CONTEXTO.md)
+## Entidades políticas (BASE de EREBO_CONTEXTO.md)
 
-- **Drath:** único reino.
-- **Keth Maran:** ciudad-estado gobernada por un consejo de gremios.
-- **Federación de Elos:** alianza académica.
-- **Varek's Hold:** ciudad neutral y amurallada contra el muro primordial; tres Voces. Ciudad con costa (decidido en esta conversación).
-- **Seis puertos independientes.**
-- **Territorios del sur sin gobierno.**
+Drath (único reino), Keth Maran (ciudad-estado de gremios), Federación de Elos (alianza académica), Varek's Hold (ciudad neutral y con costa, contra el muro primordial), seis puertos independientes y territorios del sur sin gobierno.
 
-## Geografía propuesta
+## Las siete Rupturas
 
-- **Forma:** un solo continente que se estrecha en un **istmo** al sur. El **Muro** cruza el istmo, y tras él hay una península que los Custodios guardan (qué hay allí no se define). Esto sitúa el muro **al sur** de Varek's Hold, como dice el texto de la misión: su sombra llega a la bahía a mediodía en invierno.
-- **Mares:** Mar del Silencio (oeste), Mar Quebrado (sur y este), Bahía del Muro y Bahía Salobre.
-- **Montañas:** Colmillos del Norte, Montes de Hierro, El Espinazo, Cumbres Grises.
-- **Bosque de Eryn:** gran bosque al noroeste. Allí se dirige el camino de la Misión 2.
-- **Ríos y lagos:** Río Drath (acaba en Keth Maran), Río Verde, Lago Espejo, Lago Salobre.
-- **Frontera y pueblo:** el pueblo sin nombre está al norte de la frontera de Varek's Hold, en el camino hacia Drathgard.
+El nombre de Neth no aparece: su Ruptura es **la Ruptura del Muro**. Las de Kael y Vael son nuevas (el contexto original solo recogía cinco; Nacho pidió siete).
+
+| Ruptura | Qué ocurre | Dónde (PROPUESTA) | Pictograma |
+|---|---|---|---|
+| **Del Muro** (el borrado) | Lo que cae en ella se olvida | El círculo de polvo tras el Muro y el pueblo sin nombre | Eclipse con la corona borrada |
+| **De Eryn** (la selva) | La vida crece sin freno | El Enraizado, en el Bosque de Eryn | Árbol con raíces retorcidas |
+| **De Orum** (las máquinas) | Mecanismos que despiertan solos | Los Engranajes, al sur de Elos | Engranaje con chispa |
+| **De Sael** (las aguas) | El agua olvida la luna y la gravedad | El Remolino, en el mar al sureste | Remolino con ola |
+| **De Varek** (la piedra) | Los límites dejan de valer | El Laberinto de Piedra, noreste de Drath | Bloques flotantes |
+| **De Kael** (la mente) | Los pensamientos dejan de ser de uno solo | El Coro, en las tierras altas al norte de Drath | Red de nodos enlazados |
+| **De Vael** (el instante) | El tiempo se atasca en un momento | El Instante, en los Territorios del Sur | Reloj de arena detenido |
+
+La Ruptura del Muro aparece dos veces (el anillo y el pueblo sin nombre) porque Nacho decidió que es la misma. La de Kael enlaza con los Resonantes (red mental de Kael) y la de Vael, con el misterio central.
 
 ## Sitios propuestos
 
@@ -40,44 +49,30 @@ Los fondos pintados sin rótulos están en `docs/mapa/ai/` y el mapa de referenc
 |---|---|
 | Drath | Drathgard (capital), Corvale, Saltwen, Mornhal, Veldris |
 | Federación de Elos | Elos, Anthyr, Quillmar |
-| Keth Maran | Keth Maran (en una bahía del oeste) |
-| Seis puertos libres | Ysmar, Halden, Orrin Sal, Brannoch, Tessal, Kovrin |
-| Otros | Claro de las Raíces (Senda de Eryn), Ocaso (marcado como lugar fantasma), Cripta Primordial, El Hueso Hueco |
-
-## Las cinco Rupturas (PROPUESTA)
-
-El nombre de Neth no aparece en ningún texto visible: su Ruptura es **la Ruptura del Muro**.
-
-| Ruptura | Qué ocurre | Dónde | Pictograma |
-|---|---|---|---|
-| **Del Muro** (el borrado) | Lo que cae en ella se olvida | Junto al Muro y en el pueblo sin nombre | Eclipse con la corona borrada |
-| **De Eryn** (la selva) | La vida crece sin freno: raíces que caminan | El Enraizado (Bosque de Eryn) | Árbol con raíces retorcidas |
-| **De Orum** (las máquinas) | Mecanismos que despiertan solos | Los Engranajes (sur de Elos) | Engranaje con chispa |
-| **De Sael** (las aguas) | El agua olvida la luna y la gravedad | El Remolino (Mar Quebrado) | Remolino con ola |
-| **De Varek** (la piedra) | Los límites dejan de valer: muros que se mueven | El Laberinto de Piedra (noreste de Drath) | Bloques flotantes |
-
-**Nota de coherencia:** la Ruptura del Muro aparece dos veces (el pueblo y el muro) porque Nacho decidió que es la misma. Las Rupturas de Varek y Sael no estaban definidas; son invención. No hay Ruptura de Kael ni de Vael (según el contexto original).
+| Keth Maran | Keth Maran, en una bahía del oeste |
+| Seis puertos libres | Ysmar, Halden, Orrin Sal, Brannoch, Tessal, Kovrin (su posición cambia en cada versión) |
+| Aldeas | El pueblo sin nombre, Claro de las Raíces, Vado Seco, Pasolargo |
+| Otros | Cripta Primordial, El Hueso Hueco |
 
 ## Cómo se genera
 
-Todo está en `tools/mapa/`:
+Todo está en `tools/mapa/` (necesita Node, Python y Edge):
 
 ```
-node tools/mapa/generar.mjs ref          # mapa de referencia (colores planos)
-node tools/mapa/generar.mjs validar      # comprueba que los sitios caen en tierra
-powershell -File tools/mapa/render.ps1 pergamino,nocturna,acuarela,grabado
-powershell -File tools/mapa/render.ps1 hojas
+node tools/mapa/generar.mjs validar                       # sitios en tierra, Remolino en el mar
+powershell -File tools/mapa/render.ps1 refs A,B,C,D       # mapas de referencia (colores planos)
+powershell -File tools/mapa/render.ps1 comp A,B,C,D       # fondo pintado + rótulos → PNG
+powershell -File tools/mapa/render.ps1 hoja               # lámina de Rupturas
 ```
 
-- El **fondo pintado** se genera con Pollinations (`flux.2-klein-4b`, 0,005 pollen por imagen) repintando el mapa de referencia en cada estilo, sin texto. Se hicieron 17 imágenes (unos 0,09 pollen).
-- Las **ciudades, nombres, fronteras, iconos, leyenda, rosa de los vientos y rupturas** se dibujan en SVG sobre el fondo, así que se pueden cambiar sin volver a generar la imagen.
-- El PNG final se exporta con Edge sin interfaz.
-- Datos editables: `tools/mapa/datos.mjs` (coordenadas, nombres), `estilos.mjs` (colores) y `hoja.mjs` (textos de las Rupturas).
+- El **fondo pintado** se genera con Pollinations (`flux.2-klein-4b`, 0,005 pollen por imagen) repintando el mapa de referencia, sin texto. Entre las dos rondas se hicieron unas 35 imágenes (menos de 0,2 pollen).
+- Todo el rotulado, símbolos, fronteras, leyenda y las Rupturas se dibujan en **SVG** sobre el fondo, así que se pueden cambiar sin volver a generar la imagen.
+- `tools/mapa/comun.mjs` (reinos, ciudades, Rupturas), `variantes.mjs` (costa y terreno de cada versión), `estilos.mjs` (colores) y `hoja.mjs` (textos de las Rupturas) son los archivos editables.
 
-## Preguntas abiertas para decidir
+## Preguntas abiertas
 
-1. Estilo preferido (o mezclar: p. ej. fondo nocturno con rótulos de pergamino).
-2. Forma del continente y el istmo con el Muro.
-3. Nombres de ciudades, puertos y accidentes (todos provisionales).
-4. Tipos y nombres de las Rupturas de Varek y Sael.
-5. Qué mostrar en la versión para jugadores: Ocaso, la Cripta Primordial y las marcas de la campaña.
+1. ¿Cuál de las cuatro geografías (A, B, C o D) prefieres, o qué mezclas de cada una?
+2. ¿Los reinos y las ciudades se quedan donde están, o se mueven (p. ej. Elos más al este)?
+3. ¿Te convencen las Rupturas de Kael y Vael y sus lugares?
+4. ¿Nombres de ciudades, puertos y accidentes? Todos son provisionales.
+5. ¿Qué detalle del anillo del Muro quieres: más grande, con rótulo propio, con un camino de acceso?

@@ -131,7 +131,24 @@ function glifoVarek(c, s) {
   <path d="M-14 15H14" stroke="${s.dark}" stroke-width="1.3" stroke-dasharray="2.5 3.2"/>`;
 }
 
-const GLIFOS = { muro: glifoMuro, eryn: glifoEryn, orum: glifoOrum, sael: glifoSael, varek: glifoVarek };
+/* Kael: la mente. Una red de nodos enlazados con ondas de pensamiento. */
+function glifoKael(c, s) {
+  const nodos = [[0, -13], [-12, -4], [12, -4], [-8, 10], [8, 10]];
+  const lin = nodos.map(([x, y]) => `M0 -1L${x} ${y}`).join("") + "M0 -13L-12 -4L-8 10L8 10L12 -4Z";
+  return `<path d="M-16 -9A18 18 0 0 1 16 -9" fill="none" stroke="${c}" stroke-width="1" stroke-opacity=".55" stroke-dasharray="2 3"/>
+  <path d="${lin}" fill="none" stroke="${c}" stroke-width="1.4" stroke-linejoin="round" stroke-opacity=".9"/>
+  ${nodos.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6" fill="${c}" stroke="${s.dark}" stroke-width=".8"/>`).join("")}
+  <circle cy="-1" r="4.4" fill="${c}" stroke="${s.dark}" stroke-width="1"/><circle cy="-1" r="1.5" fill="${s.dark}"/>`;
+}
+
+/* Vael: el instante. Un reloj de arena detenido, con una gota suspendida en el aire. */
+function glifoVael(c, s) {
+  return `<path d="M-9 -13H9L1.8 0L9 13H-9L-1.8 0Z" fill="${s.dark}" fill-opacity=".55" stroke="${c}" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M-6.4 -11H6.4L1.4 -3.4H-1.4Z" fill="${c}"/><path d="M-6.8 11Q0 3.6 6.8 11Z" fill="${c}"/>
+  <circle cy="2.2" r="1.7" fill="${c}"/><path d="M-12 -16l-3 -3M12 -16l3 -3M-12 16l-3 3M12 16l3 3" stroke="${c}" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>`;
+}
+
+const GLIFOS = { muro: glifoMuro, eryn: glifoEryn, orum: glifoOrum, sael: glifoSael, varek: glifoVarek, kael: glifoKael, vael: glifoVael };
 
 export function iconoRuptura(type, s, size = 1) {
   const c = s.accent[type];
