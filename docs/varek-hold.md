@@ -23,11 +23,11 @@
 - Públicamente se cree que son pocos (6 o 7), importantes dentro de la unidad militar, pero **nadie tiene certeza**. (Esta cifra es una creencia popular, no un dato verdadero.)
 - Los Custodios forman un **cuerpo militar específico del Muro**, con **autonomía total**. Son su propio grupo militar (la Voz del Muro y los suyos) y simplemente conviven con las otras Voces dentro de la ciudad.
 - Entre el Muro y los oficiales del Filo hay **fricción**, porque son dos cuerpos militares.
+- La Voz del Muro **siempre sale de los propios Custodios**. Nunca puede ser una persona ajena al cuerpo.
+- Los empates se resuelven con el método descrito en «Desempates».
 
 **ABIERTO:**
 
-- Con un número par, caben empates. ¿Cómo se resuelve uno? Nacho no lo ha decidido.
-- ¿La Voz sale siempre de entre los propios Custodios? (Se deduce de «entre ellos», pero no está dicho expresamente.)
 - Cómo entra un nuevo Custodio y qué hace exactamente el cuerpo en el Muro. Nacho lo deja para más adelante.
 
 **PROPUESTAS:**
@@ -46,11 +46,11 @@
 - El cargo es **por mandato de 4 años**, con elecciones normales.
 - Los gremios pueden **agruparse en bloques o coaliciones**, como si fueran partidos políticos, para sumar votos y repartirse el poder.
 - Los tratos y traiciones por detrás sirven para conseguir votos hasta la mayoría absoluta, no para saltarse la regla.
+- La Voz **puede ser reelegida** al terminar sus 4 años. Los gremios son empresarios que buscan acumular dinero y crecer, así que si una Voz lo ha hecho bien, querrán que siga.
 
 **ABIERTO / PROPUESTAS:**
 
-- ¿Qué pasa si nadie llega a la mayoría? (Propuesta: rondas sucesivas, eliminando al menos votado.)
-- ¿Se puede reelegir a la misma Voz? ¿Cuántas veces?
+- ¿Hay un límite de reelecciones? Nacho no lo ha indicado, así que por ahora no lo hay.
 - ¿Puede votar un representante a su propio candidato, o a sí mismo?
 - Buen terreno para misiones: sobornos, deudas, chantajes, votos comprados y bloques que se rompen antes de una elección.
 
@@ -119,9 +119,25 @@
 | 6 | **El Puerto** | Almacenes, caravanas y aduana, situado **en el puerto, en la costa** |
 | 7 | **El Arrabal** | El extrarradio pobre, sin muralla interna |
 
+**DECIDIDO:**
+
+- Los **nombres son provisionales**. No hace falta definirlos hasta que se desarrolle la historia dentro de la ciudad.
+- **No se define quién domina cada distrito.** Nacho quiere dejar hueco para investigar y añadir más adelante bandas menores, grupos rebeldes y similares.
+- El **mapa de la ciudad se redibujará más adelante**. Nada de lo anterior fija el plano.
+
 **NOTA:** el distrito 6 se llamaba «Puerto Seco» en la propuesta. Como Nacho lo sitúa en el puerto, aquí aparece como **El Puerto**; el nombre es provisional.
 
-**ABIERTO:** nombres definitivos, quién domina cada distrito y cómo encajan la costa y el muro en el plano (dónde está el puerto respecto al muro).
+**ABIERTO:** cómo encajan la costa y el muro en el plano (dónde está el puerto respecto al muro).
+
+## El muro primordial
+
+**DECIDIDO:**
+
+- Es una **zona prohibida**, accesible **solo para los Custodios** y la Voz del Muro.
+- El barrio de los Custodios (**El Pie del Muro**) está **construido a sus pies**.
+- Es un **lugar de peregrinación** para toda la comarca, pero **el acceso está prohibido**.
+
+**ABIERTO:** dónde se reúnen los peregrinos, qué ven del muro desde fuera y qué hacen los Custodios con quienes intentan acercarse.
 
 ## Resumen comparativo
 
@@ -134,8 +150,8 @@
 
 ## Preguntas abiertas
 
-1. **Muro:** si la Voz sale siempre de los propios Custodios.
-2. **Mercado:** reelección de la Voz.
-3. **Distritos:** nombres definitivos, quién domina cada uno y dónde están el puerto y el muro respecto al plano.
-4. **El muro:** ¿zona prohibida, barrio construido a sus pies o lugar de peregrinación?
-5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos.
+1. **Muro:** cómo entra un nuevo Custodio y qué hace el cuerpo en el Muro (Nacho lo deja para más adelante).
+2. **Mercado:** límite de reelecciones, si lo hay.
+3. **El muro:** dónde se reúnen los peregrinos y cómo se vigila el acceso.
+4. **Plano:** dónde están el puerto y el muro uno respecto al otro (se redibujará el mapa más adelante).
+5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos. Los dominios de cada distrito y las bandas menores se dejan para después.
