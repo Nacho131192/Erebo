@@ -1,8 +1,8 @@
 # Mapa de Érebo
 
-> **ARCHIVADO (Nacho, 2026-11-22):** ninguna de las cuatro versiones convenció. **No se usa ningún mapa de momento**; se guardan como referencia de ideas. Lo único aprobado para usar es la **lámina de las siete Rupturas** (`docs/rupturas-erebo.png`, texto en `docs/rupturas.md`).
+> **ARCHIVADO (Nacho, 2026-11-21):** ninguna de las cuatro versiones convenció. **No se usa ningún mapa de momento**; se guardan como referencia de ideas. Lo único aprobado para usar es la **lámina de las siete Rupturas** (`docs/rupturas-erebo.png`, texto en `docs/rupturas.md`).
 >
-> Estado anterior: segunda ronda de bocetos (2026-11-22). Nacho eligió el estilo **carta nocturna azul y oro** y pidió rehacer la geografía. Lo que viene del mapa político de `EREBO_CONTEXTO.md` está marcado como **BASE**; lo decidido por Nacho en esta conversación, como **DECIDIDO**; el resto (nombres, ciudades, forma de la costa, Rupturas inventadas) es **PROPUESTA** sin confirmar.
+> Estado anterior: segunda ronda de bocetos (2026-11-21). Nacho eligió el estilo **carta nocturna azul y oro** y pidió rehacer la geografía. Lo que viene del mapa político de `EREBO_CONTEXTO.md` está marcado como **BASE**; lo decidido por Nacho en esta conversación, como **DECIDIDO**; el resto (nombres, ciudades, forma de la costa, Rupturas inventadas) es **PROPUESTA** sin confirmar.
 
 ## Qué decidió Nacho
 

@@ -61,7 +61,7 @@ export const ruinas = [
 /* El Muro: un anillo de muralla; en el centro solo polvo. */
 export const anillo = { c: [808, 905], r: 96 };
 
-/* Las siete Rupturas, una por Primordial (Nacho, 2026-11-22). La del Muro aparece dos veces: es la misma. */
+/* Las siete Rupturas, una por Primordial (Nacho, 2026-11-21). La del Muro aparece dos veces: es la misma. */
 export const rupturasBase = [
   { id: "muro", type: "muro", name: "Ruptura del Muro", p: [812, 626], dx: 36, dy: 4, anchor: "start" },
   { id: "muro2", type: "muro", name: "Ruptura del Muro", p: [808, 905], dx: 0, dy: 0, hideLabel: true },

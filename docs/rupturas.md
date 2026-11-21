@@ -1,6 +1,6 @@
 # Las siete Rupturas de Érebo
 
-> **DECIDIDO (Nacho, 2026-11-22):** esta lámina se queda guardada para usarla más adelante. Son siete Rupturas, una por Primordial. Los textos y los lugares fueron propuestos por Claude y Nacho los aprobó al conservar la lámina. Imagen: `docs/rupturas-erebo.png` (fuente HTML en `docs/mapa/v2/comp/rupturas.html`, generada con `tools/mapa/hoja.mjs`).
+> **DECIDIDO (Nacho, 2026-11-21):** esta lámina se queda guardada para usarla más adelante. Son siete Rupturas, una por Primordial. Los textos y los lugares fueron propuestos por Claude y Nacho los aprobó al conservar la lámina. Imagen: `docs/rupturas-erebo.png` (fuente HTML en `docs/mapa/v2/comp/rupturas.html`, generada con `tools/mapa/hoja.mjs`).
 
 El nombre de Neth no aparece en ningún texto visible: su Ruptura es **la Ruptura del Muro**.
 

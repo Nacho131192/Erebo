@@ -1,7 +1,7 @@
 {
   "file": "pendiente-revision.pdf",
   "title": "Pendiente de revisión",
-  "subtitle": "Dudas de reglas para consultar con un experto · Tablero virtual de Age of Fantasy: Quest",
+  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 21-11-2026",
   "live": "Documento vivo: estas dudas siguen abiertas y la lista se irá ampliando. Escribe la respuesta en su recuadro y marca «Resuelto» cuando esté decidido.",
   "legend": "Cada punto dice qué hace ahora la aplicación y qué dice la norma (Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR), para poder comparar.",
   "check_label": "Resuelto",
@@ -168,6 +168,77 @@
           "tag": "",
           "done": false,
           "text": "Counter: como el defensor no devuelve golpes (regla de la casa), la regla Counter no hace nada. ¿Se mantiene así?",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "r5",
+      "title": "Lore y mundo",
+      "goal": "",
+      "done_when": "",
+      "items": [
+        {
+          "id": "r-anillo",
+          "tag": "Urgente",
+          "done": false,
+          "text": "El Muro: en el mapa Nacho lo quiere como un anillo de muralla con polvo en el centro, pero el texto de lore («Lo que aún se recuerda») y docs/varek-hold.md lo describen como un muro colosal junto a la bahía, con una sombra que llega al agua. ¿Se reescribe el texto para el anillo o el anillo solo vale para el mapa?",
+          "notes": ""
+        },
+        {
+          "id": "r-nombres",
+          "tag": "",
+          "done": false,
+          "text": "Grafía de los nombres de las Voces: se dictaron «Orson Baldrake» y «Lisa Brandnut» y están escritas como Orsen Valdrake y Lysa Brannoc. ¿Son correctas o se mantiene el dictado?",
+          "notes": ""
+        },
+        {
+          "id": "r-septimo",
+          "tag": "",
+          "done": false,
+          "text": "En el panel de lore se dice que en Varek's Hold solo se recuerdan seis de los siete nombres de los Primordiales. ¿Es la forma de dejar olvidado el nombre de Neth, y el jugador lo descubrirá más adelante?",
+          "notes": ""
+        },
+        {
+          "id": "r-mercado",
+          "tag": "",
+          "done": false,
+          "text": "Mercado: el desempate (gana la menor deuda) se definió para un empate. ¿Qué pasa si nadie llega a mayoría absoluta sin que haya empate (por ejemplo, tres bloques de tres gremios)? ¿Hay límite de reelecciones?",
+          "notes": ""
+        },
+        {
+          "id": "r-reclutadores",
+          "tag": "",
+          "done": false,
+          "text": "Custodios: el número y la identidad del cuerpo son secretos, pero hay Custodios reclutadores que deciden el ingreso. ¿Cuánto se ve del reclutamiento en público?",
+          "notes": ""
+        },
+        {
+          "id": "r-voto-filo",
+          "tag": "",
+          "done": false,
+          "text": "Filo: votan el Quinteto los oficiales de alto rango y los capitanes, desde teniente. ¿Qué rangos entran exactamente por encima de teniente y por qué el voto de los capitanes cuenta igual?",
+          "notes": ""
+        },
+        {
+          "id": "r-rupturas",
+          "tag": "",
+          "done": false,
+          "text": "Rupturas de Kael (la mente) y de Vael (el instante), inventadas para llegar a siete, y las de Varek y Sael: ¿encajan con lo que Nacho imagina para los Resonantes, los Deudores de Vael y el misterio de los Primordiales?",
+          "notes": ""
+        },
+        {
+          "id": "r-lugares",
+          "tag": "",
+          "done": false,
+          "text": "Los lugares de las Rupturas (El Enraizado, Los Engranajes, El Remolino, El Laberinto de Piedra, El Coro, El Instante) dependen del mapa, que está sin elegir. ¿Se mantienen o se mueven al rehacerlo?",
+          "notes": ""
+        },
+        {
+          "id": "r-mision-tablero",
+          "tag": "",
+          "done": false,
+          "text": "Misión 1: ¿la plata del contrato debe tener alguna pista en el texto del jugador (por ejemplo una marca del Mercado en las monedas) o se descubre más adelante?",
           "notes": ""
         }
       ]

@@ -1,7 +1,7 @@
 {
   "file": "hoja-de-ruta.pdf",
   "title": "Hoja de ruta del tablero virtual",
-  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest",
+  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 21-11-2026",
   "live": "Documento vivo: todo lo que hay aquí sigue pendiente de trabajo y se irá revisando, tachando y ampliando. Marca la casilla de cada punto cuando esté hecho.",
   "legend": "[Oficial] = Core Rules o Campaign Builder de OPR.   [Casa] = regla de la casa.   Una fase cada vez; dentro de cada fase, un punto cada vez. Al acabar cada punto: probar en el navegador, apuntarlo en CLAUDE.md y hacer commit en prueba-juego.",
   "check_label": "Hecho",
@@ -196,13 +196,13 @@
           "id": "f3-preparar",
           "tag": "Casa",
           "done": false,
-          "text": "Se prepara al cumplir el principal: d6 tirado o a mano, y +3 de Alertness [Oficial]."
+          "text": "Se activa al cumplir el principal. Ya no se sortea: es un único secundario, «Contener el Olvido» (sellar la Ruptura del Muro cada ronda con 1 acción y una tirada de Voluntad; si no se sella, la alerta sube +3 extra)."
         },
         {
           "id": "f3-seis",
           "tag": "",
           "done": false,
-          "text": "Programar los 6 resultados de la tabla de la misión, uno a uno."
+          "text": "Programar «Contener el Olvido»: sellar el pozo a 3 pulgadas o menos y mantenerlo 3 rondas seguidas. Sustituye a los 6 resultados de la tabla antigua, que ya no se usan."
         },
         {
           "id": "f3-aviso",
@@ -442,7 +442,7 @@
           "id": "f8-heraldo",
           "tag": "Casa",
           "done": false,
-          "text": "Heraldo del Umbral: Tough según dificultad, Fear, Stealth, hoz AP(2) Rending; hechizos Olvido, Borrado y Silencio."
+          "text": "Heraldo del Umbral: vida (Tough) según dificultad y número de héroes (tabla ya hecha en la mesa), Fear, Stealth, hoz AP(2) Rending; hechizos Olvido, Borrado y Silencio. En los textos nunca «muere»: desaparece."
         },
         {
           "id": "f8-tough9",
@@ -460,7 +460,7 @@
           "id": "f8-final",
           "tag": "Oficial",
           "done": false,
-          "text": "Final con el Heraldo destruido: +2×D de XP."
+          "text": "Final con el Heraldo desaparecido: +2×D de XP [Oficial] y, como en la mesa, +1 de XP y +5 de oro por héroe [Casa]."
         }
       ],
       "done_when": "HITO: la Misión 1 completa, con jefe.",
@@ -475,7 +475,7 @@
           "id": "f9-equilibrio",
           "tag": "",
           "done": false,
-          "text": "Equilibrio: probar las 4 dificultades y el Tough del Heraldo."
+          "text": "Equilibrio: probar las dificultades (hay 5; la quinta, Abisal, está bloqueada) y la vida del Heraldo."
         },
         {
           "id": "f9-narracion",
@@ -487,13 +487,181 @@
           "id": "f9-arte",
           "tag": "",
           "done": false,
-          "text": "Parte artística (mapa, fichas, sonido), móvil y táctil."
+          "text": "Parte artística (fichas, sonido), móvil y táctil. El mapa del continente está archivado: ver la fase 11."
         },
         {
           "id": "f9-mesa",
           "tag": "",
           "done": false,
           "text": "Decidir si el tablero virtual sustituye a la mesa o conviven."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f10",
+      "title": "Fase 10 · Mesa de juego y página de la misión (hecho el 18-21 nov)",
+      "goal": "Lo que se construyó en la mesa y en la web de la misión, aparte del tablero virtual. Resumen de CLAUDE.md.",
+      "items": [
+        {
+          "id": "f10-sala",
+          "tag": "",
+          "done": true,
+          "text": "Mesa «Sala de guerra» con tablero táctico, héroes movibles, obstáculos calcados de la imagen y fondo elegido."
+        },
+        {
+          "id": "f10-dificultad",
+          "tag": "",
+          "done": true,
+          "text": "Cinco dificultades: Principiante, Intermedio, Experto, Legendario y Abisal (bloqueada)."
+        },
+        {
+          "id": "f10-oleadas",
+          "tag": "",
+          "done": true,
+          "text": "Primera oleada obligatoria tras el evento; ventanas con las unidades; oleadas de alerta en su desplegable; posiciones 1-4."
+        },
+        {
+          "id": "f10-alerta",
+          "tag": "Casa",
+          "done": true,
+          "text": "Dado de alerta al avanzar la ronda (1-5 = +1, 6 = +2); con el pozo sellado no se tira ni sube."
+        },
+        {
+          "id": "f10-evento",
+          "tag": "",
+          "done": true,
+          "text": "El evento de Neth pasa a llamarse «Evento de la Ruptura» (el nombre de Neth ya no sale en textos visibles)."
+        },
+        {
+          "id": "f10-secundario",
+          "tag": "Casa",
+          "done": true,
+          "text": "Objetivo secundario único «Contener el Olvido»: velas por ronda sellada; tres seguidas lo cumplen."
+        },
+        {
+          "id": "f10-heraldo",
+          "tag": "Casa",
+          "done": true,
+          "text": "Heraldo: vida por dificultad y héroes, ficha con ventanitas; al marcarlo desaparece (+5 oro y +1 XP por héroe) y entra una última oleada."
+        },
+        {
+          "id": "f10-final",
+          "tag": "",
+          "done": true,
+          "text": "Final de la misión I: confirmación de escape, resumen, finalizar misión y desbloqueo de la misión II."
+        },
+        {
+          "id": "f10-creador",
+          "tag": "",
+          "done": true,
+          "text": "Creador de héroes con datos reales de Army Forge, ficha movible e importador traducido."
+        }
+      ],
+      "done_when": "",
+      "notes": ""
+    },
+    {
+      "id": "f11",
+      "title": "Fase 11 · Lore del mundo y mapa (18-21 nov)",
+      "goal": "Todo está en docs/varek-hold.md, docs/rupturas.md y docs/mapa-erebo.md. Lo hecho está marcado; lo que sigue abierto, no.",
+      "items": [
+        {
+          "id": "f11-voces",
+          "tag": "",
+          "done": true,
+          "text": "Varek's Hold: las tres Voces y cómo se elige cada una (Custodios entre ellos, Mercado por mayoría absoluta cada 4 años, Filo por Quinteto con voto desde teniente)."
+        },
+        {
+          "id": "f11-desempates",
+          "tag": "",
+          "done": true,
+          "text": "Desempates: Muro (voto de la Voz saliente y, si no puede, el Custodio más antiguo); Mercado (gana la menor deuda). Decisiones entre las tres Voces: unanimidad."
+        },
+        {
+          "id": "f11-ciudad",
+          "tag": "",
+          "done": true,
+          "text": "Ciudad con costa y siete distritos (nombres provisionales); el Muro, zona prohibida y lugar de peregrinación; juicio de intrusos por la Voz del Muro y sus tres oficiales."
+        },
+        {
+          "id": "f11-personajes",
+          "tag": "",
+          "done": true,
+          "text": "Las tres Voces actuales con nombre, personalidad y agenda (Muro: ocultar su debilidad; Mercado: centro financiero; Filo: descubrir qué hay tras el muro)."
+        },
+        {
+          "id": "f11-mision",
+          "tag": "",
+          "done": true,
+          "text": "Misión 1: tres rastros, sin Neth en textos, mercader y patrulla del Muro, plata comprada por el Mercado (secreto), prólogo con inicio de historia."
+        },
+        {
+          "id": "f11-panel",
+          "tag": "",
+          "done": true,
+          "text": "Botón «Lo que aún se recuerda» en el selector de misiones, con cosmología, ciudad, Voces, Muro y pueblo."
+        },
+        {
+          "id": "f11-rupturas",
+          "tag": "",
+          "done": true,
+          "text": "Siete Rupturas aprobadas (Muro, Eryn, Orum, Sael, Varek, Kael y Vael) con lámina y texto."
+        },
+        {
+          "id": "f11-mapas",
+          "tag": "",
+          "done": true,
+          "text": "Mapa del continente: dos rondas de bocetos (pergamino, nocturna, acuarela, grabado y cuatro geografías). Ninguno elegido; archivados."
+        },
+        {
+          "id": "f11-github",
+          "tag": "",
+          "done": true,
+          "text": "Todo subido a GitHub (rama main)."
+        },
+        {
+          "id": "f11-mapa-rehacer",
+          "tag": "",
+          "done": false,
+          "text": "Mapa del continente: rehacer con las ideas que Nacho quiera conservar (estilo nocturno, tierra que sigue al este y al norte, anillo del Muro, siete Rupturas)."
+        },
+        {
+          "id": "f11-nombres",
+          "tag": "",
+          "done": false,
+          "text": "Confirmar la grafía de los nombres de las Voces (Orsen Valdrake, Lysa Brannoc) y los de ciudades, puertos y accidentes del mapa."
+        },
+        {
+          "id": "f11-geografia",
+          "tag": "",
+          "done": false,
+          "text": "Geografía del prólogo: dónde están el muro y el pueblo uno respecto al otro."
+        },
+        {
+          "id": "f11-custodios",
+          "tag": "",
+          "done": false,
+          "text": "Cómo entra un nuevo Custodio, qué se sabe de los reclutadores y dónde se reúnen los peregrinos."
+        },
+        {
+          "id": "f11-pista",
+          "tag": "",
+          "done": false,
+          "text": "Decidir si el texto da alguna pista de que la plata del contrato viene del Mercado, o se queda oculta."
+        },
+        {
+          "id": "f11-siguiente",
+          "tag": "",
+          "done": false,
+          "text": "Misiones II-VI (Eryn, asedio, Concordancia, Deudores de Vael, villano final): cuando se retomen, usar el lore ya fijado."
+        },
+        {
+          "id": "f11-tablero",
+          "tag": "",
+          "done": false,
+          "text": "Pasar al tablero virtual los cambios de la misión: evento de la Ruptura, secundario «Contener el Olvido» y vida del Heraldo."
         }
       ],
       "done_when": "",

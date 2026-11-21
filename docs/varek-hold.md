@@ -1,6 +1,6 @@
 # Varek's Hold: lore de gobierno y ciudad
 
-> Estado: en desarrollo (sesiones del 2026-11-18, 2026-11-21 y 2026-11-22). Cada punto está etiquetado como **DECIDIDO**, **PROPUESTA** (sugerida por Claude, sin confirmar por Nacho) o **ABIERTO**. No tratar las propuestas como canon.
+> Estado: en desarrollo (sesiones del 2026-11-18 y 2026-11-21). Cada punto está etiquetado como **DECIDIDO**, **PROPUESTA** (sugerida por Claude, sin confirmar por Nacho) o **ABIERTO**. No tratar las propuestas como canon.
 
 ## Base (ya existente en el proyecto)
 
@@ -30,7 +30,7 @@
 
 **Qué hace el cuerpo (DECIDIDO):**
 
-- **Controla la Ruptura del Muro.** Nacho decidió (2026-11-22) que va a ser **la misma que borra el pueblo de la Misión 1** (la de Neth). Pero, como esa Ruptura hace olvidar, **el nombre de Neth está «olvidado»**: no aparece en ningún texto que vea el jugador. Solo se la llama la Ruptura del Muro.
+- **Controla la Ruptura del Muro.** Nacho decidió (2026-11-21) que va a ser **la misma que borra el pueblo de la Misión 1** (la de Neth). Pero, como esa Ruptura hace olvidar, **el nombre de Neth está «olvidado»**: no aparece en ningún texto que vea el jugador. Solo se la llama la Ruptura del Muro.
 - **Controla lo que hay al otro lado del muro.** El muro es colosal e imponente, con apenas entradas, y tras él hay algo que los Custodios guardan y que el público no puede ver. Los Custodios dicen que es por seguridad, porque abrirlo desencadenaría efectos catastróficos para la ciudad y para la tierra, y que de momento no se puede hacer nada.
 
 **DECIDIDO:** en ningún texto se dice si la Ruptura y lo que hay tras el muro son lo mismo o cosas distintas. Se decidirá más adelante.
@@ -93,7 +93,7 @@
 
 ## Las Voces actuales
 
-**DECIDIDO (Nacho, 2026-11-22):**
+**DECIDIDO (Nacho, 2026-11-21):**
 
 | | Voz del Muro | Voz del Mercado | Voz del Filo |
 |---|---|---|---|
@@ -111,7 +111,7 @@
 
 ## Misión 1 y Varek's Hold
 
-**DECIDIDO (Nacho, 2026-11-22):**
+**DECIDIDO (Nacho, 2026-11-21):**
 
 - **Tres rastros**, no cuatro. El prólogo dice «tres cosas».
 - **El nombre de Neth no sale en ningún texto del juego** (misión, página, mesa y tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**.
@@ -124,12 +124,12 @@
 
 **ABIERTO:**
 
-- **Geografía del prólogo.** Se trata más adelante (Nacho, 2026-11-22). Por ahora el texto dice que los héroes parten hacia el norte desde Varek's Hold.
+- **Geografía del prólogo.** Se trata más adelante (Nacho, 2026-11-21). Por ahora el texto dice que los héroes parten hacia el norte desde Varek's Hold.
 - Si se añade alguna pista en el texto de que la plata viene del Mercado, o se deja oculta.
 
 ## Lore inventado para el panel «Lo que aún se recuerda»
 
-**DECIDIDO (Nacho, 2026-11-22):** Claude inventó estas ideas a petición de Nacho y él las confirmó todas («conserva todo»). Ya son canon. El texto está en `LORE` (`src/template/final-tpl.html`).
+**DECIDIDO (Nacho, 2026-11-21):** Claude inventó estas ideas a petición de Nacho y él las confirmó todas («conserva todo»). Ya son canon. El texto está en `LORE` (`src/template/final-tpl.html`).
 
 - **El Silencio:** así llaman al día en que los Primordiales dejaron de responder. Antes se los «oía» (cosecha, mareas, máquinas de los antiguos), no se los veía. Hay quien jura que uno sigue vivo y escuchando.
 - **El séptimo nombre olvidado:** en Varek's Hold se dice que eran siete, pero solo se recuerdan seis nombres (encaja con que el nombre de Neth esté olvidado).
