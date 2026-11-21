@@ -127,6 +127,19 @@
 - **Geografía del prólogo.** Se trata más adelante (Nacho, 2026-11-22). Por ahora el texto dice que los héroes parten hacia el norte desde Varek's Hold.
 - Si se añade alguna pista en el texto de que la plata viene del Mercado, o se deja oculta.
 
+## Lore inventado para el panel «Lo que aún se recuerda»
+
+**PROPUESTA (Claude, 2026-11-22; Nacho pidió inventar, pendiente de que confirme cada punto):** el texto está en `LORE` (`src/template/final-tpl.html`). Estas ideas son invención y no canon hasta que Nacho las confirme.
+
+- **El Silencio:** así llaman al día en que los Primordiales dejaron de responder. Antes se los «oía» (cosecha, mareas, máquinas de los antiguos), no se los veía. Hay quien jura que uno sigue vivo y escuchando.
+- **El séptimo nombre olvidado:** en Varek's Hold se dice que eran siete, pero solo se recuerdan seis nombres (encaja con que el nombre de Neth esté olvidado).
+- **Fundación de Varek's Hold:** nadie la fundó. Llegaron primero pescadores y contrabandistas, luego mercaderes, compañías de espadas de alquiler y los primeros Custodios. Estuvo a punto de partirse en tres. Un **pacto** (ninguna mano gobierna sola, nada se decide sin las tres Voces) dio origen a las tres Voces.
+- **Nombre de la ciudad:** lleva el nombre del Primordial al que, según los más viejos, perteneció el muro.
+- **El muro:** su sombra llega a la bahía a mediodía en invierno; sin juntas ni marcas de cantero; la piedra está tibia al amanecer; las gaviotas no se posan; las pocas puertas llevan generaciones selladas; en las casas del barrio se nota algo como un **latido muy lento**.
+- **La Línea Blanca:** trazo de piedras encaladas que los Custodios renuevan cada primavera. Los peregrinos se detienen ahí y dejan nombres escritos en cerámica. Cruzarla está prohibido.
+- **Nombre de la Ruptura:** los Custodios fueron los primeros en nombrarla «del Muro» y en llevar la cuenta de lo que se traga. Dicen no saber nada de lo que ocurre fuera de la frontera.
+- **La aldea:** unas cuarenta almas, en una bifurcación del camino de la frontera. Vendía lana, sal y queso. Sus cartas llegaban cada semana atadas con **cuerda azul**. Su nombre era corto y ya nadie lo recuerda; en los registros del Mercado, del Filo y del Muro hay un hueco limpio.
+
 ## Decisiones entre las tres Voces
 
 **DECIDIDO:** las decisiones importantes sobre la ciudad o sobre su territorio se toman **por unanimidad**: las tres Voces deben ponerse de acuerdo. Cualquiera de ellas puede bloquear una decisión.
