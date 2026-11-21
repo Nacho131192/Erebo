@@ -33,9 +33,10 @@
 - **Controla la Ruptura** del Muro. El tipo de Ruptura **no se define** por ahora, pero **no es la de Neth**.
 - **Controla lo que hay al otro lado del muro.** El muro es colosal e imponente, con apenas entradas, y tras él hay algo que los Custodios guardan y que el público no puede ver. Los Custodios dicen que es por seguridad, porque abrirlo desencadenaría efectos catastróficos para la ciudad y para la tierra, y que de momento no se puede hacer nada.
 
+**DECIDIDO:** en ningún texto se dice si la Ruptura y lo que hay tras el muro son lo mismo o cosas distintas. Se decidirá más adelante.
+
 **ABIERTO:**
 
-- ¿La Ruptura y lo que hay tras el muro son lo mismo o dos cosas distintas?
 - Los Custodios reclutadores: ¿son conocidos por el público? (El número y la identidad de los Custodios son secretos, así que habría que decidir cuánto se ve del reclutamiento.)
 
 **PROPUESTAS:**
@@ -89,6 +90,24 @@
 - Si una Voz muere sin elegir, los votantes deciden por mayoría y los perdedores consideran la elección ilegítima.
 - Una Voz presionada, chantajeada o engañada puede elegir mal (Culto del Umbral, Deudores de Vael, Concordancia de Orum).
 - Los rangos bajos, sin voto, pueden ser un caldo de cultivo de resentimiento dentro del Filo.
+
+## Las Voces actuales
+
+**DECIDIDO (Nacho, 2026-11-22):**
+
+| | Voz del Muro | Voz del Mercado | Voz del Filo |
+|---|---|---|---|
+| **Nombre** | Orsen Valdrake* | Lysa Brannoc* | Dagan Thorne |
+| **Personalidad** | Pragmático y frío. Considera el secreto del muro más importante que la verdad y no duda en engañar. | Meticulosa y obsesionada con los libros de cuentas. No olvida una deuda. | Veterano brutal, leal solo a sus hombres. Desprecia a los Custodios. |
+| **Agenda** | Ocultar a la ciudad que el muro, o lo que guarda, se está debilitando. | Convertir Varek's Hold en el centro financiero del continente, comerciando con quien haga falta. | Descubrir qué hay tras el muro para tener ventaja sobre las otras Voces, y contratar héroes para ello. |
+
+\* **Grafía por confirmar.** Nacho dictó «Orson Baldrake» y «Lisa Brandnut»; se han escrito aquí como se propusieron (Orsen Valdrake, Lysa Brannoc) suponiendo que era la pronunciación del dictado.
+
+**Notas de coherencia:**
+
+- La agenda del Muro dice «el muro, o lo que guarda» para no decidir si la Ruptura y lo que hay tras el muro son lo mismo.
+- La agenda del Filo conecta con la Misión 1: el Filo contrata a los héroes.
+- Fricción prevista: el Filo desprecia a los Custodios, y el Muro oculta un secreto que el Filo quiere conocer.
 
 ## Decisiones entre las tres Voces
 
@@ -145,9 +164,9 @@
 - El barrio de los Custodios (**El Pie del Muro**) está **construido a sus pies**.
 - Es un **lugar de peregrinación** para toda la comarca, pero **el acceso está prohibido**.
 
-**Quién intenta entrar (DECIDIDO):** peregrinos u otras personas que intentan acceder al muro, si los **Custodios los capturan antes de que accedan**, van a los **calabozos**. Más adelante hay un **juicio oral entre las tres Voces**, más o menos solemne según la importancia de la persona. Las tres Voces deciden su destino entre ellas.
+**Quién intenta entrar (DECIDIDO):** peregrinos u otras personas que intentan acceder al muro, si los **Custodios los capturan antes de que accedan**, van a los **calabozos**. Más adelante hay un **juicio oral**, más o menos solemne según la importancia de la persona. Es un asunto del Muro, no de las tres Voces: lo juzgan **la Voz del Muro y sus tres altos cargos militares**, que deciden entre ellos el destino del acusado. Si hay empate, **la Voz del Muro tiene el voto decisivo**.
 
-**ABIERTO:** dónde se reúnen los peregrinos, qué ven del muro desde fuera, y si el veredicto del juicio exige unanimidad de las tres Voces.
+**ABIERTO:** dónde se reúnen los peregrinos y qué ven del muro desde fuera.
 
 ## Resumen comparativo
 
@@ -160,8 +179,9 @@
 
 ## Preguntas abiertas
 
-1. **Muro:** si la Ruptura y lo que hay tras el muro son lo mismo; cuánto se sabe de los Custodios reclutadores.
+1. **Muro:** cuánto se sabe de los Custodios reclutadores.
 2. **Mercado:** límite de reelecciones, si lo hay.
-3. **El muro:** dónde se reúnen los peregrinos; si el juicio a los intrusos exige unanimidad.
-4. **Plano:** dónde están el puerto y el muro uno respecto al otro (se redibujará el mapa más adelante).
-5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos. Los dominios de cada distrito y las bandas menores se dejan para después.
+3. **El muro:** dónde se reúnen los peregrinos.
+4. **Nombres:** confirmar la grafía de Orsen Valdrake y Lysa Brannoc.
+5. **Plano:** dónde están el puerto y el muro uno respecto al otro (se redibujará el mapa más adelante).
+6. **Siguiente paso previsto:** relaciones entre las tres Voces, los tres altos cargos militares del Muro y descripción de la ciudad por distritos. Los dominios de cada distrito y las bandas menores se dejan para después.
