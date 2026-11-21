@@ -26,9 +26,17 @@
 - La Voz del Muro **siempre sale de los propios Custodios**. Nunca puede ser una persona ajena al cuerpo.
 - Los empates se resuelven con el método descrito en «Desempates».
 
+**Cómo se entra (DECIDIDO):** al ser una unidad militar, quien quiere entrar **se alista** y debe superar **pruebas físicas y mentales**. Después, los **Custodios reclutadores** deciden si puede seguir adelante.
+
+**Qué hace el cuerpo (DECIDIDO):**
+
+- **Controla la Ruptura** del Muro. El tipo de Ruptura **no se define** por ahora, pero **no es la de Neth**.
+- **Controla lo que hay al otro lado del muro.** El muro es colosal e imponente, con apenas entradas, y tras él hay algo que los Custodios guardan y que el público no puede ver. Los Custodios dicen que es por seguridad, porque abrirlo desencadenaría efectos catastróficos para la ciudad y para la tierra, y que de momento no se puede hacer nada.
+
 **ABIERTO:**
 
-- Cómo entra un nuevo Custodio y qué hace exactamente el cuerpo en el Muro. Nacho lo deja para más adelante.
+- ¿La Ruptura y lo que hay tras el muro son lo mismo o dos cosas distintas?
+- Los Custodios reclutadores: ¿son conocidos por el público? (El número y la identidad de los Custodios son secretos, así que habría que decidir cuánto se ve del reclutamiento.)
 
 **PROPUESTAS:**
 
@@ -137,7 +145,9 @@
 - El barrio de los Custodios (**El Pie del Muro**) está **construido a sus pies**.
 - Es un **lugar de peregrinación** para toda la comarca, pero **el acceso está prohibido**.
 
-**ABIERTO:** dónde se reúnen los peregrinos, qué ven del muro desde fuera y qué hacen los Custodios con quienes intentan acercarse.
+**Quién intenta entrar (DECIDIDO):** peregrinos u otras personas que intentan acceder al muro, si los **Custodios los capturan antes de que accedan**, van a los **calabozos**. Más adelante hay un **juicio oral entre las tres Voces**, más o menos solemne según la importancia de la persona. Las tres Voces deciden su destino entre ellas.
+
+**ABIERTO:** dónde se reúnen los peregrinos, qué ven del muro desde fuera, y si el veredicto del juicio exige unanimidad de las tres Voces.
 
 ## Resumen comparativo
 
@@ -150,8 +160,8 @@
 
 ## Preguntas abiertas
 
-1. **Muro:** cómo entra un nuevo Custodio y qué hace el cuerpo en el Muro (Nacho lo deja para más adelante).
+1. **Muro:** si la Ruptura y lo que hay tras el muro son lo mismo; cuánto se sabe de los Custodios reclutadores.
 2. **Mercado:** límite de reelecciones, si lo hay.
-3. **El muro:** dónde se reúnen los peregrinos y cómo se vigila el acceso.
+3. **El muro:** dónde se reúnen los peregrinos; si el juicio a los intrusos exige unanimidad.
 4. **Plano:** dónde están el puerto y el muro uno respecto al otro (se redibujará el mapa más adelante).
 5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos. Los dominios de cada distrito y las bandas menores se dejan para después.
