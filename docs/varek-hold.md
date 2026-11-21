@@ -30,7 +30,7 @@
 
 **Qué hace el cuerpo (DECIDIDO):**
 
-- **Controla la Ruptura** del Muro. El tipo de Ruptura **no se define** por ahora, pero **no es la de Neth**.
+- **Controla la Ruptura del Muro.** Nacho decidió (2026-11-22) que va a ser **la misma que borra el pueblo de la Misión 1** (la de Neth). Pero, como esa Ruptura hace olvidar, **el nombre de Neth está «olvidado»**: no aparece en ningún texto que vea el jugador. Solo se la llama la Ruptura del Muro.
 - **Controla lo que hay al otro lado del muro.** El muro es colosal e imponente, con apenas entradas, y tras él hay algo que los Custodios guardan y que el público no puede ver. Los Custodios dicen que es por seguridad, porque abrirlo desencadenaría efectos catastróficos para la ciudad y para la tierra, y que de momento no se puede hacer nada.
 
 **DECIDIDO:** en ningún texto se dice si la Ruptura y lo que hay tras el muro son lo mismo o cosas distintas. Se decidirá más adelante.
@@ -108,6 +108,24 @@
 - La agenda del Muro dice «el muro, o lo que guarda» para no decidir si la Ruptura y lo que hay tras el muro son lo mismo.
 - La agenda del Filo conecta con la Misión 1: el Filo contrata a los héroes.
 - Fricción prevista: el Filo desprecia a los Custodios, y el Muro oculta un secreto que el Filo quiere conocer.
+
+## Misión 1 y Varek's Hold
+
+**DECIDIDO (Nacho, 2026-11-22):**
+
+- **Tres rastros**, no cuatro. El prólogo dice «tres cosas».
+- **El nombre de Neth no sale en ningún texto del juego** (misión, página, mesa y tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**.
+- **El mercader sin cartas** interesa al Mercado. El remitente de las cartas pudo ser del gremio del mercader, pero nadie lo sabe porque lo han olvidado. Lysa Brannoc cree que todo esto amenaza su comercio y quiere interferir.
+- **La patrulla sin recuerdos** era **del Muro**. El Muro rechaza la culpa de haber operado fuera de sus dominios, porque eso sería terreno del Filo. Por eso el Filo tiene motivo para actuar por su cuenta.
+- **La plata del contrato** (más de lo que valdría el trabajo): Lysa Brannoc interfirió en el contrato para **comprar parte de la deuda del Filo** y ganar influencia sobre su gente. Es un secreto de fondo; los héroes no lo saben.
+- **El diario del olvidado** tiene una letra que los héroes reconocen, aunque **no saben de quién es**: solo les suena.
+- La frase del prólogo **«un Primordial que no cayó del todo»** se queda tal cual.
+
+**ABIERTO:**
+
+- **Nombre del objetivo secundario.** «Custodios del Sello» se va a cambiar para que no se confunda con los Custodios del Muro. Falta elegir el nombre nuevo.
+- **Geografía del prólogo.** Nacho dijo algo sobre colocar el muro al sur y la aldea al norte; sin confirmar. Ahora el texto ya dice que los héroes parten hacia el norte desde Varek's Hold.
+- Si se añade alguna pista en el texto de que la plata viene del Mercado, o se deja oculta.
 
 ## Decisiones entre las tres Voces
 

@@ -346,7 +346,7 @@ transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;animation:fa
 .dnote{flex-basis:100%;margin:0 0 2px;text-align:center;font:800 14px/1.3 var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#ffe27a;text-shadow:0 0 10px rgba(255,214,90,.75),0 0 22px rgba(255,170,40,.45);animation:dng 1.6s ease-in-out infinite}
 @keyframes dng{50%{color:#fff3c4;text-shadow:0 0 14px rgba(255,226,122,.95),0 0 30px rgba(255,170,40,.6)}}
 @media (prefers-reduced-motion:reduce){.dnote{animation:none}}
-/* Hasta tirar el primer evento de Neth, todo lo demás de la mesa queda bloqueado (menos el audio del texto). */
+/* Hasta tirar el primer evento de la Ruptura, todo lo demás de la mesa queda bloqueado (menos el audio del texto). */
 .evlock .mcol>.mc:not([data-k="dice"]),.evlock .dblk:not(.evb){opacity:.32;filter:grayscale(.6);pointer-events:none;user-select:none}.dmsg{margin:8px 0 0;font-size:12px;line-height:1.45;color:var(--pbad)}
 .armyb{margin-top:16px;padding-top:14px;border-top:1px solid var(--pline)}
 .armyr{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -944,7 +944,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .qsteps li{counter-increment:qs;display:flex;gap:14px;font:500 18px/1.5 var(--serif);color:var(--qtx2)}
 .qsteps li::before{content:counter(qs);flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;box-shadow:inset 0 0 0 1.4px var(--qgd);font:700 13px var(--disp);color:var(--qgd);margin-top:2px}
 .qsteps b{color:var(--qtx)}
-/* Eventos de Neth y Cofres: familias de resultados explicadas */
+/* Eventos de la Ruptura y Cofres: familias de resultados explicadas */
 .qhr{display:inline-block;margin:0 0 16px;padding:3px 11px;border-radius:999px;font:600 9.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;background:#10162a;box-shadow:inset 0 0 0 1px rgba(217,184,108,.3);color:var(--qgd)}
 .qfams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:4px}
 .qfam{padding:22px 22px 20px;display:flex;gap:16px;align-items:flex-start;min-width:0}
@@ -1513,11 +1513,11 @@ function comp(k){
 function waveDef(k){
  const B=BUD();
  if(k==="boss")return{name:"Jefe",budget:2*B,p:"c",her:true,c:comp(k),surprise:"Oleada de doble valor y no entran más refuerzos. Las unidades de IA a 12\" usan la Calidad del Heraldo en moral mientras no esté Aturdido."};
- if(k===0)return{name:"Centinelas",budget:B,p:"q",c:comp(0),surprise:"Tira el evento de Neth de la ronda 1."};
+ if(k===0)return{name:"Centinelas",budget:B,p:"q",c:comp(0),surprise:"Tira el evento de la Ruptura de la ronda 1."};
  const c=comp(k);
- if(k%2===1)return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:"La unidad marcada con Ambush entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."+(k>1?" Evento de Neth.":"")};
+ if(k%2===1)return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:"La unidad marcada con Ambush entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."+(k>1?" Evento de la Ruptura.":"")};
  const cas=c.u.some(e=>/\bCaster/i.test(ARMY[e.i].rules));
- return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:(cas?"Mientras la unidad con Caster no esté Aturdida, las unidades enemigas a 6\" de ella ganan +1 a impactar en cuerpo a cuerpo. ":"")+"Evento de Neth."};
+ return{name:"Refuerzos "+k,budget:B,p:"c",c,surprise:(cas?"Mientras la unidad con Caster no esté Aturdida, las unidades enemigas a 6\" de ella ganan +1 a impactar en cuerpo a cuerpo. ":"")+"Evento de la Ruptura."};
 }
 const curW=()=>S.boss?"boss":S.wave;
 const PLACE={q:"Centro de un cuadrante. Un dado por unidad.",c:"A 6\" o menos de una esquina. Un dado por unidad.",a:"D3 rondas después, a 6\" de un Objetivo de IA (al azar si hay varios)."};
@@ -1559,7 +1559,7 @@ function reinforce(){
  if(S.shown)mergeWave(S.wave);
  S.shown=true;S.wave++;S.needEv=true;
  setNar(S.wave%2===1?"w1":"w2");
- S.alert="Entra la oleada "+(S.wave+1)+". Despliégala y tira un evento de Neth.";
+ S.alert="Entra la oleada "+(S.wave+1)+". Despliégala y tira un evento de la Ruptura.";
 }
 /* Sube la Alertness. Al llegar a 6 entran refuerzos y lo que sobra pasa a la nueva cuenta
    (la cuenta va de 1 a 6 como un dado; al llegar a 6 entran refuerzos y vuelve siempre a 1, aunque sobre algo: regla de la casa para dar un respiro). Devuelve true si entraron refuerzos. */
@@ -2115,7 +2115,7 @@ function roundCard(){
 }
 /* Refuerzos por alerta dentro del recuadro "Nivel de alerta" */
 const unitsLine=c=>{const g={};c.u.forEach(e=>{const k=ARMY[e.i]?ARMY[e.i].name:"?";g[k]=(g[k]||0)+1});return Object.entries(g).map(([k,v])=>v+"× "+k).join(" · ")};
-/* Dado de alerta en primer plano, con la misma tirada que el evento de Neth. */
+/* Dado de alerta en primer plano, con la misma tirada que el evento de la Ruptura. */
 function unitsStats(){let total=0,killed=0;Object.values(S.comp||{}).forEach(c=>{if(!c||!c.u)return;c.u.forEach(e=>{total++;if(aliveM(e)<=0)killed++})});(S.alw||[]).forEach(x=>{x.c.u.forEach(e=>{total++;if(aliveM(e)<=0)killed++})});return{total,killed}}
 function sumHTML(){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0),won=S.prim&&S.end&&!S.defeat,U=unitsStats();
  const rast=(S.tracks||[]).length||3,trk=(S.mk||[]).filter(Boolean).length;
@@ -2205,10 +2205,10 @@ function finalCard(){
  h+=`<div class="xp"><div><b>${xp}</b><small>XP de ${5*S.d}</small></div><div><b>${(won?5*S.d:0)+(S.dead?5:0)}</b><small>Oro de riesgo</small></div></div><div class="row defw"><button class="pb gh defb" data-a="defeat" data-f="defeat">${S.defeat?"Retirar derrota":"Declarar derrota"}</button></div></section>`;
  return h;
 }
-/* Bloqueo al empezar: hasta tirar (o aplicar a mano) el primer evento de Neth solo se puede usar ese dado, el audio y la cabecera. */
-/* Mientras haya un evento de Neth pendiente (al empezar y cada vez que entran refuerzos). «Declarar derrota» nunca se bloquea. */
+/* Bloqueo al empezar: hasta tirar (o aplicar a mano) el primer evento de la Ruptura solo se puede usar ese dado, el audio y la cabecera. */
+/* Mientras haya un evento de la Ruptura pendiente (al empezar y cada vez que entran refuerzos). «Declarar derrota» nunca se bloquea. */
 const evLock=()=>S.round>0&&S.needEv;
-/* Tras el evento de Neth de la ronda 1 (y de cada refuerzo), lo primero es generar la oleada (decisión de Nacho). */
+/* Tras el evento de la Ruptura de la ronda 1 (y de cada refuerzo), lo primero es generar la oleada (decisión de Nacho). */
 const firstLock=()=>S.round>0&&!S.needEv&&!S.shown&&!S.boss&&S.wave===0;
 const EV_OK=new Set(["first","alGo","EV","EVm","play","pause","stop","reset","restart","ok","defeat","board","bsel","bpt","bq","bc","bundo","bobs"]);
 /* Reparto de tarjetas en columnas: cada una va a la columna más baja (en orden), para que no queden huecos grandes antes del botín.
@@ -2243,7 +2243,7 @@ function render(){
   ISTOP='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5" fill="currentColor"/></svg>';
  const auBtns=!AUD[nk]?`<button class="play" type="button" data-a="play" data-f="play" aria-label="Reproducir el texto (el audio llegará más adelante)" title="Audio: próximamente">${IPLAY}</button>`
   :`<span class="plays">${UI.au==="play"?`<button class="play np" type="button" data-a="pause" data-f="play" aria-label="Pausar la narración">${IPAUSE}</button>`:`<button class="play" type="button" data-a="play" data-f="play" aria-label="${UI.au?"Seguir con la narración":"Escuchar la narración"}">${IPLAY}</button>`}${UI.au?`<button class="play np" type="button" data-a="stop" data-f="play" aria-label="Parar la narración">${ISTOP}</button>`:""}</span>`;
- const ev=S.ev?`<div class="res ${S.ev.tone}">${bone([Math.floor(S.ev.n/10),S.ev.n%10],"die-EV",UI.land==="EV"?"land":"")}<div><span class="rtg">${S.ev.n} · ${FAM[S.ev.tone]||""}</span><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res">${bone([6,6],"die-EV","ghost")}<div><b>Evento de Neth</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
+ const ev=S.ev?`<div class="res ${S.ev.tone}">${bone([Math.floor(S.ev.n/10),S.ev.n%10],"die-EV",UI.land==="EV"?"land":"")}<div><span class="rtg">${S.ev.n} · ${FAM[S.ev.tone]||""}</span><b>${esc(S.ev.t)}</b><p>${esc(S.ev.x)}</p>${S.ev.extra?`<span class="x">${esc(S.ev.extra)}</span>`:""}</div></div>`:`<div class="res">${bone([6,6],"die-EV","ghost")}<div><b>Evento de la Ruptura</b><p>Se tira al empezar la ronda 1 y cada vez que entran refuerzos.</p></div></div>`;
  const ch=S.ch?`<div class="res ${S.ch.t}">${bone(S.ch.b?[S.ch.a,S.ch.b]:[S.ch.a],"die-CH",UI.land==="CH"?"land":"")}<div><span class="rtg">Contenido ${S.ch.a}${S.ch.b?" · objeto "+S.ch.b:""}</span><b>${esc(S.ch.title)}</b><p>${esc(S.ch.text)}</p></div></div>`:`<div class="res">${bone([6,6],"die-CH","ghost")}<div><b>Cofre</b><p>Un héroe lo abre con la acción Descubrir. Se tira el contenido y después el objeto.</p></div></div>`;
  const C={};
  C.cfg=`<section class="pc"><h3><span class="tt">Configuración de partida</span></h3><div class="dtiers" role="group" aria-label="Dificultad">${DN.map((n,i)=>{const v=i+1,lk=v>=DIFLOCK;return`<button type="button" class="dt t${v}${S.d===v?" on":""}${lk?" lk":""}" data-a="d" data-v="${v}" data-f="d${v}" aria-pressed="${S.d===v}" aria-label="Dificultad ${v}: ${n}${lk?" (bloqueada)":""}" ${S.round||lk?"disabled":""}><b>${lk?'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>':v}</b><span>${n}</span><small>${PC[i]}%</small></button>`}).join("")}</div>
@@ -2262,7 +2262,7 @@ function render(){
  C.txt=`<section class="pc narb"><span class="nic">${WELL}</span><div><h3><span class="tt">Lo que recuerda el pueblo</span></h3>${UI.soon?`<p style="margin:-4px 0 8px;font-size:12px;color:var(--pgold)">El audio de la narración llegará más adelante.</p>`:""}<p class="nar">${esc(nt)}</p></div>${auBtns}</section>`;
  C.obj=objCard();
  C.dice=`<section class="pc">
- <div class="dblk evb"><h3><span class="tt">Evento de Neth</span><em>2d6</em></h3><div aria-live="polite">${ev}</div><div class="dctl ctr">${S.needEv?`<p class="dnote" role="status">Toca tirar el evento de Neth</p>`:""}<button class="pb pr sm ${S.needEv?"pulse":""}" data-a="EV" data-f="EV" ${S.needEv?"":"disabled"}>Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("evA","Decenas").replace("<select ","<select "+(S.needEv?"":"disabled")+" ")}${dsel("evB","Unidades").replace("<select ","<select "+(S.needEv?"":"disabled")+" ")}<button class="pb sm gh" data-a="EVm" data-f="EVm" ${S.needEv?"":"disabled"}>Aplicar</button></div>${UI.evMsg?`<p class="dmsg">${esc(UI.evMsg)}</p>`:""}</div>
+ <div class="dblk evb"><h3><span class="tt">Evento de la Ruptura</span><em>2d6</em></h3><div aria-live="polite">${ev}</div><div class="dctl ctr">${S.needEv?`<p class="dnote" role="status">Toca tirar el evento de la Ruptura</p>`:""}<button class="pb pr sm ${S.needEv?"pulse":""}" data-a="EV" data-f="EV" ${S.needEv?"":"disabled"}>Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("evA","Decenas").replace("<select ","<select "+(S.needEv?"":"disabled")+" ")}${dsel("evB","Unidades").replace("<select ","<select "+(S.needEv?"":"disabled")+" ")}<button class="pb sm gh" data-a="EVm" data-f="EVm" ${S.needEv?"":"disabled"}>Aplicar</button></div>${UI.evMsg?`<p class="dmsg">${esc(UI.evMsg)}</p>`:""}</div>
  <div class="dblk"><h3><span class="tt">Cofre</span><em>Contenido y objeto</em></h3><div aria-live="polite">${ch}</div><div class="dctl ctr"><button class="pb pr sm" data-a="CH" data-f="CH">Tirar</button></div><div class="dctl man"><span class="or">Manual</span>${dsel("chA","Contenido")}${dsel("chB","Objeto")}<button class="pb sm gh" data-a="CHm" data-f="CHm">Aplicar</button></div>${UI.chMsg?`<p class="dmsg">${esc(UI.chMsg)}</p>`:""}</div>
  ${S.hist.length?`<p class="hist">Últimas: ${S.hist.slice(0,3).map(esc).join(" · ")}</p>`:""}</section>`;
  C.fin=finalCard();
@@ -2513,7 +2513,7 @@ function mapSvg(){
  <path d="M26 626C60 540 180 520 260 440S330 340 320 320S470 250 520 150S590 70 622 50" fill="none" stroke="${INK}" stroke-width="1.5" stroke-dasharray="2 6" opacity=".6"/>
  ${house}${trees}
  <circle cx="320" cy="320" r="34" fill="#e0cd9f" stroke="${INK}" stroke-width="2"/><circle cx="320" cy="320" r="20" fill="#1a1322" stroke="#5b45a8" stroke-width="2"/><path d="M320 314c-8-9 8-17 0-30M330 322c10-8-4-18 4-28" fill="none" stroke="#5b45a8" stroke-width="1.8"/>
- <text x="320" y="372" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="17" fill="${INK}">el pozo · Ruptura de Neth</text>
+ <text x="320" y="372" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="17" fill="${INK}">el pozo · Ruptura del Muro</text>
  <g fill="#b8923f" stroke="${INK}" stroke-width="1.5"><path d="M420 120l10 14-10 14-10-14z"/><path d="M200 460l10 14-10 14-10-14z"/><path d="M520 470l10 14-10 14-10-14z"/></g>
  <g fill="#8a2a35" stroke="${INK}" stroke-width="1.5"><path d="M200 160l11 19h-22z"/><path d="M450 200l11 19h-22z"/><path d="M180 560l11 19h-22z"/></g>
  <g transform="translate(556 580)" stroke="${INK}" fill="none" stroke-width="1.4"><circle r="22"/><path d="M0-30V30M-30 0H30" /><path d="M0-22l5 22-5 22-5-22z" fill="${INK}"/><text y="-34" text-anchor="middle" font-family="Cinzel,serif" font-size="12" fill="${INK}" stroke="none">N</text></g>
@@ -2528,7 +2528,7 @@ function cMon(i){
 /* Tres ejemplos de una tabla: lo mejor para los héroes, lo peor y uno al azar (cambia en cada visita). */
 const pickRnd=a=>a[Math.floor(Math.random()*a.length)];
 function picks(L){return`<div class="picks">${L.map(x=>`<div class="pick ${x.k}"><span class="lb">${x.l}</span><div class="seal ${x.k==="best"?"g":x.k==="rnd"?"v":""}">${x.d}</div><h3>${esc(x.t)}</h3><p>${esc(x.x)}</p>${x.s?`<small>${esc(x.s)}</small>`:""}</div>`).join("")}</div>`}
-/* Eventos de Neth y Cofres: en vez de muestras de la tabla, qué significa cada familia de resultados (k: bad/good/odd, w: a todo lo ancho). */
+/* Eventos de la Ruptura y Cofres: en vez de muestras de la tabla, qué significa cada familia de resultados (k: bad/good/odd, w: a todo lo ancho). */
 const QEV=[
  {k:"bad",d:"1",t:"El vacío golpea",f:"Algo invisible empuja desde dentro de las paredes, y el cuerpo es lo primero que lo nota.",x:"Le toca a un héroe al azar: queda Aturdido, Afectado o Debilitado, sufre D3 heridas o tiene −1 a Fuerza o a Voluntad.",s:"Malo · un héroe"},
  {k:"bad",d:"2",t:"El Umbral susurra",f:"Las voces no dicen nada. Pero se quedan contigo cuando ya se han ido.",x:"Le toca a un héroe al azar: sufre D3 impactos, pierde D3 de poder, queda Afligido, Aturdido o Enfermo, o tiene −1 a Destreza.",s:"Malo · un héroe"},
@@ -2574,8 +2574,8 @@ const QCARDS=[
    return `<p class="qlead">${esc(pr[0].replace(/^Mesa: /,"La mesa: "))}</p><div class="qprep"><div class="qpn">${qMap()}</div><ol class="qsteps">${st.map(s=>`<li><span><b>${esc(s[0])}.</b> ${esc(s[1])}</span></li>`).join("")}</ol></div><div class="qpn"><div class="qob"><div><h3>Objetivo secundario · Custodios del Sello</h3><p>Se activa al cumplir los tres rastros del pueblo. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Mientras el pozo esté sellado al terminar cada ronda, la Ruptura queda contenida: la alerta no sube y no entran refuerzos. Si nadie lo sella, la Ruptura se abre y la alerta sube 3 extra. Se cumple con 3 rondas seguidas selladas, y entonces el grupo puede escapar sin que el pueblo se venga abajo.</p></div></div></div>`}},
  {k:"her",img:1,n:"Lo que se cuenta",t:"El Heraldo",p:"Nadie sabe cómo se llama.",sl:"H",
   h:()=>`<p class="qbridge">${QHER.bridge}</p><div class="qher"><div class="qpor"><img src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"></div><div><h3>Lo que se cuenta del Heraldo</h3>${QHER.p.map(p=>`<p>${p}</p>`).join("")}<p class="n">${QHER.n}</p></div></div><blockquote class="qq"><p>${QHER.q}</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`},
- {k:"ev",n:"Capítulo IV",t:"Eventos de Neth",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
-  h:()=>`<span class="qhr">Regla oficial · tabla de la casa</span><p class="qlead">Neth no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de Neth. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
+ {k:"ev",n:"Capítulo IV",t:"Eventos de la Ruptura",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
+  h:()=>`<span class="qhr">Regla oficial · tabla de la casa</span><p class="qlead">La Ruptura no ataca: borra. De vez en cuando el pueblo se olvida de algo (un camino, una herida que ya estaba cerrada, el nombre de quien la llevaba) y la mesa lo nota. Eso es un evento de la Ruptura. Se tira <b>al empezar la ronda 1</b> y <b>cada vez que entran refuerzos</b>, y la partida no sigue hasta que se tira.</p>
    <div class="qgrid"><div class="qpn"><p class="qh4">Cómo se lee</p><p class="qtx">Se tiran 2d6 de uno en uno. El <b>primer dado</b> dice qué clase de cosa ocurre (las familias de abajo) y el <b>segundo</b>, cuál de las seis: del 11 al 66.</p></div><div class="qpn"><p class="qh4">Cuánto dura</p><p class="qtx">Los efectos que dicen «hasta el siguiente evento» duran hasta que se vuelva a tirar. Los estados se quitan como siempre. «Al azar» se sortea con un dado entre los héroes o los cuadrantes.</p></div></div>
    <p class="qh4" style="margin:30px 0 14px">Lo que puede pasar, según el primer dado</p>${qFams(QEV)}
    <blockquote class="qq"><p>Primero olvidas el camino de vuelta. Luego, a quién ibas a volver a ver.</p><cite>Dicho del Culto del Umbral</cite></blockquote>
@@ -2590,7 +2590,7 @@ const Q={open:-1,from:null};
 function qMotes(n,seed){let z=seed;const R=()=>{z=(z*9301+49297)%233280;return z/233280};let s="";for(let i=0;i<n;i++)s+=`<i style="left:${(R()*100).toFixed(1)}%;top:${(25+R()*75).toFixed(1)}%;animation-duration:${(6+R()*8).toFixed(1)}s;animation-delay:-${(R()*10).toFixed(1)}s"></i>`;return `<div class="qmotes" aria-hidden="true">${s}</div>`}
 function buildSheet(){
  const row=QCARDS.map((c,k)=>`<button class="qcard${c.big?" big":""}" type="button" data-q="${k}" style="--i:${k}" aria-haspopup="dialog">${QREQ.includes(c.k)?'<span class="req"></span>':""}<span class="ic${c.img?" im":""}">${c.img?`<img src="${IMG_RETRATO}" alt="">`:QI[c.k]}</span><span class="nm">${c.n}</span><h3>${c.t}</h3><p>${c.p}</p><span class="rd">Leer</span></button>`).join("");
- $("#sheet").innerHTML=`${qMotes(30,13)}<div class="qhero"><div class="qart"><img src="${IMG_JEFE}" width="640" height="808" alt=""></div><div class="qecl" aria-hidden="true"></div><div class="qtop"><button class="back" type="button" data-nav="home" aria-label="Volver al mapa de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button></div><div class="qht"><p class="qeb">Misión I · Ruptura de Neth</p><h1 class="qgt qer">El pueblo vacío</h1><p class="sub">Un contrato del Filo, una Ruptura de Neth y un pueblo que ya no recuerda su nombre.</p></div></div><div class="qrow" role="list" aria-label="Capítulos de la misión">${row}</div><p class="qhint" aria-live="polite"></p>`;qReadPaint()}
+ $("#sheet").innerHTML=`${qMotes(30,13)}<div class="qhero"><div class="qart"><img src="${IMG_JEFE}" width="640" height="808" alt=""></div><div class="qecl" aria-hidden="true"></div><div class="qtop"><button class="back" type="button" data-nav="home" aria-label="Volver al mapa de misiones"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Misiones</span></button></div><div class="qht"><p class="qeb">Misión I · Ruptura del Muro</p><h1 class="qgt qer">El pueblo vacío</h1><p class="sub">Un contrato del Filo, una Ruptura del Muro y un pueblo que ya no recuerda su nombre.</p></div></div><div class="qrow" role="list" aria-label="Capítulos de la misión">${row}</div><p class="qhint" aria-live="polite"></p>`;qReadPaint()}
 function qOpen(k){if(k<0||k>=QCARDS.length)return;const first=Q.open<0;Q.open=k;if(first)Q.from=document.activeElement;const c=QCARDS[k],ov=$("#qov");
  ov.innerHTML=`<div class="qpn qrd" role="dialog" aria-modal="true" aria-labelledby="qrdt"><div class="rhd"><span class="qseal">${c.sl}</span><div><p class="qeb">${c.n}</p><h2 class="qgt qer" id="qrdt">${c.t}</h2></div><button class="qx" type="button" data-qclose aria-label="Cerrar">${QI.x}</button></div><div class="rbd" tabindex="-1">${c.h()}</div><div class="rft"><button type="button" data-q="${k-1}"${k?"":" disabled"}>← ${k?QCARDS[k-1].t:""}</button><button type="button" data-q="${k+1}"${k<QCARDS.length-1?"":" disabled"}>${k<QCARDS.length-1?QCARDS[k+1].t:""} →</button></div></div>`;
  qMark(c.k);ov.hidden=false;$("#col").inert=true;$("#fab").inert=true;document.documentElement.classList.add("lock");requestAnimationFrame(()=>{const b=ov.querySelector(".qx");if(b)b.focus({preventScroll:true})})}
@@ -2608,7 +2608,7 @@ function paintSheet(){
  const xpt=$("#xpt");if(xpt)xpt.innerHTML=`<table><tr><th>Recompensa</th><th>Fórmula</th>${[1,2,3,4].map(i=>`<th>Nv. ${i}</th>`).join("")}</tr>${xr.map(r=>`<tr><td>${r[0]}</td><td>${r[1]===1?"D":r[1]+" × D"}</td>${[1,2,3,4].map(i=>`<td class="num">${r[1]*i}</td>`).join("")}</tr>`).join("")}</table>`;
  const bars=$("#bars");if(bars)bars.innerHTML=PC.map((p,i)=>`<div class="bar"><span style="width:70px">Nivel ${i+1}</span><div class="t"><i style="width:${p/2}%"></i></div><span style="width:44px;text-align:right">${p}%</span></div>`).join("");
  const cur=curW(),W=[["Centinelas",0],["Refuerzos 1",1],["Refuerzos 2",2],["Refuerzos 3 en adelante",3],["Jefe","boss"]];
- const wt=[["Centinelas","Borrados","El evento de Neth de la ronda 1."],["Refuerzos 1","Animales deformados con <i>Fast</i> y una unidad con <i>Ambush</i>","La unidad con <i>Ambush</i> entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."],["Refuerzos 2","Cultistas con un <i>Caster</i> y su escolta","Mientras el <i>Caster</i> no esté Aturdido, los Borrados a 6\" de él ganan +1 a impactar en cuerpo a cuerpo."],["Refuerzos 3 en adelante","Alterna los refuerzos 1 y 2","Un evento de Neth cada vez."],["Jefe","El Heraldo del Umbral, con Borrados y cultistas hasta el doble de valor","Su ficha aparece en la mesa de juego cuando entra en partida."]];
+ const wt=[["Centinelas","Borrados","El evento de la Ruptura de la ronda 1."],["Refuerzos 1","Animales deformados con <i>Fast</i> y una unidad con <i>Ambush</i>","La unidad con <i>Ambush</i> entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."],["Refuerzos 2","Cultistas con un <i>Caster</i> y su escolta","Mientras el <i>Caster</i> no esté Aturdido, los Borrados a 6\" de él ganan +1 a impactar en cuerpo a cuerpo."],["Refuerzos 3 en adelante","Alterna los refuerzos 1 y 2","Un evento de la Ruptura cada vez."],["Jefe","El Heraldo del Umbral, con Borrados y cultistas hasta el doble de valor","Su ficha aparece en la mesa de juego cuando entra en partida."]];
  const wv=$("#wvt");if(wv)wv.innerHTML=`<tr><th>Oleada</th><th>Composición</th><th>Sorpresa</th></tr>`+wt.map((r,i)=>{const k=W[i][1];const on=cur==="boss"?k==="boss":(k===cur||(k===3&&cur>=3));return`<tr class="${on?"cur":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`}).join("");
 }
 DATA.sec=[["Interrogar","El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral."],["Custodios del Sello","Mantén el pozo bajo control para frenar la Ruptura."],["Capturar","Saca una reliquia del pozo hasta una esquina."],["Sabotear","Destruye un símbolo del Umbral lejos de los héroes."],["Rebuscar","Revuelve las casas de dos esquinas en busca de pistas."],["Resguardar","Lleva a un superviviente sin rostro a la casa más segura del pueblo y mantenlo a 3″ o menos de ella durante una ronda entera."]];
@@ -2632,12 +2632,12 @@ const BACKI='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="cur
 const KORN='<div class="korn" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l2.2 7L8 15 5.8 8z"/></svg></div>';
 /* Textos de las misiones II-VI: provisionales. */
 const MIS=[
- {n:"I",t:"El pueblo vacío",z:"Ruptura de Neth",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
  {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
  {n:"III",t:"La aldea sitiada",z:"Asedio del Culto",h:"El Culto del Umbral cerca una aldea. Los Resonantes ofrecen su ayuda, a su manera."},
  {n:"IV",t:"La emboscada",z:"Concordancia de Orum",h:"Alguien más sigue vuestro rastro. Una tercera facción entra en juego."},
  {n:"V",t:"La cripta primordial",z:"Deudores de Vael",h:"Bajo la piedra duerme la ruina de un Primordial, y alguien ha venido a cobrar lo que se le debe."},
- {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde Neth empezó a borrar, os espera Ocaso."}];
+ {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde la Ruptura empezó a borrar, os espera Ocaso."}];
 /* Campañas de Érebo: de momento solo una; el resto, cartas boca abajo. */
 const CAMPS=[{n:"I",t:"El Pueblo Sin Nombre",h:"Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre.",ac:"#5f86d6",on:true},{n:"II",ac:"#6f9a5a"},{n:"III",ac:"#c9573f"},{n:"IV",ac:"#6f8fb6"},{n:"V",ac:"#c9a24a"}];
 const won=()=>S.prim&&S.end&&!S.defeat;

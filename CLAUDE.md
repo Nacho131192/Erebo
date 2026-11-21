@@ -31,6 +31,8 @@ Lore usado (poco; el usuario pidió "no darle demasiada importancia al trasfondo
 - **Varek's Hold**: ciudad contra un muro que nadie construyó. Tres Voces: **Muro** (vigila), **Mercado** (monedas), **Filo** (paga por lo que no debe constar). El Filo contrata a los héroes.
 - **Culto del Umbral**: cultistas cerca de donde Neth borra.
 - El final de la misión 1 deja una dirección: **Ocaso** (gancho hacia el villano de la misión 6).
+- **Decisión del 2026-11-22: el nombre de Neth NO aparece en ningún texto que vea el jugador** (misión, página, mesa, tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**, y las tiradas son «Evento de la Ruptura» (el nombre está «olvidado» a propósito). En los comentarios del código y en el lore interno sí queda. No reintroducir «Neth» en textos visibles.
+- **Lore de Varek's Hold** (Voces, elecciones, Custodios, distritos, Misión 1): `docs/varek-hold.md`. Es la fuente del lore de la ciudad.
 - Para más lore de Érebo, el usuario lo trabaja en otra conversación (memoria: `/areas/erebo.md`).
 
 ## 3. Reglas de OPR que usa la campaña (Campaign Builder v2.1.0 + reglamento en español)

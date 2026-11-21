@@ -4,7 +4,7 @@
    psn-tv-v1); las fichas de héroe sí son las mismas (heridas, poder y estados de HS).
 
    Reglas: Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR (docs/*.pdf).
-   - Ronda: evento de Neth (solo en la ronda 1 y cuando entran refuerzos) → héroes → IA → fin de ronda.
+   - Ronda: evento de la Ruptura (solo en la ronda 1 y cuando entran refuerzos) → héroes → IA → fin de ronda.
    - Héroes: una acción (Descansar, Mantener, Avanzar, Correr, Cargar) y, gastando 3 de poder, otra más.
    - IA: se activa de la unidad más cercana a un héroe a la más lejana y sigue el diagrama oficial.
      Decisión de Nacho para el prototipo: sin objetivos, el «AI Goal» es siempre el héroe más cercano.
@@ -503,7 +503,7 @@ async function fight(A,B,kind,fo){G.offerIgnore=null;const melee=kind==="melee",
  log(`${melee?(ch?"Cuerpo a cuerpo":"Ataque en contacto"):"Disparo"} · ${sum}${L.morale.length?" · "+L.morale.join(" · "):""}`,melee?"mel":"sho");
  hfSync();checkOver();return L}
 
-/* ---------------------------------------------------------------- eventos de Neth */
+/* ---------------------------------------------------------------- eventos de la Ruptura */
 /* Efecto automático de cada evento (las tablas son de la misión; el formato 2d6 es oficial). Lo que aún no existe en el
    prototipo (cuadrantes de terreno, fichas de búsqueda, objetos) queda escrito para resolverlo a mano. */
 const EVX={11:{st:"at"},12:{st:"ac"},15:{st:"de"},23:{st:"af"},24:{st:"at"},26:{st:"en"},14:{wd:1},21:{hit:1},22:{pw:-1},45:{pw:1},
@@ -523,11 +523,11 @@ function rollEvent(a,b){const n=a*10+b,e=(DATA.ev||[]).find(x=>x[0]===String(n))
  else if(x.en){const us=liveUnits();if(us.length){const u=us[Math.floor(Math.random()*us.length)];u.g.sh=true;eff=`${u.name} queda Aturdida.`}else eff="No hay enemigos en la mesa: no pasa nada."}
  else if(x.gold&&tgt){tgt.h.gold=(+tgt.h.gold||0)+x.gold;eff=`${who} recibe ${x.gold} de oro.`}
  else if(x.pot&&tgt){tgt.h.pot=(+tgt.h.pot||0)+1;eff=`${who} recibe una Poción de salud.`}
- else if(x.item&&tgt){tgt.h.sk.push({g:"equipo",n:x.item,k:"Consumible",d:"Recibido en un evento de Neth (tablero virtual)."});eff=`${who} recibe: ${x.item}.`}
+ else if(x.item&&tgt){tgt.h.sk.push({g:"equipo",n:x.item,k:"Consumible",d:"Recibido en un evento de la Ruptura (tablero virtual)."});eff=`${who} recibe: ${x.item}.`}
  else eff=n===66&&tgt?`${who} gana D3 de XP: anótalo en su ficha.`:"Todavía no se aplica solo en el prototipo: resuélvelo a mano.";
  if(x.m&&x.m.k==="st"&&!x.all)eff=`${who}: ${e[2].replace(/^Un héroe al azar /,"").replace(/\.$/,"")}.`;
  G.ev={a,b,n,t:e[1],x:e[2],eff,tone:a<=2?"bad":a===3?"all":"ok"};G.needEv=false;
- log(`Evento de Neth ${n} · ${e[1]}: ${eff}`,"ev");hfSync();checkOver()}
+ log(`Evento de la Ruptura ${n} · ${e[1]}: ${eff}`,"ev");hfSync();checkOver()}
 
 /* ---------------------------------------------------------------- flujo de la ronda */
 function startGame(){G.round=1;G.al=1;G.phase=G.needEv?"event":"heroes";G.heroes.forEach(h=>{h.act=0;h.main="";h.extra=false;h.done=[];h.ex=false});G.units.forEach(u=>{u.pick=false});G.units.slice().forEach(u=>{if(!u.fresh)scoutDeploy(u)});log("Empieza la partida. Ronda 1 · Noche.","rd")}
@@ -712,8 +712,8 @@ function banHTML(){const b=U.ban;if(!b)return"";
 const rdLab=()=>`Ronda ${G.round} · ${tod()}`;
 let ENDNOTE="";const takeNote=()=>{const n=ENDNOTE;ENDNOTE="";return n?" "+n:""};
 const heroBanner=()=>banner({k:"hr",lab:rdLab(),t:`Comienza la ronda ${G.round}`,s:"Turno de los héroes: actúan en el orden que quieras."+takeNote()});
-/* Al empezar una ronda: si toca evento de Neth, primero ese cartel; el de «Comienza la ronda» sale al cerrar el resultado del evento. */
-function roundBanner(){if(G.over)return Promise.resolve();return G.phase==="event"?banner({k:"ev",lab:rdLab(),t:"Evento de Neth",s:(G.round===1?"Antes de empezar se tira el evento de Neth.":"Han entrado refuerzos: se tira el evento de Neth.")+takeNote()}):heroBanner()}
+/* Al empezar una ronda: si toca evento de la Ruptura, primero ese cartel; el de «Comienza la ronda» sale al cerrar el resultado del evento. */
+function roundBanner(){if(G.over)return Promise.resolve();return G.phase==="event"?banner({k:"ev",lab:rdLab(),t:"Evento de la Ruptura",s:(G.round===1?"Antes de empezar se tira el evento de la Ruptura.":"Han entrado refuerzos: se tira el evento de la Ruptura.")+takeNote()}):heroBanner()}
 /* Turno de los enemigos: los héroes que no hayan terminado pierden lo que les quede. */
 async function toAI(){if(U.busy||G.phase!=="heroes"||G.over)return;U.busy=true;G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;U.dest=null;U.sel="";save();paint();
  await banner({k:"ai",lab:rdLab(),t:"Turno de los enemigos",s:"La IA activa sus unidades, de la más cercana a un héroe a la más lejana."});U.busy=false;runAI()}
@@ -825,7 +825,7 @@ function overlay(){let s="";const gh=G.cur>=0?G.heroes[G.cur]:null,a=gh?actor(gh
  return s}
 
 /* ---------------------------------------------------------------- panel lateral */
-const PH=[["event","Evento de Neth"],["heroes","Héroes"],["ai","IA"],["end","Fin de ronda"]];
+const PH=[["event","Evento de la Ruptura"],["heroes","Héroes"],["ai","IA"],["end","Fin de ronda"]];
 function pips(){return`<span class="tv-pips" aria-label="Alertness ${G.al} de 6">${[1,2,3,4,5,6].map(k=>`<i class="${k<=G.al?"on":""}${k===6?" six":""}"></i>`).join("")}</span>`}
 function head(){const live=G.phase!=="setup"&&G.phase!=="deploy";
  const steps=live?`<ol class="tv-steps">${PH.map(([k,l],i)=>{const cur=G.phase===k,past=PH.findIndex(p=>p[0]===G.phase)>i,skip=k==="event"&&G.phase!=="event"&&!(G.ev&&G.ev.r===G.round);return`<li class="${cur?"cur":""}${past?" past":""}${skip&&!cur?" skip":""}"><b>${i+1}</b>${l}</li>`}).join("")}</ol>`:"";
@@ -1230,8 +1230,8 @@ function unitInfo(id){const a=actor(id);if(!a)return"";const u=a.kind==="u"?a.g:
  ${u?`<p class="tv-sub">Tough(${u.t}) por miniatura · ${u.hp} heridas por recibir${u.sh?" · <b>Aturdida</b>":""}${u.fat===G.round?" · agotada":""}</p>`:""}
  ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`<button type="button" class="tv-rchip sm" data-tv="rinfo" data-l="${esc(x)}" data-o="">${esc(x)}</button>`).join(" "):"—"}</td></tr>`).join("")}</table></section></div>`}
 function evCard(){const e=G.ev;const die=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
- if(!e||e.r!==G.round)return`<div class="tv-ev"><p class="tv-lab">Evento de Neth · ${G.round===1?"empieza la partida":"han entrado refuerzos"}</p><div class="tv-dd">${die(0)}${die(0)}</div><p>Se tiran dos dados de uno en uno: el primero son las decenas y el segundo las unidades (Campaign Builder).</p><button type="button" class="tv-btn big" data-tv="ev">Tirar el evento</button></div>`;
- return`<div class="tv-ev ${e.tone}"><p class="tv-lab">Evento de Neth ${e.n}</p><div class="tv-dd">${die(e.a)}${die(e.b)}</div><h3>${esc(e.t)}</h3><p>${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><button type="button" class="tv-btn big" data-tv="toheroes">Turno de los héroes</button></div>`}
+ if(!e||e.r!==G.round)return`<div class="tv-ev"><p class="tv-lab">Evento de la Ruptura · ${G.round===1?"empieza la partida":"han entrado refuerzos"}</p><div class="tv-dd">${die(0)}${die(0)}</div><p>Se tiran dos dados de uno en uno: el primero son las decenas y el segundo las unidades (Campaign Builder).</p><button type="button" class="tv-btn big" data-tv="ev">Tirar el evento</button></div>`;
+ return`<div class="tv-ev ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${die(e.a)}${die(e.b)}</div><h3>${esc(e.t)}</h3><p>${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><button type="button" class="tv-btn big" data-tv="toheroes">Turno de los héroes</button></div>`}
 const PIP={1:[[50,50]],2:[[30,30],[70,70]],3:[[28,28],[50,50],[72,72]],4:[[30,30],[70,30],[30,70],[70,70]],5:[[28,28],[72,28],[50,50],[28,72],[72,72]],6:[[30,26],[70,26],[30,50],[70,50],[30,74],[70,74]]};
 const dots=n=>`<svg viewBox="0 0 100 100" aria-hidden="true">${PIP[n].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9"/>`).join("")}</svg>`;
 
@@ -1244,9 +1244,9 @@ function wpnPick(a,A){const mw=a.ws.filter(isMelee);if(mw.length<2)return"";cons
 /* Tirada de Neth en el centro de la pantalla: dados, y después el efecto (se queda en la tarjeta de la ronda). */
 const evDie=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
 function evFxHTML(){const F=U.evfx;if(!F)return"";
- if(F.st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Evento de Neth · tirando</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Primero las decenas y luego las unidades.</p></div></div>`;
+ if(F.st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Evento de la Ruptura · tirando</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Primero las decenas y luego las unidades.</p></div></div>`;
  const e=G.ev;if(!e)return"";
- return`<div class="tv-evfx" data-tv="evclose"><div class="tv-evfxc ${e.tone}"><p class="tv-lab">Evento de Neth ${e.n}</p><div class="tv-dd">${evDie(e.a)}${evDie(e.b)}</div><h3>${esc(e.t)}</h3><p class="tv-eff">${esc(e.eff)}</p><small>Toca para seguir</small></div></div>`}
+ return`<div class="tv-evfx" data-tv="evclose"><div class="tv-evfxc ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${evDie(e.a)}${evDie(e.b)}</div><h3>${esc(e.t)}</h3><p class="tv-eff">${esc(e.eff)}</p><small>Toca para seguir</small></div></div>`}
 /* Ficha completa de un héroe (al pulsar su tarjeta): estadísticas, estados, armas, reglas, habilidades y equipo. */
 function heroModal(){const gh=G.heroes.find(x=>x.id===U.hinfo),h=gh&&heroOf(gh);if(!h)return"";
  const sk=h.sk||[],isW=s=>s.g==="equipo"&&s.k&&s.k!=="Consumible"&&/A\d/.test(s.k),
@@ -1280,7 +1280,7 @@ function deployPanel(){const rolls=G.units.map(u=>`<li><b>${esc(u.nm)}</b><span>
 function aiPanel(){const c=G.aiCur,tot=G.aiTot||0;
  return`<div class="tv-ai"><p class="tv-lab">Turno de la IA · unidad ${Math.min(G.aiDone.length+1,tot)} de ${tot}</p>${c?`<b>${esc(actor(c.id)?actor(c.id).name:"")}</b><p>${esc(c.why)}</p>`:"<p>Preparando…</p>"}<span class="tv-spin" aria-hidden="true"></span></div>`}
 function endPanel(){const e=G.endInfo||{};
- return`<div class="tv-end"><p class="tv-lab">Fin de la ronda ${e.r||G.round}</p>${e.none?`<div class="tv-box warn tv-noen"><b>No quedan enemigos en la mesa</b><p>No se tira el dado de alerta: la Alertness sube 2 (Campaign Builder).</p></div>`:""}<div class="tv-alrow">${pips()}<span>${e.pending?"Tirando el dado de alerta…":e.none?`Sin enemigos: Alertness +2`:`Dado ${e.die}: Alertness +${e.add}`}</span></div>${e.rf?`<p class="tv-box warn"><b>¡Refuerzos!</b> La alerta llegó a 6: entran ${e.n} unidades por las esquinas (en rojo) y se tira un evento de Neth al empezar la ronda.</p>`:""}<button type="button" class="tv-btn big" data-tv="next">Empezar la ronda ${G.round+1}</button></div>`}
+ return`<div class="tv-end"><p class="tv-lab">Fin de la ronda ${e.r||G.round}</p>${e.none?`<div class="tv-box warn tv-noen"><b>No quedan enemigos en la mesa</b><p>No se tira el dado de alerta: la Alertness sube 2 (Campaign Builder).</p></div>`:""}<div class="tv-alrow">${pips()}<span>${e.pending?"Tirando el dado de alerta…":e.none?`Sin enemigos: Alertness +2`:`Dado ${e.die}: Alertness +${e.add}`}</span></div>${e.rf?`<p class="tv-box warn"><b>¡Refuerzos!</b> La alerta llegó a 6: entran ${e.n} unidades por las esquinas (en rojo) y se tira un evento de la Ruptura al empezar la ronda.</p>`:""}<button type="button" class="tv-btn big" data-tv="next">Empezar la ronda ${G.round+1}</button></div>`}
 function overPanel(){return`<div class="tv-end lost"><p class="tv-lab">Derrota</p><h3>Todos los héroes han caído</h3><p>Según el Campaign Builder, cuando todos los héroes están inconscientes a la vez, la misión fracasa y hay que repetir el capítulo.</p><button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`}
 function sideMain(){let main="";
  if(G.over)main=overPanel();
@@ -1445,7 +1445,7 @@ function finishAction(gh,k,rest,free){if(free||k!=="adv")gh.advShot=false;if(!fr
     o que le quede el disparo de Avanzar (solo si tiene arma a distancia y algún enemigo a tiro y a la vista). */
  if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh)&&!gh.advShot)){endAct(gh);return}}
 const canShootAny=a=>!!a&&!a.ko()&&a.ws.some(isRanged)&&liveUnits().some(u=>canShoot(a,u,false));
-/* Al cerrar el resultado del evento de Neth: cartel de que comienza la ronda (si ya es el turno de los héroes). */
+/* Al cerrar el resultado del evento de la Ruptura: cartel de que comienza la ronda (si ya es el turno de los héroes). */
 function evDone(){const was=!!U.evfx&&U.evfx.st==="done";U.evfx=null;paint();if(was&&G.phase==="heroes"&&!G.over)heroBanner()}
 function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(REDUCE||!ds.length){done();return}let n=0;
  const it=setInterval(()=>{ds.forEach(d=>{d.classList.remove("q");d.innerHTML=dots(d6())});if(++n>9){clearInterval(it);done()}},70)}

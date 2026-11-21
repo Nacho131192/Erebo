@@ -6,13 +6,13 @@
 
 *Léelo antes de colocar las miniaturas.*
 
-Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en las de Neth simplemente se borra lo que había.
+Hace mucho que los Primordiales dejaron de responder. Siete fuerzas sostenían el mundo y callaron a la vez, y lo que quedó se rompió en pedazos. Esos pedazos se llaman Rupturas, lugares donde la realidad olvida cómo funcionar y hace lo que quiere. En unas crece la selva sin control, en otras las máquinas se mueven solas, y en la del Muro simplemente se borra lo que había.
 
 Vosotros vivís en Varek's Hold, la ciudad que se alza contra un muro que nadie construyó, el último resto de un Primordial que no cayó del todo. Allí mandan tres Voces: la del Muro, que vigila, la del Mercado, que cuenta monedas, y la del Filo, que paga a quienes hacen lo que las otras dos no quieren que conste. Esta mañana os ha llamado la tercera.
 
-No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Una patrulla fue a mirar y volvió sin saber a qué había ido. Todos los registros de aquel pueblo están en blanco, y no es un error.
+No os ofrece asiento. Sobre la mesa hay un mapa con una cruz de tinta fresca y un saquito de plata, más del que valdría el trabajo si fuera sencillo. Al norte de la frontera, dice, hay una aldea de la que ya nadie habla. Hace tres semanas un mercader dejó de recibir cartas de allí, y dos días después dejó de recordar que las esperaba. Quizá el remitente era alguien de su gremio, pero ya nadie está seguro: también a él lo han olvidado. La Voz del Mercado teme por sus rutas y ha preguntado más de una vez por este asunto. Una patrulla del Muro fue a mirar y volvió sin saber a qué había ido, y el Muro niega haber mandado a nadie fuera de sus dominios: lo que ocurre más allá de la frontera, dice, es cosa del Filo. Por eso el Filo no pide permiso a nadie. Todos los registros de aquel pueblo están en blanco, y no es un error.
 
-La orden es sencilla: entrar, buscar lo que quede, reunir cuatro cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde Neth borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.
+La orden es sencilla: entrar, buscar lo que quede, reunir tres cosas que parezcan importantes y salir antes de que el pueblo os olvide. Probablemente haya cultistas del Umbral, porque donde la Ruptura borra, ellos suelen estar cerca. Si vuestras cabezas os dan problemas, será la Ruptura y no ellos. La Voz no promete nada más.
 
 Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa empieza a parecer menos claro. Las huellas del mercader se acaban en una curva sin motivo, y lo único que os guía son los postes de una cerca que ya nadie cuida. Al llegar a la cima, el pueblo se despliega ante vosotros: casas en pie, puertas abiertas, ni un alma.
 
@@ -43,12 +43,12 @@ Un héroe sube a nivel 2 con 3 XP y a nivel 3 con 6 XP. Las fórmulas son las de
 
 ## Preparación
 
-- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm) con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24"x24" con todas las distancias a la mitad. El pozo del centro es la Ruptura de Neth.
+- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm) con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24"x24" con todas las distancias a la mitad. El pozo del centro es la Ruptura del Muro.
 - **1. Objetivos:** prepara el objetivo principal. El secundario se prepara más tarde.
 - **2. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.
 - **3. Despliegue enemigo:** ver Oleadas y sorpresas.
 - **4. Despliegue de héroes:** tira un dado. Con 1-4 se despliegan a 6" o menos de la esquina con ese número, y con 5-6 eliges la esquina.
-- **5. Desafíos opcionales:** la misión empieza de **noche** (-1 a impactar al disparar y visión limitada a 12"). Pasa a **alba** (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de Neth y la pelea de jefe.
+- **5. Desafíos opcionales:** la misión empieza de **noche** (-1 a impactar al disparar y visión limitada a 12"). Pasa a **alba** (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de la Ruptura y la pelea de jefe.
 ## Cofres
 
 Cada ficha de búsqueda es un cofre.
@@ -114,17 +114,17 @@ Los héroes obtienen 5 × D de oro (D es el nivel de dificultad) y surge un Borr
 - **Centinelas:** antes de empezar, se despliegan en el centro de un cuadrante al azar. Tira un dado por unidad: con 1-4 va al cuadrante con ese número, y con 5-6 eliges. El PDF no fija cuántos son, así que usa el tamaño de una oleada.
 - **Alertness:** al final de cada ronda sube 1, o 2 si no queda ningún enemigo en la mesa. Al llegar a 6 entra una oleada de refuerzos y la Alertness vuelve a 0.
 - **Refuerzos:** cada unidad entra a 6" o menos de una esquina al azar. Con 1-4 va a la esquina con ese número, y con 5-6 eliges.
-- **Eventos de Neth:** tira en la tabla de eventos al empezar la ronda 1 y cada vez que entren refuerzos.
+- **Eventos de la Ruptura:** tira en la tabla de eventos al empezar la ronda 1 y cada vez que entren refuerzos.
 
 | Oleada | Composición | Sorpresa |
 |---|---|---|
-| Centinelas | Borrados | El evento de Neth de la ronda 1. |
+| Centinelas | Borrados | El evento de la Ruptura de la ronda 1. |
 | Refuerzos 1 | Animales deformados con *Fast* y una unidad con *Ambush* | La unidad con *Ambush* entra D3 rondas después, al empezar la ronda, a 6" o menos de un Objetivo de IA (al azar si hay varios). |
 | Refuerzos 2 | Cultistas con un *Caster* y su escolta | Mientras el *Caster* no esté Aturdido, los Borrados a 6" de él ganan +1 a impactar en cuerpo a cuerpo. |
-| Refuerzos 3 en adelante | Alterna los refuerzos 1 y 2 | Un evento de Neth cada vez. |
+| Refuerzos 3 en adelante | Alterna los refuerzos 1 y 2 | Un evento de la Ruptura cada vez. |
 | Jefe | El Heraldo del Umbral, con Borrados y cultistas hasta el doble de valor | Ver la ficha del Heraldo. |
 
-## Eventos de Neth
+## Eventos de la Ruptura
 
 *Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento. Es una adaptación de la tabla de eventos del modo horda.*
 
@@ -238,6 +238,6 @@ Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostr
 
 ## Notas
 
-- Son reglas de la casa: el contenido de la tabla de eventos de Neth, qué unidad lleva *Ambush* y la sorpresa del *Caster* en las oleadas, el tesoro maldito y los efectos de los objetos de los cofres, el diario del olvidado y las estadísticas del Heraldo. Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
-- Son oficiales (aunque antes se marcaban como de la casa): tirar un evento 2d6 al empezar la ronda 1 y cada vez que entran refuerzos (eventos aleatorios del Campaign Builder; la tabla de Neth adapta la oficial al tema de la misión); que una unidad de la IA con *Ambush* entre D3 rondas después de su oleada a 6" de un Objetivo de IA, y que un enemigo con *Tough(9)* o más no quede Aturdido y sufra D3 heridas al fallar la moral (Core Rules); y la tabla de contenido de las fichas de búsqueda (Peligro, elixires, bombas, pociones y oro; el tesoro maldito sustituye al oro).
+- Son reglas de la casa: el contenido de la tabla de eventos de la Ruptura, qué unidad lleva *Ambush* y la sorpresa del *Caster* en las oleadas, el tesoro maldito y los efectos de los objetos de los cofres, el diario del olvidado y las estadísticas del Heraldo. Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
+- Son oficiales (aunque antes se marcaban como de la casa): tirar un evento 2d6 al empezar la ronda 1 y cada vez que entran refuerzos (eventos aleatorios del Campaign Builder; la tabla de la Ruptura adapta la oficial al tema de la misión); que una unidad de la IA con *Ambush* entre D3 rondas después de su oleada a 6" de un Objetivo de IA, y que un enemigo con *Tough(9)* o más no quede Aturdido y sufra D3 heridas al fallar la moral (Core Rules); y la tabla de contenido de las fichas de búsqueda (Peligro, elixires, bombas, pociones y oro; el tesoro maldito sustituye al oro).
 - Hermano Ocaso, el villano de la campaña, es un nombre inventado y aparece en la misión final.
