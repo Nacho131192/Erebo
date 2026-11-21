@@ -34,6 +34,8 @@ Lore usado (poco; el usuario pidió "no darle demasiada importancia al trasfondo
 - **Decisión del 2026-11-22: el nombre de Neth NO aparece en ningún texto que vea el jugador** (misión, página, mesa, tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**, y las tiradas son «Evento de la Ruptura» (el nombre está «olvidado» a propósito). En los comentarios del código y en el lore interno sí queda. No reintroducir «Neth» en textos visibles.
 - **Lore de Varek's Hold** (Voces, elecciones, Custodios, distritos, Misión 1): `docs/varek-hold.md`. Es la fuente del lore de la ciudad.
 - **Panel de lore «Lo que aún se recuerda»** (2026-11-22): botón `.mlore` en el selector de misiones, entre «N de 6 misiones» y «La ruta hacia el norte»; abre `#lorOv` con el contenido de `LORE` (en `final-tpl.html`, dentro de `HOME`). Lleva el texto de cosmología que se quitó del prólogo (que ahora empieza «Varek's Hold amanece como siempre…») y lore público de la ciudad. **No incluye secretos** (deuda del Mercado, número de Custodios, agendas) ni nombres de las Voces (grafía sin confirmar). Se amplía editando `LORE`.
+- **Las siete Rupturas** (2026-11-22, aprobadas): `docs/rupturas.md` y la lámina `docs/rupturas-erebo.png`. Una por Primordial; la del Muro (la de Neth) no lleva su nombre en textos visibles.
+- **Mapa del continente:** los bocetos (`docs/mapa/`, `docs/mapa-erebo.md`, generador en `tools/mapa/`) están **archivados**: Nacho no eligió ninguno y no se usan de momento. Solo se aprovechan ideas.
 - Para más lore de Érebo, el usuario lo trabaja en otra conversación (memoria: `/areas/erebo.md`).
 
 ## 3. Reglas de OPR que usa la campaña (Campaign Builder v2.1.0 + reglamento en español)
