@@ -19,20 +19,13 @@ Partís al norte esa misma tarde. Al pisar el camino de la frontera, el mapa emp
 ## Objetivos y recompensas
 
 - **Objetivo principal: búsqueda por zonas.** Coloca 3 marcadores en el centro de tres cuadrantes distintos (o en el centro de la mesa). Un héroe a 1" de un marcador gasta una acción de habilidad y pasa una tirada de Wil: retira el marcador y tira un dado. El objetivo se cumple al retirar los tres marcadores (regla de la casa: no se usa la tirada de 5+). El marcador más cercano a un enemigo es el Objetivo de IA. Quien retire el último marcador recoge el **diario del olvidado**.
-- **Objetivo secundario:** se prepara cuando se cumple el principal y sube la Alertness en 3. Tira 1d6 en la tabla de abajo y usa las reglas de ese objetivo del Campaign Builder.
+- **Objetivo secundario:** Custodios del Sello (ver abajo). Se activa al cumplir el principal.
 - **Fin de la misión:** con el principal cumplido, todos los héroes deben estar a 6" o menos de la misma esquina y sin enemigos alrededor al final de una ronda (regla de la casa: sin enemigos alrededor). El secundario no es obligatorio.
 - **Pelea de jefe (opcional):** tras cumplir ambos objetivos, los héroes pueden activarla. Al final de esa ronda llega una oleada de refuerzos de doble valor, con el Heraldo del Umbral, y no entran más refuerzos. El héroe más cercano a un enemigo es el Objetivo de IA.
 - **Al terminar:** los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera.
 - **Derrota:** si todos los héroes quedan inconscientes a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo.
 
-| 1d6 | Objetivo secundario | En la historia |
-|---|---|---|
-| 1 | Interrogar | El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral. |
-| 2 | Salvaguardar | Mantén el pozo bajo control para frenar la Ruptura. |
-| 3 | Capturar | Saca una reliquia del pozo hasta una esquina. |
-| 4 | Sabotear | Destruye un símbolo del Umbral lejos de los héroes. |
-| 5 | Rebuscar | Revuelve las casas de dos esquinas en busca de pistas. |
-| 6 | Escoltar | Lleva a un superviviente sin rostro hasta la salida. |
+**Objetivo secundario único: Custodios del Sello.** No se sortea. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Con éxito, la Ruptura queda contenida solo esa ronda: el nivel de alerta no sube y no entran refuerzos. Para mantenerla hay que volver a sellarla cada ronda. Si al final de una ronda nadie la ha sellado, la Ruptura se abre y el nivel de alerta sube 3 extra. Se cumple cuando el pozo ha estado sellado 3 rondas seguidas. Escapar no cambia: los héroes siguen necesitando estar a 6″ o menos de la misma esquina.
 
 ## Recompensas y XP
 
@@ -238,6 +231,7 @@ Una figura alta cruza la plaza sin prisa. Lleva una túnica sin color y un rostr
 
 ## Finales
 
+- **Diario del olvidado (objeto necesario para la misión 2):** quien retira el último rastro lo lleva. Los héroes deben escapar del pueblo con él.
 - **Misión cumplida:** al volver la vista, el pueblo ha desaparecido. En vuestras manos queda el diario de alguien cuyo nombre no recordáis, pero cuya letra os suena. En la última página hay una dirección, Ocaso, y un camino dibujado hacia el bosque de Eryn, donde las raíces han empezado a moverse. Esa noche, junto al fuego, uno de vosotros oye su nombre al otro lado de los árboles, dicho sin prisa. El Heraldo no os ha olvidado. Os sigue.
 - **Misión cumplida y Heraldo destruido:** el Heraldo cae sin ruido, y por un instante vuestros nombres suenan bien dichos. Cuando se disipa la ceniza, el pozo está en calma y el diario pesa un poco menos. Entre los restos de su túnica encontráis una semilla negra, todavía tibia, que late como un corazón pequeño. La última página señala Ocaso, y el único camino hacia allí cruza el bosque de Eryn. En algún lugar, alguien ha notado que el Heraldo no ha vuelto.
 - **Derrota:** el camino os devuelve al borde del pueblo, sin recordar bien cómo llegasteis. Habéis perdido algo, pero nadie sabe decir qué.

@@ -28,8 +28,8 @@ const later=(fn,ms)=>setTimeout(function t(){paused()?setTimeout(t,120):fn()},ms
 const inch=n=>(Math.round(n*10)/10).toLocaleString("es-ES",{maximumFractionDigits:1})+"″";
 const QC=[[150,150],[450,150],[450,450],[150,450]],CC=[[58,58],[542,58],[542,542],[58,542]];
 const QN=["I","II","III","IV"];
-/* La 5 (EXTREMA) está bloqueada: no se puede elegir todavía. Su % es provisional. Solo en ella las habilidades tipo Furia piden tirada. */
-const PCT=[25,50,100,200,300],DIF=["Principiante","Intermedio","Experto","Legendario","EXTREMA"],DIF_LOCK=5;
+/* La 5 (Abisal) está bloqueada: no se puede elegir todavía. Su % es provisional. Solo en ella las habilidades tipo Furia piden tirada. */
+const PCT=[25,50,100,200,300],DIF=["Principiante","Intermedio","Experto","Legendario","Abisal"],DIF_LOCK=5;
 const SPREAD=[[0,0],[30,10],[-26,22],[8,-30],[-24,-24],[30,-22],[-32,-4],[20,30],[-8,34],[36,24]];
 
 /* ---------------------------------------------------------------- estado */

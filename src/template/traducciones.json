@@ -1,0 +1,1715 @@
+{
+ "razas": {
+  "beastmen": "Hombres bestia",
+  "ndoli beast lord": "Señor de las bestias ndoli",
+  "waheni hunt master": "Maestro de caza waheni",
+  "ndwari centaur boss": "Jefe centauro ndwari",
+  "kemba brute boss": "Jefe bruto kemba",
+  "ratmen": "Hombres rata",
+  "champion": "Campeón",
+  "battle master": "Maestro de batalla",
+  "saurians": "Saurios",
+  "gecko champion": "Campeón geco",
+  "saurian veteran": "Veterano saurio",
+  "gator veteran": "Veterano caimán",
+  "frog-mage": "Mago-rana",
+  "war disciples": "Discípulos de la Guerra",
+  "war havoc master": "Maestro del Caos de la Guerra",
+  "war chosen havoc master": "Maestro del Caos elegido de la Guerra",
+  "war barbarian champion": "Campeón bárbaro de la Guerra",
+  "lust disciples": "Discípulos de la Lujuria",
+  "lust havoc master": "Maestro del Caos de la Lujuria",
+  "lust chosen havoc master": "Maestro del Caos elegido de la Lujuria",
+  "lust barbarian champion": "Campeón bárbaro de la Lujuria",
+  "plague disciples": "Discípulos de la Plaga",
+  "plague havoc master": "Maestro del Caos de la Plaga",
+  "plague chosen havoc master": "Maestro del Caos elegido de la Plaga",
+  "plague barbarian champion": "Campeón bárbaro de la Plaga",
+  "change disciples": "Discípulos del Cambio",
+  "change havoc master": "Maestro del Caos del Cambio",
+  "change birdman champion": "Campeón hombre-pájaro del Cambio",
+  "change chosen havoc master": "Maestro del Caos elegido del Cambio",
+  "change barbarian champion": "Campeón bárbaro del Cambio",
+  "havoc warriors": "Guerreros del Caos",
+  "chosen havoc master": "Maestro del Caos elegido",
+  "havoc master": "Maestro del Caos",
+  "barbarian champion": "Campeón bárbaro",
+  "harbinger of havoc": "Heraldo del Caos",
+  "daemons of war": "Demonios de la Guerra",
+  "champion of war": "Campeón de la Guerra",
+  "fury champion of war": "Campeón de la furia de la Guerra",
+  "harbinger of war": "Heraldo de la Guerra",
+  "tri-hound champion": "Campeón del tri-sabueso",
+  "daemons of lust": "Demonios de la Lujuria",
+  "champion of lust": "Campeón de la Lujuria",
+  "infernal siren": "Sirena infernal",
+  "fury champion of lust": "Campeón de la furia de la Lujuria",
+  "harbinger of lust": "Heraldo de la Lujuria",
+  "daemons of plague": "Demonios de la Plaga",
+  "champion of plague": "Campeón de la Plaga",
+  "fury champion of plague": "Campeón de la furia de la Plaga",
+  "plague harvester": "Cosechador de la Plaga",
+  "harbinger of plague": "Heraldo de la Plaga",
+  "daemons of change": "Demonios del Cambio",
+  "champion of change": "Campeón del Cambio",
+  "horror champion of change": "Campeón horror del Cambio",
+  "fury champion of change": "Campeón de la furia del Cambio",
+  "harbinger of change": "Heraldo del Cambio",
+  "high elves": "Altos elfos",
+  "high noble": "Alto noble",
+  "deep-sea elves": "Elfos abisales",
+  "sea master": "Maestro del mar",
+  "scholar": "Erudito",
+  "dark elves": "Elfos oscuros",
+  "dark captain": "Capitán oscuro",
+  "snake lady": "Dama serpiente",
+  "wood elves": "Elfos silvanos",
+  "grove champion": "Campeón de la arboleda",
+  "glade leader": "Líder del claro",
+  "eternal elder": "Anciano eterno",
+  "treeman elder": "Anciano hombre-árbol",
+  "dwarves": "Enanos",
+  "dwarf champion": "Campeón enano",
+  "berserker lord": "Señor berserker",
+  "steam-suit champion": "Campeón con traje de vapor",
+  "sky-city dwarves": "Enanos de la ciudad celeste",
+  "sky-captain": "Capitán celeste",
+  "balloon master": "Maestro de globos",
+  "havoc dwarves": "Enanos del Caos",
+  "iron champion": "Campeón de hierro",
+  "abyssal leader": "Líder abisal",
+  "bull centaur champion": "Campeón centauro toro",
+  "volcanic dwarves": "Enanos volcánicos",
+  "magma champion": "Campeón de magma",
+  "volcanic leader": "Líder volcánico",
+  "shadow stalkers": "Acechadores de las sombras",
+  "reaper champion": "Campeón segador",
+  "scourge champion": "Campeón del azote",
+  "phantom champion": "Campeón fantasma",
+  "spectre champion": "Campeón espectro",
+  "butcher champion": "Campeón carnicero",
+  "eternal wardens": "Celadores eternos",
+  "guardian elite": "Élite guardiana",
+  "eternal lord": "Señor eterno",
+  "warden knight": "Caballero celador",
+  "dragon empire": "Imperio del Dragón",
+  "dragonkin captain": "Capitán dracónido",
+  "dragonkin lord": "Señor dracónido",
+  "halflings": "Medianos",
+  "leader": "Líder",
+  "ogres": "Ogros",
+  "tribe master": "Maestro de la tribu",
+  "shortling alliances": "Alianzas menudas",
+  "shortling leader": "Líder menudo",
+  "shortling champion": "Campeón menudo",
+  "treasure hunters": "Cazatesoros",
+  "hunter leader": "Líder cazador",
+  "hunter champion": "Campeón cazador",
+  "brute clans": "Clanes brutos",
+  "brute leader": "Líder bruto",
+  "brute champion": "Campeón bruto",
+  "crazed zealots": "Fanáticos enloquecidos",
+  "zealot leader": "Líder fanático",
+  "zealot champion": "Campeón fanático",
+  "trade federations": "Federaciones comerciales",
+  "federation leader": "Líder de la Federación",
+  "federation champion": "Campeón de la Federación",
+  "hired guards": "Guardias a sueldo",
+  "guard leader": "Líder de la guardia",
+  "guard champion": "Campeón de la guardia",
+  "mercenaries": "Mercenarios",
+  "mercenary leader": "Líder mercenario",
+  "mercenary champion": "Campeón mercenario",
+  "mercenary hireling": "Asalariado mercenario",
+  "outskirt raiders": "Saqueadores de las afueras",
+  "raider leader": "Líder saqueador",
+  "raider champion": "Campeón saqueador",
+  "hidden syndicates": "Sindicatos ocultos",
+  "syndicate leader": "Líder del sindicato",
+  "syndicate champion": "Campeón del sindicato",
+  "furious tribes": "Tribus furiosas",
+  "tribe leader": "Líder de la tribu",
+  "tribe champion": "Campeón de la tribu",
+  "merchant unions": "Uniones mercantes",
+  "merchant leader": "Líder mercader",
+  "merchant champion": "Campeón mercader",
+  "duchies of vinci": "Ducados de Vinci",
+  "vinci leader": "Líder Vinci",
+  "vinci scholar": "Erudito Vinci",
+  "human empire": "Imperio humano",
+  "kingdom of angels": "Reino de los Ángeles",
+  "abbess": "Abadesa",
+  "high angel": "Ángel supremo",
+  "chivalrous kingdoms": "Reinos caballerescos",
+  "high champion": "Campeón supremo",
+  "vale defender": "Defensor del Valle",
+  "ghostly undead": "No muertos fantasmales",
+  "grim leader": "Líder sombrío",
+  "ancient banshee": "Banshee ancestral",
+  "ancient wraith": "Espectro ancestral",
+  "mummified undead": "No muertos momificados",
+  "royal champion": "Campeón real",
+  "skeleton leader": "Líder esqueleto",
+  "ossified undead": "No muertos osificados",
+  "bone master": "Maestro de huesos",
+  "herald of death": "Heraldo de la muerte",
+  "great stalker": "Gran acechador",
+  "vampiric undead": "No muertos vampíricos",
+  "skeleton champion": "Campeón esqueleto",
+  "drained leader": "Líder drenado",
+  "vampire master": "Maestro vampiro",
+  "ghoul champion": "Campeón necrófago",
+  "werewolf champion": "Campeón hombre lobo",
+  "goblins": "Goblins",
+  "goblin leader": "Líder goblin",
+  "troll boss": "Jefe trol",
+  "orcs": "Orcos",
+  "iron guard boss": "Jefe de la Guardia de Hierro",
+  "orc boss": "Jefe orco",
+  "orc leader": "Líder orco",
+  "hobswampling leader": "Líder de los hobciénagas",
+  "brute orc boss": "Jefe orco bruto",
+  "rift daemons": "Demonios de la Grieta",
+  "guilds of the nexus": "Gremios del Nexo",
+  "beastfolk": "Bestias",
+  "havoc": "Caos",
+  "daemons": "Demonios",
+  "elves": "Elfos",
+  "outsiders": "Forasteros",
+  "guilds": "Gremios",
+  "humans": "Humanos",
+  "undead": "No muertos",
+  "greenskins": "Pielesverdes",
+  "otras facciones": "Otras facciones"
+ },
+ "profesiones": {
+  "barbarian": "Bárbaro",
+  "bard": "Bardo",
+  "warlock": "Brujo",
+  "cleric": "Clérigo",
+  "druid": "Druida",
+  "ranger": "Explorador",
+  "fighter": "Guerrero",
+  "sorcerer": "Hechicero",
+  "wizard": "Mago",
+  "monk": "Monje",
+  "paladin": "Paladín",
+  "rogue": "Pícaro"
+ },
+ "reglas": {
+  "ap": {
+   "n": "AP",
+   "es": "AP",
+   "d": "La víctima resta {x} a sus tiradas de Defensa al bloquear los impactos de esta arma."
+  },
+  "unstoppable": {
+   "n": "Unstoppable",
+   "es": "Imparable",
+   "d": "Ignora la Regeneración y todos los modificadores negativos, salvo los de las reglas del propio portador."
+  },
+  "blast": {
+   "n": "Blast",
+   "es": "Explosión",
+   "d": "Ignora la cobertura. Cada impacto se multiplica por {x}, sin pasar del número de miniaturas de la unidad objetivo."
+  },
+  "deadly": {
+   "n": "Deadly",
+   "es": "Letal",
+   "d": "Cada herida se asigna a una sola miniatura y se multiplica por {x}. Se resuelve primero y, si la miniatura muere, el exceso no pasa a otras."
+  },
+  "bane": {
+   "n": "Bane",
+   "es": "Perdición",
+   "d": "Ignora la Regeneración y obliga al objetivo a repetir sus 6 naturales de Defensa."
+  },
+  "rending": {
+   "n": "Rending",
+   "es": "Desgarrador",
+   "d": "Ignora la Regeneración. Cada 6 natural al impactar da AP(+4) a ese impacto."
+  },
+  "assault": {
+   "n": "Assault",
+   "es": "Asalto",
+   "d": "El arma cuenta a la vez como arma a distancia y como arma cuerpo a cuerpo."
+  },
+  "counter": {
+   "n": "Counter",
+   "es": "Contraataque",
+   "d": "Golpea primero cuando la cargan, salvo que la unidad esté fatigada."
+  },
+  "brace": {
+   "n": "Brace",
+   "es": "Afianzado",
+   "d": "Los enemigos que cargan restan {x} a sus tiradas de Impacto, salvo que la unidad esté fatigada."
+  },
+  "smash": {
+   "n": "Smash",
+   "es": "Aplastar",
+   "d": "Si ataca desde más de la mitad de su alcance, el objetivo repite los 6 naturales de Defensa."
+  },
+  "destructive": {
+   "n": "Destructive",
+   "es": "Destructivo",
+   "d": "Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1)."
+  },
+  "thrust": {
+   "n": "Thrust",
+   "es": "Estocada",
+   "d": "Al cargar, +1 a impactar y AP(+1) en cuerpo a cuerpo."
+  },
+  "indirect": {
+   "n": "Indirect",
+   "es": "Indirecto",
+   "d": "Al disparar con una acción de Mantener posición, puede apuntar a enemigos sin línea de visión e ignora la cobertura que bloquea la vista."
+  },
+  "parry": {
+   "n": "Parry",
+   "es": "Parada",
+   "d": "Al recibir impactos en cuerpo a cuerpo, tira {x} dados por miniatura (hasta tantos como impactos). Cada 6+ anula un impacto."
+  },
+  "shred": {
+   "n": "Shred",
+   "es": "Triturar",
+   "d": "Por cada 1 natural en las tiradas de bloqueo del objetivo, el arma causa 1 herida extra."
+  },
+  "precise": {
+   "n": "Precise",
+   "es": "Preciso",
+   "d": "+1 a impactar."
+  },
+  "tough": {
+   "n": "Tough",
+   "es": "Resistente",
+   "d": "Heridas que aguanta antes de quedar inconsciente. Es el valor de Heridas de la ficha."
+  },
+  "caster": {
+   "n": "Caster",
+   "es": "Lanzador",
+   "d": "Puede lanzar hechizos gastando Poder. Los hechizos disponibles dependen de la facción de la raza; el número marca su nivel de lanzador."
+  },
+  "lucky": {
+   "n": "Lucky",
+   "es": "Afortunado",
+   "d": "Al disparar o cargar a enemigos a más de 9″ (disparo) o 6″ (carga), cada 6 natural al impactar causa 1 impacto extra."
+  },
+  "highborn": {
+   "n": "Highborn",
+   "es": "Alta cuna",
+   "d": "+4″ de alcance al disparar y +2″ al cargar."
+  },
+  "strider": {
+   "n": "Strider",
+   "es": "Andarín",
+   "d": "Ignora los efectos del terreno difícil."
+  },
+  "ravage": {
+   "n": "Ravage",
+   "es": "Arrasar",
+   "d": "Una vez por ronda, en su turno de golpear en cuerpo a cuerpo y antes de atacar, tira {x} dados (si no está fatigada). Por cada 6+ el objetivo sufre 1 herida."
+  },
+  "union assault": {
+   "n": "Union Assault",
+   "es": "Asalto de la unión",
+   "d": "Tras desplegarse, puede recolocarse hasta 9″ de su posición, a más de 9″ de enemigos que no tengan Vanguardia."
+  },
+  "melee slayer": {
+   "n": "Melee Slayer",
+   "es": "Asesino cuerpo a cuerpo",
+   "d": "Al cargar, sus armas ganan AP(+2) si la mayoría de la unidad objetivo tiene Resistente(3) o más."
+  },
+  "angelic blessing": {
+   "n": "Angelic Blessing",
+   "es": "Bendición angélica",
+   "d": "Cada herida que recibe se tira aparte: si es de un hechizo se ignora con 2+; si no, y la disparan o cargan desde lejos (más de 9″ o 6″), se ignora con 6+."
+  },
+  "bestial": {
+   "n": "Bestial",
+   "es": "Bestial",
+   "d": "Al atacar, el objetivo repite los 6 naturales de Defensa."
+  },
+  "buccaneer": {
+   "n": "Buccaneer",
+   "es": "Bucanero",
+   "d": "+1 a impactar al disparar a enemigos a más de 9″."
+  },
+  "warden": {
+   "n": "Warden",
+   "es": "Celador",
+   "d": "Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."
+  },
+  "brute courage": {
+   "n": "Brute Courage",
+   "es": "Coraje bruto",
+   "d": "Si empieza la ronda acobardada, tira un dado: con 4+ deja de estarlo."
+  },
+  "runner": {
+   "n": "Runner",
+   "es": "Corredor",
+   "d": "Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."
+  },
+  "battle-hardened": {
+   "n": "Battle-Hardened",
+   "es": "Curtido en batalla",
+   "d": "+1 a las tiradas de moral cuando la disparan o cargan desde lejos (más de 9″ o 6″)."
+  },
+  "destroyer": {
+   "n": "Destroyer",
+   "es": "Destructor",
+   "d": "Al disparar o cargar desde lejos (más de 9″ o 6″), cada 1 natural en los bloqueos del objetivo causa 1 herida extra."
+  },
+  "ambush": {
+   "n": "Ambush",
+   "es": "Emboscada",
+   "d": "Puede apartarse antes del despliegue y entrar en cualquier ronda después de la primera, a más de 9″ de los enemigos. No toma objetivos esa ronda."
+  },
+  "crazed": {
+   "n": "Crazed",
+   "es": "Enloquecido",
+   "d": "Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."
+  },
+  "exotic gear": {
+   "n": "Exotic Gear",
+   "es": "Equipo exótico",
+   "d": "Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar, al disparar o cargar desde lejos."
+  },
+  "scurry": {
+   "n": "Scurry",
+   "es": "Escabullirse",
+   "d": "Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."
+  },
+  "empyrean spirit": {
+   "n": "Empyrean Spirit",
+   "es": "Espíritu empíreo",
+   "d": "Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."
+  },
+  "dodge": {
+   "n": "Dodge",
+   "es": "Esquiva",
+   "d": "Mientras no esté fatigada, los enemigos tienen -1 a impactar contra ella en cuerpo a cuerpo."
+  },
+  "ethereal": {
+   "n": "Ethereal",
+   "es": "Etéreo",
+   "d": "Una vez por activación, antes de atacar, puede recolocarse hasta 6″. Si lo hace, se mueve -6″ al Avanzar y al Correr o Cargar hasta el final de esa activación."
+  },
+  "versatile expert": {
+   "n": "Versatile Expert",
+   "es": "Experto versátil",
+   "d": "Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar."
+  },
+  "scout": {
+   "n": "Scout",
+   "es": "Explorador",
+   "d": "Puede apartarse y desplegarse después de todas las demás unidades, a menos de 9″ de su zona y a más de 9″ de enemigos que no sean Exploradores."
+  },
+  "ferocious": {
+   "n": "Ferocious",
+   "es": "Feroz",
+   "d": "Al disparar o cargar desde lejos (más de 9″ o 6″), cada 6 natural al impactar causa 1 impacto extra."
+  },
+  "furious": {
+   "n": "Furious",
+   "es": "Furioso",
+   "d": "Al cargar, cada 6 natural al impactar causa 1 impacto extra."
+  },
+  "guardian": {
+   "n": "Guardian",
+   "es": "Guardián",
+   "d": "Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."
+  },
+  "royal warrior": {
+   "n": "Royal Warrior",
+   "es": "Guerrero real",
+   "d": "Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."
+  },
+  "harassing": {
+   "n": "Harassing",
+   "es": "Hostigador",
+   "d": "Una vez por ronda puede moverse hasta 3″ después de disparar o de estar en cuerpo a cuerpo."
+  },
+  "fearless": {
+   "n": "Fearless",
+   "es": "Impávido",
+   "d": "Cuando falla un chequeo de moral, tira un dado: con 4+ cuenta como superado."
+  },
+  "drakesworn": {
+   "n": "Drakesworn",
+   "es": "Juramentado del draco",
+   "d": "Tras desplegarse, puede recolocarse hasta 9″ de su posición, a más de 9″ de enemigos que no tengan Vanguardia."
+  },
+  "vale oath": {
+   "n": "Vale Oath",
+   "es": "Juramento del Valle",
+   "d": "Si empieza la ronda acobardada, tira un dado: con 4+ deja de estarlo."
+  },
+  "royal legion": {
+   "n": "Royal Legion",
+   "es": "Legión real",
+   "d": "+4″ de alcance al disparar y +2″ al cargar."
+  },
+  "slow": {
+   "n": "Slow",
+   "es": "Lento",
+   "d": "Se mueve -2″ al Avanzar y -4″ al Correr o Cargar."
+  },
+  "warbound": {
+   "n": "Warbound",
+   "es": "Ligado a la Guerra",
+   "d": "Al disparar o cargar desde lejos (más de 9″ o 6″), cada 1 natural en los bloqueos del objetivo causa 1 herida extra."
+  },
+  "lustbound": {
+   "n": "Lustbound",
+   "es": "Ligado a la Lujuria",
+   "d": "Se mueve +1″ al Avanzar y +2″ al Correr o Cargar."
+  },
+  "plaguebound": {
+   "n": "Plaguebound",
+   "es": "Ligado a la Plaga",
+   "d": "Cada herida que recibe se ignora con 6+."
+  },
+  "changebound": {
+   "n": "Changebound",
+   "es": "Ligado al Cambio",
+   "d": "Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."
+  },
+  "havocbound": {
+   "n": "Havocbound",
+   "es": "Ligado al Caos",
+   "d": "Al disparar o cargar desde lejos (más de 9″ o 6″), sus armas ganan AP(+1)."
+  },
+  "unpredictable fighter": {
+   "n": "Unpredictable Fighter",
+   "es": "Luchador impredecible",
+   "d": "En cuerpo a cuerpo tira un dado: con 1-3, AP(+1) en sus armas; con 4-6, +1 a impactar."
+  },
+  "hold the line": {
+   "n": "Hold the Line",
+   "es": "Mantener la línea",
+   "d": "+1 a las tiradas de moral cuando la disparan o cargan desde lejos (más de 9″ o 6″)."
+  },
+  "fear": {
+   "n": "Fear",
+   "es": "Miedo",
+   "d": "En cuerpo a cuerpo, los enemigos cuentan con +{x} a sus heridas al decidir quién gana el combate."
+  },
+  "shadowborn": {
+   "n": "Shadowborn",
+   "es": "Nacido de las sombras",
+   "d": "Los enemigos que le disparan tienen -4″ de alcance y los que le cargan -2″ (mínimo 6″)."
+  },
+  "gloom-mist": {
+   "n": "Gloom-Mist",
+   "es": "Niebla lúgubre",
+   "d": "Los enemigos que le disparan o cargan desde lejos (más de 9″ o 6″) tienen -1 a impactar."
+  },
+  "cursed undead": {
+   "n": "Cursed Undead",
+   "es": "No muerto maldito",
+   "d": "Cada herida que recibe se ignora con 6+."
+  },
+  "ossified": {
+   "n": "Ossified",
+   "es": "Osificado",
+   "d": "Los impactos que recibe cuentan como AP(-1), con un mínimo de AP(0)."
+  },
+  "wave-step": {
+   "n": "Wave-Step",
+   "es": "Paso de ola",
+   "d": "Al activarse, puede moverse hasta D3″ adicionales."
+  },
+  "primal": {
+   "n": "Primal",
+   "es": "Primigenio",
+   "d": "Por cada 6 natural al impactar, +1 ataque con esa arma (los ataques nuevos no se encadenan)."
+  },
+  "regeneration": {
+   "n": "Regeneration",
+   "es": "Regeneración",
+   "d": "Cada herida que recibe se ignora con 5+."
+  },
+  "spell resistance": {
+   "n": "Spell Resistance",
+   "es": "Resistencia a hechizos",
+   "d": "Las heridas de hechizos se ignoran con 2+; las demás, con 6+."
+  },
+  "sturdy": {
+   "n": "Sturdy",
+   "es": "Robusto",
+   "d": "+1 a las tiradas de Defensa cuando la disparan o cargan desde lejos (más de 9″ o 6″)."
+  },
+  "fast": {
+   "n": "Fast",
+   "es": "Rápido",
+   "d": "Se mueve +2″ al Avanzar y +4″ al Correr o Cargar."
+  },
+  "savage": {
+   "n": "Savage",
+   "es": "Salvaje",
+   "d": "Al disparar o cargar desde lejos (más de 9″ o 6″), cada 6 natural al impactar causa 1 impacto extra."
+  },
+  "raider": {
+   "n": "Raider",
+   "es": "Saqueador",
+   "d": "Al atacar, el objetivo repite los 6 naturales de Defensa."
+  },
+  "vinci tech": {
+   "n": "Vinci Tech",
+   "es": "Tecnología Vinci",
+   "d": "Al activarse, elige un efecto hasta el final de la activación: AP(+1) en sus armas o +1 a impactar, al disparar o cargar desde lejos."
+  },
+  "tenacious": {
+   "n": "Tenacious",
+   "es": "Tenaz",
+   "d": "+1 a las tiradas de Defensa cuando la disparan o cargan desde lejos (más de 9″ o 6″)."
+  },
+  "mischievous": {
+   "n": "Mischievous",
+   "es": "Travieso",
+   "d": "Al atacar, el objetivo repite los 6 naturales de Defensa."
+  },
+  "wild veil": {
+   "n": "Wild Veil",
+   "es": "Velo salvaje",
+   "d": "Los enemigos que le disparan tienen -4″ de alcance y los que le cargan -2″ (mínimo 6″)."
+  },
+  "flying": {
+   "n": "Flying",
+   "es": "Volador",
+   "d": "Puede atravesar unidades y terreno, e ignora el terreno difícil y el peligroso."
+  },
+  "impact": {
+   "n": "Impact",
+   "es": "Impacto",
+   "d": "Al cargar, antes de que ataque nadie y salvo que esté fatigada, tira X dados: cada 2+ causa 1 impacto al objetivo."
+  },
+  "stealth": {
+   "n": "Stealth",
+   "es": "Sigilo",
+   "d": "Si la disparan desde más de 9″, los enemigos tienen -1 a impactar."
+  },
+  "reliable": {
+   "n": "Reliable",
+   "es": "Fiable",
+   "d": "Ataca con Calidad 2+."
+  },
+  "surge": {
+   "n": "Surge",
+   "es": "Oleada",
+   "d": "Por cada 6 natural al impactar, el arma causa 1 impacto extra (solo el impacto original cuenta como 6 para otras reglas)."
+  },
+  "relentless": {
+   "n": "Relentless",
+   "es": "Implacable",
+   "d": "Al disparar a enemigos a más de 9″, cada 6 natural al impactar causa 1 impacto extra."
+  },
+  "villain": {
+   "n": "Villain",
+   "es": "Villano",
+   "d": "Las unidades de la IA a 6″ usan la Calidad del Villano en sus chequeos de moral si es mejor que la suya, mientras él no esté acobardado."
+  },
+  "immobile": {
+   "n": "Immobile",
+   "es": "Inmóvil",
+   "d": "Solo puede usar la acción Mantener."
+  },
+  "limited": {
+   "n": "Limited",
+   "es": "Limitado",
+   "d": "Solo puede usarse una vez por misión."
+  },
+  "spell amplifier": {
+   "n": "Spell Amplifier",
+   "es": "Amplificador de hechizos",
+   "d": "+1 a las tiradas de lanzamiento de hechizos."
+  },
+  "defense": {
+   "n": "Defense",
+   "es": "Defensa",
+   "d": "+X a las tiradas de Defensa."
+  },
+  "hero": {
+   "n": "Hero",
+   "d": "Los héroes no tiran moral, no se pueden sacar de la mesa por moral y sus efectos se anotan en su ficha."
+  },
+  "unwieldy": {
+   "n": "Unwieldy",
+   "d": "Ataca al final cuando carga."
+  },
+  "armor": {
+   "n": "Armor",
+   "d": "Se resta 1 a las tiradas de daño sobre esta unidad."
+  },
+  "fortified": {
+   "n": "Fortified",
+   "d": "Obtiene +1 a la Defensa cuando se encuentra en cobertura."
+  },
+  "heavy impact": {
+   "n": "Heavy Impact",
+   "d": "Como Impact, pero cada impacto cuenta el doble."
+  },
+  "takedown": {
+   "n": "Takedown",
+   "d": "Si el objetivo es un héroe, puede repetir las tiradas de impacto."
+  },
+  "piercing feat": {
+   "n": "Piercing Feat",
+   "d": "Ignora un efecto de defensa por cada X impactos."
+  }
+ },
+ "habilidades": {
+  "rage": {
+   "n": "Furia",
+   "d": "El Héroe sufre 1 herida y obtiene +2 para impactar cuerpo a cuerpo al cargar, hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "reckless": {
+   "n": "Temerario",
+   "d": "Hasta el final de la ronda, siempre que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos una herida, causa una herida adicional; pero siempre que sufra al menos una herida, sufre una herida adicional.",
+   "a": "Destreza"
+  },
+  "challenge": {
+   "n": "Desafío",
+   "d": "Elige dos unidades enemigas a 12\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son atraídas hasta 6\" directamente hacia el Héroe.",
+   "a": "Voluntad"
+  },
+  "blood frenzy": {
+   "n": "Frenesí de sangre",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos una herida cuerpo a cuerpo, causa dos heridas adicionales, pero sufre una herida.",
+   "a": "Fuerza"
+  },
+  "feral instinct": {
+   "n": "Instinto salvaje",
+   "d": "Hasta el final de la ronda, los enemigos obtienen -1 para impactar al atacar al Héroe cuerpo a cuerpo o al dispararle desde 12\" o menos.",
+   "a": "Destreza"
+  },
+  "aimed strike": {
+   "n": "Golpe certero",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.",
+   "a": "Voluntad"
+  },
+  "intimidating": {
+   "n": "Intimidante",
+   "d": "Elige dos unidades enemigas a 3\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.",
+   "a": "Fuerza"
+  },
+  "vicious": {
+   "n": "Despiadado",
+   "d": "Hasta el final de la ronda, siempre que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional; pero siempre que reciba al menos un impacto, recibe un impacto adicional.",
+   "a": "Destreza"
+  },
+  "dazed attack": {
+   "n": "Ataque aturdido",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa dos impactos adicionales, pero sufre una herida.",
+   "a": "Voluntad"
+  },
+  "brutal": {
+   "n": "Brutal",
+   "d": "Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "furious shout": {
+   "n": "Grito furioso",
+   "d": "Elige dos unidades enemigas a 3\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son empujadas 6\" directamente en dirección contraria.",
+   "a": "Destreza"
+  },
+  "toughen up": {
+   "n": "Endurecerse",
+   "d": "El Héroe sufre 1 herida, y hasta el final de la ronda obtiene +2 en las tiradas de Def cuerpo a cuerpo o cuando le disparen desde 12\" o menos.",
+   "a": "Voluntad"
+  },
+  "distracting tune": {
+   "n": "Melodía distractora",
+   "d": "Elige una unidad enemiga a 9\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 en las tiradas de Defensa la próxima vez que sea atacada.",
+   "a": "Fuerza"
+  },
+  "inspire": {
+   "n": "Inspirar",
+   "d": "Elige otras dos unidades aliadas a 9\" o menos, que obtienen +1 en su próxima tirada de atributo cada una.",
+   "a": "Destreza"
+  },
+  "song of health": {
+   "n": "Canción de salud",
+   "d": "Elige otros dos héroes aliados a 9\" o menos, que recuperan 1 herida cada uno.",
+   "a": "Voluntad"
+  },
+  "repelling song": {
+   "n": "Canción repulsora",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son empujadas 6\" directamente en dirección contraria.",
+   "a": "Fuerza"
+  },
+  "curing melody": {
+   "n": "Melodía curativa",
+   "d": "Elige otras dos unidades aliadas a 9\" o menos, que pierden un estado cada una.",
+   "a": "Destreza"
+  },
+  "persuade": {
+   "n": "Persuadir",
+   "d": "Elige una unidad enemiga a 12\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 para impactar hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "motivate": {
+   "n": "Motivar",
+   "d": "Elige otra unidad aliada a 9\" o menos, que obtiene +2 en las tiradas para impactar la próxima vez que ataque.",
+   "a": "Fuerza"
+  },
+  "song of fear": {
+   "n": "Canción del miedo",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.",
+   "a": "Destreza"
+  },
+  "charm": {
+   "n": "Encantar",
+   "d": "Elige una unidad enemiga a 6\" o menos, que no puede elegir al Héroe como objetivo hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "song of rest": {
+   "n": "Canción del descanso",
+   "d": "Elige otros dos héroes aliados a 9\" o menos, que recuperan 1 de Poder cada uno.",
+   "a": "Fuerza"
+  },
+  "mockery": {
+   "n": "Burla",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que obtienen -1 en su próxima tirada de atributo cada una.",
+   "a": "Destreza"
+  },
+  "warding song": {
+   "n": "Canción protectora",
+   "d": "Elige otra unidad aliada a 9\" o menos, que obtiene +2 en las tiradas de Def la próxima vez que reciba impactos.",
+   "a": "Voluntad"
+  },
+  "pact of strength": {
+   "n": "Pacto de fuerza",
+   "d": "El Héroe sufre 1 herida, y el próximo hechizo que lance antes del final de la ronda obtiene PA(+2).",
+   "a": "Fuerza"
+  },
+  "fiendish respite": {
+   "n": "Respiro diabólico",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, recupera D3+1 de Poder.",
+   "a": "Destreza"
+  },
+  "dark warding": {
+   "n": "Protección oscura",
+   "d": "El Héroe sufre 1 herida y obtiene +2 en las tiradas de Defensa hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "dark sacrifice": {
+   "n": "Sacrificio oscuro",
+   "d": "El Héroe sufre 1 herida y después causa 1 herida a una unidad enemiga a 6\" o menos.",
+   "a": "Fuerza"
+  },
+  "fey curse": {
+   "n": "Maldición feérica",
+   "d": "Elige una unidad enemiga a 12\" o menos, que debe hacer un chequeo de moral. Si lo falla, obtiene -2 para impactar hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "pact of wisdom": {
+   "n": "Pacto de sabiduría",
+   "d": "El Héroe sufre 1 herida, y hasta el final de la ronda obtiene +1 en las tiradas de lanzamiento de hechizos; además, si gasta fichas para modificar tiradas de lanzamiento enemigas, el enemigo obtiene un -1 adicional.",
+   "a": "Voluntad"
+  },
+  "fiendish cantrip": {
+   "n": "Truco diabólico",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, obtiene una ficha de hechizo y pierde 1 de Poder.",
+   "a": "Fuerza"
+  },
+  "dark transfer": {
+   "n": "Transferencia oscura",
+   "d": "El Héroe sufre 1 herida, y otro Héroe a 3\" o menos recupera D3+1 heridas.",
+   "a": "Destreza"
+  },
+  "fey whispers": {
+   "n": "Susurros feéricos",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, quedan Acobardadas.",
+   "a": "Voluntad"
+  },
+  "fey domination": {
+   "n": "Dominación feérica",
+   "d": "Elige una unidad enemiga a 6\" o menos, que no puede elegir al Héroe como objetivo hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "pact of skill": {
+   "n": "Pacto de habilidad",
+   "d": "El Héroe sufre D3 heridas, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo enemigo adicional.",
+   "a": "Destreza"
+  },
+  "fiendish blessing": {
+   "n": "Bendición diabólica",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga, recupera D3 heridas.",
+   "a": "Voluntad"
+  },
+  "guidance": {
+   "n": "Guía",
+   "d": "Elige otras dos unidades aliadas a 6\" o menos, que obtienen +1 en su próxima tirada de atributo cada una.",
+   "a": "Fuerza"
+  },
+  "shield of faith": {
+   "n": "Escudo de fe",
+   "d": "Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas de Def la próxima vez que reciba impactos.",
+   "a": "Destreza"
+  },
+  "healing word": {
+   "n": "Palabra sanadora",
+   "d": "Elige dos héroes aliados a 6\" o menos, que recuperan 1 herida cada uno.",
+   "a": "Voluntad"
+  },
+  "divine strike": {
+   "n": "Golpe divino",
+   "d": "Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "cure wounds": {
+   "n": "Curar heridas",
+   "d": "Elige otro Héroe aliado a 3\" o menos, que pierde todos sus estados.",
+   "a": "Destreza"
+  },
+  "multiply": {
+   "n": "Multiplicar",
+   "d": "Coloca un marcador de multiplicación a 3\" o menos. Los enemigos tratan el marcador como un Héroe hasta el final de la ronda. Retira el marcador si un enemigo lo ataca o se mueve a 1\" o menos de él.",
+   "a": "Voluntad"
+  },
+  "holy protection": {
+   "n": "Protección sagrada",
+   "d": "Elige una unidad aliada a 6\" o menos, que no puede ser elegida como objetivo por los enemigos hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "bless": {
+   "n": "Bendecir",
+   "d": "Elige otra unidad aliada a 6\" o menos, que obtiene +1 para impactar hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "spirit guardians": {
+   "n": "Espíritus guardianes",
+   "d": "Coloca un marcador de espíritus guardianes a 6\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "bane": {
+   "n": "Perdición",
+   "d": "Elige una unidad enemiga a 12\" o menos, que obtiene -1 para impactar hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "guiding bolt": {
+   "n": "Proyectil guía",
+   "d": "Elige una unidad enemiga a 6\" o menos. Todas las unidades aliadas obtienen +1 para impactarla hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "opulent revival": {
+   "n": "Reanimación opulenta",
+   "d": "Reanima a todos los héroes inconscientes a 6\" o menos, que recuperan D3 heridas cada uno.",
+   "a": "Voluntad"
+  },
+  "thorn whip": {
+   "n": "Látigo de espinas",
+   "d": "Elige una unidad enemiga a 9\" o menos, que sufre un impacto y después es atraída hasta 6\" directamente hacia el Héroe.",
+   "a": "Fuerza"
+  },
+  "barkskin": {
+   "n": "Piel de corteza",
+   "d": "El Héroe obtiene +1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "fog cloud": {
+   "n": "Nube de niebla",
+   "d": "Coloca un marcador de nube de niebla a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno de cobertura para las unidades aliadas hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "spike growth": {
+   "n": "Crecimiento de pinchos",
+   "d": "Coloca un marcador de crecimiento de pinchos a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno difícil para los enemigos hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "wolf form": {
+   "n": "Forma de lobo",
+   "d": "El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "natural recovery": {
+   "n": "Recuperación natural",
+   "d": "El Héroe obtiene una ficha de hechizo y pierde D3 de Poder.",
+   "a": "Voluntad"
+  },
+  "power berry": {
+   "n": "Baya de poder",
+   "d": "Elige una unidad aliada a 3\" o menos, que recupera 1 herida y pierde un estado.",
+   "a": "Fuerza"
+  },
+  "insect plague": {
+   "n": "Plaga de insectos",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que sufren 1 impacto cada una.",
+   "a": "Destreza"
+  },
+  "panther form": {
+   "n": "Forma de pantera",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe cargue y cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.",
+   "a": "Voluntad"
+  },
+  "bear form": {
+   "n": "Forma de oso",
+   "d": "Hasta el final de la ronda, siempre que el Héroe reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).",
+   "a": "Fuerza"
+  },
+  "wall of thorns": {
+   "n": "Muro de espinas",
+   "d": "Coloca un marcador de muro de espinas a 9\" o menos. La zona a 3\" o menos del marcador cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "circle of spores": {
+   "n": "Círculo de esporas",
+   "d": "Coloca un marcador de esporas sobre dos unidades enemigas a 9\" o menos. Cuando esas unidades se activen, tira un dado por cada marcador: con 4+ se retira el marcador; si no, la unidad sufre 1 impacto.",
+   "a": "Voluntad"
+  },
+  "hunting beast": {
+   "n": "Bestia de caza",
+   "d": "Elige una unidad enemiga a 6\" o menos, que sufre 2 impactos.",
+   "a": "Fuerza"
+  },
+  "dread attack": {
+   "n": "Ataque pavoroso",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde más de 12\", ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.",
+   "a": "Destreza"
+  },
+  "healing ointment": {
+   "n": "Ungüento curativo",
+   "d": "Elige una unidad aliada a 3\" o menos, que recupera 1 herida y pierde un estado.",
+   "a": "Voluntad"
+  },
+  "stalker's flurry": {
+   "n": "Ráfaga del acechador",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga disparando, puede disparar inmediatamente a otra unidad enemiga.",
+   "a": "Fuerza"
+  },
+  "stalking pet": {
+   "n": "Mascota acechadora",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde más de 12\", si causa al menos un impacto, causa un impacto adicional.",
+   "a": "Destreza"
+  },
+  "hunter's mark": {
+   "n": "Marca del cazador",
+   "d": "Elige una unidad enemiga a más de 12\". El Héroe obtiene +D3 para impactar al atacarla hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "steel will": {
+   "n": "Voluntad de acero",
+   "d": "Los Héroes pueden usar esta acción de Habilidad incluso estando Acobardados. El Héroe deja de estar Acobardado.",
+   "a": "Fuerza"
+  },
+  "surge shot": {
+   "n": "Disparo de oleada",
+   "d": "El Héroe puede hacer inmediatamente una acción de Mantener posición y disparar a un objetivo a 12\" o menos.",
+   "a": "Destreza"
+  },
+  "tracking bird": {
+   "n": "Pájaro rastreador",
+   "d": "El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 18\" o menos.",
+   "a": "Voluntad"
+  },
+  "giant killer": {
+   "n": "Matagigantes",
+   "d": "Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "umbral shroud": {
+   "n": "Manto umbrío",
+   "d": "Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
+   "a": "Destreza"
+  },
+  "volley": {
+   "n": "Andanada",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe dispare a una unidad enemiga, tras resolver el ataque, puede disparar inmediatamente a otra unidad enemiga a 3\" o menos de la primera.",
+   "a": "Voluntad"
+  },
+  "combat superiority": {
+   "n": "Superioridad en combate",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional.",
+   "a": "Fuerza"
+  },
+  "evasive": {
+   "n": "Evasivo",
+   "d": "Hasta el final de la ronda, la próxima vez que un enemigo ataque al Héroe, obtiene -1 para impactar.",
+   "a": "Destreza"
+  },
+  "rally": {
+   "n": "Reagrupar",
+   "d": "Los Héroes pueden usar esta acción de Habilidad incluso estando Acobardados. El Héroe deja de estar Acobardado.",
+   "a": "Voluntad"
+  },
+  "disarming attack": {
+   "n": "Ataque desarmante",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo obtiene -1 para impactar hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "sweeping attack": {
+   "n": "Ataque de barrido",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe cargue contra una unidad enemiga, tras resolver el combate, puede hacer inmediatamente otra acción de Cargar contra otra unidad enemiga a 3\" o menos.",
+   "a": "Destreza"
+  },
+  "taunt": {
+   "n": "Provocar",
+   "d": "Elige dos unidades enemigas a 9\" o menos, que deben hacer un chequeo de moral. Si lo fallan, son atraídas hasta 6\" directamente hacia el Héroe.",
+   "a": "Voluntad"
+  },
+  "indomitable": {
+   "n": "Indomable",
+   "d": "Hasta el final de la ronda, siempre que el Héroe reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).",
+   "a": "Fuerza"
+  },
+  "menacing attack": {
+   "n": "Ataque amenazador",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.",
+   "a": "Destreza"
+  },
+  "relentless attack": {
+   "n": "Ataque implacable",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe destruya una unidad enemiga cuerpo a cuerpo, puede hacer inmediatamente otra acción de Cargar contra otra unidad enemiga.",
+   "a": "Voluntad"
+  },
+  "surge charge": {
+   "n": "Carga de oleada",
+   "d": "El Héroe puede hacer inmediatamente una acción de Cargar contra un objetivo a 6\" o menos.",
+   "a": "Fuerza"
+  },
+  "second wind": {
+   "n": "Segundo aliento",
+   "d": "El Héroe recupera D3+1 heridas y pierde 1 de Poder.",
+   "a": "Destreza"
+  },
+  "pushing attack": {
+   "n": "Ataque de empuje",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, tras resolver el combate, la unidad enemiga es empujada 6\" directamente en dirección contraria.",
+   "a": "Voluntad"
+  },
+  "tides of chaos": {
+   "n": "Mareas del caos",
+   "d": "Hasta el final de la ronda, el Héroe recupera D3+2 de Poder la próxima vez que lance con éxito un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo no consiga lanzar el hechizo.",
+   "a": "Fuerza"
+  },
+  "methodical affinity": {
+   "n": "Afinidad metódica",
+   "d": "El Héroe puede gastar X de Poder (máx. 3) y obtiene +X+1 en su próxima tirada de atributo.",
+   "a": "Destreza"
+  },
+  "distant spell": {
+   "n": "Hechizo lejano",
+   "d": "El Héroe puede gastar X de Poder (máx. 3), y hasta el final de la ronda obtiene +X×6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas.",
+   "a": "Voluntad"
+  },
+  "practical resilience": {
+   "n": "Resiliencia práctica",
+   "d": "El Héroe puede gastar X de Poder (máx. 3) para obtener +X+1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "twin spell": {
+   "n": "Hechizo gemelo",
+   "d": "El Héroe gasta D3+2 de Poder, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo enemigo adicional.",
+   "a": "Destreza"
+  },
+  "lightning strike": {
+   "n": "Golpe relámpago",
+   "d": "El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 6\" o menos, que sufre X+1 impactos con PA(3).",
+   "a": "Voluntad"
+  },
+  "heightened spell": {
+   "n": "Hechizo potenciado",
+   "d": "El Héroe pierde X de Poder, y el próximo hechizo que lance antes del final de la ronda obtiene PA(+X).",
+   "a": "Fuerza"
+  },
+  "storm fury": {
+   "n": "Furia de la tormenta",
+   "d": "El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 9\" o menos, que sufre X+1 impactos con PA(1).",
+   "a": "Destreza"
+  },
+  "laborious healing": {
+   "n": "Curación laboriosa",
+   "d": "Hasta el final de la ronda, el Héroe recupera D3+1 heridas la próxima vez que lance con éxito un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo no consiga lanzar el hechizo.",
+   "a": "Voluntad"
+  },
+  "thunderwave": {
+   "n": "Onda atronadora",
+   "d": "El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 3\" o menos, que sufre X+2 impactos.",
+   "a": "Fuerza"
+  },
+  "tinkered luck": {
+   "n": "Suerte apañada",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe no consiga lanzar un hechizo, o la próxima vez que gaste fichas para modificar una tirada de lanzamiento enemiga y el enemigo consiga lanzar el hechizo, puedes repetir esa tirada de lanzamiento.",
+   "a": "Destreza"
+  },
+  "crafted wings": {
+   "n": "Alas artesanas",
+   "d": "El Héroe puede gastar X de Poder (máx. 3) y después puede colocarse en cualquier punto a 5+X\" o menos.",
+   "a": "Voluntad"
+  },
+  "conjuration": {
+   "n": "Conjuración",
+   "d": "Hasta el final de la ronda, el Héroe obtiene +6\" de alcance, ya sea al lanzar su próximo hechizo o la próxima vez que gaste fichas para modificar tiradas de lanzamiento enemigas.",
+   "a": "Fuerza"
+  },
+  "enchantment": {
+   "n": "Encantamiento",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que haga un chequeo de moral. Si lo falla, queda Acobardado.",
+   "a": "Destreza"
+  },
+  "arcana": {
+   "n": "Arcanos",
+   "d": "El Héroe gasta D3 de Poder, y hasta el final de la ronda obtiene +1 en las tiradas de lanzamiento de hechizos; además, si gasta fichas para modificar tiradas de lanzamiento enemigas, el enemigo obtiene un -1 adicional.",
+   "a": "Voluntad"
+  },
+  "divination": {
+   "n": "Adivinación",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo, el objetivo recupera D3+1 de Poder.",
+   "a": "Fuerza"
+  },
+  "abjuration": {
+   "n": "Abjuración",
+   "d": "El Héroe recupera D3+1 heridas y pierde 1 de Poder.",
+   "a": "Destreza"
+  },
+  "transmutation": {
+   "n": "Transmutación",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo, uno de los objetivos recupera D3 heridas.",
+   "a": "Voluntad"
+  },
+  "recovery": {
+   "n": "Recuperación",
+   "d": "El Héroe recupera D3+1 de Poder.",
+   "a": "Fuerza"
+  },
+  "evocation": {
+   "n": "Evocación",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance un hechizo que tenga como objetivo a enemigos, ese hechizo obtiene PA(+D3).",
+   "a": "Destreza"
+  },
+  "illusion": {
+   "n": "Ilusión",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que obtenga -1 para impactar hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "necromancy": {
+   "n": "Nigromancia",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe lance con éxito un hechizo que tenga como objetivo a enemigos, elige a uno de ellos para que sufra D3 impactos.",
+   "a": "Fuerza"
+  },
+  "duplication": {
+   "n": "Duplicación",
+   "d": "El Héroe pierde D3 de Poder, y el próximo hechizo que lance antes del final de la ronda puede elegir un objetivo aliado adicional.",
+   "a": "Destreza"
+  },
+  "preparation": {
+   "n": "Preparación",
+   "d": "El Héroe obtiene una ficha de hechizo y pierde D3 de Poder.",
+   "a": "Voluntad"
+  },
+  "flurry of blows": {
+   "n": "Ráfaga de golpes",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, si causa al menos un impacto, causa un impacto adicional.",
+   "a": "Fuerza"
+  },
+  "lightning reflexes": {
+   "n": "Reflejos relámpago",
+   "d": "Hasta el final de la ronda, al recibir un impacto, tira un dado. Con 6+ se ignora.",
+   "a": "Destreza"
+  },
+  "martial strike": {
+   "n": "Golpe marcial",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo, tras resolver el combate, la unidad enemiga es empujada 6\" directamente en dirección contraria.",
+   "a": "Voluntad"
+  },
+  "athletics": {
+   "n": "Atletismo",
+   "d": "El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "cloak of shadow": {
+   "n": "Manto de sombra",
+   "d": "Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
+   "a": "Destreza"
+  },
+  "elemental rest": {
+   "n": "Descanso elemental",
+   "d": "El Héroe puede gastar X de Poder (máx. 3) para recuperar X+2 heridas.",
+   "a": "Voluntad"
+  },
+  "elemental strike": {
+   "n": "Golpe elemental",
+   "d": "El Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 12\" o menos, que sufre X+1 impactos.",
+   "a": "Fuerza"
+  },
+  "topple": {
+   "n": "Derribar",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo cuerpo a cuerpo o le dispare desde 12\" o menos, ese enemigo debe hacer un chequeo de moral al final de esa activación. Si lo falla, queda Acobardado.",
+   "a": "Destreza"
+  },
+  "suppress": {
+   "n": "Suprimir",
+   "d": "Elige una unidad enemiga a 9\" o menos, que obtiene -2 en las tiradas de lanzamiento de hechizos hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "mind vision": {
+   "n": "Visión mental",
+   "d": "El Héroe puede recoger una ficha de Búsqueda en línea de visión y a 1\" o menos, y puede modificar en +2/-2 la tirada para ver qué contiene.",
+   "a": "Fuerza"
+  },
+  "elemental protection": {
+   "n": "Protección elemental",
+   "d": "El Héroe puede gastar X de Poder (máx. 3) para obtener +X+1 en las tiradas de Def la próxima vez que reciba impactos, hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "shadow step": {
+   "n": "Paso sombrío",
+   "d": "El Héroe puede colocarse en cualquier punto a 2D3+1\" o menos.",
+   "a": "Voluntad"
+  },
+  "vengeful strike": {
+   "n": "Golpe vengativo",
+   "d": "Hasta el final de la ronda, siempre que el Héroe ataque cuerpo a cuerpo a un enemigo Acobardado o le dispare desde 12\" o menos, obtiene +1 para impactar.",
+   "a": "Fuerza"
+  },
+  "devoted warding": {
+   "n": "Protección devota",
+   "d": "Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, siempre que reciba impactos, esos impactos cuentan como si tuvieran PA(-1), hasta un mínimo de PA(0).",
+   "a": "Destreza"
+  },
+  "ancient weapon": {
+   "n": "Arma ancestral",
+   "d": "Elige otra unidad aliada a 6\" o menos, que obtiene +2 en las tiradas para impactar la próxima vez que ataque.",
+   "a": "Voluntad"
+  },
+  "spiteful control": {
+   "n": "Control rencoroso",
+   "d": "Elige dos unidades enemigas a 3\" o menos, que no pueden moverse hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "ancient speed": {
+   "n": "Velocidad ancestral",
+   "d": "Elige otra unidad aliada a 6\" o menos. La unidad obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "spiteful curse": {
+   "n": "Maldición rencorosa",
+   "d": "Elige dos unidades enemigas a 6\" o menos, que obtienen -1 en su próxima tirada de atributo cada una.",
+   "a": "Voluntad"
+  },
+  "devoted rebuke": {
+   "n": "Reprimenda devota",
+   "d": "Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que un enemigo la ataque, la unidad enemiga sufre D3 impactos.",
+   "a": "Fuerza"
+  },
+  "spiteful vow": {
+   "n": "Voto rencoroso",
+   "d": "Elige una unidad enemiga a 6\" o menos. Hasta el final de la ronda, la próxima vez que una unidad aliada le cause al menos una herida, le causa una herida adicional.",
+   "a": "Destreza"
+  },
+  "vengeful might": {
+   "n": "Poderío vengativo",
+   "d": "Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "ancient aura": {
+   "n": "Aura ancestral",
+   "d": "Elige otra unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que esa unidad ataque y cause al menos un impacto, causa un impacto adicional.",
+   "a": "Fuerza"
+  },
+  "vengeful haste": {
+   "n": "Prisa vengativa",
+   "d": "El Héroe obtiene +D3\" al Avanzar y +2D3\" al Correr/Cargar la próxima vez que se mueva, hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "devoted aura": {
+   "n": "Aura devota",
+   "d": "Elige una unidad aliada a 6\" o menos. Hasta el final de la ronda, la próxima vez que recupere heridas, recupera dos heridas adicionales.",
+   "a": "Voluntad"
+  },
+  "trickster": {
+   "n": "Embaucador",
+   "d": "Coloca un marcador de embaucador a 3\" o menos. Los enemigos tratan el marcador como un Héroe hasta el final de la ronda. Retira el marcador si un enemigo lo ataca o se mueve a 1\" o menos de él.",
+   "a": "Fuerza"
+  },
+  "sleight of hand": {
+   "n": "Juego de manos",
+   "d": "El Héroe puede recoger una ficha de Búsqueda en línea de visión y a 1\" o menos, y puede modificar hasta en +2/-2 la tirada para ver qué contiene.",
+   "a": "Destreza"
+  },
+  "vicious strike": {
+   "n": "Golpe despiadado",
+   "d": "Las armas del Héroe obtienen PA(+1) hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "sneak attack": {
+   "n": "Ataque furtivo",
+   "d": "Hasta el final de la ronda, el Héroe obtiene +1 para impactar al cargar contra enemigos que no tenían línea de visión hacia el Héroe cuando este se activó.",
+   "a": "Fuerza"
+  },
+  "elude": {
+   "n": "Eludir",
+   "d": "Hasta el final de la ronda, los enemigos obtienen -1 para impactar al atacar al Héroe cuerpo a cuerpo o al dispararle desde 12\" o menos.",
+   "a": "Destreza"
+  },
+  "hide": {
+   "n": "Ocultarse",
+   "d": "Hasta el final de la ronda, los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
+   "a": "Voluntad"
+  },
+  "dash": {
+   "n": "Arrancada",
+   "d": "El Héroe obtiene +1\" al Avanzar y +2\" al Correr/Cargar hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "blurred step": {
+   "n": "Paso difuso",
+   "d": "El Héroe puede colocarse en cualquier punto a 2D3+1\" o menos.",
+   "a": "Destreza"
+  },
+  "hit & run": {
+   "n": "Golpe y huida",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe ataque a un enemigo, tras resolver el ataque, el Héroe puede moverse hasta 6\".",
+   "a": "Voluntad"
+  },
+  "dodge target": {
+   "n": "Esquivar objetivo",
+   "d": "Elige una unidad enemiga a 12\" o menos, que obtiene -1 para impactar hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "assassination": {
+   "n": "Asesinato",
+   "d": "Hasta el final de la ronda, la próxima vez que el Héroe dispare a un enemigo que no tenía línea de visión hacia el Héroe cuando este se activó y cause al menos un impacto, causa un impacto adicional.",
+   "a": "Destreza"
+  },
+  "infiltrate": {
+   "n": "Infiltrarse",
+   "d": "El Héroe obtiene +3\" al Avanzar y +6\" al Correr/Cargar hasta el final de la ronda, pero no puede moverse si en algún momento quedara dentro de la línea de visión enemiga.",
+   "a": "Voluntad"
+  },
+  "battle rest": {
+   "n": "Descanso de batalla",
+   "d": "El Héroe recupera D3+1 de Poder.",
+   "a": "Fuerza"
+  },
+  "protector": {
+   "n": "Protector",
+   "d": "El Héroe obtiene +1 en las tiradas de Def hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "curing touch": {
+   "n": "Toque curativo",
+   "d": "El Héroe pierde un estado. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos.",
+   "a": "Destreza"
+  },
+  "concentrate": {
+   "n": "Concentración",
+   "d": "El Héroe sufre 1 herida y obtiene +2 en su próxima tirada de atributo.",
+   "a": "Destreza"
+  },
+  "healing touch": {
+   "n": "Toque sanador",
+   "d": "El Héroe recupera D3 heridas. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos.",
+   "a": "Voluntad"
+  },
+  "inspect": {
+   "n": "Inspeccionar",
+   "d": "El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 9\" o menos, y puede modificar en +1/-1 la tirada para ver qué contiene.",
+   "a": "Voluntad"
+  },
+  "sprint": {
+   "n": "Esprint",
+   "d": "El Héroe obtiene +2\" al Avanzar y +4\" al Correr/Cargar la próxima vez que se mueva, hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "shockwave": {
+   "n": "Onda de choque",
+   "d": "Elige una unidad enemiga a 3\" o menos, que es empujada 6\" directamente en dirección contraria.",
+   "a": "Fuerza"
+  },
+  "trapper": {
+   "n": "Trampero",
+   "d": "La zona a 3\" o menos del Héroe cuenta como Terreno difícil para los enemigos hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "distraction": {
+   "n": "Distracción",
+   "d": "Coloca un marcador de distracción a 12\" o menos. Los enemigos tratan el marcador más cercano como el objetivo de la IA. Retira el marcador al final de 3 rondas, o cuando un enemigo se mueva a 1\" o menos de él.",
+   "a": "Destreza"
+  },
+  "resurrect": {
+   "n": "Resucitar",
+   "d": "Reanima a un Héroe inconsciente a 3\" o menos, que recupera D3+1 heridas.",
+   "a": "Voluntad"
+  },
+  "pacify": {
+   "n": "Pacificar",
+   "d": "Elige una unidad enemiga a 6\" o menos, que obtiene -1 para impactar hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "unstoppable": {
+   "n": "Imparable",
+   "d": "El Héroe no se fatiga hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "transfix": {
+   "n": "Paralizar",
+   "d": "Elige una unidad enemiga a 9\" o menos, que no puede moverse hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "mirror image": {
+   "n": "Imagen especular",
+   "d": "Coloca un marcador de imagen especular a 3\" o menos. Los enemigos tratan el marcador como un Héroe. Retira el marcador al final de 3 rondas, o cuando un enemigo se mueva a 1\" o menos de él.",
+   "a": "Destreza"
+  },
+  "leap": {
+   "n": "Salto",
+   "d": "El Héroe supera automáticamente todas las tiradas de salto hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "sanctuary": {
+   "n": "Santuario",
+   "d": "La zona a 3\" o menos del Héroe cuenta como Terreno de cobertura para las unidades aliadas hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "fortitude": {
+   "n": "Fortaleza",
+   "d": "El Héroe supera automáticamente todos los chequeos de moral hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "terrify": {
+   "n": "Aterrorizar",
+   "d": "Elige una unidad enemiga a 3\" o menos, que debe hacer un chequeo de moral. Si lo falla, queda Acobardada.",
+   "a": "Fuerza"
+  },
+  "swinging strike": {
+   "n": "Golpe giratorio",
+   "d": "La zona a 3\" o menos del Héroe cuenta como Terreno peligroso para los enemigos hasta el final de la ronda.",
+   "a": "Fuerza"
+  },
+  "longshot": {
+   "n": "Tiro lejano",
+   "d": "El Héroe obtiene +6\" de alcance hasta el final de la ronda.",
+   "a": "Destreza"
+  },
+  "shift": {
+   "n": "Desplazamiento",
+   "d": "El Héroe puede colocarse en cualquier punto a D3+3\" o menos.",
+   "a": "Destreza"
+  },
+  "silence": {
+   "n": "Silencio",
+   "d": "Elige una unidad enemiga a 18\" o menos, que obtiene -1 en las tiradas de lanzamiento de hechizos hasta el final de la ronda.",
+   "a": "Voluntad"
+  },
+  "confusion": {
+   "n": "Confusión",
+   "d": "Elige una unidad enemiga a 6\" o menos, que los enemigos tratan como un Héroe hasta el final de la ronda, o hasta que los enemigos la ataquen una vez.",
+   "a": "Voluntad"
+  },
+  "barbaric frenzy": {
+   "n": "Frenesí bárbaro",
+   "d": "Una vez por partida, al activarse, el Héroe recupera D3 de Poder.",
+   "a": ""
+  },
+  "bardic restoration": {
+   "n": "Restauración bárdica",
+   "d": "Una vez por partida, al activarse, otros dos héroes a 9\" o menos recuperan 1 de Poder cada uno.",
+   "a": ""
+  },
+  "warlock's pact": {
+   "n": "Pacto del brujo",
+   "d": "Una vez por partida, al activarse, el Héroe sufre 1 herida y después causa 1 herida a una unidad enemiga a 6\" o menos.",
+   "a": ""
+  },
+  "cleric's blessing": {
+   "n": "Bendición del clérigo",
+   "d": "Una vez por partida, al activarse, dos héroes a 6\" o menos recuperan 1 herida cada uno.",
+   "a": ""
+  },
+  "druidic trap": {
+   "n": "Trampa druídica",
+   "d": "Una vez por partida, al activarse, la zona a 3\" o menos del Héroe cuenta como Terreno peligroso para las unidades enemigas hasta el final de la ronda.",
+   "a": ""
+  },
+  "ranger's precision": {
+   "n": "Precisión del explorador",
+   "d": "Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto al disparar, causa un impacto adicional.",
+   "a": ""
+  },
+  "fighting might": {
+   "n": "Poderío combativo",
+   "d": "Una vez por partida, al activarse, hasta el final de la ronda, la próxima vez que el Héroe cause al menos un impacto cuerpo a cuerpo, causa un impacto adicional.",
+   "a": ""
+  },
+  "sorcerous bolts": {
+   "n": "Proyectiles hechiceros",
+   "d": "Una vez por partida, al activarse, el Héroe puede gastar X de Poder (máx. 3). Elige una unidad enemiga a 12\" o menos, que sufre X+1 impactos.",
+   "a": ""
+  },
+  "wizarding focus": {
+   "n": "Foco del mago",
+   "d": "Una vez por partida, al activarse, el Héroe obtiene una ficha de hechizo.",
+   "a": ""
+  },
+  "monk's meditation": {
+   "n": "Meditación del monje",
+   "d": "Una vez por partida, al activarse, el Héroe recupera D3 heridas.",
+   "a": ""
+  },
+  "paladin shout": {
+   "n": "Grito del paladín",
+   "d": "Una vez por partida, al activarse, dos héroes a 3\" o menos pueden moverse hasta 6\" cada uno.",
+   "a": ""
+  },
+  "rogue step": {
+   "n": "Paso del pícaro",
+   "d": "Una vez por partida, al activarse, hasta el final de la ronda los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
+   "a": ""
+  }
+ },
+ "consumibles": {
+  "agility elixir": {
+   "n": "Elixir de agilidad",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe supera automáticamente todas las tiradas de salto hasta el final de la ronda."
+  },
+  "heroic elixir": {
+   "n": "Elixir heroico",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe supera automáticamente todos los chequeos de moral hasta el final de la ronda."
+  },
+  "speed elixir": {
+   "n": "Elixir de velocidad",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +2\" al Avanzar y +4\" al Correr/Cargar hasta el final de la ronda."
+  },
+  "stoneskin elixir": {
+   "n": "Elixir de piel pétrea",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +1 en las tiradas de Def hasta el final de la ronda."
+  },
+  "trueshot elixir": {
+   "n": "Elixir de tiro certero",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +6\" de alcance hasta el final de la ronda."
+  },
+  "conquest elixir": {
+   "n": "Elixir de conquista",
+   "d": "Se usa con una acción de Habilidad y luego se retira. La próxima vez que el Héroe destruya una unidad enemiga antes del final de la ronda, puede moverse hasta 6\"."
+  },
+  "energy elixir": {
+   "n": "Elixir de energía",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe no se fatiga hasta el final de la ronda."
+  },
+  "power elixir": {
+   "n": "Elixir de poder",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +2 en su próxima tirada de atributo."
+  },
+  "great stoneskin elixir": {
+   "n": "Gran elixir de piel pétrea",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +2 en las tiradas de Def hasta el final de la ronda."
+  },
+  "great speed elixir": {
+   "n": "Gran elixir de velocidad",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene +4\" al Avanzar y +8\" al Correr/Cargar hasta el final de la ronda."
+  },
+  "noise bomb": {
+   "n": "Bomba de ruido",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de ruido a 12\" o menos. Los enemigos tratan el marcador más cercano como el objetivo de la IA. Retira el marcador al final de 3 rondas, o cuando un enemigo se mueva a 1\" o menos de él."
+  },
+  "thunder bomb": {
+   "n": "Bomba atronadora",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 6\" o menos, que es empujada inmediatamente 6\" directamente en dirección contraria."
+  },
+  "grease bomb": {
+   "n": "Bomba de grasa",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de grasa a 12\" o menos. La zona a 3\" o menos de él cuenta como Terreno difícil. Retira el marcador al final de 3 rondas."
+  },
+  "poison bomb": {
+   "n": "Bomba venenosa",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de veneno sobre una unidad enemiga a 9\" o menos. Cuando se active, tira un dado. Con 4+ sufre 1 herida; si no, se retira el marcador."
+  },
+  "blinding bomb": {
+   "n": "Bomba cegadora",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 9\" o menos, que obtiene -1 para impactar hasta el final de la ronda."
+  },
+  "gunpowder bomb": {
+   "n": "Bomba de pólvora",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 9\" o menos y tira un dado. Con 4+ sufre 1 impacto con Explosión(3) y PA(1)."
+  },
+  "smoke bomb": {
+   "n": "Bomba de humo",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de humo a 12\" o menos. La zona a 3\" o menos de él cuenta como Terreno de cobertura. Retira el marcador al final de 3 rondas."
+  },
+  "phantasm bomb": {
+   "n": "Bomba fantasma",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de fantasma a 6\" o menos. Los enemigos tratan el marcador como un Héroe. Retira el marcador al final de 3 rondas, o cuando un enemigo lo ataque o se mueva a 1\" o menos de él."
+  },
+  "stunning bomb": {
+   "n": "Bomba aturdidora",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 6\" o menos, que debe hacer un chequeo de moral. Si lo falla, queda Acobardada."
+  },
+  "web bomb": {
+   "n": "Bomba de telaraña",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 9\" o menos, que obtiene -2\" al Avanzar y -4\" al Correr/Cargar hasta el final de la ronda."
+  },
+  "fire bomb": {
+   "n": "Bomba incendiaria",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de fuego a 12\" o menos. La zona a 3\" o menos de él cuenta como Terreno peligroso. Retira el marcador al final de 3 rondas."
+  },
+  "silence bomb": {
+   "n": "Bomba de silencio",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Coloca un marcador de silencio sobre una unidad enemiga a 9\" o menos. Esa unidad obtiene -2 en las tiradas de lanzamiento de hechizos hasta el final de la ronda. Retira el marcador al final de 3 rondas."
+  },
+  "pheromone bomb": {
+   "n": "Bomba de feromonas",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Elige una unidad enemiga a 9\" o menos, que los demás enemigos tratan como un Héroe hasta el final de la ronda."
+  },
+  "curing potion": {
+   "n": "Poción curativa",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe pierde todos sus estados. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."
+  },
+  "insight potion": {
+   "n": "Poción de perspicacia",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 12\" o menos, y puede modificar en +1/-1 la tirada para ver qué contiene."
+  },
+  "teleport potion": {
+   "n": "Poción de teletransporte",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe puede colocarse en cualquier punto a 6\" o menos."
+  },
+  "resting potion": {
+   "n": "Poción de descanso",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe recupera 3 de Poder. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."
+  },
+  "mana potion": {
+   "n": "Poción de maná",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene una ficha de hechizo."
+  },
+  "health potion": {
+   "n": "Poción de salud",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe recupera 3 heridas. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."
+  },
+  "reviving potion": {
+   "n": "Poción de reanimación",
+   "d": "Se usa con una acción de Habilidad y luego se retira. Reanima a un Héroe inconsciente a 3\" o menos, que recupera 6 heridas."
+  },
+  "great mana potion": {
+   "n": "Gran poción de maná",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe obtiene dos fichas de hechizo."
+  },
+  "great resting potion": {
+   "n": "Gran poción de descanso",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe recupera 6 de Poder. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."
+  },
+  "great health potion": {
+   "n": "Gran poción de salud",
+   "d": "Se usa con una acción de Habilidad y luego se retira. El Héroe recupera 6 heridas. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."
+  }
+ },
+ "armas": {
+  "dual hand weapons": "Armas de mano dobles",
+  "hand weapon": "Arma de mano",
+  "hand weapons": "Armas de mano",
+  "great weapon": "Gran arma",
+  "great hand weapon": "Gran arma de mano",
+  "spear": "Lanza",
+  "bow": "Arco",
+  "longbow": "Arco largo",
+  "short bow": "Arco corto",
+  "shortbow": "Arco corto",
+  "rifle": "Rifle",
+  "pistol": "Pistola",
+  "claws": "Garras",
+  "rough claws": "Garras toscas",
+  "sabre-bite": "Mordisco de sable",
+  "throw rocks": "Lanzar piedras",
+  "war hammer": "Martillo de guerra",
+  "staff": "Bastón"
+ }
+}

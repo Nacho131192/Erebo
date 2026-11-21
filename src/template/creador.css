@@ -185,3 +185,17 @@
   #hc .wh{grid-template-columns:1fr auto}
 }
 #hc .hr{justify-self:end;display:flex;align-items:center;gap:10px}
+
+/* habilidades iniciales: solo el nombre; la explicación aparece al pasar el ratón */
+#hc .skg{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+#hc .sub,#hc .hc-sub{margin:10px 0 6px;font:600 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--mu2)}
+#hc .skc{position:relative;display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:#0d1326;font:600 13px var(--disp);letter-spacing:.03em;color:#f1e8d0;cursor:default}
+#hc .skc.hc-pick{cursor:pointer}
+#hc .skc.hc-pick:hover{border-color:#5a6aa0}
+#hc .skc.on{border-color:var(--gold);background:linear-gradient(#1b1a20,#0d1326)}
+#hc .skc .hc-ck{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:5px;border:1.5px solid var(--line2);color:#1a1405}
+#hc .skc.on .hc-ck{background:var(--gold);border-color:var(--gold)}
+#hc .skc .hc-tip{display:none;position:absolute;left:0;top:calc(100% + 8px);z-index:30;width:min(280px,80vw);padding:10px 12px;border-radius:12px;border:1px solid var(--line2);background:#120e1f;box-shadow:0 14px 34px rgba(0,0,0,.6);font:400 12.5px/1.5 var(--ui);letter-spacing:0;color:#e6e0f2;text-align:left;pointer-events:none}
+#hc .skc:hover .hc-tip,#hc .skc:focus-visible .hc-tip{display:block}
+#hc .skc .hc-tip b{display:block;font:600 14px var(--disp);color:#f1e8d0}
+#hc .skc .hc-tip em{display:block;font:italic 500 12px var(--serif);color:var(--mu);margin:2px 0 6px}

@@ -215,13 +215,18 @@ function rulesBlock(t,c,compact){
   return `<dl class="ex">${items.map(exRow).join("")}</dl>`;
 }
 const typeSeg=(r)=>r.types.length>1?`<div class="wseg" role="group" aria-label="Perfil de la raza">${r.types.map((t,i)=>`<button type="button" data-act="type" data-i="${i}" aria-pressed="${i===ST.type}">${esc(t.n)}</button>`).join("")}</div>`:`<span class="chip hc-go">${esc(r.types[0].n)}</span>`;
-function skillsPick(c,pv){
-  const n=mods(c).hab,on=pv?[]:ST.picks;
-  return `<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span><small class="${!pv&&on.length===n?"okc":""}">${pv?`Elegirás ${n} de 3`:`Elegidas ${on.length} de ${n}`}</small></div><div class="sks">${c.skills.map((s,i)=>{
-    const a=s.a.split(" ")[0],sel=on.includes(i);
-    const inner=`<div class="hd"><span><b>${esc(s.n)}</b><em>${esc(s.en)}</em></span><span class="at ${ATC[a]||"f"}">${esc(a)}</span></div><p>${esc(s.t)}</p>`;
-    return pv?`<div class="sk">${inner}</div>`:`<button type="button" class="sk hc-pick" data-act="pick" data-i="${i}" aria-pressed="${sel}"><span class="hc-ck">${sel?CHECK:""}</span>${inner}</button>`;
-  }).join("")}</div></div>`;
+/* Habilidades iniciales: las de la clase y las comunes (petición de Nacho, 2026-11-20). Se ven solo con el nombre;
+   al pasar el ratón sale una ventanita con lo que hace. */
+const COMUN_INI=[{"n": "Descanso de batalla", "en": "Battle Rest", "a": "Fuerza (Fue)", "t": "El Héroe recupera D3+1 de Poder."}, {"n": "Protector", "en": "Protector", "a": "Fuerza (Fue)", "t": "El Héroe obtiene +1 en las tiradas de Def hasta el final de la ronda."}, {"n": "Toque curativo", "en": "Curing Touch", "a": "Destreza (Des)", "t": "El Héroe pierde un estado. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."}, {"n": "Concentración", "en": "Concentrate", "a": "Destreza (Des)", "t": "El Héroe sufre 1 herida y obtiene +2 en su próxima tirada de atributo."}, {"n": "Toque sanador", "en": "Healing Touch", "a": "Voluntad (Vol)", "t": "El Héroe recupera D3 heridas. En su lugar, el efecto puede aplicarse a otro Héroe a 3\" o menos."}, {"n": "Inspeccionar", "en": "Inspect", "a": "Voluntad (Vol)", "t": "El Héroe puede revelar una ficha de Búsqueda en línea de visión y a 9\" o menos, y puede modificar en +1/-1 la tirada para ver qué contiene."}];
+const allSkills=c=>c.skills.concat(COMUN_INI);
+function skillsPick(c,pv,t){
+  const all=allSkills(c),n=mods(c).hab,on=pv?[]:ST.picks;
+  const chip=(s,i)=>{const sel=on.includes(i),tip=`<span class="hc-tip" role="tooltip"><b>${esc(s.n)}</b><em>${esc(s.en)} · ${esc(s.a)}</em>${esc(s.t)}</span>`;
+    return pv?`<span class="skc">${esc(s.n)}${tip}</span>`:`<button type="button" class="skc hc-pick${sel?" on":""}" data-act="pick" data-i="${i}" aria-pressed="${sel}"><span class="hc-ck">${sel?CHECK:""}</span>${esc(s.n)}${tip}</button>`};
+  const cls=c.skills.map((s,i)=>chip(s,i)).join(""),com=COMUN_INI.map((s,k)=>chip(s,c.skills.length+k)).join("");
+  return `<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span><small class="${!pv&&on.length===n?"okc":""}">${pv?`Elegirás ${n} de ${all.length}`:`Elegidas ${on.length} de ${n}`}</small></div>
+  ${t?`<p class="hc-sub">Arma base</p>${weaponBlock(t,false)}<p class="hc-sub">Reglas especiales</p>${rulesBlock(t,c,false)}`:""}
+  <p class="hc-sub">De la clase</p><div class="skg">${cls}</div><p class="hc-sub">Comunes a todas las clases</p><div class="skg">${com}</div></div>`;
 }
 
 /* ---------- estado ---------- */
@@ -284,9 +289,9 @@ function sheetParts(){
   let body="";
   if(!r)body=`<p class="emp">La ficha se irá rellenando con lo que elijas.<br>Pasa el ratón por la lista para ver cada opción.</p>`;
   else body=`<div><div class="sec-h"><span class="hc-lab">Características</span><small>${c?"Con los bonos de "+esc(c.n):"Solo la raza"}</small></div>${statGrid(t,c)}</div>
-    <div><div class="sec-h"><span class="hc-lab">Arma base</span></div>${weaponBlock(t,!full)}</div>
-    <div><div class="sec-h"><span class="hc-lab">Reglas especiales</span></div>${rulesBlock(t,c,!full)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
-    ${c&&full?skillsPick(c,pv):`<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
+    <div><div class="sec-h"><span class="hc-lab">Arma base</span></div>${weaponBlock(t,false)}</div>
+    <div><div class="sec-h"><span class="hc-lab">Reglas especiales</span></div>${rulesBlock(t,c,false)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
+    ${c&&full?skillsPick(c,pv,t):`<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
     <div><div class="sec-h"><span class="hc-lab">Equipo</span></div><div class="hc-chips"><span class="chip hc-go">Oro inicial: 0</span></div></div>`;
   return{por,sub,body,hint};
 }
@@ -385,7 +390,7 @@ function buildHero(){
   const sk=[];
   ruleItems(t,c).filter(x=>!/^Resistente/.test(x)).forEach(x=>{const g=rtext(x);sk.push({g:"regla",n:x,k:"",d:g.t})});
   if(c.feat)sk.push({g:"regla",n:c.feat.n,k:"Dote de clase",d:c.feat.t});
-  ST.picks.slice().sort((a,b)=>a-b).forEach(i=>{const k=c.skills[i];sk.push({g:"hab",n:k.n,k:k.a.split(" ")[0],d:k.t})});
+  ST.picks.slice().sort((a,b)=>a-b).forEach(i=>{const k=allSkills(c)[i];sk.push({g:"hab",n:k.n,k:k.a.split(" ")[0],d:k.t})});
   parseW(t.w).forEach(w=>{
     const p=[];if(w.rng!=="—")p.push(w.rng);if(w.atk!=="—")p.push("A"+w.atk);if(w.ap!=="—")p.push("AP("+w.ap+")");w.spe.forEach(x=>p.push(x));
     const ex=[];if(w.ap!=="—")ex.push(rtext("AP("+w.ap+")"));w.spe.forEach(x=>ex.push(rtext(x)));
