@@ -129,7 +129,7 @@
 
 ## Lore inventado para el panel «Lo que aún se recuerda»
 
-**PROPUESTA (Claude, 2026-11-22; Nacho pidió inventar, pendiente de que confirme cada punto):** el texto está en `LORE` (`src/template/final-tpl.html`). Estas ideas son invención y no canon hasta que Nacho las confirme.
+**DECIDIDO (Nacho, 2026-11-22):** Claude inventó estas ideas a petición de Nacho y él las confirmó todas («conserva todo»). Ya son canon. El texto está en `LORE` (`src/template/final-tpl.html`).
 
 - **El Silencio:** así llaman al día en que los Primordiales dejaron de responder. Antes se los «oía» (cosecha, mareas, máquinas de los antiguos), no se los veía. Hay quien jura que uno sigue vivo y escuchando.
 - **El séptimo nombre olvidado:** en Varek's Hold se dice que eran siete, pero solo se recuerdan seis nombres (encaja con que el nombre de Neth esté olvidado).
