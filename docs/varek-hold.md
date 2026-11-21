@@ -63,6 +63,8 @@
 - El sucesor se elige **entre cinco candidatos** votados por el cuerpo del Filo (el **Quinteto**).
 - **Votan el Quinteto los oficiales de alto rango y los capitanes del Filo.** Las unidades de **bajo rango no votan**, hasta que lleguen a cierto nivel en la escala.
 - El proceso está **sujeto a influencias** entre las partes.
+- La elección es **secreta hasta el momento del Juramento**.
+- El rango mínimo para votar es **teniente**. Por debajo de teniente no se vota.
 
 **Esquema del Quinteto (aceptado):**
 
@@ -72,11 +74,6 @@
 4. **Elección:** la Voz saliente elige a uno de los cinco, sin obligación de elegir al más votado.
 5. **Juramento:** el elegido jura el cargo. Los cuatro descartados quedan señalados.
 
-**ABIERTO:**
-
-- ¿La elección es secreta hasta el Juramento?
-- ¿Qué rango exacto hace falta para votar?
-
 **Ganchos narrativos (PROPUESTA):**
 
 - Dos filtros de influencia: los votantes deciden quién entra al Quinteto y la Voz decide quién sale. Las facciones pueden comprar uno o ambos.
@@ -84,6 +81,22 @@
 - Si una Voz muere sin elegir, los votantes deciden por mayoría y los perdedores consideran la elección ilegítima.
 - Una Voz presionada, chantajeada o engañada puede elegir mal (Culto del Umbral, Deudores de Vael, Concordancia de Orum).
 - Los rangos bajos, sin voto, pueden ser un caldo de cultivo de resentimiento dentro del Filo.
+
+## Decisiones entre las tres Voces
+
+**DECIDIDO:** las decisiones importantes sobre la ciudad o sobre su territorio se toman **por unanimidad**: las tres Voces deben ponerse de acuerdo. Cualquiera de ellas puede bloquear una decisión.
+
+## Desempates
+
+**DECIDIDO (condición de Nacho):** los desempates del Muro y del Mercado no pueden ser pruebas físicas, peleas ni nada parecido. Deben ser algo lógico y adecuado a gente mayor. Se diseñan dos métodos distintos para cada uno y Nacho elige.
+
+**ABIERTO:** ver los métodos propuestos en la conversación (pendientes de elegir).
+
+## Distritos de la ciudad
+
+**DECIDIDO:** la ciudad tiene **6 o 7 distritos**. No hay un distrito por Voz.
+
+**ABIERTO:** cuáles son, cómo se llaman y quién domina cada uno (propuestas en la conversación, pendientes de elegir).
 
 ## Resumen comparativo
 
@@ -96,13 +109,8 @@
 
 ## Preguntas abiertas
 
-1. **Muro:** desempate si hay empate; si la Voz sale siempre de los propios Custodios.
-2. **Mercado:** qué pasa si nadie llega a la mayoría absoluta; reelección.
-3. **Filo:** si la elección es secreta hasta el Juramento; rango mínimo para votar.
-4. **Decisiones entre las tres Voces:** mayoría simple, unanimidad o veto de la Voz del Muro en asuntos del muro.
-5. **Distritos de la ciudad:**
-   - D1: cuatro distritos concéntricos (Muro, Núcleo, Mercado, Arrabal).
-   - D2: un distrito por Voz más un Distrito de la Tregua neutral.
-   - D3: Ciudad Alta junto al muro y Ciudad Baja exterior.
-6. **El muro:** ¿zona prohibida, barrio construido a sus pies o lugar de peregrinación?
-7. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos.
+1. **Muro:** método de desempate; si la Voz sale siempre de los propios Custodios.
+2. **Mercado:** método si nadie llega a la mayoría absoluta; reelección.
+3. **Distritos:** cuáles son los 6 o 7, sus nombres y quién domina cada uno.
+4. **El muro:** ¿zona prohibida, barrio construido a sus pies o lugar de peregrinación?
+5. **Siguiente paso previsto:** nombres, personalidad y agenda de las tres Voces actuales, y descripción de la ciudad por distritos.
