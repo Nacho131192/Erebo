@@ -43,7 +43,7 @@ Un héroe sube a nivel 2 con 3 XP y a nivel 3 con 6 XP. Las fórmulas son las de
 
 - **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm) con más de 20 piezas de terreno (casas abandonadas y obstáculos). También puede jugarse en 24"x24" con todas las distancias a la mitad. El pozo del centro es la Ruptura del Muro.
 - **1. Objetivos:** prepara el objetivo principal. El secundario se prepara más tarde.
-- **2. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.
+- **2. Fichas de búsqueda:** coloca un número al azar de 1 a 4. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o de esa esquina), y con 5-6 eliges tú. Cada ficha es un cofre.
 - **3. Despliegue enemigo:** ver Oleadas y sorpresas.
 - **4. Despliegue de héroes:** tira un dado. Con 1-4 se despliegan a 6" o menos de la esquina con ese número, y con 5-6 eliges la esquina.
 - **5. Desafíos opcionales:** la misión empieza de **noche** (-1 a impactar al disparar y visión limitada a 12"). Pasa a **alba** (-1 a impactar al disparar) cuando llegan los primeros refuerzos, y a día después. También se usan los eventos de la Ruptura y la pelea de jefe.

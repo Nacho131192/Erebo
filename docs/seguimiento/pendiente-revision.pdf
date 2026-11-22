@@ -4,10 +4,10 @@
 << /Type /Catalog /Pages 2 0 R /AcroForm 3 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [27 0 R 41 0 R 57 0 R 73 0 R 89 0 R 99 0 R] /Count 6 >>
+<< /Type /Pages /Kids [27 0 R 41 0 R 57 0 R 71 0 R 87 0 R 103 0 R 107 0 R] /Count 7 >>
 endobj
 3 0 obj
-<< /Fields [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 29 0 R 30 0 R 31 0 R 32 0 R 33 0 R 34 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 51 0 R 52 0 R 53 0 R 54 0 R 55 0 R 56 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R 75 0 R 76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R 87 0 R 88 0 R 91 0 R 92 0 R 93 0 R 94 0 R 95 0 R 96 0 R 97 0 R 98 0 R] /NeedAppearances true /DA (/Helv 9 Tf 0 g) /DR << /Font << /Helv 100 0 R /ZaDb 13 0 R >> >> >>
+<< /Fields [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R 29 0 R 30 0 R 31 0 R 32 0 R 33 0 R 34 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R 43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 51 0 R 52 0 R 53 0 R 54 0 R 55 0 R 56 0 R 59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 73 0 R 74 0 R 75 0 R 76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R 89 0 R 90 0 R 91 0 R 92 0 R 93 0 R 94 0 R 95 0 R 96 0 R 97 0 R 98 0 R 99 0 R 100 0 R 101 0 R 102 0 R 105 0 R 106 0 R] /NeedAppearances true /DA (/Helv 9 Tf 0 g) /DR << /Font << /Helv 108 0 R /ZaDb 13 0 R >> >> >>
 endobj
 4 0 obj
 << /Title <FEFF00500065006E006400690065006E00740065002000640065002000720065007600690073006900F3006E> /Producer (tools/seguimiento.py) >>
@@ -52,7 +52,7 @@ stream
 endstream
 endobj
 16 0 obj
-<<  /Length 3748 >>
+<<  /Length 3840 >>
 stream
 0.07 0.1 0.19 rg 0 723.89 595.28 118 re f
 0.72 0.56 0.25 RG 1.2 w 50 723.89 m 545.28 723.89 l S
@@ -82,13 +82,13 @@ BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 334.89 Td (Respuesta:) Tj ET
 BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 273.39 Td (Devolver golpes en cuerpo a cuerpo: ahora el defensor solo tira defensa y no devuelve golpes. La norma dice) Tj ET
 BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 260.89 Td (que los defensores devuelven los golpes \(Counter les deja golpear primero\).) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 243.89 Td (Respuesta:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 167.89 Td (Combate y movimiento) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 161.89 m 545.28 161.89 l S
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 146.39 Td (Una sola arma por acción \(también al disparar\). La norma dice que se disparan todas las armas a distancia y) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 133.89 Td (que en cuerpo a cuerpo se golpea con todas las armas.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 116.89 Td (Respuesta:) Tj ET
+BT /F2 9.5 Tf 0.13 0.14 0.2 rg 72.00 182.39 Td ([Duda]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.67 182.39 Td (Terreno de cobertura y peligroso: la norma dice «la mayoría» de las miniaturas dentro. La aplicación) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 169.89 Td (usa el centro de la peana \(héroe\) o de la unidad. En el peligroso de una unidad, ¿se tira un dado por cada) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 157.39 Td (herida que le quede a toda la unidad? Así lo hace ahora.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 140.39 Td (Respuesta:) Tj ET
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 1 de 6) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 1 de 7) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
@@ -117,477 +117,529 @@ endobj
 << /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 27 0 R /Rect [72.00 199.89 545.28 239.89] /T (n-r-contra) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 25 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 27 0 R /Rect [50.00 143.89 62.00 155.89] /T (c-r-arma) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 27 0 R /Rect [50.00 179.89 62.00 191.89] /T (c-r-terreno) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 26 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 27 0 R /Rect [72.00 72.89 545.28 112.89] /T (n-r-arma) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 27 0 R /Rect [72.00 96.39 545.28 136.39] /T (n-r-terreno) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 27 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 16 0 R /Annots [17 0 R 18 0 R 19 0 R 20 0 R 21 0 R 22 0 R 23 0 R 24 0 R 25 0 R 26 0 R] >>
 endobj
 28 0 obj
-<<  /Length 3128 >>
+<<  /Length 3282 >>
 stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Distancia de contacto: por dentro 1,5 pulgadas \(los textos dicen 1\). La norma dice 1 pulgada y que se golpea a) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (3 pulgadas o menos tras cargar.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 746.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Alerta con dado al final de la ronda \(1-5 = +1, 6 = +2\). La norma dice +1 fijo por ronda \(+2 sin enemigos, eso sí) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (se aplica\).) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 655.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 594.39 Td (Críticos: ahora cada 6 natural al impactar solo se salva con otro 6 \(no cuentan los de un atacante agotado o) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 581.89 Td (aturdido ni los impactos extra\). La norma no tiene críticos: un 6 solo importa para reglas como Rending, Furious) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 569.39 Td (o Surge.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 552.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 490.89 Td (Cobertura: ahora las casas cortan la línea de visión \(no se puede disparar detrás\) y el terreno bajo \(el pozo\) da) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 478.39 Td (+1 a la defensa contra disparos si el objetivo está dentro o a 1 pulgada o menos detrás y la línea de tiro lo) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 465.89 Td (cruza; Blast la ignora. La norma dice +1 a la defensa en terreno de cobertura o detrás de bloqueadores de) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 453.39 Td (visión, sin impedir el disparo; Indirect ignora la cobertura de los bloqueadores de visión.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 436.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 374.89 Td (Recuperar un rastro: el héroe a 1 pulgada \(por dentro 1,5, medido desde su peana\) gasta una acción de) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 362.39 Td (habilidad y pasa una tirada de Voluntad; si falla, puede gastar 2 de poder \(regla general de los héroes\). No se) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 349.89 Td (tira el dado extra de «búsqueda por zonas» porque la casa descarta el atajo del 5+. Además los rastros no) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 337.39 Td (estorban a nadie.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 320.39 Td (Respuesta:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 244.39 Td (Supuestos de la campaña) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 238.39 m 545.28 238.39 l S
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 222.89 Td (El Heraldo del Umbral cuenta como 150 puntos \(estimado; no existe en Army Forge\). En dificultad 1 la oleada) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 210.39 Td (del jefe es solo el Heraldo.) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 761.89 Td (Combate y movimiento) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 755.89 m 545.28 755.89 l S
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 740.39 Td (Una sola arma por acción \(también al disparar\). La norma dice que se disparan todas las armas a distancia y) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 727.89 Td (que en cuerpo a cuerpo se golpea con todas las armas.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 710.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 649.39 Td (Distancia de contacto: por dentro 1,5 pulgadas \(los textos dicen 1\). La norma dice 1 pulgada y que se golpea a) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 636.89 Td (3 pulgadas o menos tras cargar.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 619.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 558.39 Td (Alerta con dado al final de la ronda \(1-5 = +1, 6 = +2\). La norma dice +1 fijo por ronda \(+2 sin enemigos, eso sí) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 545.89 Td (se aplica\).) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 528.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 467.39 Td (Críticos: ahora cada 6 natural al impactar solo se salva con otro 6 \(no cuentan los de un atacante agotado o) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 454.89 Td (aturdido ni los impactos extra\). La norma no tiene críticos: un 6 solo importa para reglas como Rending, Furious) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 442.39 Td (o Surge.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 425.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 363.89 Td (Cobertura: ahora las casas cortan la línea de visión \(no se puede disparar detrás\) y el terreno bajo \(el pozo\) da) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 351.39 Td (+1 a la defensa contra disparos si el objetivo está dentro o a 1 pulgada o menos detrás y la línea de tiro lo) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 338.89 Td (cruza; Blast la ignora. La norma dice +1 a la defensa en terreno de cobertura o detrás de bloqueadores de) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 326.39 Td (visión, sin impedir el disparo; Indirect ignora la cobertura de los bloqueadores de visión.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 309.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 247.89 Td (Recuperar un rastro: el héroe a 1 pulgada \(por dentro 1,5, medido desde su peana\) gasta una acción de) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 235.39 Td (habilidad y pasa una tirada de Voluntad; si falla, puede gastar 2 de poder \(regla general de los héroes\). No se) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 222.89 Td (tira el dado extra de «búsqueda por zonas» porque la casa descarta el atajo del 5+. Además los rastros no) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 210.39 Td (estorban a nadie.) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 193.39 Td (Respuesta:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 117.39 Td (Supuestos de la campaña) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 111.39 m 545.28 111.39 l S
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 2 de 6) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 2 de 7) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
 29 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-contacto) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 737.89 62.00 749.89] /T (c-r-arma) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 30 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-contacto) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 666.89 545.28 706.89] /T (n-r-arma) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 31 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-alerta) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 646.89 62.00 658.89] /T (c-r-contacto) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 32 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 611.89 545.28 651.89] /T (n-r-alerta) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 575.89 545.28 615.89] /T (n-r-contacto) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 33 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 591.89 62.00 603.89] /T (c-r-criticos) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 555.89 62.00 567.89] /T (c-r-alerta) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 34 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 508.39 545.28 548.39] /T (n-r-criticos) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 484.89 545.28 524.89] /T (n-r-alerta) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 35 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 488.39 62.00 500.39] /T (c-r-cobertura) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 464.89 62.00 476.89] /T (c-r-criticos) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 36 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 392.39 545.28 432.39] /T (n-r-cobertura) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 381.39 545.28 421.39] /T (n-r-criticos) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 37 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 372.39 62.00 384.39] /T (c-r-rastro) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 361.39 62.00 373.39] /T (c-r-cobertura) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 38 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 276.39 545.28 316.39] /T (n-r-rastro) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 265.39 545.28 305.39] /T (n-r-cobertura) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 39 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 220.39 62.00 232.39] /T (c-r-heraldo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 41 0 R /Rect [50.00 245.39 62.00 257.39] /T (c-r-rastro) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 40 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 149.39 545.28 189.39] /T (n-r-heraldo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 41 0 R /Rect [72.00 149.39 545.28 189.39] /T (n-r-rastro) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 41 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 28 0 R /Annots [29 0 R 30 0 R 31 0 R 32 0 R 33 0 R 34 0 R 35 0 R 36 0 R 37 0 R 38 0 R 39 0 R 40 0 R] >>
 endobj
 42 0 obj
-<<  /Length 3234 >>
+<<  /Length 2518 >>
 stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Cuadrantes y esquinas numerados del 1 al 4 en sentido horario desde el noroeste \(el PDF solo dice) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td («numéralos de 1 a 4»\).) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (El Heraldo del Umbral cuenta como 150 puntos \(estimado; no existe en Army Forge\). En dificultad 1 la oleada) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (del jefe es solo el Heraldo.) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 746.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Cantidad de centinelas igual al tamaño de una oleada \(el PDF no la fija\).) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 668.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 606.89 Td (Creador de héroes: Fuerza, Destreza y Voluntad parten de 6+ y cada +1 de la clase baja un escalón; el Poder) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 594.39 Td (es el bono de la clase.) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Cuadrantes y esquinas numerados del 1 al 4 en sentido horario desde el noroeste \(el PDF solo dice) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td («numéralos de 1 a 4»\).) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 655.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 594.39 Td (Cantidad de centinelas igual al tamaño de una oleada \(el PDF no la fija\).) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 577.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 515.89 Td (Zona de escape: ¿la esquina es la más alejada de los héroes en media \(como ahora\) o de su héroe más) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 503.39 Td (cercano? Y ¿hace falta también que no haya enemigos alrededor, como dice el texto de la misión?) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 515.89 Td (Creador de héroes: Fuerza, Destreza y Voluntad parten de 6+ y cada +1 de la clase baja un escalón; el Poder) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 503.39 Td (es el bono de la clase.) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 486.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 424.89 Td (Contener el Olvido: la aplicación usa 3 pulgadas del pozo para la tirada y 5 pulgadas sin enemigos. Son valores) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 412.39 Td (míos: ¿los confirmas?) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 424.89 Td (Zona de escape: ¿la esquina es la más alejada de los héroes en media \(como ahora\) o de su héroe más) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 412.39 Td (cercano? Y ¿hace falta también que no haya enemigos alrededor, como dice el texto de la misión?) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 395.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 333.89 Td (Heraldo del Umbral: sus hechizos \(Olvido, Borrado, Silencio\) todavía no se aplican solos en el tablero. ¿Cómo) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 321.39 Td (quieres que se resuelvan: automáticos o a mano?) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 333.89 Td (Contener el Olvido: la aplicación usa 3 pulgadas del pozo para la tirada y 5 pulgadas sin enemigos. Son valores) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 321.39 Td (míos: ¿los confirmas?) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 304.39 Td (Respuesta:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 228.39 Td (Reglas y habilidades) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 222.39 m 545.28 222.39 l S
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 206.89 Td (Scout \(montura de araña de los goblins en lobo\): el reglamento dice «puede desplegarse en cualquier punto) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 194.39 Td (completamente a 9"» y no aclara a 9" de qué. Se ha entendido como un solo uso al desplegarse, hasta 9" de) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 181.89 Td (donde saldría, hacia el héroe más cercano y sin acabar a menos de 9" de él \(esto último es un supuesto de la) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 169.39 Td (casa\). La IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2. ¿Es correcto? Los lobos no llevan) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 156.89 Td (Fast: se mueven 6"/12". \(La descripción de Scout del creador de héroes dice «a menos de 9" de su zona y a) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 144.39 Td (más de 9" de enemigos», lo que apoya el supuesto de no acabar a menos de 9" de un héroe.\)) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 127.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 242.89 Td (Heraldo del Umbral: sus hechizos \(Olvido, Borrado, Silencio\) todavía no se aplican solos en el tablero. ¿Cómo) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 230.39 Td (quieres que se resuelvan: automáticos o a mano?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 213.39 Td (Respuesta:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 137.39 Td (Reglas y habilidades) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 131.39 m 545.28 131.39 l S
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 3 de 6) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 3 de 7) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
 43 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-numeracion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-heraldo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 44 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-numeracion) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-heraldo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 45 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-centinelas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-numeracion) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 46 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 624.39 545.28 664.39] /T (n-r-centinelas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 611.89 545.28 651.89] /T (n-r-numeracion) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 47 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 604.39 62.00 616.39] /T (c-r-creador) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 591.89 62.00 603.89] /T (c-r-centinelas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 48 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 533.39 545.28 573.39] /T (n-r-creador) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 533.39 545.28 573.39] /T (n-r-centinelas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 49 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 513.39 62.00 525.39] /T (c-r-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 513.39 62.00 525.39] /T (c-r-creador) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 50 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 442.39 545.28 482.39] /T (n-r-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 442.39 545.28 482.39] /T (n-r-creador) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 51 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 422.39 62.00 434.39] /T (c-r-secundario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 422.39 62.00 434.39] /T (c-r-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 52 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 351.39 545.28 391.39] /T (n-r-secundario) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 351.39 545.28 391.39] /T (n-r-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 53 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 331.39 62.00 343.39] /T (c-r-heraldo-hechizos) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 331.39 62.00 343.39] /T (c-r-secundario) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 54 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 260.39 545.28 300.39] /T (n-r-heraldo-hechizos) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 260.39 545.28 300.39] /T (n-r-secundario) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 55 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 204.39 62.00 216.39] /T (c-r-lobo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 57 0 R /Rect [50.00 240.39 62.00 252.39] /T (c-r-heraldo-hechizos) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 56 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 83.39 545.28 123.39] /T (n-r-lobo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 57 0 R /Rect [72.00 169.39 545.28 209.39] /T (n-r-heraldo-hechizos) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 57 0 obj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 42 0 R /Annots [43 0 R 44 0 R 45 0 R 46 0 R 47 0 R 48 0 R 49 0 R 50 0 R 51 0 R 52 0 R 53 0 R 54 0 R 55 0 R 56 0 R] >>
 endobj
 58 0 obj
-<<  /Length 3569 >>
+<<  /Length 3781 >>
 stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Reglas sin descripción en la investigación guardada \(no he querido inventarlas\): Instinctive, Hero, Caster) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal. Hace falta su texto) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 751.39 Td (de Army Forge. Intenté leerlas en la web de One Page Rules y no me dejó.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 734.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (Ahora se aplican reglas que antes no contaban y suben el daño de los enemigos: Ferocious \(cada 6 desde) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 660.39 Td (lejos, un impacto extra\), Mischievous \(repetir los 6 de defensa\), Parry, Brace, Wild Veil... ¿Se ha entendido bien) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 647.89 Td («desde lejos» como disparo a más de 9" o carga desde más de 6"?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 630.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 569.39 Td (Las habilidades de héroe cuestan 1 acción \(la norma dice una acción más una de habilidad\) y las dotes no) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 556.89 Td (cuestan nada. Como los héroes no tiran moral \(regla de la casa\), seis habilidades no tienen efecto: Voluntad de) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 544.39 Td (acero, Reagrupar, Fortaleza, Burla, Maldición rencorosa y Suprimir.) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 527.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 465.89 Td (Counter: como el defensor no devuelve golpes \(regla de la casa\), la regla Counter no hace nada. ¿Se mantiene) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 453.39 Td (así?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 436.39 Td (Respuesta:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 360.39 Td (Lore y mundo) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 354.39 m 545.28 354.39 l S
-BT /F2 9.5 Tf 0.75 0.12 0.15 rg 72.00 338.89 Td ([Urgente]) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 118.42 338.89 Td (El Muro: en el mapa Nacho lo quiere como un anillo de muralla con polvo en el centro, pero el texto) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 326.39 Td (de lore \(«Lo que aún se recuerda»\) y docs/varek-hold.md lo describen como un muro colosal junto a la bahía,) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 313.89 Td (con una sombra que llega al agua. ¿Se reescribe el texto para el anillo o el anillo solo vale para el mapa?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 296.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 235.39 Td (Grafía de los nombres de las Voces: se dictaron «Orson Baldrake» y «Lisa Brandnut» y están escritas como) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 222.89 Td (Orsen Valdrake y Lysa Brannoc. ¿Son correctas o se mantiene el dictado?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 205.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 144.39 Td (En el panel de lore se dice que en Varek's Hold solo se recuerdan seis de los siete nombres de los) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 131.89 Td (Primordiales. ¿Es la forma de dejar olvidado el nombre de Neth, y el jugador lo descubrirá más adelante?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 114.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Scout \(montura de araña de los goblins en lobo\): el reglamento dice «puede desplegarse en cualquier punto) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (completamente a 9"» y no aclara a 9" de qué. Se ha entendido como un solo uso al desplegarse, hasta 9" de) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 751.39 Td (donde saldría, hacia el héroe más cercano y sin acabar a menos de 9" de él \(esto último es un supuesto de la) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 738.89 Td (casa\). La IA lo usa siempre en dificultad 3-4 y una de cada dos veces en 1-2. ¿Es correcto? Los lobos no llevan) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 726.39 Td (Fast: se mueven 6"/12". \(La descripción de Scout del creador de héroes dice «a menos de 9" de su zona y a) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 713.89 Td (más de 9" de enemigos», lo que apoya el supuesto de no acabar a menos de 9" de un héroe.\)) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 696.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 635.39 Td (Reglas sin descripción en la investigación guardada \(no he querido inventarlas\): Instinctive, Hero, Caster) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 622.89 Td (Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal. Hace falta su texto) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 610.39 Td (de Army Forge. Intenté leerlas en la web de One Page Rules y no me dejó.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 593.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 531.89 Td (Ahora se aplican reglas que antes no contaban y suben el daño de los enemigos: Ferocious \(cada 6 desde) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 519.39 Td (lejos, un impacto extra\), Mischievous \(repetir los 6 de defensa\), Parry, Brace, Wild Veil... ¿Se ha entendido bien) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 506.89 Td («desde lejos» como disparo a más de 9" o carga desde más de 6"?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 489.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 428.39 Td (Las habilidades de héroe cuestan 1 acción \(la norma dice una acción más una de habilidad\) y las dotes no) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 415.89 Td (cuestan nada. Como los héroes no tiran moral \(regla de la casa\), seis habilidades no tienen efecto: Voluntad de) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 403.39 Td (acero, Reagrupar, Fortaleza, Burla, Maldición rencorosa y Suprimir.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 386.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 324.89 Td (Counter: como el defensor no devuelve golpes \(regla de la casa\), la regla Counter no hace nada. ¿Se mantiene) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 312.39 Td (así?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 295.39 Td (Respuesta:) Tj ET
+BT /F2 9.5 Tf 0.7 0.38 0.1 rg 72.00 233.89 Td ([Casa]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 106.10 233.89 Td (Escabullirse \(regla de la casa\): ¿el destino del movimiento tiene que quedar a más de 1" de todos los) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 221.39 Td (enemigos \(como cualquier movimiento\) y se puede gastar 2 de poder si falla la tirada de Destreza? Así lo hace) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 208.89 Td (ahora la aplicación.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 191.89 Td (Respuesta:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 115.89 Td (Lore y mundo) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 109.89 m 545.28 109.89 l S
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 4 de 6) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 4 de 7) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
 59 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-sindescr) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-lobo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 60 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 690.39 545.28 730.39] /T (n-r-sindescr) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 652.89 545.28 692.89] /T (n-r-lobo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 61 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 670.39 62.00 682.39] /T (c-r-pasivas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 632.89 62.00 644.89] /T (c-r-sindescr) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 62 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 586.89 545.28 626.89] /T (n-r-pasivas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 549.39 545.28 589.39] /T (n-r-sindescr) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 63 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 566.89 62.00 578.89] /T (c-r-habilidad1) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 529.39 62.00 541.39] /T (c-r-pasivas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 64 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 483.39 545.28 523.39] /T (n-r-habilidad1) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 445.89 545.28 485.89] /T (n-r-pasivas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 65 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 463.39 62.00 475.39] /T (c-r-contraataque) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 425.89 62.00 437.89] /T (c-r-habilidad1) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 66 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 392.39 545.28 432.39] /T (n-r-contraataque) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 342.39 545.28 382.39] /T (n-r-habilidad1) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 67 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 336.39 62.00 348.39] /T (c-r-anillo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 322.39 62.00 334.39] /T (c-r-contraataque) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 68 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 252.89 545.28 292.89] /T (n-r-anillo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 251.39 545.28 291.39] /T (n-r-contraataque) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 69 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 232.89 62.00 244.89] /T (c-r-nombres) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 71 0 R /Rect [50.00 231.39 62.00 243.39] /T (c-r-escabullirse) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 70 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 161.89 545.28 201.89] /T (n-r-nombres) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 71 0 R /Rect [72.00 147.89 545.28 187.89] /T (n-r-escabullirse) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 71 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 73 0 R /Rect [50.00 141.89 62.00 153.89] /T (c-r-septimo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 58 0 R /Annots [59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R] >>
 endobj
 72 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 73 0 R /Rect [72.00 70.89 545.28 110.89] /T (n-r-septimo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<<  /Length 3143 >>
+stream
+BT /F2 9.5 Tf 0.75 0.12 0.15 rg 72.00 776.39 Td ([Urgente]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 118.42 776.39 Td (El Muro: en el mapa Nacho lo quiere como un anillo de muralla con polvo en el centro, pero el texto) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (de lore \(«Lo que aún se recuerda»\) y docs/varek-hold.md lo describen como un muro colosal junto a la bahía,) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 751.39 Td (con una sombra que llega al agua. ¿Se reescribe el texto para el anillo o el anillo solo vale para el mapa?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 734.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (Grafía de los nombres de las Voces: se dictaron «Orson Baldrake» y «Lisa Brandnut» y están escritas como) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 660.39 Td (Orsen Valdrake y Lysa Brannoc. ¿Son correctas o se mantiene el dictado?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 643.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 581.89 Td (En el panel de lore se dice que en Varek's Hold solo se recuerdan seis de los siete nombres de los) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 569.39 Td (Primordiales. ¿Es la forma de dejar olvidado el nombre de Neth, y el jugador lo descubrirá más adelante?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 552.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 490.89 Td (Mercado: el desempate \(gana la menor deuda\) se definió para un empate. ¿Qué pasa si nadie llega a mayoría) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 478.39 Td (absoluta sin que haya empate \(por ejemplo, tres bloques de tres gremios\)? ¿Hay límite de reelecciones?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 461.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 399.89 Td (Custodios: el número y la identidad del cuerpo son secretos, pero hay Custodios reclutadores que deciden el) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 387.39 Td (ingreso. ¿Cuánto se ve del reclutamiento en público?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 370.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 308.89 Td (Filo: votan el Quinteto los oficiales de alto rango y los capitanes, desde teniente. ¿Qué rangos entran) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 296.39 Td (exactamente por encima de teniente y por qué el voto de los capitanes cuenta igual?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 279.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 217.89 Td (Rupturas de Kael \(la mente\) y de Vael \(el instante\), inventadas para llegar a siete, y las de Varek y Sael:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 205.39 Td (¿encajan con lo que Nacho imagina para los Resonantes, los Deudores de Vael y el misterio de los) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 192.89 Td (Primordiales?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 175.89 Td (Respuesta:) Tj ET
+BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 5 de 7) Tj ET
+0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
+endstream
 endobj
 73 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 58 0 R /Annots [59 0 R 60 0 R 61 0 R 62 0 R 63 0 R 64 0 R 65 0 R 66 0 R 67 0 R 68 0 R 69 0 R 70 0 R 71 0 R 72 0 R] >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-anillo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 74 0 obj
-<<  /Length 2946 >>
-stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Mercado: el desempate \(gana la menor deuda\) se definió para un empate. ¿Qué pasa si nadie llega a mayoría) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (absoluta sin que haya empate \(por ejemplo, tres bloques de tres gremios\)? ¿Hay límite de reelecciones?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 746.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Custodios: el número y la identidad del cuerpo son secretos, pero hay Custodios reclutadores que deciden el) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (ingreso. ¿Cuánto se ve del reclutamiento en público?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 655.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 594.39 Td (Filo: votan el Quinteto los oficiales de alto rango y los capitanes, desde teniente. ¿Qué rangos entran) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 581.89 Td (exactamente por encima de teniente y por qué el voto de los capitanes cuenta igual?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 564.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 503.39 Td (Rupturas de Kael \(la mente\) y de Vael \(el instante\), inventadas para llegar a siete, y las de Varek y Sael:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 490.89 Td (¿encajan con lo que Nacho imagina para los Resonantes, los Deudores de Vael y el misterio de los) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 478.39 Td (Primordiales?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 461.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 399.89 Td (Los lugares de las Rupturas \(El Enraizado, Los Engranajes, El Remolino, El Laberinto de Piedra, El Coro, El) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 387.39 Td (Instante\) dependen del mapa, que está sin elegir. ¿Se mantienen o se mueven al rehacerlo?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 370.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 308.89 Td (Misión 1: ¿la plata del contrato debe tener alguna pista en el texto del jugador \(por ejemplo una marca del) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 296.39 Td (Mercado en las monedas\) o se descubre más adelante?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 279.39 Td (Respuesta:) Tj ET
-BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 203.39 Td (Tablero virtual · decisiones de la tanda 9) Tj ET
-0.72 0.56 0.25 RG 0.9 w 50 197.39 m 545.28 197.39 l S
-BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 181.89 Td (Oleada extra del 50 % con la alerta baja y sin enemigos: ¿dispara el evento de la Ruptura o cambia la alerta?) Tj ET
-0.55 0.56 0.6 RG 0.7 w 72.00 185.09 m 532.97 185.09 l S
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 164.89 Td (Respuesta:) Tj ET
-BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 5 de 6) Tj ET
-0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
-endstream
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 690.39 545.28 730.39] /T (n-r-anillo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 75 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-mercado) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 670.39 62.00 682.39] /T (c-r-nombres) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 76 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-mercado) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 599.39 545.28 639.39] /T (n-r-nombres) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 77 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-reclutadores) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 579.39 62.00 591.39] /T (c-r-septimo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 78 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 611.89 545.28 651.89] /T (n-r-reclutadores) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 508.39 545.28 548.39] /T (n-r-septimo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 79 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 591.89 62.00 603.89] /T (c-r-voto-filo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 488.39 62.00 500.39] /T (c-r-mercado) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 80 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 520.89 545.28 560.89] /T (n-r-voto-filo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 417.39 545.28 457.39] /T (n-r-mercado) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 81 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 500.89 62.00 512.89] /T (c-r-rupturas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 397.39 62.00 409.39] /T (c-r-reclutadores) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 82 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 417.39 545.28 457.39] /T (n-r-rupturas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 326.39 545.28 366.39] /T (n-r-reclutadores) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 83 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 397.39 62.00 409.39] /T (c-r-lugares) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 306.39 62.00 318.39] /T (c-r-voto-filo) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 84 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 326.39 545.28 366.39] /T (n-r-lugares) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 235.39 545.28 275.39] /T (n-r-voto-filo) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 85 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 306.39 62.00 318.39] /T (c-r-mision-tablero) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 87 0 R /Rect [50.00 215.39 62.00 227.39] /T (c-r-rupturas) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 86 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 235.39 545.28 275.39] /T (n-r-mision-tablero) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 87 0 R /Rect [72.00 131.89 545.28 171.89] /T (n-r-rupturas) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 87 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 89 0 R /Rect [50.00 179.39 62.00 191.39] /T (c-r-oleada-extra) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 72 0 R /Annots [73 0 R 74 0 R 75 0 R 76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R] >>
 endobj
 88 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 89 0 R /Rect [72.00 120.89 545.28 160.89] /T (n-r-oleada-extra) /V <FEFF0044006500630069006400690064006F00200070006F00720020004E006100630068006F003A0020006E006F0020006400690073007000610072006100200065006C0020006500760065006E0074006F002C0020006E006F002000730075006200650020006C006100200061006C00650072007400610020006E00690020006300750065006E0074006100200063006F006D006F0020007200650066007500650072007A006F002E00200053006F006C006F00200065006E00200065006C0020007400610062006C00650072006F0020007600690072007400750061006C002E> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
-endobj
-89 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 74 0 R /Annots [75 0 R 76 0 R 77 0 R 78 0 R 79 0 R 80 0 R 81 0 R 82 0 R 83 0 R 84 0 R 85 0 R 86 0 R 87 0 R 88 0 R] >>
-endobj
-90 0 obj
-<<  /Length 1416 >>
+<<  /Length 2568 >>
 stream
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Cofres: los peligros \(1-2\) y el Borrado débil del tesoro maldito no se aplican solos. ¿Cómo quieres resolverlos: a) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (mano o con efectos automáticos?) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td (Los lugares de las Rupturas \(El Enraizado, Los Engranajes, El Remolino, El Laberinto de Piedra, El Coro, El) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (Instante\) dependen del mapa, que está sin elegir. ¿Se mantienen o se mueven al rehacerlo?) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 746.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Cofres: la tirada de Voluntad es entre 1" y 6" y, a 1" o menos, se abre sin tirada. ¿Gasta acción en ambos) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (casos? \(ahora sí\).) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 685.39 Td (Misión 1: ¿la plata del contrato debe tener alguna pista en el texto del jugador \(por ejemplo una marca del) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 672.89 Td (Mercado en las monedas\) o se descubre más adelante?) Tj ET
 BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 655.89 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 594.39 Td (Recompensas al escapar: ahora reciben XP y oro solo los héroes vivos. ¿Y los inconscientes también?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 577.39 Td (Respuesta:) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 515.89 Td (Heraldo: aparece siempre en la zona de escape al luchar contra él. ¿Debe entrar también por las esquinas si) Tj ET
-BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 503.39 Td (los héroes no están en la zona?) Tj ET
-BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 486.39 Td (Respuesta:) Tj ET
+BT /F2 14 Tf 0.07 0.1 0.19 rg 50.00 579.89 Td (Tablero virtual · decisiones de la tanda 9) Tj ET
+0.72 0.56 0.25 RG 0.9 w 50 573.89 m 545.28 573.89 l S
+BT /F1 9.5 Tf 0.55 0.56 0.6 rg 72.00 558.39 Td (Oleada extra del 50 % con la alerta baja y sin enemigos: ¿dispara el evento de la Ruptura o cambia la alerta?) Tj ET
+0.55 0.56 0.6 RG 0.7 w 72.00 561.59 m 532.97 561.59 l S
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 541.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 479.89 Td (Cofres: los peligros \(1-2\) y el Borrado débil del tesoro maldito no se aplican solos. ¿Cómo quieres resolverlos: a) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 467.39 Td (mano o con efectos automáticos?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 450.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 388.89 Td (Cofres: la tirada de Voluntad es entre 1" y 6" y, a 1" o menos, se abre sin tirada. ¿Gasta acción en ambos) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 376.39 Td (casos? \(ahora sí\).) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 359.39 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 297.89 Td (Recompensas al escapar: ahora reciben XP y oro solo los héroes vivos. ¿Y los inconscientes también?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 280.89 Td (Respuesta:) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 219.39 Td (Heraldo: aparece siempre en la zona de escape al luchar contra él. ¿Debe entrar también por las esquinas si) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 206.89 Td (los héroes no están en la zona?) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 189.89 Td (Respuesta:) Tj ET
 BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
-BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 6 de 6) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 6 de 7) Tj ET
 0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
 endstream
 endobj
+89 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-lugares) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+90 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-lugares) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
 91 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 99 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-cofres-peligro) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-mision-tablero) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 92 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 99 0 R /Rect [72.00 702.89 545.28 742.89] /T (n-r-cofres-peligro) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 611.89 545.28 651.89] /T (n-r-mision-tablero) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 93 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 99 0 R /Rect [50.00 682.89 62.00 694.89] /T (c-r-cofre-distancia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 555.89 62.00 567.89] /T (c-r-oleada-extra) /V /On /AS /On /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 94 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 99 0 R /Rect [72.00 611.89 545.28 651.89] /T (n-r-cofre-distancia) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 497.39 545.28 537.39] /T (n-r-oleada-extra) /V <FEFF0044006500630069006400690064006F00200070006F00720020004E006100630068006F003A0020006E006F0020006400690073007000610072006100200065006C0020006500760065006E0074006F002C0020006E006F002000730075006200650020006C006100200061006C00650072007400610020006E00690020006300750065006E0074006100200063006F006D006F0020007200650066007500650072007A006F002E00200053006F006C006F00200065006E00200065006C0020007400610062006C00650072006F0020007600690072007400750061006C002E> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 95 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 99 0 R /Rect [50.00 591.89 62.00 603.89] /T (c-r-xp-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 477.39 62.00 489.39] /T (c-r-cofres-peligro) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 96 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 99 0 R /Rect [72.00 533.39 545.28 573.39] /T (n-r-xp-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 406.39 545.28 446.39] /T (n-r-cofres-peligro) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 97 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 99 0 R /Rect [50.00 513.39 62.00 525.39] /T (c-r-heraldo-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 386.39 62.00 398.39] /T (c-r-cofre-distancia) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 98 0 obj
-<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 99 0 R /Rect [72.00 442.39 545.28 482.39] /T (n-r-heraldo-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 315.39 545.28 355.39] /T (n-r-cofre-distancia) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
 endobj
 99 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 90 0 R /Annots [91 0 R 92 0 R 93 0 R 94 0 R 95 0 R 96 0 R 97 0 R 98 0 R] >>
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 295.39 62.00 307.39] /T (c-r-xp-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
 endobj
 100 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 236.89 545.28 276.89] /T (n-r-xp-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+101 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 103 0 R /Rect [50.00 216.89 62.00 228.89] /T (c-r-heraldo-escape) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+102 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 103 0 R /Rect [72.00 145.89 545.28 185.89] /T (n-r-heraldo-escape) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+103 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 88 0 R /Annots [89 0 R 90 0 R 91 0 R 92 0 R 93 0 R 94 0 R 95 0 R 96 0 R 97 0 R 98 0 R 99 0 R 100 0 R 101 0 R 102 0 R] >>
+endobj
+104 0 obj
+<<  /Length 772 >>
+stream
+BT /F2 9.5 Tf 0.13 0.14 0.2 rg 72.00 776.39 Td ([Pendiente]) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 127.94 776.39 Td (Efectos de «Peligro» \(cofre: estados Afligido, Enfermo, Afectado o Debilitado\) y del Borrado débil) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 763.89 Td (del tesoro maldito: hoy solo se anotan en el registro y hay que aplicarlos a mano. Decidir cómo se aplican en el) Tj ET
+BT /F1 9.5 Tf 0.13 0.14 0.2 rg 72.00 751.39 Td (tablero.) Tj ET
+BT /F2 7.5 Tf 0.55 0.56 0.6 rg 72.00 734.39 Td (Respuesta:) Tj ET
+BT /F3 7.5 Tf 0.55 0.56 0.6 rg 50 30 Td (Pendiente de revisión · Documento vivo: se sigue trabajando en él · Actualizado 22/11/2026) Tj ET
+BT /F1 7.5 Tf 0.55 0.56 0.6 rg 505.28 30 Td (Página 7 de 7) Tj ET
+0.85 0.82 0.75 RG 0.5 w 50 42 m 545.28 42 l S
+endstream
+endobj
+105 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Btn /F 4 /P 107 0 R /Rect [50.00 773.89 62.00 785.89] /T (c-r-peligro-tesoro) /V /Off /AS /Off /DA (/ZaDb 0 Tf 0 g) /MK << /BC [0.55 0.47 0.3] /BG [1 1 1] /CA (4) >> /AP << /N << /On 15 0 R /Off 14 0 R >> >> >>
+endobj
+106 0 obj
+<< /Type /Annot /Subtype /Widget /FT /Tx /Ff 4096 /F 4 /P 107 0 R /Rect [72.00 690.39 545.28 730.39] /T (n-r-peligro-tesoro) /V <FEFF> /DA (/Helv 9 Tf 0 g) /MK << /BC [0.75 0.7 0.6] /BG [1 0.99 0.95] >> >>
+endobj
+107 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 10 0 R /F2 11 0 R /F3 12 0 R >> >> /Contents 104 0 R /Annots [105 0 R 106 0 R] >>
+endobj
+108 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
 endobj
 xref
-0 101
+0 109
 0000000000 65535 f 
 0000000015 00000 n 
 0000000080 00000 n 
-0000000173 00000 n 
-0000000800 00000 n 
-0000000952 00000 n 
-0000000972 00000 n 
-0000000992 00000 n 
-0000001012 00000 n 
-0000001032 00000 n 
-0000001052 00000 n 
-0000001150 00000 n 
-0000001253 00000 n 
-0000001359 00000 n 
-0000001433 00000 n 
-0000001580 00000 n 
-0000001823 00000 n 
-0000005625 00000 n 
-0000005880 00000 n 
-0000006092 00000 n 
-0000006347 00000 n 
-0000006559 00000 n 
-0000006815 00000 n 
-0000007028 00000 n 
-0000007284 00000 n 
-0000007497 00000 n 
-0000007751 00000 n 
-0000007961 00000 n 
-0000008198 00000 n 
-0000011380 00000 n 
-0000011638 00000 n 
-0000011853 00000 n 
-0000012109 00000 n 
-0000012322 00000 n 
-0000012580 00000 n 
-0000012795 00000 n 
-0000013054 00000 n 
-0000013270 00000 n 
-0000013526 00000 n 
-0000013739 00000 n 
-0000013996 00000 n 
-0000014210 00000 n 
-0000014461 00000 n 
-0000017749 00000 n 
-0000018009 00000 n 
-0000018226 00000 n 
-0000018486 00000 n 
-0000018703 00000 n 
-0000018960 00000 n 
-0000019174 00000 n 
-0000019430 00000 n 
-0000019643 00000 n 
-0000019903 00000 n 
-0000020120 00000 n 
-0000020386 00000 n 
-0000020609 00000 n 
-0000020863 00000 n 
-0000021073 00000 n 
-0000021338 00000 n 
-0000024961 00000 n 
-0000025219 00000 n 
-0000025434 00000 n 
-0000025691 00000 n 
-0000025905 00000 n 
-0000026165 00000 n 
-0000026382 00000 n 
-0000026644 00000 n 
-0000026863 00000 n 
-0000027119 00000 n 
-0000027332 00000 n 
-0000027589 00000 n 
-0000027803 00000 n 
-0000028060 00000 n 
-0000028273 00000 n 
-0000028538 00000 n 
-0000031538 00000 n 
-0000031795 00000 n 
-0000032009 00000 n 
-0000032271 00000 n 
-0000032490 00000 n 
-0000032749 00000 n 
-0000032965 00000 n 
-0000033223 00000 n 
-0000033438 00000 n 
-0000033695 00000 n 
-0000033909 00000 n 
-0000034173 00000 n 
-0000034394 00000 n 
-0000034654 00000 n 
-0000035321 00000 n 
-0000035586 00000 n 
-0000037056 00000 n 
-0000037320 00000 n 
-0000037541 00000 n 
-0000037806 00000 n 
-0000038028 00000 n 
-0000038287 00000 n 
-0000038503 00000 n 
-0000038767 00000 n 
-0000038988 00000 n 
-0000039211 00000 n 
+0000000182 00000 n 
+0000000856 00000 n 
+0000001008 00000 n 
+0000001028 00000 n 
+0000001048 00000 n 
+0000001068 00000 n 
+0000001088 00000 n 
+0000001108 00000 n 
+0000001206 00000 n 
+0000001309 00000 n 
+0000001415 00000 n 
+0000001489 00000 n 
+0000001636 00000 n 
+0000001879 00000 n 
+0000005773 00000 n 
+0000006028 00000 n 
+0000006240 00000 n 
+0000006495 00000 n 
+0000006707 00000 n 
+0000006963 00000 n 
+0000007176 00000 n 
+0000007432 00000 n 
+0000007645 00000 n 
+0000007902 00000 n 
+0000008115 00000 n 
+0000008352 00000 n 
+0000011688 00000 n 
+0000011942 00000 n 
+0000012153 00000 n 
+0000012411 00000 n 
+0000012626 00000 n 
+0000012882 00000 n 
+0000013095 00000 n 
+0000013353 00000 n 
+0000013568 00000 n 
+0000013827 00000 n 
+0000014043 00000 n 
+0000014299 00000 n 
+0000014512 00000 n 
+0000014763 00000 n 
+0000017335 00000 n 
+0000017592 00000 n 
+0000017806 00000 n 
+0000018066 00000 n 
+0000018283 00000 n 
+0000018543 00000 n 
+0000018760 00000 n 
+0000019017 00000 n 
+0000019231 00000 n 
+0000019487 00000 n 
+0000019700 00000 n 
+0000019960 00000 n 
+0000020177 00000 n 
+0000020443 00000 n 
+0000020666 00000 n 
+0000020931 00000 n 
+0000024766 00000 n 
+0000025020 00000 n 
+0000025231 00000 n 
+0000025489 00000 n 
+0000025704 00000 n 
+0000025961 00000 n 
+0000026175 00000 n 
+0000026435 00000 n 
+0000026652 00000 n 
+0000026914 00000 n 
+0000027133 00000 n 
+0000027395 00000 n 
+0000027614 00000 n 
+0000027865 00000 n 
+0000031062 00000 n 
+0000031318 00000 n 
+0000031531 00000 n 
+0000031788 00000 n 
+0000032002 00000 n 
+0000032259 00000 n 
+0000032473 00000 n 
+0000032730 00000 n 
+0000032944 00000 n 
+0000033206 00000 n 
+0000033425 00000 n 
+0000033684 00000 n 
+0000033900 00000 n 
+0000034158 00000 n 
+0000034373 00000 n 
+0000034638 00000 n 
+0000037260 00000 n 
+0000037518 00000 n 
+0000037733 00000 n 
+0000037998 00000 n 
+0000038220 00000 n 
+0000038481 00000 n 
+0000039149 00000 n 
+0000039414 00000 n 
+0000039636 00000 n 
+0000039902 00000 n 
+0000040125 00000 n 
+0000040385 00000 n 
+0000040603 00000 n 
+0000040869 00000 n 
+0000041092 00000 n 
+0000041361 00000 n 
+0000042187 00000 n 
+0000042453 00000 n 
+0000042676 00000 n 
+0000042861 00000 n 
 trailer
-<< /Size 101 /Root 1 0 R /Info 4 0 R >>
+<< /Size 109 /Root 1 0 R /Info 4 0 R >>
 startxref
-39310
+42960
 %%EOF
