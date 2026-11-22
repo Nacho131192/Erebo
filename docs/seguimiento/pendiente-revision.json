@@ -263,6 +263,48 @@
           "notes": ""
         }
       ]
+    },
+    {
+      "id": "r6",
+      "title": "Tablero virtual · decisiones de la tanda 9",
+      "goal": "",
+      "items": [
+        {
+          "id": "r-oleada-extra",
+          "tag": "",
+          "done": true,
+          "text": "Oleada extra del 50 % con la alerta baja y sin enemigos: ¿dispara el evento de la Ruptura o cambia la alerta?",
+          "notes": "Decidido por Nacho: no dispara el evento, no sube la alerta ni cuenta como refuerzo. Solo en el tablero virtual."
+        },
+        {
+          "id": "r-cofres-peligro",
+          "tag": "",
+          "done": false,
+          "text": "Cofres: los peligros (1-2) y el Borrado débil del tesoro maldito no se aplican solos. ¿Cómo quieres resolverlos: a mano o con efectos automáticos?",
+          "notes": ""
+        },
+        {
+          "id": "r-cofre-distancia",
+          "tag": "",
+          "done": false,
+          "text": "Cofres: la tirada de Voluntad es entre 1″ y 6″ y, a 1″ o menos, se abre sin tirada. ¿Gasta acción en ambos casos? (ahora sí).",
+          "notes": ""
+        },
+        {
+          "id": "r-xp-escape",
+          "tag": "",
+          "done": false,
+          "text": "Recompensas al escapar: ahora reciben XP y oro solo los héroes vivos. ¿Y los inconscientes también?",
+          "notes": ""
+        },
+        {
+          "id": "r-heraldo-escape",
+          "tag": "",
+          "done": false,
+          "text": "Heraldo: aparece siempre en la zona de escape al luchar contra él. ¿Debe entrar también por las esquinas si los héroes no están en la zona?",
+          "notes": ""
+        }
+      ]
     }
   ]
 }

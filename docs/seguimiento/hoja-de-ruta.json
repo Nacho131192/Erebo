@@ -234,14 +234,14 @@
         {
           "id": "f4-xp",
           "tag": "Oficial",
-          "done": false,
-          "text": "XP (2×D principal, D secundario, máximo 5×D) y oro de riesgo 5×D a las fichas."
+          "done": true,
+          "text": "XP (2×D principal, D secundario, 2×D+1 Heraldo, máximo 5×D) y oro de 5×D al escapar. [Oficial/Casa]"
         },
         {
           "id": "f4-recuperar",
           "tag": "Oficial",
-          "done": false,
-          "text": "Al terminar, recuperar 3 heridas y 3 de poder."
+          "done": true,
+          "text": "Al escapar, los héroes vivos recuperan todas las heridas y todo el poder (decisión de Nacho, más que las 3 y 3 oficiales)."
         },
         {
           "id": "f4-mapa",
@@ -442,7 +442,7 @@
           "id": "f8-heraldo",
           "tag": "Casa",
           "done": false,
-          "text": "Heraldo del Umbral en el tablero: vida (Tough) según dificultad y número de héroes, Fear, Stealth, Caster y su oleada de doble valor. Pendiente: sus hechizos (Olvido, Borrado, Silencio) no se aplican solos."
+          "text": "Heraldo del Umbral en el tablero: vida (Tough) según dificultad y número de héroes, Fear, Stealth, Caster, aparece en la zona de escape al luchar contra él. Pendiente: sus hechizos (Olvido, Borrado, Silencio) no se aplican solos."
         },
         {
           "id": "f8-tough9",
@@ -453,14 +453,14 @@
         {
           "id": "f8-diario",
           "tag": "Casa",
-          "done": false,
-          "text": "El Diario del olvidado da AP(1) contra él."
+          "done": true,
+          "text": "El Diario del olvidado da +1 de AP contra el Heraldo en la pelea de jefe. [Casa]"
         },
         {
           "id": "f8-final",
           "tag": "Oficial",
-          "done": false,
-          "text": "Final con el Heraldo desaparecido: +2×D de XP [Oficial] y, como en la mesa, +1 de XP y +5 de oro por héroe [Casa]."
+          "done": true,
+          "text": "Final con el Heraldo desaparecido: XP y oro extra según la tabla de la misión I (+1 de XP y +5 de oro por héroe). [Oficial/Casa]"
         }
       ],
       "done_when": "HITO: la Misión 1 completa, con jefe.",
@@ -755,6 +755,74 @@
           "tag": "",
           "done": false,
           "text": "Quitar el botón temporal «Cumplir objetivo principal (prueba)» cuando ya no haga falta (y su acción devprim)."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "f11",
+      "title": "Fase 11 · Tanda 9 del tablero (22-11-2026)",
+      "goal": "Cofres, final de misión y derrota, diario, oleadas y despliegue.",
+      "items": [
+        {
+          "id": "f11-cofres",
+          "tag": "Casa",
+          "done": true,
+          "text": "Cofres: 2 a 6 repartidos por el mapa, fuera de obstáculos. Abrir con tirada de Voluntad a 6″ o menos (más de 1″); a 1″ o menos se abre sin tirada. Contenido tirado al abrir y recogido al llegar a 1″; clic en el cofre para ver qué trae."
+        },
+        {
+          "id": "f11-final",
+          "tag": "",
+          "done": true,
+          "text": "Final de misión en ventana centrada: resultado, principal, secundario, Heraldo, rondas jugadas y enemigos eliminados, con nueva partida, reiniciar o cerrar."
+        },
+        {
+          "id": "f11-derrota",
+          "tag": "",
+          "done": true,
+          "text": "Derrota en la misma ventana: objetivos cumplidos, texto de ánimo y botones de reiniciar o salir."
+        },
+        {
+          "id": "f11-diario",
+          "tag": "",
+          "done": true,
+          "text": "Diario del olvidado: +1 de AP contra el Heraldo."
+        },
+        {
+          "id": "f11-alerta-baja",
+          "tag": "Casa",
+          "done": true,
+          "text": "Norma de la casa: sin enemigos al acabar la ronda con la alerta por debajo de 3, llega una oleada extra del 50 % de la normal (sin evento, sin subir la alerta)."
+        },
+        {
+          "id": "f11-oleada",
+          "tag": "",
+          "done": true,
+          "text": "Al llegar la alerta a 6 la oleada siempre sale, aunque todas las copias de la lista estén en mesa (se repiten)."
+        },
+        {
+          "id": "f11-despliegue",
+          "tag": "",
+          "done": true,
+          "text": "Desplegar la mesa solo coloca a los héroes; los centinelas salen al pulsar Empezar la partida."
+        },
+        {
+          "id": "f11-ventana-oleada",
+          "tag": "",
+          "done": true,
+          "text": "Ventana de oleada con «Entra una oleada · ¡preparaos!» y frase; el Heraldo primero, con foto y nombre en mayúsculas."
+        },
+        {
+          "id": "f11-acciones",
+          "tag": "",
+          "done": true,
+          "text": "Acción extra y habilidades del héroe como acciones; «Terminar activación» encima de las acciones."
+        },
+        {
+          "id": "f11-cofres-efectos",
+          "tag": "",
+          "done": false,
+          "text": "Efectos a mano de los cofres: los peligros y el Borrado débil del tesoro maldito solo se anotan en el registro."
         }
       ]
     }
