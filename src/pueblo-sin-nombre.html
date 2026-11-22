@@ -4533,6 +4533,11 @@ const TRAD={
    "n": "Paso del pícaro",
    "d": "Una vez por partida, al activarse, hasta el final de la ronda los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
    "a": ""
+  },
+  "destructive": {
+   "n": "Destructivo",
+   "d": "Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1).",
+   "a": ""
   }
  },
  "consumibles": {
@@ -4687,7 +4692,9 @@ const TRAD={
   "sabre-bite": "Mordisco de sable",
   "throw rocks": "Lanzar piedras",
   "war hammer": "Martillo de guerra",
-  "staff": "Bastón"
+  "staff": "Bastón",
+  "rapid dark crossbow": "Ballesta oscura rápida",
+  "great longbow": "Gran arco largo"
  }
 };
 const HF_WAKI=`++ Wakiisen - Barbarian (Ogres) [AOFQ 285pts] [Lvl 4] ++
@@ -4696,6 +4703,26 @@ Wakiisen | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | To
 Dual Hand Weapons (A8)
 Consumables: 2x Health Potion
 Skills: Rage, Healing Touch`;
+/* Héroes de Army Forge añadidos el 2026-11-21 (texto tal cual lo exporta Army Forge). */
+const HF_CHESTER=`++ Chester - Paladin (Dragon Empire) [AOFQ 200pts] [Lvl 1] ++
+
+Chester | Qua 4+ Def 6+ Tou 9 Pow 4 | Str 6+ Dex 6+ Wil 4+ | 200pts | Tough(9), Royal Warrior, Fearless, Defense(+1), Paladin Shout
+Dual Hand Weapons (A4)
+Consumables: 1x Health Potion, 1x Curing Potion
+Skills: Ancient Weapon`;
+const HF_VANDRAL=`++ Vandral - Rogue (Dark Elves) [AOFQ 195pts] [Lvl 4] ++
+
+Vandral | Qua 3+ Def 6+ Tou 9 Pow 4 | Str 6+ Dex 3+ Wil 6+ | 195pts | 8XP | Tough(9), Harassing, Rogue Step
+Rapid Dark Crossbow (23", A3, Lacerate)
+Consumables: 1x Curing Potion
+Skills: Assassination, Elude`;
+const HF_LEGOLAS=`++ Legolas - Ranger (Wood Elves) [AOFQ 190pts] [Lvl 3] ++
+
+Legolas | Qua 4+ Def 6+ Tou 9 Pow 3 | Str 4+ Dex 5+ Wil 6+ | 190pts | 6XP | Strider, Tough(9), Wild Veil, Ranger's Precision
+Great Longbow (24", A2)
+Consumables: 1x Curing Potion
+Skills: Hunting Beast, Dread Attack, Sprint, Destructive`;
+const HF_SEED=[HF_WAKI,HF_CHESTER,HF_VANDRAL,HF_LEGOLAS];
 const HF_ST=[["at","Aturdido"],["af","Afligido"],["en","Enfermo"],["de","Debilitado"],["ac","Afectado"]];
 /* Qué hace cada estado (petición de Nacho, 2026-11-20): se muestra al pasar el ratón o al enfocar la pastilla. */
 const HF_STX={at:"Aturdido: al activarse se queda quieto y pasa la activación sin hacer nada para recuperarse. Mientras dura, sus ataques solo impactan con 6.",af:"Afligido: al activarse debe superar una tirada de Fuerza para quitárselo. Si la falla, sufre 1 herida. Su Fuerza va en rojo mientras dura.",en:"Enfermo: al activarse debe superar una tirada de Voluntad para quitárselo. Su Voluntad va en rojo mientras dura.",de:"Debilitado: al activarse debe superar una tirada de Destreza para quitárselo. Mientras dura, mueve solo la mitad.",ac:"Afectado: −1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo."};
@@ -4755,8 +4782,9 @@ function hfTrad(r){const D=(typeof TRAD!=="undefined"&&TRAD)||{reglas:{},habilid
  const raza=D.razas[TRK(r.raza)]||r.raza||"",prof=D.profesiones[TRK(r.prof)]||r.prof||"";
  if(r.raza&&!D.razas[TRK(r.raza)]&&!ES.has(TRK(r.raza)))miss.push("raza "+r.raza);
  if(r.prof&&!D.profesiones[TRK(r.prof)]&&!ES.has(TRK(r.prof)))miss.push("profesión "+r.prof);
- const rules=r.rules.filter(x=>!/^Tough\(\d+\)$/i.test(x)).map(x=>{const b=TRB(x),rt=D.reglas[b],hb=D.habilidades[b];
-  if(rt)return{n:x,d:rt.d,k:"regla"};
+ const rules=r.rules.filter(x=>!/^Tough\(\d+\)$/i.test(x)).map(x=>{const b=TRB(x),rt=D.reglas[b],hb=D.habilidades[b],v=(x.match(/\((.+)\)/)||[])[1];
+  /* Valor entre paréntesis (Defense(+1), Fear(6)): sustituye +X y {x} de la explicación. */
+  if(rt)return{n:x,d:v?rt.d.replace(/\+X|\+\{x\}/g,"+"+v.replace(/^\+/,"")).replace(/\{x\}/g,v.replace(/^\+/,"")):rt.d,k:"regla"};
   if(hb)return{n:hb.n,d:hb.d,k:"hab"};
   miss.push("regla "+x);return{n:x,d:"",k:"regla"}});
  const skills=r.skills.map(x=>{const hb=D.habilidades[TRB(x)];if(hb)return{n:hb.n,d:hb.d};miss.push("habilidad "+x);return{n:x,d:""}});
@@ -4778,9 +4806,13 @@ function hfApply(h,r){
   .concat(T.skills.map(x=>({g:"hab",n:x.n,k:"",d:x.d})),T.weap.map(x=>({g:"equipo",n:x.n,k:x.k,d:x.d})),T.cons.map(x=>({g:"equipo",n:(x.q>1?x.q+"× ":"")+x.n,k:"Consumible",d:x.d})));
  hfClamp(h);
 }
-function hfDefault(){const h=hfMk({c:0});hfApply(h,hfParse(HF_WAKI));h.hp=h.hpMax;h.pw=h.pwMax;return[h]}
+function hfMake(t,c){const h=hfMk({c});hfApply(h,hfParse(t));h.hp=h.hpMax;h.pw=h.pwMax;return h}
+function hfDefault(){return HF_SEED.map((t,i)=>hfMake(t,i))}
 let HS;try{HS=JSON.parse(localStorage.getItem(HKEY))}catch(e){HS=null}
 if(!Array.isArray(HS)||!HS.length)HS=hfDefault();
+/* Partidas ya guardadas: se añaden una sola vez los héroes nuevos (si no están ya por nombre). Así no reaparecen si se quitan. */
+/* Versión 3 (2026-11-21): se actualizan armas y habilidades de los héroes ya guardados; conservan heridas, poder, oro y pociones. */
+try{if(localStorage.getItem("psn-heroes-seed")!=="3"){HF_SEED.forEach((t,i)=>{const nm=hfParse(t).name,h=HS.find(x=>x.name===nm);if(!h)HS.push(hfMake(t,HS.length));else{const p=h.pot;hfApply(h,hfParse(t));h.pot=p}});localStorage.setItem("psn-heroes-seed","3");hfSave()}}catch(e){}
 const HF={cur:0,open:false,fan:false,mode:"",tab:"regla",imp:"",res:null,delArm:false};
 function hfSave(){try{localStorage.setItem(HKEY,JSON.stringify(HS))}catch(e){}}
 const hfH=()=>HS[HF.cur];

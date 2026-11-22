@@ -88,7 +88,11 @@ out["armas"] = {
     "throw rocks": "Lanzar piedras",
     "war hammer": "Martillo de guerra",
     "staff": "Bastón",
+    "rapid dark crossbow": "Ballesta oscura rápida",
+    "great longbow": "Gran arco largo",
 }
+# Habilidad (no regla) de Destructive, como la exporta Army Forge para Legolas (2026-11-21). Texto de la casa.
+out["habilidades"].setdefault("destructive", {"n": "Destructivo", "d": "Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1).", "a": ""})
 
 # --- MANUAL: reglas comunes de OPR que no estaban en las fuentes (texto propio, en español).
 MANUAL = {

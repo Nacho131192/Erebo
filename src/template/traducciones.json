@@ -1556,6 +1556,11 @@
    "n": "Paso del pícaro",
    "d": "Una vez por partida, al activarse, hasta el final de la ronda los enemigos no pueden elegir al Héroe como objetivo mientras este no haya elegido como objetivo a ningún enemigo.",
    "a": ""
+  },
+  "destructive": {
+   "n": "Destructivo",
+   "d": "Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1).",
+   "a": ""
   }
  },
  "consumibles": {
@@ -1710,6 +1715,8 @@
   "sabre-bite": "Mordisco de sable",
   "throw rocks": "Lanzar piedras",
   "war hammer": "Martillo de guerra",
-  "staff": "Bastón"
+  "staff": "Bastón",
+  "rapid dark crossbow": "Ballesta oscura rápida",
+  "great longbow": "Gran arco largo"
  }
 }
