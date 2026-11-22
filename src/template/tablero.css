@@ -559,3 +559,59 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 /* Cartel del objetivo principal: se queda hasta tocarlo (antes se desvanecía solo y bloqueaba el tablero) */
 .tv-prim{animation:tvprimin .35s both}
 @keyframes tvprimin{from{opacity:0}to{opacity:1}}
+
+/* Menú de acciones del héroe: una columna, en orden (2026-11-22). */
+.tv-acts{display:flex;flex-direction:column;gap:6px}
+.tv-act.rest,.tv-act.obj{grid-column:auto}
+
+/* ---- 2026-11-22 (tanda 6): acción extra y habilidades como acciones; terminar activación fijo al pie ---- */
+.tv-act.extra b{color:#c9b8ff}.tv-act.extra.on{border-color:#c9b8ff;background:rgba(167,139,250,.14)}
+.tv-act.skill b{color:#f0d79a}.tv-act.skill.open{border-color:var(--gold);background:rgba(217,184,108,.08)}
+.tv-acts .tv-rinl{margin-top:0}
+.tv-endfloat{position:sticky;bottom:0;z-index:5;margin:12px -2px -2px;padding:12px 2px 8px;background:linear-gradient(180deg,rgba(11,16,32,0),#0b1020 45%)}
+.tv-endfloat .endact{width:100%;padding:12px 14px;font-size:14px}
+
+/* ---- 2026-11-22 (tanda 7): evento de la Ruptura con su descripción y más aire bajo el recuadro ---- */
+.tv-evn{margin-bottom:22px}
+.tv-evx{margin:6px 0 4px;font-size:12.5px;line-height:1.45;color:#d6dbea}
+.tv-evr{margin:4px 0 0;font-size:12.5px;font-weight:600;color:#f0d79a}
+
+/* Terminar activación: justo encima de las acciones, no flotante (2026-11-22). */
+.tv-endbtn{margin:0 0 12px}
+.tv-endbtn .endact{width:100%;padding:12px 14px;font-size:14px}
+
+/* ---- 2026-11-22 (tanda 8): ventana de oleada más cuidada; el Heraldo primero, con su foto ---- */
+.tv-wmod{animation:tv-tray .45s cubic-bezier(.22,1,.36,1) both}
+.tv-wave .tv-in{font:700 22px/1.2 Cinzel,Georgia,serif;color:var(--gold2);letter-spacing:.02em;margin:4px 0 2px}
+.tv-wph{margin:0 0 8px;font:italic 500 14px/1.45 Cormorant Garamond,Georgia,serif;color:#e6dcc4}
+.tv-wboss{border-color:rgba(217,184,108,.85);box-shadow:0 0 0 1px rgba(217,184,108,.25),0 0 28px rgba(190,140,255,.22);background:linear-gradient(180deg,rgba(120,70,190,.16),var(--card))}
+.tv-bhead{display:flex;gap:14px;align-items:center;margin-bottom:8px}
+.tv-bimg{flex:none;width:96px;height:auto;border-radius:12px;border:1px solid rgba(217,184,108,.75);box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 22px rgba(190,140,255,.25);object-fit:cover}
+.tv-bhtxt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tv-bname{font:700 22px/1.1 Cinzel,Georgia,serif;letter-spacing:.06em;text-transform:uppercase;color:#f6e2a8;text-shadow:0 0 14px rgba(217,184,108,.45)}
+.tv-bhead .tv-lab{margin:0;color:#d9b8ff}
+
+/* ---- 2026-11-22 (tanda 9): cofres en el mapa, final de misión y derrota en ventana ---- */
+.tv-chest{cursor:pointer}
+.tv-chest .tv-chbg{fill:rgba(20,14,6,.82);stroke:#b07a3a;stroke-width:1.2}
+.tv-chest .tv-chbox{fill:#7a4a22;stroke:#e1b26a;stroke-width:1}
+.tv-chest .tv-chl{stroke:#e1b26a;stroke-width:1.2;fill:none}
+.tv-chest .tv-chlock{fill:#e6cf8e}
+.tv-chest.open .tv-chbox{fill:#c8862f}
+.tv-chest.open .tv-chbg{stroke:#ffd678}
+.tv-chest .tv-chglow{fill:rgba(255,210,120,.22);stroke:none;animation:tvfl 1.8s ease-in-out infinite}
+.tv-chest.taken{opacity:.45}
+.tv-chest.taken .tv-chbox{fill:#4a3d2c}
+.tv-chmod{width:min(440px,100%)}
+.tv-endov{z-index:70}
+.tv-endm{width:min(520px,100%);text-align:center;border-color:rgba(217,184,108,.85)}
+.tv-endm.lost{border-color:rgba(255,138,154,.7)}
+.tv-endt{margin:6px 0 8px;font:700 28px/1.15 Cinzel,Georgia,serif;color:#f6e2a8;letter-spacing:.03em}
+.tv-endm.lost .tv-endt{color:#ffc2cb}
+.tv-endp{margin:0 0 14px;font:italic 500 15px/1.5 Cormorant Garamond,Georgia,serif;color:#e6dcc4}
+.tv-endl{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px;text-align:left}
+.tv-endl li{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;border-radius:10px;background:var(--card);font-size:13px;color:#c7cde2}
+.tv-endl li.ok b{color:#86d1ae}
+.tv-rew{display:flex;flex-direction:column;gap:4px;margin:0 0 14px;padding:10px 12px;border-radius:12px;border:1px solid rgba(134,209,174,.5);background:rgba(134,209,174,.08);text-align:left;font-size:13px}
+.tv-rew small{color:var(--mu);font-size:11.5px}
+.tv-endb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}

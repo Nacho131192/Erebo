@@ -1,7 +1,7 @@
 {
   "file": "pendiente-revision.pdf",
   "title": "Pendiente de revisión",
-  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 21-11-2026",
+  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 22-11-2026",
   "live": "Documento vivo: estas dudas siguen abiertas y la lista se irá ampliando. Escribe la respuesta en su recuadro y marca «Resuelto» cuando esté decidido.",
   "legend": "Cada punto dice qué hace ahora la aplicación y qué dice la norma (Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR), para poder comparar.",
   "check_label": "Resuelto",
@@ -124,6 +124,27 @@
           "tag": "",
           "done": false,
           "text": "Creador de héroes: Fuerza, Destreza y Voluntad parten de 6+ y cada +1 de la clase baja un escalón; el Poder es el bono de la clase.",
+          "notes": ""
+        },
+        {
+          "id": "r-escape",
+          "tag": "",
+          "done": false,
+          "text": "Zona de escape: ¿la esquina es la más alejada de los héroes en media (como ahora) o de su héroe más cercano? Y ¿hace falta también que no haya enemigos alrededor, como dice el texto de la misión?",
+          "notes": ""
+        },
+        {
+          "id": "r-secundario",
+          "tag": "",
+          "done": false,
+          "text": "Contener el Olvido: la aplicación usa 3 pulgadas del pozo para la tirada y 5 pulgadas sin enemigos. Son valores míos: ¿los confirmas?",
+          "notes": ""
+        },
+        {
+          "id": "r-heraldo-hechizos",
+          "tag": "",
+          "done": false,
+          "text": "Heraldo del Umbral: sus hechizos (Olvido, Borrado, Silencio) todavía no se aplican solos en el tablero. ¿Cómo quieres que se resuelvan: automáticos o a mano?",
           "notes": ""
         }
       ],

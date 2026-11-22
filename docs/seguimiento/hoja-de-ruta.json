@@ -1,7 +1,7 @@
 {
   "file": "hoja-de-ruta.pdf",
   "title": "Hoja de ruta del tablero virtual",
-  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 21-11-2026",
+  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 22-11-2026",
   "live": "Documento vivo: todo lo que hay aquí sigue pendiente de trabajo y se irá revisando, tachando y ampliando. Marca la casilla de cada punto cuando esté hecho.",
   "legend": "[Oficial] = Core Rules o Campaign Builder de OPR.   [Casa] = regla de la casa.   Una fase cada vez; dentro de cada fase, un punto cada vez. Al acabar cada punto: probar en el navegador, apuntarlo en CLAUDE.md y hacer commit en prueba-juego.",
   "check_label": "Hecho",
@@ -117,14 +117,14 @@
     },
     {
       "id": "f1",
-      "title": "Fase 1 · Objetivo principal: los tres rastros",
+      "title": "Fase 1 · Objetivo principal: los dos rastros",
       "goal": "Hecho el 20-11-2026 salvo el efecto del diario, que espera a la pelea de jefe.",
       "items": [
         {
           "id": "f1-marcadores",
           "tag": "Oficial",
           "done": true,
-          "text": "Colocar los 3 rastros como braseros: un cuadrante distinto cada uno, pegados a una casa, al azar en cada partida; no estorban al moverse ni al disparar."
+          "text": "Colocar los 2 rastros como braseros: un cuadrante distinto cada uno, pegados a una casa, a 7 pulgadas o más de los límites de los cuadrantes y a 10 pulgadas o más de los héroes desplegados. [Oficial/Casa]"
         },
         {
           "id": "f1-descubrir",
@@ -136,7 +136,7 @@
           "id": "f1-sinatajo",
           "tag": "Casa",
           "done": true,
-          "text": "El principal solo se cumple al retirar los 3 (sin la tirada de 5+)."
+          "text": "El principal solo se cumple al recuperar los 2 rastros (sin la tirada de 5+)."
         },
         {
           "id": "f1-diario",
@@ -195,20 +195,20 @@
         {
           "id": "f3-preparar",
           "tag": "Casa",
-          "done": false,
-          "text": "Se activa al cumplir el principal. Ya no se sortea: es un único secundario, «Contener el Olvido» (sellar la Ruptura del Muro cada ronda con 1 acción y una tirada de Voluntad; si no se sella, la alerta sube +3 extra)."
+          "done": true,
+          "text": "Se activa al cumplir el principal. Único secundario: «Contener el Olvido»."
         },
         {
           "id": "f3-seis",
           "tag": "",
-          "done": false,
-          "text": "Programar «Contener el Olvido»: sellar el pozo a 3 pulgadas o menos y mantenerlo 3 rondas seguidas. Sustituye a los 6 resultados de la tabla antigua, que ya no se usan."
+          "done": true,
+          "text": "Programar «Contener el Olvido» (versión actual): tirada de Voluntad con un héroe a 3 pulgadas o menos del pozo y sin ningún enemigo a menos de 5 pulgadas del pozo. Si falla, puede gastar 2 de poder."
         },
         {
           "id": "f3-aviso",
           "tag": "",
-          "done": false,
-          "text": "Marcador o condición en el mapa y aviso al cumplirlo."
+          "done": true,
+          "text": "Marcador o condición en el mapa y aviso al cumplirlo: anillo de 5 pulgadas en el pozo, acción en la columna de acciones, caja en objetivos y cartel al cumplirlo."
         }
       ],
       "done_when": "Se pueden jugar y cumplir los 6 secundarios.",
@@ -222,8 +222,8 @@
         {
           "id": "f4-escapar",
           "tag": "Casa",
-          "done": false,
-          "text": "Escapar del pueblo: todos a 6 pulgadas de la misma esquina y sin enemigos alrededor."
+          "done": true,
+          "text": "Escapar del pueblo: zona de escape de 6 pulgadas en la esquina más alejada de los héroes, que aparece al cumplir el principal. Dentro, escapan con XP y oro; fuera, la misión se da por finalizada sin XP ni oro (con aviso)."
         },
         {
           "id": "f4-derrota",
@@ -435,14 +435,14 @@
         {
           "id": "f8-activar",
           "tag": "Oficial",
-          "done": false,
+          "done": true,
           "text": "Se activa tras los dos objetivos; al final de esa ronda llega una oleada de doble valor y no entran más refuerzos."
         },
         {
           "id": "f8-heraldo",
           "tag": "Casa",
           "done": false,
-          "text": "Heraldo del Umbral: vida (Tough) según dificultad y número de héroes (tabla ya hecha en la mesa), Fear, Stealth, hoz AP(2) Rending; hechizos Olvido, Borrado y Silencio. En los textos nunca «muere»: desaparece."
+          "text": "Heraldo del Umbral en el tablero: vida (Tough) según dificultad y número de héroes, Fear, Stealth, Caster y su oleada de doble valor. Pendiente: sus hechizos (Olvido, Borrado, Silencio) no se aplican solos."
         },
         {
           "id": "f8-tough9",
@@ -666,6 +666,97 @@
       ],
       "done_when": "",
       "notes": ""
+    },
+    {
+      "id": "f10",
+      "title": "Fase 10 · Tanda 5 del tablero (22-11-2026)",
+      "goal": "Ajustes pedidos por Nacho tras probar la partida de punta a punta.",
+      "items": [
+        {
+          "id": "f10-furia",
+          "tag": "Casa",
+          "done": true,
+          "text": "Furia de Wakiisen: +2 a todas las tiradas de cuerpo a cuerpo de la ronda (antes solo en cargas). Pendiente de probar con dados reales."
+        },
+        {
+          "id": "f10-extra",
+          "tag": "",
+          "done": true,
+          "text": "Acción extra con poder: el botón solo aparece en el héroe que está activo."
+        },
+        {
+          "id": "f10-linea",
+          "tag": "",
+          "done": true,
+          "text": "Reglas y habilidades: se despliegan bajo su nombre, sin ventana emergente."
+        },
+        {
+          "id": "f10-entendido",
+          "tag": "",
+          "done": true,
+          "text": "Oleadas (y Antes de empezar): botón «Entendido» flotante arriba a la derecha."
+        },
+        {
+          "id": "f10-evento",
+          "tag": "",
+          "done": true,
+          "text": "Al avanzar de ronda ya no sale el cartel del evento; solo en la ronda 1."
+        },
+        {
+          "id": "f10-principal",
+          "tag": "",
+          "done": true,
+          "text": "El cartel de objetivo principal se queda hasta tocarlo."
+        },
+        {
+          "id": "f10-heraldo",
+          "tag": "",
+          "done": true,
+          "text": "Heraldo del Umbral: ficha en el tablero morada y un poco mayor."
+        },
+        {
+          "id": "f10-registro",
+          "tag": "",
+          "done": true,
+          "text": "Registro de actividad plegable (sale plegado); el panel de combate sigue desplegado."
+        },
+        {
+          "id": "f10-armas",
+          "tag": "",
+          "done": true,
+          "text": "Nombres largos de arma en la columna de héroes: se parten en líneas y no se solapan. Pendiente de comprobar con armas largas reales."
+        },
+        {
+          "id": "f10-acciones",
+          "tag": "",
+          "done": true,
+          "text": "Columna de acciones con más altura."
+        },
+        {
+          "id": "f10-plegar",
+          "tag": "",
+          "done": true,
+          "text": "Botones de plegar con la misma ambientación (solo flechas)."
+        },
+        {
+          "id": "f10-cerco",
+          "tag": "",
+          "done": true,
+          "text": "Héroe activo: mientras gasta acciones solo se ve su ficha; la de quien ya actuó se oscurece."
+        },
+        {
+          "id": "f10-ventana",
+          "tag": "",
+          "done": true,
+          "text": "Ventana de objetivos sobre las fichas de héroe: casillas, luchar contra el jefe (opcional), finalizar misión y rendirse."
+        },
+        {
+          "id": "f10-temporal",
+          "tag": "",
+          "done": false,
+          "text": "Quitar el botón temporal «Cumplir objetivo principal (prueba)» cuando ya no haga falta (y su acción devprim)."
+        }
+      ]
     }
   ]
 }

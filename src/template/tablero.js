@@ -281,7 +281,7 @@ function heroPts(){if(G.ptsOv)return G.ptsOv;return selHeroes().reduce((s,h)=>s+
 function selHeroes(){if(!G.hsel)G.hsel=HS.slice(0,4).map(h=>h.name);return G.hsel.map(n=>HS.find(h=>h.name===n)).filter(Boolean)}
 /* Sorteo: unidades de la lista de Army Forge sin pasarse del valor, solo copias que no estén ya en la mesa.
    Varios intentos y se queda con el que más se acerca. */
-function drawWave(b){const busy=ARMY.map(()=>0);G.units.forEach(u=>{if(u.hp>0&&busy[u.i]!=null)busy[u.i]++});
+function drawWave(b,force){const busy=ARMY.map(()=>0);if(!force)G.units.forEach(u=>{if(u.hp>0&&busy[u.i]!=null)busy[u.i]++});
  const free=ARMY.map((a,i)=>Math.max(0,a.n-busy[i]));
  const once=()=>{const left=free.slice(),out=[];let rem=b;
   for(let g=0;g<200;g++){const c=[];ARMY.forEach((a,i)=>{if(a.pts<=rem)for(let j=0;j<left[i];j++)c.push(i)});if(!c.length)break;const i=c[Math.floor(Math.random()*c.length)];left[i]--;out.push(i);rem-=ARMY[i].pts}
@@ -297,11 +297,13 @@ function deploySentries(){const ids=drawWave(budget()),cnt=[0,0,0,0];WV=[];
   const o=SPREAD[cnt[q]++%SPREAD.length],p=freeSpot([QC[q][0]+o[0],QC[q][1]+o[1]],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.roll=r;G.units.push(u);WV.push(u.id)});
  return ids.length}
 /* Refuerzos a 6″ de una esquina (1-4); con 5-6 elige el jugador: el prototipo pone la esquina más lejana de los héroes. */
-function reinforce(over,boss){const ids=drawWave(over!=null?over:budget()),hs=liveHeroes(),cnt=[0,0,0,0],placed=[];WV=[];if(boss)ids.push(-1);
+function reinforce(over,boss,quiet){let ids=drawWave(over!=null?over:budget());if(!ids.length)ids=drawWave(over!=null?over:budget(),true);  /* si todas las copias están en mesa, la ola sale igual con copias repetidas */
+ const hs=liveHeroes(),cnt=[0,0,0,0],placed=[];WV=[];if(boss)ids.push(-1);
  const far=()=>{let b=0,bd=-1;CC.forEach((c,k)=>{const d=hs.reduce((m,h)=>Math.min(m,Math.hypot(h.x-c[0],h.y-c[1])),1e9);if(d>bd){bd=d;b=k}});return b};
  ids.forEach(i=>{const u=mkUnit(i),r=d4(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
   const p=freeSpot([CC[c][0]+Math.abs(o[0])*s*.8+6*s,CC[c][1]+Math.abs(o[1])*t*.8+6*t],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.fresh=G.round+1;u.cor=c+1;G.units.push(u);WV.push(u.id);placed.push(u.nm+" → esquina "+(c+1)+(scoutDeploy(u)?" (Scout)":""))});
- G.nref++;G.needEv=true;
+ if(boss&&G.escC!=null){const bu=G.units.find(x=>x.boss&&WV.includes(x.id));if(bu){const c=CC[G.escC],sx=c[0]<300?1:-1,sy=c[1]<300?1:-1;const p=freeSpot([c[0]+sx*34,c[1]+sy*34],bu.m0>1?14:11,bu.id);bu.x=p[0];bu.y=p[1];bu.esc=true;bu.cor=G.escC+1}}
+ if(!quiet){G.nref++;G.needEv=true}   /* la oleada extra de la norma (quiet) no dispara evento ni cuenta como refuerzo */
  log(`Refuerzos: ${ids.length?placed.join(" · "):"no queda ninguna unidad libre en la lista"}.`,"al");return ids.length}
 /* Scout (Core Rules): «puede desplegarse en cualquier punto completamente a 9″» de donde saldría. Es un solo uso, al desplegarse
    (no cambia el movimiento). Decisión de la IA: dificultad 3-4 siempre; 1-2, una de cada dos veces. Lo coloca hacia el héroe más
@@ -419,7 +421,7 @@ async function strike(A,B,ws,o){o=o||{};const melee=!!o.melee,out={hits:0,wounds
  out.extra=[];
  for(const p of pool){const w=p.w,T=p.to||B;if(p.hits<=0)continue;
   const cT=T===B?c:ctxOf(A,T,o),cv=!melee&&!wHas(w,"Blast")&&inCover(A,T)?1:0,dm=defMod(T)+cv+fxSum(T,"def",cT,Uu)+ruleDef(T,cT),regT=ruleRegen(T),ownT=T.kind==="h";
-  const apB=fxSum(A,"ap",cT,Uu)+ruleAp(A,T,cT)+(melee&&o.upf>=1&&o.upf<=3?1:0),red=Math.max(fxSum(T,"apRed",cT,Uu),ruleApRed(T));
+  const apB=fxSum(A,"ap",cT,Uu)+ruleAp(A,T,cT)+(melee&&o.upf>=1&&o.upf<=3?1:0)+(T.kind==="u"&&T.g.boss&&A.kind==="h"&&(A.h.sk||[]).some(x=>x.n===DIARY.n)?1:0),red=Math.max(fxSum(T,"apRed",cT,Uu),ruleApRed(T));
   const thr=melee&&o.charge&&wHas(w,"Thrust")?1:0,rr6=wHas(w,"Bane")||has(A,"Mischievous")||has(A,"Bestial")||has(A,"Raider");
   /* Parry(X): al recibir impactos en cuerpo a cuerpo, X dados por miniatura (hasta tantos como impactos); cada 6+ anula uno. */
   let hitsN=p.hits;const par=melee?ruleN(T.rules,"Parry"):0;
@@ -548,11 +550,12 @@ function heroesDone(){return G.heroes.every(gh=>{const a=actor(gh.id);return!a||
 async function endRound(){G.mod=null;G.units.forEach(u=>{u.act=false;u.fx=(u.fx||[]).filter(e=>e.until!=="round")});G.heroes.forEach(h=>{h.fx=(h.fx||[]).filter(e=>e.until!=="round")});G.phase="end";const none=!liveUnits().length;G.endInfo={r:G.round,add:0,pending:!none,none};paint();
  const v=none?0:(await rollDice({n:1,own:true,title:`Dado de alerta · fin de la ronda ${G.round}`,sub:"De 1 a 5, la alerta sube 1. Con un 6, sube 2.",need:"1-5 → +1 · 6 → +2",ok:r=>r===6}))[0];
  U.busy=false;
- const add=none||v===6?2:1;let al=G.al+add,rf=false;
+ const prevAl=G.al,add=none||v===6?2:1;let al=G.al+add,rf=false;
  if(al>=6){al=1;rf=!G.boss&&!G.bossArmed}   /* con la pelea de jefe armada o en curso no entran refuerzos por alerta */
  const info={r:G.round,add,die:v,none,rf,n:0};G.al=al;
  if(G.bossArmed&&!G.boss){G.bossArmed=false;G.boss=true;info.boss=true;info.rf=true;info.n=reinforce(Math.max(0,2*budget()-BOSS_PTS),true)}
  else if(rf)info.n=reinforce();
+ else if(none&&prevAl<3){info.xn=reinforce(Math.round(budget()*.5),false,true)}   /* norma de la casa: sin enemigos con alerta baja, oleada extra del 50 % */
  log(`Fin de la ronda ${G.round}: ${none?"no queda ningún enemigo en la mesa":"dado de alerta "+v} → Alertness +${add} → ${rf?"6: ¡refuerzos!":G.al+"/6"}.`,"rd");
  G.endInfo=info}
 /* Todas las rondas empiezan con evento de la Ruptura (antes solo la 1 y las de refuerzos). */
@@ -631,6 +634,47 @@ const ORD=["primer","segundo"],PRIM_MS=6200;
 const WELL=[300,300],WELLR=26,SEC_D=3,SEC_FREE=5;
 const secNear=a=>!!G.prim&&!G.sec&&Math.max(0,Math.hypot(a.x-WELL[0],a.y-WELL[1])-WELLR-a.r)/BIN<=SEC_D+.01;
 const secFoes=()=>liveUnits().filter(u=>Math.max(0,Math.hypot(u.x-WELL[0],u.y-WELL[1])-WELLR-u.r)/BIN<SEC_FREE);
+/* Cofres (2026-11-22): 2 a 6, repartidos por el mapa fuera de casas, muros, árboles, pozo, rastros y otros cofres.
+   Un héroe a 6″ o menos (y más de 1″) intenta abrirlo con una tirada de Voluntad; a 1″ o menos se abre sin tirada.
+   El contenido se tira al abrirse y se recoge al llegar un héroe a 1″ o menos. */
+function placeChests(){const n=2+Math.floor(Math.random()*5),P=tNav().P,out=[],tr=G.tracks||[];
+ const ok=p=>p[0]>=40&&p[0]<=560&&p[1]>=40&&p[1]<=560&&!P.some(pl=>bHit(p,p,pl))&&Math.hypot(p[0]-300,p[1]-300)>=60&&tr.every(t=>Math.hypot(t.x-p[0],t.y-p[1])>=50)&&out.every(c=>Math.hypot(c.x-p[0],c.y-p[1])>=60)&&CC.every(c=>Math.hypot(c[0]-p[0],c[1]-p[1])>=40);
+ for(let i=0;i<n;i++){let pt=null;for(let k=0;k<400&&!pt;k++){const q=[40+Math.random()*520,40+Math.random()*520];if(ok(q))pt=q}
+  if(pt)out.push({id:"ch"+i,x:+pt[0].toFixed(1),y:+pt[1].toFixed(1),st:"closed",c:null})}
+ return out}
+const chestGap=(a,t)=>Math.max(0,Math.hypot(a.x-t.x,a.y-t.y)-a.r)/BIN;
+const chestTarget=a=>{if(!a||a.ko())return null;let b=null,bg=1e9;(G.chests||[]).forEach(t=>{if(t.st!=="closed")return;const g=chestGap(a,t);if(g<=6.01&&g<bg){bg=g;b=t}});return b};
+function openChest(gh,a,t){t.st="open";t.c=rollChest();log(`${a.name} abre el cofre: ${t.c.title}.${chestGap(a,t)<=1.01?"":" Hay que llegar a 1″ para recogerlo."}`,"ok");collectChests(a)}
+function collectChests(a){(G.chests||[]).forEach(t=>{if(t.st==="open"&&chestGap(a,t)<=1.01){t.st="taken";applyChest(a,t.c)}})}
+function applyChest(a,c){const h=a.h,D=G.d;let txt=c.text;
+ if(c.a===5){h.pot=(+h.pot||0)+1}
+ else if(c.a===6){h.gold=(+h.gold||0)+5*D;txt+=` Pasa a su ficha: ${5*D} de oro.`}
+ else if(c.a===3||c.a===4){h.sk=h.sk||[];h.sk.push({g:"equipo",n:c.title,k:"Consumible",d:c.text})}
+ else{txt+=" (Efecto a mano.)"}
+ log(`${a.name} recoge el cofre: ${c.title}. ${txt}`,"ok");hfSync()}
+async function doChest(gh,a,t){const h=a.h,m=statMod(h,"vol"),pass=x=>x===6||(x!==1&&x+m>=h.vol);
+ G.act={k:"chest",st:"fight"};U.sel=a.id;paint();
+ const[r]=await rollDice({n:1,own:true,title:`${h.name} intenta abrir el cofre`,sub:`Acción de habilidad · tirada de Voluntad ${h.vol}+${m?(m>0?", +":", ")+m:""}`,need:`${Math.max(2,Math.min(6,h.vol-m))}+ pasa`,ok:pass});
+ endDice();U.busy=false;
+ if(pass(r))openChest(gh,a,t);
+ else{log(`${h.name} falla la tirada de Voluntad (${r}${m?(m>0?"+":"")+m:""}) y no abre el cofre.`,"hr");
+  if(h.pw>=2&&await new Promise(res=>{U.wilAsk={name:h.name,pw:h.pw,res};paint()})){h.pw-=2;hfSync();log(`${h.name} gasta 2 de poder: la tirada cuenta como superada.`,"hr");openChest(gh,a,t)}}
+ finishAction(gh,"chest");save();paint()}
+function chestsSVG(){return(G.chests||[]).map(t=>`<g class="tv-chest ${t.st}" data-chest="${t.id}" transform="translate(${t.x} ${t.y})" role="button" aria-label="Cofre"><circle r="15" class="tv-chbg"/>${t.st==="open"?'<circle r="18" class="tv-chglow"/>':""}<rect x="-9" y="-6" width="18" height="12" rx="2" class="tv-chbox"/><path d="M-9 -1H9" class="tv-chl"/>${t.st==="closed"?'<rect x="-2.5" y="-1.5" width="5" height="5" rx="1" class="tv-chlock"/>':""}</g>`).join("")}
+function chestHTML(){const t=(G.chests||[]).find(x=>x.id===U.chest);if(!t)return"";const c=t.c;
+ return`<div class="tv-hveil"><div class="tv-hscrim" data-tv="chclose"></div><section class="tv-hmod tv-chmod" role="dialog" aria-modal="true" aria-label="Cofre"><button type="button" class="tv-ix" data-tv="chclose" aria-label="Cerrar">×</button><p class="tv-lab">Cofre</p>${c?`<b class="tv-in">${esc(c.title)}</b><p class="tv-rtext">${esc(c.text)}</p>`:`<b class="tv-in">Cofre cerrado</b><p class="tv-sub">Un héroe a 6″ o menos puede intentar abrirlo con una tirada de Voluntad. A 1″ o menos se abre sin tirada.</p>`}${t.st==="taken"?`<p class="tv-sub">Ya recogido.</p>`:t.st==="open"?`<p class="tv-sub">Abierto: un héroe tiene que llegar a 1″ para recoger lo que hay dentro.</p>`:""}</section></div>`}
+/* Recompensas al escapar (misma tabla que la misión 1): principal 2×D, secundario D, Heraldo 2×D+1, máximo 5×D; oro 5×D (+5 con el Heraldo). */
+function missionRewards(){const D=G.d,xp=Math.min(5*D,(G.prim?2*D:0)+(G.sec?D:0)+(G.bossDown?2*D+1:0)),gold=5*D+(G.bossDown?5:0);G.rew=[];
+ G.heroes.forEach(gh=>{const a=actor(gh.id);if(!a||a.ko())return;const h=heroOf(gh);h.xpx=(+h.xpx||0)+xp;h.gold=(+h.gold||0)+gold;h.hp=h.hpMax;h.pw=h.pwMax;G.rew.push({name:h.name,xp,gold})});
+ G.rewXP=xp;G.rewGold=gold;hfSync()}
+function overModal(){const o=G.over,T=G.tracks||[],won=o==="won",escaped=won&&!G.noXP;
+ const ttl=won?"Misión finalizada":o==="quit"?"Os habéis rendido":"Derrota";
+ const msg=won?(escaped?"Han escapado del pueblo con la experiencia y el botín.":"Han salido del pueblo sin experiencia ni oro."):o==="quit"?"Retirarse también es una decisión. El pueblo seguirá aquí cuando volváis, con las cosas un poco más claras.":"Todos han caído, pero las historias de Varek’s Hold no terminan en una derrota. Aprended lo que el pueblo os ha enseñado y volved con un plan mejor.";
+ const rows=[["Principal · rastros del pueblo",`${T.filter(t=>t.on).length} de ${T.length}${G.prim?" · cumplido":" · no cumplido"}`,G.prim],["Secundario · Contener el Olvido",G.sec?"cumplido":"no cumplido",G.sec],["Heraldo del Umbral",G.bossDown?"desaparecido":G.boss?"sigue en pie":"no llegó a aparecer",G.bossDown]].map(([a,b,ok])=>`<li class="${ok?"ok":""}"><span>${a}</span><b>${b}</b></li>`).join("");
+ const rew=escaped&&G.rew&&G.rew.length?`<div class="tv-rew">${G.rew.map(r=>`<span><b>${esc(r.name)}</b> +${r.xp} XP · +${r.gold} oro</span>`).join("")}<small>Heridas y poder recuperados al máximo.</small></div>`:"";
+ return`<div class="tv-hveil tv-endov"><div class="tv-hscrim"></div><section class="tv-hmod tv-endm ${won?"won":"lost"}" role="dialog" aria-modal="true" aria-label="${ttl}"><p class="tv-lab">Final de la misión I · El pueblo vacío</p><h3 class="tv-endt">${ttl}</h3><p class="tv-endp">${msg}</p>
+  <ul class="tv-endl">${rows}<li><span>Rondas jugadas</span><b>${G.round}</b></li><li><span>Enemigos eliminados</span><b>${G.units.filter(u=>u.hp<=0).length}</b></li></ul>${rew}
+  <div class="tv-endb"><button type="button" class="tv-btn" data-tv="reset2">Nueva partida</button><button type="button" class="tv-ghostb" data-tv="restart">Reiniciar esta partida</button><button type="button" class="tv-ghostb" data-tv="closeover">Cerrar</button></div></section></div>`}
 /* Zona de escape (2026-11-22): al cumplir el principal, la esquina más alejada de los héroes (media de distancias). Dentro de 6″ se escapa con XP y oro. */
 function escapeCorner(){const hs=liveHeroes();if(!hs.length)return 0;let b=0,bd=-1;CC.forEach((c,k)=>{const d=hs.reduce((t,h)=>t+Math.hypot(h.x-c[0],h.y-c[1]),0)/hs.length;if(d>bd){bd=d;b=k}});return b}
 const escNeeded=()=>G.escC!=null?G.escC:(G.escC=escapeCorner());
@@ -638,10 +682,10 @@ const heroesInEsc=()=>{if(G.escC==null)return false;const c=CC[G.escC],hs=liveHe
 function escZone(){if(!G.prim||G.phase==="setup"||G.phase==="deploy")return"";const c=CC[escNeeded()],R=6*BIN;
  return`<g class="tv-escz" pointer-events="none"><circle cx="${c[0]}" cy="${c[1]}" r="${R}" class="z"/><text x="${c[0]}" y="${c[1]<300?c[1]+R+13:c[1]-R-6}" class="t">Zona de escape · 6″</text></g>`}
 const trkNear=a=>(G.tracks||[]).filter(t=>!t.on&&Math.max(0,Math.hypot(a.x-t.x,a.y-t.y)-a.r)/BIN<=OBJD+.01);
-const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["obj","Recuperar rastro","Acción de habilidad: a "+CT+" de un rastro, pasa una tirada de Voluntad.",0],["sec","Contener el Olvido","Acción de habilidad: a 3″ del pozo y sin enemigos a menos de 5″ del pozo, pasa una tirada de Voluntad.",0],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2]];
+const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2],["obj","Recuperar rastro","Acción de habilidad: a "+CT+" de un rastro, pasa una tirada de Voluntad.",0],["chest","Abrir cofre","Cofre cerrado a 6″ o menos: pasa una tirada de Voluntad. A 1″ o menos se abre sin tirada.",0],["sec","Contener el Olvido","Acción de habilidad: a 3″ del pozo y sin enemigos a menos de 5″ del pozo, pasa una tirada de Voluntad.",0]];
 /* Acciones por activación: cada héroe tiene 2. Avanzar, Mantener y Atacar cuestan 1; Correr y Cargar cuestan 2 (usan las dos).
    Descansar ocupa la activación entera. Con 3 de poder gana una acción extra (1 acción). */
-const ACOST={rest:2,hold:1,shoot:1,obj:1,sec:1,adv:1,rush:2,atk:1,chg:2};
+const ACOST={rest:2,hold:1,shoot:1,obj:1,chest:1,sec:1,adv:1,rush:2,atk:1,chg:2};
 const usedA=gh=>(gh.done||[]).reduce((s,k)=>s+(ACOST[k]||1),0);
 const leftA=gh=>2+(gh.ex?1:0)-usedA(gh);
 const canExtra=gh=>{const h=heroOf(gh);return!!h&&!gh.ex&&h.pw>=3};
@@ -766,8 +810,8 @@ async function toAI(){if(U.busy||G.phase!=="heroes"||G.over)return;U.busy=true;G
 function autoAI(){if(G.phase!=="heroes"||G.over||!heroesDone())return;if(U.busy||U.dice||U.wilAsk||U.prim||U.ban||U.evfx||U.confirm){setTimeout(autoAI,400);return}toAI()}
 /* Fin de ronda: cartel con lo que ha subido la alerta y, sin pulsar nada, empieza la siguiente. */
 async function endFlow(){endDice();const e=G.endInfo||{};if(G.over||e.pending)return;
- if(e.rf&&e.n&&WV.length)await new Promise(res=>{U.wave={t:e.boss?"Jefe":"Refuerzos",ids:WV.slice(),res};paint()});
- ENDNOTE=(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.boss?`. ¡Llega la pelea de jefe! El Heraldo del Umbral y su oleada de doble valor entran por las esquinas.`:e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`);
+ if(e.rf||e.xn)await new Promise(res=>{U.wave={t:e.boss?"Jefe":"Refuerzos",ids:WV.slice(),res};paint()});
+ ENDNOTE=(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.boss?`. ¡Llega la pelea de jefe! El Heraldo del Umbral y su oleada de doble valor entran por las esquinas.`:e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`)+(e.xn?` Sin enemigos con la alerta baja: llega una oleada extra de ${e.xn} unidades (la mitad de una oleada).`:"");
  if(G.phase!=="end")return;nextRound();save();paint();await roundBanner()}
 /* El turno de la IA va despacio para poder seguirlo: se ve qué unidad actúa y por qué, cómo se mueve, y cada dado, evento por evento. */
 async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.aiTot=liveUnits().length;paint();
@@ -838,7 +882,7 @@ function boardSVG(){const A=actors();
  return`<svg class="tv-map" id="tvMap" viewBox="-6 -6 612 612" role="img" aria-label="Tablero de 48 pulgadas"><defs>${grid}<filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath><linearGradient id="tvbfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="tvbgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
  <rect x="-6" y="-6" width="612" height="612" rx="8" class="tv-frame"/>
  <rect width="600" height="600" fill="url(#tvbg)"/><rect width="600" height="600" fill="url(#tvgrid)"/>${fog}
- <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${dz}${banZones()}${tracksSVG()}${secRing()}${escZone()}${q}${obs}
+ <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${dz}${banZones()}${tracksSVG()}${secRing()}${escZone()}${chestsSVG()}${q}${obs}
  <rect class="tv-hit" width="600" height="600" data-tv="pt"/>
  <g id="tvOv">${overlay()}</g><g id="tvTrail"></g>
  <g id="tvToks">${A.filter(a=>a.kind==="u").map(unitTok).join("")}${A.filter(a=>a.kind==="h").map((a,k)=>heroTok(a,k)).join("")}</g>
@@ -889,15 +933,18 @@ function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(
  return`<div class="tv-hcw"><button type="button" class="tv-hc${G.cur===i?" cur":""}${ko?" ko":""}${gh.act===2?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa">
  <span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span>
  <span class="tv-hn"><b>${esc(h.name)}</b><small>${st}${h.st.length?" · "+h.st.map(s=>ST_N[s]).join(", "):""}</small>
- <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${G.phase==="heroes"&&!ko?actCount(gh):""}</span></button>${fxRow(gh)}${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${G.phase==="heroes"&&G.cur===i&&canExtra(gh)?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?(gh.act===1&&leftA(gh)<=0?`<span class="tv-pend none">No hay acciones disponibles${canExtra(gh)?" · puede pagar una extra con 3 de poder":""}</span>`:`<span class="tv-pend">Aún le quedan acciones por hacer</span>`):""}</div>`}
+ <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${G.phase==="heroes"&&!ko?actCount(gh):""}</span></button>${fxRow(gh)}${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${false?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?(gh.act===1&&leftA(gh)<=0?`<span class="tv-pend none">No hay acciones disponibles${canExtra(gh)?" · puede pagar una extra con 3 de poder":""}</span>`:`<span class="tv-pend">Aún le quedan acciones por hacer</span>`):""}</div>`}
 /* Contador de acciones del héroe: una pastilla por acción (2, o 3 con la extra). Dorada = le queda; apagada = gastada;
    tachada = perdida al terminar la activación sin usarla. */
 function actCount(gh){const tot=2+(gh.ex?1:0),used=Math.min(tot,usedA(gh)),fin=gh.act===2,left=fin?0:Math.max(0,tot-used);
  const pip=i=>`<i class="${i<used?"u":fin?"x":"f"}${i>=2?" ex":""}"></i>`;
  return`<span class="tv-acc" aria-label="Acciones: le ${left===1?"queda":"quedan"} ${left} de ${tot}"><span class="tv-accp">${Array.from({length:tot},(_,i)=>pip(i)).join("")}</span><b>${fin?"Sin acciones":left===1?"Le queda 1 acción":`Le quedan ${left} acciones`}</b>${!fin&&!gh.ex&&canExtra(gh)?`<small>+1 con 3 de poder</small>`:""}</span>`}
 /* Etiqueta pulsable de una regla o habilidad: abre su ventana. Resaltada si su efecto está activo. */
-function skillBar(gh,a){const sk=a.h.sk||[],hab=sk.filter(x=>x.g==="hab").map(x=>x.n),dot=sk.filter(x=>x.g==="regla"&&ruleInfo(x.n).kind==="dote").map(x=>x.n);
- return`<p class="tv-lab">Habilidades · toca una para ver qué hace</p>${chipsOf(hab.concat(dot),a.id)}`}
+function skillBar(gh,a){const sk=a.h.sk||[],names=sk.filter(x=>x.g==="hab").map(x=>x.n).concat(sk.filter(x=>x.g==="regla"&&ruleInfo(x.n).kind==="dote").map(x=>x.n));
+ if(!names.length)return"";
+ const R=U.rinfo&&U.rinfo.o===a.id&&!U.rinfo.modal?U.rinfo:null;
+ return`<p class="tv-lab">Habilidades · pulsa una para usarla</p><div class="tv-acts">${names.map(n=>{const inf=ruleInfo(n),open=!!R&&R.l===n,t=inf.t||"Todavía no tengo la descripción de esta habilidad.";
+  return`<button type="button" class="tv-act skill${open?" open":""}" data-tv="skill" data-n="${esc(n)}" data-o="${a.id}"><b>${esc(n)}</b><small>${esc(t)}</small></button>${open?ruleInline(R):""}`}).join("")}</div>`}
 /* Registro: los nombres de habilidades, dotes y reglas (en español o inglés) salen subrayados y al pulsarlos abren su ventana. */
 let LKRE=null;
 function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantener","avanzar","correr","cargar","disparar","atacar","hero"]),set=new Set();
@@ -1246,11 +1293,14 @@ const cxl=A=>A.free?`<button type="button" class="tv-ghostb" data-tv="nochain">$
 function fxRow(g){const ids=[...new Set(((g&&g.fx)||[]).filter(e=>e.id).map(e=>e.id))];return ids.length?`<span class="tv-fxr" aria-label="Efectos activos">${ids.map(i=>`<i class="tv-fxp">${esc(i)}</i>`).join("")}</span>`:""}
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(h.st.includes("at")&&!A)return`<div class="tv-box warn"><b>${esc(h.name)} está Aturdido</b><p>Tiene que pasar esta activación quieto para recuperarse (Core Rules).</p><button type="button" class="tv-btn" data-tv="rally">Quedarse quieto y recuperarse</button></div>`;
- if(!A){const done=gh.done||[],Lf=freeA(gh),advS=gh.advShot&&a.ws.some(isRanged);return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}${usedA(gh)===2&&(gh.ex||canExtra(gh))?`<p class="tv-lab">Acción extra</p><button type="button" class="tv-tick${gh.ex?" on":""}" data-tv="xtick">${gh.ex?"☑":"☐"} Gastar 3 de poder en una acción extra</button>`:`<p class="tv-lab">${Lf>=2?"Elige su acción":"Le queda una acción"}</p>`}<div class="tv-acts">${ACTS.filter(x=>x[0]!=="sec"||(G.prim&&!G.sec)).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rest"&&done.length>0);
-   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).join("")}</div>
+ if(!A){const done=gh.done||[],Lf=freeA(gh),advS=gh.advShot&&a.ws.some(isRanged);
+ /* Acción extra (3 de poder): una acción más, con el mismo formato que las demás. */
+ const xOn=!!gh.ex,xDis=!xOn&&!(usedA(gh)===2&&canExtra(gh));
+ const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""}><b>Acción extra</b><small>Gasta 3 de poder y hace una acción más.</small>${xOn?"<em>Marcada: se gastan 3 de poder al elegirla.</em>":xDis?"<em>Solo cuando ya ha usado sus dos acciones y tiene 3 de poder</em>":""}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
+  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${ACTS.filter(x=>(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rest"&&done.length>0);
+   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).concat([xHTML]).sort((x,y)=>(/data-k="[^"]+" disabled/.test(x)?1:0)-(/data-k="[^"]+" disabled/.test(y)?1:0)).join("")}</div>
   ${skillBar(gh,a)}
-  <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div>`}
+  `}
  const k=A.k,lab=(ACTS.find(x=>x[0]===k)||[0,"Habilidad"])[1];
  if(A.st==="fight")return`<div class="tv-box"><b>${lab} · en curso</b><p>Se resuelve el combate: sigue los dados en la bandeja.</p></div>`;
  if(A.st==="atk"){const t=atkTargets(a);return`<div class="tv-box"><b>Atacar · cuerpo a cuerpo</b><p>${t.length?"Toca el enemigo al que golpea (marcado en rojo). No carga: sin bonos de carga.":"No hay ningún enemigo a "+CT+" o menos."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>a ${inch(gap(a,u))}</small><span class="tv-ii" role="button" tabindex="0" title="Ver la ficha" data-tv="uinfo" data-id="${u.id}">ⓘ</span></button>`).join("")}</div><div class="tv-row">${cxl(A)}</div></div>`}
@@ -1269,12 +1319,13 @@ function combatCard(){const L=G.last;if(!L)return"";
  ${L.morale.map(m=>`<p class="tv-mor">${esc(m)}</p>`).join("")}${G.offerIgnore&&actor(G.offerIgnore)&&actor(G.offerIgnore).h.pw>=2&&actor(G.offerIgnore).h.st.includes("at")?`<button type="button" class="tv-btn sm" data-tv="ignsh">Gastar 2 de poder: ${esc(actor(G.offerIgnore).name)} no queda Aturdido</button>`:""}</section>`}
 const CORN=["noroeste","noreste","sureste","suroeste"];
 /* Ventana de una oleada nueva (centinelas al desplegar, refuerzos al llegar la alerta a 6): perfil de cada unidad y dónde aparece. */
-function waveHTML(){const W=U.wave;if(!W)return"";const us=W.ids.map(actor).filter(a=>a&&a.kind==="u");
- const where=a=>{const u=a.g;return u.cor?`Esquina ${u.cor} (${CORN[u.cor-1]})${u.scout?" · Scout: se adelanta":""}`:`Cuadrante ${QN[(u.roll||1)-1]}${u.scout?" · Scout: se adelanta":""}`};
- const card=a=>{const u=a.g;return`<article class="tv-wcard"><header><b>${esc(a.name)}</b><span class="tv-wzone">${where(a)}</span></header>
+const WPH=["Más sombras cruzan las esquinas. Afilad las armas.","La Ruptura no se cierra sola: vienen más.","Del borde del mapa llegan pasos que no esperabais.","Respirad un momento… y luego, a por ellos."];
+function waveHTML(){const W=U.wave;if(!W)return"";const us=W.ids.map(actor).filter(a=>a&&a.kind==="u").sort((x,y)=>(y.g.boss?1:0)-(x.g.boss?1:0));
+ const where=a=>{const u=a.g;if(u.esc)return"Zona de escape";return u.cor?`Esquina ${u.cor} (${CORN[u.cor-1]})${u.scout?" · Scout: se adelanta":""}`:`Cuadrante ${QN[(u.roll||1)-1]}${u.scout?" · Scout: se adelanta":""}`};
+ const card=a=>{const u=a.g;const head=u.boss?`<div class="tv-bhead"><img class="tv-bimg" src="${IMG_RETRATO}" alt="El Heraldo del Umbral"><div class="tv-bhtxt"><p class="tv-lab">Jefe · opcional</p><b class="tv-bname">${esc(a.name.toUpperCase())}</b><span class="tv-wzone">Zona de escape</span></div></div>`:`<header><b>${esc(a.name)}</b><span class="tv-wzone">${where(a)}</span></header>`;return`<article class="tv-wcard${u.boss?" tv-wboss":""}">${head}
   <div class="tv-qd"><span><small>Calidad</small>${a.q}+</span><span><small>Defensa</small>${a.d}+</span><span><small>Miniaturas</small>${u.m0}</span><span><small>Tough</small>${u.t}</span><span><small>Mueve</small>${speed(a).map(inch).join(" / ")}</span></div>
   ${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`${chip(x,"","sm")}`).join(" "):"—"}</td></tr>`).join("")}</table></article>`};
- return`<div class="tv-hveil tv-wave"><div class="tv-hscrim"></div><section class="tv-hmod tv-wmod" role="dialog" aria-modal="true" aria-label="${W.t}"><div class="tv-wtop"><button type="button" class="tv-btn tv-wok" data-tv="wavecl">Entendido</button></div><p class="tv-lab">${W.t==="Centinelas"?"Antes de empezar":"Ronda "+G.round+(W.t==="Jefe"?" · pelea de jefe":" · alerta a 6")}</p><b class="tv-in">${W.t==="Centinelas"?"Los centinelas de la mesa":W.t==="Jefe"?"Llega el Heraldo del Umbral":"Llegan refuerzos"}</b><p class="tv-sub">${us.length?`${us.length} ${us.length>1?"unidades":"unidad"} nueva${us.length>1?"s":""}.`:"No ha entrado ninguna unidad."}</p>
+ return`<div class="tv-hveil tv-wave"><div class="tv-hscrim"></div><section class="tv-hmod tv-wmod" role="dialog" aria-modal="true" aria-label="${W.t}"><div class="tv-wtop"><button type="button" class="tv-btn tv-wok" data-tv="wavecl">Entendido</button></div><p class="tv-lab">${W.t==="Centinelas"?"Antes de empezar":"Ronda "+G.round+(W.t==="Jefe"?" · pelea de jefe":" · alerta a 6")}</p><b class="tv-in">${W.t==="Centinelas"?"Los centinelas de la mesa":W.t==="Jefe"?"Llega el Heraldo del Umbral":"Entra una oleada · ¡preparaos!"}</b><p class="tv-wph">${W.t==="Jefe"?"El Heraldo ha venido a por vosotros. Ahora no hay vuelta atrás.":WPH[(G.nref||0)%WPH.length]}</p><p class="tv-sub">${us.length?`${us.length} ${us.length>1?"unidades":"unidad"} nueva${us.length>1?"s":""}.`:"No ha entrado ninguna unidad."}</p>
   <div class="tv-wlist">${us.map(card).join("")}</div></section></div>`}
 function unitInfo(id){const a=actor(id);if(!a)return"";const u=a.kind==="u"?a.g:null;
  /* Ventana flotante con la X en la esquina (petición de Nacho, 2026-11-20); se cierra también tocando fuera o con Escape. */
@@ -1328,9 +1379,9 @@ function setupPanel(){const hs=HS,sel=selHeroes(),b=budget();
 /* Despliegue (petición de Nacho, 2026-11-22): la información de los centinelas queda en la columna de acciones, con su cuadrante
    siempre debajo del nombre; el menú de desplegar los héroes (esquina + «Empezar la partida») va justo debajo del tablero y
    desaparece al empezar. */
-function deployPanel(){const rolls=G.units.map(u=>`<li><span class="tv-rn"><b>${esc(u.nm)}</b><span>cuadrante ${QN[u.roll-1]}</span></span><i>${u.roll}</i></li>`).join("");
- return`<div class="tv-setup"><p class="tv-lab">Despliegue</p><h3>Centinelas y héroes</h3><p class="tv-sub">Cada centinela tira un dado de 1 a 4 y sale al centro de ese cuadrante, al azar. Puedes arrastrar cualquier ficha para colocarla antes de empezar; los héroes solo hasta 10″ de su esquina (19″ si tienen Scout). Al empezar, las unidades con Scout pueden adelantarse hasta 9″: la IA lo hace siempre en dificultad 3-4 y una de cada dos veces en 1-2.</p>
- <ul class="tv-rolls">${rolls||"<li>No cabía ninguna unidad en la oleada.</li>"}</ul></div>`}
+function deployPanel(){
+ return`<div class="tv-setup"><p class="tv-lab">Despliegue</p><h3>Centinelas y héroes</h3><p class="tv-sub">Al empezar la partida salen los centinelas: un dado por unidad decide su cuadrante (1-4), al azar. Ahora solo despliegas a tus héroes. Puedes arrastrar cualquier ficha para colocarla antes de empezar; los héroes solo hasta 10″ de su esquina (19″ si tienen Scout). Al empezar, las unidades con Scout pueden adelantarse hasta 9″: la IA lo hace siempre en dificultad 3-4 y una de cada dos veces en 1-2.</p>
+ </div>`}
 function deployMenu(){
  return`<div class="tv-dmenu"><p class="tv-dhint"><span aria-hidden="true">☞</span> Puedes desplegar a tus héroes dentro de la zona resaltada, pero no en un cuadrante con rastro ni a menos de 10″ de uno (zonas en rojo): arrastra su ficha.</p>
  <div class="tv-dmrow"><div class="tv-dmc"><p class="tv-lab">Esquina de los héroes · ${G.hcRoll&&G.hcRoll<=4?`dado <b>${G.hcRoll}</b>`:`dado <b>${G.hcRoll}</b>, eliges tú`}</p>
@@ -1346,7 +1397,7 @@ function overPanel(){const o=G.over,T=G.tracks||[];
  if(o==="quit")return`<div class="tv-end lost"><p class="tv-lab">Final de la misión</p><h3>Os habéis rendido</h3><p>Los héroes se retiran del pueblo. La misión se da por perdida y hay que repetir el capítulo.</p>${sum}<button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`;
  return`<div class="tv-end lost"><p class="tv-lab">Derrota</p><h3>Todos los héroes han caído</h3><p>Según el Campaign Builder, cuando todos los héroes están inconscientes a la vez, la misión fracasa y hay que repetir el capítulo.</p>${sum}<button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`}
 function sideMain(){let main="";
- if(G.over)main=overPanel();
+ if(G.over)main="";
  else if(G.phase==="setup")main=setupPanel();
  else if(G.phase==="deploy")main=deployPanel();
  else if(G.phase==="event")main=evCard();
@@ -1354,7 +1405,7 @@ function sideMain(){let main="";
  else if(G.phase==="ai")main=aiPanel();
  else if(G.phase==="end")main=endPanel();
  /* Evento de la Ruptura de esta ronda: se queda arriba de la columna con su efecto hasta que acaba la ronda. Los objetivos están en la ventana de la izquierda (objWin). */
- const mod=G.ev&&G.ev.r===G.round&&["heroes","ai","end"].includes(G.phase)?`<div class="tv-evn ${G.ev.tone}"><small>Evento de la Ruptura ${G.ev.n} · solo esta ronda</small><b>${esc(G.ev.t)}</b><span class="tv-evnd">${evDie(G.ev.a)}${evDie(G.ev.b)}</span><p>${esc(G.ev.eff)}</p></div>`:"";
+ const mod=G.ev&&G.ev.r===G.round&&["heroes","ai","end"].includes(G.phase)?`<div class="tv-evn ${G.ev.tone}"><small>Evento de la Ruptura ${G.ev.n} · solo esta ronda</small><b>${esc(G.ev.t)}</b><span class="tv-evnd">${evDie(G.ev.a)}${evDie(G.ev.b)}</span>${G.ev.x?`<p class="tv-evx">${esc(G.ev.x)}</p>`:""}<p class="tv-evr">${esc(G.ev.eff)}</p></div>`:"";
  return`${mod}${main}`}
 /* Columna del registro: último combate y todo lo que va pasando en la partida (lo más nuevo, arriba). */
 /* Datos de los héroes (columna izquierda, petición de Nacho 2026-11-20): todo lo que hay que tener controlado de un vistazo. */
@@ -1395,7 +1446,7 @@ function paint(){if(!U.open)return;
  /* Si el enemigo cuya ficha está abierta cae o huye, la ficha se cierra con él. */
  if(U.info){const ia=actor(U.info);if(!ia||(ia.kind==="u"&&ia.ko()))U.info=""}
  const sa=$(".tv-sact"),sl=$(".tv-slog"),sh=$(".tv-shero"),ta=sa?sa.scrollTop:0,tl=sl?sl.scrollTop:0,th=sh?sh.scrollTop:0;
- const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
+ const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.chest?chestHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
  ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Datos de los héroes">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside><aside class="tv-side tv-slog" aria-label="Registro de actividad">${sideLog()}</aside></div>${extra}${G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over?`<button type="button" class="tv-dev" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</section>`;
@@ -1423,7 +1474,7 @@ function bindBoard(){const svg=$("#tvMap");if(!svg)return;
   U.dest=p;paintOv()});
  const up=e=>{if(!U.drag)return;const d=U.drag;U.drag=null;if(d.dep){if(d.moved){const a=actor(d.id);if(a){a.g.pick=false;const f=freeSpot([a.x,a.y],a.r,a.id);a.g.x=f[0];a.g.y=f[1]}save();paint()}else showInfo(d.id);return}paint()};
  svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
- svg.addEventListener("click",e=>{if(U.ruler)return;if(U.busy){const tk=e.target.closest("[data-tok]");if(tk&&tk.dataset.tok[0]==="u"&&!(U.drag&&U.drag.moved))showInfo(tk.dataset.tok);return}const t=e.target.closest("[data-tv=tgt]");if(t){act("tgt",t);return}
+ svg.addEventListener("click",e=>{if(U.ruler)return;const cb=e.target.closest("[data-chest]");if(cb){act("chestinfo",{dataset:{id:cb.dataset.chest}});return}if(U.busy){const tk=e.target.closest("[data-tok]");if(tk&&tk.dataset.tok[0]==="u"&&!(U.drag&&U.drag.moved))showInfo(tk.dataset.tok);return}const t=e.target.closest("[data-tv=tgt]");if(t){act("tgt",t);return}
   const tok=e.target.closest("[data-tok]");if(tok&&G.act&&(G.act.st==="shoot"||G.act.st==="chg"||G.act.st==="atk")&&tok.dataset.tok[0]==="u"){act("tgt",{dataset:{id:tok.dataset.tok}});return}
   if(tok&&!(G.act&&(G.act.st==="move"||G.act.st==="tele"))){const id=tok.dataset.tok;
    if(id[0]==="h"&&G.phase==="heroes"){const i=G.heroes.findIndex(x=>x.id===id);if(i>=0&&(G.cur<0)&&G.heroes[i].act!==2&&!actor(id).ko()){act("hero",{dataset:{i}});return}}
@@ -1447,12 +1498,13 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"reset2":G=G0();U.info="";break;
  case"dif":if(+ds.d>=DIF_LOCK)break;G.d=+ds.d;break;
  case"hsel":{const n=ds.n;selHeroes();G.hsel=G.hsel.includes(n)?G.hsel.filter(x=>x!==n):G.hsel.concat(n).slice(-4);break}
- case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;G.prim=false;G.sec=false;G.secBy="";G.boss=false;G.bossArmed=false;G.bossDown=false;G.escC=null;G.noXP=false;G.diary="";G.tracks=placeTracks();U.prim=null;hs.forEach(h=>{h.sk=(h.sk||[]).filter(x=>x.n!==DIARY.n)});hfSync();
+ case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;G.prim=false;G.sec=false;G.secBy="";G.boss=false;G.bossArmed=false;G.bossDown=false;G.escC=null;G.noXP=false;G.diary="";G.tracks=placeTracks();G.chests=placeChests();U.chest=null;U.prim=null;hs.forEach(h=>{h.sk=(h.sk||[]).filter(x=>x.n!==DIARY.n)});hfSync();
   /* El dado de la esquina se repite si cae en el cuadrante de un rastro (los héroes no pueden desplegar ahí). */
-  const n=deploySentries();let r;do{r=d6()}while(r<=4&&!cornerOk(r));G.hcRoll=r;G.hc=0;if(r<=4)placeHeroes(r);else{const far=[0,1,2,3].filter(c=>cornerOk(c+1)).sort((x,y)=>{const s=c=>G.units.reduce((m,u)=>Math.min(m,Math.hypot(u.x-CC[c][0],u.y-CC[c][1])),1e9);return s(y)-s(x)})[0];placeHeroes(far+1)}
-  U.wave={t:"Centinelas",ids:WV.slice(),res:null};G.phase="deploy";log(`Mesa preparada: ${n} centinelas (${budget()} pts) y héroes en la esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}.`,"rd");break}
+  let r;do{r=d6()}while(r<=4&&!cornerOk(r));G.hcRoll=r;G.hc=0;if(r<=4)placeHeroes(r);else{const far=[0,1,2,3].filter(c=>cornerOk(c+1)).sort((x,y)=>{const s=c=>G.units.reduce((m,u)=>Math.min(m,Math.hypot(u.x-CC[c][0],u.y-CC[c][1])),1e9);return s(y)-s(x)})[0];placeHeroes(far+1)}
+  G.phase="deploy";log(`Despliegue de héroes: esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}. Los centinelas salen al empezar la partida.`,"rd");break}
  case"corner":if(!cornerOk(+ds.c)){toast("Ahí hay un rastro: los héroes no pueden desplegar en su cuadrante.");break}placeHeroes(+ds.c);break;
- case"start":startGame();save();paint();roundBanner();return;
+ case"start":{const n=deploySentries();log(`Salen ${n} centinelas (${budget()} pts), cada uno a un cuadrante al azar.`,"rd");startGame();save();
+  new Promise(res=>{U.wave={t:"Centinelas",ids:WV.slice(),res};paint()}).then(()=>{save();roundBanner()});return}
  case"evask":if(G.phase==="event"&&!G.over)U.evfx={st:"ask"};break;
  case"ev":{if(G.phase!=="event"||!U.evfx||U.evfx.st!=="ask")return;U.evNote="";const a=d6(),bb=d6();U.busy=true;U.evfx={st:"roll"};paint();
   rollAnim(()=>{U.busy=false;rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();const F={st:"done"};U.evfx=F;paint();setTimeout(()=>{if(U.evfx===F)evDone()},8000)},".tv-evfx .tv-die");return}
@@ -1483,6 +1535,7 @@ function act(k,b){const ds=b&&b.dataset||{};
   if(kk==="rest"){h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
   if(kk==="hold"){log(`${h.name} se mantiene en su sitio.`,"hr");finishAction(gh,"hold");break}
   if(kk==="obj"){const t=trkNear(a)[0];if(!t){toast("No hay ningún rastro a "+CT+" o menos.");break}doTrack(gh,a,t);return}
+  if(kk==="chest"){const t=chestTarget(a);if(!t){toast("No hay ningún cofre cerrado a 6″ o menos.");break}if(chestGap(a,t)<=1.01){openChest(gh,a,t);finishAction(gh,"chest");save();paint();return}doChest(gh,a,t);return}
   if(kk==="sec"){if(!secNear(a)){toast("Hay que estar a 3″ o menos del pozo.");break}if(secFoes().length){toast("Hay enemigos a menos de 5″ del pozo: no cuenta.");break}doSec(gh,a);return}
   G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;break}
  case"cancel":{if(!G.act||G.act.mv||G.act.free||G.act.st==="tele")return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
@@ -1491,7 +1544,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"advshot":{const gh=G.heroes[G.cur];if(!gh||!gh.advShot||G.act)break;G.act={k:"adv",st:"shoot",mv:true,free:true,wi:0};U.dest=null;break}
  case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id),k2=G.act.k,r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
   log(`${a.name} ${k2==="adv"?"avanza":"corre"} ${inch(pathLen(r.pts)/BIN)}.`,"hr");
-  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);U.busy=false;if(keep.free){fin(gh,keep)}else{G.act=null;if(k2==="adv")gh.advShot=canShootAny(actor(gh.id));finishAction(gh,k2)}save();paint()});return}
+  const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);collectChests(a);U.busy=false;if(keep.free){fin(gh,keep)}else{G.act=null;if(k2==="adv")gh.advShot=canShootAny(actor(gh.id));finishAction(gh,k2)}save();paint()});return}
  case"noshoot":{const gh=G.heroes[G.cur];fin(gh,G.act);break}
  case"nochain":{const gh=G.heroes[G.cur];if(G.act&&G.act.free)fin(gh,G.act);break}
  case"teleok":{const gh=G.heroes[G.cur],a=actor(gh.id),A=G.act;if(!A||A.st!=="tele"||!U.dest)return;let dx=U.dest[0]-a.x,dy=U.dest[1]-a.y;const Lx=Math.hypot(dx,dy),R2=A.lim*BIN;if(Lx>R2){dx*=R2/Lx;dy*=R2/Lx}
@@ -1515,6 +1568,11 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"toai":{if(pendingHeroes().length){U.confirm=true;paint();return}toAI();return}
  case"toai2":U.confirm=false;toAI();return;
  case"noconf":break;
+ case"chestinfo":U.chest=ds.id;break;
+ case"chclose":U.chest=null;break;
+ case"closeover":close();break;
+ case"restart":{const d=G.d,hs=G.hsel;G=G0();G.d=d;G.hsel=hs;U.ask=null;U.wave=null;U.prim=null;U.dice=null;U.evfx=null;U.busy=false;U.chest=null;U.ban=null;U.wilAsk=null;act("deploy");return}
+ case"skill":{const R=U.rinfo;if(R&&R.l===ds.n&&R.o===ds.o)U.rinfo=null;else U.rinfo={l:ds.n,o:ds.o,sel:[]};break}
  case"rinfo":U.rinfo=U.rinfo&&U.rinfo.l===ds.l&&(U.rinfo.o||"")===(ds.o||"")?null:{l:ds.l,o:ds.o||"",sel:[],modal:ds.m==="1"};break;
  /* Barra de héroes: recoger o desplegar la tabla de uno o de todos (petición de Nacho, 2026-11-22). */
 
@@ -1526,7 +1584,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"askno":U.ask=null;break;
  case"askyes":{const f=U.ask&&U.ask.fn;U.ask=null;
   if(f==="boss"){G.bossArmed=true;log("Pelea de jefe: el Heraldo del Umbral y su oleada de doble valor llegarán al final de esta ronda.","al")}
-  else if(f==="finish"){G.over="won";G.noXP=!heroesInEsc();log(G.noXP?"Misión finalizada sin escapar: los héroes se van sin experiencia ni oro.":"Los héroes escapan del pueblo con la experiencia y el botín.",G.noXP?"bad":"ok")}
+  else if(f==="finish"){G.over="won";G.noXP=!heroesInEsc();if(!G.noXP)missionRewards();log(G.noXP?"Misión finalizada sin escapar: los héroes se van sin experiencia ni oro.":"Los héroes escapan del pueblo con la experiencia y el botín.",G.noXP?"bad":"ok")}
   else if(f==="surrender"){G.over="quit";log("Los héroes se rinden: la misión se da por perdida.","bad")}
   break}
  /* TEMPORAL (solo para Nacho): cumple el objetivo principal de golpe para poder probar el secundario. Borrar este caso y el botón `tv-dev` cuando ya no haga falta. */
@@ -1559,6 +1617,7 @@ FAB.addEventListener("click",()=>U.open?close():open());
 document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!U.open)return;if(typeof HC!=="undefined"&&HC.isOpen&&HC.isOpen())return;e.preventDefault();e.stopImmediatePropagation();
  if(U.ask){U.ask=null;paint();return}
  if(U.ban){banClose();return}
+ if(U.chest){U.chest=null;paint();return}
  if(U.rinfo&&!U.wilAsk){U.rinfo=null;paint();return}
  if(U.wave){act("wavecl");return}
  if(U.ruler){U.ruler=null;paint();return}
