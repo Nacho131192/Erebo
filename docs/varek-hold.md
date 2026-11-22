@@ -113,7 +113,7 @@
 
 **DECIDIDO (Nacho, 2026-11-21):**
 
-- **Tres rastros**, no cuatro. El prólogo dice «tres cosas».
+- **Dos rastros** (antes tres; Nacho los redujo el 2026-11-22). El prólogo dice «dos cosas».
 - **El nombre de Neth no sale en ningún texto del juego** (misión, página, mesa y tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**.
 - **El mercader sin cartas** interesa al Mercado. El remitente de las cartas pudo ser del gremio del mercader, pero nadie lo sabe porque lo han olvidado. Lysa Brannoc cree que todo esto amenaza su comercio y quiere interferir.
 - **La patrulla sin recuerdos** era **del Muro**. El Muro rechaza la culpa de haber operado fuera de sus dominios, porque eso sería terreno del Filo. Por eso el Filo tiene motivo para actuar por su cuenta.

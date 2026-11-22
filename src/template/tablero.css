@@ -213,11 +213,11 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
  .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto minmax(0,1fr);grid-template-areas:"board hero" "board act" "board log"}
  .tv-boardw{grid-area:board}
  .tv-shero{grid-area:hero;max-height:34vh;border-right:0;border-left:1px solid var(--line)}
- .tv-sact{grid-area:act;max-height:46vh;border-right:0;border-left:1px solid var(--line)}
+ .tv-sact{grid-area:act;max-height:62vh;border-right:0;border-left:1px solid var(--line)}
  .tv-slog{grid-area:log;border-top:1px solid var(--line)}
 }
 @media (min-width:1180px){
- .tv-body{grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(330px,390px);grid-template-rows:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"hero board act" "hero board log"}
+ .tv-body{grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(330px,390px);grid-template-rows:minmax(0,1.6fr) minmax(0,1fr);grid-template-areas:"hero board act" "hero board log"}
  .tv-shero{max-height:none;border-left:0;border-right:1px solid var(--line)}
  .tv-sact{max-height:none}
  .tv-slog{border-top:1px solid var(--line)}
@@ -461,3 +461,101 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 
 .tv-sc1 .tv-seg{grid-template-columns:repeat(5,1fr)}
 .tv-seg button.lock{opacity:.5;cursor:not-allowed;border-style:dashed}.tv-seg button.lock b{font-size:15px}
+
+/* ---- cambios del 2026-11-22 (petición de Nacho) ---- */
+/* Ventana de oleada y lista de despliegue: el cuadrante siempre va debajo del nombre de la unidad, nunca a la derecha. */
+.tv-wcard header{flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:flex-start;gap:5px}
+.tv-wzone{display:inline-block}
+.tv-rolls li{grid-template-columns:minmax(0,1fr) 26px}
+.tv-rn{display:flex;flex-direction:column;gap:2px;min-width:0}.tv-rn b{font-weight:600}
+/* Menú de desplegar a los héroes: debajo del tablero (solo en el despliegue). */
+.tv-boardw.dep{justify-content:flex-start}
+.tv-boardw.dep .tv-board{width:min(100%,calc(100vh - 360px),calc(100dvh - 360px),calc(100vh - 360px))}
+.tv-dmenu{width:min(100%,600px);display:flex;flex-direction:column;gap:8px;padding:10px 12px;border-radius:14px;border:1px solid rgba(217,184,108,.6);background:linear-gradient(180deg,rgba(217,184,108,.1),rgba(13,20,38,.9))}
+.tv-dhint{margin:0;display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--gold2);font-weight:600}.tv-dhint span{font-size:16px}
+.tv-dmrow{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:end}
+@media (min-width:560px){.tv-dmrow{grid-template-columns:minmax(0,1fr) auto}}
+.tv-dmc .tv-lab{margin:0 0 4px}.tv-dmc .tv-seg button{padding:6px 4px}.tv-dmc .tv-seg b{font-size:16px}.tv-dmc .tv-seg small{font-size:10px}
+.tv-dmenu .tv-btn.big{width:auto;margin:0;padding:12px 18px;font-size:14px;white-space:nowrap}
+@media (max-width:900px){.tv-boardw.dep .tv-board{width:min(100%,560px)}.tv-dmenu{width:min(100%,560px)}.tv-dmrow{grid-template-columns:1fr}}
+/* Tirada del evento de la Ruptura: los dados salen en el centro y se pulsa para tirarlos. */
+.tv-evfx.ask{cursor:default}
+.tv-evfx.ask .tv-btn.big{margin-top:14px}
+/* Evento de esta ronda, fijo arriba de la columna de acciones. */
+.tv-evn{padding:9px 12px;border-radius:12px;border:1px solid rgba(167,139,250,.6);background:rgba(167,139,250,.08);display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.tv-evn small{grid-column:1/-1;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#c9b8ff}
+.tv-evn b{font-weight:600}.tv-evn p{grid-column:1/-1;margin:2px 0 0;font-size:12.5px;color:#d7dcec}
+.tv-evn.bad{border-color:rgba(255,138,154,.6);background:rgba(255,138,154,.07)}.tv-evn.ok{border-color:rgba(134,209,174,.6);background:rgba(134,209,174,.07)}
+.tv-evnd{display:flex;gap:4px}.tv-evnd .tv-die{width:26px;height:26px;border-radius:6px}.tv-evnd .tv-die svg{width:100%;height:100%}
+/* Armas del héroe en su ficha: misma tabla que las de los enemigos. */
+.tv-hwt{font-size:11px}.tv-hwt th,.tv-hwt td{padding:3px 3px}.tv-hwt td:first-child{max-width:90px;overflow-wrap:anywhere}
+/* Barra de héroes: recoger o desplegar la tabla de cada uno (2026-11-22). */
+.tv-hdbar{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.tv-hdbar .tv-lab{margin:0}.tv-hdbar span{display:flex;gap:6px}
+.tv-hdtop{display:flex;align-items:center;gap:8px}.tv-hdtop .tv-hdh{flex:1;min-width:0;width:auto}
+.tv-hdt{flex:none;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);background:var(--card2);color:var(--gold2);font:600 11px Inter,sans-serif;cursor:pointer;white-space:nowrap}.tv-hdt:hover{border-color:var(--gold2)}
+.tv-hd.col{gap:6px}
+/* Despliegue: zonas prohibidas para los héroes (cuadrante con rastro y 10″ alrededor de cada rastro). Objetivo secundario: anillo de 5″ del pozo. */
+.tv-banz .q{fill:rgba(255,90,110,.09);stroke:rgba(255,110,130,.4);stroke-dasharray:7 6}
+.tv-banz .c{fill:rgba(255,90,110,.16);stroke:#ff6e82;stroke-width:1.4;stroke-dasharray:4 4}
+.tv-secr{fill:rgba(240,215,154,.05);stroke:#f0d79a;stroke-width:1.4;stroke-dasharray:5 5;opacity:.8}
+.tv-seg button.lock small{color:#ff9aa8}
+
+/* ---- 2026-11-22 (tanda 4): botones de plegar con la ambientación del tablero, objetivos, registro plegable, botón temporal ---- */
+.tv-fold{flex:none;display:inline-grid;place-items:center;width:28px;height:28px;padding:0;border-radius:50%;border:1px solid rgba(217,184,108,.55);background:radial-gradient(circle at 50% 25%,#1d2a4d,#0c1226 80%);color:var(--gold2);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06);transition:border-color .15s,box-shadow .15s,transform .15s}
+.tv-fold svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tv-fold:hover{border-color:var(--gold2);box-shadow:0 0 12px rgba(217,184,108,.38),0 2px 8px rgba(0,0,0,.45)}.tv-fold:active{transform:scale(.93)}
+.tv-fold:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.tv-hd.spent{filter:brightness(.7)}
+/* nombres de arma largos: la tabla no se desborda */
+.tv-wt td:first-child{overflow-wrap:anywhere;word-break:break-word}
+.tv-hwt{table-layout:fixed;width:100%}.tv-hwt th:nth-child(1){width:33%}.tv-hwt th:nth-child(2){width:14%}.tv-hwt th:nth-child(3){width:14%}.tv-hwt th:nth-child(4){width:11%}.tv-hwt th:nth-child(5){width:28%}
+.tv-hwt td{vertical-align:top;overflow-wrap:anywhere}.tv-hwt td:first-child{hyphens:auto}
+/* ventana de objetivos */
+.tv-obw{display:flex;flex-direction:column;gap:7px;padding:11px 12px;margin-bottom:12px;border-radius:14px;border:1px solid rgba(217,184,108,.45);background:linear-gradient(180deg,rgba(217,184,108,.08),var(--card))}
+.tv-obw .tv-hdtop .tv-lab{margin:0;flex:1}
+.tv-objh{margin:4px 0 0;font:600 11.5px Inter,sans-serif;letter-spacing:.04em;color:var(--gold2);display:flex;justify-content:space-between;gap:8px}
+.tv-objh em{font-style:normal;color:var(--mu)}.tv-objh .tv-opt{padding:1px 8px;border-radius:999px;border:1px solid var(--line2);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.tv-objl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.tv-objl li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:#c7cde2}
+.tv-objl li i{flex:none;display:grid;place-items:center;width:18px;height:18px;margin-top:1px;border-radius:5px;border:1.5px solid var(--line2);font-style:normal;font-size:12px;font-weight:700;color:transparent}
+.tv-objl li.on i{border-color:#86d1ae;background:rgba(134,209,174,.18);color:#86d1ae}.tv-objl li.on b{color:#d9f3e6}
+.tv-objl li b{display:block;font-weight:600}.tv-objl li small{display:block;color:var(--mu);font-size:11px}
+.tv-objb{margin:0;font-size:12.5px;color:#ffd4a0}.tv-objb.done{color:#86d1ae}
+.tv-objn{display:block;color:var(--mu);font-size:11px}
+.tv-objr{display:flex;gap:8px;margin-top:4px}.tv-objr .tv-btn,.tv-objr .tv-ghostb{flex:1;padding:8px 6px;font-size:12px}
+.tv-ghostb.bad{border-color:rgba(255,138,154,.55);color:#ffb3bf}.tv-ghostb.bad:hover{background:rgba(255,138,154,.12)}
+.tv-obw.col{gap:0}
+/* registro plegable */
+.tv-lhr{display:flex;align-items:center;gap:8px}.tv-log.col header{padding-bottom:11px}
+/* final de misión */
+.tv-sumo{list-style:none;margin:10px 0;padding:0;display:flex;flex-direction:column;gap:4px;text-align:left;font-size:13px;color:#c7cde2}
+.tv-end.won h3{color:#86d1ae}
+/* TEMPORAL (solo para el autor): cumplir el objetivo principal de golpe, junto a «Reiniciar partida (prueba)» */
+.tv-dev{position:absolute;bottom:8px;left:calc(50% + 96px);z-index:8;padding:5px 12px;border-radius:999px;border:1px dashed rgba(255,214,120,.8);background:rgba(20,14,4,.85);color:#ffd678;font:600 11px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+.tv-dev:hover{background:rgba(60,42,8,.95)}
+
+/* ---- 2026-11-22 (tanda 5) ---- */
+/* Reglas y habilidades en línea, bajo el nombre (no ventana emergente). */
+.tv-rwrap{display:inline-flex;flex-direction:column;align-items:flex-start;max-width:100%}
+.tv-rwrap.open{display:flex;flex-basis:100%;width:100%}
+.tv-rinl{width:100%;margin-top:6px;padding:12px 13px 13px;border-radius:14px;border:1px solid rgba(217,184,108,.55);background:#0d1426;box-shadow:0 10px 26px rgba(0,0,0,.5);animation:tv-tray .25s ease-out}
+.tv-rinl header{position:relative;padding-right:30px}.tv-rinl .tv-ix{position:absolute;top:-4px;right:-4px}
+.tv-rinl .tv-rtext{margin:8px 0}.tv-rinl .tv-row{margin-top:8px}
+/* «Entendido» de las oleadas: arriba a la derecha y siempre visible al bajar */
+.tv-wmod{max-height:88vh;overflow-y:auto}
+.tv-wtop{position:sticky;top:0;z-index:4;display:flex;justify-content:flex-end;margin:-20px -22px 6px;padding:12px 14px 6px;pointer-events:none;background:linear-gradient(180deg,#0d1426 70%,rgba(13,20,38,0))}
+.tv-wok{pointer-events:auto;padding:9px 18px;box-shadow:0 6px 18px rgba(0,0,0,.55)}
+/* Armas del héroe: el nombre y la columna de SPE parten en líneas y no se solapan */
+.tv-hwt{font-size:10.5px}
+.tv-hwt td{white-space:normal;overflow-wrap:anywhere;vertical-align:top;line-height:1.25}
+.tv-hwt .tv-rchip{white-space:normal;text-align:left;line-height:1.15;padding:3px 6px;font-size:10px;max-width:100%}
+.tv-hwt td .tv-rwrap{max-width:100%}.tv-hwt td .tv-rwrap.open{display:block}
+/* Pelea de jefe: el Heraldo se distingue (misma gama, más vivo y un poco más grande) */
+.tv-unit.boss .tv-hex{fill:#3a1a66;stroke:#e6b8ff;stroke-width:2.4}
+.tv-unit.boss .tv-halo{stroke:#d8b4ff;stroke-width:2}
+/* Zona de escape (6″ en la esquina más alejada de los héroes) */
+.tv-escz .z{fill:rgba(134,209,174,.13);stroke:#86d1ae;stroke-width:1.6;stroke-dasharray:6 4}
+.tv-escz .t{font:700 11px Inter,sans-serif;fill:#c8f0dc;text-anchor:middle;paint-order:stroke;stroke:#08101a;stroke-width:3px}
+/* Cartel del objetivo principal: se queda hasta tocarlo (antes se desvanecía solo y bloqueaba el tablero) */
+.tv-prim{animation:tvprimin .35s both}
+@keyframes tvprimin{from{opacity:0}to{opacity:1}}

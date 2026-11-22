@@ -1392,8 +1392,8 @@ const em=s=>esc(s).replace(/\b(Ambush|Caster|Fast|Fear|Stealth|Villain|Tough|Ren
 
 /* ---------- estado ---------- */
 const KEY="psn-m1-v2";
-const S0=()=>({d:3,pts:300,heroes:3,round:0,al:1,wave:0,noEn:false,mk:[0,0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},comp:{},table:[],shown:false,alw:[],alShow:false,manualPrim:false});
-function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&typeof j==="object"){const o=Object.assign(S0(),j);if(!(o.al>=1))o.al=1;return o}}catch(e){}return S0()}
+const S0=()=>({d:3,pts:300,heroes:3,round:0,al:1,wave:0,noEn:false,mk:[0,0],prim:false,secRolled:false,sec:0,secDone:false,armed:false,boss:false,end:false,dead:false,defeat:false,nar:"start",needEv:false,alert:"",ch:null,ev:null,hist:[],rolls:{},comp:{},table:[],shown:false,alw:[],alShow:false,manualPrim:false});
+function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&typeof j==="object"){const o=Object.assign(S0(),j);if(!(o.al>=1))o.al=1;o.mk=(Array.isArray(o.mk)?o.mk:[]).slice(0,2);while(o.mk.length<2)o.mk.push(0);return o}}catch(e){}return S0()}
 let S=load(),UI={open:false,sure:false};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 
@@ -1600,17 +1600,12 @@ function addAl(n){
 function endRound(d){
  S.alert="";
  if(S.armed&&!S.boss){if(S.shown)mergeWave(S.wave);S.shown=true;S.boss=true;S.armed=false;S.round++;setNar("boss");S.needEv=false;S.alert="Llega la pelea de jefe: el Heraldo y su oleada de doble valor. No entran más refuerzos.";return}
- const sealed=!!S.sealOn;S.sealOn=false;
- /* Contener el Olvido (único secundario): sellado = la ruptura queda contenida esta ronda; si no, sube 3 extra y se reinicia la cuenta. */
- let extra=0;
- if(S.prim&&!S.secDone&&!S.dead){if(sealed){S.sealRounds=(S.sealRounds||[]).concat(S.round);S.sealRun=S.sealRounds.length;if(S.sealRun>=3)S.secDone=true}else{S.sealRounds=[];S.sealRun=0;extra=3}}
- const base=(sealed||S.dead)?0:(S.noEn?0:(d==null?1:d));const add=base+extra;S.noEn=false; /* si se marcó Sin enemigos, el +2 ya se sumó */
+ const base=S.dead?0:(S.noEn?0:(d==null?1:d));const add=base;S.noEn=false; /* si se marcó Sin enemigos, el +2 ya se sumó */
  S.round++;
  if(S.boss)return;
  /* La narración va un paso por detrás de la ronda: la ronda 1 lee «Antes de empezar», la 2 lee «Ronda 1», etc. (decisión de Nacho, 2026-11-17). */
  const up=addAl(add);S.needEv=true;if(!up&&S.round>=2&&S.round<=4)setNar("r"+(S.round-1));
- if(d!=null&&!up&&!sealed)S.alert="Dado de alerta "+(add===2?"6":"1-5")+": Alertness +"+add+" → "+S.al+"/6."+(extra?" La Ruptura se abre: +3 extra.":"");
- if(sealed)S.alert=S.secDone?"Contener el Olvido cumplido: el pozo ha estado sellado 3 rondas seguidas. La Ruptura queda contenida.":"Ruptura contenida: el nivel de alerta no sube y no entran refuerzos.";
+ if(d!=null&&!up)S.alert="Dado de alerta "+(add===2?"6":"1-5")+": Alertness +"+add+" → "+S.al+"/6.";
 }
 /* Secundario: se prepara con su botón una vez cumplido el principal. d6 en la tabla y +3 de Alertness. */
 function prepSec(v){
@@ -1625,8 +1620,8 @@ function startGame(){S.round=1;S.needEv=true;setNar("start");S.alert=""}
 /* Reiniciar: partida nueva con la misma dificultad, puntos y héroes, ya empezada (sin volver a la pantalla de configuración). */
 function restartGame(){const{d,pts,heroes}=S;narStop();S=Object.assign(S0(),{d,pts,heroes});startGame()}
 function setMk(i){S.mk[i]=S.mk[i]?0:1;if(S.mk.every(Boolean)&&!S.prim){S.prim=true;setNar("pri")}else if(!S.mk.every(Boolean)&&S.prim&&!S.manualPrim)S.prim=false}
-/* Avanzar ronda: sin enemigos → directo; con el pozo sellado → sin dado; si no → dado de alerta. */
-function doEnd(){if(S.noEn||S.armed||S.boss||!S.round){endRound();return}if(S.sealOn||S.dead){endRound(0);return}UI.alDice={st:"roll",v:0};render();setTimeout(()=>tumble("AL",()=>{if(!UI.alDice)return;UI.alDice.v=R(6);UI.alDice.st="done";render()}),40)}
+/* Avanzar ronda: sin enemigos → directo; con el Heraldo desaparecido → sin dado; si no → dado de alerta. */
+function doEnd(){if(S.noEn||S.armed||S.boss||!S.round){endRound();return}if(S.dead){endRound(0);return}UI.alDice={st:"roll",v:0};render();setTimeout(()=>tumble("AL",()=>{if(!UI.alDice)return;UI.alDice.v=R(6);UI.alDice.st="done";render()}),40)}
 const ACT={
  d:v=>{if(!S.round&&+v<DIFLOCK)S.d=+v},
  ptsIn:()=>{},
@@ -1634,9 +1629,7 @@ const ACT={
  heroes:v=>{if(!S.round)S.heroes=Math.min(4,Math.max(1,S.heroes+ +v))},
  start:()=>startGame(),
  restart:()=>{if(!UI.sureR){UI.sureR=true;UI.sure=false;setTimeout(()=>{UI.sureR=false;render()},3500);return}UI.sureR=false;restartGame()},
- end:()=>{if(S.prim&&!S.secDone&&!S.armed&&!S.boss&&S.round){UI.pop={type:"seal"};render();return}doEnd()},
- sealYes:()=>{UI.pop=null;S.sealOn=true;doEnd()},
- sealNo:()=>{UI.pop=null;S.sealOn=false;S.sealRounds=[];S.sealRun=0;doEnd()},
+ end:()=>doEnd(),
  alGo:()=>{const D=UI.alDice;if(!D||D.st!=="done")return;UI.alDice=null;endRound(D.v===6?2:1)},
  alAdj:v=>{v=+v;if(v<0){S.al=Math.max(1,S.al+v);return}
   if(addAl(v)&&S.round){S.round++;S.alw[S.alw.length-1].round=S.round;S.alert="La Alertness llega a 6: entran refuerzos (en Oleadas). Despliégalos."}},
@@ -1655,7 +1648,6 @@ const ACT={
  /* Heraldo eliminado: se marca a mano y suma las 2 XP en el botín. */
  hdead:()=>{S.dead=!S.dead;HS.forEach(h=>{h.gold=Math.max(0,(+h.gold||0)+(S.dead?5:-5))});hfSave();if(S.dead){S.comp=S.comp||{};if(!S.comp.fin){S.comp.fin=genComp("fin",BUD());S.finRoll=S.comp.fin.u.map(()=>({t:"c",d:R(4)}))}UI.pop={type:"heraldo"}}},
  alClose:()=>{UI.alPop=null;clearTimeout(UI.alT);paintAlertPop()},
- seal:()=>{if(S.prim&&!S.secDone&&S.round>0)S.sealOn=!S.sealOn},
  play:()=>{const k=S.nar;
   if(AUD[k]){if(!NA||NAK!==k){if(NA)NA.pause();NA=new Audio(AUD[k]);NAK=k;NA.onended=()=>{NA.currentTime=0;UI.au="";render()}}
    UI.au="play";NA.play().catch(()=>{UI.au="";render()});return}
@@ -1815,7 +1807,7 @@ function sigil(s,col){col=col||"#d9b86c";return`<svg viewBox="0 0 54 54" aria-hi
    o {z:"x",x,y} (punto exacto, en unidades del tablero) cuando se arrastra o se coloca a mano. e.p0={r,x,y} guarda
    dónde empezó a moverse en la ronda r, para medir lo que lleva recorrido. Es orientativo. */
 const BQC=[[150,150],[450,150],[450,450],[150,450]],BCC=[[58,58],[542,58],[542,542],[58,542]],BOFF=[[0,0],[44,14],[-38,28],[12,-42],[-30,-38],[40,-30],[-44,-6],[28,40]];
-const BRP=[[232,248],[404,372],[302,118]];
+const BRP=[[232,248],[404,372]];
 /* Escala: el tablero mide 600 unidades = 48″, así que 1″ = 12,5 y cada cuadro de la rejilla (75) son 6″. */
 const BIN=600/48;
 /* Movimiento de la unidad: [avanzar, correr o cargar] en pulgadas; Fast suma 2″/4″ y Slow resta 2″/4″. */
@@ -1975,7 +1967,7 @@ function boardSvg(){const U=bUnits(),H=bHeroes(),A=U.concat(H),pos=bLayout(A),ni
  <path d="M300 0V600M0 300H600" stroke="rgba(217,184,108,.45)" stroke-dasharray="6 6" pointer-events="none"/>
  ${UI.bobs?`<g pointer-events="none">${BOBS.flatMap(o=>bPolys(o)).map(pl=>`<path d="M${pl.map(q=>q[0].toFixed(1)+" "+q[1].toFixed(1)).join("L")}z" fill="rgba(255,90,110,.1)" stroke="rgba(255,110,130,.55)" stroke-dasharray="3 3"/>`).join("")}${BOBS.flatMap(o=>bPolys(o,0)).map(pl=>`<path d="M${pl.map(q=>q[0].toFixed(1)+" "+q[1].toFixed(1)).join("L")}z" fill="rgba(255,90,110,.28)" stroke="#ff6e82" stroke-width="1.2"/>`).join("")}</g>`:""}
  ${night?H.filter(u=>!hfKo(u.h)).map(u=>{const[x,y]=pos[u.key];return`<g pointer-events="none" clip-path="url(#bclip)"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="150" fill="url(#bvis)" stroke="rgba(255,210,122,.3)" stroke-dasharray="4 6"/></g>`}).join(""):""}
- ${BRP.map(([x,y],i)=>`<g class="brs" data-a="mk" data-v="${i}" role="button" aria-label="${MK[i]}${S.mk[i]?" (recuperado)":""}"><rect x="${x-18}" y="${y-30}" width="36" height="50" fill="transparent"/>${brz(x,y,!!S.mk[i])}<text x="${x}" y="${y+27}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="11" fill="${S.mk[i]?"#f3dc9a":"#8f9abb"}">${["I","II","III"][i]}</text></g>`).join("")}
+ ${BRP.map(([x,y],i)=>`<g class="brs" data-a="mk" data-v="${i}" role="button" aria-label="${MK[i]}${S.mk[i]?" (recuperado)":""}"><rect x="${x-18}" y="${y-30}" width="36" height="50" fill="transparent"/>${brz(x,y,!!S.mk[i])}<text x="${x}" y="${y+27}" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="11" fill="${S.mk[i]?"#f3dc9a":"#8f9abb"}">${["I","II"][i]}</text></g>`).join("")}
  ${S.boss&&!S.dead?`<g transform="translate(300 300)" pointer-events="none"><circle r="44" fill="none" stroke="#a78bfa" stroke-width="2" opacity=".6"><animate attributeName="r" values="34;54;34" dur="2.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="2.4s" repeatCount="indefinite"/></circle><circle r="30" fill="#140c26" stroke="#c9b8ff" stroke-width="2"/><text y="7" text-anchor="middle" font-family="Cinzel,serif" font-weight="700" font-size="20" fill="#c9b8ff">H</text></g>`:""}
  ${A.filter(u=>pos[u.key]&&u!==su&&bOrig(u.e)).map(u=>{const o=bOrig(u.e),c=pos[u.key],k=u.g==="hero"?"#f3dc9a":"#c9b8ff";if(Math.hypot(c[0]-o[0],c[1]-o[1])<1)return"";const p=bPath(o,c);return`<g pointer-events="none" opacity=".55"><circle cx="${o[0]}" cy="${o[1]}" r="4" fill="none" stroke="${k}"/><polyline points="${bPts(p?p.pts:[o,c])}" fill="none" stroke="${k}" stroke-width="1.3" stroke-linejoin="round" stroke-dasharray="3 4"/></g>`}).join("")}
  <g class="bmv" pointer-events="none">${su?(()=>{const o=bOrig(su.e)||pos[su.key];return bRings(o,bOrig(su.e)?bPath(o,pos[su.key]):null,bSpdU(su),bLimU(su))})():""}</g>
@@ -2138,11 +2130,11 @@ const unitsLine=c=>{const g={};c.u.forEach(e=>{const k=ARMY[e.i]?ARMY[e.i].name:
 /* Dado de alerta en primer plano, con la misma tirada que el evento de la Ruptura. */
 function unitsStats(){let total=0,killed=0;Object.values(S.comp||{}).forEach(c=>{if(!c||!c.u)return;c.u.forEach(e=>{total++;if(aliveM(e)<=0)killed++})});(S.alw||[]).forEach(x=>{x.c.u.forEach(e=>{total++;if(aliveM(e)<=0)killed++})});return{total,killed}}
 function sumHTML(){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0),won=S.prim&&S.end&&!S.defeat,U=unitsStats();
- const rast=(S.tracks||[]).length||3,trk=(S.mk||[]).filter(Boolean).length;
+ const rast=(S.tracks||[]).length||2,trk=(S.mk||[]).filter(Boolean).length;
  const fin=won?cap((S.dead?DATA.fin[1]:DATA.fin[0]).replace(/^[^:]+: /,"")):"";
  return `<div class="sumh"><p class="alov-l">Resumen de la misión I · El pueblo vacío</p><h3>${won?"Misión cumplida":"Misión sin completar"}</h3></div>
  <div class="sumg"><div class="summ">
-  <section class="sumb"><p class="qh4">Objetivos</p><ul class="sumls"><li><b>Principal · rastros del pueblo</b><span>${trk} de ${rast} ${S.prim?"· cumplido":"· pendiente"}</span></li><li><b>Secundario · Contener el Olvido</b><span>${S.secDone?"cumplido":"pendiente"} · ${S.sealRun||0} de 3 rondas selladas</span></li></ul></section>
+  <section class="sumb"><p class="qh4">Objetivos</p><ul class="sumls"><li><b>Principal · rastros del pueblo</b><span>${trk} de ${rast} ${S.prim?"· cumplido":"· pendiente"}</span></li><li><b>Secundario · Contener el Olvido</b><span>${S.secDone?"cumplido":"pendiente"}</span></li></ul></section>
   <section class="sumb"><p class="qh4">Combate y tiempo</p><ul class="sumls"><li><b>Unidades eliminadas</b><span>${U.killed} de ${U.total}</span></li><li><b>Rondas que ha durado la misión</b><span>${S.round}</span></li><li><b>Heraldo del Umbral</b><span>${S.dead?"desaparecido":S.boss?"sigue en pie":"no llegó a aparecer"}</span></li></ul></section>
   ${fin?`<section class="sumb sumtxt"><p class="qh4">Final</p><p>${esc(fin)}</p></section>`:""}
  </div><aside class="sumside">
@@ -2166,7 +2158,6 @@ function paintAlDice(){let ov=document.getElementById("alOv");const D=UI.alDice,
  if(UI.sum){ov.innerHTML=`<div class="alov-s"></div><section class="alov-c sumc" role="dialog" aria-modal="true" aria-label="Resumen de la misión">${sumHTML()}</section>${P&&P.type==="finish"?`<div class="alov-s fin2"></div><section class="alov-c fincard" role="dialog" aria-modal="true" aria-label="Misión completada">${finHTML()}</section>`:""}`;return}
  let body="";
  if(P&&P.type==="heraldo"){ov.innerHTML=`<div class="alov-s"></div><section class="alov-c wpop" role="dialog" aria-modal="true" aria-label="El Heraldo se ha ido">${heroHTMLOK()}</section>`;return}
- if(P&&P.type==="seal"){ov.innerHTML=`<div class="alov-s"></div><section class="alov-c" role="dialog" aria-modal="true" aria-label="Pozo sellado"><p class="alov-l">Final de la ronda ${S.round}</p><h3>¿Se ha sellado el pozo este turno?</h3><p class="alov-n">Un héroe a 3″ o menos del pozo gastó su acción y pasó la tirada de Voluntad. Si sí, se enciende una vela; si no, se apagan todas.</p><div class="row" style="justify-content:center;gap:10px"><button type="button" class="pb pr" data-a="sealYes" data-f="sealYes">Sí, sellado</button><button type="button" class="pb gh" data-a="sealNo" data-f="sealNo">No</button></div></section>`;return}
  if(P&&P.type==="endq"){ov.innerHTML=`<div class="alov-s"></div><section class="alov-c" role="dialog" aria-modal="true" aria-label="Terminar la misión"><p class="alov-l">Final de la misión</p><h3>¿Terminar la misión?</h3><p class="alov-n">Habéis escapado del pueblo. Al confirmar, se cierra la partida y veréis el resumen. Desde el resumen podéis finalizar la misión.</p><div class="row" style="justify-content:center;gap:10px"><button type="button" class="pb pr" data-a="endOk" data-f="endOk">Sí, terminar</button><button type="button" class="pb gh" data-a="popNo" data-f="popNo">Volver</button></div></section>`;return}
  if(D){const v=D.v||1,add=v===6?2:1;
   body=`<p class="alov-l">Fin de la ronda ${S.round}</p><h3>Dado de alerta</h3><div class="alov-d">${bone([v],"die-AL",D.st==="roll"?"tmb":"")}</div>${D.st==="roll"?`<p class="alov-t">Tirando…</p>`:`<p class="alov-t"><b>${v}</b> · ${S.sealOn?"Pozo sellado: la alerta no sube":"Alertness +"+add+(v===6?" (un 6 sube dos niveles)":"")}</p><p class="alov-n">${S.sealOn?"La Ruptura queda contenida esta ronda.":"Alertness "+S.al+"/6 al terminar. "+(S.al+add>=6?"Llega a 6: entran refuerzos.":"")}</p><button type="button" class="pb pr big" data-a="alGo" data-f="alGo">Continuar</button>`}`}
@@ -2195,26 +2186,20 @@ function secResult(v){UI.pop=null;prepSec(v);const alw=UI.pop&&UI.pop.type==="al
  UI.pop={type:"sec",st:"done",v:S.sec,t:o[0],d:o[1],alw:!!alw,next:alw}}
 function secPopHTML(P){if(P.st==="roll")return`<p class="alov-l">Objetivo secundario</p><h3>Tirando el dado…</h3><div class="alov-d">${bone([P.v||1],"die-SECP",P.st==="roll"?"tmb":"")}</div>`;
  return`<p class="alov-l">Objetivo secundario</p><div class="alov-d">${bone([P.v],"die-SECP")}</div><h3>${esc(P.t)}</h3><p class="alov-t">${esc(P.d)}</p><p class="alov-n">Alertness +3 → ${S.al}/6${P.alw?" · la alerta llega a 6: entran refuerzos. Su ventana sale a continuación.":""}</p><button type="button" class="pb pr big" data-a="popOk" data-f="popOk">Continuar</button>`}
-const MK=["Primer rastro del pueblo","Segundo rastro del pueblo","Tercer rastro del pueblo"];
+const MK=["Primer rastro del pueblo","Segundo rastro del pueblo"];
 const EXIT='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h24v24H4z" opacity=".28"/><path d="M4 21A17 17 0 0 0 21 4" stroke-dasharray="2.2 3"/><path d="M4 11V4h7"/><path d="M16 16L6 6"/><path d="M6 11V6h5"/></svg>';
-/* Velas del pozo: una por ronda sellada (se enciende con «Sí» y se apagan todas con «No»). */
-function candlesHTML(){const R=S.sealRounds||[];
- return `<div class="candles" aria-label="Velas: ${R.length} de 3 encendidas">${[0,1,2].map(i=>{const on=i<R.length;return `<div class="cand${on?" on":""}"><svg viewBox="0 0 40 70" aria-hidden="true">${on?'<path d="M20 2c-4 7-6 11-3 17c-5-4-5-9-3-13c-2 3-3 6-1 10c2 4 7 6 7 6s5-2 7-6c2-4 1-7-1-10c-2 4-2 9-3 13c4-6 2-10-3-17z" fill="#ffd27a"/>':""}<rect x="14" y="26" width="12" height="40" rx="2" fill="${on?"#f1e6c8":"#5a5268"}"/><rect x="12" y="62" width="16" height="5" rx="2" fill="#6f5f3d"/></svg><small>${on?"Ronda "+R[i]:"Vela "+(i+1)}</small></div>`}).join("")}</div>`}
 function objCard(){
  const done=S.mk.filter(Boolean).length;
  const mk=MK.map((m,i)=>`<label class="ck mkr ${S.mk[i]?"on":""}"><input type="checkbox" data-a="mk" data-v="${i}" data-f="mk${i}" ${S.mk[i]?"checked":""}><span><b>${m}</b><small>${S.mk[i]?"Arrancado al olvido.":"Aún lo guarda la ceniza."}</small></span></label>`).join("");
- const run=S.sealRun||0;
- const sec=`<div class="res ${S.prim?"":"dim"}"><div><b>Contener el Olvido</b><p>Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Con éxito, la Ruptura queda contenida solo esa ronda: el nivel de alerta no sube y no entran refuerzos, y el grupo puede ir escapando. Para mantenerla hay que volver a sellarla cada ronda. Si al final de una ronda nadie la ha sellado, la Ruptura se abre y el nivel de alerta sube 3 extra. Se cumple cuando el pozo ha estado sellado 3 rondas seguidas.</p>${S.prim?"":"<p>Se activa al cumplir los tres rastros.</p>"}</div></div>
- ${candlesHTML()}
-
- <label class="ck mkr ${S.secDone?"on":""}"><input type="checkbox" disabled ${S.secDone?"checked":""}><span><b>Contener el Olvido cumplido</b><small>${S.secDone?"El pozo ha estado sellado 3 rondas seguidas.":"Se marca sola al llegar a 3 rondas seguidas."}</small></span></label>`;
+ const sec=`<div class="res ${S.prim?"":"dim"}"><div><b>Contener el Olvido</b><p>Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad (si falla, puede gastar 2 de poder). Solo vale si no hay ningún enemigo a menos de 5″ del pozo. Al pasarla, el objetivo secundario queda cumplido.</p>${S.prim?"":"<p>Se activa al cumplir los dos rastros.</p>"}</div></div>
+ <label class="ck mkr ${S.secDone?"on":""}"><input type="checkbox" data-a="secDone" data-f="secDone" ${S.secDone?"checked":""} ${S.prim?"":"disabled"}><span><b>Contener el Olvido cumplido</b><small>${S.secDone?"Un héroe pasó la tirada de Voluntad sin enemigos a menos de 5″ del pozo.":"Márcalo cuando un héroe pase la tirada de Voluntad sin enemigos a menos de 5″ del pozo."}</small></span></label>`;
  let boss="";
  if(S.prim&&S.secDone&&!S.armed&&!S.boss)boss=`<div class="bossw"><button class="pb pr big pulse" data-a="arm" data-f="arm">Activar pelea de jefe</button></div>`;
  else if(S.armed&&!S.boss)boss=`<p style="margin:12px 0 0;font-size:12.5px;color:var(--pgold)">El jefe llega al final de esta ronda.</p>`;
  
- const exit=`<button class="exit ${S.end?"on":""}" data-a="endc" data-f="endc" aria-pressed="${S.end}" ${S.prim||S.end?"":"disabled"}>${EXIT}<span><b>${S.end?"Habéis escapado del pueblo":"Escapar del pueblo"}</b><small>${S.end?"Fin de la misión. Pulsa de nuevo para deshacer.":S.prim?"Todos los héroes a 6\" o menos de la misma esquina y sin enemigos alrededor, al final de la ronda.":"Primero recuperad los tres rastros."}</small></span></button>`;
+ const exit=`<button class="exit ${S.end?"on":""}" data-a="endc" data-f="endc" aria-pressed="${S.end}" ${S.prim||S.end?"":"disabled"}>${EXIT}<span><b>${S.end?"Habéis escapado del pueblo":"Escapar del pueblo"}</b><small>${S.end?"Fin de la misión. Pulsa de nuevo para deshacer.":S.prim?"Todos los héroes a 6\" o menos de la misma esquina y sin enemigos alrededor, al final de la ronda.":"Primero recuperad los dos rastros."}</small></span></button>`;
  const hdeadBtn=(S.armed||S.boss)?`<div class="cwrap hdw"><button class="pb ${S.dead?"pr":"gh"}" type="button" data-a="hdead" data-f="hdead">${S.dead?"Heraldo desaparecido ✓ (pulsa para deshacer)":"Marcar: Heraldo desaparecido"}</button></div>`:"";
- return`<section class="pc"><h3><span class="tt">Objetivos</span></h3><p class="sbh" style="margin-top:0;display:flex;justify-content:space-between">Principal · búsqueda por zonas<span style="color:${done===3?"var(--pgold)":"var(--pmu)"}">${done} de 3</span></p>${mk}${S.prim?`<p style="margin:0;font-size:12.5px;line-height:1.5;color:var(--pok)">Los tres rastros están en vuestras manos. Quien recogió el último lleva el <b>diario del olvidado</b>: es un objeto necesario para la misión 2, así que los héroes <b>deben escapar con él</b>.</p>`:""}<p class="sbh" style="margin-top:16px">Secundario</p>${sec}${boss}${hdeadBtn}${exit}</section>`;
+ return`<section class="pc"><h3><span class="tt">Objetivos</span></h3><p class="sbh" style="margin-top:0;display:flex;justify-content:space-between">Principal · búsqueda por zonas<span style="color:${done===2?"var(--pgold)":"var(--pmu)"}">${done} de 2</span></p>${mk}${S.prim?`<p style="margin:0;font-size:12.5px;line-height:1.5;color:var(--pok)">Los dos rastros están en vuestras manos. Quien recogió el último lleva el <b>diario del olvidado</b>: es un objeto necesario para la misión 2, así que los héroes <b>deben escapar con él</b>.</p>`:""}<p class="sbh" style="margin-top:16px">Secundario</p>${sec}${boss}${hdeadBtn}${exit}</section>`;
 }
 function finalCard(){
  const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0);
@@ -2608,15 +2593,15 @@ function qMap(){let s=`<svg viewBox="0 0 300 300" role="img" aria-label="Mesa de
 const QCARDS=[
  {k:"pro",big:1,n:"Capítulo I",t:"El contrato del Filo",p:"Una aldea que nadie recuerda y un saquito de plata.",sl:"I",
   h:()=>`<div class="qpro">${DATA.pro.map((p,i)=>`<p${i?"":' class="dc"'}>${esc(p)}</p>`).join("")}</div>`},
- {k:"obj",big:1,n:"Capítulo II",t:"Objetivos",p:"Tres rastros, una salida y un jefe opcional.",sl:"II",
+ {k:"obj",big:1,n:"Capítulo II",t:"Objetivos",p:"Dos rastros, una salida y un jefe opcional.",sl:"II",
   h:()=>{const ob=DATA.obj.map(l=>{const i=l.indexOf(": ");return[l.slice(0,i),cap(l.slice(i+2))]});
    const xr=[["Principal",2],["Secundario",1],["Heraldo desaparecido",2],["Máximo de XP",5],["Paga de riesgo (oro)",5]];
    return `<div class="qgrid">${ob.slice(0,4).map((o,i)=>`<div class="qpn"><div class="qob"><span class="qseal">${["I","II","III","IV"][i]}</span><div><h3>${esc(o[0])}</h3><p>${esc(o[1])}</p></div></div></div>`).join("")}</div>
-   <div class="qgrid"><div class="qpn"><div class="qob"><div><h3>Objetivo secundario · Contener el Olvido</h3><p>Se activa al cumplir los tres rastros. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Con éxito, la Ruptura queda contenida solo esa ronda: la alerta no sube y no entran refuerzos. Hay que volver a sellarlo cada ronda; si nadie lo sella al terminar una ronda, la Ruptura se abre y la alerta sube 3 extra. Se cumple cuando el pozo ha estado sellado 3 rondas seguidas.</p></div></div></div><div class="qpn"><p class="qh4">XP y oro por héroe</p><table class="qtbl"><tr><th>Recompensa</th>${[1,2,3,4].map(i=>`<th class="n">Nv. ${i}</th>`).join("")}</tr>${xr.map(r=>`<tr><td>${r[0]}</td>${[1,2,3,4].map(i=>`<td class="n">${r[1]*i}</td>`).join("")}</tr>`).join("")}</table></div></div>
+   <div class="qgrid"><div class="qpn"><div class="qob"><div><h3>Objetivo secundario · Contener el Olvido</h3><p>Se activa al cumplir los dos rastros. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad (si falla, puede gastar 2 de poder). Solo vale si no hay ningún enemigo a menos de 5″ del pozo. Al pasarla, el objetivo secundario queda cumplido.</p></div></div></div><div class="qpn"><p class="qh4">XP y oro por héroe</p><table class="qtbl"><tr><th>Recompensa</th>${[1,2,3,4].map(i=>`<th class="n">Nv. ${i}</th>`).join("")}</tr>${xr.map(r=>`<tr><td>${r[0]}</td>${[1,2,3,4].map(i=>`<td class="n">${r[1]*i}</td>`).join("")}</tr>`).join("")}</table></div></div>
    <div class="qgrid">${ob.slice(4).map(o=>`<div class="qpn"><div class="qob"><div><h3>${esc(o[0])}</h3><p>${esc(o[1])}</p></div></div></div>`).join("")}</div>`}},
  {k:"prep",big:1,n:"Capítulo III",t:"Preparación",p:"Mesa de 48\", cuadrantes y esquinas.",sl:"III",
   h:()=>{const pr=DATA.prep,st=pr.slice(1).map(l=>{const m=l.match(/^\d\. ([^:]+): (.*)$/);return[m[1],cap(m[2])]}).filter(s=>!/Despliegue enemigo/.test(s[0]));
-   return `<p class="qlead">${esc(pr[0].replace(/^Mesa: /,"La mesa: "))}</p><div class="qprep"><div class="qpn">${qMap()}</div><ol class="qsteps">${st.map(s=>`<li><span><b>${esc(s[0])}.</b> ${esc(s[1])}</span></li>`).join("")}</ol></div><div class="qpn"><div class="qob"><div><h3>Objetivo secundario · Contener el Olvido</h3><p>Se activa al cumplir los tres rastros del pueblo. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad para sellarlo (si falla, puede gastar 2 de poder). Mientras el pozo esté sellado al terminar cada ronda, la Ruptura queda contenida: la alerta no sube y no entran refuerzos. Si nadie lo sella, la Ruptura se abre y la alerta sube 3 extra. Se cumple con 3 rondas seguidas selladas, y entonces el grupo puede escapar sin que el pueblo se venga abajo.</p></div></div></div>`}},
+   return `<p class="qlead">${esc(pr[0].replace(/^Mesa: /,"La mesa: "))}</p><div class="qprep"><div class="qpn">${qMap()}</div><ol class="qsteps">${st.map(s=>`<li><span><b>${esc(s[0])}.</b> ${esc(s[1])}</span></li>`).join("")}</ol></div><div class="qpn"><div class="qob"><div><h3>Objetivo secundario · Contener el Olvido</h3><p>Se activa al cumplir los dos rastros del pueblo. Un héroe a 3″ o menos del pozo gasta 1 acción de habilidad y pasa una tirada de Voluntad (si falla, puede gastar 2 de poder). Solo vale si no hay ningún enemigo a menos de 5″ del pozo. Al pasarla, el objetivo secundario queda cumplido. Entonces el grupo puede escapar sin que el pueblo se venga abajo.</p></div></div></div>`}},
  {k:"her",img:1,n:"Lo que se cuenta",t:"El Heraldo",p:"Nadie sabe cómo se llama.",sl:"H",
   h:()=>`<p class="qbridge">${QHER.bridge}</p><div class="qher"><div class="qpor"><img src="${IMG_RETRATO}" width="480" height="606" alt="El Heraldo del Umbral: capucha vacía, armadura negra con cuernos en las hombreras y tres esferas oscuras sobre la mano"></div><div><h3>Lo que se cuenta del Heraldo</h3>${QHER.p.map(p=>`<p>${p}</p>`).join("")}<p class="n">${QHER.n}</p></div></div><blockquote class="qq"><p>${QHER.q}</p><cite>Palabras atribuidas al Heraldo</cite></blockquote>`},
  {k:"ev",n:"Capítulo IV",t:"Eventos de la Ruptura",p:"Treinta y seis maneras de que el pueblo os olvide.",sl:"IV",
@@ -2656,7 +2641,7 @@ function paintSheet(){
  const wt=[["Centinelas","Borrados","El evento de la Ruptura de la ronda 1."],["Refuerzos 1","Animales deformados con <i>Fast</i> y una unidad con <i>Ambush</i>","La unidad con <i>Ambush</i> entra D3 rondas después, al empezar la ronda, a 6\" o menos de un Objetivo de IA (al azar si hay varios)."],["Refuerzos 2","Cultistas con un <i>Caster</i> y su escolta","Mientras el <i>Caster</i> no esté Aturdido, los Borrados a 6\" de él ganan +1 a impactar en cuerpo a cuerpo."],["Refuerzos 3 en adelante","Alterna los refuerzos 1 y 2","Un evento de la Ruptura cada vez."],["Jefe","El Heraldo del Umbral, con Borrados y cultistas hasta el doble de valor","Su ficha aparece en la mesa de juego cuando entra en partida."]];
  const wv=$("#wvt");if(wv)wv.innerHTML=`<tr><th>Oleada</th><th>Composición</th><th>Sorpresa</th></tr>`+wt.map((r,i)=>{const k=W[i][1];const on=cur==="boss"?k==="boss":(k===cur||(k===3&&cur>=3));return`<tr class="${on?"cur":""}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`}).join("");
 }
-DATA.sec=[["Interrogar","El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral."],["Contener el Olvido","Mantén el pozo bajo control para frenar la Ruptura."],["Capturar","Saca una reliquia del pozo hasta una esquina."],["Sabotear","Destruye un símbolo del Umbral lejos de los héroes."],["Rebuscar","Revuelve las casas de dos esquinas en busca de pistas."],["Resguardar","Lleva a un superviviente sin rostro a la casa más segura del pueblo y mantenlo a 3″ o menos de ella durante una ronda entera."]];
+DATA.sec=[["Interrogar","El último enemigo de la siguiente oleada suelta un cuaderno del Culto del Umbral."],["Contener el Olvido","Pasa una tirada de Voluntad sin enemigos a menos de 5″ del pozo."],["Capturar","Saca una reliquia del pozo hasta una esquina."],["Sabotear","Destruye un símbolo del Umbral lejos de los héroes."],["Rebuscar","Revuelve las casas de dos esquinas en busca de pistas."],["Resguardar","Lleva a un superviviente sin rostro a la casa más segura del pueblo y mantenlo a 3″ o menos de ella durante una ronda entera."]];
 DATA.narMap={};
 (function(){const m={"Antes de empezar":"start","Ronda 1":"r1","Ronda 2":"r2","Ronda 3":"r3","Ronda 4":"w1","Ronda 5":"w2","Se cumple el objetivo principal":"pri","Se activa el objetivo secundario":"sec","Llega el Heraldo":"boss"};DATA.nar.forEach(n=>{if(m[n[0]])DATA.narMap[m[n[0]]]=n[1]})})();
 /* ---------- botón flotante: anillo de alerta (6 tramos) con la ronda dentro ---------- */
@@ -2880,7 +2865,7 @@ function popHTML(){const i=M.sel,m=MIS[i],st=mst(i);
  if(st==="lock")b+=`<p class="hook blur" aria-hidden="true">${m.h}</p><div class="klock">${LOCK}<span>Sellada. Se abrirá al cumplir la misión ${MIS[i-1].n}; todavía está en preparación.</span></div>`;
  else{b+=`<p class="hook">${m.h}</p>`;
   if(st==="done"){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0);b+=`<p class="kstl done"><i></i>Cumplida</p><div class="kres"><div><span>Final</span><b>${S.dead?"Heraldo desaparecido":"Sin pelea de jefe"}</b></div><div><span>Por héroe</span><b>${xp} XP</b></div><div><span>Paga</span><b>${5*S.d+(S.dead?5:0)} oro</b></div></div><button class="kcta ghost" type="button" data-nav="m1">Ver la misión</button>`}
-  else{const mk=(S.mk||[]).filter(Boolean).length;b+=`<div class="kchips"><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span><span>Jefe <b>opcional</b></span></div>`+(st==="live"?`<div class="kchips"><span>Alerta <b>${S.al}/6</b></span><span><b>${mk}</b> de 3 rastros</span></div>`:"")+`<p class="kstl ${st}"><i></i>${stl(i)}</p><button class="kcta${st==="live"?" vio":""}" type="button" data-nav="m1"><span>${st==="live"?"Continuar la partida":"Entrar en la misión"}</span>${ARROW}</button>`}}
+  else{const mk=(S.mk||[]).filter(Boolean).length;b+=`<div class="kchips"><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span><span>Jefe <b>opcional</b></span></div>`+(st==="live"?`<div class="kchips"><span>Alerta <b>${S.al}/6</b></span><span><b>${mk}</b> de 2 rastros</span></div>`:"")+`<p class="kstl ${st}"><i></i>${stl(i)}</p><button class="kcta${st==="live"?" vio":""}" type="button" data-nav="m1"><span>${st==="live"?"Continuar la partida":"Entrar en la misión"}</span>${ARROW}</button>`}}
  return b}
 function idxHTML(){return `<p class="keb">La ruta hacia el norte</p>`+MIS.map((x,k)=>{const s=mst(k);return `<button type="button" class="s-${s}${k===M.sel?" on":""}" data-mi="${k}"><span class="n">${x.n}</span><span class="t">${x.t}<small>${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}</small></span></button>`}).join("")}
 function map(){const el=$("#home"),n=MIS.filter((_,i)=>mst(i)!=="lock").length;
