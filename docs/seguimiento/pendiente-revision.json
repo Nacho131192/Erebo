@@ -39,6 +39,13 @@
           "done": false,
           "text": "Devolver golpes en cuerpo a cuerpo: ahora el defensor solo tira defensa y no devuelve golpes. La norma dice que los defensores devuelven los golpes (Counter les deja golpear primero).",
           "notes": ""
+        },
+        {
+          "id": "r-terreno",
+          "tag": "Duda",
+          "done": false,
+          "text": "Terreno de cobertura y peligroso: la norma dice «la mayoría» de las miniaturas dentro. La aplicación usa el centro de la peana (héroe) o de la unidad. En el peligroso de una unidad, ¿se tira un dado por cada herida que le quede a toda la unidad? Así lo hace ahora.",
+          "notes": ""
         }
       ],
       "done_when": ""
@@ -190,6 +197,13 @@
           "done": false,
           "text": "Counter: como el defensor no devuelve golpes (regla de la casa), la regla Counter no hace nada. ¿Se mantiene así?",
           "notes": ""
+        },
+        {
+          "id": "r-escabullirse",
+          "tag": "Casa",
+          "done": false,
+          "text": "Escabullirse (regla de la casa): ¿el destino del movimiento tiene que quedar a más de 1″ de todos los enemigos (como cualquier movimiento) y se puede gastar 2 de poder si falla la tirada de Destreza? Así lo hace ahora la aplicación.",
+          "notes": ""
         }
       ]
     },
@@ -302,6 +316,13 @@
           "tag": "",
           "done": false,
           "text": "Heraldo: aparece siempre en la zona de escape al luchar contra él. ¿Debe entrar también por las esquinas si los héroes no están en la zona?",
+          "notes": ""
+        },
+        {
+          "id": "r-peligro-tesoro",
+          "tag": "Pendiente",
+          "done": false,
+          "text": "Efectos de «Peligro» (cofre: estados Afligido, Enfermo, Afectado o Debilitado) y del Borrado débil del tesoro maldito: hoy solo se anotan en el registro y hay que aplicarlos a mano. Decidir cómo se aplican en el tablero.",
           "notes": ""
         }
       ]

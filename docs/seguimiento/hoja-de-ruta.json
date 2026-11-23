@@ -262,7 +262,19 @@
           "id": "f5-generales",
           "tag": "Oficial",
           "done": false,
-          "text": "Acciones generales: Empujar, Escabullirse y revivir a un aliado inconsciente."
+          "text": "Acciones generales: Empujar (descartado por decisión de Nacho: no se añade a la aplicación)."
+        },
+        {
+          "id": "f5-escabullirse",
+          "tag": "Casa",
+          "done": true,
+          "text": "Escabullirse (regla de la casa): con un enemigo a 1″ o menos, tirada de Destreza; si la pasa, se mueve hasta D3″ y acaba a más de 1″ de los enemigos. Si falla, puede gastar 2 de poder."
+        },
+        {
+          "id": "f5-revivir",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Revivir a un aliado inconsciente (Core Rules): acción de habilidad y 3 de poder, a 3″ o menos; le devuelve 3 heridas. Sin tirada. Si hay varios, el jugador elige a cuál."
         },
         {
           "id": "f5-habilidades",
@@ -337,7 +349,7 @@
           "id": "f55-zonas",
           "tag": "",
           "done": false,
-          "text": "Zonas y marcadores temporales (terreno difícil, peligroso o de cobertura, señuelos, imagen especular): 14 habilidades se resuelven a mano."
+          "text": "Marcadores temporales de las habilidades (nube de niebla, espinas, grasa, humo, fuego…): 14 se resuelven a mano. Las zonas de terreno ya funcionan con los eventos de la Ruptura; falta enlazarlas con estas habilidades."
         },
         {
           "id": "f55-fichas",
@@ -376,12 +388,12 @@
           "id": "f6-terreno",
           "tag": "Oficial",
           "done": false,
-          "text": "Cobertura, terreno difícil y peligroso, línea de visión más fina."
+          "text": "Terreno en la mesa «Sala de guerra» (cobertura, difícil y peligroso) y línea de visión más fina. El tablero virtual ya lo tiene (fase 12)."
         },
         {
           "id": "f6-ambush",
           "tag": "Oficial",
-          "done": false,
+          "done": true,
           "text": "Ambush (D3 rondas después, a 6 pulgadas de un Objetivo de IA) y Scout."
         },
         {
@@ -420,7 +432,7 @@
         {
           "id": "f7-ia",
           "tag": "Oficial",
-          "done": false,
+          "done": true,
           "text": "Caster de la IA: elige un hechizo al azar y gasta todas sus fichas."
         }
       ],
@@ -823,56 +835,190 @@
           "tag": "",
           "done": false,
           "text": "Efectos a mano de los cofres: los peligros y el Borrado débil del tesoro maldito solo se anotan en el registro."
+        },
+        {
+          "id": "f11-cofres-tras",
+          "tag": "Casa",
+          "done": true,
+          "text": "Cofres: aparecen al empezar la partida, con los héroes ya desplegados."
         }
       ],
       "notes": ""
     },
     {
       "id": "f12",
-      "title": "Fase 12 · Ejército de los Borrados y zoom (23-11-2026)",
-      "goal": "Tablas de unidades, glosario de reglas, reglas del ejército en el tablero y zoom del mapa.",
+      "title": "Fase 12 · Tanda 10 del tablero (22-11-2026)",
+      "goal": "Derrota con reinicio o salida, cofres tras el despliegue, reanimar y terreno de la Ruptura.",
       "items": [
         {
-          "id": "f12-tablas",
+          "id": "f12-derrota",
+          "tag": "Casa",
+          "done": true,
+          "text": "Todos inconscientes a la vez: ventana «Todos han caído» con Reiniciar la misión y Salir al selector de misiones."
+        },
+        {
+          "id": "f12-reanimar",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Reanimar (Core Rules): acción de habilidad y 3 de poder, a 3″ o menos de un héroe inconsciente; le devuelve 3 heridas. Sin tirada."
+        },
+        {
+          "id": "f12-elegir",
+          "tag": "Casa",
+          "done": true,
+          "text": "Si hay varios inconscientes a 3″, el jugador elige a cuál reanimar."
+        },
+        {
+          "id": "f12-terreno",
+          "tag": "Oficial/Casa",
+          "done": true,
+          "text": "Terreno de la Ruptura (tablero virtual): zonas orgánicas que aparecen con un evento y duran lo que diga el evento. Peligroso (31), difícil (34) y cobertura (35); su efecto sale en la tarjeta del evento."
+        },
+        {
+          "id": "f12-terreno-mesa",
+          "tag": "Casa",
+          "done": false,
+          "text": "El mismo terreno en la mesa «Sala de guerra» (hoy solo está en el tablero virtual)."
+        },
+        {
+          "id": "f12-eventos",
+          "tag": "Casa",
+          "done": false,
+          "text": "Decidir qué otros eventos de la Ruptura crean terreno (ahora solo tres de los 36)."
+        },
+        {
+          "id": "f12-fichas",
+          "tag": "Casa",
+          "done": true,
+          "text": "Fichas de búsqueda = cofres: al empezar, 1-4 al azar (mitad por cuadrantes, mitad por esquinas), con tope de 8 en el tablero."
+        },
+        {
+          "id": "f12-ev43",
+          "tag": "Oficial/Casa",
+          "done": true,
+          "text": "Evento 43 «Mapa olvidado»: coloca D3 fichas a 6″ del centro de cuadrantes distintos, sin pasar de 8 en el tablero."
+        },
+        {
+          "id": "f12-ev62",
+          "tag": "Oficial/Casa",
+          "done": true,
+          "text": "Evento 62 «Visión profética»: revela D3 fichas sin revelar. Icono en la esquina y ventanita con su contenido al pulsarlas."
+        },
+        {
+          "id": "f12-inv",
+          "tag": "Casa",
+          "done": true,
+          "text": "Inventario del héroe activo (botón sobre «Elige su acción»): objetos con su efecto, Usar, oro. Se cierra con la X o pulsando fuera."
+        },
+        {
+          "id": "f12-objetos",
+          "tag": "Casa",
+          "done": true,
+          "text": "Los objetos de cofres y eventos van al inventario en cuanto se obtienen."
+        },
+        {
+          "id": "f12-pendiente-tokens",
+          "tag": "Casa",
+          "done": false,
+          "text": "Fichas: el 1-4 / 5-6 del dado de posición lo decide la app al azar (no el jugador)."
+        },
+        {
+          "id": "f12-inv-heroes",
+          "tag": "Casa",
+          "done": false,
+          "text": "Inventario de los héroes que no están activos (ahora solo el activo); y el uso de objetos durante la pelea de jefe, sin probar."
+        },
+        {
+          "id": "f12-acciones-item",
+          "tag": "Casa",
+          "done": true,
+          "text": "Bombas: una acción. Pociones y elixires: sin acción, una vez por tipo, por héroe y por ronda."
+        },
+        {
+          "id": "f12-escabullirse",
+          "tag": "Casa",
+          "done": true,
+          "text": "Escabullirse en el tablero virtual (acción de habilidad). Revisar la regla de la casa en la lista de dudas."
+        },
+        {
+          "id": "f12-zoom",
+          "tag": "Casa",
+          "done": true,
+          "text": "Zoom del mapa: pellizco en móvil, botones + y − y arrastre con el ratón o un dedo."
+        },
+        {
+          "id": "f12-cofre-tirada",
+          "tag": "Casa",
+          "done": true,
+          "text": "La acción Abrir cofre indica si hay tirada de Voluntad según la distancia; el recuadro del cofre se cierra al volver a pulsar o al salir el ratón."
+        },
+        {
+          "id": "f12-pestanas",
+          "tag": "Casa",
+          "done": true,
+          "text": "Las pestañas no hacen subir la pantalla al abrirse o cerrarse."
+        },
+        {
+          "id": "f12-finalizar",
+          "tag": "Casa",
+          "done": true,
+          "text": "Finalizar misión brilla con los dos héroes en la zona de escape y sin enemigos en ella; con los objetivos cerrados brilla su botón."
+        },
+        {
+          "id": "f12-extras",
+          "tag": "Casa",
+          "done": true,
+          "text": "El resumen de la misión muestra XP y oro de la misión más los extras de cofres y eventos."
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "f13",
+      "title": "Fase 13 · Ejército de los Borrados y zoom anclado (23-11-2026)",
+      "goal": "Tablas de unidades, glosario de reglas, reglas del ejército en el tablero y zoom que sigue al dedo.",
+      "items": [
+        {
+          "id": "f13-tablas",
           "tag": "Casa",
           "done": true,
           "text": "Tablas del ejército de los Borrados (18 unidades base, 36 variantes y el Heraldo por dificultad) en español, con glosario de reglas en la última página (docs/ejercito-borrados.pdf)."
         },
         {
-          "id": "f12-glosario",
+          "id": "f13-glosario",
           "tag": "",
           "done": true,
           "text": "Glosario de reglas en español, inglés y descripción (glosario-borrados.json) metido en el catálogo del tablero (reglas-ghostly.json)."
         },
         {
-          "id": "f12-reglas",
+          "id": "f13-reglas",
           "tag": "Oficial",
           "done": true,
           "text": "Reglas del ejército en los enemigos del tablero: Espíritu empíreo mejorado, Escudado, Resistencia a hechizos, Cosecha, Hazaña de precisión, Implacable, auras, Etéreo, Marca de perdición, Ataque de cruce, Emboscada, Villano a 12″ y Caster de la IA con sus hechizos (también los del Heraldo)."
         },
         {
-          "id": "f12-zoom",
+          "id": "f13-zoom",
           "tag": "",
           "done": true,
-          "text": "Zoom del tablero anclado en el dedo o el cursor: pellizco con dos dedos (acerca y mueve), rueda o pellizco del trackpad, botón «Ver todo», arrastre con botón central."
+          "text": "El zoom del mapa se hace donde pones los dedos o el cursor (antes acercaba siempre al centro): el pellizco acerca y mueve a la vez, y la rueda o el pellizco del trackpad acercan hacia el cursor. Los botones + y − siguen acercando al centro."
         },
         {
-          "id": "f12-aplicar",
+          "id": "f13-aplicar",
           "tag": "",
           "done": false,
           "text": "Cuando Nacho vuelva a pasar el PDF del ejército: aplicar las unidades al ejército que sale en pantalla (no antes)."
         },
         {
-          "id": "f12-prueba",
+          "id": "f13-prueba",
           "tag": "",
           "done": false,
           "text": "Probar con dados reales Ataque de cruce, Cosecha y Escudado, y la Emboscada con varios héroes; probar el zoom en una pantalla táctil real."
         },
         {
-          "id": "f12-hechizos-heroes",
+          "id": "f13-hechizos-heroes",
           "tag": "",
           "done": false,
-          "text": "Los hechizos de los héroes no tienen en cuenta Resistencia a hechizos del enemigo (ahora las habilidades cuentan como heridas normales)."
+          "text": "Los hechizos de los héroes no tienen en cuenta la Resistencia a hechizos del enemigo (ahora cuentan como heridas normales)."
         }
       ],
       "notes": ""
