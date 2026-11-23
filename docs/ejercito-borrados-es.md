@@ -19,7 +19,7 @@
 | B09 | Ballestero Sin Rostro | 1 | 5+ | 5+ | 1x Ballesta (18", A3, Desgarrador); 1x Golpe (A3) | Espíritu empíreo, Etéreo, Resistente(3) | 45 pts |
 | B10 | Vengador Olvidado | 1 | 4+ | 5+ | 1x Gran arma (A3, PA(2)) | Espíritu empíreo, Etéreo, Furioso, Resistente(3) | 45 pts |
 | B11 | Acechador de la Ruptura | 1 | 5+ | 5+ | 1x Guja (A3, Estocada); Pisotón (Impacto(3)) | Espíritu empíreo, Etéreo, Rápido, Impacto(3), Resistente(3) | 55 pts |
-| B12 | Jinete del Vacío | 1 | 4+ | 5+ | 1x Gran arma (A3, PA(2)); Pisotón (Impacto(3)) | Emboscada, Espíritu empíreo, Etéreo, Furioso, Impacto(3), Resistente(3) | 70 pts |
+| B12 | Jinete del Vacío | 1 | 4+ | 5+ | 1x Gran arma (A3, PA(2)); Pisotón (Impacto(3)) | Emboscada, Espíritu empíreo, Etéreo, Rápido, Furioso, Impacto(3), Resistente(3) | 70 pts |
 | B13 | Espectro del Pozo | 1 | 3+ | 6+ | 1x Guadaña (A3, PA(1), Cosecha) | Emboscada, Espíritu empíreo, Etéreo, Resistencia a hechizos, Resistente(3) | 65 pts |
 | B14 | Jinete Maldito del Umbral | 1 | 4+ | 5+ | 1x Alabarda (A3, Desgarrador) | Espíritu empíreo, Etéreo, Rápido, Impacto(3), Resistente(3), Atravesar | 80 pts |
 | B15 | Lamento de Varek | 1 | 3+ | 6+ | 1x Grito de banshee (9", A6, Perdición); 1x Golpe (A3) | Espíritu empíreo, Etéreo, Resistencia a hechizos, Resistente(3) | 70 pts |
@@ -58,7 +58,7 @@ Cambios respecto a la base, con su coste (Δ).
 | V10b | Vengador · Hoces Gemelas | B10 | 4+ | 5+ | 1x Hoces segadoras dobles (A12, Triturar) | Espíritu empíreo, Etéreo, Furioso, Resistente(3) | Hoces segadoras dobles (+55) | 100 pts |
 | V11a | Acechador · Grito de Ruptura | B11 | 5+ | 5+ | 1x Guja (A3, Estocada); 1x Chillido maldito (12", A3, Asalto) | Espíritu empíreo, Etéreo, Rápido, Resistente(3) *(pierde Impacto(3) al sustituir Pisotón)* | Chillido maldito en lugar de Pisotón (+5) | 60 pts |
 | V11b | Acechador · Cazador de Almas | B11 | 5+ | 5+ | 1x Guja (A3, Estocada); Pisotón (Impacto(3)) | Espíritu empíreo, Etéreo, Rápido, Impacto(3), Resistente(3), Hazaña de precisión | Devorador de almas (+5) | 60 pts |
-| V12a | Jinete · Campana del Vacío | B12 | 4+ | 5+ | 1x Campana de la muerte (A3, PA(1), Explosión(3)); Pisotón (Impacto(3)) | Emboscada, Espíritu empíreo, Etéreo, Furioso, Impacto(3), Resistente(3) | Campana de la muerte + Pisotón (+20) | 90 pts |
+| V12a | Jinete · Campana del Vacío | B12 | 4+ | 5+ | 1x Campana de la muerte (A3, PA(1), Explosión(3)); Pisotón (Impacto(3)) | Emboscada, Espíritu empíreo, Etéreo, Rápido, Furioso, Impacto(3), Resistente(3) | Campana de la muerte + Pisotón (+20) | 90 pts |
 | V12b | Jinete · Embestida Veloz | B12 | 4+ | 5+ | 1x Gran arma (A3, PA(2)); Pisotón (Impacto(3)) | Espíritu empíreo, Etéreo, Rápido, Furioso, Impacto(3), Resistente(3) *(Agresor: cambia Emboscada por Rápido)* | Agresor en lugar de Atormentador (+10) | 80 pts |
 | V13a | Espectro · Mangual Hueco | B13 | 3+ | 6+ | 1x Mangual de almas (A3, PA(1), Oleada) | Emboscada, Espíritu empíreo, Etéreo, Resistencia a hechizos, Resistente(3) | Mangual de almas (+5) | 70 pts |
 | V13b | Espectro · Guadañas Gemelas | B13 | 3+ | 6+ | 1x Guadaña doble (A6, PA(3), Cosecha) | Emboscada, Espíritu empíreo, Etéreo, Resistencia a hechizos, Resistente(3) | Guadaña doble (+60) | 125 pts |

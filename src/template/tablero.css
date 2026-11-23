@@ -670,3 +670,38 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-zb{width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,184,108,.6);background:radial-gradient(circle at 50% 25%,#1d2a4d,#0c1226 80%);color:var(--gold2);font:700 20px/1 Inter,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 .tv-zb:hover{border-color:var(--gold2)}
 .tv-evx2{margin:6px 0 4px;font-size:13px;line-height:1.45;color:#d6dbea}
+
+.tv-epic{width:120px;height:120px;border-radius:12px;overflow:hidden;margin:8px 0;border:1px solid rgba(217,184,108,.4)}
+.tv-epic svg{width:100%;height:100%;display:block}
+
+/* Regla abierta: un tono discreto, sin el brillo dorado de los chips activos (2026-11-23) */
+.tv-rchip.pick{color:var(--gold2);background:rgba(217,184,108,.14);border-color:var(--gold2);box-shadow:none}
+
+/* Ficha del enemigo más ancha; la ventanita de una regla vive en el cuerpo de la página (no provoca barras de desplazamiento) (2026-11-23) */
+.tv-umod{width:min(820px,100%)}
+.tv-wbub{z-index:90}
+
+/* Habilidades del héroe ordenadas por grupos, en una cuadrícula uniforme (2026-11-23) */
+.tv-hsk{display:grid;gap:10px;margin-top:6px}
+.tv-hskt{margin:0 0 5px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu2)}
+.tv-hskt small{color:var(--gold2);font-size:10.5px;margin-left:4px}
+.tv-hskg{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:5px}
+.tv-hskg .tv-wrw{display:block;min-width:0}
+.tv-hskg .tv-rchip{display:block;width:100%;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;border-radius:8px;padding:5px 8px;font-size:11.5px}
+
+/* Lanzar hechizos de los héroes (2026-11-23) */
+.tv-cast{width:min(520px,calc(100vw - 32px))}
+.tv-cast .tv-btn.on{outline:2px solid var(--gold2)}
+.tv-cast .tv-invsub{align-items:center}
+.tv-cc{color:var(--gold2);font-weight:500;font-size:12px}
+.tv-cast .tv-invr.no{opacity:.72}
+.tv-why{color:#e29a8f !important;margin-top:3px}
+
+/* Acciones no disponibles plegadas bajo un botón (2026-11-23) */
+.tv-offg{margin-top:4px}
+.tv-offt{display:flex;align-items:center;justify-content:space-between;width:100%;padding:8px 12px;border-radius:10px;border:1px dashed var(--line);background:rgba(255,255,255,.03);color:var(--mu2,#a79f8c);font:600 12px/1 Inter,system-ui,sans-serif;cursor:pointer}
+.tv-offt:hover{border-color:var(--gold2);color:var(--gold2)}
+.tv-offt b{margin-left:6px;color:var(--gold2)}
+.tv-offt i{display:inline-flex;width:18px;height:18px}
+.tv-offt svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tv-offl{display:flex;flex-direction:column;gap:6px;margin-top:6px;opacity:.78}

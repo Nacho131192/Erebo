@@ -75,6 +75,7 @@ function heroOf(gh){let h=HS[gh.hi];if(!h||h.name!==gh.n){const i=HS.findIndex(x
    reglamento (Core Rules v2.1.0) que aquel no trae. Lo que no está en ninguna parte se dice sin inventarlo. */
 const SKD=%%SK_DATA%%;
 const GLOS=%%GLOS%%;
+const SPELLS=%%SPELLS%%;
 const RX={
  "Impact":["Impacto","Al cargar, antes de que ataque nadie y salvo que esté fatigada, tira X dados: cada 2+ causa 1 impacto al objetivo."],
  "Stealth":["Sigilo","Si la disparan desde más de 9″, los enemigos tienen -1 a impactar."],
@@ -109,7 +110,194 @@ const hWeapons=h=>(h.sk||[]).filter(s=>s.g==="equipo"&&s.k&&s.k!=="Consumible"&&
    (misma tabla que la mesa). Sus hechizos (Olvido, Borrado, Silencio) todavía no se aplican solos en el tablero. */
 const HVIDA=[[4,8,12,16],[5,10,15,20],[6,12,18,24],[7,14,21,28],[10,20,30,40]],BOSS_PTS=150;
 const HERALDO=()=>({name:"Heraldo del Umbral",q:3,d:3,rules:`Tough(${HVIDA[Math.max(0,Math.min(4,G.d-1))][Math.max(0,Math.min(3,(G.heroes.length||1)-1))]}), Villain, Fear(3), Stealth, Caster(3)`,w:"Hoz del vacío (A4, AP(2), Rending)",mod:1,pts:BOSS_PTS,n:1});
-const uArmy=u=>u.boss?HERALDO():(ARMY[u.i]||{name:u.nm,q:5,d:5,rules:"",w:"",mod:1});
+/* Ejército enemigo del tablero virtual (2026-11-23): los Borrados de docs/ejercito-borrados-es.md (18 unidades base y 36 variantes),
+   en el formato de Army Forge (el mismo que parseArmy). La mesa sigue con su lista. */
+const BORR_TXT=`++ Ejército de los Borrados (docs/ejercito-borrados-es.md) [Borrados] ++
+
+Sombra Mayor del Pozo [1] Q3+ D6+ | 205pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Hoces segadoras dobles (A12, Shred)
+
+Plañidera del Umbral [1] Q3+ D6+ | 165pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Grito de banshee (9", A12, Bane)
+Golpe (A3)
+
+Capataz del Olvido [1] Q4+ D5+ | 115pts | Empyrean Spirit, Ethereal, Furious, Tough(9)
+Armas de mano dobles (A12)
+
+Campeón Sin Nombre [1] Q5+ D5+ | 85pts | Empyrean Spirit, Ethereal, Tough(9)
+Armas de mano dobles (A12)
+
+Borrado Errante [1] Q5+ D5+ | 25pts | Empyrean Spirit, Ethereal, Tough(3)
+Arma de mano (A3, Parry(1))
+
+Segador Borrado [1] Q4+ D5+ | 35pts | Empyrean Spirit, Ethereal, Tough(3)
+Alabarda (A3, Rending)
+
+Doliente del Muro [1] Q4+ D6+ | 40pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Hoja de luto (A3, Bane)
+
+Garra Desvaída [1] Q5+ D6+ | 40pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Garras-guadaña (A3, AP(1), Reap)
+
+Ballestero Sin Rostro [1] Q5+ D5+ | 45pts | Empyrean Spirit, Ethereal, Tough(3)
+Ballesta (18", A3, Rending)
+Golpe (A3)
+
+Vengador Olvidado [1] Q4+ D5+ | 45pts | Empyrean Spirit, Ethereal, Furious, Tough(3)
+Gran arma (A3, AP(2))
+
+Acechador de la Ruptura [1] Q5+ D5+ | 55pts | Empyrean Spirit, Ethereal, Fast, Impact(3), Tough(3)
+Guja (A3, Thrust)
+
+Jinete del Vacío [1] Q4+ D5+ | 70pts | Ambush, Empyrean Spirit, Ethereal, Fast, Furious, Impact(3), Tough(3)
+Gran arma (A3, AP(2))
+
+Espectro del Pozo [1] Q3+ D6+ | 65pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Guadaña (A3, AP(1), Reap)
+
+Jinete Maldito del Umbral [1] Q4+ D5+ | 80pts | Empyrean Spirit, Ethereal, Fast, Impact(3), Tough(3), Traversal
+Alabarda (A3, Rending)
+
+Lamento de Varek [1] Q3+ D6+ | 70pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Grito de banshee (9", A6, Bane)
+Golpe (A3)
+
+Enjambre de Ecos [1] Q5+ D6+ | 130pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Chillido fantasmal (12", A12, AP(1))
+Golpe (A3)
+
+Carro de las Voces [1] Q4+ D3+ | 455pts | Empyrean Spirit, Ethereal, Fast, Spell Resistance, Tough(18)
+Grito de banshee (9", A18, Bane)
+Cascos (A6, AP(1))
+
+Carroza del Último Nombre [1] Q4+ D3+ | 465pts | Empyrean Spirit, Ethereal, Fast, Fear(3), Impact(12), Tough(18)
+Tripulación guadañera (A9, AP(1), Reap)
+Cascos (A6, AP(1))
+
+Sombra Mayor · Guadaña Maestra [1] Q3+ D6+ | 230pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Guadaña maestra (A9, AP(2), Reap)
+
+Sombra Mayor · Guardián de Ecos [1] Q3+ D6+ | 240pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(9), Enhanced Empyrean Spirit Aura
+Guadaña doble maestra (A6, AP(4), Reap)
+
+Plañidera · Aullido Largo [1] Q3+ D6+ | 195pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Aullido persistente (12", A12, AP(1))
+Golpe (A3)
+
+Plañidera · Hoja del Duelo [1] Q3+ D6+ | 210pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9), Relentless Aura
+Hoja de luto maestra (A9, AP(1), Bane)
+
+Capataz · Escudo de Niebla [1] Q4+ D5+ | 175pts | Empyrean Spirit, Ethereal, Furious, Tough(9), Shielded Aura
+Arma de mano maestra (A9, AP(1), Parry(3))
+
+Capataz · Ballesta Rápida [1] Q4+ D5+ | 185pts | Empyrean Spirit, Ethereal, Furious, Tough(9), Caster(2)
+Ballesta rápida (18", A9, Rending)
+Golpe (A3)
+
+Campeón · Lanza Hueca [1] Q5+ D5+ | 105pts | Empyrean Spirit, Ethereal, Tough(9)
+Lanza maestra (A9, AP(1), Counter, Brace(1))
+
+Campeón · Guía de Cadenas [1] Q5+ D5+ | 125pts | Empyrean Spirit, Ethereal, Tough(9), Repel Ambushers
+Ballesta de virotes-guadaña (18", A6, AP(3), Reap)
+Golpe (A3)
+
+Borrado Errante · Lancero [1] Q5+ D5+ | 30pts | Empyrean Spirit, Ethereal, Tough(3)
+Lanza (A3, Counter, Brace(1))
+
+Borrado Errante · Devorador [1] Q5+ D5+ | 40pts | Empyrean Spirit, Ethereal, Tough(3), Precision Feat
+Alabarda (A3, Rending)
+
+Segador · Guadaña [1] Q4+ D5+ | 40pts | Empyrean Spirit, Ethereal, Tough(3)
+Guadaña (A3, AP(1), Reap)
+
+Segador · Campana Muda [1] Q4+ D5+ | 55pts | Empyrean Spirit, Ethereal, Tough(3)
+Campana de la muerte (A3, AP(1), Blast(3))
+
+Doliente · Hoz Silenciosa [1] Q4+ D6+ | 40pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Hoz segadora (A3, Shred)
+
+Doliente · Gemido del Muro [1] Q4+ D6+ | 70pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Chillido de luto (12", A6, AP(1))
+Golpe (A3)
+
+Garra · Zarpa Oxidada [1] Q5+ D6+ | 45pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Garras oxidadas (A3, Rending)
+
+Garra · Zarpa Cortante [1] Q5+ D6+ | 50pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3), Precision Feat
+Garras afiladas (A6)
+
+Ballestero · Tiro Callado [1] Q5+ D5+ | 40pts | Empyrean Spirit, Ethereal, Tough(3)
+Ballesta de almas (18", A3, AP(1), Indirect)
+Golpe (A3)
+
+Ballestero · Salva de Almas [1] Q5+ D5+ | 50pts | Empyrean Spirit, Ethereal, Tough(3)
+Ballesta explosiva de almas (24", A3, Blast(3))
+Golpe (A3)
+
+Vengador · Mangual [1] Q4+ D5+ | 50pts | Empyrean Spirit, Ethereal, Furious, Tough(3)
+Mangual de almas (A3, AP(1), Surge)
+
+Vengador · Hoces Gemelas [1] Q4+ D5+ | 100pts | Empyrean Spirit, Ethereal, Furious, Tough(3)
+Hoces segadoras dobles (A12, Shred)
+
+Acechador · Grito de Ruptura [1] Q5+ D5+ | 60pts | Empyrean Spirit, Ethereal, Fast, Tough(3)
+Guja (A3, Thrust)
+Chillido maldito (12", A3, Assault)
+
+Acechador · Cazador de Almas [1] Q5+ D5+ | 60pts | Empyrean Spirit, Ethereal, Fast, Impact(3), Tough(3), Precision Feat
+Guja (A3, Thrust)
+
+Jinete · Campana del Vacío [1] Q4+ D5+ | 90pts | Ambush, Empyrean Spirit, Ethereal, Fast, Furious, Impact(3), Tough(3)
+Campana de la muerte (A3, AP(1), Blast(3))
+
+Jinete · Embestida Veloz [1] Q4+ D5+ | 80pts | Empyrean Spirit, Ethereal, Fast, Furious, Impact(3), Tough(3)
+Gran arma (A3, AP(2))
+
+Espectro · Mangual Hueco [1] Q3+ D6+ | 70pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Mangual de almas (A3, AP(1), Surge)
+
+Espectro · Guadañas Gemelas [1] Q3+ D6+ | 125pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Guadaña doble (A6, AP(3), Reap)
+
+Jinete Maldito · Guadaña [1] Q4+ D5+ | 85pts | Empyrean Spirit, Ethereal, Fast, Impact(3), Tough(3), Traversal
+Guadaña (A3, AP(1), Reap)
+
+Jinete Maldito · Toque Espectral [1] Q4+ D5+ | 115pts | Empyrean Spirit, Ethereal, Fast, Impact(3), Tough(3), Traversal, Crossing Attack(3)
+Campana de la muerte (A3, AP(1), Blast(3))
+
+Lamento · Aullido de Varek [1] Q3+ D6+ | 85pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Aullido persistente (12", A6, AP(1))
+Golpe (A3)
+
+Lamento · Chillido Helado [1] Q3+ D6+ | 110pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(3)
+Alarido helador (9", A12, Shred)
+Golpe (A3)
+
+Enjambre · Manos Ávidas [1] Q5+ D6+ | 135pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Fantasmas aferrados (A9, AP(1), Surge)
+
+Enjambre · Coro Helado [1] Q5+ D6+ | 140pts | Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
+Alarido helador (9", A12, Shred)
+Golpe (A3)
+
+Carro · Chillido y Memoria [1] Q4+ D3+ | 475pts | Empyrean Spirit, Ethereal, Fast, Spell Resistance, Tough(18), Bane Mark
+Alarido helador (9", A18, Shred)
+Cascos (A6, AP(1))
+
+Carro · Coro de Voces [1] Q4+ D3+ | 510pts | Empyrean Spirit, Ethereal, Fast, Spell Resistance, Tough(18), Caster(2)
+Aullido persistente (12", A18, AP(1))
+Cascos (A6, AP(1))
+
+Carroza · Cola de Mangual [1] Q4+ D3+ | 475pts | Empyrean Spirit, Ethereal, Fast, Fear(3), Impact(12), Tough(18)
+Tripulación con mangual de almas (A9, AP(1), Surge)
+Cascos (A6, AP(1))
+
+Carroza · Séquito Ballestero [1] Q4+ D3+ | 525pts | Empyrean Spirit, Ethereal, Fast, Fear(3), Impact(12), Tough(18), Bane Mark
+Tripulación ballestera (18", A18, Rending)
+Cascos (A6, AP(1))
+`;
+let TVA_=null;const TVA=()=>TVA_||(TVA_=parseArmy(BORR_TXT).units);
+const uArmy=u=>u.boss?HERALDO():(TVA()[u.i]||{name:u.nm,q:5,d:5,rules:"",w:"",mod:1});
 /* Auras (Aura de X): la unidad y las 2 unidades aliadas más cercanas al desplegarse obtienen la regla X mientras viva quien tiene el aura. */
 const grantTxt=u=>(u.gr||[]).filter(g=>{const o=G.units.find(x=>x.id===g.from);return o&&o.hp>0}).map(g=>", "+g.r).join("");
 
@@ -184,7 +372,7 @@ async function autoHits(src,T,n,ap,opt){n=Math.max(0,n|0);if(n<=0||T.ko())return
  const blk=r=>r===6||(r!==1&&r-ape+dm>=T.d);
  let v=await rollDice({n,own:T.kind==="h",title:`${T.name} se defiende de ${src}`,sub:`${n} impacto${n>1?"s":""} · Defensa ${T.d}+${ap?`, AP(${ap})`:""}${dm?(dm>0?", +":", ")+dm+" a la defensa":""}`,need:`${Math.max(2,Math.min(6,T.d+ape-dm))}+ se salva`,ok:blk});
  if(opt&&opt.reap&&(T.sh()||isFat(T)))v=v.map(r=>blk(r)&&r>=4?d6():r);   /* Reap: repite las defensas con éxito de 4-6 */
- let w=0;v.forEach(r=>{if(!blk(r)){if(reg&&d6()>=reg)return;w++}});endDice();wound(T,w);hfSync();
+ let w=0,sr=0;v.forEach(r=>{if(!blk(r)){if(reg&&d6()>=reg)return;if(opt&&opt.spell&&has(T,"Spell Resistance")&&d6()>=2){sr++;return}w++}});endDice();if(sr)log(`${T.name}: Resistencia a hechizos ignora ${sr} herida${sr>1?"s":""} del hechizo (2+).`,"sho");wound(T,w);hfSync();
  log(`${src}: ${T.name} recibe ${n} impacto${n>1?"s":""} y sufre ${w} herida${w===1?"":"s"}.`,"sho");
  if(T.kind==="u"&&w>0){const mo=await morale(T,w,0);if(mo)log(mo,"sho")}
  return w}
@@ -341,14 +529,14 @@ function heroPts(){if(G.ptsOv)return G.ptsOv;return selHeroes().reduce((s,h)=>s+
 function selHeroes(){if(!G.hsel)G.hsel=HS.slice(0,4).map(h=>h.name);return G.hsel.map(n=>HS.find(h=>h.name===n)).filter(Boolean)}
 /* Sorteo: unidades de la lista de Army Forge sin pasarse del valor, solo copias que no estén ya en la mesa.
    Varios intentos y se queda con el que más se acerca. */
-function drawWave(b,force){const busy=ARMY.map(()=>0);if(!force)G.units.forEach(u=>{if(u.hp>0&&busy[u.i]!=null)busy[u.i]++});
- const free=ARMY.map((a,i)=>Math.max(0,a.n-busy[i]));
+function drawWave(b,force){const busy=TVA().map(()=>0);if(!force)G.units.forEach(u=>{if(u.hp>0&&busy[u.i]!=null)busy[u.i]++});
+ const free=TVA().map((a,i)=>Math.max(0,a.n-busy[i]));
  const once=()=>{const left=free.slice(),out=[];let rem=b;
-  for(let g=0;g<200;g++){const c=[];ARMY.forEach((a,i)=>{if(a.pts<=rem)for(let j=0;j<left[i];j++)c.push(i)});if(!c.length)break;const i=c[Math.floor(Math.random()*c.length)];left[i]--;out.push(i);rem-=ARMY[i].pts}
+  for(let g=0;g<200;g++){const c=[];TVA().forEach((a,i)=>{if(a.pts<=rem)for(let j=0;j<left[i];j++)c.push(i)});if(!c.length)break;const i=c[Math.floor(Math.random()*c.length)];left[i]--;out.push(i);rem-=TVA()[i].pts}
   return{out,rem}};
  let best=once();for(let t=0;t<80&&best.rem>0;t++){const o=once();if(o.rem<best.rem)best=o}
  return best.out.sort((a,b)=>a-b)}
-function mkUnit(i){const a=i<0?HERALDO():ARMY[i],t=Math.max(1,ruleN(a.rules,"Tough")||1),m0=Math.max(1,a.mod||1);
+function mkUnit(i){const a=i<0?HERALDO():TVA()[i],t=Math.max(1,ruleN(a.rules,"Tough")||1),m0=Math.max(1,a.mod||1);
  return{id:"u"+(G.seq++),i,nm:a.name,m0,t,hp:m0*t,x:300,y:300,sh:false,fat:0,act:false,pick:false,boss:i<0}}
 /* Centinelas al centro de un cuadrante (1-4) o, con 5-6, donde elija el jugador (se arrastran al desplegar). */
 let WV=[];
@@ -739,12 +927,16 @@ const ITEMS={elx_hero:{n:"Elixir heroico",use:"self",eff:"+1 a impactar hasta el
  bmb_atur:{n:"Bomba aturdidora",use:"throw",eff:"Se lanza a 12″ o menos. Una unidad enemiga a 3″ del punto queda Aturdida (si no tiene Tough 9+)."},
  poc_cura:{n:"Poción de curación",use:"ally",eff:"Un héroe a 1″ se quita todos sus estados."},
  poc_tele:{n:"Poción de teletransporte",use:"corner",eff:"El héroe se coloca a 6″ o menos de la esquina que elija."},
- poc_salud:{n:"Poción de salud",use:"ally",eff:"Un héroe a 1″ restaura 3 heridas."}};
+ poc_salud:{n:"Poción de salud",use:"ally",eff:"Un héroe a 1″ restaura 3 heridas."},
+ mana1:{n:"Poción de maná",use:"self",act:true,eff:"Obtiene 1 ficha de hechizo (máximo 6). Se usa con una acción de habilidad (Army Forge)."},
+ mana2:{n:"Gran poción de maná",use:"self",act:true,eff:"Obtiene 2 fichas de hechizo (máximo 6). Se usa con una acción de habilidad (Army Forge)."}};
 /* Clave del objeto según la tabla del cofre (rollChest: a = tipo, b = dado de la subtabla). */
 function keyOf(c){const b=c.b||1;
  if(c.a===3)return b<=3?"elx_hero":b<=5?"elx_conq":"elx_poder";
  if(c.a===4)return b<=3?"bmb_ruido":b<=5?"bmb_grasa":"bmb_atur";
  return b<=3?"poc_cura":b<=5?"poc_tele":"poc_salud"}
+/* Pociones de maná de la tienda de Army Forge (consumibles de la ficha) pasan al inventario al desplegar. */
+function syncMana(h){(h.sk||[]).forEach(s=>{if(s.g==="equipo"&&s.k==="Consumible"&&!s.syn&&/poci[oó]n de man[aá]|mana potion/i.test(s.n||"")){s.syn=1;h.inv=(h.inv||[]).concat({id:Math.random().toString(36).slice(2,8),k:/gran|great/i.test(s.n)?"mana2":"mana1"})}})}
 function addItem(h,k){h.inv=(h.inv||[]).concat({id:Math.random().toString(36).slice(2,8),k});hfSync()}
 const onBoardChests=()=>(G.chests||[]).filter(t=>t.st!=="taken").length;
 function circlePts(p,R){return Array.from({length:40},(_,i)=>{const t=i/40*Math.PI*2;return[+(p[0]+Math.cos(t)*R*BIN).toFixed(1),+(p[1]+Math.sin(t)*R*BIN).toFixed(1)]})}
@@ -772,16 +964,15 @@ function tokEvent(k){
  cand.forEach(t=>{t.rev=true;t.c=rollChest()});
  return cand.length?`Se revelan ${cand.length} fichas de búsqueda (D3: ${d}). Toca una ficha revelada para ver lo que contiene.`:"No queda ninguna ficha sin revelar."}
 /* Ventanita bajo el cofre al pulsarlo: su contenido si está revelado o abierto. */
-function chestPopHTML(){const t=(G.chests||[]).find(x=>x.id===U.chestPop&&x.st!=="taken");if(!t)return"";const c=t.c;
- const shown=t.rev||t.st!=="closed";
- const body=shown&&c?`<b>${esc(c.title)}</b><span>${esc(c.text)}</span>`:shown?"<b>Cofre</b>":"<b>Sin revelar</b><span>No sabes qué contiene.</span>";
+function chestPopHTML(){const t=(G.chests||[]).find(x=>x.id===U.chestPop);if(!t)return"";const c=t.c;
+ const body=c?`<b>${esc(c.title)}</b><span>${esc(c.text)}</span>${t.st==="taken"?"<small>Ya recogido.</small>":""}`:(t.rev||t.st!=="closed")?"<b>Cofre</b>":"<b>Sin revelar</b><span>No sabes qué contiene.</span>";
  const q=chestPct(t);
  return`<div class="tv-cpop" data-tv="chpop" style="left:${q.l}%;top:${q.t}%">${body}</div>`}
 /* Inventario: solo en la activación del héroe, con una acción libre. */
 const invOk=(gh,i)=>G.phase==="heroes"&&G.cur===i&&!G.act&&!actor(gh.id).ko();
 /* Pociones y elixires: sin acción, una vez por tipo, por héroe y por ronda. Las bombas gastan una acción. */
 const itemUsed=(gh,it)=>((gh.iu||{})[it.k]===G.round);
-const itemOk=(gh,i,it)=>invOk(gh,i)&&(ITEMS[it.k].use==="throw"?freeA(gh)>=1:!itemUsed(gh,it));
+const itemOk=(gh,i,it)=>invOk(gh,i)&&(ITEMS[it.k].use==="throw"||ITEMS[it.k].act?freeA(gh)>=1:!itemUsed(gh,it));
 function invHTML(){const gh=G.heroes[G.cur];if(!gh)return"";const a=actor(gh.id),h=a.h,inv=h.inv||[],ok=invOk(gh,G.cur),S=U.invSub;
  const rows=inv.length?inv.map(it=>{const I=ITEMS[it.k]||{n:it.k,eff:"",use:"self"},open=S&&S.id===it.id;
    const btn=`<button type="button" class="tv-btn sm" data-tv="invuse" data-id="${it.id}" ${itemOk(gh,G.cur,it)?"":"disabled"}>${I.use==="throw"?"Lanzar":itemUsed(gh,it)?"Usada esta ronda":open?"Cerrar":"Usar"}</button>`;
@@ -792,14 +983,15 @@ function invHTML(){const gh=G.heroes[G.cur];if(!gh)return"";const a=actor(gh.id)
    return`<div class="tv-invr"><div><b>${esc(I.n)}</b><small>${esc(I.eff)}</small></div>${btn}${sub}</div>`}).join(""):`<p class="tv-note">No lleva ningún objeto.</p>`;
  return`<div class="tv-invv" data-tv="invclose"></div><section class="tv-inv" role="dialog" aria-label="Inventario de ${esc(h.name)}"><button type="button" class="tv-ix" data-tv="invclose" aria-label="Cerrar">×</button><p class="tv-lab">Inventario</p><h3 class="tv-invt">${esc(h.name)}</h3><p class="tv-invg">Oro: <b>${+h.gold||0}</b></p>${ok?"":`<p class="tv-note">Solo puede usar objetos en su activación. Las bombas gastan una acción; cada poción y elixir, una vez por ronda.</p>`}<div class="tv-invl">${rows}</div></section>`}
 /* Usa un objeto sobre t (él mismo si es suyo); c, la esquina de la poción de teletransporte. Gasta una acción. */
-function useItem(gh,a,it,t,c){const h=a.h;h.inv=(h.inv||[]).filter(x=>x.id!==it.id);if(ITEMS[it.k].use!=="throw")gh.iu={...(gh.iu||{}),[it.k]:G.round};const th=t.h;let txt="";
+function useItem(gh,a,it,t,c){const h=a.h;h.inv=(h.inv||[]).filter(x=>x.id!==it.id);if(ITEMS[it.k].use!=="throw"&&!ITEMS[it.k].act)gh.iu={...(gh.iu||{}),[it.k]:G.round};const th=t.h;let txt="";
  if(it.k==="elx_hero"){fxAdd(a,{k:"hit",v:1});txt="+1 a impactar hasta el final de la ronda."}
  else if(it.k==="elx_conq"){fxAdd(a,{k:"stat",v:1});txt="+1 a Fuerza, Destreza y Voluntad hasta el final de la ronda."}
  else if(it.k==="elx_poder"){const v=d3()+3;h.pw=Math.min(h.pwMax,h.pw+v);txt=`recupera ${v} de poder.`}
  else if(it.k==="poc_cura"){th.st=[];txt=`${th.name} se queda sin estados.`}
  else if(it.k==="poc_salud"){th.hp=Math.min(th.hpMax,(th.hp||0)+3);txt=`${th.name} recupera 3 heridas.`}
+ else if(it.k==="mana1"||it.k==="mana2"){const n=it.k==="mana1"?1:2,had=tokOf(gh),g=Math.max(0,Math.min(n,6-had));gh.tok=had+g;txt=`obtiene ${g} ficha${g===1?"":"s"} de hechizo${g<n?" (no puede tener más de 6)":""}.`}
  else if(it.k==="poc_tele"){const q=CC[(c||1)-1],d=Math.hypot(300-q[0],300-q[1]),p=[q[0]+(300-q[0])/d*3*BIN,q[1]+(300-q[1])/d*3*BIN],f=freeSpot(p,a.r,a.id);gh.x=f[0];gh.y=f[1];txt=`se coloca cerca de la esquina ${c}.`}
- log(`${h.name} usa ${ITEMS[it.k].n}: ${txt}`,"hr");hfSync();if(ITEMS[it.k].use==="throw")finishAction(gh,"item");else{U.invSub=null;save();paint()}}
+ log(`${h.name} usa ${ITEMS[it.k].n}: ${txt}`,"hr");hfSync();if(ITEMS[it.k].use==="throw"||ITEMS[it.k].act)finishAction(gh,"item");else{U.invSub=null;save();paint()}}
 /* Lanza una bomba al punto p (ya dentro de las 12″). */
 function throwAt(a,it,p){const h=a.h;let txt;
  const near=()=>actors().filter(x=>x.kind==="u"&&!x.ko()&&Math.max(0,Math.hypot(x.x-p[0],x.y-p[1])-x.r)/BIN<=3.01);
@@ -822,7 +1014,7 @@ async function doScurry(gh,a){const h=a.h,m=statMod(h,"des"),pass=x=>x===6||(x!=
  if(!ok&&h.pw>=2&&await askPay(h,2,"Destreza")){h.pw-=2;hfSync();log(`${h.name} gasta 2 de poder: la tirada de Destreza cuenta como superada.`,"hr");ok=true}
  if(!ok){log(`${h.name} falla la tirada de Destreza (${r}${m?(m>0?"+":"")+m:""}) y no logra escabullirse.`,"hr");finishAction(gh,"scu");save();paint();return}
  const d=d3();log(`${h.name} se escabulle: puede moverse hasta ${d}″, sin acabar a menos de 1″ de los enemigos.`,"hr");
- G.act={k:"scu",st:"move",lim:d,wi:0,paid:false};U.dest=null;camTween({s:Math.max(vbox().s,1.8),x:gh.x,y:gh.y},500);scrollBoard();save();paint()}
+ G.act={k:"scu",st:"move",lim:d,wi:0,paid:false};U.dest=null;camTween(moveCam(a,d),500);scrollBoard();save();paint()}
 /* ---------------------------------------------------------------- zoom, desplazamiento y extras (2026-11-23)
    Zoom del mapa: el tablero es un viewBox. U.zm = {s (zoom 1-4), x, y (centro en unidades del tablero)}. Pellizco en móvil,
    botones + y − en PC y arrastre (con el ratón o un dedo cuando hay zoom). */
@@ -838,6 +1030,8 @@ function applyView(){const svg=$("#tvMap");if(svg)svg.setAttribute("viewBox",vbS
  const p=$(".tv-cpop"),t=p&&(G.chests||[]).find(x=>x.id===U.chestPop);if(t){const q=chestPct(t);p.style.left=q.l+"%";p.style.top=q.t+"%"}}
 /* Cámara (2026-11-23): sigue a la unidad que actúa y enmarca a atacante y defensor. Animada. Con U.camLock (turno de la IA) el zoom del usuario no actúa. */
 let CAMR=null;
+/* Zoom de una acción de movimiento: el alcance entero debe verse (hasta 1,8×, y sin acercar más si cabe todo). */
+function moveCam(a,inches){const R=inches*BIN+70;return{s:Math.max(1,Math.min(1.8,612/(2*R))),x:a.x,y:a.y}}
 function camTween(tg,ms){return new Promise(res=>{if(CAMR)cancelAnimationFrame(CAMR);const v0=vbox(),s0=v0.s,x0=v0.cx,y0=v0.cy,t0=performance.now(),d=REDUCE?0:ms;
  const f=now=>{const k=d?Math.min(1,(now-t0)/d):1,e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;U.zm={s:s0+(tg.s-s0)*e,x:x0+(tg.x-x0)*e,y:y0+(tg.y-y0)*e};applyView();
   if(k<1)CAMR=requestAnimationFrame(f);else{CAMR=null;U.zm={s:tg.s,x:tg.x,y:tg.y};applyView();res()}};
@@ -866,6 +1060,69 @@ function xpEvent(tgt){const v=d3(),h=tgt.h;h.xpx=(+h.xpx||0)+v;addX(h,0,v);retur
 /* Pista de la acción Abrir cofre: si hay tirada de Voluntad depende de la distancia. */
 function chestHint(a,dis){const t=chestTarget(a);if(!t)return`<em>Ningún cofre cerrado a 6″ o menos</em>`;
  return`<em>${chestGap(a,t)<=1.01?"Sin tirada de Voluntad: el cofre está a 1″ o menos.":"Tirada de Voluntad: el cofre está a más de 1″ y hasta 6″."}</em>`}
+/* ---------------------------------------------------------------- hechizos de los héroes (2026-11-23)
+   Core Rules, Caster(X): X fichas de hechizo al inicio de cada ronda (máximo 6). Una vez por activación, ANTES de atacar, se gastan tantas fichas
+   como el valor del hechizo para intentar lanzar uno o varios (un intento por hechizo): se elige objetivo, se tira un dado y con 4+ surte efecto.
+   Antes de tirar se pueden gastar fichas o poder para +1 a la tirada por cada una. Los hechizos dependen de la raza (SPELLS, de
+   docs/age-of-fantasy-quest-heroes.md). Los de impactos se resuelven solos; los demás se pagan y se tiran, y el efecto se anota («a mano»). */
+const casterX=a=>a&&a.kind==="h"?ruleN(a.rules,"Caster"):0;
+function tokOf(gh){const a=actor(gh.id),X=casterX(a);if(X&&gh.tokR!==G.round){gh.tok=Math.min(6,(gh.tok||0)+X);gh.tokR=G.round}return gh.tok||0}
+/* Lista de hechizos de la raza del héroe (el nombre de la raza puede venir como «Raza · Perfil»). */
+function spellList(h){const k=nrm(String(h.raza||"").split("·")[0]);if(!k)return null;const keys=Object.keys(SPELLS);
+ const key=keys.find(g=>nrm(g)===k)||keys.find(g=>nrm(g).includes(k)||k.includes(nrm(g)));return key?{key,list:SPELLS[key]}:null}
+/* Qué pide el texto del hechizo: alcance, vista, tipo de objetivo y, si los hay, impactos y PA. */
+function spellSpec(sp){const t=sp.fx,m=t.match(/a (\d+)"/),num=w=>/dos/.test(w)?2:/tres/.test(w)?3:1;let kind="manual",n=1,x;
+ if(/^Elige una? (unidad|miniatura) enemiga/.test(t))kind="enemy";
+ else if((x=t.match(/^Elige hasta (dos|tres) unidades enemigas/))){kind="enemies";n=num(x[1])}
+ else if((x=t.match(/^Elige hasta (dos|tres) unidades aliadas/))){kind="allies";n=num(x[1])}
+ else if(/^Elige una? (unidad|miniatura) aliada/.test(t))kind="ally";
+ const im=t.match(/sufre (\d+) impactos?/),ap=t.match(/PA\((\d+)\)/);
+ return{R:m?+m[1]:null,vis:/línea de visión/.test(t),kind,n,hits:im?+im[1]:0,ap:ap?+ap[1]:0}}
+function spellTargets(a,sp){const S=spellSpec(sp);let L=[];
+ if(S.kind==="enemy"||S.kind==="enemies")L=liveUnits().filter(u=>(!S.R||gap(a,u)<=S.R)&&(!S.vis||los(a,u)));
+ else if(S.kind==="ally"||S.kind==="allies")L=G.heroes.map(g=>actor(g.id)).filter(t=>t&&!t.ko()&&(!S.R||t.id===a.id||gap(a,t)<=S.R));
+ return{S,L}}
+/* Motivo por el que un hechizo no se puede lanzar ahora (vacío = se puede): ya intentado, faltan fichas o no hay objetivo válido. */
+function spellWhy(gh,a,sp,tok,tried){if(tried.includes(sp.en))return"Ya lo ha intentado en esta activación";if(tok<sp.cost)return`Faltan fichas de hechizo (tiene ${tok}, cuesta ${sp.cost})`;
+ const{S,L}=spellTargets(a,sp);if(S.kind!=="manual"&&!L.length){const kind=S.kind==="ally"||S.kind==="allies"?"aliados":"enemigos";return`No hay ${kind}${S.R?` a ${S.R}″ o menos`:""}${S.vis&&kind==="enemigos"?" y a la vista":""}`}return""}
+const castTried=gh=>gh.triedR===G.round?(gh.tried||[]):[];
+/* Por qué no puede lanzar ahora (texto vacío = puede). */
+function castWhy(gh,a){if(!casterX(a))return"No es Lanzador.";if(a.ko())return"Está inconsciente.";if(gh.cast===G.round)return"Ya ha lanzado hechizos en esta activación.";
+ if((gh.done||[]).some(k=>["atk","shoot","chg"].includes(k)))return"Los hechizos se lanzan antes de atacar.";
+ const sl=spellList(a.h);if(!sl)return`No tengo la lista de hechizos de su raza («${a.h.raza||"sin raza"}»).`;
+ return""}
+const castHint=(gh,a)=>{const why=castWhy(gh,a),sl=spellList(a.h),t=tokOf(gh),tr=castTried(gh),none=!why&&sl&&!sl.list.some(sp=>!spellWhy(gh,a,sp,t,tr));return`<em>Fichas ${t}/6 · ${why?esc(why):none?"ahora no cumple los requisitos de ningún hechizo (en la ventana verás el motivo de cada uno)":"puede lanzar antes de atacar (no gasta acción)"}</em>`};
+const casterLine=(gh,a)=>casterX(a)?`<p class="tv-hdl"><b>Fichas de hechizo</b> ${tokOf(gh)}/6 · Lanzador(${casterX(a)})</p>`:"";
+function openCast(gh,a){const sl=spellList(a.h);U.cast={gi:G.heroes.indexOf(gh),sp:null,tg:[],exT:0,exP:0};U.inv=false;paint()}
+function closeCast(mark){const C=U.cast;if(C&&mark){const gh=G.heroes[C.gi];if(gh&&gh.triedR===G.round&&(gh.tried||[]).length)gh.cast=G.round}U.cast=null;paint()}
+function castHTML(){const C=U.cast;if(!C)return"";const gh=G.heroes[C.gi];if(!gh)return"";const a=actor(gh.id),h=a.h,tok=tokOf(gh),sl=spellList(h);if(!sl)return"";
+ const list=sl.list,tried=castTried(gh);let body;
+ if(C.sp==null){const rows=list.map((sp,i)=>({sp,i,why:spellWhy(gh,a,sp,tok,tried)})).sort((x,y)=>(x.why?1:0)-(y.why?1:0));
+  body=rows.map(({sp,i,why})=>`<div class="tv-invr${why?" no":""}"><div><b>${esc(sp.es)} <span class="tv-cc">· ${sp.cost} ficha${sp.cost>1?"s":""}</span></b><small>${esc(sp.fx)}</small>${why?`<small class="tv-why">No se puede lanzar: ${esc(why)}.</small>`:""}</div>${why?"":`<button type="button" class="tv-btn sm" data-tv="cs_pick" data-i="${i}">Lanzar</button>`}</div>`).join("")}
+ else{const sp=list[C.sp],{S,L}=spellTargets(a,sp),maxT=S.kind==="allies"||S.kind==="enemies"?S.n:1,need=S.kind!=="manual";
+  body=`<div class="tv-invr"><div><b>${esc(sp.es)} <span class="tv-cc">· ${sp.cost} ficha${sp.cost>1?"s":""}</span></b><small>${esc(sp.fx)}</small></div></div>
+  ${need?`<p class="tv-lab">Objetivo${maxT>1?"s (hasta "+maxT+")":""}${S.R?` · a ${S.R}″ o menos${S.vis?" y a la vista":""}`:""}</p><div class="tv-invsub">${L.length?L.map(t=>`<button type="button" class="tv-btn sm${C.tg.includes(t.id)?" on":""}" data-tv="cs_tgt" data-id="${t.id}">${esc(t.name)}</button>`).join(""):"<small>Ningún objetivo válido</small>"}</div>`:`<p class="tv-note">Este hechizo no se dirige a una unidad del tablero: se tira y su efecto se anota a mano.</p>`}
+  <p class="tv-lab">Bonificación: +1 a la tirada por cada ficha o punto de poder que gastes antes de tirar</p>
+  <div class="tv-invsub"><span>Fichas extra <b>${C.exT}</b> (máx. ${Math.max(0,tok-sp.cost)})</span><button type="button" class="tv-btn sm" data-tv="cs_ex" data-w="t" data-d="-1">−</button><button type="button" class="tv-btn sm" data-tv="cs_ex" data-w="t" data-d="1">+</button></div>
+  <div class="tv-invsub"><span>Poder extra <b>${C.exP}</b> (máx. ${h.pw})</span><button type="button" class="tv-btn sm" data-tv="cs_ex" data-w="p" data-d="-1">−</button><button type="button" class="tv-btn sm" data-tv="cs_ex" data-w="p" data-d="1">+</button></div>
+  <div class="tv-row"><button type="button" class="tv-btn" data-tv="cs_go" ${need&&!C.tg.length?"disabled":""}>Tirar el dado (${Math.max(2,4-C.exT-C.exP)}+ surte efecto)</button><button type="button" class="tv-ghostb" data-tv="cs_back">Volver</button></div>`}
+ return`<div class="tv-invv" data-tv="cs_x"></div><section class="tv-inv tv-cast" role="dialog" aria-label="Lanzar hechizos de ${esc(h.name)}"><button type="button" class="tv-ix" data-tv="cs_x" aria-label="Cerrar">×</button><p class="tv-lab">Lanzar hechizos · ${esc(sl.key)}</p><h3 class="tv-invt">${esc(h.name)}</h3><p class="tv-invg">Fichas de hechizo <b>${tok}</b>/6 · Poder <b>${h.pw}</b> · Antes de atacar, una vez por activación</p><div class="tv-invl">${body}</div><div class="tv-row"><button type="button" class="tv-ghostb" data-tv="cs_end">Terminar de lanzar</button></div></section>`}
+/* Tirada del hechizo elegido: se pagan las fichas y el poder, se tira un dado (la tira el jugador) y con 4+ (con las bonificaciones) surte efecto. */
+async function castGo(){const C=U.cast;if(!C||C.sp==null)return;const gh=G.heroes[C.gi],a=actor(gh.id),h=a.h,sl=spellList(h),sp=sl.list[C.sp],S=spellSpec(sp),mod=C.exT+C.exP;
+ if(S.kind!=="manual"&&!C.tg.length){toast("Elige un objetivo.");return}
+ const tg=C.tg.slice();
+ const[r]=await rollDice({n:1,own:true,title:`${h.name} lanza ${sp.es}`,sub:`Cuesta ${sp.cost} ficha${sp.cost>1?"s":""}${C.exT?`, +${C.exT} ficha${C.exT>1?"s":""} extra`:""}${C.exP?`, +${C.exP} de poder extra`:""}. Con 4+ surte efecto.`,need:`${Math.max(2,4-mod)}+ surte efecto`,ok:x=>x===6||(x!==1&&x+mod>=4)});
+ endDice();U.busy=false;
+ gh.tok=tokOf(gh)-sp.cost-C.exT;h.pw=Math.max(0,h.pw-C.exP);gh.triedR=G.round;gh.tried=castTried(gh).concat(sp.en);
+ const ok=r===6||(r!==1&&r+mod>=4);
+ log(`${h.name} lanza ${sp.es} (${sp.cost} ficha${sp.cost>1?"s":""}${mod?`, +${mod}`:""}): dado ${r} → ${ok?"surte efecto":"el hechizo falla"}.`,ok?"sho":"hr");
+ if(ok)await applySpell(a,sp,S,tg);
+ C.sp=null;C.tg=[];C.exT=0;C.exP=0;hfSync();checkOver();save();paint()}
+/* Efecto: los hechizos de impactos se resuelven con la Defensa del objetivo (Resistencia a hechizos incluida); el resto se anota. */
+async function applySpell(a,sp,S,tg){
+ if(S.hits&&S.kind==="enemy"){const T=actor(tg[0]);if(T&&!T.ko())await autoHits(`${a.name} · ${sp.es}`,T,S.hits,S.ap,{spell:true,reap:/Cosecha/i.test(sp.fx)});return}
+ const names=tg.map(i=>(actor(i)||{name:i}).name).join(", ");
+ log(`Efecto a mano de ${sp.es}${names?` sobre ${names}`:""}: ${sp.fx}`,"hr")}
 function chestsSVG(){return(G.chests||[]).map(t=>`<g class="tv-chest ${t.st}" data-chest="${t.id}" transform="translate(${t.x} ${t.y})" role="button" aria-label="Cofre"><circle r="15" class="tv-chbg"/>${t.st==="open"?'<circle r="18" class="tv-chglow"/>':""}${t.st==="open"?'<g class="tv-openb" transform="translate(11 -11)"><circle r="6"/><text y="3.6">!</text></g>':""}${t.rev?'<g class="tv-revb" transform="translate(-11 -11)"><circle r="5.5"/><path d="M-3.2 0Q0-3.4 3.2 0Q0 3.4-3.2 0Z"/><circle r="1.3"/></g>':""}<rect x="-9" y="-6" width="18" height="12" rx="2" class="tv-chbox"/><path d="M-9 -1H9" class="tv-chl"/>${t.st==="closed"?'<rect x="-2.5" y="-1.5" width="5" height="5" rx="1" class="tv-chlock"/>':""}</g>`).join("")}
 function chestHTML(){const t=(G.chests||[]).find(x=>x.id===U.chest);if(!t)return"";const c=t.c;
  return`<div class="tv-hveil"><div class="tv-hscrim" data-tv="chclose"></div><section class="tv-hmod tv-chmod" role="dialog" aria-modal="true" aria-label="Cofre"><button type="button" class="tv-ix" data-tv="chclose" aria-label="Cerrar">×</button><p class="tv-lab">Cofre</p>${c?`<b class="tv-in">${esc(c.title)}</b><p class="tv-rtext">${esc(c.text)}</p>`:`<b class="tv-in">Cofre cerrado</b><p class="tv-sub">Un héroe a 6″ o menos puede intentar abrirlo con una tirada de Voluntad. A 1″ o menos se abre sin tirada.</p>`}${t.st==="taken"?`<p class="tv-sub">Ya recogido.</p>`:t.st==="open"?`<p class="tv-sub">Abierto: un héroe tiene que llegar a 1″ para recoger lo que hay dentro.</p>`:""}</section></div>`}
@@ -891,7 +1148,7 @@ const heroesInEsc=()=>{if(G.escC==null)return false;const c=CC[G.escC],hs=liveHe
 function escZone(){if(!G.prim||G.phase==="setup"||G.phase==="deploy")return"";const c=CC[escNeeded()],R=6*BIN;
  return`<g class="tv-escz" pointer-events="none"><circle cx="${c[0]}" cy="${c[1]}" r="${R}" class="z"/><text x="${c[0]}" y="${c[1]<300?c[1]+R+13:c[1]-R-6}" class="t">Zona de escape · 6″</text></g>`}
 const trkNear=a=>(G.tracks||[]).filter(t=>!t.on&&Math.max(0,Math.hypot(a.x-t.x,a.y-t.y)-a.r)/BIN<=OBJD+.01);
-const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2],["obj","Recuperar rastro","Acción de habilidad: a "+CT+" de un rastro, pasa una tirada de Voluntad.",0],["chest","Abrir cofre","Cofre cerrado a 6″ o menos: pasa una tirada de Voluntad. A 1″ o menos se abre sin tirada.",0],["sec","Contener el Olvido","Acción de habilidad: a 3″ del pozo y sin enemigos a menos de 5″ del pozo, pasa una tirada de Voluntad.",0],["rev","Reanimar","Acción de habilidad: a 3″ o menos de un héroe inconsciente, gasta 3 de poder y le devuelve 3 heridas. Sin tirada.",0],["scu","Escabullirse","Casa: con un enemigo trabado (a 1″ o menos), tirada de Destreza; si la pasa, se mueve hasta D3″ y debe acabar a más de 1″ de los enemigos.",0]];
+const ACTS=[["rest","Descansar","Recupera todo el poder. No hace nada más.",0],["hold","Mantener","Se queda quieto sin hacer nada más.",0],["adv","Avanzar","Mueve y puede disparar después.",1],["rush","Correr","Mueve el doble. No dispara.",2],["atk","Atacar","Golpea a un enemigo a "+CT+" o menos. No se mueve.",0],["shoot","Disparar","No se mueve y dispara (Mantener y disparar).",0],["chg","Cargar","Mueve hasta un enemigo a más de "+CT+" y lucha cuerpo a cuerpo.",2],["obj","Recuperar rastro","Acción de habilidad: a "+CT+" de un rastro, pasa una tirada de Voluntad.",0],["chest","Abrir cofre","Cofre cerrado a 6″ o menos: pasa una tirada de Voluntad. A 1″ o menos se abre sin tirada.",0],["sec","Contener el Olvido","Acción de habilidad: a 3″ del pozo y sin enemigos a menos de 5″ del pozo, pasa una tirada de Voluntad.",0],["rev","Reanimar","Acción de habilidad: a 3″ o menos de un héroe inconsciente, gasta 3 de poder y le devuelve 3 heridas. Sin tirada.",0],["scu","Escabullirse","Casa: con un enemigo trabado (a 1″ o menos), tirada de Destreza; si la pasa, se mueve hasta D3″ y debe acabar a más de 1″ de los enemigos.",0],["cast","Lanzar hechizo","Lanzador: gasta fichas de hechizo para lanzar los hechizos de su raza, antes de atacar. No gasta acción.",0]];
 /* Acciones por activación: cada héroe tiene 2. Avanzar, Mantener y Atacar cuestan 1; Correr y Cargar cuestan 2 (usan las dos).
    Descansar ocupa la activación entera. Con 3 de poder gana una acción extra (1 acción). */
 const ACOST={rest:2,hold:1,shoot:1,obj:1,chest:1,sec:1,rev:1,scu:1,adv:1,rush:2,atk:1,chg:2};
@@ -1123,7 +1380,7 @@ async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.a
     log(`${list.map(X=>X.name).join(", ")} atacan a ${B.name} a la vez.`,"ai");paint();
     for(let i=0;i<list.length;i++){const X=list[i];if(B.ko()||G.over)break;fxClash(X,B);await W(700);const L=await fight(X,B,"melee",{charge:false,pre:pre[i],only:wsL[i][0]});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(X,L.tA);await W(1200)}}
    else if(A&&B){fxClash(A,B);await W(900);const L=await fight(A,B,"melee",{charge:pl.k==="chg",cd:pathLen(pl.pts)/BIN});endDice();paint();fxDmg(B,L.tB);if(L.tA)fxDmg(A,L.tA);await W(2000)}}}
-  G.aiDone.push(a.id);save();paint();await W(1200);if(G.over)break}
+  G.aiDone.push(a.id);camReset();save();paint();await W(1200);if(G.over)break}
  G.aiCur=null;U.sel="";U.busy=false;if(!G.over)await endRound();save();paint();if(!G.over)await endFlow()}
 const pathLen=pts=>{let s=0;for(let i=1;i<pts.length;i++)s+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);return s};
 
@@ -1152,7 +1409,7 @@ function heroTok(a,k){const h=a.h,gh=a.g,ko=a.ko(),fr=h.hpMax?h.hp/h.hpMax:0,cid
  return`<g class="${cls}" data-tok="${a.id}" transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})"><circle class="tv-halo" r="${a.r+7}"/>${night()?`<circle class="tv-vis" r="${12*BIN+a.r}"/>`:""}<circle r="${a.r+1.5}" fill="#0b0f1e"/>${pic}${ring(a.r+1.8,fr,ko?"#5d5a6e":"#f0d79a",2.4)}${ko?`<path class="tv-kx" d="M-6 -6L6 6M6 -6L-6 6"/>`:""}<text class="tv-tn" y="${a.r+12}">${esc(h.name.split(" ")[0])}</text></g>`}
 /* El círculo de «recién llegada» solo dura hasta que la unidad juega su primera ronda: se apaga al actuar en el turno de la IA y no vuelve en el fin de ronda. */
 function unitTok(a){const u=a.g,fr=u.hp/(u.m0*u.t),m=a.models(),fresh=u.fresh===G.round&&(G.phase==="event"||G.phase==="heroes"||(G.phase==="ai"&&!u.act));
- const cls=["tv-tok","tv-unit",u.boss?"boss":"",u.act&&G.phase==="ai"?"done":"",U.sel===a.id?"sel":"",u.sh?"shk":"",fresh?"fresh":"",u.pick&&G.phase==="deploy"?"pick":""].join(" ");
+ const cls=["tv-tok","tv-unit",u.boss?"boss":"",G.phase==="ai"&&(G.aiDone||[]).includes(u.id)?"done":"",U.sel===a.id?"sel":"",u.sh?"shk":"",fresh?"fresh":"",u.pick&&G.phase==="deploy"?"pick":""].join(" ");
  const r=a.r,hex=Array.from({length:6},(_,i)=>{const t=Math.PI/3*i+Math.PI/6;return(Math.cos(t)*r).toFixed(1)+","+(Math.sin(t)*r).toFixed(1)}).join(" ");
  return`<g class="${cls}" data-tok="${a.id}" transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})"><circle class="tv-halo" r="${r+7}"/><polygon class="tv-hex" points="${hex}"/>${ring(r+2.6,fr,"#ff8a9a",2.2)}<text class="tv-ti e" y="3.6">${esc(ini(a.name))}</text>${u.m0>1?`<g transform="translate(${r-1} ${-r+1})"><circle r="6.6" class="tv-chip"/><text class="tv-chn" y="2.6">${m}</text></g>`:""}${u.sh?`<g transform="translate(${-r+1} ${-r+1})"><circle r="6.2" class="tv-shc"/><text class="tv-chn" y="2.6">!</text></g>`:""}</g>`}
 function boardSVG(){const A=actors();
@@ -1232,7 +1489,7 @@ function skillBar(gh,a){const sk=a.h.sk||[],names=sk.filter(x=>x.g==="hab").map(
  if(!names.length)return"";
  const R=U.rinfo&&U.rinfo.o===a.id&&!U.rinfo.modal?U.rinfo:null;
  return`<p class="tv-lab">Habilidades · pulsa una para usarla</p><div class="tv-acts">${names.map(n=>{const inf=ruleInfo(n),open=!!R&&R.l===n,t=inf.t||"Todavía no tengo la descripción de esta habilidad.";
-  return`<button type="button" class="tv-act skill${open?" open":""}" data-tv="skill" data-n="${esc(n)}" data-o="${a.id}"><b>${esc(n)}</b><small>${esc(t)}</small></button>${open?ruleInline(R):""}`}).join("")}</div>`}
+  return`<button type="button" class="tv-act skill${open?" open":""}" data-tv="skill" data-n="${esc(n)}" data-o="${a.id}"><b>${esc(n)}</b></button>${open?ruleInline(R):""}`}).join("")}</div>`}
 /* Registro: los nombres de habilidades, dotes y reglas (en español o inglés) salen subrayados y al pulsarlos abren su ventana. */
 let LKRE=null;
 function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantener","avanzar","correr","cargar","disparar","atacar","hero"]),set=new Set();
@@ -1240,7 +1497,7 @@ function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantene
   const L=[...set].filter(n=>n&&n.length>=4&&!skip.has(nrm(n))).sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
   LKRE=new RegExp("(?<![\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
  return h.replace(LKRE,m=>`<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="" data-m="1">${m}</button>`)}
-function chip(label,o,cls){const R=U.rinfo,open=!!R&&!R.modal&&R.l===label&&(R.o||"")===(o||"");return`<span class="tv-rwrap${open?" open":""}"><button type="button" class="tv-rchip${fxActive(o,label)?" on":""}${cls?" "+cls:""}" data-tv="rinfo" data-l="${esc(label)}" data-o="${o||""}" aria-expanded="${open}">${esc(label)}${fxActive(o,label)?`<i aria-hidden="true">activa</i>`:""}</button>${open?ruleInline(R):""}</span>`}
+function chip(label,o,cls){const R=U.rinfo,open=!!R&&!R.modal&&R.l===label&&(R.o||"")===(o||"");return`<span class="tv-rwrap${open?" open":""}"><button type="button" class="tv-rchip${fxActive(o,label)?" on":""}${cls?" "+cls:""}" data-tv="rinfo" data-l="${esc(label)}" data-o="${o||""}" aria-expanded="${open}">${esc(esN(label))}${fxActive(o,label)?`<i aria-hidden="true">activa</i>`:""}</button>${open?ruleInline(R):""}</span>`}
 function chipsOf(labels,o){return labels.length?`<div class="tv-rchips">${labels.map(l=>chip(l,o)).join("")}</div>`:`<p class="tv-sub">Ninguna.</p>`}
 const MOD_TAG={hab:"Habilidad de clase",comun:"Habilidad común",dote:"Dote de clase · una vez por partida",regla:"Regla especial"};
 /* La ventana de una regla o habilidad: qué significa y cómo se aplica en el tablero. */
@@ -1252,7 +1509,7 @@ const MOD_TAG={hab:"Habilidad de clase",comun:"Habilidad común",dote:"Dote de c
    Efecto: {k,v,w (cuándo),once,…} (ver «efectos activos»). Operaciones: heal, pw, cure, fx, hits, wound, push, pull, cower, moral. */
 const E=(k,v,w,x)=>({k,v:v||0,w:w||"all",...x});
 const O={fx:(k,v,w,x)=>({op:"fx",e:{k,v:v||0,w:w||"all",...x}}),moral:(...then)=>({op:"moral",then}),pull:v=>({op:"pull",v}),push:v=>({op:"push",v}),cow:{op:"cower"},
- hits:(n,ap)=>({op:"hits",n,ap:ap||0}),wound:n=>({op:"wound",n}),heal:v=>({op:"heal",v}),pw:v=>({op:"pw",v}),pwLose:v=>({op:"pw",v,neg:1}),cure:{op:"cure"},cureAll:{op:"cure",all:1}};
+ hits:(n,ap)=>({op:"hits",n,ap:ap||0}),wound:n=>({op:"wound",n}),heal:v=>({op:"heal",v}),pw:v=>({op:"pw",v}),pwLose:v=>({op:"pw",v,neg:1}),tok:n=>({op:"tok",n}),cure:{op:"cure"},cureAll:{op:"cure",all:1}};
 const ZN=t=>`Crea ${t} o un marcador temporal. El tablero todavía no tiene zonas ni marcadores temporales: resuélvelo a mano.`;
 const NO_MORAL="En este tablero los héroes no tiran moral, así que nunca quedan acobardados: esta habilidad no tiene efecto.";
 const NO_STAT="Los enemigos no hacen tiradas de característica en este tablero, así que esta habilidad no tiene efecto.";
@@ -1292,7 +1549,7 @@ const SKX={
 "Sacrificio oscuro":{cost:{wd:1},foe:{n:1,r:6},ops:[O.wound(1)]},
 "Maldición feérica":{foe:{n:1,r:12},ops:[O.moral(O.fx("hit",-2))]},
 "Pacto de sabiduría":{cost:{wd:1},later:HS_},
-"Truco diabólico":{later:SP_},
+"Truco diabólico":{buff:[E("onKill",0,"all",{once:1,ops:[O.tok(1),O.pwLose(1)]})]},
 "Transferencia oscura":{cost:{wd:1},ally:{n:1,r:3},ops:[O.heal("D3+1")]},
 "Susurros feéricos":{foe:{n:2,r:9},ops:[O.moral(O.cow)]},
 "Dominación feérica":{foe:{n:1,r:6},ops:[O.fx("noTarget",0,"all",{hero:"@"})]},
@@ -1317,7 +1574,7 @@ const SKX={
 "Nube de niebla":{manual:ZN("una zona de terreno de cobertura")},
 "Crecimiento de pinchos":{manual:ZN("una zona de terreno difícil")},
 "Forma de lobo":{buff:[E("mv",0,"all",{adv:1,rush:2})]},
-"Recuperación natural":{later:SP_,self:[O.pwLose("D3")]},
+"Recuperación natural":{self:[O.tok(1),O.pwLose("D3")]},
 "Baya de poder":{ally:{n:1,r:3,self:1},ops:[O.heal(1),O.cure]},
 "Plaga de insectos":{foe:{n:2,r:9},ops:[O.hits(1)]},
 "Forma de pantera":{buff:[E("xhit",1,"charge",{once:1})]},
@@ -1375,7 +1632,7 @@ const SKX={
 "Ilusión":{later:HS_},
 "Nigromancia":{later:HS_},
 "Duplicación":{later:HS_,self:[O.pwLose("D3")]},
-"Preparación":{later:SP_,self:[O.pwLose("D3")]},
+"Preparación":{self:[O.tok(1),O.pwLose("D3")]},
 /* Monje */
 "Ráfaga de golpes":{buff:[E("xhit",1,"mshort",{once:1})]},
 "Reflejos relámpago":{buff:[E("ignore",6)]},
@@ -1449,7 +1706,7 @@ const SKX={
 "Precisión del explorador":{buff:[E("xhit",1,"shoot",{once:1})]},
 "Poderío combativo":{buff:[E("xhit",1,"melee",{once:1})]},
 "Proyectiles hechiceros":{x:{max:3},self:[O.pwLose("X")],foe:{n:1,r:12},ops:[O.hits("X+1")]},
-"Foco del mago":{later:SP_},
+"Foco del mago":{self:[O.tok(1)]},
 "Meditación del monje":{self:[O.heal("D3")]},
 "Grito del paladín":{manual:"Dos héroes a 3″ pueden moverse hasta 6″. El tablero todavía no permite mover a otros héroes fuera de su turno: queda para una versión futura."},
 "Paso del pícaro":{buff:[E("hide")]}};
@@ -1516,7 +1773,7 @@ function ruleBody(R){const inf=ruleInfo(R.l),o=R.o?actor(R.o):null,SX=inf.kind!=
  const freeSpec=freeSelf(SX),selfSpec=SX&&!SX.foe&&!SX.place&&!SX.free&&(!SX.ally||SX.ally.self&&SX.ally.n<=1)&&(SX.buff||SX.self);
  const meta=inf.kind!=="regla"?`<p class="tv-sub">${inf.kind==="dote"?"Se usa al activarse, sin gastar acción ni tirada.":(freeSpec?`No gasta acción (se hace antes de atacar) · tirada de <b>${esc(inf.a)}</b> solo en la dificultad EXTREMA. Si falla, el héroe puede gastar 1 de poder para superarla.`:`Acción de habilidad (1 acción) · tirada de <b>${esc(inf.a)}</b>${selfSpec?", salvo que sea sobre sí mismo y no esté en contacto con un enemigo (entonces se aplica sin tirada)":""}. Si falla, el héroe puede gastar 1 de poder para superarla.`)}${inf.cls&&inf.cls!=="Comunes"?` · ${esc(inf.cls)}${inf.tier>0?`, tier ${inf.tier}`:""}`:""}</p>`:"";
  return`
-  <header><p class="tv-lab">${MOD_TAG[inf.kind]}${o?` · ${esc(o.name)}`:""}</p><b class="tv-in">${esc(R.l)}</b>${inf.en&&nrm(inf.en)!==nrm(R.l)?`<small class="tv-sub">${esc(inf.en)}</small>`:""}<button type="button" class="tv-ix" data-tv="rclose" aria-label="Cerrar">×</button></header>
+  <header><p class="tv-lab">${MOD_TAG[inf.kind]}${o?` · ${esc(o.name)}`:""}</p><b class="tv-in">${esc(esN(R.l))}</b><button type="button" class="tv-ix" data-tv="rclose" aria-label="Cerrar">×</button></header>
   ${inf.t?`<p class="tv-rtext">${esc(inf.t)}</p>`:`<p class="tv-rtext none">Todavía no tengo la descripción de esta regla: no está en la investigación guardada. Cópiala de su ficha de Army Forge y dímela para añadirla. Queda apuntada como pendiente de revisión.</p>`}
   ${meta}${state}${useSection(R,inf,o)}
   <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="rclose">Cerrar</button></div>`}
@@ -1531,6 +1788,8 @@ async function runOps(src,tgt,ops,ctx){const X=(ctx&&ctx.X)||0,id=(ctx&&ctx.id)|
   case"pw":{if(tgt.kind!=="h")break;const h=tgt.h,n=rollSpec(op.v,X);
    if(op.neg){const lost=Math.min(h.pw,n);h.pw-=lost;if(n>lost){wound(tgt,n-lost);log(`${tgt.name} se queda sin poder y sufre ${n-lost} herida${n-lost>1?"s":""} por agotamiento.`,"bad")}log(`${tgt.name} gasta ${n} de poder (${id}).`,"hr")}
    else{h.pw=Math.min(h.pwMax,h.pw+n);log(`${tgt.name} recupera ${n} de poder (${id}).`,"ok")}hfSync();break}
+  case"tok":{if(tgt.kind!=="h")break;const gh=tgt.g,had=tokOf(gh),n=Math.max(0,Math.min(op.n,6-had));gh.tok=had+n;
+   log(`${tgt.name} obtiene ${n} ficha${n===1?"":"s"} de hechizo (${id}).${n<op.n?" No puede tener más de 6.":""}`,"ok");break}
   case"cure":{if(tgt.kind!=="h")break;const st=tgt.h.st,order=["af","en","de","at","ac"];
    if(op.all)tgt.h.st=[];else{const k=order.find(x=>st.includes(x));if(k)tgt.h.st=st.filter(x=>x!==k)}hfSync();log(`${tgt.name} ${op.all?"pierde todos sus estados":"pierde un estado"} (${id}).`,"ok");break}
   case"fx":{const e={...op.e,id};if(e.hero==="@")e.hero=src.id;if(typeof e.v==="string"&&!/^D/.test(e.v))e.v=rollSpec(e.v,X);fxAdd(tgt,e);log(`${tgt.name}: ${id}.`,"ok");break}
@@ -1580,6 +1839,10 @@ const fin=(gh,A,rest)=>finishAction(gh,A.orig||A.k,rest,!!A.free&&!A.orig);
 const cxl=A=>A.free?`<button type="button" class="tv-ghostb" data-tv="nochain">${A.chain?"No encadenar":"Dejarlo"}</button>`:`<button type="button" class="tv-ghostb" data-tv="cancel">Cambiar de acción</button>`;
 /* Efectos activos, como etiquetas pequeñas (no pulsables) bajo la tarjeta del héroe o en la ficha de una unidad. */
 function fxRow(g){const ids=[...new Set(((g&&g.fx)||[]).filter(e=>e.id).map(e=>e.id))];return ids.length?`<span class="tv-fxr" aria-label="Efectos activos">${ids.map(i=>`<i class="tv-fxp">${esc(i)}</i>`).join("")}</span>`:""}
+/* Acciones del héroe: las que puede hacer, a la vista; las que no, plegadas juntas bajo un botón (U.actOff). */
+function actGroups(list){const off=x=>/data-k="[^"]+" disabled/.test(x),on=list.filter(x=>!off(x)),no=list.filter(off);
+ const open=!!U.actOff;
+ return on.join("")+(no.length?`<div class="tv-offg${open?" open":""}"><button type="button" class="tv-offt" data-tv="actoff" aria-expanded="${open}"><span>Acciones no disponibles <b>${no.length}</b></span><i aria-hidden="true">${FOLD(open)}</i></button>${open?`<div class="tv-offl">${no.join("")}</div>`:""}</div>`:"")}
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(U.revPick){const ts=U.revPick.ids.map(i=>actor(i)).filter(t=>t&&t.ko());
   return`<div class="tv-box"><b>${esc(h.name)} reanima a…</b><p>Elige a quién reanimar: gasta 3 de poder y le devuelve 3 heridas.</p><div class="tv-endb">${ts.map(t=>`<button type="button" class="tv-btn sm" data-tv="rvto" data-id="${t.id}">${esc(t.name)} · ${t.h.hp}/${t.h.hpMax}</button>`).join("")}<button type="button" class="tv-ghostb sm" data-tv="rvx">Cancelar</button></div></div>`}
@@ -1588,8 +1851,8 @@ function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  /* Acción extra (3 de poder): una acción más, con el mismo formato que las demás. */
  const xOn=!!gh.ex,xDis=!xOn&&!(usedA(gh)===2&&canExtra(gh));
  const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""}><b>Acción extra</b><small>Gasta 3 de poder y hace una acción más.</small>${xOn?"<em>Marcada: se gastan 3 de poder al elegirla.</em>":xDis?"<em>Solo cuando ya ha usado sus dos acciones y tiene 3 de poder</em>":""}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<button type="button" class="tv-btn sm tv-invbtn" data-tv="inv">Inventario · ${(h.inv||[]).length} objetos · ${h.gold||0} de oro</button><p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${ACTS.filter(x=>(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="rest"&&done.length>0);
-   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).concat([xHTML]).sort((x,y)=>(/data-k="[^"]+" disabled/.test(x)?1:0)-(/data-k="[^"]+" disabled/.test(y)?1:0)).join("")}</div>
+  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<button type="button" class="tv-btn sm tv-invbtn" data-tv="inv">Inventario · ${(h.inv||[]).length} objetos · ${h.gold||0} de oro</button><p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${actGroups(ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
+   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="cast"?castHint(gh,a):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).concat([xHTML]))}</div>
   ${skillBar(gh,a)}
   `}
  const k=A.k,lab=(ACTS.find(x=>x[0]===k)||[0,"Habilidad"])[1];
@@ -1613,21 +1876,31 @@ const CORN=["noroeste","noreste","sureste","suroeste"];
 /* Ventana de una oleada nueva (centinelas al desplegar, refuerzos al llegar la alerta a 6): perfil de cada unidad y dónde aparece. */
 const WPH=["Más sombras cruzan las esquinas. Afilad las armas.","La Ruptura no se cierra sola: vienen más.","Del borde del mapa llegan pasos que no esperabais.","Respirad un momento… y luego, a por ellos."];
 /* Regla especial de un arma en la oleada: una ventanita pequeña justo debajo de su texto (no mueve la tabla). */
+/* Nombre en español de una regla o habilidad (el motor usa la etiqueta original; esto solo es lo que se ve). */
+function esN(l){const m=String(l).match(/^(.*?)(\(.*\))?$/),base=(m[1]||"").trim(),par=m[2]||"";const e=cat().rg[nrm(base)],AP={AP:"PA"};return (e&&e.n?e.n:(AP[base]||base))+par}
 function wpop(uid,l){const k=uid+"|"+l,open=U.wrule===k;const inf=ruleInfo(l);
- return`<span class="tv-wrw"><button type="button" class="tv-rchip sm${open?" on":""}" data-tv="wrule" data-k="${esc(k)}" aria-expanded="${open}">${esc(l)}</button>${open?`<span class="tv-wbub" role="note"><b>${esc(l)}</b><span>${esc(inf.t||"Todavía no tengo la descripción de esta regla.")}</span></span>`:""}</span>`}
+ return`<span class="tv-wrw"><button type="button" class="tv-rchip sm${open?" pick":""}" data-tv="wrule" data-k="${esc(k)}" aria-expanded="${open}">${esc(esN(l))}</button>${open?`<span class="tv-wbub" role="note"><b>${esc(esN(l))}</b><span>${esc(inf.t||"Todavía no tengo la descripción de esta regla.")}</span></span>`:""}</span>`}
+/* Reglas de una unidad: cada una abre su ventanita flotante bajo ella. */
+/* Habilidades y reglas de un héroe, cada una con su ventanita. */
+const heroSkPops=(gh,h)=>{const L=(h.sk||[]).filter(x=>x.g==="hab"||x.g==="regla"),grp=[["Habilidades",x=>x.g==="hab"],["Dotes",x=>x.g==="regla"&&ruleInfo(x.n).kind==="dote"],["Reglas",x=>x.g==="regla"&&ruleInfo(x.n).kind!=="dote"]];
+ const parts=grp.map(([t,f])=>{const names=L.filter(f).map(x=>x.n);return names.length?`<div class="tv-hskb"><p class="tv-hskt">${t} <small>${names.length}</small></p><div class="tv-hskg">${names.map(n=>wpop(gh.id,n)).join("")}</div></div>`:""}).join("");
+ return parts?`<div class="tv-hsk">${parts}</div>`:""};
+const rulePops=a=>`<div class="tv-rchips">${splitTop(a.rules).map(l=>wpop(a.id,l)).join("")}</div>`;
 function waveHTML(){const W=U.wave;if(!W)return"";const us=W.ids.map(actor).filter(a=>a&&a.kind==="u").sort((x,y)=>(y.g.boss?1:0)-(x.g.boss?1:0));
  const where=a=>{const u=a.g;if(u.esc)return"Zona de escape";if(u.hid)return`Emboscada · entra en la ronda ${u.amb}`;return u.cor?`Esquina ${u.cor} (${CORN[u.cor-1]})${u.scout?" · Scout: se adelanta":""}`:`Cuadrante ${QN[(u.roll||1)-1]}${u.scout?" · Scout: se adelanta":""}`};
  const card=a=>{const u=a.g;const head=u.boss?`<div class="tv-bhead"><img class="tv-bimg" src="${IMG_RETRATO}" alt="El Heraldo del Umbral"><div class="tv-bhtxt"><p class="tv-lab">Jefe · opcional</p><b class="tv-bname">${esc(a.name.toUpperCase())}</b><span class="tv-wzone">Zona de escape</span></div></div>`:`<header><b>${esc(a.name)}</b><span class="tv-wzone">${where(a)}</span></header>`;return`<article class="tv-wcard${u.boss?" tv-wboss":""}">${head}
   <div class="tv-qd"><span><small>Calidad</small>${a.q}+</span><span><small>Defensa</small>${a.d}+</span><span><small>Miniaturas</small>${u.m0}</span><span><small>Tough</small>${u.t}</span><span><small>Mueve</small>${speed(a).map(inch).join(" / ")}</span></div>
-  ${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td class="tv-wsp">${w.sp.length?w.sp.map(x=>wpop(a.id,x)).join(" "):"—"}</td></tr>`).join("")}</table></article>`};
+  ${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${rulePops(a)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td class="tv-wsp">${w.sp.length?w.sp.map(x=>wpop(a.id,x)).join(" "):"—"}</td></tr>`).join("")}</table></article>`};
  return`<div class="tv-hveil tv-wave"><div class="tv-hscrim"></div><section class="tv-hmod tv-wmod" role="dialog" aria-modal="true" aria-label="${W.t}"><div class="tv-wtop"><button type="button" class="tv-btn tv-wok" data-tv="wavecl">Entendido</button></div><p class="tv-lab">${W.t==="Centinelas"?"Antes de empezar":"Ronda "+G.round+(W.t==="Jefe"?" · pelea de jefe":" · alerta a 6")}</p><b class="tv-in">${W.t==="Centinelas"?"Los centinelas de la mesa":W.t==="Jefe"?"Llega el Heraldo del Umbral":"Entra una oleada · ¡preparaos!"}</b><p class="tv-wph">${W.t==="Jefe"?"El Heraldo ha venido a por vosotros. Ahora no hay vuelta atrás.":WPH[(G.nref||0)%WPH.length]}</p><p class="tv-sub">${us.length?`${us.length} ${us.length>1?"unidades":"unidad"} nueva${us.length>1?"s":""}.`:"No ha entrado ninguna unidad."}</p>
   <div class="tv-wlist">${us.map(card).join("")}</div></section></div>`}
+/* Imagen de ejemplo de la ficha del enemigo (provisional: después, una ilustración por unidad). */
+const enemyPic=a=>`<div class="tv-epic" aria-hidden="true"><svg viewBox="0 0 120 120"><defs><radialGradient id="epg" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#3a2a4f"/><stop offset="1" stop-color="#0b0912"/></radialGradient></defs><rect width="120" height="120" fill="url(#epg)"/><path d="M60 22c-14 0-22 11-22 26 0 10 4 16 4 24h36c0-8 4-14 4-24 0-15-8-26-22-26z" fill="#15111f" stroke="#8a6bb0" stroke-width="1.2"/><path d="M38 72c-8 10-10 26-10 38h64c0-12-2-28-10-38z" fill="#120e1a" stroke="#8a6bb0" stroke-width="1.2"/><circle cx="52" cy="46" r="3" fill="#c9a7ff"/><circle cx="68" cy="46" r="3" fill="#c9a7ff"/></svg></div>`;
 function unitInfo(id){const a=actor(id);if(!a)return"";const u=a.kind==="u"?a.g:null;
  /* Ventana flotante con la X en la esquina (petición de Nacho, 2026-11-20); se cierra también tocando fuera o con Escape. */
- return`<div class="tv-hveil"><div class="tv-hscrim" data-tv="noinfo"></div><section class="tv-hmod tv-umod" role="dialog" aria-modal="true" aria-label="Ficha de ${esc(a.name)}"><button type="button" class="tv-ix" data-tv="noinfo" aria-label="Cerrar">×</button><p class="tv-lab">${a.kind==="h"?"Héroe":"Unidad enemiga"}</p><b class="tv-in">${esc(a.name)}</b>
+ return`<div class="tv-hveil"><div class="tv-hscrim" data-tv="noinfo"></div><section class="tv-hmod tv-umod" role="dialog" aria-modal="true" aria-label="Ficha de ${esc(a.name)}"><button type="button" class="tv-ix" data-tv="noinfo" aria-label="Cerrar">×</button><p class="tv-lab">${a.kind==="h"?"Héroe":"Unidad enemiga"}</p><b class="tv-in">${esc(a.name)}</b>${a.kind==="h"?"":enemyPic(a)}
  <div class="tv-qd"><span><small>Calidad</small>${a.q}+</span><span><small>Defensa</small>${a.d}+</span><span><small>${u?"Miniaturas":"Heridas"}</small>${u?a.models()+"/"+u.m0:a.h.hp+"/"+a.h.hpMax}</span><span><small>Mueve</small>${speed(a).map(inch).join(" / ")}</span></div>
  ${u?`<p class="tv-sub">Tough(${u.t}) por miniatura · ${u.hp} heridas por recibir${u.sh?" · <b>Aturdida</b>":""}${u.fat===G.round?" · agotada":""}</p>`:""}
- ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${chipsOf(splitTop(a.rules),a.id)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`${chip(x,"","sm")}`).join(" "):"—"}</td></tr>`).join("")}</table></section></div>`}
+ ${fxRow(a.g)}${a.rules?`<p class="tv-lab">Reglas · toca una para ver qué hace</p>${rulePops(a)}`:""}<table class="tv-wt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${a.ws.map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}${u&&u.m0>1?`<small> · ${nAtk(a,w)} dados ahora</small>`:""}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>wpop(a.id,x)).join(" "):"—"}</td></tr>`).join("")}</table></section></div>`}
 function evCard(){const e=G.ev;const die=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
  if(!e||e.r!==G.round)return`<div class="tv-ev"><p class="tv-lab">Evento de la Ruptura · ronda ${G.round}</p><div class="tv-dd">${die(0)}${die(0)}</div><p>Se tiran dos dados de uno en uno: el primero son las decenas y el segundo las unidades. Su efecto dura solo esta ronda.</p><button type="button" class="tv-btn big" data-tv="evask">Tirar el evento</button></div>`;
  return`<div class="tv-ev ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${die(e.a)}${die(e.b)}</div><h3>${esc(e.t)}</h3><p>${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><button type="button" class="tv-btn big" data-tv="toheroes">Turno de los héroes</button></div>`}
@@ -1643,7 +1916,7 @@ function wpnPick(a,A){const mw=a.ws.filter(isMelee);if(mw.length<2)return"";cons
 /* Tirada de Neth en el centro de la pantalla: dados, y después el efecto (se queda en la tarjeta de la ronda). */
 const evDie=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
 function evFxHTML(){const F=U.evfx;if(!F||G.over)return"";
- if(F.st==="ask")return`<div class="tv-evfx ask" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">${rdLab()} · Evento de la Ruptura</p>${U.evNote?`<p class="tv-note">${U.evNote}</p>`:""}<div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Dos dados, de uno en uno: el primero son las decenas y el segundo las unidades. El efecto dura solo esta ronda.</p><button type="button" class="tv-btn big" data-tv="ev">Tirar los dados</button></div></div>`;
+ if(F.st==="ask")return`<div class="tv-evfx ask" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">${rdLab()} · Evento de la Ruptura</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Dos dados, de uno en uno: el primero son las decenas y el segundo las unidades. El efecto dura solo esta ronda.</p><button type="button" class="tv-btn big" data-tv="ev">Tirar los dados</button></div></div>`;
  if(F.st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Evento de la Ruptura · tirando</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Primero las decenas y luego las unidades.</p></div></div>`;
  const e=G.ev;if(!e)return"";
  return`<div class="tv-evfx" data-tv="evclose"><div class="tv-evfxc ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${evDie(e.a)}${evDie(e.b)}</div><h3>${esc(e.t)}</h3><p class="tv-evx2">${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><small>Toca para seguir</small></div></div>`}
@@ -1714,7 +1987,9 @@ function heroDash(){
   <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hpMax?h.hp/h.hpMax*100:0).toFixed(0)}%"></i><em>Heridas ${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>Poder ${h.pw}/${h.pwMax}</em></span></span>
   ${col?"":`<div class="tv-hds"><span><small>Cal</small>${h.cal}+</span><span><small>Def</small>${h.def}+</span><span><small>Fue</small>${h.fue}+</span><span><small>Des</small>${h.des}+</span><span><small>Vol</small>${h.vol}+</span></div>
   <p class="tv-hdl"><b>Estados:</b> ${h.st.length?h.st.map(s=>ST_N[s]).join(", "):"ninguno"}</p>
+  ${casterLine(gh,a)}
   ${a.ws.length?`<p class="tv-hdl"><b>Armas</b></p><table class="tv-wt tv-hwt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${[...M,...W].map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`${chip(x,"","sm")}`).join(" "):"—"}</td></tr>`).join("")}</table>`:""}
+  ${heroSkPops(gh,h)}
   <p class="tv-hdl"><b>Pociones</b> ${h.pot||0} · <b>Oro</b> ${h.gold||0}</p>
   ${G.phase==="heroes"&&!ko?actCount(gh):""}${fxRow(gh)}`}</article>`};
  const solo=G.phase==="heroes"&&G.cur>=0;   /* mientras un héroe gasta sus acciones, solo se ve su ficha; al terminar vuelven todas (y la del que ya actuó, más oscura) */
@@ -1737,15 +2012,28 @@ function sideLog(){
 function legend(){return`<div class="tv-leg"><span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><i class="f"></i>Recién llegado</span><button type="button" class="tv-chipb${U.ruler?" on":""}" data-tv="ruler" title="Toca dos puntos del mapa para medir la distancia">${U.ruler?"Quitar la regla":"Regla"}</button><button type="button" class="tv-chipb${U.obs?" on":""}" data-tv="obs">${U.obs?"Ocultar":"Ver"} obstáculos</button></div>`}
 
 /* ---------------------------------------------------------------- pintar */
+/* Abre o cierra la ventanita de una regla SIN repintar el tablero (repintar haría parpadear la ficha que la contiene). */
+function wruleUpdate(){document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());
+ document.querySelectorAll('#tv [data-tv="wrule"]').forEach(b=>{const on=b.dataset.k===U.wrule,sp=b.parentElement;b.classList.toggle("pick",on);b.setAttribute("aria-expanded",String(on));
+  if(sp){const old=sp.querySelector(":scope > .tv-wbub");if(old)old.remove()}
+  if(on&&sp){const l=b.dataset.k.slice(b.dataset.k.indexOf("|")+1),inf=ruleInfo(l),bub=document.createElement("span");bub.className="tv-wbub";bub.setAttribute("role","note");
+   bub.innerHTML=`<b>${esc(esN(l))}</b><span>${esc(inf.t||"Todavía no tengo la descripción de esta regla.")}</span>`;sp.appendChild(bub)}});
+ placeBub()}
+/* La ventanita de una regla va en posición fija, justo bajo su botón (o encima si no cabe): así no la recorta ningún contenedor. */
+function placeBub(){document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());const b=document.querySelector("#tv .tv-wbub");if(!b)return;
+ const c=b.parentElement&&b.parentElement.querySelector(".tv-rchip");document.body.appendChild(b);if(!c)return;
+ const r=c.getBoundingClientRect(),w=Math.min(280,window.innerWidth-16);b.style.position="fixed";b.style.width=w+"px";b.style.right="auto";b.style.top="0px";b.style.left="0px";
+ const bh=b.offsetHeight;let x=Math.min(Math.max(8,r.left),window.innerWidth-w-8),y=r.bottom+6;if(y+bh>window.innerHeight-8)y=Math.max(8,r.top-bh-6);
+ b.style.left=x+"px";b.style.top=y+"px"}
 function paint(){if(!U.open)return;
  /* Si el enemigo cuya ficha está abierta cae o huye, la ficha se cierra con él. */
  if(U.info){const ia=actor(U.info);if(!ia||(ia.kind==="u"&&ia.ko()))U.info=""}
  const KS=keepScroll();
- const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.inv?invHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
+ const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.inv?invHTML():""}${U.cast&&!U.dice?castHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
  ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}<div class="tv-zbtns"><button type="button" class="tv-zb" data-tv="zin" aria-label="Acercar" title="Acercar">+</button><button type="button" class="tv-zb" data-tv="zout" aria-label="Alejar" title="Alejar">−</button></div></div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Datos de los héroes">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside><aside class="tv-side tv-slog" aria-label="Registro de actividad">${sideLog()}</aside></div>${extra}${G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over?`<button type="button" class="tv-dev" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</section>`;
- restoreScroll(KS);bindBoard()}
+ restoreScroll(KS);placeBub();bindBoard()}
 function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();const s=$(".tv-side .tv-box .tv-btn[data-tv=mvok]");if(s)s.disabled=!U.dest}
 function open(){if(U.open)return;U.open=true;
  /* si se cerró la página con el evento de la ronda sin tirar, los dados vuelven a salir en el centro */
@@ -1755,7 +2043,7 @@ function open(){if(U.open)return;U.open=true;
  /* si se cerró la página en pleno turno de la IA, se retoma donde iba */
  if(G.phase==="ai"&&!U.busy&&!G.over)setTimeout(runAI,500);
  if(G.phase==="heroes"&&!G.over&&heroesDone())setTimeout(autoAI,700)}
-function close(){if(!U.open)return;U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");setTimeout(()=>{if(!U.open){ROOT.hidden=true;ROOT.innerHTML=""}},380);FAB.focus({preventScroll:true})}
+function close(){if(!U.open)return;document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");setTimeout(()=>{if(!U.open){ROOT.hidden=true;ROOT.innerHTML=""}},380);FAB.focus({preventScroll:true})}
 
 /* ---------------------------------------------------------------- tablero: toques y arrastre */
 function svgPt(e){const svg=$("#tvMap");if(!svg)return null;const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return[q.x,q.y]}
@@ -1806,7 +2094,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"reset2":G=G0();U.info="";break;
  case"dif":if(+ds.d>=DIF_LOCK)break;G.d=+ds.d;break;
  case"hsel":{const n=ds.n;selHeroes();G.hsel=G.hsel.includes(n)?G.hsel.filter(x=>x!==n):G.hsel.concat(n).slice(-4);break}
- case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;G.prim=false;G.sec=false;G.secBy="";G.boss=false;G.bossArmed=false;G.bossDown=false;G.escC=null;G.noXP=false;G.diary="";G.tracks=placeTracks();G.chests=[];G.ter=[];G.xtra={};U.chest=null;U.prim=null;hs.forEach(h=>{h.sk=(h.sk||[]).filter(x=>x.n!==DIARY.n)});hfSync();
+ case"deploy":{const hs=selHeroes();G.units=[];G.heroes=hs.map((h,k)=>({id:"h"+k,hi:HS.indexOf(h),n:h.name,x:58,y:58,act:0}));G.log=[];G.ev=null;G.mod=null;G.last=null;G.nref=0;G.needEv=true;G.prim=false;G.sec=false;G.secBy="";G.boss=false;G.bossArmed=false;G.bossDown=false;G.escC=null;G.noXP=false;G.diary="";G.tracks=placeTracks();G.chests=[];G.ter=[];G.xtra={};U.chest=null;U.prim=null;hs.forEach(h=>{h.sk=(h.sk||[]).filter(x=>x.n!==DIARY.n);syncMana(h)});hfSync();
   /* El dado de la esquina se repite si cae en el cuadrante de un rastro (los héroes no pueden desplegar ahí). */
   let r;do{r=d6()}while(r<=4&&!cornerOk(r));G.hcRoll=r;G.hc=0;if(r<=4)placeHeroes(r);else{const far=[0,1,2,3].filter(c=>cornerOk(c+1)).sort((x,y)=>{const s=c=>G.units.reduce((m,u)=>Math.min(m,Math.hypot(u.x-CC[c][0],u.y-CC[c][1])),1e9);return s(y)-s(x)})[0];placeHeroes(far+1)}
   G.phase="deploy";log(`Despliegue de héroes: esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}. Los centinelas salen al empezar la partida.`,"rd");break}
@@ -1844,12 +2132,13 @@ function act(k,b){const ds=b&&b.dataset||{};
   if(kk==="hold"){log(`${h.name} se mantiene en su sitio.`,"hr");finishAction(gh,"hold");break}
   if(kk==="obj"){const t=trkNear(a)[0];if(!t){toast("No hay ningún rastro a "+CT+" o menos.");break}doTrack(gh,a,t);return}
   if(kk==="chest"){const t=chestTarget(a);if(!t){toast("No hay ningún cofre cerrado a 6″ o menos.");break}if(chestGap(a,t)<=1.01){openChest(gh,a,t);finishAction(gh,"chest");save();paint();return}doChest(gh,a,t);return}
+  if(kk==="cast"){const why=castWhy(gh,a);if(why){toast(why);break}openCast(gh,a);break}
   if(kk==="scu"){if(!atkTargets(a).length){toast("Solo puede escabullirse si un enemigo está a 1″ o menos.");break}doScurry(gh,a);return}
   if(kk==="rev"){const T=reviveTarget(a);if(!T.length){toast("No hay ningún héroe inconsciente a 3″ o menos.");break}if(h.pw<3){toast("Reanimar cuesta 3 de poder.");break}
    if(T.length>1){U.revPick={ids:T.map(t=>t.id)};paint();break}
    reviveDo(gh,a,T[0]);break}
   if(kk==="sec"){if(!secNear(a)){toast("Hay que estar a 3″ o menos del pozo.");break}if(secFoes().length){toast("Hay enemigos a menos de 5″ del pozo: no cuenta.");break}doSec(gh,a);return}
-  G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;if(G.act.st==="move"){camTween({s:Math.max(vbox().s,1.8),x:a.x,y:a.y},500);scrollBoard()}break}
+  G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;if(G.act.st==="move"){camTween(moveCam(a,kk==="adv"?speed(a)[0]:speed(a)[1]),500);scrollBoard()}break}
  case"cancel":{if(!G.act||G.act.mv||G.act.free||G.act.st==="tele")return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
  case"mvskip":{const gh=G.heroes[G.cur];U.dest=null;G.act=null;log(`${heroOf(gh).name} avanza sin moverse.`,"hr");gh.advShot=canShootAny(actor(gh.id));finishAction(gh,"adv");break}
  /* Disparo que va con Avanzar: no gasta otra acción. */
@@ -1892,9 +2181,19 @@ function act(k,b){const ds=b&&b.dataset||{};
   if(!a||!t||!t.ko()||!reviveTarget(a).some(x=>x.id===t.id)){toast("Ese héroe ya no se puede reanimar desde aquí.");break}
   if(a.h.pw<3){toast("Reanimar cuesta 3 de poder.");break}reviveDo(gh,a,t);break}
  case"rvx":U.revPick=null;break;
+ case"actoff":U.actOff=!U.actOff;break;
+ case"cs_pick":if(U.cast){U.cast.sp=+ds.i;U.cast.tg=[];U.cast.exT=0;U.cast.exP=0}break;
+ case"cs_tgt":{const C=U.cast;if(!C)break;const gh=G.heroes[C.gi],a=actor(gh.id),sl=spellList(a.h),S=spellSpec(sl.list[C.sp]),mx=S.kind==="allies"||S.kind==="enemies"?S.n:1;
+  if(C.tg.includes(ds.id))C.tg=C.tg.filter(x=>x!==ds.id);else if(mx===1)C.tg=[ds.id];else if(C.tg.length<mx)C.tg.push(ds.id);break}
+ case"cs_ex":{const C=U.cast;if(!C||C.sp==null)break;const gh=G.heroes[C.gi],h=actor(gh.id).h,sp=spellList(h).list[C.sp],d=+ds.d;
+  if(ds.w==="t")C.exT=Math.max(0,Math.min(Math.max(0,tokOf(gh)-sp.cost),C.exT+d));else C.exP=Math.max(0,Math.min(h.pw,C.exP+d));break}
+ case"cs_back":if(U.cast){U.cast.sp=null;U.cast.tg=[]}break;
+ case"cs_go":castGo();return;
+ case"cs_end":closeCast(true);return;
+ case"cs_x":closeCast(false);return;
  case"inv":U.inv=!U.inv;U.invSub=null;break;
  case"invclose":U.inv=false;U.invSub=null;break;
- case"invuse":{const i=G.cur,gh=G.heroes[i];if(!gh)break;const a=actor(gh.id),it=(a.h.inv||[]).find(x=>x.id===ds.id);if(!it||!invOk(gh,i)||itemUsed(gh,it))break;const I=ITEMS[it.k];
+ case"invuse":{const i=G.cur,gh=G.heroes[i];if(!gh)break;const a=actor(gh.id),it=(a.h.inv||[]).find(x=>x.id===ds.id);if(!it||!invOk(gh,i)||itemUsed(gh,it))break;const I=ITEMS[it.k];if(I.act&&freeA(gh)<1){toast("Usar una poción de maná gasta una acción de habilidad.");break}
   if(I.use==="throw"){if(freeA(gh)<1){toast("Lanzar una bomba gasta una acción.");break}U.inv=false;U.invSub=null;G.act={k:"item",st:"throw",item:it.id,lim:12,wi:0,paid:false};U.dest=null;break}
   if(I.use==="self"){U.invSub=null;useItem(gh,a,it,a);break}
   U.invSub=U.invSub&&U.invSub.id===it.id?null:{id:it.id};break}
@@ -1930,7 +2229,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  default:return}
  save();paint()}
 /* Tras una acción: puede hacer otra gastando 3 de poder (una sola), o terminar. */
-function finishAction(gh,k,rest,free){if(free||k!=="adv")gh.advShot=false;if(!free)gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
+function finishAction(gh,k,rest,free){if(G.phase==="heroes")U.zm={s:1,x:300,y:300};if(free||k!=="adv")gh.advShot=false;if(!free)gh.done=(gh.done||[]).concat(k);G.act=null;U.dest=null;const h=heroOf(gh);
  /* Descansar: no se puede hacer nada más (ni antes ni después). Si ya no quedan acciones, termina salvo que pueda pagar la extra
     o que le quede el disparo de Avanzar (solo si tiene arma a distancia y algún enemigo a tiro y a la vista). */
  if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh)&&!gh.advShot)){endAct(gh);return}}
@@ -1941,7 +2240,7 @@ function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(RE
  const it=setInterval(()=>{ds.forEach(d=>{d.classList.remove("q");d.innerHTML=dots(d6())});if(++n>9){clearInterval(it);done()}},70)}
 let TT=0;function toast(t){let el=$(".tv-toast");if(!el){el=document.createElement("div");el.className="tv-toast";ROOT.appendChild(el)}el.textContent=t;el.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>el.classList.remove("on"),2400)}
 
-ROOT.addEventListener("click",e=>{const b=e.target.closest("[data-tv]");if(!b||b.closest("svg"))return;if(b.dataset.tv==="banclose"){banClose();return}if(b.getAttribute("aria-disabled")==="true"||b.disabled)return;if(U.busy&&b.dataset.tv!=="close"&&!DICE_ACTS.has(b.dataset.tv)&&!BUSY_OK.has(b.dataset.tv))return;act(b.dataset.tv,b)});
+ROOT.addEventListener("click",e=>{if(U.wrule&&!(e.target.closest&&e.target.closest(".tv-wrw"))){U.wrule=null;wruleUpdate()}const b=e.target.closest("[data-tv]");if(!b||b.closest("svg"))return;if(b.dataset.tv==="wrule"){U.wrule=U.wrule===b.dataset.k?null:b.dataset.k;wruleUpdate();return}if(b.dataset.tv==="banclose"){banClose();return}if(b.getAttribute("aria-disabled")==="true"||b.disabled)return;if(U.busy&&b.dataset.tv!=="close"&&!DICE_ACTS.has(b.dataset.tv)&&!BUSY_OK.has(b.dataset.tv))return;act(b.dataset.tv,b)});
 /* Números metidos a mano en la bandeja de dados (sin repintar, para no perder el foco). */
 ROOT.addEventListener("change",e=>{const s=e.target.closest&&e.target.closest(".tv-dsel");if(!s||!U.dice)return;U.dice.mv[+s.dataset.i]=+s.value;const b=$("#tvDapply");if(b)b.disabled=!U.dice.mv.every(Boolean)});
 ROOT.addEventListener("toggle",e=>{if(e.target.classList&&e.target.classList.contains("tv-log"))U.logOpen=e.target.open},true);
@@ -1949,7 +2248,7 @@ FAB.addEventListener("click",()=>U.open?close():open());
 document.addEventListener("keydown",e=>{if(e.key!=="Escape"||!U.open)return;if(typeof HC!=="undefined"&&HC.isOpen&&HC.isOpen())return;e.preventDefault();e.stopImmediatePropagation();
  if(U.ask){U.ask=null;paint();return}
  if(U.ban){banClose();return}
- if(U.inv){U.inv=false;paint();return}if(U.chestPop){U.chestPop=null;paint();return}
+ if(U.cast){U.cast=null;paint();return}if(U.inv){U.inv=false;paint();return}if(U.chestPop){U.chestPop=null;paint();return}
  if(U.rinfo&&!U.wilAsk){U.rinfo=null;paint();return}
  if(U.wave){act("wavecl");return}
  if(U.ruler){U.ruler=null;paint();return}
