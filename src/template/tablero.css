@@ -652,3 +652,15 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-wbub{position:absolute;top:calc(100% + 6px);right:0;left:auto;z-index:6;width:240px;max-width:70vw;display:grid;gap:4px;padding:9px 11px;border-radius:8px;background:#0f1424;border:1px solid rgba(217,184,108,.5);box-shadow:0 8px 22px rgba(0,0,0,.55);font-size:12px;line-height:1.4;text-align:left;color:#f1e4c0;white-space:normal;font-weight:400}
 .tv-wbub b{color:#e8c77a;font-size:12.5px}
 .tv-wbub span{color:#cfc39c}
+
+/* Zoom del mapa, brillo de Finalizar misión, cofres y resumen de extras (2026-11-23) */
+.tv-map{touch-action:none}
+.tv-zoom{display:inline-flex;gap:4px;align-items:center;margin-left:6px}
+.tv-zl{min-width:44px;text-align:center;font-size:12px;color:#cfc39c}
+.tv-cpop{pointer-events:auto;cursor:pointer}
+.glow{animation:tv-glow 1.6s ease-in-out infinite}
+@keyframes tv-glow{0%,100%{box-shadow:0 0 0 0 rgba(232,199,122,0)}50%{box-shadow:0 0 0 6px rgba(232,199,122,.45),0 0 18px rgba(232,199,122,.6)}}
+@media (prefers-reduced-motion:reduce){.glow{animation:none;box-shadow:0 0 0 2px rgba(232,199,122,.8)}}
+.tv-rwrow{display:grid;gap:2px;padding:6px 0;border-top:1px solid rgba(217,184,108,.2)}
+.tv-rwrow span{font-size:12px;color:#cfc39c}
+.tv-rwrow .tot{color:#e8c77a;font-weight:700}

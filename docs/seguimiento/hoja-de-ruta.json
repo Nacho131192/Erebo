@@ -939,6 +939,36 @@
           "tag": "Casa",
           "done": true,
           "text": "Escabullirse en el tablero virtual (acción de habilidad). Revisar la regla de la casa en la lista de dudas."
+        },
+        {
+          "id": "f12-zoom",
+          "tag": "Casa",
+          "done": true,
+          "text": "Zoom del mapa: pellizco en móvil, botones + y − y arrastre con el ratón o un dedo."
+        },
+        {
+          "id": "f12-cofre-tirada",
+          "tag": "Casa",
+          "done": true,
+          "text": "La acción Abrir cofre indica si hay tirada de Voluntad según la distancia; el recuadro del cofre se cierra al volver a pulsar o al salir el ratón."
+        },
+        {
+          "id": "f12-pestanas",
+          "tag": "Casa",
+          "done": true,
+          "text": "Las pestañas no hacen subir la pantalla al abrirse o cerrarse."
+        },
+        {
+          "id": "f12-finalizar",
+          "tag": "Casa",
+          "done": true,
+          "text": "Finalizar misión brilla con los dos héroes en la zona de escape y sin enemigos en ella; con los objetivos cerrados brilla su botón."
+        },
+        {
+          "id": "f12-extras",
+          "tag": "Casa",
+          "done": true,
+          "text": "El resumen de la misión muestra XP y oro de la misión más los extras de cofres y eventos."
         }
       ],
       "notes": ""

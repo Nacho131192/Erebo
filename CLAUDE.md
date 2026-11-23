@@ -273,7 +273,12 @@ Petición de Nacho: jugar la partida entera en la aplicación, sin mesa física,
 
    - **Escabullirse** (regla de la casa, petición de Nacho; `doScurry`, `ACTS` «scu»): solo con un enemigo trabado (a 1″ o menos, `atkTargets`). Tirada de Destreza; si la pasa, movimiento de D3″ con la regla de 1″ al final (`heroReach`). Si falla, gastar 2 de poder (`askPay`). **Empujar no se añade** (decisión de Nacho).
 
-### Supuestos que conviene revisar con el usuario
+   - **Zoom y mapa** (2026-11-23): el tablero es un `viewBox` (`U.zm`, `vbox`, `setZoom`, `applyView`): pellizco con dos dedos, botones + / − / Ajustar en la leyenda, y arrastre (ratón o un dedo) cuando hay zoom (`PTR`, `PINCH`, `PAN`). `touch-action:none` en el mapa.
+   - **Cofres**: la acción Abrir cofre dice si hay tirada de Voluntad (a más de 1″ y hasta 6″) o no (a 1″ o menos) (`chestHint`). El recuadro del cofre se cierra al volver a pulsarlo, al pulsar el recuadro o al salir el ratón del cofre (`chpop`).
+   - **Pestañas**: al repintar se conserva el desplazamiento de todas las zonas con scroll (`keepScroll`, `restoreScroll`).
+   - **Finalizar misión** brilla (`escReady`: los dos héroes dentro de la zona de escape y ningún enemigo en ella). Con la pestaña de objetivos cerrada brilla el botón de abrirla; abierta, solo Finalizar.
+   - **Resumen**: XP y oro de la misión, más los extras de cofres y eventos (`addX`, `G.xtra`), separados y sumados. El oro de cofres y eventos ya está en la ficha; el evento 66 da XP automática (`xpEvent`).
+
 - El **Heraldo** cuenta como 150 pts (estimado; no existe en Army Forge). En nivel 1 la oleada del jefe es solo el Heraldo (2×75 − 150 = 0).
 - **Numeración** de cuadrantes y esquinas del 1 al 4 en sentido horario desde el noroeste (sugerida; el PDF solo dice "numéralos de 1 a 4").
 - Refuerzos 3 en adelante alternan los tipos 1 y 2.
