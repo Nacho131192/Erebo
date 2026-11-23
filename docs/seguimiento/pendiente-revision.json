@@ -1,7 +1,7 @@
 {
   "file": "pendiente-revision.pdf",
   "title": "Pendiente de revisión",
-  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 22-11-2026",
+  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 23-11-2026",
   "live": "Documento vivo: estas dudas siguen abiertas y la lista se irá ampliando. Escribe la respuesta en su recuadro y marca «Resuelto» cuando esté decidido.",
   "legend": "Cada punto dice qué hace ahora la aplicación y qué dice la norma (Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR), para poder comparar.",
   "check_label": "Resuelto",
@@ -302,6 +302,69 @@
           "tag": "",
           "done": false,
           "text": "Heraldo: aparece siempre en la zona de escape al luchar contra él. ¿Debe entrar también por las esquinas si los héroes no están en la zona?",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "r7",
+      "title": "Ejército de los Borrados y reglas nuevas del tablero (23-11-2026)",
+      "goal": "",
+      "items": [
+        {
+          "id": "r-borrados-quitar",
+          "tag": "",
+          "done": true,
+          "text": "Héroe, Estandarte y Sargento no tienen descripción fiable en las fuentes (las versiones se contradicen).",
+          "notes": "Decidido por Nacho: se quitan de las tablas y del glosario."
+        },
+        {
+          "id": "r-villano",
+          "tag": "",
+          "done": true,
+          "text": "Villano: la regla oficial dice 6″ y la campaña usa 12″ para el Heraldo.",
+          "notes": "Decidido por Nacho: 12″ (regla de la casa)."
+        },
+        {
+          "id": "r-ambush-meta",
+          "tag": "",
+          "done": false,
+          "text": "Emboscada de la IA: se coloca a 2-6″ de un héroe al azar (la regla dice «Objetivo de IA»; el tablero aún no tiene objetivos de IA). ¿Vale así hasta que existan?",
+          "notes": ""
+        },
+        {
+          "id": "r-caster-contra",
+          "tag": "",
+          "done": false,
+          "text": "Caster de la IA: un héroe Lanzador a 18″ y a la vista puede gastar 1 de poder por −1 a la tirada (hasta 3). ¿Es lo que quieres? La norma permite gastar fichas o poder en cualquier cantidad.",
+          "notes": ""
+        },
+        {
+          "id": "r-spellres-heroes",
+          "tag": "",
+          "done": false,
+          "text": "Resistencia a hechizos: los hechizos de los héroes aún no la tienen en cuenta (solo las heridas de armas). ¿Se aplica cuando se resuelvan los hechizos de héroe?",
+          "notes": ""
+        },
+        {
+          "id": "r-etereo-uso",
+          "tag": "",
+          "done": false,
+          "text": "Etéreo: la IA solo lo usa cuando iba a correr hacia un héroe (se coloca hasta 6″ más cerca y mueve −6″). ¿Quieres que también lo use para esquivar o rodear?",
+          "notes": ""
+        },
+        {
+          "id": "r-cruce",
+          "tag": "",
+          "done": false,
+          "text": "Ataque de cruce: se activa si el camino de la unidad pasa por la ficha de un héroe. ¿Basta así, o debe contar el contacto real?",
+          "notes": ""
+        },
+        {
+          "id": "r-auras",
+          "tag": "",
+          "done": false,
+          "text": "Auras: la unidad con el aura da la regla a las 2 unidades más cercanas en el momento de desplegarse (en refuerzos, entre las ya presentes). ¿Correcto?",
           "notes": ""
         }
       ]

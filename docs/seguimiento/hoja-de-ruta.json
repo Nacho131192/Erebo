@@ -1,7 +1,7 @@
 {
   "file": "hoja-de-ruta.pdf",
   "title": "Hoja de ruta del tablero virtual",
-  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 22-11-2026",
+  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 23-11-2026",
   "live": "Documento vivo: todo lo que hay aquí sigue pendiente de trabajo y se irá revisando, tachando y ampliando. Marca la casilla de cada punto cuando esté hecho.",
   "legend": "[Oficial] = Core Rules o Campaign Builder de OPR.   [Casa] = regla de la casa.   Una fase cada vez; dentro de cada fase, un punto cada vez. Al acabar cada punto: probar en el navegador, apuntarlo en CLAUDE.md y hacer commit en prueba-juego.",
   "check_label": "Hecho",
@@ -442,7 +442,7 @@
           "id": "f8-heraldo",
           "tag": "Casa",
           "done": false,
-          "text": "Heraldo del Umbral en el tablero: vida (Tough) según dificultad y número de héroes, Fear, Stealth, Caster, aparece en la zona de escape al luchar contra él. Pendiente: sus hechizos (Olvido, Borrado, Silencio) no se aplican solos."
+          "text": "Heraldo del Umbral en el tablero: vida (Tough) según dificultad y número de héroes, Fear, Stealth, Caster, aparece en la zona de escape al luchar contra él. Sus hechizos (Olvido, Borrado, Silencio) ya se aplican solos con el Caster de la IA (23-11-2026)."
         },
         {
           "id": "f8-tough9",
@@ -824,7 +824,58 @@
           "done": false,
           "text": "Efectos a mano de los cofres: los peligros y el Borrado débil del tesoro maldito solo se anotan en el registro."
         }
-      ]
+      ],
+      "notes": ""
+    },
+    {
+      "id": "f12",
+      "title": "Fase 12 · Ejército de los Borrados y zoom (23-11-2026)",
+      "goal": "Tablas de unidades, glosario de reglas, reglas del ejército en el tablero y zoom del mapa.",
+      "items": [
+        {
+          "id": "f12-tablas",
+          "tag": "Casa",
+          "done": true,
+          "text": "Tablas del ejército de los Borrados (18 unidades base, 36 variantes y el Heraldo por dificultad) en español, con glosario de reglas en la última página (docs/ejercito-borrados.pdf)."
+        },
+        {
+          "id": "f12-glosario",
+          "tag": "",
+          "done": true,
+          "text": "Glosario de reglas en español, inglés y descripción (glosario-borrados.json) metido en el catálogo del tablero (reglas-ghostly.json)."
+        },
+        {
+          "id": "f12-reglas",
+          "tag": "Oficial",
+          "done": true,
+          "text": "Reglas del ejército en los enemigos del tablero: Espíritu empíreo mejorado, Escudado, Resistencia a hechizos, Cosecha, Hazaña de precisión, Implacable, auras, Etéreo, Marca de perdición, Ataque de cruce, Emboscada, Villano a 12″ y Caster de la IA con sus hechizos (también los del Heraldo)."
+        },
+        {
+          "id": "f12-zoom",
+          "tag": "",
+          "done": true,
+          "text": "Zoom del tablero anclado en el dedo o el cursor: pellizco con dos dedos (acerca y mueve), rueda o pellizco del trackpad, botón «Ver todo», arrastre con botón central."
+        },
+        {
+          "id": "f12-aplicar",
+          "tag": "",
+          "done": false,
+          "text": "Cuando Nacho vuelva a pasar el PDF del ejército: aplicar las unidades al ejército que sale en pantalla (no antes)."
+        },
+        {
+          "id": "f12-prueba",
+          "tag": "",
+          "done": false,
+          "text": "Probar con dados reales Ataque de cruce, Cosecha y Escudado, y la Emboscada con varios héroes; probar el zoom en una pantalla táctil real."
+        },
+        {
+          "id": "f12-hechizos-heroes",
+          "tag": "",
+          "done": false,
+          "text": "Los hechizos de los héroes no tienen en cuenta Resistencia a hechizos del enemigo (ahora las habilidades cuentan como heridas normales)."
+        }
+      ],
+      "notes": ""
     }
   ]
 }
