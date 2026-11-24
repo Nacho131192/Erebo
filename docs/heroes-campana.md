@@ -1,8 +1,8 @@
-# Age of Fantasy: Quest — Clases, habilidades, niveles, tienda y hechizos
+# el juego base — Clases, habilidades, niveles, tienda y hechizos
 
-Fuente: Army Forge (army-forge.onepagerules.com), datos oficiales de OnePageRules extraídos el 2026-11-18.
+Fuente: el creador de héroes (creador de héroes (web)), datos oficiales de OnePageRules extraídos el 2026-11-18.
 
-**Sobre la traducción:** todo el documento está en español, incluidos los nombres de habilidades, hechizos, armas, objetos y reglas especiales. Army Forge está en inglés, así que para que puedas encontrar cada cosa en la web:
+**Sobre la traducción:** todo el documento está en español, incluidos los nombres de habilidades, hechizos, armas, objetos y reglas especiales. el creador de héroes está en inglés, así que para que puedas encontrar cada cosa en la web:
 
 - las habilidades, los hechizos y los consumibles llevan una columna con su **nombre original**;
 - los héroes, las facciones y las clases llevan el nombre original entre paréntesis;
@@ -5057,7 +5057,7 @@ Cal 6+ · Def 6+ · Armas: Armas de mano dobles (A8) · Reglas: Héroe, Resisten
 
 ## Glosario de reglas especiales
 
-Nombre en español y su nombre original en Army Forge. Las versiones "mejoradas" corresponden a "Enhanced …".
+Nombre en español y su nombre original en el creador de héroes. Las versiones "mejoradas" corresponden a "Enhanced …".
 
 | Español | Original |
 |---|---|

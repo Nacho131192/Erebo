@@ -1,6 +1,6 @@
-# Coste en puntos de los héroes de AoF: Quest (Army Forge)
+# Coste en puntos de los héroes de el juego base (el creador de héroes)
 
-Medido el 2026-11-20 en army-forge.onepagerules.com (versión de los libros 3.6.0), creando héroes de prueba y cambiando una sola elección cada vez. No hay documentación oficial: OPR solo dice que el coste «se calcula automáticamente». Los héroes de prueba se borraron después.
+Medido el 2026-11-20 en creador de héroes (web) (versión de los libros 3.6.0), creando héroes de prueba y cambiando una sola elección cada vez. No hay documentación oficial: OPR solo dice que el coste «se calcula automáticamente». Los héroes de prueba se borraron después.
 
 ## La fórmula (sacada del código de la web y comprobada con las pruebas)
 
@@ -42,7 +42,7 @@ Al crear un héroe sin clase ni nada (Calidad 5+, Poder 3, Fue/Des/Vol 6+) cuest
 ## Ejemplo completo
 
 Dwarf Champion Guerrero de nivel 1 (Calidad +1, 1 habilidad, Poder +1, Fuerza +2, armadura ligera y dos pociones):
-135 + 0 (Calidad 4+) + 5 (habilidad) + 15 (Poder) + 0 (Fuerza +2) + 10 (armadura) + 20 (pociones) = **185 pts**, lo mismo que da Army Forge.
+135 + 0 (Calidad 4+) + 5 (habilidad) + 15 (Poder) + 0 (Fuerza +2) + 10 (armadura) + 20 (pociones) = **185 pts**, lo mismo que da el creador de héroes.
 
 ## Para la campaña
 

@@ -1,6 +1,6 @@
 # El Pueblo Sin Nombre — Misión 1: El pueblo vacío
 
-*Campaña para Age of Fantasy: Quest (One Page Rules), ambientada en Érebo · 2 a 4 héroes · Mesa de 122 x 122 cm*
+*Campaña de Érebo · 2 a 4 héroes · Mesa de 122 x 122 cm*
 
 ## Prólogo: El contrato del Filo
 
@@ -52,7 +52,7 @@ Un héroe sube a nivel 2 con 3 XP y a nivel 3 con 6 XP. Las fórmulas son las de
 Cada ficha de búsqueda es un cofre.
 
 - **Abrir:** un héroe gasta una acción de habilidad (Descubrir): a 6" o menos y con línea de visión pasa una tirada de Wil, y a 1" o menos no necesita tirada. Después tira 1d6 en la tabla de contenido. Si es un objeto o oro y el héroe está a 1", lo recoge. Si no, deja un marcador de tesoro.
-- **Objetos:** el Campaign Builder da los nombres de los objetos, pero no sus efectos. Los efectos de abajo son de la casa; si tu Army Forge trae los oficiales, usa esos.
+- **Objetos:** el Campaign Builder da los nombres de los objetos, pero no sus efectos. Los efectos de abajo son de la casa; si tu el creador de héroes trae los oficiales, usa esos.
 **1. Contenido del cofre (1d6)**
 
 | 1d6 | Contenido | En la historia |

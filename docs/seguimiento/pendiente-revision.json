@@ -1,7 +1,7 @@
 {
   "file": "pendiente-revision.pdf",
   "title": "Pendiente de revisión",
-  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual de Age of Fantasy: Quest · actualizado el 23-11-2026",
+  "subtitle": "Dudas de reglas y de lore para consultar · Tablero virtual · actualizado el 23-11-2026",
   "live": "Documento vivo: estas dudas siguen abiertas y la lista se irá ampliando. Escribe la respuesta en su recuadro y marca «Resuelto» cuando esté decidido.",
   "legend": "Cada punto dice qué hace ahora la aplicación y qué dice la norma (Core Rules v2.1.0 y Campaign Builder v2.1.0 de OPR), para poder comparar.",
   "check_label": "Resuelto",
@@ -109,7 +109,7 @@
           "id": "r-heraldo",
           "tag": "",
           "done": false,
-          "text": "El Heraldo del Umbral cuenta como 150 puntos (estimado; no existe en Army Forge). En dificultad 1 la oleada del jefe es solo el Heraldo.",
+          "text": "El Heraldo del Umbral cuenta como 150 puntos (estimado; no existe en el creador de héroes). En dificultad 1 la oleada del jefe es solo el Heraldo.",
           "notes": ""
         },
         {
@@ -174,7 +174,7 @@
           "id": "r-sindescr",
           "tag": "",
           "done": false,
-          "text": "Reglas sin descripción en la investigación guardada (no he querido inventarlas): Instinctive, Hero, Caster Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal. Hace falta su texto de Army Forge. Intenté leerlas en la web de One Page Rules y no me dejó.",
+          "text": "Reglas sin descripción en la investigación guardada (no he querido inventarlas): Instinctive, Hero, Caster Group, Good Fighter, Takedown Strike, Takedown, Bounding, Crossing Attack y Traversal. Hace falta su texto del creador de héroes. Intenté leerlas en la web de  y no me dejó.",
           "notes": ""
         },
         {

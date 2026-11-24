@@ -1334,12 +1334,10 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 @media (prefers-reduced-motion:reduce){.alrt{animation:none}}
 
 /* Botón de prueba (solo del autor): fijo abajo al centro, pequeño y discreto */
-#devBtn{position:fixed;left:50%;bottom:6px;transform:translateX(-50%);z-index:500;padding:4px 11px;border-radius:999px;border:1px dashed rgba(201,162,74,.55);background:rgba(10,8,20,.82);color:#c9a24a;font:600 11px var(--ui);letter-spacing:.04em;cursor:pointer;opacity:.75}
-#devBtn:hover{opacity:1;border-style:solid}
 </style>
 
 <div class="view camp" id="camp"></div>
-<div id="kload" role="status" aria-live="polite" aria-label="Cargando las campañas de Érebo"><div class="kl-ec" aria-hidden="true"><svg viewBox="0 0 120 120"><g class="kl-ring"><circle cx="60" cy="60" r="52" fill="none" stroke="#d9b86c" stroke-width="2.4" stroke-dasharray="26 14" stroke-linecap="round"/></g><g class="kl-ring b"><circle cx="60" cy="60" r="43" fill="none" stroke="#5f86d6" stroke-width="1.6" stroke-dasharray="6 9" stroke-linecap="round"/></g><circle cx="60" cy="60" r="31" fill="#02030a" stroke="#f0d79a" stroke-width="1.2"/><circle cx="60" cy="60" r="31" fill="none" stroke="#a78bfa" stroke-opacity=".35" stroke-width="7"/></svg></div><h1 class="kl-title">Érebo</h1><p class="kl-sub">Campañas de Age of Fantasy: Quest</p><div class="kl-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="kl-fill"></div></div><div class="kl-pct">0 %</div><p class="kl-ph"></p></div>
+<div id="kload" role="status" aria-live="polite" aria-label="Cargando las campañas de Érebo"><div class="kl-ec" aria-hidden="true"><svg viewBox="0 0 120 120"><g class="kl-ring"><circle cx="60" cy="60" r="52" fill="none" stroke="#d9b86c" stroke-width="2.4" stroke-dasharray="26 14" stroke-linecap="round"/></g><g class="kl-ring b"><circle cx="60" cy="60" r="43" fill="none" stroke="#5f86d6" stroke-width="1.6" stroke-dasharray="6 9" stroke-linecap="round"/></g><circle cx="60" cy="60" r="31" fill="#02030a" stroke="#f0d79a" stroke-width="1.2"/><circle cx="60" cy="60" r="31" fill="none" stroke="#a78bfa" stroke-opacity=".35" stroke-width="7"/></svg></div><h1 class="kl-title">Érebo</h1><p class="kl-sub">Campañas de Érebo</p><div class="kl-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="kl-fill"></div></div><div class="kl-pct">0 %</div><p class="kl-ph"></p></div>
 <div class="view mapv" id="home" hidden></div>
 <div class="view mis" id="mis" hidden>
 <main class="qv" id="col"><div id="sheet"></div></main>
@@ -1401,11 +1399,11 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 const D=()=>S.d,BUD=()=>Math.round(S.pts*PC[S.d-1]/100);
 const nRef=()=>S.wave+((S.alw||[]).length);
 const stage=()=>S.boss||nRef()>=2?"Día":nRef()===1?"Alba":"Noche";
-/* ---------- ejército enemigo: la lista de Army Forge del jugador ----------
+/* ---------- ejército enemigo: la lista del creador de héroes del jugador ----------
    Cada línea "Nx Nombre [modelos] Qn+ Dn+ | pts | reglas" es una entrada; N copias (1 si no pone nada).
    La línea siguiente son las armas. Se guarda aparte de la partida para que "Nueva partida" no la borre. */
 const AKEY="psn-army-v1";
-const ARMY_DEF=`++ Goblins - Goblins (v3.6.0), Wood Elves (v3.6.0), Orcs (v3.6.0) [AOFQAI 3185pts] [37 Units] ++
+const ARMY_DEF=`++ Goblins - Goblins (v3.6.0), Wood Elves (v3.6.0), Orcs (v3.6.0) [EREBOAI 3185pts] [37 Units] ++
 
 3x Goblins Guerreros epada escudo [3] Q5+ D6+ | 25pts | Mischievous, Tough(3), Strider
 Hand Weapon (A3, Parry(1))
@@ -1488,7 +1486,7 @@ const HER={name:"Heraldo del Umbral",pts:150}; /* jefe de la casa: coste estimad
    recicla (la unidad solo se usa si ya fue eliminada). Nunca más copias de las que tienes en una misma oleada. */
 /* Copias de cada unidad que están ahora mismo en la mesa: las de oleadas anteriores (S.table)
    y las vivas de la oleada en curso (salvo la que se está sorteando, skipK). */
-/* Miniaturas por unidad: el [n] de cada línea de Army Forge. "4x Huruk lanceros [3]" son 4 unidades de 3 miniaturas.
+/* Miniaturas por unidad: el [n] de cada línea del creador de héroes. "4x Huruk lanceros [3]" son 4 unidades de 3 miniaturas.
    En la lista de ejemplo, Nacho fijó 3 o 1 por unidad (2026-11-17). */
 const modsOf=i=>Math.max(1,(ARMY[i]&&ARMY[i].mod)||1);
 /* Miniaturas vivas de una unidad sorteada (e.m; sin valor = completa). */
@@ -1825,7 +1823,7 @@ function bLayout(U){const cnt={},pos={};
 /* Tope de movimiento por ronda: el de correr o cargar de la unidad, y nunca más de 16″. */
 const BMAX=16;
 /* Movimiento de un héroe con las mismas reglas: 6″/12″, Fast +2″/+4″, Slow −2″/−4″; Debilitado mueve la mitad;
-   inconsciente (0 heridas) no se mueve. Las reglas salen de su ficha (h.sk, las que importa de Army Forge). */
+   inconsciente (0 heridas) no se mueve. Las reglas salen de su ficha (h.sk, las que importa del creador de héroes). */
 function bSpdH(h){if(hfKo(h))return[0,0];const r=(h.sk||[]).filter(x=>x.g==="regla").map(x=>x.n).join(" ");
  let s=/\bFast\b/.test(r)?[8,16]:/\bSlow\b/.test(r)?[4,8]:[6,12];if((h.st||[]).includes("de"))s=s.map(v=>v/2);return s}
 /* Velocidad y tope de una ficha del tablero (u.h = héroe; si no, unidad enemiga de ARMY). Nunca más de 16″. */
@@ -2076,7 +2074,7 @@ function bossBox(){
 function herFicha(){
  return`<div class="hfi"><figure class="hfimg"><img src="${IMG_JEFE}" width="640" height="808" alt="El Heraldo del Umbral se alza sobre los tejados del pueblo, con la hoz vertical en la mano"></figure><h4>Ficha del Heraldo · estadísticas de la casa</h4><div class="chipsr">${hxb("cal","Calidad 3+")}${hxb("def","Defensa 3+")}${hxb("tough","Tough("+heraldoTough()+")")}${hxb("fear","Fear(3)")}${hxb("caster","Caster(3)")}</div>
  <p><b>Reglas especiales:</b> ${hxb("villain","Villain")}, ${hxb("fear","Fear(3)")}, ${hxb("stealth","Stealth")}, ${hxb("tough","Tough("+heraldoTough()+")")}, ${hxb("caster","Caster(3)")}.</p>
- <p><b>Arma: Hoz del vacío</b> (cuerpo a cuerpo)</p><table class="hwt"><thead><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr></thead><tbody><tr><th scope="row">Hoz del vacío</th><td>—</td><td>A4</td><td>${hxb("ap","2")}</td><td>${hxb("rending","Rending")}</td></tr></tbody></table><p class="hwn">Otras armas del juego (todas con su RNG, ATK, AP y SPE): arma de mano, arma de mano doble, gran arma, lanza, arco, arco corto, arco largo, rifle y pistola (Army Forge, libros de Age of Fantasy: Quest).</p>
+ <p><b>Arma: Hoz del vacío</b> (cuerpo a cuerpo)</p><table class="hwt"><thead><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr></thead><tbody><tr><th scope="row">Hoz del vacío</th><td>—</td><td>A4</td><td>${hxb("ap","2")}</td><td>${hxb("rending","Rending")}</td></tr></tbody></table><p class="hwn">Otras armas del juego (todas con su RNG, ATK, AP y SPE): arma de mano, arma de mano doble, gran arma, lanza, arco, arco corto, arco largo, rifle y pistola (el creador de héroes, libros de la campaña).</p>
  <p><b>Hechizos del Heraldo</b> (pulsa cada uno para ver qué hace):</p><table class="hwt hsp"><thead><tr><th>Hechizo</th><th>Coste</th><th>Objetivo</th></tr></thead><tbody><tr><td>${hxb("olvido","Olvido")}</td><td>1</td><td>Un héroe a 12″</td></tr><tr><td>${hxb("borrado","Borrado")}</td><td>2</td><td>Un héroe a 12″</td></tr><tr><td>${hxb("silencio","Silencio")}</td><td>3</td><td>Todos los héroes a 9″</td></tr></tbody></table><p class="hwn"><b>Cómo ataca (regla de la casa):</b> al activarse gasta todas sus fichas y elige al azar un hechizo que pueda pagar. Después tira 1d6: con 4 o más, el hechizo surte efecto sobre el héroe más cercano que tenga en línea de visión.</p>
  
  <p><b>Punto débil:</b> los ataques del héroe que lleve el diario del olvidado contra el Heraldo ganan AP(1).</p></div>`;
@@ -2111,7 +2109,7 @@ function armyBlock(){
  const n=ARMY.reduce((s,a)=>s+a.n,0),tot=ARMY.reduce((s,a)=>s+a.n*a.pts,0),lk=!!S.round;
  let h=`<div class="armyb"><p class="sbh" style="margin-top:0">Ejército enemigo</p><div class="armyr"><p><b>${n} unidades</b>${tot} pts</p><button class="pb sm gh" data-a="armyT" data-f="armyT" aria-expanded="${!!UI.army}">${UI.army?"Cerrar la lista":lk?"Ver la lista":"Ver o cambiar la lista"}</button></div>`;
  if(UI.army){
-  if(!lk)h+=`<label class="sbh" for="armyTxt" style="display:block;margin-top:12px">Pega aquí la lista exportada de Army Forge</label><textarea id="armyTxt" spellcheck="false">${esc(ARMY_TXT)}</textarea><div class="row"><button class="pb sm" data-a="armySave" data-f="armySave">Usar esta lista</button><button class="pb sm gh" data-a="armyDef" data-f="armyDef">Lista de ejemplo</button></div>${UI.armyMsg?`<p style="margin:8px 0 0;font-size:12.5px;color:var(--pgold)">${esc(UI.armyMsg)}</p>`:""}`;
+  if(!lk)h+=`<label class="sbh" for="armyTxt" style="display:block;margin-top:12px">Pega aquí la lista exportada del creador de héroes</label><textarea id="armyTxt" spellcheck="false">${esc(ARMY_TXT)}</textarea><div class="row"><button class="pb sm" data-a="armySave" data-f="armySave">Usar esta lista</button><button class="pb sm gh" data-a="armyDef" data-f="armyDef">Lista de ejemplo</button></div>${UI.armyMsg?`<p style="margin:8px 0 0;font-size:12.5px;color:var(--pgold)">${esc(UI.armyMsg)}</p>`:""}`;
   h+=`<ul class="alist">${ARMY.map(a=>`<li><b>${a.n}×</b><span class="nm">${esc(a.name)}</span><span class="pt">${a.pts} pts</span></li>`).join("")}</ul>`;
  }
  return h+`</div>`;
@@ -2230,7 +2228,6 @@ function packCols(pb){
  L.forEach((ks,i)=>ks.forEach(k=>cols[i].appendChild(el[k])));
 }
 /* Botón solo de prueba (del autor): reinicia la partida de la mesa al instante, desde cualquier pantalla. */
-function paintDev(){let b=document.getElementById("devBtn");if(b)return;b=document.createElement("button");b.id="devBtn";b.type="button";b.textContent="↻ Reiniciar partida (prueba)";b.setAttribute("aria-label","Reiniciar la partida (botón de prueba)");b.addEventListener("click",()=>{if(S.round)restartGame();else{S=S0();S.round=0}render()});document.body.appendChild(b)}
 function render(){
  const pb=$("#pbody"),keep=pb.scrollTop,f=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.f:null;
  const mp=`<i class="mp">${[0,1,2,3,4,5].map(i=>`<i class="${i<S.al?"on":""}"></i>`).join("")}</i>`;
@@ -2282,7 +2279,7 @@ function render(){
  if(S.round){if(lock)pb.querySelectorAll(fw?'.mcol>.mc:not([data-k="wave"]),.dblk':'.mcol>.mc:not([data-k="dice"]),.dblk:not(.evb)').forEach(n=>n.inert=true);packCols(pb)}
  $("#panel").dataset.ph=stage();paintBoard();
  pb.scrollTop=keep;
- paintHome();paintAlDice();paintAlertPop();paintDev();
+ paintHome();paintAlDice();paintAlertPop();
  if(f){const t=document.querySelector('[data-f="'+f+'"]');if(t)t.focus({preventScroll:true})}
  paintSheet();
  hfPaint();
@@ -2296,26 +2293,26 @@ const HKEY="psn-heroes-v1";
 const hfX=()=>Math.min(5*S.d,(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0));
 /* Diccionario de traducción (generado por tools/traducciones.py). */
 const TRAD=%%TRAD%%;
-const HF_WAKI=`++ Wakiisen - Barbarian (Ogres) [AOFQ 285pts] [Lvl 4] ++
+const HF_WAKI=`++ Wakiisen - Barbarian (Ogres) [EREBO 285pts] [Lvl 4] ++
 
 Wakiisen | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | Tough(18), Destroyer, Barbaric Frenzy
 Dual Hand Weapons (A8)
 Consumables: 2x Health Potion
 Skills: Rage, Healing Touch`;
-/* Héroes de Army Forge añadidos el 2026-11-21 (texto tal cual lo exporta Army Forge). */
-const HF_CHESTER=`++ Chester - Paladin (Dragon Empire) [AOFQ 200pts] [Lvl 1] ++
+/* Héroes del creador de héroes añadidos el 2026-11-21 (texto tal cual lo exporta el creador de héroes). */
+const HF_CHESTER=`++ Chester - Paladin (Dragon Empire) [EREBO 200pts] [Lvl 1] ++
 
 Chester | Qua 4+ Def 6+ Tou 9 Pow 4 | Str 6+ Dex 6+ Wil 4+ | 200pts | Tough(9), Royal Warrior, Fearless, Defense(+1), Paladin Shout
 Dual Hand Weapons (A4)
 Consumables: 1x Health Potion, 1x Curing Potion
 Skills: Ancient Weapon`;
-const HF_VANDRAL=`++ Vandral - Rogue (Dark Elves) [AOFQ 195pts] [Lvl 4] ++
+const HF_VANDRAL=`++ Vandral - Rogue (Dark Elves) [EREBO 195pts] [Lvl 4] ++
 
 Vandral | Qua 3+ Def 6+ Tou 9 Pow 4 | Str 6+ Dex 3+ Wil 6+ | 195pts | 8XP | Tough(9), Harassing, Rogue Step
 Rapid Dark Crossbow (23", A3, Lacerate)
 Consumables: 1x Curing Potion
 Skills: Assassination, Elude`;
-const HF_LEGOLAS=`++ Legolas - Ranger (Wood Elves) [AOFQ 190pts] [Lvl 3] ++
+const HF_LEGOLAS=`++ Legolas - Ranger (Wood Elves) [EREBO 190pts] [Lvl 3] ++
 
 Legolas | Qua 4+ Def 6+ Tou 9 Pow 3 | Str 4+ Dex 5+ Wil 6+ | 190pts | 6XP | Strider, Tough(9), Wild Veil, Ranger's Precision
 Great Longbow (24", A2)
@@ -2350,8 +2347,8 @@ const HI={minus:'<svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke=
 const HF_SKULL=`<span class="hf-skull" role="img" aria-label="Inconsciente"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#e3283c" d="M12 2.2c-4.9 0-8.6 3.5-8.6 8.2 0 2.7 1.2 4.6 3 5.8v2.6c0 .9.7 1.6 1.6 1.6h1v-2.1h1.3v2.1h3.4v-2.1h1.3v2.1h1c.9 0 1.6-.7 1.6-1.6v-2.6c1.8-1.2 3-3.1 3-5.8 0-4.7-3.7-8.2-8.6-8.2z"/><ellipse cx="8.6" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><ellipse cx="15.4" cy="11" rx="2.2" ry="2.5" fill="#1a0507"/><path fill="#1a0507" d="M12 13.4l-1.5 2.6h3z"/><path d="M7.4 6.2c1-1.3 2.6-2 4.2-2.1" stroke="#ff8a96" stroke-width=".9" fill="none" stroke-linecap="round" opacity=".7"/></svg></span>`;
 const hfMk=o=>Object.assign({name:"Nuevo héroe",raza:"",prof:"",nivel:1,pts:0,cal:4,def:4,fue:4,des:4,vol:4,hp:3,hpMax:3,pw:0,pwMax:0,pot:0,gold:0,st:[],img:"",sk:[],c:0},o);
 function hfSplit(s){const out=[];let d=0,b="";for(const ch of s){if(ch==="(")d++;else if(ch===")")d=Math.max(0,d-1);if(ch===","&&!d){if(b.trim())out.push(b.trim());b=""}else b+=ch}if(b.trim())out.push(b.trim());return out}
-/* Lee la exportación de héroe de Army Forge (AoF: Quest):
-   ++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++
+/* Lee la exportación de héroe de el creador de héroes:
+   ++ Nombre - Profesión (Raza) [EREBO 285pts] [Lvl 4] ++
    Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | reglas
    armas · Consumables: 2x Health Potion · Skills: a, b */
 function hfParse(t){
@@ -2368,11 +2365,11 @@ function hfParse(t){
   if((m=l.match(/^Skills?:\s*(.*)$/i))){r.skills.push(...hfSplit(m[1]));continue}
   r.weap.push(...hfSplit(l).map(x=>{const w=x.match(/^(.+?)\s*\((.*)\)$/);return w?{n:w[1].trim(),k:w[2].trim()}:{n:x,k:""}}));
  }
- if(!u)return{err:"No encuentro la línea del héroe. En Army Forge se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
+ if(!u)return{err:"No encuentro la línea del héroe. En el creador de héroes se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
  r.T=hfTrad(r);
  return r;
 }
-/* Traduce lo leído de Army Forge: raza, profesión, reglas (la palabra clave se queda en inglés, su explicación en español),
+/* Traduce lo leído del creador de héroes: raza, profesión, reglas (la palabra clave se queda en inglés, su explicación en español),
    habilidades (nombre y explicación en español), armas y consumibles. Lo que no encuentra se anota en miss para avisar. */
 const TRK=s=>String(s||"").trim().toLowerCase().replace(/\s+/g," ");
 const TRB=s=>TRK(String(s||"").replace(/\(.*$/,""));
@@ -2393,7 +2390,7 @@ function hfTrad(r){const D=(typeof TRAD!=="undefined"&&TRAD)||{reglas:{},habilid
  const cons=r.cons.map(c=>{const cb=D.consumibles[TRB(c.n)];if(!cb)miss.push("consumible "+c.n);return{n:cb?cb.n:c.n,q:c.q,d:cb?cb.d:""}});
  return{raza,prof,rules,skills,weap,cons,miss}}
 function hfClamp(h){h.hpMax=Math.max(1,+h.hpMax||1);h.pwMax=Math.max(0,+h.pwMax||0);h.hp=Math.min(Math.max(0,+h.hp||0),h.hpMax);h.pw=Math.min(Math.max(0,+h.pw||0),h.pwMax);h.pot=Math.max(0,+h.pot||0);h.gold=Math.max(0,+h.gold||0);h.nivel=Math.max(1,+h.nivel||1)}
-/* Copia lo leído a la ficha. No toca el oro ni los estados; la XP de Army Forge no se usa (la de la campaña empieza en 0). Tough(n) ya son las heridas: no se repite en Reglas. */
+/* Copia lo leído a la ficha. No toca el oro ni los estados; la XP del creador de héroes no se usa (la de la campaña empieza en 0). Tough(n) ya son las heridas: no se repite en Reglas. */
 function hfApply(h,r){
  const T=r.T||hfTrad(r);
  h.name=r.name||r.hname||h.name;h.cal=r.cal;h.def=r.def;if(T.prof)h.prof=T.prof;if(T.raza)h.raza=T.raza;if(r.nivel)h.nivel=r.nivel;if(r.pts)h.pts=r.pts;
@@ -2426,7 +2423,7 @@ const hfDebuff=(h,a)=>(a==="fue"&&h.st.includes("af"))||(a==="vol"&&h.st.include
 const hfStp=(k,v,bare)=>`<span class="hf-st"><button type="button" data-hf="inc" data-k="${k}" data-d="-1" aria-label="Restar">${HI.minus}</button>${bare?"<i></i>":`<b>${v}</b>`}<button type="button" data-hf="inc" data-k="${k}" data-d="1" aria-label="Sumar">${HI.plus}</button></span>`;
 const hfKey=s=>s.n.toLowerCase().replace(/\(.*$/,"").trim();
 const hfExplain=s=>s.d||(s.g!=="equipo"&&HF_GLOS[hfKey(s)])||"";
-/* Perfil de un arma en las cuatro casillas de Army Forge: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
+/* Perfil de un arma en las cuatro casillas del creador de héroes: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
 function hfWeapon(k){let rng="",atk="",ap="";const spe=[];
  for(const p of hfSplit(k||"")){let m;if((m=p.match(/^(\d+)\s*"$/)))rng=m[1]+'"';else if((m=p.match(/^A(\d+)$/i)))atk="A"+m[1];else if((m=p.match(/^AP\((\d+)\)$/i)))ap=m[1];else spe.push(p)}
  const c=(l,v)=>`<span><small>${l}</small><b class="${v?"":"no"}">${v?esc(v):"—"}</b></span>`;
@@ -2437,7 +2434,7 @@ function hfMeds(){const M=$("#hfMeds");if(!M)return;document.body.classList.togg
   M.innerHTML=`<button type="button" class="hf-stack" data-hf="fan" aria-expanded="false" aria-label="Mostrar ${n===1?"el héroe":"los "+n+" héroes"}" style="height:${66+(sh.length-1)*12}px">${sh.map((h,i)=>`<span class="hf-coin" style="top:${(sh.length-1-i)*12}px;z-index:${5-i}">${hfMed(h,"s"+i)}</span>`).join("")}<span class="hf-cnt">${n}</span></button>`;return}
  M.innerHTML=`<button type="button" class="hf-add" data-hf="add" aria-label="Añadir un héroe" title="Añadir héroe">${HI.add}</button><div class="hf-fan">${HS.map((h,i)=>`<button type="button" class="hf-mrow ${HF.open&&i===HF.cur?"on":""}" data-hf="open" data-i="${i}" style="--i:${HS.length-i}" aria-label="Abrir la ficha de ${esc(h.name)}"><span class="hf-nm"><b>${esc(h.name)}</b>${hfKo(h)?`<small class="ko">Inconsciente</small>`:`<small class="${h.st.length?"st":""}">${h.hp}/${h.hpMax} heridas${h.st.length?" · "+h.st.length+" estado"+(h.st.length>1?"s":""):""}</small>`}</span>${hfMed(h,"f"+i)}</button>`).join("")}</div><button type="button" class="hf-cf" data-hf="unfan" aria-label="Recoger los medallones">${HI.x}</button>`}
 
-function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><span>${l}</span><input data-hff="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`,lk=(k,l)=>`<label class="hf-fl hf-lock"><span>${l} <small>🔒 lo pone Army Forge</small></span><input type="number" value="${esc(h[k])}" readonly tabindex="-1" aria-readonly="true"></label>`;
+function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><span>${l}</span><input data-hff="${k}" type="${t}" value="${esc(h[k])}" ${o}></label>`,lk=(k,l)=>`<label class="hf-fl hf-lock"><span>${l} <small>🔒 lo pone el creador de héroes</small></span><input type="number" value="${esc(h[k])}" readonly tabindex="-1" aria-readonly="true"></label>`;
  return`<div class="hf-form"><div class="hf-fr">${f("name","Nombre")}</div><div class="hf-fr">${f("raza","Raza")}${f("prof","Profesión")}</div><div class="hf-fr">${lk("nivel","Nivel")}${lk("pts","Puntos")}</div>
  <div class="hf-fr">${HF_STAT.map(([k,n])=>f(k,n,"number",'min="2" max="6"')).join("")}</div>
  <div class="hf-fr">${f("hpMax","Heridas máx.","number",'min="1" max="40"')}${f("pwMax","Poder máx.","number",'min="0" max="12"')}</div>
@@ -2448,8 +2445,8 @@ function hfForm(){const h=hfH(),f=(k,l,t="text",o="")=>`<label class="hf-fl"><sp
  <button type="button" class="hf-dng ${HF.delArm?"arm":""}" data-hf="delh">${HF.delArm?"Pulsa otra vez para quitar a "+esc(h.name):"Quitar este héroe"}</button></div>`}
 
 function hfImporter(){const r=HF.res;
- return`<div class="hf-imp"><ol class="hf-steps"><li><b>1</b>En Army Forge exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(hfH().name)}.</li></ol>
- <label class="hf-fl"><span>Texto de Army Forge</span><textarea id="hfTxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(HF.imp)}</textarea></label>
+ return`<div class="hf-imp"><ol class="hf-steps"><li><b>1</b>En el creador de héroes exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(hfH().name)}.</li></ol>
+ <label class="hf-fl"><span>Texto del creador de héroes</span><textarea id="hfTxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [EREBO 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(HF.imp)}</textarea></label>
  <div class="hf-row"><button type="button" class="hf-pri" data-hf="read" ${HF.imp.trim()?"":"disabled"}>Leer</button></div>
  ${r?(r.err?`<div class="hf-prev err"><h4>No se pudo leer</h4><p class="hf-note">${esc(r.err)}</p></div>`:`<div class="hf-prev"><h4>Esto es lo que he leído</h4><ul>
  <li>Nombre: <b>${esc(r.name)}</b>${r.nivel?` · nivel ${r.nivel}`:""}${r.pts?` · ${r.pts} pts`:""}</li>
@@ -2458,13 +2455,13 @@ function hfImporter(){const r=HF.res;
  ${r.hpMax?`<li>Heridas máx.: ${r.hpMax}${r.pwMax!=null?` · Poder máx.: ${r.pwMax}`:""}</li>`:""}
  ${r.T.rules.length?`<li>Reglas: ${esc(r.T.rules.map(x=>x.n).join(", "))}</li>`:""}${r.T.skills.length?`<li>Habilidades: ${esc(r.T.skills.map(x=>x.n).join(", "))}</li>`:""}
  ${r.T.weap.length?`<li>Armas: ${esc(r.T.weap.map(w=>w.n+(w.k?" ("+w.k+")":"")).join(", "))}</li>`:""}${r.T.cons.length?`<li>Consumibles: ${esc(r.T.cons.map(c=>(c.q>1?c.q+"× ":"")+c.n).join(", "))}</li>`:""}${r.pot!=null?`<li>Pociones de salud: ${r.pot}</li>`:""}
- ${r.afxp!=null?`<li>XP en Army Forge: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
+ ${r.afxp!=null?`<li>XP en el creador de héroes: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
  ${r.T.miss.length?`<p class="hf-warn">Sin traducir o sin explicación: ${esc(r.T.miss.join(", "))}. Puedes escribirlo a mano en Editar.</p>`:""}<p class="hf-note">Se sustituyen características, reglas, habilidades y equipo. El oro y los estados no se tocan.</p><div class="hf-row"><button type="button" class="hf-pri" data-hf="apply">Aplicar a la ficha</button></div></div>`):""}</div>`}
 
 function hfSheet(){const h=hfH(),x=hfX(),xm=5*S.d,m=HF.mode;
  const head=`<div class="hf-hd"><div class="hf-md ${hfKo(h)?"hf-dead":""}">${hfRing(h,84,5)}<div class="hf-pic">${hfPic(h,"d"+HF.cur)}</div>${hfKo(h)?HF_SKULL:""}<span class="hf-lv">NIV ${esc(h.nivel)}</span></div>
  <div class="hf-nmx"><h3>${esc(h.name)}</h3><p>${h.raza?`<span class="hf-tag r">${esc(h.raza)}</span>`:""}${h.prof?`<span class="hf-tag p">${esc(h.prof)}</span>`:""}${h.pts?`<span class="hf-tag">${esc(h.pts)} pts</span>`:""}</p></div></div>
- <div class="hf-acts"><button type="button" class="hf-eb v ${m==="imp"?"on":""}" data-hf="mode" data-m="imp" aria-pressed="${m==="imp"}">${HI.imp}Importar de Army Forge</button><button type="button" class="hf-eb ${m==="edit"?"on":""}" data-hf="mode" data-m="edit" aria-pressed="${m==="edit"}">${m==="edit"?HI.ok+"Hecho":HI.pen+"Editar"}</button></div>`;
+ <div class="hf-acts"><button type="button" class="hf-eb v ${m==="imp"?"on":""}" data-hf="mode" data-m="imp" aria-pressed="${m==="imp"}">${HI.imp}Importar del creador de héroes</button><button type="button" class="hf-eb ${m==="edit"?"on":""}" data-hf="mode" data-m="edit" aria-pressed="${m==="edit"}">${m==="edit"?HI.ok+"Hecho":HI.pen+"Editar"}</button></div>`;
  if(m==="imp")return`<div class="hf-v">${head}${hfImporter()}</div>`;
  if(m==="edit")return`<div class="hf-v">${head}${hfForm()}</div>`;
  const L=h.sk.filter(s=>s.g===HF.tab);
@@ -2730,7 +2727,7 @@ function kinfo(i){const c=CAMPS[i];
  if(!c.on)return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Sellada</p><h2>Carta boca abajo</h2><p class="hook">Otra historia de Érebo, todavía por escribir.</p><p class="kmot">Motivo del reverso: ${NBX[c.n].m.toLowerCase()}.</p><div class="klock">${LOCK}<span>Esta campaña se descubrirá más adelante.</span></div>`;
  return `<span class="knum" aria-hidden="true">${c.n}</span><p class="keb">Campaña ${c.n} · Érebo</p><h2>${c.t}</h2><p class="hook">${c.h}</p><div class="kchips"><span><b>6</b> misiones</span></div><p class="kstl${S.round?" live":""}"><i></i>${S.round?`Misión I en curso · Ronda ${S.round}`:"1 de 6 misiones desbloqueadas"}</p><button class="kcta" type="button" data-nav="home"><span>Entrar en la campaña</span>${ARROW}</button>`}
 function camp(){const el=$("#camp");el.style.setProperty("--ac",CAMPS[K.sel].ac);
- el.innerHTML=`<div class="kbg" id="kbg">${klay(K.sel)}</div><header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Age of Fantasy: Quest</span></div></header><div class="kinfo" id="kinfo">${kinfo(K.sel)}</div><div class="kfan" role="listbox" aria-label="Campañas">${CAMPS.map(kcard).join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
+ el.innerHTML=`<div class="kbg" id="kbg">${klay(K.sel)}</div><header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Érebo</span></div></header><div class="kinfo" id="kinfo">${kinfo(K.sel)}</div><div class="kfan" role="listbox" aria-label="Campañas">${CAMPS.map(kcard).join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
 function kselect(i){if(i===K.sel)return;K.sel=i;const el=$("#camp");
  el.querySelectorAll(".kcard").forEach(c=>{const on=+c.dataset.kc===i;c.classList.toggle("on",on);c.setAttribute("aria-selected",on)});
  el.style.setProperty("--ac",CAMPS[i].ac);

@@ -1,4 +1,4 @@
-"""Extrae las habilidades de héroe (de clase y comunes) y las dotes de docs/age-of-fantasy-quest-heroes.md
+"""Extrae las habilidades de héroe (de clase y comunes) y las dotes de docs/heroes-campana.md
 a src/template/habilidades-base.json.  Uso (desde la carpeta Erebo):  py tools/extraer-habilidades.py
 Cada habilidad: {n: nombre en español, en: nombre original, a: atributo (Fuerza/Destreza/Voluntad), e: efecto,
 cls: clase o "Comunes", tier: 0 (iniciales) 1 2 3}.  Las dotes: {n, en, e, cls}."""
@@ -6,7 +6,7 @@ import re, json, sys, pathlib
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-md = (ROOT / "docs" / "age-of-fantasy-quest-heroes.md").read_text(encoding="utf-8").split("\n")
+md = (ROOT / "docs" / "heroes-campana.md").read_text(encoding="utf-8").split("\n")
 
 sk, feats = [], []
 cls, tier = None, 0

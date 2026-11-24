@@ -1,6 +1,6 @@
 # El Pueblo Sin Nombre
 
-Campaña fan para **Age of Fantasy: Quest** (One Page Rules), ambientada en Érebo. Seis misiones; la 1, *El pueblo vacío*, está desarrollada.
+Campaña de Érebo. Seis misiones; la 1, *El pueblo vacío*, está desarrollada.
 
 - `src/pueblo-sin-nombre.html`: la página de la misión 1 (pergamino con la historia y las reglas, y panel de juego). Ábrela en el navegador.
 - `docs/mision-1.md`: texto completo de la misión 1 (fuente de verdad).

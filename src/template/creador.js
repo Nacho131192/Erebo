@@ -1,4 +1,4 @@
-/* Creador de héroes (raza y clase): ventana propia #hc. Datos reales de Army Forge en HCDATA (heroes-data.json).
+/* Creador de héroes (raza y clase): ventana propia #hc. Datos reales del creador de héroes en HCDATA (heroes-data.json).
    Se abre con el «+» de los medallones; al terminar añade el héroe a HS y abre su ficha. */
 const HC=(function(){
 "use strict";
@@ -93,7 +93,7 @@ const featBlock=c=>c.feat?`<div class="feat"><span class="tg">Dote de clase · u
 const ATC={"Fuerza":"f","Destreza":"d","Voluntad":"v"};
 const CHECK='<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 
-/* ---------- explicaciones de reglas (resumen propio; descripciones consultadas en Army Forge) ---------- */
+/* ---------- explicaciones de reglas (resumen propio; descripciones consultadas en el creador de héroes) ---------- */
 const RG={
 /* armas */
 "AP":["AP","La víctima resta {x} a sus tiradas de Defensa al bloquear los impactos de esta arma."],

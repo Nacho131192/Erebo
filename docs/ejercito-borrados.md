@@ -1,6 +1,6 @@
 # Ejército de los Borrados — tablas de unidades (borrador para revisar)
 
-Base: **Ghostly Undead v3.6.0** (OPR, AoF Quest). Todas las unidades son de **tamaño 1**.
+Base: **Ghostly Undead v3.6.0** (OPR). Todas las unidades son de **tamaño 1**.
 Los datos (Calidad, Defensa, equipo, reglas y costes) salen de las páginas 2 a 8 del PDF; los nombres son inventados para la campaña. Las palabras clave de reglas se dejan en inglés.
 
 Notas de lectura:

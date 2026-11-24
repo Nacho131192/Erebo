@@ -1,7 +1,7 @@
 {
   "file": "hoja-de-ruta.pdf",
   "title": "Hoja de ruta del tablero virtual",
-  "subtitle": "El Pueblo Sin Nombre · Misión 1 · Age of Fantasy: Quest · actualizado el 23-11-2026",
+  "subtitle": "El Pueblo Sin Nombre · Misión 1 · el juego base · actualizado el 23-11-2026",
   "live": "Documento vivo: todo lo que hay aquí sigue pendiente de trabajo y se irá revisando, tachando y ampliando. Marca la casilla de cada punto cuando esté hecho.",
   "legend": "[Oficial] = Core Rules o Campaign Builder de OPR.   [Casa] = regla de la casa.   Una fase cada vez; dentro de cada fase, un punto cada vez. Al acabar cada punto: probar en el navegador, apuntarlo en CLAUDE.md y hacer commit en prueba-juego.",
   "check_label": "Hecho",
@@ -568,7 +568,7 @@
           "id": "f10-creador",
           "tag": "",
           "done": true,
-          "text": "Creador de héroes con datos reales de Army Forge, ficha movible e importador traducido."
+          "text": "Creador de héroes con datos reales del creador de héroes, ficha movible e importador traducido."
         }
       ],
       "done_when": "",

@@ -266,10 +266,10 @@ button{cursor:pointer}
 
     <aside class="side">
       <div class="nt"><h3>Medallones</h3><p>Cerrados, los héroes se apilan como monedas con el número de héroes encima. Al pulsar se abren hacia arriba con su nombre y sus heridas, y arriba del todo aparece el + para añadir un héroe.</p></div>
-      <div class="nt"><h3>Importar de Army Forge</h3><p>Junto a Editar. Pegas el texto que exporta Army Forge y la ficha toma nombre, Calidad, Defensa, heridas (Tough), reglas y armas. Antes de aplicar te enseña lo que ha leído.</p></div>
+      <div class="nt"><h3>Importar del creador de héroes</h3><p>Junto a Editar. Pegas el texto que exporta el creador de héroes y la ficha toma nombre, Calidad, Defensa, heridas (Tough), reglas y armas. Antes de aplicar te enseña lo que ha leído.</p></div>
       <div class="nt"><h3>Experiencia</h3><p>El jugador no la toca: sale del mismo contador que la mesa (principal 2×D, secundario D, Heraldo destruido 2×D; máximo 5×D). Prueba las casillas de «Objetivos» del fondo.</p></div>
       <div class="nt"><h3>Héroe caído</h3><p>Con 0 heridas el retrato se oscurece y aparece una calavera roja, en la ficha y en su medallón.</p></div>
-      <div class="nt q"><h3>Wakiisen</h3><p>Cargado desde tu texto de Army Forge: ogro bárbaro de nivel 4, 285 pts. Las reglas, las habilidades y el equipo van en sus pestañas. La XP de Army Forge (9) no se copia: la de la campaña empieza en 0.</p></div>
+      <div class="nt q"><h3>Wakiisen</h3><p>Cargado desde tu texto del creador de héroes: ogro bárbaro de nivel 4, 285 pts. Las reglas, las habilidades y el equipo van en sus pestañas. La XP del creador de héroes (9) no se copia: la de la campaña empieza en 0.</p></div>
       <button class="reset" type="button" id="reset">Empezar de nuevo con Wakiisen</button>
     </aside>
   </div>
@@ -280,8 +280,8 @@ button{cursor:pointer}
 const KEY="ficha-maqueta-v3",D=3,XPMAX=5*D;
 const PAL=[["#4a3a7a","#211a3a"],["#2f4a6e","#16223a"],["#5a3a2a","#2a1a12"],["#2e5a4a","#122a22"]];
 const mk=(o)=>Object.assign({name:"Nuevo héroe",raza:"",prof:"",nivel:1,pts:0,xp:0,cal:4,def:4,fue:4,des:4,vol:4,hp:3,hpMax:3,pw:0,pwMax:0,pot:0,gold:0,st:[],img:"",sk:[],c:0,af:""},o);
-/* Wakiisen, el héroe de Nacho, tal como lo exporta Army Forge (2026-11-17) */
-const WAKI=`++ Wakiisen - Barbarian (Ogres) [AOFQ 285pts] [Lvl 4] ++
+/* Wakiisen, el héroe de Nacho, tal como lo exporta el creador de héroes (2026-11-17) */
+const WAKI=`++ Wakiisen - Barbarian (Ogres) [EREBO 285pts] [Lvl 4] ++
 
 Wakiisen | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | Tough(18), Destroyer, Barbaric Frenzy
 Dual Hand Weapons (A8)
@@ -333,7 +333,7 @@ const GLOS={
 };
 const gkey=s=>s.n.toLowerCase().replace(/\(.*$/,"").trim();
 function explain(s){if(s.d)return s.d;if(s.g!=="equipo"&&GLOS[gkey(s)])return GLOS[gkey(s)];return ""}
-/* Perfil de un arma en las cuatro casillas de Army Forge: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
+/* Perfil de un arma en las cuatro casillas del creador de héroes: RNG (alcance), ATK (dados), AP y SPE (reglas especiales). */
 function weapon(k){const parts=splitTop(k||"");let rng="",atk="",ap="";const spe=[];
  for(const p of parts){let m;if((m=p.match(/^(\d+)\s*"$/)))rng=m[1]+'"';else if((m=p.match(/^A(\d+)$/i)))atk="A"+m[1];else if((m=p.match(/^AP\((\d+)\)$/i)))ap=m[1];else spe.push(p)}
  const c=(l,v)=>`<span><small>${l}</small><b class="${v?"":"no"}">${v?esc(v):"—"}</b></span>`;
@@ -354,7 +354,7 @@ const stp=(k,v,bare)=>`<span class="stp"><button type="button" data-inc="${k}" d
 function sheet(){const h=H(),C=2*Math.PI*38,fr=h.hpMax?h.hp/h.hpMax:0;
  const head=`<div class="hd"><div class="md ${ko(h)?"dead":""}">${ring(h,84,5)}<div class="pic">${pic(h,"d"+cur)}</div>${ko(h)?SKULL:""}<span class="lvb">NIV ${esc(h.nivel)}</span></div>
  <div class="nmx"><h3>${esc(h.name)}</h3><p>${h.raza?`<span class="tag r">${esc(h.raza)}</span>`:""}${h.prof?`<span class="tag p">${esc(h.prof)}</span>`:""}${!h.raza&&!h.prof?`<span class="tag">Sin raza ni profesión</span>`:""}${h.pts?`<span class="tag">${esc(h.pts)} pts</span>`:""}</p></div></div>
- <div class="acts"><button type="button" class="edb v ${mode==="imp"?"on":""}" data-mode="imp" aria-pressed="${mode==="imp"}">${IC.imp}Importar de Army Forge</button><button type="button" class="edb ${mode==="edit"?"on":""}" data-mode="edit" aria-pressed="${mode==="edit"}">${mode==="edit"?IC.ok+"Hecho":IC.pen+"Editar"}</button></div>`;
+ <div class="acts"><button type="button" class="edb v ${mode==="imp"?"on":""}" data-mode="imp" aria-pressed="${mode==="imp"}">${IC.imp}Importar del creador de héroes</button><button type="button" class="edb ${mode==="edit"?"on":""}" data-mode="edit" aria-pressed="${mode==="edit"}">${mode==="edit"?IC.ok+"Hecho":IC.pen+"Editar"}</button></div>`;
  if(mode==="imp")return `<div class="v2">${head}${importer()}</div>`;
  if(mode==="edit")return `<div class="v2">${head}${form()}</div>`;
  const t=tab,L=h.sk.filter(s=>s.g===t);
@@ -385,12 +385,12 @@ function form(){const h=H();
  <button type="button" class="danger ${delArm?"arm":""}" data-delh>${delArm?"Pulsa otra vez para quitar a "+esc(h.name):"Quitar este héroe"}</button>
  </div>`}
 
-/* ---- importar de Army Forge ---- */
+/* ---- importar del creador de héroes ---- */
 const EX=WAKI;
 /* separa por comas que no estén dentro de paréntesis (admite anidados: AP(1) dentro de (A3, AP(1))) */
 function splitTop(s){const out=[];let d=0,b="";for(const ch of s){if(ch==="(")d++;else if(ch===")")d=Math.max(0,d-1);if(ch===","&&!d){if(b.trim())out.push(b.trim());b=""}else b+=ch}if(b.trim())out.push(b.trim());return out}
-/* Lee la exportación de héroe de Army Forge (AoF: Quest):
-   ++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++
+/* Lee la exportación de héroe de el creador de héroes:
+   ++ Nombre - Profesión (Raza) [EREBO 285pts] [Lvl 4] ++
    Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | 9XP | reglas
    armas · Consumables: 2x Health Potion · Skills: a, b
    También admite el formato de unidad de las listas de ejército (Nombre [1] Q4+ D4+ | pts | reglas). */
@@ -413,7 +413,7 @@ function parseHero(t){
   if((m=l.match(/^Skills?:\s*(.*)$/i))){r.skills.push(...splitTop(m[1]));continue}
   r.weap.push(...splitTop(l).map(x=>{const w=x.match(/^(.+?)\s*\((.*)\)$/);return w?{n:w[1].trim(),k:w[2].trim()}:{n:x,k:""}}));
  }
- if(!u)return {err:"No encuentro la línea del héroe. En Army Forge se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
+ if(!u)return {err:"No encuentro la línea del héroe. En el creador de héroes se ve así: Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …"};
  return r;
 }
 /* Copia a la ficha lo leído. No toca la XP de la campaña (empieza en 0), el oro ni los estados. */
@@ -431,8 +431,8 @@ function applyAF(h,r){
 }
 function importer(){const r=impRes;
  return `<div class="imp">
- <ol class="steps"><li><b>1</b>En Army Forge exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(H().name)}.</li></ol>
- <label class="fl"><span>Texto de Army Forge</span><textarea id="imptxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [AOFQ 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(impTxt)}</textarea></label>
+ <ol class="steps"><li><b>1</b>En el creador de héroes exporta tu héroe como texto y cópialo.</li><li><b>2</b>Pégalo aquí y pulsa Leer.</li><li><b>3</b>Revisa lo que ha encontrado y aplícalo a ${esc(H().name)}.</li></ol>
+ <label class="fl"><span>Texto del creador de héroes</span><textarea id="imptxt" spellcheck="false" placeholder="++ Nombre - Profesión (Raza) [EREBO 285pts] [Lvl 4] ++&#10;Nombre | Qua 3+ Def 6+ Tou 18 Pow 4 | Str 3+ Dex 6+ Wil 6+ | 285pts | …">${esc(impTxt)}</textarea></label>
  <div class="row"><button type="button" class="pri" data-read ${impTxt.trim()?"":"disabled"}>Leer</button><button type="button" class="sec" data-ex>Pegar a Wakiisen</button></div>
  ${r?(r.err?`<div class="prev err"><h4>No se pudo leer</h4><p class="note" style="color:#f3c6d1">${esc(r.err)}</p></div>`:
  `<div class="prev"><h4>Esto es lo que he leído</h4><ul>
@@ -444,7 +444,7 @@ function importer(){const r=impRes;
   ${r.skills.length?`<li>Habilidades: ${esc(r.skills.join(", "))}</li>`:""}
   ${r.weap.length?`<li>Armas: ${esc(r.weap.map(w=>w.n+(w.k?" ("+w.k+")":"")).join(", "))}</li>`:""}
   ${r.pot!=null?`<li>Pociones de salud: ${r.pot}</li>`:""}
-  ${r.afxp!=null?`<li>XP en Army Forge: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
+  ${r.afxp!=null?`<li>XP en el creador de héroes: ${r.afxp} (no se copia: la XP de la campaña empieza en 0)</li>`:""}</ul>
   <p class="note">Se sustituyen características, reglas, habilidades y equipo. La XP de la campaña, el oro y los estados no se tocan.</p>
   <div class="row"><button type="button" class="pri" data-apply>Aplicar a la ficha</button></div></div>`):""}
  </div>`}

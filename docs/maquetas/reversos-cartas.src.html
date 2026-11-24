@@ -378,7 +378,7 @@ function scene(){const s=S.sel,scr=$("#scr");scr.style.setProperty("--ac",s?CAMP
   :`<span class="knum" aria-hidden="true">I</span><p class="keb">Campaña I · Érebo</p><h2>El Pueblo Sin Nombre</h2><p class="hook">Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre.</p><div class="kchips"><span><b>6</b> misiones</span><span><b>2 a 4</b> héroes</span><span>Mesa de <b>48"</b></span></div><p class="kstl"><i></i>1 de 6 misiones disponibles</p><button class="kcta" type="button"><span>Entrar en la campaña</span>${ARROW}</button>`;
  const cards=[`<button class="kcard${s===0?" on":""}" type="button" data-sc="0" style="--o:-2;--cac:#5f86d6"><span class="kart"><img src="${IMG}" alt=""></span><span class="kcn">I</span><span class="kct">El Pueblo Sin Nombre<small>6 misiones</small></span></button>`]
   .concat(CAMP.map((c,k)=>`<button class="kcard${s===k+1?" on":""}" type="button" data-sc="${k+1}" style="--o:${k-1};--cac:${c.ac}" aria-label="Campaña ${c.n}: carta boca abajo">${back(S.col,k)}</button>`));
- scr.innerHTML=`${lay}<header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Age of Fantasy: Quest</span></div></header><div class="kinfo">${info}</div><div class="kfan">${cards.join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
+ scr.innerHTML=`${lay}<header class="kbrand">${SIG}<div><b>Érebo</b><span>Campañas de Érebo</span></div></header><div class="kinfo">${info}</div><div class="kfan">${cards.join("")}</div><p class="khint"><kbd>←</kbd><kbd>→</kbd> cambiar de carta</p>`}
 
 function paint(){document.body.classList.toggle("fx",S.fx);document.body.classList.toggle("anim",S.an);
  $("#swfx").setAttribute("aria-pressed",S.fx);$("#swan").setAttribute("aria-pressed",S.an);

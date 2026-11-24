@@ -1,4 +1,4 @@
-"""Genera src/template/traducciones.json: diccionario para traducir al español lo que sale de Army Forge
+"""Genera src/template/traducciones.json: diccionario para traducir al español lo que sale del creador de héroes
 (raza, profesión, reglas, habilidades, armas y consumibles) y para dar su explicación.
 
 Fuentes (todas del proyecto, no hay red):
@@ -6,7 +6,7 @@ Fuentes (todas del proyecto, no hay red):
   - src/template/tablero.js  (RX: reglas en inglés con su texto en español)
   - src/template/habilidades-base.json (habilidades de clase y comunes, en inglés y español)
   - src/template/heroes-data.json (razas, facciones y clases en español e inglés)
-  - docs/age-of-fantasy-quest-heroes.md (tabla de consumibles)
+  - docs/heroes-campana.md (tabla de consumibles)
   - MANUAL (abajo): reglas comunes de OPR que no están en las fuentes anteriores.
 
 Las palabras clave de las reglas se quedan en inglés (decisión de Nacho): solo se traduce su explicación.
@@ -62,13 +62,13 @@ for f in hd["facs"]:
     out["razas"].setdefault(norm(f["en"]), f["n"])
 
 # --- Consumibles (tabla del documento de héroes): | Nombre | Nombre original | Tier | Precio | Efecto |
-doc = rd(os.path.join(ROOT, "docs", "age-of-fantasy-quest-heroes.md"))
+doc = rd(os.path.join(ROOT, "docs", "heroes-campana.md"))
 for line in doc.splitlines():
     cells = [c.strip() for c in line.strip().strip("|").split("|")]
     if len(cells) == 5 and cells[0] and cells[1] and cells[2].isdigit() and "g" in cells[3]:
         out["consumibles"].setdefault(norm(cells[1]), {"n": cells[0], "d": cells[4]})
 
-# --- Armas: nombres de Army Forge (los perfiles se traducen palabra a palabra con la tabla)
+# --- Armas: nombres del creador de héroes (los perfiles se traducen palabra a palabra con la tabla)
 out["armas"] = {
     "dual hand weapons": "Armas de mano dobles",
     "hand weapon": "Arma de mano",
@@ -91,7 +91,7 @@ out["armas"] = {
     "rapid dark crossbow": "Ballesta oscura rápida",
     "great longbow": "Gran arco largo",
 }
-# Habilidad (no regla) de Destructive, como la exporta Army Forge para Legolas (2026-11-21). Texto de la casa.
+# Habilidad (no regla) de Destructive, como la exporta el creador de héroes para Legolas (2026-11-21). Texto de la casa.
 out["habilidades"].setdefault("destructive", {"n": "Destructivo", "d": "Contra unidades que conservan más de la mitad de su tamaño (o de su Resistente), los impactos ganan AP(+1).", "a": ""})
 
 # --- MANUAL: reglas comunes de OPR que no estaban en las fuentes (texto propio, en español).

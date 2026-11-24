@@ -19,7 +19,7 @@ Marca cada punto cuando lo hayas comprobado en una partida. «Probado» = lo ha 
 | 11 | **Resistencia a hechizos** (enemigos) | Las heridas de un hechizo se ignoran con 2+ (en lugar de 6+) | Sin probar |
 | 12 | **Escudado** no protege de hechizos | Los hechizos no pasan por la Defensa extra de Escudado | Por diseño |
 | 14 | **Solo se puede elegir el hechizo que cumple todos los requisitos** | La lista pone primero los disponibles; los demás salen atenuados con el motivo (faltan fichas, ya intentado, sin enemigos o aliados a rango/vista) y sin botón | Probado |
-| 13 | Los hechizos dependen de la **raza** | Lista por raza (48 listas, 276 hechizos de `docs/age-of-fantasy-quest-heroes.md`). Si no la reconoce, avisa en vez de inventar | Probado (Hombres bestia) |
+| 13 | Los hechizos dependen de la **raza** | Lista por raza (48 listas, 276 hechizos de `docs/heroes-campana.md`). Si no la reconoce, avisa en vez de inventar | Probado (Hombres bestia) |
 
 ## Cómo se consiguen más fichas de hechizo (según las reglas y tu documento)
 

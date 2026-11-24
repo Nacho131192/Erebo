@@ -55,7 +55,7 @@ function weaponsOf(line){const out=[];String(line||"").split(" · ").forEach(l=>
 const wHas=(w,n)=>w.sp.some(s=>new RegExp("^"+n+"\\b","i").test(s));
 const wN=(w,n)=>{for(const s of w.sp){const m=s.match(new RegExp("^"+n+"\\((\\d+)\\)","i"));if(m)return+m[1]}return 0};
 const isMelee=w=>!w.rng||wHas(w,"Assault"),isRanged=w=>w.rng>0;
-/* Cuántos dados tira un arma. En las unidades enemigas, la A del perfil de Army Forge es la de la UNIDAD ENTERA
+/* Cuántos dados tira un arma. En las unidades enemigas, la A del perfil del creador de héroes es la de la UNIDAD ENTERA
    (Goblins arqueros [3], Shortbow A6 = 6 dados con los tres vivos, 2 por miniatura). Cada miniatura que cae
    resta su parte: con dos vivos, 4; con uno, 2. Si no sale exacto, se redondea hacia arriba. Un héroe tira su A. */
 const perM=(A,w)=>A.kind==="u"?w.a*w.x/Math.max(1,A.g.m0):w.a*w.x;
@@ -71,9 +71,9 @@ const wsel=(a,A)=>{const mw=a.ws.filter(isMelee);return mw.length?mw[Math.min((A
 /* Héroe de la partida → su ficha en HS (por nombre, por si se borró o reordenó alguno). */
 function heroOf(gh){let h=HS[gh.hi];if(!h||h.name!==gh.n){const i=HS.findIndex(x=>x.name===gh.n);if(i>=0){gh.hi=i;h=HS[i]}else h=null}return h}
 /* ---------------------------------------------------------------- catálogo de reglas y habilidades
-   Un solo catálogo para héroes y enemigos, en español e inglés (las unidades de Army Forge traen los nombres en inglés y los héroes
-   del creador en español). Habilidades de clase, comunes y dotes: docs/age-of-fantasy-quest-heroes.md (tools/extraer-habilidades.py →
-   habilidades-base.json). Reglas especiales: el resumen del creador (HC.rg, consultado en Army Forge) y RX, que completa las del
+   Un solo catálogo para héroes y enemigos, en español e inglés (las unidades del creador de héroes traen los nombres en inglés y los héroes
+   del creador en español). Habilidades de clase, comunes y dotes: docs/heroes-campana.md (tools/extraer-habilidades.py →
+   habilidades-base.json). Reglas especiales: el resumen del creador (HC.rg, consultado en el creador de héroes) y RX, que completa las del
    reglamento (Core Rules v2.1.0) que aquel no trae. Lo que no está en ninguna parte se dice sin inventarlo. */
 const SKD=%%SK_DATA%%;
 const GLOS=%%GLOS%%;
@@ -113,7 +113,7 @@ const hWeapons=h=>(h.sk||[]).filter(s=>s.g==="equipo"&&s.k&&s.k!=="Consumible"&&
 const HVIDA=[[4,8,12,16],[5,10,15,20],[6,12,18,24],[7,14,21,28],[10,20,30,40]],BOSS_PTS=150;
 const HERALDO=()=>({name:"Heraldo del Umbral",q:3,d:3,rules:`Tough(${HVIDA[Math.max(0,Math.min(4,G.d-1))][Math.max(0,Math.min(3,(G.heroes.length||1)-1))]}), Villain, Fear(3), Stealth, Caster(3)`,w:"Hoz del vacío (A4, AP(2), Rending)",mod:1,pts:BOSS_PTS,n:1});
 /* Ejército enemigo del tablero virtual (2026-11-23): los Borrados de docs/ejercito-borrados-es.md (18 unidades base y 36 variantes),
-   en el formato de Army Forge (el mismo que parseArmy). La mesa sigue con su lista. */
+   en el formato del creador de héroes (el mismo que parseArmy). La mesa sigue con su lista. */
 const BORR_TXT=`++ Ejército de los Borrados (docs/ejercito-borrados-es.md) [Borrados] ++
 
 Sombra Mayor del Pozo [1] Q3+ D6+ | 205pts | Ambush, Empyrean Spirit, Ethereal, Spell Resistance, Tough(9)
@@ -529,7 +529,7 @@ function log(t,k){G.log.unshift({r:G.round,t,k:k||""});G.log=G.log.slice(0,120)}
 const budget=()=>Math.round(heroPts()*PCT[G.d-1]/100);
 function heroPts(){if(G.ptsOv)return G.ptsOv;return selHeroes().reduce((s,h)=>s+(+h.pts||100),0)}
 function selHeroes(){if(!G.hsel)G.hsel=HS.slice(0,4).map(h=>h.name);return G.hsel.map(n=>HS.find(h=>h.name===n)).filter(Boolean)}
-/* Sorteo: unidades de la lista de Army Forge sin pasarse del valor, solo copias que no estén ya en la mesa.
+/* Sorteo: unidades de la lista del creador de héroes sin pasarse del valor, solo copias que no estén ya en la mesa.
    Varios intentos y se queda con el que más se acerca. */
 function drawWave(b,force){const busy=TVA().map(()=>0);if(!force)G.units.forEach(u=>{if(u.hp>0&&busy[u.i]!=null)busy[u.i]++});
  const free=TVA().map((a,i)=>Math.max(0,a.n-busy[i]));
@@ -936,14 +936,14 @@ const ITEMS={elx_hero:{n:"Elixir heroico",use:"self",eff:"+1 a impactar hasta el
  poc_cura:{n:"Poción de curación",use:"ally",eff:"Un héroe a 1″ se quita todos sus estados."},
  poc_tele:{n:"Poción de teletransporte",use:"corner",eff:"El héroe se coloca a 6″ o menos de la esquina que elija."},
  poc_salud:{n:"Poción de salud",use:"ally",eff:"Un héroe a 1″ restaura 3 heridas."},
- mana1:{n:"Poción de maná",use:"self",act:true,eff:"Obtiene 1 ficha de hechizo (máximo 6). Se usa con una acción de habilidad (Army Forge)."},
- mana2:{n:"Gran poción de maná",use:"self",act:true,eff:"Obtiene 2 fichas de hechizo (máximo 6). Se usa con una acción de habilidad (Army Forge)."}};
+ mana1:{n:"Poción de maná",use:"self",act:true,eff:"Obtiene 1 ficha de hechizo (máximo 6). Se usa con una acción de habilidad (el creador de héroes)."},
+ mana2:{n:"Gran poción de maná",use:"self",act:true,eff:"Obtiene 2 fichas de hechizo (máximo 6). Se usa con una acción de habilidad (el creador de héroes)."}};
 /* Clave del objeto según la tabla del cofre (rollChest: a = tipo, b = dado de la subtabla). */
 function keyOf(c){const b=c.b||1;
  if(c.a===3)return b<=3?"elx_hero":b<=5?"elx_conq":"elx_poder";
  if(c.a===4)return b<=3?"bmb_ruido":b<=5?"bmb_grasa":"bmb_atur";
  return b<=3?"poc_cura":b<=5?"poc_tele":"poc_salud"}
-/* Pociones de maná de la tienda de Army Forge (consumibles de la ficha) pasan al inventario al desplegar. */
+/* Pociones de maná de la tienda del creador de héroes (consumibles de la ficha) pasan al inventario al desplegar. */
 function syncMana(h){(h.sk||[]).forEach(s=>{if(s.g==="equipo"&&s.k==="Consumible"&&!s.syn&&/poci[oó]n de man[aá]|mana potion/i.test(s.n||"")){s.syn=1;h.inv=(h.inv||[]).concat({id:Math.random().toString(36).slice(2,8),k:/gran|great/i.test(s.n)?"mana2":"mana1"})}})}
 function addItem(h,k){h.inv=(h.inv||[]).concat({id:Math.random().toString(36).slice(2,8),k});hfSync()}
 const onBoardChests=()=>(G.chests||[]).filter(t=>t.st!=="taken").length;
@@ -1070,7 +1070,7 @@ function chestHint(a,dis){const t=chestTarget(a);if(!t)return`<em>Ningún cofre 
    Core Rules, Caster(X): X fichas de hechizo al inicio de cada ronda (máximo 6). Una vez por activación, ANTES de atacar, se gastan tantas fichas
    como el valor del hechizo para intentar lanzar uno o varios (un intento por hechizo): se elige objetivo, se tira un dado y con 4+ surte efecto.
    Antes de tirar se pueden gastar fichas o poder para +1 a la tirada por cada una. Los hechizos dependen de la raza (SPELLS, de
-   docs/age-of-fantasy-quest-heroes.md). Los de impactos se resuelven solos; los demás se pagan y se tiran, y el efecto se anota («a mano»). */
+   docs/heroes-campana.md). Los de impactos se resuelven solos; los demás se pagan y se tiran, y el efecto se anota («a mano»). */
 const casterX=a=>a&&a.kind==="h"?ruleN(a.rules,"Caster"):0;
 function tokOf(gh){const a=actor(gh.id),X=casterX(a);if(X&&gh.tokR!==G.round){gh.tok=Math.min(6,(gh.tok||0)+X);gh.tokR=G.round}return gh.tok||0}
 /* Lista de hechizos de la raza del héroe (el nombre de la raza puede venir como «Raza · Perfil»). */
@@ -1249,7 +1249,7 @@ function diceHTML(){const D=U.dice;if(!D||D.st==="gone")return"";const sm=D.smal
   ctl=`<div class="tv-row c"><button type="button" class="tv-btn big" data-tv="droll">Lanzar dados</button><button type="button" class="tv-ghostb" data-tv="dman">Meter los números a mano</button></div>`}
  else{row=D.vals.map((v,i)=>`<span class="tv-dx${sm?" sm":""}${done?(D.ok(v,i)?" ok":" ko"):" rol"}">${dieFace(v,sm)}</span>`).join("");
   ctl=done?`<p class="tv-dsum"><b>${D.vals.filter((v,i)=>D.ok(v,i)).length}</b> de ${D.n} · ${esc(D.need)}</p>${D.own?`<div class="tv-row c"><button type="button" class="tv-btn big" data-tv="dnext">Seguir</button></div>`:""}`:`<p class="tv-dsum">Rodando los dados…</p>`}
- return`<div class="tv-dtray ${D.own?"own":"ai"}" role="dialog" aria-modal="true" aria-label="Tirada de dados"><p class="tv-lab">${D.own?"Tira tú los dados":"Tirada de la IA"}</p><b class="tv-dt">${esc(D.title)}</b><p class="tv-dsub">${esc(D.sub)}</p><div class="tv-dgrid${D.groups?" grp":""}">${D.groups?groupRow(D,row):row}</div>${ctl}</div>`}
+ return`<div class="tv-dtray ${D.own?"own":"ai"}" role="dialog" aria-modal="true" aria-label="Tirada de dados"><p class="tv-lab">${D.own?"Tira tú los dados":"Tirada de los Borrados"}</p><b class="tv-dt">${esc(D.title)}</b><p class="tv-dsub">${esc(D.sub)}</p><div class="tv-dgrid${D.groups?" grp":""}">${D.groups?groupRow(D,row):row}</div>${ctl}</div>`}
 /* Con grupos (ataque conjunto): cada unidad en su bloque, con su nombre encima. */
 function groupRow(D,row){const cells=row.split("</span>").filter(s=>s.trim()).map(s=>s+"</span>");if(cells.length!==D.n)return row;let k=0;
  return D.groups.map(g=>{const part=cells.slice(k,k+g.n).join("");k+=g.n;return`<div class="tv-dgroup"><small>${esc(g.label)}</small><div class="tv-dgrid">${part}</div></div>`}).join("")}
@@ -1260,7 +1260,7 @@ function primHTML(){const P=U.prim;if(!P)return"";const el=Math.max(0,(Date.now(
  <div class="tv-diary"><b>${esc(P.hero)} ha conseguido el diario del olvidado</b><span>${esc(DIARY.d)}</span></div><small>Toca para cerrar</small></div></div>`}
 function wilHTML(){const w=U.wilAsk;return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Tirada de Voluntad fallida"><div class="tv-confc"><b>${esc(w.name)} falla la tirada de ${esc(w.what||"Voluntad")}</b><p>Puede gastar ${w.cost||2} de poder para que cuente como superada (Core Rules). Ahora tiene ${w.pw} de poder.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="wily">Gastar ${w.cost||2} de poder</button><button type="button" class="tv-ghostb" data-tv="wiln">No gastar</button></div></div></div>`}
 function confirmHTML(){const names=pendingHeroes().map(gh=>{const h=heroOf(gh);return esc(h?h.name:gh.n)});
- return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Confirmar el final del turno"><div class="tv-confc"><b>¿Terminar el turno de los héroes?</b><p>${names.join(", ")} todavía ${names.length>1?"tienen":"tiene"} acciones por hacer. Si terminas ahora las pierden y pasa el turno de la IA.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="toai2">Sí, terminar el turno</button><button type="button" class="tv-ghostb" data-tv="noconf">Volver</button></div></div></div>`}
+ return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="Confirmar el final del turno"><div class="tv-confc"><b>¿Terminar el turno de los héroes?</b><p>${names.join(", ")} todavía ${names.length>1?"tienen":"tiene"} acciones por hacer. Si terminas ahora las pierden y pasa el turno de los Borrados.</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="toai2">Sí, terminar el turno</button><button type="button" class="tv-ghostb" data-tv="noconf">Volver</button></div></div></div>`}
 /* ---------------------------------------------------------------- carteles de fase
    Petición de Nacho (2026-11-20): en cada cambio de fase sale un cartel en el centro que se cierra al tocarlo o solo, a los pocos segundos. */
 /* Petición de Nacho (2026-11-20): los carteles ya no se cierran solos; hay que tocarlos (o Escape) para seguir. */
@@ -1280,7 +1280,7 @@ function roundBanner(){if(G.over)return Promise.resolve();
  return heroBanner()}
 /* Turno de los enemigos: los héroes que no hayan terminado pierden lo que les quede. */
 async function toAI(){if(U.busy||G.phase!=="heroes"||G.over)return;U.busy=true;G.heroes.forEach(gh=>{if(gh.act!==2)gh.act=2});G.cur=-1;G.act=null;U.dest=null;U.sel="";save();paint();
- U.camLock=true;camReset();scrollBoard();toast("Turno de los enemigos: la IA actúa");await sleep(1300);U.busy=false;runAI()}
+ U.camLock=true;camReset();scrollBoard();toast("Turno de los Borrados: se mueven");await sleep(1300);U.busy=false;runAI()}
 /* Cuando todos los héroes han terminado, pasa solo al turno de los enemigos (espera a que se cierren dados y carteles). */
 function autoAI(){if(G.phase!=="heroes"||G.over||!heroesDone())return;if(U.busy||U.dice||U.wilAsk||U.prim||U.ban||U.evfx||U.confirm){setTimeout(autoAI,400);return}toAI()}
 /* Fin de ronda: cartel con lo que ha subido la alerta y, sin pulsar nada, empieza la siguiente. */
@@ -1507,14 +1507,26 @@ function overlay(){let s="";const gh=G.cur>=0?G.heroes[G.cur]:null,a=gh?actor(gh
  return s}
 
 /* ---------------------------------------------------------------- panel lateral */
-const PH=[["event","Evento de la Ruptura"],["heroes","Héroes"],["ai","IA"],["end","Fin de ronda"]];
+const PH=[["event","Evento de la Ruptura"],["heroes","Héroes"],["ai","Borrados"],["end","Fin de ronda"]];
 function pips(){return`<span class="tv-pips" aria-label="Alertness ${G.al} de 6">${[1,2,3,4,5,6].map(k=>`<i class="${k<=G.al?"on":""}${k===6?" six":""}"></i>`).join("")}</span>`}
-function head(){const live=G.phase!=="setup"&&G.phase!=="deploy";
- const steps=live?`<ol class="tv-steps">${PH.map(([k,l],i)=>{const cur=G.phase===k,past=PH.findIndex(p=>p[0]===G.phase)>i,skip=k==="event"&&G.phase!=="event"&&!(G.ev&&G.ev.r===G.round);return`<li class="${cur?"cur":""}${past?" past":""}${skip&&!cur?" skip":""}"><b>${i+1}</b>${l}</li>`}).join("")}</ol>`:"";
+/* Cabecera «mesa de mando» (2026-11-24): fases en píldoras, estado de la partida y menú Partida (nueva partida y pruebas). */
+const SVGI=(p,c)=>`<svg viewBox="0 0 24 24" aria-hidden="true"${c?` class="${c}"`:""}>${p}</svg>`;
+const ICO={moon:'<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',
+ chev:'<path d="M6 9l6 6 6-6"/>',check:'<path d="M5 12l5 5 9-10"/>',doc:'<path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/>',bag:'<path d="M6 8h12l-1 12H7zM9 8V6a3 3 0 0 1 6 0v2"/>',
+ ruler:'<path d="M3 17L17 3l4 4L7 21zM7 13l2 2M10 10l2 2M13 7l2 2"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ adv:'<path d="M4 12h14M13 6l6 6-6 6"/>',rush:'<path d="M4 6l6 6-6 6M12 6l6 6-6 6"/>',scu:'<path d="M3 17c4 0 4-10 9-10s5 10 9 10"/>',atk:'<path d="M14 4h6v6L9 21l-6-6L14 4z"/>',
+ shoot:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',chg:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+ obj:'<path d="M12 3c3 4 5 6 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',chest:'<path d="M4 10h16v9H4zM4 10l2-5h12l2 5M10 13h4"/>',sec:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>',
+ rev:'<path d="M12 5v14M5 12h14"/>',cast:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/>',rest:'<path d="M20 14A8 8 0 1 1 10 4a6 6 0 0 0 10 10z"/>',
+ hold:'<path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/>',extra:'<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'};
+function head(){const live=G.phase!=="setup"&&G.phase!=="deploy",ci=PH.findIndex(p=>p[0]===G.phase),T=G.tracks||[];
+ const steps=live?`<ol class="tv-steps">${PH.map(([k,l],i)=>{const cur=G.phase===k,past=ci>i,skip=k==="event"&&G.phase!=="event"&&!(G.ev&&G.ev.r===G.round);return`<li class="${cur?"cur":""}${past?" past":""}${skip&&!cur?" skip":""}">${past&&!skip?SVGI(ICO.check):""}${k==="event"?"Evento":l}</li>`}).join("")}</ol>`:"";
+ const dev=G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over;
+ const menu=U.pmenu?`<div class="tv-pmenu" role="menu"><button type="button" role="menuitem" class="${U.sure?"arm":""}" data-tv="reset">${U.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>${dev?`<button type="button" role="menuitem" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</div>`:"";
  return`<header class="tv-head"><button type="button" class="tv-x" data-tv="close" aria-label="Cerrar el tablero virtual"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
- <div class="tv-tt"><small>Prototipo · Reglas de OPR v2.1</small><b>Tablero virtual</b></div>
- ${live?`<div class="tv-stat"><span><small>Ronda</small><b>${G.round}</b></span><span class="tv-tod ${tod()}"><small>Luz</small><b>${tod()}</b></span><span><small>Alertness</small>${pips()}</span><span class="tv-rk${G.prim?" ok":""}"><small>Rastros</small><b>${(G.tracks||[]).filter(t=>t.on).length}/${(G.tracks||[]).length||2}</b></span></div>`:""}
- <div class="tv-hact">${live||G.phase==="deploy"?`<button type="button" class="tv-ghostb${U.sure?" arm":""}" data-tv="reset">${U.sure?"¿Seguro? Pulsa otra vez":"Nueva partida"}</button>`:""}</div>${steps}</header>`}
+ <div class="tv-tt"><small>Érebo · Misión I</small><b>El pueblo vacío</b></div>${steps||"<span></span>"}
+ ${live?`<div class="tv-stat"><span><small>Ronda</small><b>${G.round}</b></span><span class="tv-tod ${tod()}"><small>Luz</small><b>${SVGI(tod()==="Noche"?ICO.moon:ICO.sun)}${tod()}</b></span><span><small>Alerta ${G.al}/6</small>${pips()}</span><span class="tv-rk${G.prim?" ok":""}"><small>Rastros</small><b>${T.filter(t=>t.on).length}<em>/${T.length||2}</em></b></span></div>`:"<span></span>"}
+ <div class="tv-hact">${live||G.phase==="deploy"?`<div class="tv-pm"><button type="button" class="tv-pmb" data-tv="pmenu" aria-expanded="${!!U.pmenu}" aria-haspopup="menu">Partida${SVGI(ICO.chev)}</button>${menu}</div>`:""}</div></header>`}
 function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(),st=ko?"Inconsciente":gh.act===2?"Ya ha actuado":gh.act===1?"Activo":"Por activar";
  const canAct=G.phase==="heroes"&&!U.busy&&!ko&&gh.act!==2&&G.cur<0,pend=G.phase==="heroes"&&!ko&&gh.act!==2;
  return`<div class="tv-hcw"><button type="button" class="tv-hc${G.cur===i?" cur":""}${ko?" ko":""}${gh.act===2?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa">
@@ -1817,7 +1829,7 @@ function ruleBody(R){const inf=ruleInfo(R.l),o=R.o?actor(R.o):null,SX=inf.kind!=
  const meta=inf.kind!=="regla"?`<p class="tv-sub">${inf.kind==="dote"?"Se usa al activarse, sin gastar acción ni tirada.":(freeSpec?`No gasta acción (se hace antes de atacar) · tirada de <b>${esc(inf.a)}</b> solo en la dificultad EXTREMA. Si falla, el héroe puede gastar 1 de poder para superarla.`:`Acción de habilidad (1 acción) · tirada de <b>${esc(inf.a)}</b>${selfSpec?", salvo que sea sobre sí mismo y no esté en contacto con un enemigo (entonces se aplica sin tirada)":""}. Si falla, el héroe puede gastar 1 de poder para superarla.`)}${inf.cls&&inf.cls!=="Comunes"?` · ${esc(inf.cls)}${inf.tier>0?`, tier ${inf.tier}`:""}`:""}</p>`:"";
  return`
   <header><p class="tv-lab">${MOD_TAG[inf.kind]}${o?` · ${esc(o.name)}`:""}</p><b class="tv-in">${esc(esN(R.l))}</b><button type="button" class="tv-ix" data-tv="rclose" aria-label="Cerrar">×</button></header>
-  ${inf.t?`<p class="tv-rtext">${esc(inf.t)}</p>`:`<p class="tv-rtext none">Todavía no tengo la descripción de esta regla: no está en la investigación guardada. Cópiala de su ficha de Army Forge y dímela para añadirla. Queda apuntada como pendiente de revisión.</p>`}
+  ${inf.t?`<p class="tv-rtext">${esc(inf.t)}</p>`:`<p class="tv-rtext none">Todavía no tengo la descripción de esta regla: no está en la investigación guardada. Cópiala de su ficha del creador de héroes y dímela para añadirla. Queda apuntada como pendiente de revisión.</p>`}
   ${meta}${state}${useSection(R,inf,o)}
   <div class="tv-row"><button type="button" class="tv-ghostb" data-tv="rclose">Cerrar</button></div>`}
 function ruleModal(){const R=U.rinfo;if(!R||!R.modal)return"";return`<div class="tv-rveil"><div class="tv-rscrim" data-tv="rclose"></div><section class="tv-rmod" role="dialog" aria-modal="true" aria-label="${esc(R.l)}">${ruleBody(R)}</section></div>`}
@@ -1886,6 +1898,11 @@ function fxRow(g){const ids=[...new Set(((g&&g.fx)||[]).filter(e=>e.id).map(e=>e
 function actGroups(list){const off=x=>/data-k="[^"]+" disabled/.test(x),on=list.filter(x=>!off(x)),no=list.filter(off);
  const open=!!U.actOff;
  return on.join("")+(no.length?`<div class="tv-offg${open?" open":""}"><button type="button" class="tv-offt" data-tv="actoff" aria-expanded="${open}"><span>Acciones no disponibles <b>${no.length}</b></span><i aria-hidden="true">${FOLD(open)}</i></button>${open?`<div class="tv-offl">${no.join("")}</div>`:""}</div>`:"")}
+/* Grupos de acciones de la mesa de mando y su texto corto (la descripción completa va en el título del botón). */
+const ACAT=[["Movimiento",["adv","rush","scu"]],["Combate",["atk","shoot","chg"]],["Misión",["obj","chest","sec","rev"]],["Magia, descanso y extra",["cast","rest","hold","extra"]]];
+function actShort(k,lim,gh){switch(k){case"adv":return`${inch(lim)} · puede disparar`;case"rush":return`${inch(lim)} · sin disparar`;case"scu":return"Si está trabado";case"atk":return`A ${CT} o menos`;
+ case"shoot":return"Quieto y dispara";case"chg":return`Hasta ${inch(lim)}`;case"obj":return"Voluntad junto al rastro";case"chest":return"Cofre a 6″ o menos";case"sec":return"Voluntad junto al pozo";
+ case"rev":return"3 de poder · +3 heridas";case"cast":return`Fichas ${tokOf(gh)} de 6`;case"rest":return"Recupera el poder";case"hold":return"Se queda quieto";default:return""}}
 function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(U.revPick){const ts=U.revPick.ids.map(i=>actor(i)).filter(t=>t&&t.ko());
   return`<div class="tv-box"><b>${esc(h.name)} reanima a…</b><p>Elige a quién reanimar: gasta 3 de poder y le devuelve 3 heridas.</p><div class="tv-endb">${ts.map(t=>`<button type="button" class="tv-btn sm" data-tv="rvto" data-id="${t.id}">${esc(t.name)} · ${t.h.hp}/${t.h.hpMax}</button>`).join("")}<button type="button" class="tv-ghostb sm" data-tv="rvx">Cancelar</button></div></div>`}
@@ -1893,11 +1910,11 @@ function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  if(!A){const done=gh.done||[],Lf=freeA(gh),advS=gh.advShot&&a.ws.some(isRanged);
  /* Acción extra (3 de poder): una acción más, con el mismo formato que las demás. */
  const xOn=!!gh.ex,xDis=!xOn&&!(usedA(gh)===2&&canExtra(gh));
- const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""}><b>Acción extra</b><small>Gasta 3 de poder y hace una acción más.</small>${xOn?"<em>Marcada: se gastan 3 de poder al elegirla.</em>":xDis?"<em>Solo cuando ya ha usado sus dos acciones y tiene 3 de poder</em>":""}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${actGroups(ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
-   return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="cast"?castHint(gh,a):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).concat([xHTML]))}</div>
+ const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""} title="Gasta 3 de poder y hace una acción más."><span class="tv-at">${SVGI(ICO.extra)}<i>3 poder</i></span><b>Acción extra</b>${xOn?"<em>Marcada: 3 de poder al elegirla</em>":xDis?"<em>Tras sus 2 acciones y con 3 de poder</em>":"<small>Una acción más</small>"}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
+  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<div class="tv-agroups">${(()=>{const T={};ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).forEach(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
+   const ems=`${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="cast"?castHint(gh,a):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}`,sub=dis&&ems?ems:`<small>${actShort(k,lim,gh)}</small>`;T[k]=`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""} title="${esc(d)}"><span class="tv-at">${SVGI(ICO[k])}<i>${k==="cast"?"Gratis":ACOST[k]+" acc."}</i></span><b>${l}</b>${sub}</button>`});T.extra=xHTML;return ACAT.map(([n,ks])=>{const h=ks.map(k=>T[k]||"").join("");return h?`<div class="tv-agrp"><p class="tv-agl">${n}</p><div class="tv-agrid">${h}</div></div>`:""}).join("")})()}</div>
   ${skillBar(gh,a)}
-  `}
+  <div class="tv-afoot"><button type="button" class="tv-btn alt tv-pick" data-tv="unpick" ${done.length||G.act?"disabled":""} title="${done.length||G.act?"Ya ha empezado su activación: termínala antes de elegir a otro":"Vuelve a la tira para activar a otro héroe antes que a este"}">Elegir otro héroe</button><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div>`}
  const k=A.k,lab=(ACTS.find(x=>x[0]===k)||[0,"Habilidad"])[1];
  if(A.st==="fight")return`<div class="tv-box"><b>${lab} · en curso</b><p>Se resuelve el combate: sigue los dados en la bandeja.</p></div>`;
  if(A.st==="atk"){const t=atkTargets(a);return`<div class="tv-box"><b>Atacar · cuerpo a cuerpo</b><p>${t.length?"Toca el enemigo al que golpea (marcado en rojo). No carga: sin bonos de carga.":"No hay ningún enemigo a "+CT+" o menos."}</p>${wpnPick(a,A)}<div class="tv-tlist">${t.map(u=>`<button type="button" class="tv-tgt" data-tv="tgt" data-id="${u.id}"><b>${esc(u.name)}</b><small>a ${inch(gap(a,u))}</small><span class="tv-ii" role="button" tabindex="0" title="Ver la ficha" data-tv="uinfo" data-id="${u.id}">ⓘ</span></button>`).join("")}</div><div class="tv-row">${cxl(A)}</div></div>`}
@@ -1999,7 +2016,7 @@ function deployMenu(){
  <div class="tv-seg c4">${[1,2,3,4].map(c=>`<button type="button" class="${G.hc===c?"on":""}${cornerOk(c)?"":" lock"}" data-tv="corner" data-c="${c}" ${cornerOk(c)?"":`disabled aria-disabled="true" title="Hay un rastro en este cuadrante"`}><b>${c}</b><small>${cornerOk(c)?["Noroeste","Noreste","Sureste","Suroeste"][c-1]:"Con rastro"}</small></button>`).join("")}</div></div>
  <button type="button" class="tv-btn big" data-tv="start" ${G.hc?"":"disabled"}>Empezar la partida</button></div></div>`}
 function aiPanel(){const c=G.aiCur,tot=G.aiTot||0;
- return`<div class="tv-ai"><p class="tv-lab">Turno de la IA · unidad ${Math.min(G.aiDone.length+1,tot)} de ${tot}</p>${c?`<b>${esc(actor(c.id)?actor(c.id).name:"")}</b><p>${esc(c.why)}</p>`:"<p>Preparando…</p>"}<span class="tv-spin" aria-hidden="true"></span></div>`}
+ return`<div class="tv-ai"><p class="tv-lab">Los Borrados se mueven · unidad ${Math.min(G.aiDone.length+1,tot)} de ${tot}</p>${c?`<b>${esc(actor(c.id)?actor(c.id).name:"")}</b><p>${esc(c.why)}</p>`:"<p>Preparando…</p>"}<span class="tv-spin" aria-hidden="true"></span></div>`}
 function endPanel(){const e=G.endInfo||{};
  return`<div class="tv-end"><p class="tv-lab">Fin de la ronda ${e.r||G.round}</p>${e.none?`<div class="tv-box warn tv-noen"><b>No quedan enemigos en la mesa</b><p>No se tira el dado de alerta: la Alertness sube 2 (Campaign Builder).</p></div>`:""}<div class="tv-alrow">${pips()}<span>${e.pending?"Tirando el dado de alerta…":e.none?`Sin enemigos: Alertness +2`:`Dado ${e.die}: Alertness +${e.add}`}</span></div>${e.rf?`<p class="tv-box warn"><b>¡Refuerzos!</b> La alerta llegó a 6: entran ${e.n} unidades por las esquinas (en rojo) y al empezar la ronda se tira el evento de la Ruptura.</p>`:""}<button type="button" class="tv-btn big" data-tv="next">Empezar la ronda ${G.round+1}</button></div>`}
 function overPanel(){const o=G.over,T=G.tracks||[];
@@ -2007,12 +2024,20 @@ function overPanel(){const o=G.over,T=G.tracks||[];
  if(o==="won")return`<div class="tv-end won"><p class="tv-lab">Final de la misión</p><h3>Misión finalizada</h3><p>${G.noXP?"Se han ido sin experiencia ni oro.":"Han escapado con la experiencia y el botín."}</p>${sum}<button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`;
  if(o==="quit")return`<div class="tv-end lost"><p class="tv-lab">Final de la misión</p><h3>Os habéis rendido</h3><p>Los héroes se retiran del pueblo. La misión se da por perdida y hay que repetir el capítulo.</p>${sum}<button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`;
  return`<div class="tv-end lost"><p class="tv-lab">Derrota</p><h3>Todos los héroes han caído</h3><p>Según el Campaign Builder, cuando todos los héroes están inconscientes a la vez, la misión fracasa y hay que repetir el capítulo.</p>${sum}<button type="button" class="tv-btn big" data-tv="reset2">Nueva partida</button></div>`}
+/* Tira con los cuatro héroes (siempre visible durante una activación): toca uno para ver su ficha. */
+function roster(){return`<div class="tv-ros">${G.heroes.map((gh,i)=>{const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(),tot=2+(gh.ex?1:0),left=gh.act===2||ko?0:Math.max(0,tot-Math.min(tot,usedA(gh)));
+ return`<button type="button" class="tv-rh${G.cur===i?" cur":""}${gh.act===2||ko?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha de ${esc(h.name)}"><span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span><span class="tv-rhn">${esc(h.name)}</span><span class="tv-rhp" aria-label="${left} de ${tot} acciones">${Array.from({length:tot},(_,k)=>`<i class="${k<left?"f":""}"></i>`).join("")}</span></button>`}).join("")}</div>`}
+/* Ficha del héroe que está actuando: nombre, estado, barras, acciones, fichas de hechizo e inventario. */
+function activeCard(){const gh=G.heroes[G.cur],a=gh&&actor(gh.id);if(!a)return"";const h=a.h;
+ return`<article class="tv-ahc"><div class="tv-ahh"><span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span><div class="tv-ahn"><b>${esc(h.name)}</b><small>${esc(h.prof||"Héroe")} · Nivel ${h.nivel||1}${h.st.length?` · <em>${h.st.map(s=>ST_N[s]).join(", ")}</em>`:""}</small></div><button type="button" class="tv-ghostb sm tv-ficha" data-tv="heroinfo" data-i="${G.cur}">${SVGI(ICO.doc)}Ficha</button></div>
+ <div class="tv-ahb"><span class="tv-bar hp"><i style="width:${(h.hpMax?h.hp/h.hpMax*100:0).toFixed(0)}%"></i><em>Heridas ${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>Poder ${h.pw}/${h.pwMax}</em></span></div>
+ <div class="tv-ahr">${actPips(gh)}${casterX(a)?`<span class="tv-tokl">Fichas de hechizo <b>${tokOf(gh)} de 6</b></span>`:""}${!G.act?`<button type="button" class="tv-btn sm tv-invbtn" data-tv="inv">${SVGI(ICO.bag)}Inventario</button>`:""}</div>${fxRow(gh)}</article>`}
 function sideMain(){let main="";
  if(G.over)main="";
  else if(G.phase==="setup")main=setupPanel();
  else if(G.phase==="deploy")main=deployPanel();
  else if(G.phase==="event")main=evCard();
- else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes · actúan en el orden que quieras</p><div class="tv-hcs">${G.heroes.map((gh,i)=>G.cur>=0&&i!==G.cur?"":heroCard(gh,i)).join("")}</div>${G.cur>=0?actPanel():""}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de la IA":"Terminar el turno de los héroes"}</button>`:""}`}
+ else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes${G.cur<0?" · actúan en el orden que quieras":""}</p>${G.cur>=0?`${roster()}${activeCard()}${actPanel()}`:`<div class="tv-hcs">${G.heroes.map(heroCard).join("")}</div>`}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de los Borrados":"Terminar el turno de los héroes"}</button>`:""}`}
  else if(G.phase==="ai")main=aiPanel();
  else if(G.phase==="end")main=endPanel();
  return main}
@@ -2031,7 +2056,7 @@ function objWin(){if(G.phase==="setup"||G.phase==="deploy")return"";
  const both=!!(G.prim&&G.sec);
  const boss=G.bossDown?`<p class="tv-objb done">El Heraldo del Umbral ha desaparecido.</p>`:G.boss?`<p class="tv-objb">El Heraldo del Umbral está en la mesa.</p>`:G.bossArmed?`<p class="tv-objb">El Heraldo llega al final de esta ronda.</p>`:`<button type="button" class="tv-btn sm" data-tv="bossask" ${both?"":"disabled"}>Luchar contra el jefe</button>${both?"":`<small class="tv-objn">Se activa al cumplir los dos objetivos.</small>`}`;
  return`<section class="tv-obw${col?" col":""}"><div class="tv-hdtop"><p class="tv-lab">Objetivos de la misión</p><button type="button" class="tv-fold${col&&escReady()?" glow":""}" data-tv="objtog" aria-expanded="${col?"false":"true"}" title="${col?"Desplegar los objetivos":"Recoger los objetivos"}" aria-label="${col?"Desplegar los objetivos":"Recoger los objetivos"}">${FOLD(!col)}</button></div>
- ${col?"":`<p class="tv-objh">Principal · Rastros del pueblo <em>${T.filter(t=>t.on).length}/${T.length}</em></p><ul class="tv-objl">${T.map(t=>item(t.on,(["Primer","Segundo"][t.i]||"Otro")+" rastro",t.on?(t.by?"Recuperado por "+esc(t.by):""):"Pendiente")).join("")}</ul>${G.prim&&G.diary?`<small class="tv-objn">${esc(G.diary)} lleva el diario del olvidado.</small>`:""}
+ ${col?`<div class="tv-objsum"><span><small>Principal</small><b class="${G.prim?"ok":""}">${T.filter(t=>t.on).length}/${T.length}</b></span><span><small>Secundario</small><b class="${G.sec?"ok":G.prim?"":"mu"}">${G.sec?"Hecho":G.prim?"Activo":"Bloqueado"}</b></span><span><small>Jefe</small><b class="${G.bossDown?"ok":"mu"}">${G.bossDown?"Vencido":G.boss?"En la mesa":G.bossArmed?"Llega":"Opcional"}</b></span></div>`:`<p class="tv-objh">Principal · Rastros del pueblo <em>${T.filter(t=>t.on).length}/${T.length}</em></p><ul class="tv-objl">${T.map(t=>item(t.on,(["Primer","Segundo"][t.i]||"Otro")+" rastro",t.on?(t.by?"Recuperado por "+esc(t.by):""):"Pendiente")).join("")}</ul>${G.prim&&G.diary?`<small class="tv-objn">${esc(G.diary)} lleva el diario del olvidado.</small>`:""}
  <p class="tv-objh">Secundario · Contener el Olvido</p><ul class="tv-objl">${item(!!G.sec,"Tirada de Voluntad junto al pozo",G.sec?(G.secBy?"Lo ha conseguido "+esc(G.secBy):""):G.prim?"Sin enemigos a menos de 5″ del pozo":"Se activa al cumplir el principal")}</ul>
  <p class="tv-objh">Jefe · Heraldo del Umbral <em class="tv-opt">Opcional</em></p>${boss}
  <div class="tv-row tv-objr"><button type="button" class="tv-btn sm${escReady()?" glow":""}" data-tv="finask" ${G.prim?"":"disabled"} ${G.prim?"":`title="Primero hay que cumplir el objetivo principal"`}>Finalizar misión</button><button type="button" class="tv-ghostb bad" data-tv="surask">Rendirse</button></div>`}</section>`}
@@ -2040,8 +2065,11 @@ function askHTML(){const a=U.ask;if(!a)return"";
 function sideLog(){
  const col=U.logCol,logH=`<section class="tv-log${col?" col":""}"><header><b>Registro de actividad</b><span class="tv-lhr">${G.log.length?`<small>${G.log.length}</small>`:""}<button type="button" class="tv-fold" data-tv="logtog" aria-expanded="${col?"false":"true"}" title="${col?"Desplegar el registro":"Recoger el registro"}" aria-label="${col?"Desplegar el registro":"Recoger el registro"}">${FOLD(!col)}</button></span></header>${col?"":G.log.length?`<ol>${G.log.map(l=>`<li class="${l.k}"><small>R${l.r}</small>${linkNames(esc(l.t))}</li>`).join("")}</ol>`:`<p class="tv-empty">Aquí irá contándose todo lo que ocurra en la partida.</p>`}</section>`;
  return`<div class="tv-slogw">${combatCard()}${logH}</div>`}
-function legend(){return`<div class="tv-leg"><span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><svg viewBox="-16 -34 32 52" width="13" height="21" aria-hidden="true">${tBraz(0,0,true)}</svg>Objetivo principal</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#b07a3a"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#7a4a22" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><rect x="-2.5" y="-1.5" width="5" height="5" rx="1" fill="#e6cf8e"/></svg>Cofre cerrado</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#ffd678"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#c8862f" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><circle cx="11" cy="-11" r="6" fill="#e8c77a"/><text x="11" y="-7.4" font-size="9" font-weight="800" text-anchor="middle" fill="#0b0d16">!</text></svg>Cofre abierto</span><button type="button" class="tv-chipb${U.ruler?" on":""}" data-tv="ruler" title="Toca dos puntos del mapa para medir la distancia">${U.ruler?"Quitar la regla":"Regla"}</button><button type="button" class="tv-chipb${U.obs?" on":""}" data-tv="obs">${U.obs?"Ocultar":"Ver"} obstáculos</button><span class="tv-zbtns"><button type="button" class="tv-zb" data-tv="zin" aria-label="Acercar" title="Acercar">+</button><button type="button" class="tv-zb" data-tv="zout" aria-label="Alejar" title="Alejar">−</button></span></div>`}
-
+/* Barra bajo el mapa (2026-11-24): leyenda en un desplegable y herramientas (regla, obstáculos, zoom). */
+function legend(){const L=!!U.legOpen;
+ const items=`<span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><svg viewBox="-16 -34 32 52" width="13" height="21" aria-hidden="true">${tBraz(0,0,true)}</svg>Objetivo principal</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#b07a3a"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#7a4a22" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><rect x="-2.5" y="-1.5" width="5" height="5" rx="1" fill="#e6cf8e"/></svg>Cofre cerrado</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#ffd678"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#c8862f" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><circle cx="11" cy="-11" r="6" fill="#e8c77a"/><text x="11" y="-7.4" font-size="9" font-weight="800" text-anchor="middle" fill="#0b0d16">!</text></svg>Cofre abierto</span>`;
+ return`<div class="tv-tbar"><div class="tv-legw">${L?`<div class="tv-legp" role="group" aria-label="Leyenda del mapa">${items}</div>`:""}<button type="button" class="tv-legb" data-tv="legtog" aria-expanded="${L}">Leyenda${FOLD(!L)}</button></div>
+ <div class="tv-tools"><button type="button" class="tv-tb${U.ruler?" on":""}" data-tv="ruler" aria-label="${U.ruler?"Quitar la regla":"Regla"}" title="${U.ruler?"Quitar la regla":"Regla: toca dos puntos del mapa para medir la distancia"}">${SVGI(ICO.ruler)}</button><button type="button" class="tv-tb${U.obs?" on":""}" data-tv="obs" aria-label="${U.obs?"Ocultar":"Ver"} obstáculos" title="${U.obs?"Ocultar":"Ver"} obstáculos">${SVGI(ICO.eye)}</button><i class="tv-tsep" aria-hidden="true"></i><button type="button" class="tv-tb" data-tv="zout" aria-label="Alejar" title="Alejar">−</button><span class="tv-zl">${Math.round(vbox().s*100)} %</span><button type="button" class="tv-tb" data-tv="zin" aria-label="Acercar" title="Acercar">+</button></div></div>`}
 /* ---------------------------------------------------------------- pintar */
 /* Abre o cierra la ventanita de una regla SIN repintar el tablero (repintar haría parpadear la ficha que la contiene). */
 function wruleUpdate(){document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());
@@ -2063,7 +2091,7 @@ function paint(){if(!U.open)return;
  const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.inv?invHTML():""}${U.cast&&!U.dice?castHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
- ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Objetivos, evento y registro de actividad">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside></div>${extra}${G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over?`<button type="button" class="tv-dev" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</section>`;
+ ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Objetivos, evento y registro de actividad">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside></div>${extra}</section>`;
  restoreScroll(KS);placeBub();bindBoard()}
 function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();const s=$(".tv-side .tv-box .tv-btn[data-tv=mvok]");if(s)s.disabled=!U.dest}
 function open(){if(U.open)return;U.open=true;
@@ -2113,6 +2141,7 @@ function showInfo(id){if(id[0]==="h"){U.info="";U.hinfo=id}else{U.hinfo=null;U.i
 function act(k,b){const ds=b&&b.dataset||{};
  if(DICE_ACTS.has(k)){diceAct(k);return}
  if(k!=="reset")U.sure=false;
+ if(k!=="pmenu"&&k!=="reset")U.pmenu=false;
  if(k!=="toai")U.confirm=false;
  switch(k){
  case"close":close();return;
@@ -2153,7 +2182,7 @@ function act(k,b){const ds=b&&b.dataset||{};
   if(G.cur!==i){const a=actor(gh.id);if(!a||a.ko())break;G.cur=i;G.act=null;U.dest=null;U.sel=gh.id;if(!gh.stc)heroStart(gh);if(actor(gh.id).ko()){endAct(gh);break}}
   gh.act=1;const h=heroOf(gh);h.pw-=3;gh.ex=true;gh.exOpen=true;hfSync();log(`${h.name} gasta 3 de poder para una acción extra.`,"hr");break}
  case"toheroes":toHeroes();break;
- case"hero":{const i=+ds.i,gh=G.heroes[i],a=actor(gh.id);if(G.phase!=="heroes"||!a||a.ko()||gh.act===2||(G.cur>=0&&G.cur!==i))return;if(G.cur===i)break;G.cur=i;G.act=null;U.dest=null;U.sel=gh.id;if(!gh.stc)heroStart(gh);if(actor(gh.id).ko()){endAct(gh)}else if((G.ter||[]).some(z=>z.k==="dan")){U.busy=true;paint();danRoll(gh.id,null).then(()=>{U.busy=false;save();paint()})}break}
+ case"hero":{const i=+ds.i,gh=G.heroes[i],a=actor(gh.id);if(G.phase!=="heroes"||!a||a.ko()||gh.act===2||(G.cur>=0&&G.cur!==i))return;if(G.cur===i)break;G.cur=i;G.act=null;U.dest=null;U.sel=gh.id;const first=!gh.stc;gh.act=1;if(first)heroStart(gh);if(actor(gh.id).ko()){endAct(gh)}else if(first&&(G.ter||[]).some(z=>z.k==="dan")){U.busy=true;paint();danRoll(gh.id,null).then(()=>{U.busy=false;save();paint()})}break}
  case"rally":{const gh=G.heroes[G.cur],h=heroOf(gh);h.st=h.st.filter(s=>s!=="at");log(`${h.name} pasa la activación quieto y deja de estar Aturdido.`,"hr");hfSync();endAct(gh);break}
  case"unimp":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,v=d3(),lost=Math.min(h.pw,v);h.pw-=lost;if(v>lost)wound(a,v-lost);h.st=h.st.filter(s=>s!=="ac");log(`${h.name} gasta ${v} de poder y deja de estar Afectado${v>lost?` (agotamiento: ${v-lost} heridas)`:""}.`,"hr");hfSync();checkOver();break}
  case"act":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,kk=ds.k;
@@ -2197,6 +2226,7 @@ function act(k,b){const ds=b&&b.dataset||{};
   return}
  case"ignsh":{const a=actor(G.offerIgnore);if(a&&a.h.pw>=2){a.h.pw-=2;a.h.st=a.h.st.filter(s=>s!=="at");log(`${a.name} gasta 2 de poder y no queda Aturdido.`,"hr");hfSync()}G.offerIgnore=null;break}
  case"endact":{const gh=G.heroes[G.cur];if(!(gh.done||[]).length)log(`${heroOf(gh).name} no hace nada.`,"hr");endAct(gh);break}
+ case"unpick":{const gh=G.heroes[G.cur];if(!gh||G.act||(gh.done||[]).length||U.busy)break;gh.act=0;G.cur=-1;U.sel="";U.dest=null;break}
  case"toai":{if(pendingHeroes().length){U.confirm=true;paint();return}toAI();return}
  case"toai2":U.confirm=false;toAI();return;
  case"noconf":break;
@@ -2240,6 +2270,8 @@ function act(k,b){const ds=b&&b.dataset||{};
 
  case"logtog":U.logCol=!U.logCol;break;
  case"objtog":U.objCol=!U.objCol;break;
+ case"pmenu":U.pmenu=!U.pmenu;break;
+ case"legtog":U.legOpen=!U.legOpen;break;
  case"bossask":if(G.prim&&G.sec&&!G.boss&&!G.bossArmed)U.ask={t:"¿Luchar contra el jefe?",p:"Es opcional. Al final de esta ronda llegará el Heraldo del Umbral con una oleada de doble valor por las esquinas, y ya no entrarán más refuerzos por alerta.",yes:"Sí, luchar",no:"Todavía no",fn:"boss"};break;
  case"finask":if(G.prim){const inside=heroesInEsc();U.ask=inside?{t:"¿Escapar del pueblo?",p:"Los héroes están en la zona de escape: la misión se cierra y se van con la experiencia y el botín.",yes:"Sí, escapar",no:"Volver",fn:"finish"}:{t:"¿Finalizar sin escapar?",p:"Los héroes no están en la zona de escape. La misión queda finalizada, pero se van sin experiencia ni oro.",yes:"Finalizar igualmente",no:"Volver",fn:"finish"}}break;
  case"surask":U.ask={t:"¿Rendirse?",p:"La misión se da por perdida: los héroes se retiran y hay que repetir el capítulo.",yes:"Sí, rendirse",no:"Seguir luchando",fn:"surrender"};break;
