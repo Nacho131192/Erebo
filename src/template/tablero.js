@@ -20,6 +20,8 @@ const KEY="psn-tv-v1";
 const $=(s,r=ROOT)=>r.querySelector(s);
 const REDUCE=matchMedia("(prefers-reduced-motion:reduce)").matches;
 const d6=()=>1+Math.floor(Math.random()*6),d4=()=>1+Math.floor(Math.random()*4),d3=()=>1+Math.floor(Math.random()*3);
+/* Norma de la casa (petición de Nacho): los enemigos no aparecen nunca en el cuadrante/esquina donde se despliegan los héroes (G.hc, 1-4). Devuelve 1-4 al azar sin ese. */
+const dq=()=>{const o=[1,2,3,4].filter(c=>c!==G.hc);return o[Math.floor(Math.random()*o.length)]};
 /* Pausa (petición de Nacho, 2026-11-20): mientras hay abierta la ficha de una unidad o de un héroe, o la ventana de una oleada,
    el juego se detiene: todo lo que espera con sleep/later sigue esperando hasta que se cierre. */
 const paused=()=>!!(typeof U!=="undefined"&&(U.info||U.hinfo||U.wave));
@@ -541,14 +543,14 @@ function mkUnit(i){const a=i<0?HERALDO():TVA()[i],t=Math.max(1,ruleN(a.rules,"To
 /* Centinelas al centro de un cuadrante (1-4) o, con 5-6, donde elija el jugador (se arrastran al desplegar). */
 let WV=[];
 function deploySentries(){const ids=drawWave(budget()),cnt=[0,0,0,0];WV=[];
- ids.forEach(i=>{const u=mkUnit(i),r=d4(),q=r-1;
+ ids.forEach(i=>{const u=mkUnit(i),r=dq(),q=r-1;
   const o=SPREAD[cnt[q]++%SPREAD.length],p=freeSpot([QC[q][0]+o[0],QC[q][1]+o[1]],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.roll=r;ambushSet(u);G.units.push(u);WV.push(u.id)});
  assignAuras(WV);return ids.length}
 /* Refuerzos a 6″ de una esquina (1-4); con 5-6 elige el jugador: el prototipo pone la esquina más lejana de los héroes. */
 function reinforce(over,boss,quiet){let ids=drawWave(over!=null?over:budget());if(!ids.length)ids=drawWave(over!=null?over:budget(),true);  /* si todas las copias están en mesa, la ola sale igual con copias repetidas */
  const hs=liveHeroes(),cnt=[0,0,0,0],placed=[];WV=[];if(boss)ids.push(-1);
  const far=()=>{let b=0,bd=-1;CC.forEach((c,k)=>{const d=hs.reduce((m,h)=>Math.min(m,Math.hypot(h.x-c[0],h.y-c[1])),1e9);if(d>bd){bd=d;b=k}});return b};
- ids.forEach(i=>{const u=mkUnit(i),r=d4(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
+ ids.forEach(i=>{const u=mkUnit(i),r=dq(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
   const p=freeSpot([CC[c][0]+Math.abs(o[0])*s*.8+6*s,CC[c][1]+Math.abs(o[1])*t*.8+6*t],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.fresh=G.round+1;u.cor=c+1;ambushSet(u);G.units.push(u);WV.push(u.id);placed.push(u.nm+" → esquina "+(c+1)+(u.hid?" (Emboscada: entra en la ronda "+u.amb+")":(scoutDeploy(u)?" (Scout)":"")))});
  assignAuras(WV);
  if(boss&&G.escC!=null){const bu=G.units.find(x=>x.boss&&WV.includes(x.id));if(bu){const c=CC[G.escC],sx=c[0]<300?1:-1,sy=c[1]<300?1:-1;const p=freeSpot([c[0]+sx*34,c[1]+sy*34],bu.m0>1?14:11,bu.id);bu.x=p[0];bu.y=p[1];bu.esc=true;bu.cor=G.escC+1}}
@@ -777,7 +779,7 @@ const EVX={11:{st:"at"},12:{st:"ac"},15:{st:"de"},23:{st:"af"},24:{st:"at"},26:{
  13:{m:{k:"st",s:"fue",v:-1}},16:{m:{k:"st",s:"vol",v:-1}},25:{m:{k:"st",s:"des",v:-1}},42:{m:{k:"st",s:"des",v:1}},51:{m:{k:"st",s:"vol",v:1}},54:{m:{k:"st",s:"fue",v:1}},
  32:{m:{k:"def",v:-1},all:1},33:{m:{k:"hit",v:-1},all:1},35:{m:{k:"rng",v:-6},all:1,ter:{k:"cov",n:1,dur:1}},36:{m:{k:"mor",v:-1},all:1},
  41:{m:{k:"morh",v:1}},44:{m:{k:"rngh",v:6}},52:{m:{k:"mov",v:1}},53:{m:{k:"hitm",v:1}},55:{m:{k:"hits",v:1}},56:{m:{k:"defh",v:1}},
- 46:{en:1},43:{tok:"place"},62:{tok:"reveal"},31:{ter:{k:"dan",n:2,dur:2},alt:"Aparecen dos zonas de terreno peligroso con forma irregular, en vez de un cuadrante al azar."},34:{ter:{k:"dif",n:2,dur:2},alt:"Aparecen dos zonas de terreno difícil con forma irregular, en vez de un cuadrante al azar."},64:{gold:15},65:{inv:"poc_salud"},61:{inv:"elx_poder"},63:{inv:"bmb_atur"}};
+ 46:{en:1},43:{tok:"place"},62:{tok:"reveal"},31:{ter:{k:"dan",n:2,dur:1},alt:"Aparecen dos zonas de terreno peligroso con forma irregular, en vez de un cuadrante al azar."},34:{ter:{k:"dif",n:2,dur:1},alt:"Aparecen dos zonas de terreno difícil con forma irregular, en vez de un cuadrante al azar."},64:{gold:15},65:{inv:"poc_salud"},61:{inv:"elx_poder"},63:{inv:"bmb_atur"}};
 const ST_N={at:"Aturdido",af:"Afligido",en:"Enfermo",de:"Debilitado",ac:"Afectado"};
 function rollEvent(a,b){const n=a*10+b,e=(DATA.ev||[]).find(x=>x[0]===String(n))||[String(n),"Evento","—"],x=EVX[n]||{},hs=liveHeroes();
  G.mod=null;let who="",eff="",hi=-1;
@@ -786,7 +788,7 @@ function rollEvent(a,b){const n=a*10+b,e=(DATA.ev||[]).find(x=>x[0]===String(n))
  else if(x.wd&&tgt){const w=d3();wound(tgt,w);eff=`${who} sufre ${w} heridas.`}
  else if(x.hit&&tgt){const n2=d3();let w=0;const bl=[];for(let k=0;k<n2;k++){const r=d6(),blk=r===6||(r!==1&&r+defMod(tgt)>=tgt.d);bl.push(r);if(!blk)w++}wound(tgt,w);eff=`${who} recibe ${n2} impactos (Defensa ${tgt.d}+: ${bl.join(", ")}) y sufre ${w} heridas.`}
  else if(x.pw&&tgt){const v=d3(),h=tgt.h;if(x.pw<0){const lost=Math.min(h.pw,v),ex=v-lost;h.pw-=lost;if(ex)wound(tgt,ex);eff=`${who} pierde ${v} de poder${ex?` (no le llegaba: ${ex} heridas por agotamiento)`:""}.`}else{h.pw=Math.min(h.pwMax,h.pw+v);eff=`${who} recupera ${v} de poder.`}}
- else if(x.m){G.mod={n,h:x.all?-1:hi,...x.m,t:e[1]};eff=x.all?"Activo para todos durante esta ronda.":`Le toca a ${who}, durante esta ronda.`}
+ else if(x.m){G.mod={n,h:x.all?-1:hi,...x.m,t:e[1]};eff=String(e[2]).replace(/ hasta el siguiente evento/g," durante esta ronda").replace(/^Un héroe al azar/,who)}
  else if(x.en){const us=liveUnits();if(us.length){const u=us[Math.floor(Math.random()*us.length)];u.g.sh=true;eff=`${u.name} queda Aturdida.`}else eff="No hay enemigos en la mesa: no pasa nada."}
  else if(x.gold&&tgt){addX(tgt.h,x.gold,0);tgt.h.gold=(+tgt.h.gold||0)+x.gold;eff=`${who} recibe ${x.gold} de oro.`}
  else if(x.pot&&tgt){tgt.h.pot=(+tgt.h.pot||0)+1;eff=`${who} recibe una Poción de salud.`}
@@ -1111,13 +1113,16 @@ function castHTML(){const C=U.cast;if(!C)return"";const gh=G.heroes[C.gi];if(!gh
 async function castGo(){const C=U.cast;if(!C||C.sp==null)return;const gh=G.heroes[C.gi],a=actor(gh.id),h=a.h,sl=spellList(h),sp=sl.list[C.sp],S=spellSpec(sp),mod=C.exT+C.exP;
  if(S.kind!=="manual"&&!C.tg.length){toast("Elige un objetivo.");return}
  const tg=C.tg.slice();
- const[r]=await rollDice({n:1,own:true,title:`${h.name} lanza ${sp.es}`,sub:`Cuesta ${sp.cost} ficha${sp.cost>1?"s":""}${C.exT?`, +${C.exT} ficha${C.exT>1?"s":""} extra`:""}${C.exP?`, +${C.exP} de poder extra`:""}. Con 4+ surte efecto.`,need:`${Math.max(2,4-mod)}+ surte efecto`,ok:x=>x===6||(x!==1&&x+mod>=4)});
+ const rp=rollDice({n:1,own:true,title:`${h.name} lanza ${sp.es}`,sub:`Cuesta ${sp.cost} ficha${sp.cost>1?"s":""}${C.exT?`, +${C.exT} ficha${C.exT>1?"s":""} extra`:""}${C.exP?`, +${C.exP} de poder extra`:""}. Con 4+ surte efecto.`,need:`${Math.max(2,4-mod)}+ surte efecto`,ok:x=>x===6||(x!==1&&x+mod>=4)});
+ /* La ventana del hechizo se cierra mientras se tira: si queda encima, tapa el botón «Lanzar dados» de la bandeja y todo se bloquea. */
+ paint();const[r]=await rp;
  endDice();U.busy=false;
  gh.tok=tokOf(gh)-sp.cost-C.exT;h.pw=Math.max(0,h.pw-C.exP);gh.triedR=G.round;gh.tried=castTried(gh).concat(sp.en);
  const ok=r===6||(r!==1&&r+mod>=4);
  log(`${h.name} lanza ${sp.es} (${sp.cost} ficha${sp.cost>1?"s":""}${mod?`, +${mod}`:""}): dado ${r} → ${ok?"surte efecto":"el hechizo falla"}.`,ok?"sho":"hr");
  if(ok)await applySpell(a,sp,S,tg);
- C.sp=null;C.tg=[];C.exT=0;C.exP=0;hfSync();checkOver();save();paint()}
+ /* La defensa del objetivo (autoHits) también tira dados y deja U.busy activo: sin esto la ventana del hechizo ignora la X y «Terminar de lanzar». */
+ endDice();U.busy=false;C.sp=null;C.tg=[];C.exT=0;C.exP=0;hfSync();checkOver();save();paint()}
 /* Efecto: los hechizos de impactos se resuelven con la Defensa del objetivo (Resistencia a hechizos incluida); el resto se anota. */
 async function applySpell(a,sp,S,tg){
  if(S.hits&&S.kind==="enemy"){const T=actor(tg[0]);if(T&&!T.ko())await autoHits(`${a.name} · ${sp.es}`,T,S.hits,S.ap,{spell:true,reap:/Cosecha/i.test(sp.fx)});return}
@@ -1276,9 +1281,9 @@ async function toAI(){if(U.busy||G.phase!=="heroes"||G.over)return;U.busy=true;G
 function autoAI(){if(G.phase!=="heroes"||G.over||!heroesDone())return;if(U.busy||U.dice||U.wilAsk||U.prim||U.ban||U.evfx||U.confirm){setTimeout(autoAI,400);return}toAI()}
 /* Fin de ronda: cartel con lo que ha subido la alerta y, sin pulsar nada, empieza la siguiente. */
 async function endFlow(){endDice();const e=G.endInfo||{};if(G.over||e.pending)return;
- if(e.rf||e.xn)await new Promise(res=>{U.wave={t:e.boss?"Jefe":"Refuerzos",ids:WV.slice(),res};paint()});
+ if(e.rf||e.xn)await waveOpen(e.boss?"Jefe":"Refuerzos",WV.slice());
  ENDNOTE=(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.boss?`. ¡Llega la pelea de jefe! El Heraldo del Umbral y su oleada de doble valor entran por las esquinas.`:e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`)+(e.xn?` Sin enemigos con la alerta baja: llega una oleada extra de ${e.xn} unidades (la mitad de una oleada).`:"");
- if(G.phase!=="end")return;nextRound();save();paint();await roundBanner()}
+ if(G.phase!=="end")return;nextRound();save();paint();await enterPlay(takeAmb());await roundBanner()}
 /* El turno de la IA va despacio para poder seguirlo: se ve qué unidad actúa y por qué, cómo se mueve, y cada dado, evento por evento. */
 /* ---------------------------------------------------------------- reglas del ejército de los Borrados (enemigos)
    Villain (12″, regla de la casa), Ambush de la IA, auras, Ethereal, Bane Mark, Crossing Attack y hechizos del Caster de la IA.
@@ -1291,7 +1296,7 @@ function ambushSet(u){if(u.boss)return;const a=uArmy(u);if(!hasR(a.rules,"Ambush
 function ambushEnter(){const L=G.units.filter(u=>u.hid&&u.hp>0&&u.amb<=G.round),hs=liveHeroes();if(!L.length||!hs.length)return;
  L.forEach(u=>{const a=actor(u.id),free=hs.filter(h=>!has(h,"Repel Ambushers")),pool=free.length?free:hs,goal=pool[Math.floor(Math.random()*pool.length)];
   const ang=Math.random()*Math.PI*2,dist=(free.length?2+Math.random()*4:12.5)*BIN+goal.r+a.r;
-  const p=freeSpot(tOut([goal.x+Math.cos(ang)*dist,goal.y+Math.sin(ang)*dist]),a.r,u.id);u.x=p[0];u.y=p[1];u.hid=false;u.fresh=G.round;delete u.amb;unstack(u);
+  const p=freeSpot(tOut([goal.x+Math.cos(ang)*dist,goal.y+Math.sin(ang)*dist]),a.r,u.id);u.x=p[0];u.y=p[1];u.hid=false;u.fresh=G.round;delete u.amb;unstack(u);AMB_IN.push(u.id);
   log(`${u.nm} sale de la Emboscada a ${inch(Math.max(0,gap(actor(u.id),goal)))} de ${goal.name}.`,"al")})}
 /* Auras: la miniatura con «X Aura», su unidad y las 2 unidades amigas más cercanas, elegidas al desplegarse, obtienen X. */
 function assignAuras(ids){ids.forEach(id=>{const u=G.units.find(x=>x.id===id);if(!u)return;const a=uArmy(u),m=String(a.rules||"").match(/(Enhanced Empyrean Spirit|Relentless|Shielded|Scout|No Retreat|Unpredictable Fighter) Aura/gi);if(!m)return;
@@ -1392,6 +1397,40 @@ function animPath(id,pts,ms){return new Promise(res=>{const g=tokEl(id),L=pathLe
  const tr=$("#tvTrail");if(tr)tr.innerHTML=`<polyline points="${pts.map(p=>p.join(",")).join(" ")}" class="tv-trail"/>`;
  const fr=now=>{const k=Math.min(1,(now-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,p=at(L*e);g.setAttribute("transform",`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)})`);if(k<1)requestAnimationFrame(fr);else{g.classList.remove("tv-moving");res()}};
  requestAnimationFrame(fr)})}
+/* Entrada en escena (petición de Nacho): centinelas, refuerzos, jefe y emboscadas entran desde fuera del tablero y corren hasta su sitio.
+   El punto de partida está en la línea que une el centro de la mesa con la posición final, fuera del borde. */
+function enterFrom(x,y){let dx=x-300,dy=y-300;const L=Math.hypot(dx,dy);if(L<1){dx=0;dy=-1}else{dx/=L;dy/=L}
+ const tx=dx>0?(626-x)/dx:dx<0?(-26-x)/dx:Infinity,ty=dy>0?(626-y)/dy:dy<0?(-26-y)/dy:Infinity,t=Math.max(0,Math.min(tx,ty));
+ return[x+dx*t,y+dy*t]}
+/* Corre las unidades ids (la mesa ya pintada) y resuelve cuando todas han llegado. Cada una sale un poco después que la anterior. */
+function enterPlay(ids){return new Promise(res=>{
+ const jobs=(ids||[]).map(id=>G.units.find(u=>u.id===id)).filter(u=>u&&u.hp>0&&!u.hid&&tokEl(u.id)).map((u,i)=>{const to=[u.x,u.y],from=enterFrom(u.x,u.y),dist=Math.hypot(to[0]-from[0],to[1]-from[1]);
+  return{id:u.id,from,to,dur:Math.min(3400,Math.max(1900,1500+dist*3.4)),delay:i*220}});
+ if(REDUCE||!jobs.length){res();return}
+ const t0=performance.now(),end=Math.max(...jobs.map(j=>j.delay+j.dur));
+ const put=(j,p)=>{const g=tokEl(j.id);if(g)g.setAttribute("transform",`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)})`)};
+ jobs.forEach(j=>put(j,j.from));entrySound(jobs);
+ const fr=now=>{jobs.forEach(j=>{const k=Math.min(1,Math.max(0,(now-t0-j.delay)/j.dur)),e=1-Math.pow(1-k,3);
+   put(j,[j.from[0]+(j.to[0]-j.from[0])*e,j.from[1]+(j.to[1]-j.from[1])*e])});
+  if(now-t0<end)requestAnimationFrame(fr);else{jobs.forEach(j=>put(j,j.to));res()}};
+ requestAnimationFrame(fr)})}
+/* Sonido de la entrada (sintetizado, sin archivos): un soplo grave y pasos sordos que se espacian a medida que las unidades frenan. */
+function entrySound(jobs){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();const t0=AC.currentTime,vol=Math.min(1,.55+jobs.length*.08);
+ jobs.forEach(j=>{const st=t0+j.delay/1000,d=j.dur/1000;
+  const nb=AC.createBuffer(1,Math.ceil(AC.sampleRate*d),AC.sampleRate),ch=nb.getChannelData(0);for(let i=0;i<ch.length;i++)ch[i]=Math.random()*2-1;
+  const ns=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();ns.buffer=nb;fl.type="bandpass";fl.frequency.value=380;fl.Q.value=.7;
+  g.gain.setValueAtTime(.0001,st);g.gain.linearRampToValueAtTime(.02*vol,st+d*.18);g.gain.exponentialRampToValueAtTime(.0008,st+d);ns.connect(fl);fl.connect(g);g.connect(AC.destination);ns.start(st);ns.stop(st+d);
+  /* Cada paso = golpe grave (la pisada) + un roce corto de ruido (la suela), alternando pie izquierdo y derecho. */
+  let t=.1,gap=.15,n=0;while(t<d*.95){const k=1-t/d,a=vol*(.45+.55*k),f=n++%2?1:1.14,o=AC.createOscillator(),e=AC.createGain();o.type="triangle";o.frequency.setValueAtTime(170*f,st+t);o.frequency.exponentialRampToValueAtTime(60,st+t+.08);
+   e.gain.setValueAtTime(.0001,st+t);e.gain.exponentialRampToValueAtTime(.42*a,st+t+.008);e.gain.exponentialRampToValueAtTime(.0001,st+t+.11);o.connect(e);e.connect(AC.destination);o.start(st+t);o.stop(st+t+.13);
+   const nb2=AC.createBuffer(1,Math.ceil(AC.sampleRate*.06),AC.sampleRate),c2=nb2.getChannelData(0);for(let i=0;i<c2.length;i++)c2[i]=Math.random()*2-1;
+   const s2=AC.createBufferSource(),h2=AC.createBiquadFilter(),g2=AC.createGain();s2.buffer=nb2;h2.type="bandpass";h2.frequency.value=1800*f;h2.Q.value=.9;
+   g2.gain.setValueAtTime(.0001,st+t);g2.gain.exponentialRampToValueAtTime(.3*a,st+t+.006);g2.gain.exponentialRampToValueAtTime(.0001,st+t+.06);s2.connect(h2);h2.connect(g2);g2.connect(AC.destination);s2.start(st+t);s2.stop(st+t+.07);
+   t+=gap;gap*=1.09}})}catch(e){}}
+/* Pinta el tablero, deja entrar a las unidades y luego abre la ventana de la oleada (si la hay). */
+function waveOpen(t,ids){paint();return enterPlay(ids).then(()=>new Promise(res=>{U.wave={t,ids:WV.slice(),res};paint()}))}
+let AMB_IN=[];
+const takeAmb=()=>{const r=AMB_IN;AMB_IN=[];return r};
 function fxLayer(){return $("#tvFx")}
 function fxShot(A,B){const f=fxLayer();if(!f||REDUCE)return;const el=document.createElementNS("http://www.w3.org/2000/svg","line");
  el.setAttribute("x1",A.x);el.setAttribute("y1",A.y);el.setAttribute("x2",B.x);el.setAttribute("y2",B.y);el.setAttribute("class","tv-shot "+(A.kind==="h"?"h":"e"));f.appendChild(el);setTimeout(()=>el.remove(),900)}
@@ -1919,7 +1958,7 @@ function evFxHTML(){const F=U.evfx;if(!F||G.over)return"";
  if(F.st==="ask")return`<div class="tv-evfx ask" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">${rdLab()} · Evento de la Ruptura</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Dos dados, de uno en uno: el primero son las decenas y el segundo las unidades. El efecto dura solo esta ronda.</p><button type="button" class="tv-btn big" data-tv="ev">Tirar los dados</button></div></div>`;
  if(F.st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Evento de la Ruptura · tirando</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Primero las decenas y luego las unidades.</p></div></div>`;
  const e=G.ev;if(!e)return"";
- return`<div class="tv-evfx" data-tv="evclose"><div class="tv-evfxc ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${evDie(e.a)}${evDie(e.b)}</div><h3>${esc(e.t)}</h3><p class="tv-evx2">${esc(e.x)}</p><p class="tv-eff">${esc(e.eff)}</p><small>Toca para seguir</small></div></div>`}
+ return`<div class="tv-evfx" data-tv="evclose"><div class="tv-evfxc ${e.tone}"><p class="tv-lab">Evento de la Ruptura ${e.n}</p><div class="tv-dd">${evDie(e.a)}${evDie(e.b)}</div><h3>${esc(e.t)}</h3><p class="tv-eff">${esc(e.eff)}</p><small>Toca para seguir</small></div></div>`}
 /* Ficha completa de un héroe (al pulsar su tarjeta): estadísticas, estados, armas, reglas, habilidades y equipo. */
 function heroModal(){const gh=G.heroes.find(x=>x.id===U.hinfo),h=gh&&heroOf(gh);if(!h)return"";
  const sk=h.sk||[],isW=s=>s.g==="equipo"&&s.k&&s.k!=="Consumible"&&/A\d/.test(s.k),
@@ -2100,7 +2139,7 @@ function act(k,b){const ds=b&&b.dataset||{};
   G.phase="deploy";log(`Despliegue de héroes: esquina ${G.hc}${r>4?" (5-6: puedes cambiarla)":""}. Los centinelas salen al empezar la partida.`,"rd");break}
  case"corner":if(!cornerOk(+ds.c)){toast("Ahí hay un rastro: los héroes no pueden desplegar en su cuadrante.");break}placeHeroes(+ds.c);break;
  case"start":{const n=deploySentries();G.chests=[];placeChests(1+Math.floor(Math.random()*4));if(G.chests.length)log(`Aparecen ${G.chests.length} fichas de búsqueda, al azar.`,"rd");log(`Salen ${n} centinelas (${budget()} pts), cada uno a un cuadrante al azar.`,"rd");startGame();save();
-  new Promise(res=>{U.wave={t:"Centinelas",ids:WV.slice(),res};paint()}).then(()=>{save();roundBanner()});return}
+  waveOpen("Centinelas",WV.slice()).then(()=>{save();roundBanner()});return}
  case"evask":if(G.phase==="event"&&!G.over)U.evfx={st:"ask"};break;
  case"ev":{if(G.phase!=="event"||!U.evfx||U.evfx.st!=="ask")return;U.evNote="";const a=d6(),bb=d6();U.busy=true;U.evfx={st:"roll"};paint();
   rollAnim(()=>{U.busy=false;rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();const F={st:"done"};U.evfx=F;paint();setTimeout(()=>{if(U.evfx===F)evDone()},8000)},".tv-evfx .tv-die");return}
@@ -2225,7 +2264,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"rclose":U.rinfo=null;break;
  case"primclose":U.prim=null;break;
  case"wily":case"wiln":{const f=U.wilAsk;if(!f)break;U.wilAsk=null;f.res(k==="wily");return}
- case"next":nextRound();save();paint();roundBanner();return;
+ case"next":nextRound();save();paint();enterPlay(takeAmb()).then(()=>roundBanner());return;
  default:return}
  save();paint()}
 /* Tras una acción: puede hacer otra gastando 3 de poder (una sola), o terminar. */
