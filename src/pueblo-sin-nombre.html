@@ -1613,17 +1613,27 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 
 /* ---- distribución (escritorio): datos de los héroes a la izquierda | tablero | acciones y registro a la derecha ---- */
 @media (min-width:901px){
- .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto minmax(0,1fr);grid-template-areas:"board hero" "board act" "board log"}
+ .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:minmax(0,auto) minmax(0,1fr);grid-template-areas:"board hero" "board act"}
  .tv-boardw{grid-area:board}
- .tv-shero{grid-area:hero;max-height:34vh;border-right:0;border-left:1px solid var(--line)}
- .tv-sact{grid-area:act;max-height:62vh;border-right:0;border-left:1px solid var(--line)}
- .tv-slog{grid-area:log;border-top:1px solid var(--line)}
+ .tv-shero{grid-area:hero;max-height:44vh;border-right:0;border-left:1px solid var(--line)}
+ .tv-sact{grid-area:act;border-right:0;border-left:1px solid var(--line)}
 }
 @media (min-width:1180px){
- .tv-body{grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(330px,390px);grid-template-rows:minmax(0,1.6fr) minmax(0,1fr);grid-template-areas:"hero board act" "hero board log"}
- .tv-shero{max-height:none;border-left:0;border-right:1px solid var(--line)}
+ .tv-body{grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(330px,390px);grid-template-rows:minmax(0,1fr);grid-template-areas:"hero board act"}
+ .tv-shero{max-height:none;border-left:0;border-right:1px solid var(--line);overflow:hidden}
+ .tv-shero .tv-slogw{min-height:110px}
  .tv-sact{max-height:none}
- .tv-slog{border-top:1px solid var(--line)}
+}
+/* Columna de objetivos, evento y registro: el registro ocupa lo que queda y se desplaza él, sin desplazar la pantalla (2026-11-24). */
+@media (min-width:901px){
+ .tv-shero{display:flex;flex-direction:column;overflow-y:auto}
+ .tv-shero>*{flex-shrink:0}
+ .tv-shero .tv-obw{max-height:240px;overflow-y:auto}
+ .tv-shero>.tv-slogw{flex-shrink:1;min-height:0}
+ .tv-slogw{flex:1;min-height:200px;display:flex;flex-direction:column}
+ .tv-slogw>.tv-cmb{flex-shrink:0;max-height:30vh;overflow-y:auto}
+ .tv-slogw>.tv-log{flex:1;min-height:0;display:flex;flex-direction:column}
+ .tv-slogw .tv-log ol{flex:1;min-height:0;max-height:none;overflow-y:auto}
 }
 .tv-log header{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;font-size:13px;color:var(--mu)}
 .tv-log header b{font:700 12px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
@@ -1735,7 +1745,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-acc{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin-top:6px;font-size:11px;color:var(--mu)}
 .tv-acc b{font-weight:600;color:#f0d79a}.tv-acc small{display:inline;font-size:10.5px;color:var(--mu2)}
 .tv-accp{display:inline-flex;gap:4px}
-.tv-accp i{width:16px;height:8px;border-radius:4px;border:1px solid rgba(240,215,154,.55)}
+.tv-accp i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(240,215,154,.55)}
 .tv-accp i.f{background:linear-gradient(180deg,#f6e2a8,#c9a24f);box-shadow:0 0 6px rgba(240,215,154,.45)}
 .tv-accp i.u{background:#2a3150;border-color:rgba(255,255,255,.14)}
 .tv-accp i.x{background:repeating-linear-gradient(135deg,#2a3150 0 3px,#1a1f36 3px 6px);border-color:rgba(255,255,255,.1)}
@@ -1930,6 +1940,8 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-obw.col{gap:0}
 /* registro plegable */
 .tv-lhr{display:flex;align-items:center;gap:8px}.tv-log.col header{padding-bottom:11px}
+/* «.col» es también una clase general de la página (relleno de 120px abajo): el registro plegado no debe heredarlo (2026-11-24). */
+.tv-log.col{padding:0;min-width:0}
 /* final de misión */
 .tv-sumo{list-style:none;margin:10px 0;padding:0;display:flex;flex-direction:column;gap:4px;text-align:left;font-size:13px;color:#c7cde2}
 .tv-end.won h3{color:#86d1ae}
@@ -2047,6 +2059,8 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-invsub{display:flex;flex-wrap:wrap;gap:6px}
 .tv-invl{display:grid}
 .tv-invbtn{width:100%;margin:0 0 8px}
+/* Inventario dentro de la ficha del héroe: botón discreto, sin el dorado de las acciones (2026-11-24). */
+.tv-hcw .tv-invbtn{width:auto;align-self:flex-start;margin:6px 0 0;padding:6px 12px;background:transparent;border:1px solid var(--line2)!important;box-shadow:none;color:var(--mu)!important}
 
 /* Cofre abierto (!), regla de arma en la oleada como ventanita (2026-11-22) */
 .tv-openb circle{fill:#e8c77a;stroke:#0b0d16;stroke-width:1.2}
@@ -2069,7 +2083,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-rwrow .tot{color:#e8c77a;font-weight:700}
 
 /* ---- 2026-11-23: zoom +/− dentro del tablero; texto de evento; sin «Cuadro = 6″» ---- */
-.tv-zbtns{position:absolute;right:10px;bottom:10px;z-index:6;display:flex;gap:6px}
+.tv-zbtns{display:inline-flex;gap:6px;margin-left:auto}
 .tv-zb{width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,184,108,.6);background:radial-gradient(circle at 50% 25%,#1d2a4d,#0c1226 80%);color:var(--gold2);font:700 20px/1 Inter,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5)}
 .tv-zb:hover{border-color:var(--gold2)}
 .tv-evx2{margin:6px 0 4px;font-size:13px;line-height:1.45;color:#d6dbea}
@@ -2108,6 +2122,14 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-offt i{display:inline-flex;width:18px;height:18px}
 .tv-offt svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .tv-offl{display:flex;flex-direction:column;gap:6px;margin-top:6px;opacity:.78}
+
+/* Acciones en círculos junto al inventario, fichas de hechizo en la ficha, y leyenda con brasero y cofres (2026-11-24) */
+.tv-hrow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tv-hrow .tv-acc{display:inline-flex;align-items:center}
+.tv-hrow .tv-invbtn{margin:0}
+.tv-tokl{display:block;font-size:11.5px;color:var(--mu);white-space:nowrap}
+.tv-tokl b{color:var(--gold2)}
+.tv-leg svg{width:auto;height:auto;flex:none}
 
 /* estados: explicación al pasar el ratón */
 .hf-chip{position:relative}
@@ -5651,7 +5673,7 @@ const G0=()=>({v:1,phase:"setup",d:1,hsel:null,ptsOv:0,round:0,al:1,nref:0,needE
 function load(){try{const j=JSON.parse(localStorage.getItem(KEY));if(j&&j.v===1)return Object.assign(G0(),j)}catch(e){}return G0()}
 let G=load();
 function save(){try{localStorage.setItem(KEY,JSON.stringify(G))}catch(e){}}
-const U={hcol:{},logCol:true,objCol:false,ask:null,evNote:"",ruler:null,wave:null,open:false,sel:"",dest:null,drag:null,busy:false,sure:false,obs:false,tab:"log",info:"",dice:null,confirm:false,hinfo:null,evfx:null,wilAsk:null,prim:null,rinfo:null};
+const U={hcol:{},logCol:false,objCol:true,ask:null,evNote:"",ruler:null,wave:null,open:false,sel:"",dest:null,drag:null,busy:false,sure:false,obs:false,tab:"log",info:"",dice:null,confirm:false,hinfo:null,evfx:null,wilAsk:null,prim:null,rinfo:null};
 
 /* ---------------------------------------------------------------- reglas y perfiles */
 function splitTop(s){const o=[];let d=0,b="";for(const c of String(s||"")){if(c==="(")d++;else if(c===")")d=Math.max(0,d-1);if(c===","&&!d){if(b.trim())o.push(b.trim());b=""}else b+=c}if(b.trim())o.push(b.trim());return o}
@@ -6698,10 +6720,16 @@ async function endRound(){G.mod=null;{const g=(G.ter||[]).filter(z=>z.until<=G.r
  const info={r:G.round,add,die:v,none,rf,n:0};G.al=al;
  if(G.bossArmed&&!G.boss){G.bossArmed=false;G.boss=true;info.boss=true;info.rf=true;info.n=reinforce(Math.max(0,2*budget()-BOSS_PTS),true)}
  else if(rf)info.n=reinforce();
- else if(none&&prevAl<3){info.xn=reinforce(Math.round(budget()*.5),false,true)}   /* norma de la casa: sin enemigos con alerta baja, oleada extra del 50 % */
+ else if(none){info.xn=spawnBasics()}   /* norma (2026-11-24): sin enemigos en la mesa y sin refuerzos, 2 básicos de menos puntos en un cuadrante al azar */
  log(`Fin de la ronda ${G.round}: ${none?"no queda ningún enemigo en la mesa":"dado de alerta "+v} → Alertness +${add} → ${rf?"6: ¡refuerzos!":G.al+"/6"}.`,"rd");
  G.endInfo=info}
 /* Todas las rondas empiezan con evento de la Ruptura (antes solo la 1 y las de refuerzos). */
+/* Norma (2026-11-24): si no queda ningún enemigo y no llegan refuerzos, aparecen 2 básicos (los de menos puntos) en un cuadrante al azar. */
+function spawnBasics(){const pts=Math.min(...TVA().map(a=>a.pts)),cands=TVA().map((a,i)=>i).filter(i=>TVA()[i].pts===pts);
+ const cnt=[0,0,0,0],ids=[0,1].map(()=>cands[Math.floor(Math.random()*cands.length)]);WV=[];
+ ids.forEach(i=>{const u=mkUnit(i),r=dq(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
+  const p=freeSpot([CC[c][0]+Math.abs(o[0])*s*.8+6*s,CC[c][1]+Math.abs(o[1])*t*.8+6*t],u.m0>1?14:11,u.id);u.x=p[0];u.y=p[1];u.fresh=G.round+1;u.cor=c+1;G.units.push(u);WV.push(u.id)});
+ assignAuras(WV);log(`Sin enemigos en la mesa: aparecen ${ids.length} básicos de ${TVA()[ids[0]].name} en el cuadrante ${WV.length?G.units.find(u=>u.id===WV[0]).cor:""}.`,"al");return ids.length}
 function nextRound(){G.round++;G.endInfo=null;G.last=null;G.aiDone=[];log(`Ronda ${G.round} · ${tod()}.`,"rd");G.needEv=true;G.phase="event";G.ev=null;ambushEnter()}
 function checkOver(){if(G.phase==="setup"||G.phase==="deploy"||G.over)return;
  if(G.boss&&!G.bossDown&&!G.units.some(u=>u.boss&&u.hp>0)){G.bossDown=true;log("El Heraldo del Umbral desaparece de la mesa.","ok")}
@@ -6898,7 +6926,7 @@ async function doScurry(gh,a){const h=a.h,m=statMod(h,"des"),pass=x=>x===6||(x!=
  if(!ok&&h.pw>=2&&await askPay(h,2,"Destreza")){h.pw-=2;hfSync();log(`${h.name} gasta 2 de poder: la tirada de Destreza cuenta como superada.`,"hr");ok=true}
  if(!ok){log(`${h.name} falla la tirada de Destreza (${r}${m?(m>0?"+":"")+m:""}) y no logra escabullirse.`,"hr");finishAction(gh,"scu");save();paint();return}
  const d=d3();log(`${h.name} se escabulle: puede moverse hasta ${d}″, sin acabar a menos de 1″ de los enemigos.`,"hr");
- G.act={k:"scu",st:"move",lim:d,wi:0,paid:false};U.dest=null;camTween(moveCam(a,d),500);scrollBoard();save();paint()}
+ G.act={k:"scu",st:"move",lim:d,wi:0,paid:false};U.dest=null;scrollBoard();save();paint()}
 /* ---------------------------------------------------------------- zoom, desplazamiento y extras (2026-11-23)
    Zoom del mapa: el tablero es un viewBox. U.zm = {s (zoom 1-4), x, y (centro en unidades del tablero)}. Pellizco en móvil,
    botones + y − en PC y arrastre (con el ratón o un dedo cuando hay zoom). */
@@ -6914,8 +6942,6 @@ function applyView(){const svg=$("#tvMap");if(svg)svg.setAttribute("viewBox",vbS
  const p=$(".tv-cpop"),t=p&&(G.chests||[]).find(x=>x.id===U.chestPop);if(t){const q=chestPct(t);p.style.left=q.l+"%";p.style.top=q.t+"%"}}
 /* Cámara (2026-11-23): sigue a la unidad que actúa y enmarca a atacante y defensor. Animada. Con U.camLock (turno de la IA) el zoom del usuario no actúa. */
 let CAMR=null;
-/* Zoom de una acción de movimiento: el alcance entero debe verse (hasta 1,8×, y sin acercar más si cabe todo). */
-function moveCam(a,inches){const R=inches*BIN+70;return{s:Math.max(1,Math.min(1.8,612/(2*R))),x:a.x,y:a.y}}
 function camTween(tg,ms){return new Promise(res=>{if(CAMR)cancelAnimationFrame(CAMR);const v0=vbox(),s0=v0.s,x0=v0.cx,y0=v0.cy,t0=performance.now(),d=REDUCE?0:ms;
  const f=now=>{const k=d?Math.min(1,(now-t0)/d):1,e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;U.zm={s:s0+(tg.s-s0)*e,x:x0+(tg.x-x0)*e,y:y0+(tg.y-y0)*e};applyView();
   if(k<1)CAMR=requestAnimationFrame(f);else{CAMR=null;U.zm={s:tg.s,x:tg.x,y:tg.y};applyView();res()}};
@@ -7164,7 +7190,7 @@ function autoAI(){if(G.phase!=="heroes"||G.over||!heroesDone())return;if(U.busy|
 /* Fin de ronda: cartel con lo que ha subido la alerta y, sin pulsar nada, empieza la siguiente. */
 async function endFlow(){endDice();const e=G.endInfo||{};if(G.over||e.pending)return;
  if(e.rf||e.xn)await waveOpen(e.boss?"Jefe":"Refuerzos",WV.slice());
- ENDNOTE=(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.boss?`. ¡Llega la pelea de jefe! El Heraldo del Umbral y su oleada de doble valor entran por las esquinas.`:e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`)+(e.xn?` Sin enemigos con la alerta baja: llega una oleada extra de ${e.xn} unidades (la mitad de una oleada).`:"");
+ ENDNOTE=(e.none?"No quedan enemigos en la mesa: Alertness +2":`Dado de alerta ${e.die}: Alertness +${e.add}`)+(e.boss?`. ¡Llega la pelea de jefe! El Heraldo del Umbral y su oleada de doble valor entran por las esquinas.`:e.rf?`. ¡La alerta llega a 6! Entran ${e.n} unidades de refuerzo por las esquinas.`:` → ${G.al}/6.`)+(e.xn?` Sin enemigos en la mesa: aparecen ${e.xn} básicos de bajo coste en un cuadrante al azar.`:"");
  if(G.phase!=="end")return;nextRound();save();paint();await enterPlay(takeAmb());await roundBanner()}
 /* El turno de la IA va despacio para poder seguirlo: se ve qué unidad actúa y por qué, cómo se mueve, y cada dado, evento por evento. */
 /* ---------------------------------------------------------------- reglas del ejército de los Borrados (enemigos)
@@ -7247,7 +7273,7 @@ async function runAI(){if(U.busy)return;U.busy=true;G.phase="ai";G.aiDone=[];G.a
   await aiCaster(a);if(G.over)break;
   let pl=lurePlan(a)||aiPlan(a);if(pl.k==="rush"&&await etherealJump(a)){a=actor(a.id);pl=lurePlan(a)||aiPlan(a)}
   G.aiCur={id:a.id,k:pl.k,why:pl.why,t:pl.t?pl.t.name:""};paint();
-  await camFrame(aiPts(a,pl),700);
+  if(!["rush","idle","rally"].includes(pl.k))await camFrame(aiPts(a,pl),700);   /* zoom solo en combates (disparo o cuerpo a cuerpo), no al moverse */
   await W(1800);
   if(pl.k==="rally"){a.g.sh=false;log(`${a.name} se recupera (deja de estar Aturdida).`,"ai");paint();await W(1500)}
   else if(pl.k==="idle"){log(`${a.name}: ${pl.why}`,"ai");paint();await W(1000)}
@@ -7330,12 +7356,11 @@ function heroTok(a,k){const h=a.h,gh=a.g,ko=a.ko(),fr=h.hpMax?h.hp/h.hpMax:0,cid
  return`<g class="${cls}" data-tok="${a.id}" transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})"><circle class="tv-halo" r="${a.r+7}"/>${night()?`<circle class="tv-vis" r="${12*BIN+a.r}"/>`:""}<circle r="${a.r+1.5}" fill="#0b0f1e"/>${pic}${ring(a.r+1.8,fr,ko?"#5d5a6e":"#f0d79a",2.4)}${ko?`<path class="tv-kx" d="M-6 -6L6 6M6 -6L-6 6"/>`:""}<text class="tv-tn" y="${a.r+12}">${esc(h.name.split(" ")[0])}</text></g>`}
 /* El círculo de «recién llegada» solo dura hasta que la unidad juega su primera ronda: se apaga al actuar en el turno de la IA y no vuelve en el fin de ronda. */
 function unitTok(a){const u=a.g,fr=u.hp/(u.m0*u.t),m=a.models(),fresh=u.fresh===G.round&&(G.phase==="event"||G.phase==="heroes"||(G.phase==="ai"&&!u.act));
- const cls=["tv-tok","tv-unit",u.boss?"boss":"",G.phase==="ai"&&(G.aiDone||[]).includes(u.id)?"done":"",U.sel===a.id?"sel":"",u.sh?"shk":"",fresh?"fresh":"",u.pick&&G.phase==="deploy"?"pick":""].join(" ");
+ const cls=["tv-tok","tv-unit",u.boss?"boss":"",G.phase==="ai"&&(G.aiDone||[]).includes(u.id)?"done":"",U.sel===a.id?"sel":"",u.sh?"shk":"",u.pick&&G.phase==="deploy"?"pick":""].join(" ");
  const r=a.r,hex=Array.from({length:6},(_,i)=>{const t=Math.PI/3*i+Math.PI/6;return(Math.cos(t)*r).toFixed(1)+","+(Math.sin(t)*r).toFixed(1)}).join(" ");
  return`<g class="${cls}" data-tok="${a.id}" transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)})"><circle class="tv-halo" r="${r+7}"/><polygon class="tv-hex" points="${hex}"/>${ring(r+2.6,fr,"#ff8a9a",2.2)}<text class="tv-ti e" y="3.6">${esc(ini(a.name))}</text>${u.m0>1?`<g transform="translate(${r-1} ${-r+1})"><circle r="6.6" class="tv-chip"/><text class="tv-chn" y="2.6">${m}</text></g>`:""}${u.sh?`<g transform="translate(${-r+1} ${-r+1})"><circle r="6.2" class="tv-shc"/><text class="tv-chn" y="2.6">!</text></g>`:""}</g>`}
 function boardSVG(){const A=actors();
- const grid=`<pattern id="tvgrid" width="75" height="75" patternUnits="userSpaceOnUse"><path d="M75 0H0V75" fill="none" stroke="rgba(217,184,108,.09)"/></pattern>`;
- const q=QC.map((c,k)=>`<text class="tv-ql" x="${c[0]}" y="${c[1]}">${QN[k]}</text>`).join("")+CC.map((c,k)=>`<g class="tv-cn${G.hc===k+1?" on":""}" transform="translate(${c[0]<300?20:580} ${c[1]<300?20:580})"><circle r="11"/><text y="4">${k+1}</text></g>`).join("");
+  const q=CC.map((c,k)=>`<g class="tv-cn${G.hc===k+1?" on":""}" transform="translate(${c[0]<300?20:580} ${c[1]<300?20:580})"><circle r="11"/><text y="4">${k+1}</text></g>`).join("");
  const obs=U.obs?TOBS.map(o=>[bPolys(o,TCL),bPolys(o,0)].map((L,j)=>L.map(P=>`<polygon class="tv-ob ${o.k==="casa"?"los":""}${j?"":" cl"}" points="${P.map(p=>p.map(v=>v.toFixed(1)).join(",")).join(" ")}"/>`).join("")).join("")).join(""):"";
  const town=TOBS.filter(o=>o.k==="casa").map(o=>`<g class="tv-house"><rect x="${o.x}" y="${o.y}" width="${o.w}" height="${o.h}"/><path d="M${o.x} ${o.y}L${o.x+o.w} ${o.y+o.h}"/></g>`).join("")
   +`<g class="tv-well" transform="translate(300 300)"><circle r="26"/><circle r="18" class="in"/><text y="44">el pozo</text><text y="58" class="sm">cobertura</text></g>`
@@ -7344,9 +7369,9 @@ function boardSVG(){const A=actors();
  /* Zona de despliegue de los héroes (solo al desplegar): hasta 10″ de su esquina, y 19″ punteado si alguno tiene Scout. */
  let dz="";if(G.phase==="deploy"&&G.hc){const c=CC[G.hc-1],R=10*BIN,sc=G.heroes.some(g=>{const x=actor(g.id);return x&&has(x,"Scout")}),sx=c[0]<300?1:-1,sy=c[1]<300?1:-1,lx=c[0]+sx*R*.62;
   dz=`<g class="tv-dz" clip-path="url(#tvclip)"><path class="shade" fill-rule="evenodd" d="M0 0H600V600H0Z M${c[0]-R} ${c[1]}a${R} ${R} 0 1 0 ${2*R} 0a${R} ${R} 0 1 0 ${-2*R} 0Z"/><circle class="lit" cx="${c[0]}" cy="${c[1]}" r="${R}"/>${sc?`<circle cx="${c[0]}" cy="${c[1]}" r="${19*BIN}" class="sc"/>`:""}<circle class="ring" cx="${c[0]}" cy="${c[1]}" r="${R}"/></g><g class="tv-dzl" transform="translate(${lx.toFixed(1)} ${(c[1]+sy*(R+20)).toFixed(1)})"><rect x="-92" y="-13" width="184" height="26" rx="13"/><text y="4.5">Zona de despliegue · héroes</text></g>`}
- return`<svg class="tv-map" id="tvMap" viewBox="${vbStr()}" role="img" aria-label="Tablero de 48 pulgadas"><defs>${grid}<filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath><linearGradient id="tvbfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="tvbgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
+ return`<svg class="tv-map" id="tvMap" viewBox="${vbStr()}" role="img" aria-label="Tablero de 48 pulgadas"><defs><filter id="tvsoft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.6"/></filter><radialGradient id="tvbg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1f2b4f"/><stop offset="1" stop-color="#0c1226"/></radialGradient><clipPath id="tvclip"><rect width="600" height="600"/></clipPath><linearGradient id="tvbfl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ec6a2c"/><stop offset="1" stop-color="#ffe27a" stop-opacity=".2"/></linearGradient><radialGradient id="tvbgl"><stop offset="0" stop-color="#ffb347" stop-opacity=".5"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>
  <rect x="-6" y="-6" width="612" height="612" rx="8" class="tv-frame"/>
- <rect width="600" height="600" fill="url(#tvbg)"/><rect width="600" height="600" fill="url(#tvgrid)"/>${fog}
+ <rect width="600" height="600" fill="url(#tvbg)"/>${fog}
  <path d="M300 0V600M0 300H600" class="tv-qline"/>${town}${terSVG()}${dz}${banZones()}${tracksSVG()}${secRing()}${escZone()}${chestsSVG()}${q}${obs}
  <rect class="tv-hit" width="600" height="600" data-tv="pt"/>
  <g id="tvOv">${overlay()}</g><g id="tvTrail"></g>
@@ -7399,12 +7424,13 @@ function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(
  return`<div class="tv-hcw"><button type="button" class="tv-hc${G.cur===i?" cur":""}${ko?" ko":""}${gh.act===2?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa">
  <span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span>
  <span class="tv-hn"><b>${esc(h.name)}</b><small>${st}${h.st.length?" · "+h.st.map(s=>ST_N[s]).join(", "):""}</small>
- <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${G.phase==="heroes"&&!ko?actCount(gh):""}</span></button>${fxRow(gh)}${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${false?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?(gh.act===1&&leftA(gh)<=0?`<span class="tv-pend none">No hay acciones disponibles${canExtra(gh)?" · puede pagar una extra con 3 de poder":""}</span>`:`<span class="tv-pend">Aún le quedan acciones por hacer</span>`):""}</div>`}
+ <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span>${casterX(a)?`<span class="tv-tokl">Fichas de hechizo <b>${tokOf(gh)}</b>/6</span>`:""}</span></button>${fxRow(gh)}${G.phase==="heroes"&&!ko?`<div class="tv-hrow">${actPips(gh)}${G.cur===i&&!G.act?`<button type="button" class="tv-btn sm tv-invbtn" data-tv="inv">Inventario</button>`:""}</div>`:""}${canAct?`<button type="button" class="tv-btn sm tv-hbtn" data-tv="hero" data-i="${i}">Activar</button>`:""}${false?`<button type="button" class="tv-ghostb tv-xbtn" data-tv="xtra" data-i="${i}">Acción extra · 3 de poder</button>`:""}${pend?(gh.act===1&&leftA(gh)<=0?`<span class="tv-pend none">No hay acciones disponibles${canExtra(gh)?" · puede pagar una extra con 3 de poder":""}</span>`:`<span class="tv-pend">Aún le quedan acciones por hacer</span>`):""}</div>`}
 /* Contador de acciones del héroe: una pastilla por acción (2, o 3 con la extra). Dorada = le queda; apagada = gastada;
    tachada = perdida al terminar la activación sin usarla. */
-function actCount(gh){const tot=2+(gh.ex?1:0),used=Math.min(tot,usedA(gh)),fin=gh.act===2,left=fin?0:Math.max(0,tot-used);
+/* Acciones del héroe: dos o tres círculos (llenos = le quedan, apagados = gastadas, rayados = perdidas). Van junto al botón de inventario. */
+function actPips(gh){const tot=2+(gh.ex?1:0),used=Math.min(tot,usedA(gh)),fin=gh.act===2,left=fin?0:Math.max(0,tot-used);
  const pip=i=>`<i class="${i<used?"u":fin?"x":"f"}${i>=2?" ex":""}"></i>`;
- return`<span class="tv-acc" aria-label="Acciones: le ${left===1?"queda":"quedan"} ${left} de ${tot}"><span class="tv-accp">${Array.from({length:tot},(_,i)=>pip(i)).join("")}</span><b>${fin?"Sin acciones":left===1?"Le queda 1 acción":`Le quedan ${left} acciones`}</b>${!fin&&!gh.ex&&canExtra(gh)?`<small>+1 con 3 de poder</small>`:""}</span>`}
+ return`<span class="tv-acc" title="${fin?"Sin acciones":"Le quedan "+left+" de "+tot+" acciones"}" aria-label="Acciones: le quedan ${left} de ${tot}"><span class="tv-accp">${Array.from({length:tot},(_,i)=>pip(i)).join("")}</span></span>`}
 /* Etiqueta pulsable de una regla o habilidad: abre su ventana. Resaltada si su efecto está activo. */
 function skillBar(gh,a){const sk=a.h.sk||[],names=sk.filter(x=>x.g==="hab").map(x=>x.n).concat(sk.filter(x=>x.g==="regla"&&ruleInfo(x.n).kind==="dote").map(x=>x.n));
  if(!names.length)return"";
@@ -7772,7 +7798,7 @@ function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  /* Acción extra (3 de poder): una acción más, con el mismo formato que las demás. */
  const xOn=!!gh.ex,xDis=!xOn&&!(usedA(gh)===2&&canExtra(gh));
  const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""}><b>Acción extra</b><small>Gasta 3 de poder y hace una acción más.</small>${xOn?"<em>Marcada: se gastan 3 de poder al elegirla.</em>":xDis?"<em>Solo cuando ya ha usado sus dos acciones y tiene 3 de poder</em>":""}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<button type="button" class="tv-btn sm tv-invbtn" data-tv="inv">Inventario · ${(h.inv||[]).length} objetos · ${h.gold||0} de oro</button><p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${actGroups(ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
+  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<p class="tv-lab">${Lf>=2?"Elige su acción":Lf===1?"Le queda una acción":"Sin acciones: puede usar la extra si tiene poder"}</p><div class="tv-endbtn"><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div><div class="tv-acts">${actGroups(ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).map(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
    return`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""}><b>${l}</b><small>${mv?inch(lim)+" · ":""}${d}</small>${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="cast"?castHint(gh,a):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}</button>`}).concat([xHTML]))}</div>
   ${skillBar(gh,a)}
   `}
@@ -7890,31 +7916,19 @@ function sideMain(){let main="";
  else if(G.phase==="setup")main=setupPanel();
  else if(G.phase==="deploy")main=deployPanel();
  else if(G.phase==="event")main=evCard();
- else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes · actúan en el orden que quieras</p><div class="tv-hcs">${G.heroes.map(heroCard).join("")}</div>${G.cur>=0?actPanel():""}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de la IA":"Terminar el turno de los héroes"}</button>`:""}`}
+ else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes · actúan en el orden que quieras</p><div class="tv-hcs">${G.heroes.map((gh,i)=>G.cur>=0&&i!==G.cur?"":heroCard(gh,i)).join("")}</div>${G.cur>=0?actPanel():""}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de la IA":"Terminar el turno de los héroes"}</button>`:""}`}
  else if(G.phase==="ai")main=aiPanel();
  else if(G.phase==="end")main=endPanel();
- /* Evento de la Ruptura de esta ronda: se queda arriba de la columna con su efecto hasta que acaba la ronda. Los objetivos están en la ventana de la izquierda (objWin). */
- const mod=G.ev&&G.ev.r===G.round&&["heroes","ai","end"].includes(G.phase)?`<div class="tv-evn ${G.ev.tone}"><small>Evento de la Ruptura ${G.ev.n} · solo esta ronda</small><b>${esc(G.ev.t)}</b><span class="tv-evnd">${evDie(G.ev.a)}${evDie(G.ev.b)}</span>${G.ev.x?`<p class="tv-evx">${esc(G.ev.x)}</p>`:""}<p class="tv-evr">${esc(G.ev.eff)}</p></div>`:"";
- return`${mod}${main}`}
+ return main}
+/* Evento de la Ruptura de esta ronda: va en la columna izquierda, debajo de la ventana de objetivos (2026-11-24). */
+function evnBox(){return G.ev&&G.ev.r===G.round&&["heroes","ai","end"].includes(G.phase)?`<div class="tv-evn ${G.ev.tone}"><small>Evento de la Ruptura ${G.ev.n} · solo esta ronda</small><b>${esc(G.ev.t)}</b><span class="tv-evnd">${evDie(G.ev.a)}${evDie(G.ev.b)}</span>${G.ev.x?`<p class="tv-evx">${esc(G.ev.x)}</p>`:""}<p class="tv-evr">${esc(G.ev.eff)}</p></div>`:"";
+}
 /* Columna del registro: último combate y todo lo que va pasando en la partida (lo más nuevo, arriba). */
 /* Datos de los héroes (columna izquierda, petición de Nacho 2026-11-20): todo lo que hay que tener controlado de un vistazo. */
 const FOLD=up=>`<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${up?"M3.5 10.5L8 6l4.5 4.5":"M3.5 5.5L8 10l4.5-4.5"}"/></svg>`;
-function heroDash(){
- const card=(gh,i)=>{const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(),W=a.ws.filter(isRanged),M=a.ws.filter(isMelee);
-  const col=!!U.hcol[gh.id];
-  return`<article class="tv-hd${G.cur===i&&G.phase==="heroes"?" cur":""}${ko?" ko":""}${col?" col":""}${G.phase==="heroes"&&gh.act===2&&!ko?" spent":""}">
-  <div class="tv-hdtop"><button type="button" class="tv-hdh" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa"><span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span><span><b>${esc(h.name)}</b><small>${esc(h.prof||"Héroe")} · Nivel ${h.nivel||1}${ko?" · Inconsciente":""}</small></span></button>
-  <button type="button" class="tv-fold" data-tv="hdtog" data-i="${i}" aria-expanded="${col?"false":"true"}" title="${col?"Desplegar la tabla de "+esc(h.name):"Recoger la tabla de "+esc(h.name)}" aria-label="${col?"Desplegar la tabla de "+esc(h.name):"Recoger la tabla de "+esc(h.name)}">${FOLD(!col)}</button></div>
-  <span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hpMax?h.hp/h.hpMax*100:0).toFixed(0)}%"></i><em>Heridas ${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>Poder ${h.pw}/${h.pwMax}</em></span></span>
-  ${col?"":`<div class="tv-hds"><span><small>Cal</small>${h.cal}+</span><span><small>Def</small>${h.def}+</span><span><small>Fue</small>${h.fue}+</span><span><small>Des</small>${h.des}+</span><span><small>Vol</small>${h.vol}+</span></div>
-  <p class="tv-hdl"><b>Estados:</b> ${h.st.length?h.st.map(s=>ST_N[s]).join(", "):"ninguno"}</p>
-  ${casterLine(gh,a)}
-  ${a.ws.length?`<p class="tv-hdl"><b>Armas</b></p><table class="tv-wt tv-hwt"><tr><th>Arma</th><th>RNG</th><th>ATK</th><th>AP</th><th>SPE</th></tr>${[...M,...W].map(w=>`<tr><td>${esc(w.n)}</td><td>${w.rng?w.rng+"″":"—"}</td><td>A${w.a*w.x}</td><td>${w.ap||"—"}</td><td>${w.sp.length?w.sp.map(x=>`${chip(x,"","sm")}`).join(" "):"—"}</td></tr>`).join("")}</table>`:""}
-  ${heroSkPops(gh,h)}
-  <p class="tv-hdl"><b>Pociones</b> ${h.pot||0} · <b>Oro</b> ${h.gold||0}</p>
-  ${G.phase==="heroes"&&!ko?actCount(gh):""}${fxRow(gh)}`}</article>`};
- const solo=G.phase==="heroes"&&G.cur>=0;   /* mientras un héroe gasta sus acciones, solo se ve su ficha; al terminar vuelven todas (y la del que ya actuó, más oscura) */
- return`${objWin()}<div class="tv-hdbar"><p class="tv-lab">Héroes</p><span><button type="button" class="tv-fold" data-tv="hdall" data-v="0" title="Recoger todas las tablas" aria-label="Recoger todas las tablas">${FOLD(true)}</button><button type="button" class="tv-fold" data-tv="hdall" data-v="1" title="Desplegar todas las tablas" aria-label="Desplegar todas las tablas">${FOLD(false)}</button></span></div>${G.heroes.map((gh,i)=>solo&&i!==G.cur?"":card(gh,i)).join("")}`}
+/* Columna izquierda (2026-11-24): objetivos, evento de la Ruptura y registro de actividad, que se desplaza dentro de su ventana.
+   Las fichas de los héroes están en la columna de acciones. */
+function heroDash(){return`${objWin()}${evnBox()}${sideLog()}`}
 /* Ventana de objetivos (encima de las fichas de héroe): lista, jefe opcional, finalizar misión y rendirse. */
 function objWin(){if(G.phase==="setup"||G.phase==="deploy")return"";
  const T=G.tracks||[],col=U.objCol,item=(on,t,s)=>`<li class="${on?"on":""}"><i aria-hidden="true">${on?"✓":""}</i><span><b>${t}</b>${s?`<small>${s}</small>`:""}</span></li>`;
@@ -7929,8 +7943,8 @@ function askHTML(){const a=U.ask;if(!a)return"";
  return`<div class="tv-conf" role="alertdialog" aria-modal="true" aria-label="${esc(a.t)}"><div class="tv-confc"><b>${esc(a.t)}</b><p>${esc(a.p)}</p><div class="tv-row"><button type="button" class="tv-btn" data-tv="askyes">${esc(a.yes)}</button><button type="button" class="tv-ghostb" data-tv="askno">${esc(a.no)}</button></div></div></div>`}
 function sideLog(){
  const col=U.logCol,logH=`<section class="tv-log${col?" col":""}"><header><b>Registro de actividad</b><span class="tv-lhr">${G.log.length?`<small>${G.log.length}</small>`:""}<button type="button" class="tv-fold" data-tv="logtog" aria-expanded="${col?"false":"true"}" title="${col?"Desplegar el registro":"Recoger el registro"}" aria-label="${col?"Desplegar el registro":"Recoger el registro"}">${FOLD(!col)}</button></span></header>${col?"":G.log.length?`<ol>${G.log.map(l=>`<li class="${l.k}"><small>R${l.r}</small>${linkNames(esc(l.t))}</li>`).join("")}</ol>`:`<p class="tv-empty">Aquí irá contándose todo lo que ocurra en la partida.</p>`}</section>`;
- return`${combatCard()}${logH}`}
-function legend(){return`<div class="tv-leg"><span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><i class="f"></i>Recién llegado</span><button type="button" class="tv-chipb${U.ruler?" on":""}" data-tv="ruler" title="Toca dos puntos del mapa para medir la distancia">${U.ruler?"Quitar la regla":"Regla"}</button><button type="button" class="tv-chipb${U.obs?" on":""}" data-tv="obs">${U.obs?"Ocultar":"Ver"} obstáculos</button></div>`}
+ return`<div class="tv-slogw">${combatCard()}${logH}</div>`}
+function legend(){return`<div class="tv-leg"><span><i class="h"></i>Héroe</span><span><i class="e"></i>Enemigo</span><span><svg viewBox="-16 -34 32 52" width="13" height="21" aria-hidden="true">${tBraz(0,0,true)}</svg>Objetivo principal</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#b07a3a"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#7a4a22" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><rect x="-2.5" y="-1.5" width="5" height="5" rx="1" fill="#e6cf8e"/></svg>Cofre cerrado</span><span><svg viewBox="-12 -12 24 24" width="17" height="17" aria-hidden="true"><circle r="11" fill="rgba(20,14,6,.82)" stroke="#ffd678"/><rect x="-9" y="-6" width="18" height="12" rx="2" fill="#c8862f" stroke="#e1b26a"/><path d="M-9 -1H9" stroke="#e1b26a" fill="none"/><circle cx="11" cy="-11" r="6" fill="#e8c77a"/><text x="11" y="-7.4" font-size="9" font-weight="800" text-anchor="middle" fill="#0b0d16">!</text></svg>Cofre abierto</span><button type="button" class="tv-chipb${U.ruler?" on":""}" data-tv="ruler" title="Toca dos puntos del mapa para medir la distancia">${U.ruler?"Quitar la regla":"Regla"}</button><button type="button" class="tv-chipb${U.obs?" on":""}" data-tv="obs">${U.obs?"Ocultar":"Ver"} obstáculos</button><span class="tv-zbtns"><button type="button" class="tv-zb" data-tv="zin" aria-label="Acercar" title="Acercar">+</button><button type="button" class="tv-zb" data-tv="zout" aria-label="Alejar" title="Alejar">−</button></span></div>`}
 
 /* ---------------------------------------------------------------- pintar */
 /* Abre o cierra la ventanita de una regla SIN repintar el tablero (repintar haría parpadear la ficha que la contiene). */
@@ -7953,7 +7967,7 @@ function paint(){if(!U.open)return;
  const extra=`<div id="tvDice" class="tv-dwrap">${diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.inv?invHTML():""}${U.cast&&!U.dice?castHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
- ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}<div class="tv-zbtns"><button type="button" class="tv-zb" data-tv="zin" aria-label="Acercar" title="Acercar">+</button><button type="button" class="tv-zb" data-tv="zout" aria-label="Alejar" title="Alejar">−</button></div></div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Datos de los héroes">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside><aside class="tv-side tv-slog" aria-label="Registro de actividad">${sideLog()}</aside></div>${extra}${G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over?`<button type="button" class="tv-dev" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</section>`;
+ ROOT.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Objetivos, evento y registro de actividad">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside></div>${extra}${G.phase!=="setup"&&G.phase!=="deploy"&&!G.prim&&!G.over?`<button type="button" class="tv-dev" data-tv="devprim" title="TEMPORAL: solo para pruebas del autor">Cumplir objetivo principal (prueba)</button>`:""}</section>`;
  restoreScroll(KS);placeBub();bindBoard()}
 function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();const s=$(".tv-side .tv-box .tv-btn[data-tv=mvok]");if(s)s.disabled=!U.dest}
 function open(){if(U.open)return;U.open=true;
@@ -8059,7 +8073,7 @@ function act(k,b){const ds=b&&b.dataset||{};
    if(T.length>1){U.revPick={ids:T.map(t=>t.id)};paint();break}
    reviveDo(gh,a,T[0]);break}
   if(kk==="sec"){if(!secNear(a)){toast("Hay que estar a 3″ o menos del pozo.");break}if(secFoes().length){toast("Hay enemigos a menos de 5″ del pozo: no cuenta.");break}doSec(gh,a);return}
-  G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;if(G.act.st==="move"){camTween(moveCam(a,kk==="adv"?speed(a)[0]:speed(a)[1]),500);scrollBoard()}break}
+  G.act={k:kk,st:kk==="shoot"?"shoot":kk==="chg"?"chg":kk==="atk"?"atk":"move",wi:0,paid:false};U.dest=null;if(G.act.st==="move"){scrollBoard()}break}
  case"cancel":{if(!G.act||G.act.mv||G.act.free||G.act.st==="tele")return;const gh=G.heroes[G.cur];if(G.act.paid){const h=heroOf(gh);h.pw=Math.min(h.pwMax,h.pw+3);gh.ex=false;hfSync()}G.act=null;U.dest=null;break}
  case"mvskip":{const gh=G.heroes[G.cur];U.dest=null;G.act=null;log(`${heroOf(gh).name} avanza sin moverse.`,"hr");gh.advShot=canShootAny(actor(gh.id));finishAction(gh,"adv");break}
  /* Disparo que va con Avanzar: no gasta otra acción. */
