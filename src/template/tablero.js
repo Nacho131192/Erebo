@@ -1310,7 +1310,14 @@ function assignAuras(ids){ids.forEach(id=>{const u=G.units.find(x=>x.id===id);if
 async function etherealJump(a){if(!has(a,"Ethereal")||a.sh()||fxHas(a,"nomove")||a.g.eth===G.round)return false;
  const hs=aiTargets(a);if(!hs.length)return false;const cl=hs.reduce((b,h)=>gap(a,h)<gap(a,b)?h:b,hs[0]),gp=gap(a,cl),mv=Math.min(6,gp-1.3);if(mv<1)return false;
  const d=Math.hypot(cl.x-a.x,cl.y-a.y)||1,p=freeSpot(tOut([a.x+(cl.x-a.x)/d*mv*BIN,a.y+(cl.y-a.y)/d*mv*BIN]),a.r,a.id),m=Math.hypot(p[0]-a.x,p[1]-a.y)/BIN;if(m<1)return false;
- a.g.x=p[0];a.g.y=p[1];a.g.eth=G.round;log(`${a.name} usa Etéreo: se coloca ${inch(m)} más cerca de ${cl.name} (este turno mueve −6″).`,"ai");paint();await sleep(REDUCE?0:900);return true}
+ const fx=a.x,fy=a.y,el=tokEl(a.id);
+ /* Etéreo (2026-11-24): se desvanece en su sitio con un destello, reaparece en el punto nuevo con otro destello. */
+ if(!REDUCE&&el){teleBurst(fx,fy);el.classList.add("tv-tele-out");await sleep(300)}
+ a.g.x=p[0];a.g.y=p[1];a.g.eth=G.round;log(`${a.name} usa Etéreo: se coloca ${inch(m)} más cerca de ${cl.name} (este turno mueve −6″).`,"ai");paint();
+ if(!REDUCE){const n=tokEl(a.id);if(n){n.classList.add("tv-tele-in")}teleBurst(p[0],p[1]);await sleep(520)}
+ return true}
+/* Destello del teletransporte: un anillo que se agranda y se apaga sobre el tablero (se quita solo). */
+function teleBurst(x,y){const f=document.getElementById("tvFx");if(!f)return;const c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",x);c.setAttribute("cy",y);c.setAttribute("r",14);c.setAttribute("class","tv-tele-burst");f.appendChild(c);setTimeout(()=>c.remove(),650)}
 /* Crossing Attack(X): una vez por activación, al moverse a través de unidades enemigas, elige una y tira X dados; cada 6 = 1 herida. */
 async function crossAttack(a,pts){const X=ruleN(a.rules,"Crossing Attack");if(!X||a.ko()||!pts||pts.length<2||a.g.crR===G.round)return;
  const L=liveHeroes().filter(h=>{for(let i=1;i<pts.length;i++)if(segDist(h,pts[i-1],pts[i])<h.r+a.r*.6)return true;return false});if(!L.length)return;
