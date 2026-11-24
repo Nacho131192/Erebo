@@ -1786,8 +1786,9 @@ let LKRE=null;
 function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantener","avanzar","correr","cargar","disparar","atacar","hero"]),set=new Set();
   Object.values(C.sk).forEach(x=>{set.add(x.n);set.add(x.en)});Object.values(C.rg).forEach(x=>{if(x.en)set.add(x.en)});
   const L=[...set].filter(n=>n&&n.length>=4&&!skip.has(nrm(n))).sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
-  LKRE=new RegExp("(?<![\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
- return h.replace(LKRE,m=>`<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="" data-m="1">${m}</button>`)}
+  /* sin lookbehind (no existe en Safari anterior a 16.4): el carácter previo se captura y se devuelve */
+  LKRE=new RegExp("(^|[^\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
+ return h.replace(LKRE,(_,p,m)=>`${p}<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="" data-m="1">${m}</button>`)}
 function chip(label,o,cls){const R=U.rinfo,open=!!R&&!R.modal&&R.l===label&&(R.o||"")===(o||"");return`<span class="tv-rwrap${open?" open":""}"><button type="button" class="tv-rchip${fxActive(o,label)?" on":""}${cls?" "+cls:""}" data-tv="rinfo" data-l="${esc(label)}" data-o="${o||""}" aria-expanded="${open}">${esc(esN(label))}${fxActive(o,label)?`<i aria-hidden="true">activa</i>`:""}</button>${open?ruleInline(R):""}</span>`}
 function chipsOf(labels,o){return labels.length?`<div class="tv-rchips">${labels.map(l=>chip(l,o)).join("")}</div>`:`<p class="tv-sub">Ninguna.</p>`}
 const MOD_TAG={hab:"Habilidad de clase",comun:"Habilidad común",dote:"Dote de clase · una vez por partida",regla:"Regla especial"};

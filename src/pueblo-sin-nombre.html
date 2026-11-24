@@ -2266,8 +2266,10 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-cast .tv-btn.sm.on{background:#1a2440!important;background-image:none!important;color:#f0d99a!important;box-shadow:none!important;animation:none!important;filter:none;outline:1px solid var(--gold)}
 /* Móvil: el registro de actividad queda al final de todo (2026-11-24) */
 @media (max-width:900px){
- .tv-body{display:flex;flex-direction:column}
- .tv-body>*,.tv-main>*,.tv-shero>*{flex-shrink:0;min-height:auto}
+ /* Rejilla de una columna con filas a la altura de su contenido: ningún bloque se encoge ni se pisa (también en Safari/WebKit) */
+ .tv-body{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max-content;align-content:start;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ .tv-body>*,.tv-main>*,.tv-shero>*{min-height:auto;min-width:0}
+ .tv-boardw{height:auto;flex-shrink:0}
  .tv-shero{display:contents}
  .tv-boardw{order:0}
  .tv-shero>.tv-obw{order:1;margin:14px 16px 0}
@@ -8074,8 +8076,9 @@ let LKRE=null;
 function linkNames(h){if(!LKRE){const C=cat(),skip=new Set(["descansar","mantener","avanzar","correr","cargar","disparar","atacar","hero"]),set=new Set();
   Object.values(C.sk).forEach(x=>{set.add(x.n);set.add(x.en)});Object.values(C.rg).forEach(x=>{if(x.en)set.add(x.en)});
   const L=[...set].filter(n=>n&&n.length>=4&&!skip.has(nrm(n))).sort((a,b)=>b.length-a.length).map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"));
-  LKRE=new RegExp("(?<![\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
- return h.replace(LKRE,m=>`<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="" data-m="1">${m}</button>`)}
+  /* sin lookbehind (no existe en Safari anterior a 16.4): el carácter previo se captura y se devuelve */
+  LKRE=new RegExp("(^|[^\\wÀ-ÿ])("+L.join("|")+")(?![\\wÀ-ÿ])","g")}
+ return h.replace(LKRE,(_,p,m)=>`${p}<button type="button" class="tv-lk" data-tv="rinfo" data-l="${m}" data-o="" data-m="1">${m}</button>`)}
 function chip(label,o,cls){const R=U.rinfo,open=!!R&&!R.modal&&R.l===label&&(R.o||"")===(o||"");return`<span class="tv-rwrap${open?" open":""}"><button type="button" class="tv-rchip${fxActive(o,label)?" on":""}${cls?" "+cls:""}" data-tv="rinfo" data-l="${esc(label)}" data-o="${o||""}" aria-expanded="${open}">${esc(esN(label))}${fxActive(o,label)?`<i aria-hidden="true">activa</i>`:""}</button>${open?ruleInline(R):""}</span>`}
 function chipsOf(labels,o){return labels.length?`<div class="tv-rchips">${labels.map(l=>chip(l,o)).join("")}</div>`:`<p class="tv-sub">Ninguna.</p>`}
 const MOD_TAG={hab:"Habilidad de clase",comun:"Habilidad común",dote:"Dote de clase · una vez por partida",regla:"Regla especial"};

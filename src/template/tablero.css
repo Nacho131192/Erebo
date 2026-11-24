@@ -863,8 +863,10 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-cast .tv-btn.sm.on{background:#1a2440!important;background-image:none!important;color:#f0d99a!important;box-shadow:none!important;animation:none!important;filter:none;outline:1px solid var(--gold)}
 /* Móvil: el registro de actividad queda al final de todo (2026-11-24) */
 @media (max-width:900px){
- .tv-body{display:flex;flex-direction:column}
- .tv-body>*,.tv-main>*,.tv-shero>*{flex-shrink:0;min-height:auto}
+ /* Rejilla de una columna con filas a la altura de su contenido: ningún bloque se encoge ni se pisa (también en Safari/WebKit) */
+ .tv-body{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max-content;align-content:start;overflow-y:auto;-webkit-overflow-scrolling:touch}
+ .tv-body>*,.tv-main>*,.tv-shero>*{min-height:auto;min-width:0}
+ .tv-boardw{height:auto;flex-shrink:0}
  .tv-shero{display:contents}
  .tv-boardw{order:0}
  .tv-shero>.tv-obw{order:1;margin:14px 16px 0}
