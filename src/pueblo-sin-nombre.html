@@ -1609,6 +1609,14 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
  .tv-stat{grid-column:1/-1;order:3;gap:14px}.tv-hact{grid-column:3;grid-row:1}
  .tv-tt b{font-size:17px}
 }
+@media (max-width:640px){
+ .tv-seg{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+ .tv-seg button{min-width:0;padding:8px 2px;font-size:10.5px;overflow-wrap:anywhere}
+ .tv-seg b{font-size:14px}.tv-seg small{font-size:9.5px}
+ .tv-setupw{padding:18px 14px 70px}
+ .tv-sum{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}
+ .tv-sum span{min-width:0}
+}
 @media (prefers-reduced-motion:reduce){#tv,.tv-win,.tvfab{transition:none}.tv-tg,.tv-path,.tv-unit.fresh .tv-halo,.tv-hero.cur .tv-halo{animation:none}}
 
 /* ---- distribución (escritorio): datos de los héroes a la izquierda | tablero | acciones y registro a la derecha ---- */
@@ -2259,6 +2267,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 /* Móvil: el registro de actividad queda al final de todo (2026-11-24) */
 @media (max-width:900px){
  .tv-body{display:flex;flex-direction:column}
+ .tv-body>*,.tv-main>*,.tv-shero>*{flex-shrink:0;min-height:auto}
  .tv-shero{display:contents}
  .tv-boardw{order:0}
  .tv-shero>.tv-obw{order:1;margin:14px 16px 0}
@@ -2631,6 +2640,15 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .alrt-bar{height:3px;margin-top:16px;border-radius:2px;background:#c9a24a;transform-origin:left;animation:alrtbar 7s linear both}
 @keyframes alrtbar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @media (prefers-reduced-motion:reduce){.alrt{animation:none}}
+
+/* Móvil: la mesa no se solapa con los botones flotantes ni con el selector de dificultad */
+@media (max-width:640px){
+ .dt{padding:10px 2px 8px;min-width:0}
+ .dt span{font-size:10px;letter-spacing:0;overflow-wrap:anywhere}
+ body:has(#panel.open) .tvfab{display:none}
+ body:has(#panel.open) .hf-meds{right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px))}
+ body:has(#panel.open) .hf-meds{transform:scale(.8);transform-origin:right bottom}
+}
 
 /* Botón de prueba (solo del autor): fijo abajo al centro, pequeño y discreto */
 </style>

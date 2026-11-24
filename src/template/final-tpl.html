@@ -1333,6 +1333,15 @@ body:has(#qov:not([hidden])):not(:has(#panel.open)) .hf-meds,body:has(#panel.bop
 @keyframes alrtbar{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @media (prefers-reduced-motion:reduce){.alrt{animation:none}}
 
+/* Móvil: la mesa no se solapa con los botones flotantes ni con el selector de dificultad */
+@media (max-width:640px){
+ .dt{padding:10px 2px 8px;min-width:0}
+ .dt span{font-size:10px;letter-spacing:0;overflow-wrap:anywhere}
+ body:has(#panel.open) .tvfab{display:none}
+ body:has(#panel.open) .hf-meds{right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px))}
+ body:has(#panel.open) .hf-meds{transform:scale(.8);transform-origin:right bottom}
+}
+
 /* Botón de prueba (solo del autor): fijo abajo al centro, pequeño y discreto */
 </style>
 
