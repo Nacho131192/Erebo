@@ -23,14 +23,14 @@ public static class Cut {
         foreach(int t in nb){ if(t<0||bg[t]||seen[t]) continue; int r=px[t*3],g=px[t*3+1],b=px[t*3+2]; if(!(Math.Min(r,Math.Min(g,b))>=244 && Math.Max(r,Math.Max(g,b))-Math.Min(r,Math.Min(g,b))<=12)) continue; seen[t]=true; qq.Enqueue(t);} }
       if(comp.Count>=500) foreach(int p in comp) bg[p]=true; }
     // keep largest foreground component
-    int[] lab = new int[w*h]; int best=0, bestN=0, n=0;
+    int[] lab = new int[w*h]; int best=0, bestN=0, n=0; List<int> sizes = new List<int>(); sizes.Add(0);
     for (int s=0;s<w*h;s++){ if(bg[s]||lab[s]!=0) continue; n++; int cnt=0; Queue<int> qq=new Queue<int>(); qq.Enqueue(s); lab[s]=n;
       while(qq.Count>0){ int p=qq.Dequeue(); cnt++; int x=p%w,y=p/w;
         int[] nb={x>0?p-1:-1, x<w-1?p+1:-1, y>0?p-w:-1, y<h-1?p+w:-1};
         foreach(int t in nb){ if(t<0||bg[t]||lab[t]!=0) continue; lab[t]=n; qq.Enqueue(t);} }
-      if(cnt>bestN){bestN=cnt;best=n;} }
+      sizes.Add(cnt); if(cnt>bestN){bestN=cnt;best=n;} }
     bool[] fg = new bool[W*H];
-    for (int y=0;y<h;y++) for (int x=0;x<w;x++) if(lab[y*w+x]==best) fg[(y+pad)*W+x+pad]=true;
+    for (int y=0;y<h;y++) for (int x=0;x<w;x++) { int lb=lab[y*w+x]; if(lb!=0 && (lb==best || sizes[lb] >= Math.Max(400, bestN/60))) fg[(y+pad)*W+x+pad]=true; }
     // fill small holes in fg that are background-colored but enclosed (keep as fg) -- already fg since not flood-reached
     bool[] bd = (bool[])fg.Clone();
     for (int y=0;y<H;y++) for (int x=0;x<W;x++){ if(!fg[y*W+x]) continue;

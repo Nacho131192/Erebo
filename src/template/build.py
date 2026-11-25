@@ -23,6 +23,15 @@ for f in sorted(glob.glob(os.path.join(HD,"*.webp"))):
     else: art.setdefault(n,{})["f"]=webp(f)
 art={k:v for k,v in art.items() if "f" in v and "b" in v}
 out=out.replace("%%HC_ART%%",json.dumps(art,separators=(",",":")))
+# Emblemas genéricos de raza (assets/web/razas/<slug>.webp). El nombre de la raza sale de tools/razas-laminas.py (RAZAS).
+import importlib.util
+_sp=importlib.util.spec_from_file_location("razas_laminas",os.path.join(H,"..","..","tools","razas-laminas.py"))
+_m=importlib.util.module_from_spec(_sp); _sp.loader.exec_module(_m)
+emb={}
+for slug,(nom,_) in _m.RAZAS.items():
+    p=os.path.join(H,"..","..","assets","web","razas",slug+".webp")
+    if os.path.exists(p): emb[nom]=webp(p)
+out=out.replace("%%HC_EMB%%",json.dumps(emb,ensure_ascii=False,separators=(",",":")))
 # Fondo del tablero táctico (boceto MX-CRUZ2-A, 900 px). Sus obstáculos están calcados a mano en BOBS de la plantilla.
 out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg"))
 # Narraciones (assets/audio/, MP3): también como data URI. Clave = texto de la mesa (start = Antes de empezar, r1 = Ronda 1…).

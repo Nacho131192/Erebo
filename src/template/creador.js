@@ -25,6 +25,57 @@ const ARC={"Saurians":"saurios"};
 const ACL={"Barbarian":"barbaro","Bard":"bardo","Warlock":"brujo","Cleric":"clerigo","Druid":"druida","Ranger":"explorador","Fighter":"guerrero","Sorcerer":"hechicero","Wizard":"mago","Monk":"monje","Paladin":"paladin","Rogue":"picaro"};
 const art=(r,c)=>{const k=r&&c&&ARC[r.en]&&ACL[c.en]?ARC[r.en]+"-"+ACL[c.en]:null;return k&&ART[k]?{k,f:ART[k].f,b:ART[k].b}:null};
 
+/* ---------- clases permitidas por raza (selección de Nacho, 2026-11-25) ----------
+   Cada raza solo ofrece las clases que le pegan (unas 230 combinaciones en total). Una raza sin entrada aquí ofrece todas. */
+const ALLOW={
+"Hombres bestia":["Bárbaro","Druida","Explorador","Guerrero","Brujo"],
+"Hombres rata":["Pícaro","Brujo","Hechicero","Explorador","Guerrero"],
+"Saurios":["Bárbaro","Brujo","Druida","Explorador","Guerrero","Hechicero","Pícaro"],
+"Discípulos de la Guerra":["Bárbaro","Guerrero","Brujo","Clérigo"],
+"Discípulos de la Lujuria":["Bardo","Pícaro","Brujo","Hechicero","Guerrero"],
+"Discípulos de la Plaga":["Clérigo","Druida","Brujo","Bárbaro","Guerrero"],
+"Discípulos del Cambio":["Mago","Hechicero","Brujo","Pícaro","Bardo"],
+"Guerreros del Caos":["Guerrero","Bárbaro","Paladín","Brujo"],
+"Demonios de la Guerra":["Bárbaro","Guerrero","Brujo"],
+"Demonios de la Lujuria":["Pícaro","Bardo","Brujo","Hechicero"],
+"Demonios de la Plaga":["Brujo","Bárbaro","Guerrero","Druida"],
+"Demonios del Cambio":["Hechicero","Mago","Brujo","Pícaro"],
+"Altos elfos":["Mago","Paladín","Guerrero","Bardo","Hechicero","Explorador","Clérigo"],
+"Elfos abisales":["Brujo","Hechicero","Mago","Pícaro","Explorador","Druida"],
+"Elfos oscuros":["Pícaro","Brujo","Hechicero","Guerrero","Explorador"],
+"Elfos silvanos":["Explorador","Druida","Bardo","Pícaro","Mago","Guerrero"],
+"Enanos":["Guerrero","Clérigo","Paladín","Bárbaro"],
+"Enanos de la ciudad celeste":["Guerrero","Mago","Paladín","Clérigo","Explorador"],
+"Enanos del Caos":["Guerrero","Bárbaro","Brujo","Clérigo"],
+"Enanos volcánicos":["Guerrero","Bárbaro","Hechicero","Clérigo","Brujo"],
+"Acechadores de las sombras":["Pícaro","Explorador","Brujo","Monje","Hechicero"],
+"Celadores eternos":["Paladín","Guerrero","Clérigo","Monje","Mago"],
+"Imperio del Dragón":["Monje","Guerrero","Paladín","Hechicero","Mago","Pícaro","Explorador"],
+"Medianos":["Pícaro","Bardo","Explorador","Druida","Clérigo"],
+"Ogros":["Bárbaro","Guerrero","Brujo","Druida"],
+"Alianzas menudas":["Pícaro","Bardo","Explorador","Mago","Clérigo"],
+"Cazatesoros":["Pícaro","Explorador","Guerrero","Mago","Bardo"],
+"Clanes brutos":["Bárbaro","Guerrero","Brujo","Druida"],
+"Fanáticos enloquecidos":["Clérigo","Bárbaro","Brujo","Monje","Paladín","Hechicero"],
+"Federaciones comerciales":["Bardo","Mago","Pícaro","Clérigo","Guerrero"],
+"Guardias a sueldo":["Guerrero","Paladín","Explorador","Clérigo","Monje"],
+"Mercenarios":["Guerrero","Explorador","Pícaro","Bárbaro","Bardo"],
+"Saqueadores de las afueras":["Bárbaro","Pícaro","Guerrero","Explorador","Brujo"],
+"Sindicatos ocultos":["Pícaro","Brujo","Monje","Bardo","Hechicero"],
+"Tribus furiosas":["Bárbaro","Druida","Explorador","Hechicero","Guerrero"],
+"Uniones mercantes":["Bardo","Pícaro","Mago","Guerrero","Clérigo","Explorador"],
+"Ducados de Vinci":["Bardo","Mago","Pícaro","Guerrero","Clérigo","Paladín"],
+"Imperio humano":["Guerrero","Paladín","Clérigo","Mago","Explorador"],
+"Reino de los Ángeles":["Paladín","Clérigo","Guerrero","Mago","Monje","Hechicero"],
+"Reinos caballerescos":["Paladín","Guerrero","Clérigo","Bardo","Explorador"],
+"No muertos fantasmales":["Brujo","Hechicero","Mago","Pícaro","Clérigo"],
+"No muertos momificados":["Clérigo","Brujo","Mago","Guerrero","Hechicero"],
+"No muertos osificados":["Guerrero","Bárbaro","Brujo","Paladín","Pícaro","Explorador"],
+"No muertos vampíricos":["Pícaro","Brujo","Hechicero","Guerrero","Bardo","Mago"],
+"Goblins":["Pícaro","Brujo","Hechicero","Explorador","Bardo","Guerrero"],
+"Orcos":["Bárbaro","Guerrero","Explorador","Brujo","Druida"]};
+const okCls=(r,c)=>!r||!ALLOW[r.n]||ALLOW[r.n].includes(c.n);
+
 /* ---------- glifos de facción y de clase (rejilla de 48) ---------- */
 const FG={
 "Bestias":'<path d="M9 9C6 22 13 28 24 28s18-6 15-19"/><path d="M15 28l3 12 6 4 6-4 3-12"/><circle cx="19" cy="31" r="1.2"/><circle cx="29" cy="31" r="1.2"/>',
@@ -68,7 +119,10 @@ function crestInner(r){
   const glyph=FG[r.fac.n]||FG["Forasteros"];
   return `<defs><clipPath id="${id}"><path d="${sh}"/></clipPath></defs><g clip-path="url(#${id})"><rect width="64" height="80" fill="${A}"/><g fill="${B}">${F}</g><circle cx="32" cy="37" r="15" fill="${A}" opacity=".88"/></g><g transform="translate(20 25) scale(.5)" fill="none" stroke="#f3e2b0" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">${glyph}</g><path d="${sh}" fill="none" stroke="#d9b86c" stroke-width="2.4"/><path d="M32 8L53 14V36C53 50 44 60 32 66 20 60 11 50 11 36V14Z" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width="1"/>`;
 }
-const crest=(r,w=48)=>`<svg class="glyph" viewBox="0 0 64 76" width="${w}" height="${Math.round(w*76/64)}" aria-hidden="true">${crestInner(r)}</svg>`;
+/* Emblema genérico de la raza (assets/web/razas/, WebP; lo incrusta build.py en el marcador de abajo). Si una raza aún no lo tiene, se usa el escudo dibujado. */
+const EMB=%%HC_EMB%%;
+const emb=r=>(r&&EMB[r.n])||"";
+const crest=(r,w=48)=>emb(r)?`<img class="glyph emb" src="${emb(r)}" width="${Math.round(w*1.2)}" height="${Math.round(w*1.2)}" alt="" aria-hidden="true">`:`<svg class="glyph" viewBox="0 0 64 76" width="${w}" height="${Math.round(w*76/64)}" aria-hidden="true">${crestInner(r)}</svg>`;
 const fig=(h)=>`<svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 6c9 0 15 7 15 17 0 7-2 11-4 15l11 26H10l11-26c-2-4-4-8-4-15C17 13 23 6 32 6z" fill="hsl(${h} 28% 24%)"/><ellipse cx="32" cy="26" rx="8" ry="10" fill="#05060b"/><path d="M23 44c5 4 13 4 18 0" fill="none" stroke="#d9b86c" stroke-width="1.6" stroke-linecap="round"/></svg>`;
 
 /* ---------- cálculo de la ficha inicial ---------- */
@@ -291,9 +345,9 @@ function effective(){
 function sheetParts(){
   const {r,t,c,pv}=effective(),full=ST.step===2;
   /* Con ilustración (raza + clase elegidas): el busto, que al pulsar abre la imagen completa. Sin ella: la silueta de siempre. No se sube ninguna foto. */
-  const A=full?art(r,c):null,cr=r?`<span class="cr2">${crest(r,30)}</span>`:"";
+  const A=full?art(r,c):null,E=emb(r),cr=r&&!E?`<span class="cr2">${crest(r,30)}</span>`:"";
   const por=A?`<button type="button" class="hc-por has art" data-act="zoom" aria-label="Ver la imagen completa del héroe"><span class="pi"><img src="${A.b}" alt="${esc(r.n+" · "+c.n)}"></span><span class="cam">Ver completa</span>${cr}</button>`
-    :`<div class="hc-por"><span class="pi">${fig(r?hueF(r.fi):225)}</span>${cr}</div>`;
+    :`<div class="hc-por${E?" emb":""}"><span class="pi">${E?`<img class="emb" src="${E}" alt="${esc(r.n)}">`:fig(r?hueF(r.fi):225)}</span>${cr}</div>`;
   const sub=r?`${esc(r.n)} · ${esc(t.n)}${c?` · ${esc(c.n)}`:""}${pv?'<span class="pvw">Vista previa</span>':""}`:"Elige una raza para empezar";
   let body="";
   if(!r)body=`<p class="emp">La ficha se irá rellenando con lo que elijas.<br>Pasa el ratón por la lista para ver cada opción.</p>`;
@@ -305,7 +359,7 @@ function sheetParts(){
   return{por,sub,body};
 }
 function C1(){return `<div class="sr"><input id="srch" type="search" placeholder="Buscar raza o facción…" value="${esc(ST.q)}" aria-label="Buscar raza" autocomplete="off"></div><div class="lst" data-keep="lst" id="rlist">${raceList()}</div>`}
-function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>`<button class="ct" type="button" data-act="cls" data-i="${i}" aria-pressed="${ST.cls===i}"><span class="hc-gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`).join("")}</div>`}
+function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>okCls(R(),c)?`<button class="ct" type="button" data-act="cls" data-i="${i}" aria-pressed="${ST.cls===i}"><span class="hc-gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`:"").join("")}</div>`}
 function bodyC(){
   const p=sheetParts();
   return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="hc-sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre" maxlength="24" aria-label="Nombre del héroe"><div class="hc-sub" id="shsub">${p.sub}</div></div><div class="hc-seal"><div><small>NIVEL</small><b>1</b></div></div></div><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
@@ -407,9 +461,9 @@ const ACT={
   step(b){const s=+b.dataset.s;if(s===1||ST.race!=null){ST.anim=true;ST.step=s;render()}},
   next(){if(ST.race!=null){ST.anim=true;ST.step=2;render()}},
   back(){ST.anim=true;ST.step=1;render()},
-  race(b){const id=+b.dataset.id;if(ST.race!==id){ST.race=id;ST.type=0}ST.openF=new Set([RACES[id].fi]);render()},
+  race(b){const id=+b.dataset.id;if(ST.race!==id){ST.race=id;ST.type=0;if(ST.cls!=null&&!okCls(RACES[id],D.classes[ST.cls])){ST.cls=null;ST.picks=[]}}ST.openF=new Set([RACES[id].fi]);render()},
   type(b){ST.type=+b.dataset.i;render()},
-  cls(b){const i=+b.dataset.i;if(ST.cls!==i){ST.cls=i;ST.picks=[]}render();requestAnimationFrame(goSheet)},
+  cls(b){const i=+b.dataset.i;if(!okCls(R(),D.classes[i]))return;if(ST.cls!==i){ST.cls=i;ST.picks=[]}render();requestAnimationFrame(goSheet)},
   pick(b){
     const i=+b.dataset.i,n=needPicks(),k=ST.picks.indexOf(i);
     if(k>=0)ST.picks.splice(k,1);else{ST.picks.push(i);if(ST.picks.length>n)ST.picks.shift()}
@@ -419,7 +473,7 @@ const ACT={
   zoom:zoomOn,
   unzoom:zoomOff,
   create(){
-    if(!R()||!C()||ST.picks.length!==needPicks())return;
+    if(!R()||!C()||!okCls(R(),C())||ST.picks.length!==needPicks())return;
     const h=buildHero();
     HS.push(h);hfSave();closeWin();
     HF.fan=true;hfOpen(HS.length-1);
