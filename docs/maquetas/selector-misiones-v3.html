@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta · Selector de misiones v3 (braseros, camino, anillo y mapa a lo ancho)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600;1,700&family=IM+Fell+English:ital@0;1&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--serif:"Cormorant Garamond",Georgia,serif;--disp:"Cinzel",serif;--deco:"Cinzel Decorative",serif;--ui:"Inter",system-ui,sans-serif;--hand:"IM Fell English",Georgia,serif;--gold:#d9b86c}
+*{box-sizing:border-box}
+html,body{margin:0;background:#07090f;color:#d6c9ae;font-family:var(--ui)}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1680px;margin:0 auto;padding:22px 22px 80px}
+.ph h1{margin:0;font:700 28px var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph p{margin:6px 0 0;max-width:900px;font:500 18px/1.45 var(--serif);color:#9aa6c4}
+.keb{margin:0;font:600 10px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:#8a96b4}
+
+/* barra de opciones */
+.bar{position:sticky;top:0;z-index:20;margin:18px -22px 14px;padding:12px 22px;display:flex;flex-wrap:wrap;gap:10px 22px;background:rgba(7,9,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(217,184,108,.18)}
+.grp{display:flex;flex-direction:column;gap:6px}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button{padding:6px 11px;border:0;border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);color:#cdb894;font:600 12px var(--ui);transition:background .2s}
+.seg button:hover{background:rgba(217,184,108,.1)}
+.seg button.on{background:linear-gradient(180deg,#e6c77e,#b48a3c);color:#1b1408;box-shadow:none}
+
+/* réplica de la pantalla */
+.scr{position:relative;height:min(860px,calc(100vh - 150px));min-height:620px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(217,184,108,.25),0 30px 80px rgba(0,0,0,.6)}
+.mapv{position:absolute;inset:0;display:grid;grid-template-columns:250px minmax(0,1fr);gap:0 26px;padding:26px 26px 20px 26px;background:radial-gradient(900px 600px at 40% -10%,rgba(90,110,170,.18),transparent 65%),radial-gradient(900px 600px at 50% 120%,rgba(0,0,0,.7),transparent 60%),#0b0d16}
+.mapv.now{padding-left:36px;gap:0 34px}
+.side{display:flex;flex-direction:column;gap:18px;min-width:0;min-height:0}
+.back{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid rgba(217,184,108,.38);background:rgba(11,14,24,.6);color:#e9dcc2;font:600 11px var(--ui);letter-spacing:.16em;text-transform:uppercase}
+.back svg{width:15px;height:15px}
+.side h2{margin:3px 0 0;font:700 30px/1.08 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.prog{display:flex;align-items:center;gap:12px;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#8a96b4}
+.prog i{display:flex;gap:7px;align-items:center}
+.prog b{width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1.2px #3d4a68}
+.prog b.on{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#f6e3b0,#c99a48 60%,#8f6a1f)}
+.lore{display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:10px;background:linear-gradient(180deg,rgba(217,184,108,.12),rgba(217,184,108,.05));box-shadow:inset 0 0 0 1px rgba(217,184,108,.38);color:#e9dcc2}
+.lore b{display:block;font:600 15px/1.2 var(--disp);letter-spacing:.06em}
+.lore small{display:block;margin-top:3px;font:600 9px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#8a96b4}
+.idx{display:flex;flex-direction:column;gap:3px}
+.idx .keb{margin-bottom:8px;color:#7a86a3}
+.idx div{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#cdb894}
+.idx div.on{background:rgba(217,184,108,.12);box-shadow:inset 0 0 0 1px rgba(217,184,108,.3)}
+.idx div.lk{opacity:.5}
+.idx .n{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font:700 12px var(--disp);color:var(--gold);box-shadow:inset 0 0 0 1.2px rgba(217,184,108,.45)}
+.idx .t{font:500 17px/1.15 var(--serif)}
+.idx .t small{display:block;margin-top:2px;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7a86a3}
+.hint{margin:auto 0 0;font:italic 500 16px/1.35 var(--serif);color:#6f7a96}
+/* ambiente «más rol»: la columna como hoja de diario */
+.rol .side{gap:14px;padding:16px 16px;border-radius:6px;background:linear-gradient(180deg,rgba(29,39,64,.55),rgba(15,22,40,.55)),repeating-linear-gradient(180deg,transparent 0 31px,rgba(205,181,125,.07) 31px 32px);box-shadow:inset 0 0 0 1px rgba(205,181,125,.35),inset 0 0 0 5px rgba(11,13,22,.9),inset 0 0 0 6px rgba(205,181,125,.22)}
+.rol .idx .t,.rol .hint{font-family:var(--hand)}
+.rol .idx .t{font-size:17px}
+.rol .side h2{font-size:28px}
+
+.mmap{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 20px 28px rgba(0,0,0,.6)) drop-shadow(0 2px 2px rgba(0,0,0,.6))}
+.mmap text{font-family:var(--serif)}
+.mmap .mt{fill:#18213a;stroke:#cdb57d;stroke-width:1.1;stroke-linejoin:round}
+.mmap .mts{fill:#000;opacity:.35}
+.mmap .tr{fill:#172038;stroke:#cdb57d;stroke-width:1.1}
+.mmap .trs{fill:none;stroke:#cdb57d;stroke-width:2.2;opacity:.32}
+.mmap .tk{fill:none;stroke:#cdb57d;stroke-width:1.3}
+.mmap .mhl{fill:none;stroke:#cdb57d;stroke-width:1.4;opacity:.7}
+.mmap .wt{fill:none;stroke:#8fb3d6;stroke-width:2.4;stroke-linecap:round;opacity:.85}
+.mmap .lk{fill:rgba(143,179,214,.16);stroke:#8fb3d6;stroke-width:1.8}
+.mmap .rp{fill:none;stroke:#8fb3d6;stroke-width:1.2;opacity:.55}
+.mmap .gl{fill:#18213a;stroke:#cdb57d;stroke-width:1.4;stroke-linejoin:round}
+.mmap .fr{fill:none;stroke:#cdb57d;stroke-width:1.6;stroke-dasharray:16 6 3 6;opacity:.75}
+.mmap .rt-on{fill:none;stroke:#d9862f;stroke-width:2;stroke-linecap:round;opacity:.6}
+.mmap .rt-off{fill:none;stroke:#cdb57d;stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.4}
+.mmap .eglow{fill:none;stroke:#ff9a3c;stroke-width:9;opacity:.35;filter:blur(5px)}
+.mmap .emb{fill:none;stroke:#ffd27a;stroke-width:3;stroke-linecap:round;stroke-dasharray:2 16;animation:mmarch 1.4s linear infinite}
+@keyframes mmarch{to{stroke-dashoffset:-18}}
+.mmap .lab{fill:#e3cb92;font:italic 600 19px var(--serif)}
+.mmap .cap{fill:#e3cb92;font:600 13px var(--disp);letter-spacing:.24em}
+.mmap .lab,.mmap .cap{filter:drop-shadow(0 0 4px rgba(227,203,146,.25))}
+.mmap .stars circle{fill:#f3e6c4}
+.mmap .stars .tw{animation:mtw 3.6s ease-in-out infinite alternate}
+@keyframes mtw{from{opacity:.15}to{opacity:.9}}
+.mmap .cloud{animation:mdrift 70s linear infinite alternate}
+.mmap .cloud.c2{animation-duration:46s;animation-direction:alternate-reverse}
+@keyframes mdrift{from{transform:translateX(-160px)}to{transform:translateX(160px)}}
+.mmap .fogr{transition:transform 1.9s cubic-bezier(.45,0,.2,1)}
+.mmap .rv{transform-box:fill-box;transform-origin:center;transition:transform 1.7s .35s cubic-bezier(.3,0,.2,1)}
+.mmap .lens{pointer-events:none}
+.mmap .pin{cursor:pointer;outline:none}
+.mmap .pin .hit{fill:transparent}
+/* misión elegida: alguien la rodea a lápiz (dos pasadas que no cierran; se dibujan al elegirla) */
+.mmap .pin .sel path{fill:none;stroke:#f3ead3;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.mmap .pin .sel path:first-child{stroke-width:2.2}
+.mmap .pin .sel path+path{stroke-width:1.3}
+.mmap .pin.on .sel path,.mmap .pin:focus-visible .sel path{opacity:.95;animation:mpen .9s cubic-bezier(.4,0,.2,1) forwards}
+.mmap .pin.on .sel path+path,.mmap .pin:focus-visible .sel path+path{opacity:.55;animation-duration:.7s;animation-delay:.55s}
+@keyframes mpen{to{stroke-dashoffset:0}}
+/* hogueras: chispas que suben */
+.mmap .spk{opacity:0;animation:mspk 2.2s linear infinite}
+@keyframes mspk{0%{transform:translate(0,0);opacity:0}12%{opacity:1}100%{transform:translate(var(--dx),-38px);opacity:0}}
+/* camino de la misión: pisadas que aparecen una a una desde Varek's Hold */
+.mmap .fp{opacity:0;animation:mfp 7s linear infinite}
+@keyframes mfp{0%{opacity:0}3%{opacity:.95}62%{opacity:.95}78%{opacity:0}100%{opacity:0}}
+/* ambiente de rol: notas a mano junto al camino */
+.mmap .note{fill:#d9cba6;font:italic 400 15px var(--hand);opacity:.8;paint-order:stroke;stroke:#141c31;stroke-width:4px}
+@media (prefers-reduced-motion:reduce){.mmap .spk,.mmap .fp{animation:none}.mmap .fp{opacity:.8}.mmap .pin.on .sel path{animation:none;stroke-dashoffset:0}}
+.mmap .pin .body{transform-box:fill-box;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.mmap .pin:hover .body,.mmap .pin.on .body{transform:scale(1.12)}
+.mmap .pin .plab{fill:#e3cb92;font:italic 400 23px var(--hand);paint-order:stroke;stroke:#141c31;stroke-width:6px;stroke-linejoin:round;transition:opacity .25s}
+.mmap .pin .psub{fill:#a99a78;font:600 9.5px var(--ui);letter-spacing:.16em;paint-order:stroke;stroke:#141c31;stroke-width:5px;stroke-linejoin:round;transition:opacity .25s}
+.mmap .pin.s-live .psub{fill:#b7a2ff}
+.mmap .pin.s-done .plab{opacity:.75}
+.mapv:not(.popoff) .mmap .pin.on .plab,.mapv:not(.popoff) .mmap .pin.on .psub{opacity:0}
+/* braseros: arden las misiones abiertas (fuego naranja), la partida en curso (violeta) y las cumplidas (oro) */
+.mmap .bowl{fill:#3a3020;stroke:#cdb57d;stroke-width:1.2}
+.mmap .flm{transform-box:fill-box;transform-origin:50% 100%;animation:mflick 1.1s ease-in-out infinite alternate}
+.mmap .flm.f2{animation-duration:.8s;animation-delay:-.3s}
+.mmap .flm.f3{animation-duration:1.4s;animation-delay:-.7s}
+@keyframes mflick{0%{transform:scale(1,1) skewX(0)}50%{transform:scale(.92,1.08) skewX(3deg)}100%{transform:scale(1.04,.94) skewX(-3deg)}}
+.mmap .glow{mix-blend-mode:screen;animation:mglow 2.2s ease-in-out infinite alternate}
+@keyframes mglow{from{opacity:.65}to{opacity:1}}
+.mmap .hn{font:700 13px var(--disp);text-anchor:middle;fill:#e3cb92;paint-order:stroke;stroke:#141c31;stroke-width:4px}
+.mmap .smoke{fill:none;stroke:#8b7d6b;stroke-width:1.4;stroke-linecap:round;opacity:.6}
+.mmapw{position:relative;min-width:0;min-height:0}
+.rol .mmap .pin .plab{font:italic 400 23px var(--hand)}
+.mmap .note{fill:#d9cba6;font:italic 400 15px var(--hand);opacity:.8;paint-order:stroke;stroke:#141c31;stroke-width:4px}
+
+/* --- braseros nuevos --- */
+.mmap .spk{animation:spk 2.2s linear infinite;opacity:0}
+@keyframes spk{0%{transform:translate(0,0);opacity:0}12%{opacity:1}100%{transform:translate(var(--dx),-38px);opacity:0}}
+.mmap .swing{animation:swing 3.4s ease-in-out infinite alternate}
+@keyframes swing{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.mmap .rune{animation:rune 2.6s ease-in-out infinite alternate}
+@keyframes rune{from{opacity:.55}to{opacity:1}}
+.mmap .beam{animation:beam 3s ease-in-out infinite alternate;mix-blend-mode:screen}
+@keyframes beam{from{opacity:.25}to{opacity:.55}}
+
+/* --- anillos --- */
+.mmap .rg-act{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:4 5;transform-box:fill-box;transform-origin:center;animation:mspin 16s linear infinite}
+.mmap .rg-run{animation:mspin 48s linear infinite}
+.mmap .rg-brk{transform-box:fill-box;transform-origin:center;animation:brk 2.4s ease-in-out infinite alternate}
+@keyframes brk{from{transform:scale(1);opacity:.75}to{transform:scale(1.1);opacity:1}}
+.mmap .rg-rip{fill:none;stroke-width:1.6;transform-box:fill-box;transform-origin:center;animation:rip 3.6s ease-out infinite;opacity:0}
+@keyframes rip{0%{transform:scale(.35);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+
+.mmap .flag{transform-box:fill-box;transform-origin:0 50%;animation:flagw 1.8s ease-in-out infinite alternate}
+@keyframes flagw{from{transform:scaleX(1) skewY(0)}to{transform:scaleX(.82) skewY(5deg)}}
+.mmap .bob{animation:bob 1.5s ease-in-out infinite alternate}
+@keyframes bob{to{transform:translateY(7px)}}
+/* --- pisadas --- */
+.mmap .fp{opacity:0;animation:fp 7s linear infinite}
+@keyframes fp{0%{opacity:0}3%{opacity:.95}62%{opacity:.95}78%{opacity:0}100%{opacity:0}}
+
+/* taller */
+h3.sec{margin:46px 0 4px;font:600 15px var(--disp);letter-spacing:.2em;text-transform:uppercase;color:#d9b86c}
+p.secd{margin:0 0 16px;max-width:900px;font:500 18px/1.4 var(--serif);color:#9aa6c4}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;padding:0;border:0;border-radius:12px;background:#0f1628;box-shadow:inset 0 0 0 1px rgba(217,184,108,.2);text-align:left;color:inherit;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.card:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(217,184,108,.5)}
+.card.on{box-shadow:inset 0 0 0 2px #e2c37f,0 0 24px rgba(217,184,108,.18)}
+.card svg{display:block;width:100%;height:auto}
+.card .cap2{display:block;padding:12px 16px 16px}
+.card .cap2 b{display:block;font:600 14px var(--disp);letter-spacing:.08em;color:#f1e2c4}
+.card .cap2 span{display:block;margin-top:4px;font:500 16px/1.35 var(--serif);color:#9aa6c4}
+.mmap.cardm{position:static;inset:auto;height:auto;filter:none}
+@media (prefers-reduced-motion:reduce){.mmap *{animation:none!important}}
+</style>
+</head>
+<body>
+<!-- definiciones compartidas por todos los SVG de la página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <linearGradient id="mpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2740"/><stop offset="1" stop-color="#0f1628"/></linearGradient>
+ <radialGradient id="mvg" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+ <radialGradient id="mns" r=".5"><stop offset="0" stop-color="#5a3fae" stop-opacity=".3"/><stop offset=".6" stop-color="#5a3fae" stop-opacity=".08"/><stop offset="1" stop-color="#5a3fae" stop-opacity="0"/></radialGradient>
+ <radialGradient id="mlg"><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+ <linearGradient id="flO" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2461f"/><stop offset=".6" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
+ <linearGradient id="flV" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#5a33c8"/><stop offset=".6" stop-color="#9d7bff"/><stop offset="1" stop-color="#e3d8ff"/></linearGradient>
+ <linearGradient id="flG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c0832a"/><stop offset=".6" stop-color="#f1c35c"/><stop offset="1" stop-color="#fff0bd"/></linearGradient>
+ <radialGradient id="glO"><stop offset="0" stop-color="#ffb04a" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+ <radialGradient id="glV"><stop offset="0" stop-color="#a587ff" stop-opacity=".8"/><stop offset="1" stop-color="#6a45e0" stop-opacity="0"/></radialGradient>
+ <radialGradient id="glG"><stop offset="0" stop-color="#ffd98a" stop-opacity=".6"/><stop offset="1" stop-color="#d9a640" stop-opacity="0"/></radialGradient>
+ <radialGradient id="ground"><stop offset="0" stop-color="#ffb04a" stop-opacity=".35"/><stop offset="1" stop-color="#ffb04a" stop-opacity="0"/></radialGradient>
+ <filter id="mgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .28 0"/></filter>
+ <filter id="mmot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".007" numOctaves="4" seed="9"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .27 0 0 0 0 .1 0 0 0 .7 -.22"/></filter>
+ <filter id="ink"><feTurbulence baseFrequency=".045" numOctaves="2" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/></filter>
+ <filter id="blot" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="80" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter>
+ <filter id="mcl1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0045 .009" numOctaves="4" seed="21" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -1.05" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter>
+ <filter id="mcl2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008 .014" numOctaves="3" seed="44" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 -.95" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter>
+ <!-- lápiz: grano de grafito (se come parte del trazo) y temblor de la mano -->
+ <filter id="pencil" filterUnits="userSpaceOnUse" x="-800" y="-200" width="2600" height="1200"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="g"/><feTurbulence baseFrequency=".05" numOctaves="2" seed="8" result="d"/><feDisplacementMap in="g" in2="d" scale="2.6"/></filter>
+ <!-- pincel seco: bordes irregulares y huecos donde la tinta no llega -->
+ <filter id="brush" filterUnits="userSpaceOnUse" x="-800" y="-200" width="2600" height="1200"><feTurbulence type="fractalNoise" baseFrequency=".03 .5" numOctaves="2" seed="12" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3 2.05" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="g"/><feTurbulence baseFrequency=".035" numOctaves="2" seed="6" result="d"/><feDisplacementMap in="g" in2="d" scale="5"/></filter>
+ <filter id="rgl" x="-100%" y="-60%" width="300%" height="220%"><feGaussianBlur stdDeviation="2.4"/></filter>
+</defs></svg>
+
+<div class="wrap">
+ <header class="ph">
+  <p class="keb">Maqueta · Selector de misiones · v3</p>
+  <h1>Braseros, camino y mapa a lo ancho</h1>
+  <p>Elige arriba cada pieza y mira cómo queda en la pantalla. Debajo está el taller con todas las opciones juntas (también se pueden pulsar). El mapa es el de verdad, copiado de la página. Nada de esto está aplicado todavía.</p>
+ </header>
+ <div class="bar" id="bar"></div>
+ <div class="scr"><div class="mapv" id="mapv"></div></div>
+
+ <h3 class="sec">1 · Marcadores de misión</h3>
+ <p class="secd">Cuatro alternativas al brasero, cada una en sus cuatro estados: disponible (fuego naranja), en curso (violeta), cumplida (oro) y sellada (apagada).</p>
+ <div class="cards" id="cB"></div>
+ <h3 class="sec">2 · El camino de la misión</h3>
+ <p class="secd">Sustituyen a la línea de puntos amarillos que avanza. El tramo de la misión disponible se dibuja; el de las selladas queda bajo la niebla.</p>
+ <div class="cards" id="cR"></div>
+ <h3 class="sec">3 · La marca de la misión elegida</h3>
+ <p class="secd">Sustituyen al círculo amarillo de rayas que gira alrededor del brasero.</p>
+ <div class="cards" id="cA"></div>
+</div>
+
+<script>
+const S={round:0,fin:false,prim:false,end:false,defeat:false};
+const f=n=>+n.toFixed(1);
+const MIS=[
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
+ {n:"III",t:"La aldea sitiada",z:"Asedio del Culto",h:"El Culto del Umbral cerca una aldea. Los Resonantes ofrecen su ayuda, a su manera."},
+ {n:"IV",t:"La emboscada",z:"Concordancia de Orum",h:"Alguien más sigue vuestro rastro. Una tercera facción entra en juego."},
+ {n:"V",t:"La cripta primordial",z:"Deudores de Vael",h:"Bajo la piedra duerme la ruina de un Primordial, y alguien ha venido a cobrar lo que se le debe."},
+ {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde la Ruptura empezó a borrar, os espera Ocaso."}];
+/* Campañas de Érebo: de momento solo una; el resto, cartas boca abajo. */
+const CAMPS=[{n:"I",t:"El Pueblo Sin Nombre",h:"Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre.",ac:"#5f86d6",on:true},{n:"II",ac:"#6f9a5a"},{n:"III",ac:"#c9573f"},{n:"IV",ac:"#6f8fb6"},{n:"V",ac:"#c9a24a"}];
+const won=()=>S.prim&&S.end&&!S.defeat;
+const mst=i=>i===1?(S.fin?"open":"lock"):i?"lock":won()?"done":S.round?"live":"open";
+const SHORT={open:"Disponible",live:"En curso",done:"Cumplida",lock:"Sellada"};
+const stl=i=>{const s=mst(i);return s==="live"?`Partida en curso · Ronda ${S.round}`:s==="done"?"Cumplida":s==="open"?"Lista para jugar":"Sellada"};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const P=[[395,598],[652,498],[316,408],[614,312],[360,212],[590,106]],VK=[500,742];
+const WP=[VK,[452,676],P[0],[528,566],P[1],[486,462],P[2],[468,352],P[3],[488,256],P[4],[470,150],P[5]];
+const SEG=(()=>{const o=[];for(let i=0;i<WP.length-1;i++){const p0=WP[i-1]||WP[i],p1=WP[i],p2=WP[i+1],p3=WP[i+2]||p2;o.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}return o})();
+const cpart=s=>`C${f(s[1][0])} ${f(s[1][1])} ${f(s[2][0])} ${f(s[2][1])} ${s[3][0]} ${s[3][1]}`;
+const legD=k=>`M${SEG[2*k][0][0]} ${SEG[2*k][0][1]}${cpart(SEG[2*k])}${cpart(SEG[2*k+1])}`;
+const RP=(()=>{const o=[];for(const s of SEG)for(let t=0;t<=1;t+=.05){const u=1-t;o.push([u*u*u*s[0][0]+3*u*u*t*s[1][0]+3*u*t*t*s[2][0]+t*t*t*s[3][0],u*u*u*s[0][1]+3*u*u*t*s[1][1]+3*u*t*t*s[2][1]+t*t*t*s[3][1]])}return o})();
+const FOR=[[720,505,205,92],[172,612,96,52],[842,392,92,58]],LAKE=[165,318,72,38];
+const inE=(x,y,e,m=1)=>((x-e[0])/(e[2]*m))**2+((y-e[1])/(e[3]*m))**2<1;
+function clear(x,y,pr=26){
+ if(P.some(p=>Math.hypot(p[0]-x,p[1]-y)<64))return false;
+ if(Math.hypot(VK[0]-x,VK[1]-y)<80)return false;
+ if(RP.some(p=>Math.hypot(p[0]-x,p[1]-y)<pr))return false;
+ if(inE(x,y,LAKE,1.5))return false;
+ if(x<360&&y<150)return false;if(x>820&&y<200)return false;if(x<210&&y>690)return false;
+ return true}
+function blob(r,n,R,j){const pts=[];for(let k=0;k<n;k++){const a=k/n*Math.PI*2,rr=r+(R()*2-1)*j;pts.push([rr*Math.cos(a),rr*Math.sin(a)])}
+ let d="";for(let k=0;k<n;k++){const a=pts[k],b=pts[(k+1)%n],m=[(a[0]+b[0])/2,(a[1]+b[1])/2];d+=(k?"":`M${f((pts[n-1][0]+a[0])/2)} ${f((pts[n-1][1]+a[1])/2)}`)+`Q${f(a[0])} ${f(a[1])} ${f(m[0])} ${f(m[1])}`}return d+"Z"}
+let TERR=null;
+function terrain(){if(TERR)return TERR;const R=rng(11);let s="";
+ s+=`<path class="wt" d="M196 346C238 392 252 432 224 482S190 562 232 612S264 692 238 744S252 792 262 812"/>`;
+ s+=`<ellipse class="lk" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]}" ry="${LAKE[3]}"/><ellipse class="rp" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]+10}" ry="${LAKE[3]+8}" stroke-dasharray="3 6"/><path class="rp" d="M128 312h22M168 326h26M142 336h14M176 300h18"/>`;
+ for(let k=0,c=0;k<400&&c<34;k++){const x=60+R()*880,y=470+R()*215;if(!clear(x,y)||FOR.some(e=>inE(x,y,e,1.1)))continue;c++;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}M${f(x+3)} ${f(y-5)}l4 4"/>`}
+ const mts=[];for(let k=0;k<1600&&mts.length<84;k++){const x=70+R()*860,y=150+R()*235;if(!clear(x,y,30)||FOR.some(e=>inE(x,y,e,1.15)))continue;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+ mts.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const w=20*k,h=25*k,px=x-w*.1,py=y-h;s+=`<path class="mt" d="M${f(x-w)} ${f(y)}L${f(px)} ${f(py)}L${f(x+w)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+w)} ${f(y)}L${f(x+w*.2)} ${f(y)}Q${f(x+w*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+ const trs=[];for(const e of FOR){const want=Math.round(e[2]*e[3]/140);for(let k=0,c=0;k<want*12&&c<want;k++){const x=e[0]+(R()*2-1)*e[2],y=e[1]+(R()*2-1)*e[3];if(!inE(x,y,e)||!clear(x,y,20))continue;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;c++;trs.push({x,y,s:.8+R()*.45})}}
+ trs.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+ s+=`<path class="fr" d="M24 660C200 648 300 672 450 658S700 646 820 662S940 654 996 660"/>`;
+ [-2.5,-1.95,-.55,.25,2.35,2.95].forEach((a,k)=>{const r=44+(k%2)*9,x=P[0][0]+r*Math.cos(a),y=P[0][1]+r*Math.sin(a)+6;s+=`<path class="gl" d="M${f(x-6)} ${f(y)}v-7l6-6 6 6v7z"/>`});
+ for(let k=0;k<26;k++){if(k%9===4)continue;const a=k/26*Math.PI*2,x=P[2][0]+38*Math.cos(a),y=P[2][1]+38*Math.sin(a);s+=`<path class="tk" stroke-width="1.6" d="M${f(x)} ${f(y)}l${f(Math.cos(a)*6)} ${f(Math.sin(a)*6-3)}"/>`}
+ {const x=P[3][0]-52,y=P[3][1]+22;s+=`<path class="tk" stroke-width="1.8" d="M${x-9} ${y-9}l18 18M${x+9} ${y-9}l-18 18M${x-11} ${y+5}l5 5M${x+11} ${y+5}l-5 5"/>`}
+ {const x=P[4][0]+52,y=P[4][1]+30;s+=`<path class="gl" d="M${x-11} ${y}v-11a11 11 0 0 1 22 0v11z"/><path class="tk" d="M${x-15} ${y+3}h30M${x-4} ${y}v-6a4 4 0 0 1 8 0v6"/>`}
+ return TERR=s}
+function compass(x,y){let s=`<g transform="translate(${x} ${y})"><circle r="44" fill="none" stroke="#cdb57d" stroke-width="1"/><circle r="38" fill="none" stroke="#cdb57d" stroke-width=".8" stroke-dasharray="2 3"/>`;
+ for(let k=0;k<8;k++){const L=k%2?24:46,w=k%2?5:8;s+=`<g transform="rotate(${k*45})"><path d="M0 ${-L}L${w} 0H0z" fill="#cdb57d"/><path d="M0 ${-L}L${-w} 0H0z" fill="#1d2740" stroke="#cdb57d" stroke-width=".8"/></g>`}
+ return s+`<circle r="3.5" fill="#e3b866"/><text y="-52" text-anchor="middle" fill="#e3b866" style="font:700 16px var(--disp)">N</text></g>`}
+/* Borde irregular del mapa. x0 y w: el mapa se ensancha hacia los lados para llenar la pantalla (2026-11-25). */
+const STARS=(()=>{const R=rng(77);let s=`<g class="stars">`;for(let k=0;k<140;k++){const x=R()*1000,y=R()*800,r=R()<.12?1.6:.4+R()*.7;s+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" opacity="${f(.2+R()*.5)}"${R()<.2?` class="tw" style="animation-delay:-${f(R()*3.6)}s"`:""}/>`}return s+"</g>"})();
+const FOGY=[526,430,330,240,150,60],FKEY="psn-map-seen";
+const SIDE=[1,1,-1,1,-1,1];
+
+/* Brasero antiguo (ya sustituido en la página por la hoguera), para comparar como «Actual». */
+const FLC={open:"O",live:"V",done:"G"};
+function brazier(st,m){const lit=st!=="lock",c=FLC[st];
+ const fl=lit?`<circle class="glow" cy="-12" r="48" fill="url(#gl${c})"/><g transform="translate(0 -6)"><path class="flm" d="M0 0C-12 -6 -9 -20 -2 -30C-3 -20 6 -18 4 -28C12 -18 12 -6 0 0z" fill="url(#fl${c})"/><path class="flm f2" d="M-6 0C-12 -6 -10 -14 -6 -19C-5 -12 0 -12 -1 -17C4 -10 2 -3 -6 0z" fill="url(#fl${c})" opacity=".85"/><path class="flm f3" d="M5 0C0 -3 1 -11 5 -15C5 -10 9 -9 8 -13C12 -7 10 -2 5 0z" fill="#fff3c9" opacity=".7"/></g>`
+  :`<path class="smoke" d="M0 -8c-4 -6 4 -10 0 -16s4 -10 0 -14"/>`;
+ return `${fl}<g class="body"><path class="bowl" d="M-15 -6H15L10 4H-10z"/><path class="bowl" d="M-7 4L-11 14M7 4L11 14M0 4V14"/>${lit?"":`<path d="M-11 -6q4 -4 8 0q4 -3 8 0q3 -2 6 0" fill="none" stroke="#6b5a48" stroke-width="1.4"/>`}<text class="hn" y="30">${m.n}</text></g>`}
+
+/* ================= opciones ================= */
+const O={braz:"hog",route:"pen",ring:"pen",wide:"wide",amb:"rol",st:"open"};
+const OPT={
+ braz:[["act","Actual"],["hog","A · Hoguera"],["ata","B · Atalaya"],["far","C · Farol"],["men","D · Menhir rúnico"]],
+ route:[["act","Actual"],["pen","1 · Lápiz"],["bru","2 · Pincelada"],["fpr","3 · Pisadas"],["car","4 · Cartógrafo"]],
+ ring:[["act","Actual"],["pen","1 · Círculo a lápiz"],["run","2 · Anillo de runas"],["brk","3 · Esquineros"],["rip","4 · Ondas de luz"],["rx","5 · X de tesoro"],["fl","6 · Banderín"],["ar","7 · Flecha a mano"],["pl","8 · Subrayado de pluma"],["dt","9 · Puntos de tinta"]],
+ wide:[["now","Como ahora"],["wide","A lo ancho"]],
+ amb:[["now","Como ahora"],["rol","Más de rol"]],
+ st:[["open","Disponible"],["live","En curso"],["done","Cumplida"]]};
+const LAB={braz:"Marcador",route:"Camino",ring:"Marca de la elegida",wide:"Mapa",amb:"Ambiente",st:"Estado de la misión I"};
+const DESC={
+ hog:["A · Hoguera de campamento","Leños cruzados dentro de un corro de piedras, chispas que suben. Sellada: ceniza fría y un hilo de humo."],
+ ata:["B · Atalaya","Torre de vigía con la almenara encendida y la ventana iluminada. Sellada: torre a oscuras con una almena rota."],
+ far:["C · Farol de camino","Un farol que se mece colgado de un cayado, como los que marcan las sendas. Sellado: cristal negro y rajado."],
+ men:["D · Menhir rúnico","Piedra en pie con una runa que late con el color de la misión. Sellado: runa gastada, grietas y musgo."],
+ act:["Actual","El brasero de ahora, para comparar."],
+ pen:["1 · Trazo a lápiz","Grafito sobre el mapa, con grano y pulso de mano. Un lápiz vuelve a repasar el camino sin parar."],
+ bru:["2 · Pincelada","Tinta de brasa a pincel seco, con huecos donde no llega. Se pinta de nuevo cada pocos segundos y un brillo húmedo la recorre."],
+ fpr:["3 · Pisadas","Huellas de bota que aparecen una a una desde Varek's Hold, como si la compañía estuviera caminando."],
+ car:["4 · Ruta de cartógrafo","Tinta roja a rayas con flechas de dirección y cruces en cada alto del camino, como en los mapas antiguos."],
+ rpen:["1 · Círculo a lápiz","Alguien rodea la misión con el lápiz: dos pasadas que no cierran del todo."],
+ rrun:["2 · Anillo de runas","Un círculo de runas en tinta dorada que gira muy despacio."],
+ rbrk:["3 · Esquineros","Cuatro esquinas de tinta que respiran, como un objetivo marcado en el mapa."],
+ rrip:["4 · Ondas de luz","Luz en el suelo y ondas que salen del marcador, del color de su fuego."],
+ ract:["Actual","El círculo de rayas que gira, para comparar."],
+ rrx:["5 · X de tesoro","Una cruz roja a lápiz marca el sitio, como en los mapas de aventureros. Se dibuja en dos trazos al elegir la misión."],
+ rfl:["6 · Banderín","Un banderín rojo clavado junto a la hoguera, que ondea. La compañía ha puesto su marca."],
+ rar:["7 · Flecha a mano","Una flecha a lápiz sobre la hoguera, que sube y baja despacio señalándola."],
+ rpl:["8 · Subrayado de pluma","El nombre de la misión se subraya con dos rasgos de pluma al elegirla. (En la página habría que medir el nombre para ajustar el trazo.)"],
+ rdt:["9 · Puntos de tinta","Un corro de puntos de pluma, como el punteado de los cartógrafos, que van apareciendo uno a uno."],
+ tact:["Actual","La línea de puntos amarillos que avanza, para comparar."]};
+
+/* ================= piezas comunes ================= */
+const COL={open:{c:"O",ink:"#ff9a3c",hi:"#ffd27a"},live:{c:"V",ink:"#9d7bff",hi:"#e3d8ff"},done:{c:"G",ink:"#f1c35c",hi:"#fff0bd"},lock:{c:"",ink:"#5b6684",hi:"#8a96b4"}};
+const flame=(c,tr)=>`<g transform="${tr}"><path class="flm" d="M0 0C-12 -6 -9 -20 -2 -30C-3 -20 6 -18 4 -28C12 -18 12 -6 0 0z" fill="url(#fl${c})"/><path class="flm f2" d="M-6 0C-12 -6 -10 -14 -6 -19C-5 -12 0 -12 -1 -17C4 -10 2 -3 -6 0z" fill="url(#fl${c})" opacity=".85"/><path class="flm f3" d="M5 0C0 -3 1 -11 5 -15C5 -10 9 -9 8 -13C12 -7 10 -2 5 0z" fill="#fff3c9" opacity=".7"/></g>`;
+const sparks=(hi,y0,n=5,w=10)=>{let s="";for(let k=0;k<n;k++){const x=((k*37)%(2*w))-w;s+=`<circle class="spk" cx="${x}" cy="${y0}" r="${k%2?1:1.3}" fill="${hi}" style="--dx:${(k%2?6:-5)}px;animation-delay:-${(k*.44).toFixed(2)}s"/>`}return s};
+const hn=m=>`<text class="hn" y="30">${m.n}</text>`;
+
+/* cada marcador: dibujo y dónde va el anillo de selección (cy, r) */
+const BZ={
+ act:{cy:-4,r:38,d:(st,m)=>brazier(st,m)},
+ hog:{cy:-6,r:36,d(st,m){const lit=st!=="lock",K=COL[st];let back="",front="";
+  for(let k=0;k<9;k++){const a=k/9*Math.PI*2,x=17*Math.cos(a),y=4+5*Math.sin(a),e=`<ellipse cx="${f(x)}" cy="${f(y)}" rx="4.2" ry="2.9" fill="#232c47" stroke="#cdb57d" stroke-width=".9"/>`;Math.sin(a)<0?back+=e:front+=e}
+  const log=(d,c)=>`<path d="${d}" stroke="#cdb57d" stroke-width="6.6" stroke-linecap="round"/><path d="${d}" stroke="${c}" stroke-width="4.2" stroke-linecap="round"/>`;
+  const logs=`<g fill="none">${log("M-12 5L9 -4",lit?"#4a3420":"#26262b")}${log("M12 5L-9 -4",lit?"#3d2b1a":"#202026")}</g>`;
+  const fire=lit?`<circle class="glow" cy="-12" r="52" fill="url(#gl${K.c})"/>`:"";
+  const top=lit?`<ellipse cy="1" rx="9" ry="2.6" fill="${K.hi}" opacity=".7"/>${flame(K.c,"translate(0 -1) scale(1.12 1)")}${sparks(K.hi,-22)}`
+   :`<path d="M-11 3q11 -10 22 0z" fill="#2b303f" stroke="#6b5a48" stroke-width="1"/><path class="smoke" d="M0 -6c-4 -6 4 -10 0 -16s4 -10 0 -14"/>`;
+  return `${fire}<g class="body">${back}${logs}${top}${front}${hn(m)}</g>`}},
+ ata:{cy:-20,r:44,d(st,m){const lit=st!=="lock",K=COL[st];
+  const mer=lit?"M-10 -30V-37H-6V-33H-2V-37H2V-33H6V-37H10V-30Z":"M-10 -30V-37H-6V-33H-2V-37H2V-33H6V-34L8 -31H10V-30Z";
+  const fire=lit?`<circle class="glow" cy="-40" r="58" fill="url(#gl${K.c})"/>`:"";
+  return `${fire}<g class="body"><path d="M-11 6L-8 -30H8L11 6Z" fill="#18213a" stroke="#cdb57d" stroke-width="1.2" stroke-linejoin="round"/><path d="${mer}" fill="#18213a" stroke="#cdb57d" stroke-width="1.2" stroke-linejoin="round"/><path d="M-9 -18h6M2 -18h6M-10 -6h5M1 -6h8M-6 -24v6M4 -12v6M-3 -12v6" stroke="#cdb57d" stroke-width=".7" opacity=".6"/><path d="M-3 6V0a3 3 0 0 1 6 0v6" fill="#0b0f1c" stroke="#cdb57d" stroke-width="1"/><rect x="-1.4" y="-25" width="2.8" height="7" rx="1.2" fill="${lit?K.hi:"#0b0f1c"}" stroke="#cdb57d" stroke-width=".7"/>${lit?`${flame(K.c,"translate(0 -36) scale(.78)")}${sparks(K.hi,-60,4,6)}`:""}${hn(m)}</g>`}},
+ far:{cy:-14,r:40,d(st,m){const lit=st!=="lock",K=COL[st];
+  const glass=lit?`<rect x="-5" y="5" width="10" height="14" fill="${K.hi}" opacity=".28"/>${flame(K.c,"translate(0 17) scale(.32)")}`:`<rect x="-5" y="5" width="10" height="14" fill="#0b0f1c"/><path d="M-3 6l3 4-2 4 3 4" fill="none" stroke="#8a96b4" stroke-width=".8"/>`;
+  const lant=`<path d="M0 -4V3" stroke="#cdb57d" stroke-width="1.2"/><circle cy="-4" r="2" fill="none" stroke="#cdb57d" stroke-width="1"/><path d="M-7 5L0 0L7 5Z" fill="#18213a" stroke="#cdb57d" stroke-width="1.1" stroke-linejoin="round"/>${glass}<rect x="-6" y="4.5" width="12" height="15" rx="1.4" fill="none" stroke="#cdb57d" stroke-width="1.2"/><path d="M-2 5v14M2 5v14" stroke="#cdb57d" stroke-width=".6" opacity=".8"/><path d="M-7.5 19.5h15l-2 3h-11z" fill="#18213a" stroke="#cdb57d" stroke-width="1"/>`;
+  return `${lit?`<circle class="glow" cy="-20" r="50" fill="url(#gl${K.c})"/>`:""}<g class="body"><path d="M-13 8V-38q0 -7 7 -7h6v3" fill="none" stroke="#cdb57d" stroke-width="2.2" stroke-linecap="round"/><path d="M-19 8h12M-16 8l-2 -4M-11 8l1 -5" stroke="#cdb57d" stroke-width="1" fill="none"/><g transform="translate(0 -40)"><g class="${lit?"swing":""}"${lit?"":` transform="rotate(9)"`}>${lant}</g></g>${hn(m)}</g>`}},
+ men:{cy:-16,r:42,d(st,m){const lit=st!=="lock",K=COL[st];
+  const rn="M-1 -33V-9M-1 -27l7 -5M-1 -20l7 4M-1 -14l-6 4";
+  const rune=lit?`<path d="${rn}" fill="none" stroke="${K.ink}" stroke-width="4" stroke-linecap="round" filter="url(#rgl)" class="rune"/><path d="${rn}" fill="none" stroke="${K.hi}" stroke-width="1.8" stroke-linecap="round" class="rune"/>`
+   :`<path d="${rn}" fill="none" stroke="#3a4562" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="5 2 2 3"/><path d="M5 -40l-2 8 3 6" fill="none" stroke="#0b0f1c" stroke-width="1.2"/><circle cx="-6" cy="2" r="1.6" fill="#4f6a4a"/><circle cx="-3" cy="3" r="1.2" fill="#4f6a4a"/><circle cx="7" cy="1" r="1.4" fill="#4f6a4a"/>`;
+  return `${lit?`<circle class="glow" cy="-18" r="46" fill="url(#gl${K.c})" opacity=".8"/>`:""}<g class="body"><path d="M-10 6C-12 -10 -10 -28 -4 -40C0 -45 6 -43 8 -35C11 -21 12 -7 10 6Z" fill="#18213a" stroke="#cdb57d" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 -35C11 -21 12 -7 10 6H5C7 -8 7 -22 4 -38Z" fill="#000" opacity=".28"/>${rune}<path d="M-15 6l-2 -5M-13 6l1 -6M11 6l2 -6M14 6l2 -4" stroke="#cdb57d" stroke-width="1" fill="none"/>${lit?sparks(K.hi,-10,4,14):""}${hn(m)}</g>`}}};
+
+/* ---- anillo de la misión elegida ---- */
+function sketch(cx,cy,r,seed,turn=2*Math.PI+.5){const R=rng(seed),a0=R()*6.28,ph=R()*6.28,pts=[];
+ for(let k=0;k<=30;k++){const a=a0+turn*k/30,rr=r*(1+.05*Math.sin(2*a+ph)+(R()-.5)*.04)*(1+.06*k/30);pts.push([cx+rr*Math.cos(a),cy+rr*.9*Math.sin(a)])}
+ let d=`M${f(pts[0][0])} ${f(pts[0][1])}`;for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;d+=`C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${f(p2[0])} ${f(p2[1])}`}return d}
+const GL=["M0 -4V4M0 -4l3 2","M-2 -4V4M2 -4V4M-2 0h4","M0 -4L3 0L0 4L-3 0Z","M-2 -4L2 4M2 -4L-2 4","M0 -4V4M-3 -1l3 -3 3 3","M-2 -4v8h4"];
+const RING={
+ act:(cy,r)=>`<circle class="rg-act" cy="${cy}" r="${r}"/>`,
+ pen:(cy,r)=>[sketch(0,cy,r+2,4),sketch(0,cy,r+5,9,2*Math.PI+.25)].map((d,i)=>`<path d="${d}" fill="none" stroke="#efe6cf" stroke-width="${i?1.1:1.7}" stroke-linecap="round" opacity="${i?.5:.9}" filter="url(#pencil)" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" begin="${i?.55:0}s" dur="${i?.7:.9}s" fill="freeze" calcMode="spline" keySplines=".4 0 .2 1" keyTimes="0;1"/></path>`).join(""),
+ run:(cy,r)=>{let s=`<g transform="translate(0 ${cy})"><g class="rg-run"><circle r="${r-6}" fill="none" stroke="#cdb57d" stroke-width=".8" opacity=".7"/><circle r="${r+6}" fill="none" stroke="#cdb57d" stroke-width="1.1"/>`;
+  for(let k=0;k<18;k++){const a=k/18*360;s+=`<path transform="rotate(${a}) translate(0 ${-r})" d="${GL[k%GL.length]}" fill="none" stroke="#e3cb92" stroke-width="1.1" stroke-linecap="round"/>`}return s+`</g></g>`},
+ brk:(cy,r)=>{const q=r*.78,L=11;return `<g class="rg-brk"><g fill="none" stroke="#e3cb92" stroke-width="2" stroke-linecap="round" filter="url(#ink)">${[[-1,-1],[1,-1],[1,1],[-1,1]].map(([sx,sy])=>`<path d="M${sx*q} ${cy+sy*q-sy*L}V${cy+sy*q}H${sx*q-sx*L}"/>`).join("")}</g></g>`},
+ rip:(cy,r,st)=>{const K=COL[st]||COL.open;return `<ellipse cy="5" rx="${r+6}" ry="${(r+6)*.3}" fill="url(#gl${K.c||"O"})" opacity=".8"/>${[0,1.2,2.4].map(d=>`<ellipse class="rg-rip" cy="5" rx="${r+4}" ry="${(r+4)*.32}" stroke="${K.hi}" style="animation-delay:-${d}s"/>`).join("")}`}};
+
+/* ---- marcas alternativas (ronda 2) ---- */
+const draw=(d,w,col,dur,delay=0)=>`<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" begin="${delay}s" dur="${dur}s" fill="freeze"/></path>`;
+Object.assign(RING,{
+ rx:()=>`<g filter="url(#pencil)">${draw("M-30 -3L30 23",4,"#c9573f",.5)}${draw("M30 -4L-30 22",4,"#c9573f",.5,.45)}${draw("M-30 -3L30 23",1.2,"#f0a08c",.4,.95)}${draw("M30 -4L-30 22",1.2,"#f0a08c",.4,1.3)}</g>`,
+ fl:()=>`<g><path d="M-36 15V-38" stroke="#cdb57d" stroke-width="2.2" stroke-linecap="round"/><circle cx="-36" cy="-39" r="2.3" fill="#e3cb92"/><path d="M-42 15h12" stroke="#cdb57d" stroke-width="1.6" stroke-linecap="round"/><g class="flag"><path d="M-35 -36C-26 -41 -19 -31 -8 -36V-21C-19 -16 -26 -26 -35 -21Z" fill="#b8453a" stroke="#2a1d10" stroke-width=".8"/><path d="M-33 -30C-26 -33 -20 -26 -12 -30" fill="none" stroke="#e8b3a4" stroke-width=".8" opacity=".7"/></g></g>`,
+ ar:()=>`<g class="bob" filter="url(#pencil)"><path d="M6 -82C-7 -76 7 -68 0 -57" fill="none" stroke="#f3ead3" stroke-width="3.2" stroke-linecap="round"/><path d="M-7 -63L0 -54L7 -64" fill="none" stroke="#f3ead3" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>`,
+ pl:()=>`<g filter="url(#ink)">${draw("M30 20C58 26 88 15 118 21S172 17 200 21",1.9,"#e3cb92",.9)}${draw("M46 27C84 30 122 25 166 28",1,"#e3cb92",.7,.5)}<circle cx="206" cy="21" r="1.8" fill="#e3cb92" opacity="0"><animate attributeName="opacity" from="0" to=".9" begin="1s" dur=".2s" fill="freeze"/></circle></g>`,
+ dt:()=>{const R=rng(14);let s="";for(let k=0;k<30;k++){const a=k/30*Math.PI*2+(R()-.5)*.12,rr=38+R()*3.5;s+=`<circle cx="${f(rr*Math.cos(a))}" cy="${f(-6+rr*.9*Math.sin(a))}" r="${f(1+(k%4===0?.9:R()*.5))}" fill="#e3cb92" opacity="0"><animate attributeName="opacity" from="0" to=".9" begin="${(k*.04).toFixed(2)}s" dur=".25s" fill="freeze"/></circle>`}return s}});
+
+/* ---- recorrido de un tramo (puntos con distancia acumulada) ---- */
+function bez(s,t){const u=1-t;return[u*u*u*s[0][0]+3*u*u*t*s[1][0]+3*u*t*t*s[2][0]+t*t*t*s[3][0],u*u*u*s[0][1]+3*u*u*t*s[1][1]+3*u*t*t*s[2][1]+t*t*t*s[3][1]]}
+function samp(k){const o=[];let L=0,prev=null;for(const s of[SEG[2*k],SEG[2*k+1]])for(let i=0;i<=60;i++){const p=bez(s,i/60);if(prev)L+=Math.hypot(p[0]-prev[0],p[1]-prev[1]);o.push([p[0],p[1],L]);prev=p}return o}
+function at(sp,d){for(let i=1;i<sp.length;i++)if(sp[i][2]>=d){const a=sp[i-1],b=sp[i],t=(d-a[2])/((b[2]-a[2])||1);return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,Math.atan2(b[1]-a[1],b[0]-a[0])]}const z=sp[sp.length-1],y=sp[sp.length-2];return[z[0],z[1],Math.atan2(z[1]-y[1],z[0]-y[0])]}
+
+/* ---- el camino: "under" va con el terreno (bajo la niebla), "over" por encima ---- */
+function route(kind,sts){let under="",over="";
+ for(let k=0;k<6;k++){const on=sts[k]!=="lock",d=legD(k);
+  if(kind==="act"){under+=`<path class="${on?"rt-on":"rt-off"}" d="${d}"/>`;if(on)over+=`<path class="eglow" d="${d}"/><path class="emb" d="${d}"/>`;continue}
+  if(!on){under+=kind==="car"?`<path d="${d}" fill="none" stroke="#c9573f" stroke-width="1.4" stroke-dasharray="6 7" opacity=".35"/>`:`<path d="${d}" fill="none" stroke="#d8d0bd" stroke-width="1.2" stroke-dasharray="3 6" opacity=".3" filter="url(#pencil)"/>`;continue}
+  const sp=samp(k),L=sp[sp.length-1][2],dur=k===0?5.5:6.5;
+  if(kind==="pen"){
+   over+=`<g filter="url(#pencil)"><path d="${d}" fill="none" stroke="#e6dec9" stroke-width="1.8" opacity=".45"/><path d="${d}" fill="none" stroke="#f3ecd9" stroke-width="2.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.5;1" dur="${dur}s" repeatCount="indefinite"/><animate attributeName="opacity" values=".95;.95;.95;0" keyTimes="0;.5;.86;1" dur="${dur}s" repeatCount="indefinite"/></path><path d="${d}" fill="none" stroke="#f3ecd9" stroke-width="1" transform="translate(1.2 .8)" pathLength="1" stroke-dasharray="1 1" opacity=".5"><animate attributeName="stroke-dashoffset" values="1;1;0;0" keyTimes="0;.08;.58;1" dur="${dur}s" repeatCount="indefinite"/></path></g>`
+    +`<g><animateMotion dur="${dur}s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;.5;1" calcMode="linear" path="${d}"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.5;.56;1" dur="${dur}s" repeatCount="indefinite"/><g transform="rotate(-38)"><path d="M0 0l5 -2.2h16v4.4H5z" fill="#c9a24a" stroke="#2a1d10" stroke-width=".6"/><path d="M0 0l5 -2.2v4.4z" fill="#e8d6b0"/><path d="M0 0l1.6 -.7v1.4z" fill="#333"/><rect x="21" y="-2.2" width="3.4" height="4.4" fill="#b85c4a"/></g></g>`}
+  if(kind==="bru"){
+   over+=`<path d="${d}" fill="none" stroke="#ff9a3c" stroke-width="10" opacity=".12" filter="url(#brush)"/><g filter="url(#brush)"><path d="${d}" fill="none" stroke="#e0893a" stroke-width="5.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.35;1" dur="${dur+1}s" repeatCount="indefinite" calcMode="spline" keySplines=".5 0 .3 1;0 0 1 1"/></path><path d="${d}" fill="none" stroke="#ffcf87" stroke-width="2" pathLength="1" stroke-dasharray=".06 .94" opacity=".8"><animate attributeName="stroke-dashoffset" values="1.06;0" dur="3s" repeatCount="indefinite"/></path></g>`}
+  if(kind==="fpr"){const step=12.5,n=Math.floor((L-26)/step);let g="";
+   for(let i=0;i<n;i++){const[x,y,a]=at(sp,14+i*step),s=i%2?1:-1,ox=-Math.sin(a)*3.6*s,oy=Math.cos(a)*3.6*s;
+    g+=`<path class="fp" transform="translate(${f(x+ox)} ${f(y+oy)}) rotate(${f(a*180/Math.PI+90)})" d="M0 -4.4c1.7 0 2.3 1.5 2.1 3.3l-.4 2.3c-.2 1.2-3 1.2-3.2 0l-.4-2.3c-.2-1.8.4-3.3 1.9-3.3zM-1 3h2l-.1 1.6c-.1.9-1.7.9-1.8 0z" fill="#e3cb92" style="animation-delay:${(i*(7*.55/n)).toFixed(2)}s"/>`}
+   over+=`<g>${g}</g>`}
+  if(kind==="car"){let g=`<path d="${d}" fill="none" stroke="#c9573f" stroke-width="2.2" stroke-dasharray="10 6" stroke-linecap="round" filter="url(#ink)"><animate attributeName="stroke-dashoffset" values="0;-32" dur="2.6s" repeatCount="indefinite"/></path>`;
+   for(let s0=55;s0<L-30;s0+=70){const[x,y,a]=at(sp,s0);g+=`<path transform="translate(${f(x)} ${f(y)}) rotate(${f(a*180/Math.PI)})" d="M-5 -4.5L2 0L-5 4.5" fill="none" stroke="#e07a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`}
+   const mid=WP[2*k+1];g+=`<path transform="translate(${mid[0]} ${mid[1]})" d="M-4 -4L4 4M4 -4L-4 4" stroke="#e07a5f" stroke-width="2" stroke-linecap="round"/>`;
+   over+=g}}
+ return{under,over}}
+
+/* ---- mapa ensanchado: el lienzo se estira hacia los lados y se rellena de terreno ---- */
+function edgeW(x0,w){const R=rng(5),pts=[],m=6,st=26;
+ for(let x=x0+m;x<x0+w-m;x+=st)pts.push([x,m+R()*4]);for(let y=m;y<800-m;y+=st)pts.push([x0+w-m-R()*4,y]);
+ for(let x=x0+w-m;x>x0+m;x-=st)pts.push([x,800-m-R()*4]);for(let y=800-m;y>m;y-=st)pts.push([x0+m+R()*4,y]);
+ return "M"+pts.map(p=>f(p[0])+" "+f(p[1])).join("L")+"Z"}
+const SIDEC={};
+function sideTerr(ext){ext=Math.round(ext);if(!ext)return"";if(SIDEC[ext])return SIDEC[ext];const R=rng(31);let s="";
+ const zones=[[-ext,0],[1000,1000+ext]];
+ for(const[a,b]of zones){const w=b-a;
+  const mts=[];for(let k=0;k<900&&mts.length<Math.round(w/14);k++){const x=a+20+R()*(w-40),y=170+R()*220;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+  mts.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const W=20*k,h=25*k,px=x-W*.1,py=y-h;s+=`<path class="mt" d="M${f(x-W)} ${f(y)}L${f(px)} ${f(py)}L${f(x+W)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+W)} ${f(y)}L${f(x+W*.2)} ${f(y)}Q${f(x+W*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+  const cx=a+w/2,trs=[];for(let k=0;k<700&&trs.length<Math.round(w/9);k++){const x=cx+(R()*2-1)*w*.42,y=520+R()*140;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;trs.push({x,y,s:.8+R()*.45})}
+  trs.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+  for(let k=0;k<Math.round(w/22);k++){const x=a+15+R()*(w-30),y=440+R()*70;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}"/>`}}
+ return SIDEC[ext]=s}
+function starsW(x0,w){const R=rng(78);let s="";for(let k=0;k<Math.round(w*.14);k++){const x=x0+R()*w,y=R()*800;if(x>0&&x<1000)continue;s+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(.4+R()*.8)}" fill="#f3e6c4" opacity="${f(.2+R()*.5)}"/>`}return s}
+function fogW(id,sts,y,inv,x0,w){const W=inv?"#000":"#fff",B=inv?"#fff":"#000";
+ const rv=P.map((p,i)=>sts[i]!=="lock"?`<circle cx="${p[0]}" cy="${p[1]}" r="128" fill="${W}"/>`:"").join("");
+ return `<mask id="${id}" maskUnits="userSpaceOnUse" x="${x0-200}" y="-200" width="${w+400}" height="1200"><g filter="url(#blot)"><rect x="${x0-200}" y="-200" width="${w+400}" height="1200" fill="${W}"/><rect x="${x0-200}" y="${y-1500}" width="${w+400}" height="1500" fill="${B}"/>${rv}<circle cx="590" cy="106" r="165" fill="${B}"/></g></mask>`}
+/* adornos de rol: marco con esquineras y notas a mano junto al camino */
+function rolFrame(x0,w,sts){const x1=x0+w,c=(x,y,sx,sy)=>`<g transform="translate(${x} ${y}) scale(${sx} ${sy})"><path d="M0 46V8Q0 0 8 0H46" fill="none" stroke="#cdb57d" stroke-width="1.6"/><path d="M8 40V14Q8 8 14 8H40" fill="none" stroke="#cdb57d" stroke-width=".8"/><path d="M14 14c10 0 14 4 14 14c-4-6-8-8-14-8z" fill="#cdb57d" opacity=".8"/><circle cx="4" cy="4" r="2.4" fill="#cdb57d"/></g>`;
+ let s=`<rect x="${x0+16}" y="16" width="${w-32}" height="768" fill="none" stroke="#cdb57d" stroke-width="1.1" opacity=".55"/><rect x="${x0+21}" y="21" width="${w-42}" height="758" fill="none" stroke="#cdb57d" stroke-width=".5" opacity=".4"/>`;
+ s+=c(x0+16,16,1,1)+c(x1-16,16,-1,1)+c(x0+16,784,1,-1)+c(x1-16,784,-1,-1);
+ s+=`<text class="note" transform="translate(386 626) rotate(54)">media jornada</text>`;
+ if(sts[1]!=="lock")s+=`<text class="note" transform="translate(508 556) rotate(-20)">dos jornadas</text>`;
+ return s}
+
+function mapX(o,W,H,vbOverride){
+ const st0=o.st,sts=MIS.map((_,i)=>i===0?st0:i===1&&st0==="done"?"open":"lock");
+ const ext=o.wide==="wide"&&W&&H?Math.max(0,(800*W/H-1000)/2):0,x0=-ext,w=1000+2*ext;
+ const far=sts.reduce((a,s,i)=>s!=="lock"?i:a,0),fy=FOGY[far];
+ const R=route(o.route,sts),B=BZ[o.braz];
+ let pins="";P.forEach((p,i)=>{const st=sts[i],m=MIS[i],sd=SIDE[i],lx=sd>0?32:-32,anc=sd>0?"start":"end",sel=i===0;
+  const ring=sel?(RING[o.ring])(B.cy,B.r,st):"";
+  pins+=`<g class="pin s-${st}${sel?" on":""}" transform="translate(${p[0]} ${p[1]})"><circle class="hit" cy="-6" r="46"/>${ring}${B.d(st,m)}${st!=="lock"?`<text class="plab" x="${lx}" y="-6" text-anchor="${anc}">${m.t}</text><text class="psub" x="${lx}" y="12" text-anchor="${anc}">${SHORT[st].toUpperCase()}${st==="live"?" · RONDA 3":""}</text>`:""}</g>`});
+ const lands=`<g filter="url(#ink)">${terrain()}${sideTerr(ext)}${R.under}</g>`;
+ const card=!!vbOverride,vb=vbOverride||`${f(x0)} 0 ${f(w)} 800`;
+ const id=card?"c"+Math.random().toString(36).slice(2,7):"m";
+ return `<svg class="mmap${card?" cardm":""}" viewBox="${vb}" preserveAspectRatio="xMidYMid ${card?"slice":"meet"}">
+ <defs><clipPath id="${id}pc"><path d="${edgeW(x0,w)}"/></clipPath>${card?"":fogW("mfog",sts,fy,false,x0,w)+fogW("mfogi",sts,fy,true,x0,w)+`<mask id="mlens" maskUnits="userSpaceOnUse" x="${x0-200}" y="-200" width="${w+400}" height="1200"><circle id="mlensc" cx="-999" cy="-999" r="44" fill="url(#mlg)"/></mask>`}</defs>
+ <g clip-path="url(#${id}pc)">
+  <rect x="${x0}" width="${w}" height="800" fill="url(#mpg)"/><rect x="${x0}" width="${w}" height="800" filter="url(#mmot)" opacity=".35"/><rect x="${x0}" width="${w}" height="800" filter="url(#mgrain)" opacity=".5"/>
+  ${STARS}${starsW(x0,w)}
+  ${card?lands:`<g mask="url(#mfog)">${lands}</g>
+  <g mask="url(#mfogi)"><rect x="${x0-50}" y="-50" width="${w+100}" height="900" fill="#232d48" opacity=".7"/><rect class="cloud" x="${x0-400}" y="-50" width="${w+800}" height="900" filter="url(#mcl1)"/><rect class="cloud c2" x="${x0-400}" y="-50" width="${w+800}" height="900" filter="url(#mcl2)" opacity=".8"/></g>
+  <g class="lens" mask="url(#mlens)" opacity=".5"><g mask="url(#mfogi)">${lands}</g></g>`}
+  <circle cx="590" cy="106" r="200" fill="url(#mns)"/>
+  <g filter="url(#ink)">
+   <path d="M${x0+14} 776C300 768 700 782 ${x0+w-10} 772" fill="none" stroke="#cdb57d" stroke-width="9"/>
+   <path d="M${x0+14} 766C300 758 700 772 ${x0+w-10} 762" fill="none" stroke="#cdb57d" stroke-width="7" stroke-dasharray="7 9"/>
+   <g fill="#18213a" stroke="#cdb57d" stroke-width="1.6" stroke-linejoin="round"><path d="M474 760v-22h10v22z"/><path d="M472 738l7-9 7 9z"/><path d="M491 760v-30h15v30z"/><path d="M489 730l9.5-12 9.5 12z"/><path d="M513 760v-19h10v19z"/><path d="M511 741l7-8 7 8z"/></g>
+   ${ext?`<path class="fr" d="M${x0+24} 660C${x0+120} 652 -40 666 24 660"/><path class="fr" d="M996 660C1060 654 ${1000+ext-120} 668 ${1000+ext-24} 660"/>`:""}
+  </g>
+  <text class="cap" x="548" y="748" style="font-size:14px;letter-spacing:.14em">VAREK'S HOLD</text>
+  <text class="lab" x="${x0+64}" y="752" style="font-size:16px">el Muro que nadie construyó</text>
+  <text class="lab" x="${x0+w-8-(o.amb==="rol"?22:0)}" y="648" text-anchor="end" style="font-size:17px">la frontera</text>
+  <g transform="translate(${x0+36+(o.amb==="rol"?14:0)} ${34+(o.amb==="rol"?10:0)})"><rect width="300" height="88" rx="2" fill="#141c31" fill-opacity=".8" stroke="#cdb57d" stroke-width="1.2"/><rect x="5" y="5" width="290" height="78" fill="none" stroke="#cdb57d" stroke-width=".7"/><text class="cap" x="150" y="38" text-anchor="middle">TIERRAS AL NORTE</text><text class="cap" x="150" y="56" text-anchor="middle" style="font-size:11px;letter-spacing:.3em">DEL MURO</text><text class="lab" x="150" y="74" text-anchor="middle" style="font-size:14px;fill:#a99a78">campaña de El Pueblo Sin Nombre</text></g>
+  ${compass(x0+w-94-(o.amb==="rol"?14:0),110+(o.amb==="rol"?10:0))}
+  <g transform="translate(${x0+40+(o.amb==="rol"?14:0)} 708)"><rect width="36" height="6" fill="#cdb57d"/><rect x="36" width="36" height="6" fill="none" stroke="#cdb57d"/><rect x="72" width="36" height="6" fill="#cdb57d"/><text class="lab" y="-6" style="font-size:13px">0</text><text class="lab" x="72" y="-6" text-anchor="middle" style="font-size:13px">5</text><text class="lab" x="112" y="-6" style="font-size:13px">10 leguas</text></g>
+  ${o.amb==="rol"?rolFrame(x0,w,sts):""}
+  <rect x="${x0}" width="${w}" height="800" fill="url(#mvg)" pointer-events="none"/>
+ </g>
+ <path d="${edgeW(x0,w)}" fill="none" stroke="#cdb57d" stroke-opacity=".35" stroke-width="1.5"/>
+ ${R.over}
+ ${pins}
+ </svg>`}
+
+/* ================= pantalla ================= */
+const BACKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+function side(){const sts=MIS.map((_,i)=>i===0?O.st:i===1&&O.st==="done"?"open":"lock");
+ return `<div class="side"><button class="back" type="button">${BACKI}<span>Campañas</span></button><div><p class="keb">Érebo · Campaña I</p><h2>El Pueblo Sin Nombre</h2></div><div class="prog"><span>${sts.filter(s=>s!=="lock").length} de 6 misiones</span><i>${sts.map(s=>`<b class="${s!=="lock"?"on":""}"></b>`).join("")}</i></div><div class="lore"><svg viewBox="0 0 24 24" width="26" height="26" style="color:#d9b86c"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="14.6" cy="11" r="6.4" fill="currentColor"/></svg><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></div><div class="idx"><p class="keb">La ruta hacia el norte</p>${MIS.map((m,i)=>`<div class="${i===0?"on":""}${sts[i]==="lock"?" lk":""}"><span class="n">${m.n}</span><span class="t">${m.t}<small>${SHORT[sts[i]]}</small></span></div>`).join("")}</div><p class="hint">Pulsa un ${O.braz==="hog"?"fuego":O.braz==="ata"?"atalaya":O.braz==="far"?"farol":O.braz==="men"?"menhir":"brasero"} del mapa o una misión de la lista para ver su ficha.</p></div>`}
+function paint(){const v=document.getElementById("mapv");v.className="mapv"+(O.wide==="now"?" now":"")+(O.amb==="rol"?" rol":"");
+ v.innerHTML=side()+`<div class="mmapw" id="mw"></div>`;const mw=document.getElementById("mw"),r=mw.getBoundingClientRect();
+ mw.innerHTML=mapX(O,r.width,r.height);lensOn(mw.querySelector("svg"));paintBar();paintCards()}
+function lensOn(svg){const c=svg.querySelector("#mlensc");if(!c)return;svg.addEventListener("pointermove",e=>{const m=svg.getScreenCTM();if(!m)return;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());c.setAttribute("cx",f(p.x));c.setAttribute("cy",f(p.y));c.setAttribute("r",f(37.8*1.25/m.a))});svg.addEventListener("pointerleave",()=>c.setAttribute("cx",-999))}
+function paintBar(){document.getElementById("bar").innerHTML=Object.keys(OPT).map(k=>`<div class="grp"><span class="keb">${LAB[k]}</span><div class="seg">${OPT[k].map(([v,l])=>`<button type="button" data-k="${k}" data-v="${v}" class="${O[k]===v?"on":""}">${l}</button>`).join("")}</div></div>`).join("")}
+
+/* ================= taller ================= */
+function brCard(key){const sts=["open","live","done","lock"],nm=["Disponible","En curso","Cumplida","Sellada"],B=BZ[key];
+ let s=`<svg class="mmap cardm" viewBox="-140 -88 280 140"><rect x="-140" y="-88" width="280" height="140" fill="url(#mpg)"/>`;
+ sts.forEach((st,i)=>{const x=-105+i*70;s+=`<g class="pin" transform="translate(${x} 12)">${B.d(st,{n:["I","II","III","IV"][i]})}</g><text x="${x}" y="-72" text-anchor="middle" style="font:600 7.5px var(--ui);letter-spacing:.14em;fill:#8a96b4">${nm[i].toUpperCase()}</text>`});
+ return s+"</svg>"}
+function paintCards(){
+ const card=(grp,v,svg,dk)=>{const[t,d]=DESC[dk||v];return `<button type="button" class="card${O[grp]===v?" on":""}" data-k="${grp}" data-v="${v}">${svg}<span class="cap2"><b>${t}</b><span>${d}</span></span></button>`};
+ document.getElementById("cB").innerHTML=OPT.braz.map(([v])=>card("braz",v,brCard(v))).join("");
+ document.getElementById("cR").innerHTML=OPT.route.map(([v])=>card("route",v,mapX({...O,route:v,st:"done",amb:"now",wide:"now"},0,0,"330 470 400 300"),v==="act"?"tact":v)).join("");
+ document.getElementById("cA").innerHTML=OPT.ring.map(([v])=>card("ring",v,mapX({...O,ring:v,amb:"now",wide:"now"},0,0,"300 500 300 175"),"r"+v)).join("")}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(!b)return;O[b.dataset.k]=b.dataset.v;paint()});
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(paint,120)});
+document.fonts.ready.then(paint);paint();
+</script>
+</body>
+</html>

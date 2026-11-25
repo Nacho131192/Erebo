@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta · Ficha de misión v4 (cinco presentaciones)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600;1,700&family=IM+Fell+English:ital@0;1&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--serif:"Cormorant Garamond",Georgia,serif;--disp:"Cinzel",serif;--deco:"Cinzel Decorative",serif;--ui:"Inter",system-ui,sans-serif;--hand:"IM Fell English",Georgia,serif;--gold:#d9b86c;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .08 0 0 0 .26 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+*{box-sizing:border-box}
+html,body{margin:0;background:#07090f;color:#d6c9ae;font-family:var(--ui)}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1680px;margin:0 auto;padding:22px 22px 80px}
+.ph h1{margin:0;font:700 28px var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph p{margin:6px 0 0;max-width:940px;font:500 18px/1.45 var(--serif);color:#9aa6c4}
+.keb{margin:0;font:600 10px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:#8a96b4}
+.back{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid rgba(217,184,108,.38);background:rgba(11,14,24,.6);color:#e9dcc2;font:600 11px var(--ui);letter-spacing:.16em;text-transform:uppercase}
+.back svg{width:15px;height:15px}
+
+/* barra de opciones */
+.bar{position:sticky;top:0;z-index:60;margin:18px -22px 14px;padding:12px 22px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 26px;background:rgba(7,9,15,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(217,184,108,.18)}
+.grp{display:flex;flex-direction:column;gap:6px}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button{padding:6px 12px;border:0;border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);color:#cdb894;font:600 12px var(--ui);transition:background .2s}
+.seg button:hover{background:rgba(217,184,108,.1)}
+.seg button.on{background:linear-gradient(180deg,#e6c77e,#b48a3c);color:#1b1408;box-shadow:none}
+.replay{padding:8px 16px;border:0;border-radius:999px;background:rgba(217,184,108,.14);box-shadow:inset 0 0 0 1px rgba(217,184,108,.5);color:#f1e2c4;font:600 12px var(--ui);letter-spacing:.06em}
+.replay:hover{background:rgba(217,184,108,.26)}
+
+/* réplica de la pantalla del mapa */
+.scr{position:relative;height:min(820px,calc(100vh - 190px));min-height:600px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(217,184,108,.25),0 30px 80px rgba(0,0,0,.6)}
+.mapv{position:relative;height:100vh;height:100svh;min-height:660px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:0 26px;padding:calc(26px + env(safe-area-inset-top,0px)) max(26px,env(safe-area-inset-right,0px)) 20px max(26px,env(safe-area-inset-left,0px));background:radial-gradient(900px 600px at 40% -10%,rgba(90,110,170,.18),transparent 65%),radial-gradient(900px 600px at 50% 120%,rgba(0,0,0,.7),transparent 60%),#0b0d16}
+.mside{display:flex;flex-direction:column;gap:20px;min-height:0;min-width:0}
+/* Ambiente de rol (2026-11-25): la columna es una hoja de diario con renglones y doble filete; letra de pluma en la lista. */
+@media (min-width:861px){
+ .mside{gap:14px;padding:16px;overflow:auto;scrollbar-width:none;border-radius:6px;background:linear-gradient(180deg,rgba(29,39,64,.55),rgba(15,22,40,.55)),repeating-linear-gradient(180deg,transparent 0 31px,rgba(205,181,125,.07) 31px 32px);box-shadow:inset 0 0 0 1px rgba(205,181,125,.35),inset 0 0 0 5px rgba(11,13,22,.9),inset 0 0 0 6px rgba(205,181,125,.22)}
+ .mvh h1{font-size:28px}
+}
+.mside .midx .t,.mside .mhint{font-family:var(--hand);font-weight:400}
+.mvh{display:flex;flex-direction:column;align-items:flex-start;gap:14px;min-width:0}
+.mvh .back{border-color:rgba(217,184,108,.38);background:rgba(11,14,24,.6)}
+.mvh .keb{color:#8a96b4;font-size:10px}
+.mvh h1{margin:3px 0 0;font:700 30px/1.08 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+.mvh .mprog{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;font:600 11px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#8a96b4}
+.mprog i{display:flex;gap:7px;align-items:center}
+.mprog i b{width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 1.2px #3d4a68}
+.mprog i b.on{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#f6e3b0,#c99a48 60%,#8f6a1f);box-shadow:0 0 0 3px rgba(217,184,108,.16),0 0 10px rgba(226,195,127,.55)}
+.mprog i b.lv{width:10px;height:10px;background:radial-gradient(circle at 35% 30%,#c9b6ff,#7b55e0 60%,#3f2a8a);box-shadow:0 0 0 3px rgba(139,108,240,.2),0 0 10px rgba(139,108,240,.6)}
+.midx{display:flex;flex-direction:column;gap:3px;margin-top:10px}
+.midx .keb{color:#7a86a3;margin-bottom:8px}
+.midx button{display:grid;grid-template-columns:34px minmax(0,1fr);align-items:center;gap:10px;padding:8px 10px;border:0;border-radius:8px;background:none;text-align:left;color:#cdb894;transition:background .2s}
+.midx button:hover{background:rgba(217,184,108,.07)}
+.midx button.on{background:rgba(217,184,108,.12);box-shadow:inset 0 0 0 1px rgba(217,184,108,.3)}
+.midx .n{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font:700 12px var(--disp);color:var(--gold);box-shadow:inset 0 0 0 1.2px rgba(217,184,108,.45)}
+.midx .s-live .n{color:#c9b6ff;box-shadow:inset 0 0 0 1.2px #7b5fd6}
+.midx .s-done .n{background:radial-gradient(circle at 35% 30%,#e8cb83,#a87d34);color:#2b1d12;box-shadow:none}
+.midx .s-lock{opacity:.5}
+.midx .t{font:500 17px/1.15 var(--serif)}
+.midx .t small{display:block;margin-top:2px;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7a86a3}
+.midx .s-live .t small{color:#b7a2ff}
+.mhint{margin:auto 0 0;font:italic 500 16px/1.35 var(--serif);color:#6f7a96}
+/* Botón de lore del selector de misiones y su panel «Lo que aún se recuerda» */
+.mlore{display:flex;align-items:center;gap:12px;width:100%;margin-top:6px;padding:11px 14px;border:0;border-radius:10px;background:linear-gradient(180deg,rgba(217,184,108,.12),rgba(217,184,108,.05));box-shadow:inset 0 0 0 1px rgba(217,184,108,.38);color:#e9dcc2;text-align:left;cursor:pointer;transition:background .2s,box-shadow .2s}
+.mlore:hover,.mlore:focus-visible{background:linear-gradient(180deg,rgba(217,184,108,.2),rgba(217,184,108,.09));box-shadow:inset 0 0 0 1px rgba(226,195,127,.75),0 0 18px rgba(217,184,108,.18)}
+.mlore svg{flex:none;width:26px;height:26px;color:#d9b86c}
+.mlore b{display:block;font:600 15px/1.2 var(--disp);letter-spacing:.06em}
+.mlore small{display:block;margin-top:3px;font:600 9px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#8a96b4}
+#lorOv{position:fixed;inset:0;z-index:85;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(5,6,12,.84);backdrop-filter:blur(6px);animation:lorin .25s ease}
+@keyframes lorin{from{opacity:0}to{opacity:1}}
+#lorOv .lorc{position:relative;width:min(760px,100%);max-height:min(88vh,100%);overflow:auto;padding:34px 38px 30px;border-radius:14px;background:linear-gradient(180deg,#121830,#0c101f);box-shadow:inset 0 0 0 1px rgba(217,184,108,.4),0 24px 80px rgba(0,0,0,.6);color:#d6c9ae;overscroll-behavior:contain}
+#lorOv .lorx{position:absolute;top:12px;right:12px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(217,184,108,.1);box-shadow:inset 0 0 0 1px rgba(217,184,108,.4);color:#e9dcc2;font:600 16px var(--ui);cursor:pointer}
+#lorOv .lorx:hover,#lorOv .lorx:focus-visible{background:rgba(217,184,108,.22)}
+#lorOv .keb{color:#8a96b4;font-size:10px}
+#lorOv h2{margin:6px 0 4px;font:700 28px/1.1 var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent;text-wrap:balance}
+#lorOv .lorlead{margin:0 0 6px;font:italic 500 18px/1.4 var(--serif);color:#9aa6c4}
+#lorOv h3{margin:26px 0 8px;font:600 13px var(--disp);letter-spacing:.2em;text-transform:uppercase;color:#d9b86c}
+#lorOv p{margin:0 0 12px;font:500 19px/1.5 var(--serif);color:#d6c9ae;text-wrap:pretty}
+#lorOv p b{color:#f1e2c4}
+@media (max-width:560px){#lorOv .lorc{padding:30px 20px 24px}#lorOv h2{font-size:23px}#lorOv p{font-size:18px}}
+@media (prefers-reduced-motion:reduce){#lorOv{animation:none}}
+.mmapw{position:relative;min-height:0;min-width:0}
+.mmap{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 20px 28px rgba(0,0,0,.6)) drop-shadow(0 2px 2px rgba(0,0,0,.6))}
+.mmap text{font-family:var(--serif)}
+.mmap .mt{fill:#18213a;stroke:#cdb57d;stroke-width:1.1;stroke-linejoin:round}
+.mmap .mts{fill:#000;opacity:.35}
+.mmap .tr{fill:#172038;stroke:#cdb57d;stroke-width:1.1}
+.mmap .trs{fill:none;stroke:#cdb57d;stroke-width:2.2;opacity:.32}
+.mmap .tk{fill:none;stroke:#cdb57d;stroke-width:1.3}
+.mmap .mhl{fill:none;stroke:#cdb57d;stroke-width:1.4;opacity:.7}
+.mmap .wt{fill:none;stroke:#8fb3d6;stroke-width:2.4;stroke-linecap:round;opacity:.85}
+.mmap .lk{fill:rgba(143,179,214,.16);stroke:#8fb3d6;stroke-width:1.8}
+.mmap .rp{fill:none;stroke:#8fb3d6;stroke-width:1.2;opacity:.55}
+.mmap .gl{fill:#18213a;stroke:#cdb57d;stroke-width:1.4;stroke-linejoin:round}
+.mmap .fr{fill:none;stroke:#cdb57d;stroke-width:1.6;stroke-dasharray:16 6 3 6;opacity:.75}
+.mmap .rt-on{fill:none;stroke:#d9862f;stroke-width:2;stroke-linecap:round;opacity:.6}
+.mmap .rt-off{fill:none;stroke:#cdb57d;stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round;opacity:.4}
+.mmap .eglow{fill:none;stroke:#ff9a3c;stroke-width:9;opacity:.35;filter:blur(5px)}
+.mmap .emb{fill:none;stroke:#ffd27a;stroke-width:3;stroke-linecap:round;stroke-dasharray:2 16;animation:mmarch 1.4s linear infinite}
+@keyframes mmarch{to{stroke-dashoffset:-18}}
+.mmap .lab{fill:#e3cb92;font:italic 600 19px var(--serif)}
+.mmap .cap{fill:#e3cb92;font:600 13px var(--disp);letter-spacing:.24em}
+.mmap .lab,.mmap .cap{filter:drop-shadow(0 0 4px rgba(227,203,146,.25))}
+.mmap .stars circle{fill:#f3e6c4}
+.mmap .stars .tw{animation:mtw 3.6s ease-in-out infinite alternate}
+@keyframes mtw{from{opacity:.15}to{opacity:.9}}
+.mmap .cloud{animation:mdrift 70s linear infinite alternate}
+.mmap .cloud.c2{animation-duration:46s;animation-direction:alternate-reverse}
+@keyframes mdrift{from{transform:translateX(-160px)}to{transform:translateX(160px)}}
+.mmap .fogr{transition:transform 1.9s cubic-bezier(.45,0,.2,1)}
+.mmap .rv{transform-box:fill-box;transform-origin:center;transition:transform 1.7s .35s cubic-bezier(.3,0,.2,1)}
+.mmap .lens{pointer-events:none}
+.mmap .pin{cursor:pointer;outline:none}
+.mmap .pin .hit{fill:transparent}
+/* misión elegida: alguien la rodea a lápiz (dos pasadas que no cierran; se dibujan al elegirla) */
+.mmap .pin .sel path{fill:none;stroke:#f3ead3;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.mmap .pin .sel path:first-child{stroke-width:2.2}
+.mmap .pin .sel path+path{stroke-width:1.3}
+.mmap .pin.on .sel path,.mmap .pin:focus-visible .sel path{opacity:.95;animation:mpen .9s cubic-bezier(.4,0,.2,1) forwards}
+.mmap .pin.on .sel path+path,.mmap .pin:focus-visible .sel path+path{opacity:.55;animation-duration:.7s;animation-delay:.55s}
+@keyframes mpen{to{stroke-dashoffset:0}}
+/* hogueras: chispas que suben */
+.mmap .spk{opacity:0;animation:mspk 2.2s linear infinite}
+@keyframes mspk{0%{transform:translate(0,0);opacity:0}12%{opacity:1}100%{transform:translate(var(--dx),-38px);opacity:0}}
+/* camino de la misión: pisadas que aparecen una a una desde Varek's Hold */
+.mmap .fp{opacity:0;animation:mfp 7s linear infinite}
+@keyframes mfp{0%{opacity:0}3%{opacity:.95}62%{opacity:.95}78%{opacity:0}100%{opacity:0}}
+/* ambiente de rol: notas a mano junto al camino */
+.mmap .note{fill:#d9cba6;font:italic 400 15px var(--hand);opacity:.8;paint-order:stroke;stroke:#141c31;stroke-width:4px}
+@media (prefers-reduced-motion:reduce){.mmap .spk,.mmap .fp{animation:none}.mmap .fp{opacity:.8}.mmap .pin.on .sel path{animation:none;stroke-dashoffset:0}}
+.mmap .pin .body{transform-box:fill-box;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.mmap .pin:hover .body,.mmap .pin.on .body{transform:scale(1.12)}
+.mmap .pin .plab{fill:#e3cb92;font:italic 400 23px var(--hand);paint-order:stroke;stroke:#141c31;stroke-width:6px;stroke-linejoin:round;transition:opacity .25s}
+.mmap .pin .psub{fill:#a99a78;font:600 9.5px var(--ui);letter-spacing:.16em;paint-order:stroke;stroke:#141c31;stroke-width:5px;stroke-linejoin:round;transition:opacity .25s}
+.mmap .pin.s-live .psub{fill:#b7a2ff}
+.mmap .pin.s-done .plab{opacity:.75}
+.mapv:not(.popoff) .mmap .pin.on .plab,.mapv:not(.popoff) .mmap .pin.on .psub{opacity:0}
+/* braseros: arden las misiones abiertas (fuego naranja), la partida en curso (violeta) y las cumplidas (oro) */
+.mmap .bowl{fill:#3a3020;stroke:#cdb57d;stroke-width:1.2}
+.mmap .flm{transform-box:fill-box;transform-origin:50% 100%;animation:mflick 1.1s ease-in-out infinite alternate}
+.mmap .flm.f2{animation-duration:.8s;animation-delay:-.3s}
+.mmap .flm.f3{animation-duration:1.4s;animation-delay:-.7s}
+@keyframes mflick{0%{transform:scale(1,1) skewX(0)}50%{transform:scale(.92,1.08) skewX(3deg)}100%{transform:scale(1.04,.94) skewX(-3deg)}}
+.mmap .glow{mix-blend-mode:screen;animation:mglow 2.2s ease-in-out infinite alternate}
+@keyframes mglow{from{opacity:.65}to{opacity:1}}
+.mmap .hn{font:700 13px var(--disp);text-anchor:middle;fill:#e3cb92;paint-order:stroke;stroke:#141c31;stroke-width:4px}
+.mmap .smoke{fill:none;stroke:#8b7d6b;stroke-width:1.4;stroke-linecap:round;opacity:.6}
+.scr .mapv{position:absolute;inset:0;height:auto;min-height:0}
+.scr .mapv .mmap{filter:none}
+.keb.k2{color:#7a86a3}
+
+/* ================= ficha ================= */
+.fscrim{position:absolute;inset:0;z-index:20;background:radial-gradient(70% 70% at 50% 50%,rgba(6,8,16,.5),rgba(6,8,16,.82));opacity:0;pointer-events:none;transition:opacity .45s}
+.fscrim.on{opacity:1;pointer-events:auto}
+.fwrap{position:absolute;z-index:30;transform-origin:0 0}
+.fwrap.out{opacity:0;transition:opacity .22s}
+
+.fc{position:relative;font-family:var(--hand);color:var(--ink);
+ --ink:#2a1d10;--ink2:#4b3a24;--ink3:#7b6845;--acc:#8a5a1c;--rule:#a68a58;--sil:#15100a;--st:#3f7a4f;
+ --paper:var(--grain),radial-gradient(120% 90% at 50% 30%,#f4e8c6 0%,#e7d2a2 62%,#cfb073 100%);
+ --numbg:radial-gradient(circle at 34% 28%,#4a5fae,#2a3a7a 55%,#161f4a);--numc:#f1d99a;--numsh:inset 0 0 0 2px rgba(241,217,154,.55),0 3px 8px rgba(40,25,5,.4);
+ --vst:#3f7a4f}
+.fc.live{--st:#6a4bc0}.fc.done{--st:#a87d34}.fc.lock{--st:#6b6150}
+
+/* contenido común */
+.fb{position:relative;display:flex;flex-direction:column;gap:15px;padding:34px 40px 32px}
+.fx{position:absolute;right:14px;top:14px;z-index:6;display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:50%;background:rgba(40,25,5,.1);box-shadow:inset 0 0 0 1px var(--rule);color:var(--ink2);transition:background .2s,transform .3s}
+.fx:hover{background:rgba(40,25,5,.2);transform:rotate(90deg)}
+.fx svg{width:13px;height:13px}
+.fh{display:flex;gap:16px;align-items:center;padding-right:34px}
+.fnum{flex:none;display:grid;place-items:center;width:60px;height:60px;border-radius:50% 46% 52% 48%/48% 52% 46% 50%;font:700 20px var(--disp);color:var(--numc);background:var(--numbg);box-shadow:var(--numsh)}
+.feb{margin:0 0 5px;font:600 10.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:var(--acc)}
+.fh h2{margin:0;font:700 29px/1.1 var(--disp);color:var(--ink);text-wrap:balance}
+.orn{display:block;width:250px;max-width:100%;height:14px;margin:0 auto;color:var(--rule)}
+.fhook{margin:0;font:italic 400 20.5px/1.5 var(--hand);color:var(--ink2);text-wrap:pretty}
+.fhook.blur{filter:blur(4.5px);opacity:.55;user-select:none}
+.fmeta{display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;gap:0 18px;padding:4px 0}
+.fm{display:flex;flex-direction:column;align-items:center;gap:10px}
+.fm .lab{display:flex;align-items:center;gap:8px;font:600 10px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)}
+.vr{align-self:stretch;width:1px;background:linear-gradient(180deg,transparent,var(--rule),transparent)}
+.heroes{display:flex;gap:7px;align-items:flex-end}
+.cam{display:grid;place-items:center;color:var(--sil)}
+.cam svg{display:block;height:54px;width:auto}
+.cam.g{opacity:.2}
+.cam.big svg{height:82px;overflow:visible}
+.opt{padding:2px 9px;border:1px dashed var(--ink3);border-radius:99px;font:italic 400 14px/1.2 var(--hand);letter-spacing:0;text-transform:none;color:var(--ink2)}
+.fchips{display:flex;flex-wrap:wrap;gap:8px}
+.fchips span{padding:5px 12px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--rule);font:600 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.fchips b{color:var(--ink)}
+.fst{display:flex;align-items:center;gap:9px;margin:0;font:600 10.5px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
+.fst i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--st);box-shadow:0 0 0 3px color-mix(in srgb,var(--st) 26%,transparent)}
+.flock{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--rule);font:italic 400 17px/1.4 var(--hand);color:var(--ink2)}
+.flock svg{flex:none;width:22px;height:22px;color:var(--acc)}
+.fres{display:grid;grid-template-columns:repeat(3,1fr);border-radius:4px;box-shadow:inset 0 0 0 1px var(--rule)}
+.fres div{padding:11px 12px;text-align:center;border-left:1px solid var(--rule)}
+.fres div:first-child{border-left:0}
+.fres span{display:block;font:600 9.5px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ink3)}
+.fres b{display:block;margin-top:4px;font:700 14.5px/1.2 var(--disp);color:var(--ink)}
+.fcta{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;margin-top:4px;padding:16px 22px;border:0;font:700 12.5px var(--disp);letter-spacing:.2em;text-transform:uppercase;transition:transform .25s,filter .25s}
+.fcta:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.fcta svg{width:18px;height:18px}
+
+/* ---------- A · Pergamino ---------- */
+.cA{width:540px;padding:6px 0}
+.cA .rod{position:relative;z-index:4;height:24px;margin:0 -16px;border-radius:12px;background:linear-gradient(180deg,#9a6a32,#6a4219 45%,#3b230c);box-shadow:inset 0 2px 1px rgba(255,225,170,.4),inset 0 -2px 3px rgba(0,0,0,.55),0 8px 14px rgba(0,0,0,.35)}
+.cA .rod::before,.cA .rod::after{content:"";position:absolute;top:-6px;width:22px;height:36px;border-radius:11px;background:linear-gradient(90deg,#9a7022,#f3d48a 42%,#8a6420);box-shadow:inset 0 0 0 1px rgba(60,35,5,.5),0 3px 6px rgba(0,0,0,.4)}
+.cA .rod::before{left:-11px}.cA .rod::after{right:-11px}
+.cA .sheet{position:relative;z-index:2;display:grid;grid-template-rows:1fr;margin:-3px 4px;background:var(--paper);box-shadow:inset 0 0 44px rgba(120,80,30,.4),inset 0 0 0 1px rgba(110,70,25,.4),0 24px 40px rgba(0,0,0,.4)}
+.cA .sheet::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(60,35,10,.42),transparent 8%,transparent 92%,rgba(60,35,10,.42))}
+.cA .sin{min-height:0;overflow:hidden}
+.cA .fcta{background:linear-gradient(180deg,#27355f,#151d38);color:#f1e2c4;border-radius:3px;box-shadow:inset 0 0 0 1px #c9a24a,inset 0 0 0 4px #151d38,inset 0 0 0 5px rgba(201,162,74,.5),0 8px 16px rgba(40,25,5,.45)}
+.cA .fcta.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink2)}
+.cA.play .sheet{animation:fUnroll 1.25s cubic-bezier(.35,.1,.2,1) both}
+@keyframes fUnroll{from{grid-template-rows:0fr}to{grid-template-rows:1fr}}
+.cA.play .fb{animation:fUp .7s .65s both}
+.cA.play .rod:first-child{animation:fRodIn .5s both}
+.cA.play .rod:last-child{animation:fRodIn .5s both}
+@keyframes fRodIn{from{opacity:0;transform:scaleX(.7)}}
+@keyframes fUp{from{opacity:0;transform:translateY(14px)}}
+
+/* ---------- B · Cartel y puñal ---------- */
+.cB{width:540px;margin-top:26px;filter:drop-shadow(0 26px 30px rgba(0,0,0,.55))}
+.cB .poster{transform:rotate(-1.3deg)}
+.cB .hit{position:relative;transform-origin:50% 0}
+.cB .paper{position:absolute;inset:-5px;z-index:0;filter:url(#torn);background:radial-gradient(90px 60px at 88% 92%,rgba(120,75,25,.28),transparent 70%),radial-gradient(60px 46px at 8% 10%,rgba(120,75,25,.22),transparent 70%),var(--paper)}
+.cB .paper::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 40px rgba(110,70,25,.38)}
+.cB .fb{z-index:1;padding-top:78px}
+.cB .hit>.tag{position:absolute;z-index:2;left:44px;top:30px;white-space:nowrap;font:600 9.5px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}
+.cB .fcta{background:#2a1d10;color:#f4e6c2;border-radius:2px;box-shadow:inset 0 0 0 1px #2a1d10,inset 0 0 0 4px #2a1d10,inset 0 0 0 5px rgba(244,230,194,.5)}
+.cB .fcta.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cB .dg{position:absolute;z-index:6;left:50%;top:60px;width:0;height:0;pointer-events:none;display:none}
+.cB .dwin{position:absolute;z-index:6;left:50%;top:60px;width:0;height:0;clip-path:inset(-200px -40px 0 -40px);pointer-events:none}
+.cB .dgs{position:absolute;left:-20px;bottom:0;width:40px;height:157px;overflow:visible;transform:translateY(66px);filter:drop-shadow(3px 5px 3px rgba(40,20,5,.5))}
+.cB .dgs.f{display:none}
+.cB .slit{position:absolute;z-index:5;left:50%;top:60px;width:22px;height:6px;margin:-3px 0 0 -11px;border-radius:50%;background:rgba(30,15,5,.8);box-shadow:0 0 7px 1px rgba(30,15,5,.55),-12px 2px 0 -2px rgba(30,15,5,.4),11px -1px 0 -2px rgba(30,15,5,.4);pointer-events:none}
+.cB.play .poster{animation:fPoster .65s cubic-bezier(.2,.9,.3,1.15) both}
+@keyframes fPoster{from{opacity:0;transform:translateY(46px) rotate(7deg) scale(.88)}to{opacity:1;transform:rotate(-1.3deg)}}
+.cB.play .hit{animation:fHit .75s 1.05s ease-out both}
+@keyframes fHit{0%{transform:rotate(0)}14%{transform:rotate(-2.8deg) translateY(5px)}34%{transform:rotate(1.8deg)}54%{transform:rotate(-1deg)}76%{transform:rotate(.5deg)}100%{transform:none}}
+.cB.play .dg{display:block}
+.cB.play .dg svg{position:absolute;left:-20px;bottom:0;width:40px;height:157px;overflow:visible;animation:fFly 1.05s cubic-bezier(.4,.05,.6,.95) both;filter:drop-shadow(3px 5px 3px rgba(40,20,5,.5))}
+@keyframes fFly{0%{transform:translate(-600px,-460px) rotate(-1080deg) scale(.14);opacity:0}10%{opacity:1}88%{transform:translate(0,-6px) rotate(0) scale(1.1);opacity:1}99.9%{transform:translate(0,0) rotate(0) scale(1);opacity:1}100%{opacity:0}}
+.cB.play .dgs{animation:fSink .26s 1.05s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fSink{0%{opacity:0;transform:translateY(0)}.01%{opacity:1;transform:translateY(0)}100%{opacity:1;transform:translateY(66px)}}
+.cB.play .slit{animation:fSlit .3s 1.1s both}
+@keyframes fSlit{from{opacity:0;transform:scale(.3)}}
+.cB.play .fb,.cB.play .hit>.tag{animation:fUp .6s .35s both}
+
+/* ---------- C · Carta lacrada ---------- */
+.cC{width:540px;perspective:1400px}
+.cC .letter{position:relative;z-index:2;transform-origin:50% 100%;background:linear-gradient(180deg,transparent 33%,rgba(90,60,20,.16) 33.4%,transparent 34.2%,transparent 66%,rgba(90,60,20,.16) 66.4%,transparent 67.2%),var(--paper);box-shadow:inset 0 0 40px rgba(120,80,30,.35),inset 0 0 0 1px rgba(110,70,25,.4),0 24px 44px rgba(0,0,0,.5);border-radius:2px}
+.cC .fcta{background:radial-gradient(130% 160% at 30% 0%,#3f55a8,#26357a 55%,#141c48);color:#f3dc9d;border-radius:999px;box-shadow:inset 0 0 0 1.5px rgba(243,220,157,.55),0 8px 16px rgba(20,25,70,.45)}
+.cC .fcta.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink2)}
+.cC .ep{display:none;position:absolute;left:80px;bottom:90px;width:380px;height:240px}
+.cC.play .ep{display:block}
+.cC .eback{z-index:1;background:repeating-linear-gradient(45deg,rgba(201,162,74,.12) 0 2px,transparent 2px 9px),#202c58;box-shadow:inset 0 0 30px rgba(0,0,0,.5)}
+.cC .efront{z-index:3;clip-path:polygon(0 0,50% 48%,100% 0,100% 100%,0 100%);background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 30%),var(--grain),#d4bb89;filter:drop-shadow(0 -2px 3px rgba(0,0,0,.3))}
+.cC .efront::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 49.6%,rgba(90,60,20,.28) 50%,transparent 50.6%),linear-gradient(225deg,transparent 49.6%,rgba(90,60,20,.28) 50%,transparent 50.6%)}
+.cC .eflap{z-index:4;transform-origin:50% 0;transform-style:preserve-3d;height:240px;pointer-events:none}
+.cC .eflap i{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 58%);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cC .eflap .o{background:linear-gradient(180deg,rgba(255,255,255,.14),transparent 40%),var(--grain),#cdb27d}
+.cC .eflap .n{transform:rotateX(180deg);background:repeating-linear-gradient(45deg,rgba(201,162,74,.14) 0 2px,transparent 2px 9px),#26335f}
+.cC .seal{display:none;position:absolute;z-index:6;left:240px;bottom:161px;width:60px;height:60px;pointer-events:none}
+.cC.play .seal{display:block}
+.cC .seal i{position:absolute;inset:0;background:radial-gradient(circle at 36% 30%,#5169c0,#2b3b84 55%,#161f4d);filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
+.cC .seal .a{clip-path:polygon(0 0,52% 0,45% 28%,58% 52%,47% 76%,52% 100%,0 100%);border-radius:30px 0 0 30px}
+.cC .seal .b{clip-path:polygon(52% 0,100% 0,100% 100%,52% 100%,47% 76%,58% 52%,45% 28%);border-radius:0 30px 30px 0}
+.cC .seal svg{position:absolute;inset:0;width:100%;height:100%;color:#f3dc9d;opacity:.9}
+.cC.play .letter{animation:fLetter 3.4s cubic-bezier(.4,.1,.2,1) both}
+@keyframes fLetter{0%,12%{opacity:0;transform:translateY(-114px) scale(.4)}13%{opacity:1;transform:translateY(-114px) scale(.4)}50%{transform:translateY(-114px) scale(.4)}74%{transform:translateY(-262px) scale(.62)}100%{transform:none}}
+.cC.play .eback,.cC.play .efront{animation:fEnv 3.4s both}
+@keyframes fEnv{0%{opacity:0;transform:translateY(46px)}12%{opacity:1;transform:none}74%{opacity:1;transform:none}100%{opacity:0;transform:translateY(80px)}}
+.cC.play .eflap{animation:fFlap 3.4s both}
+@keyframes fFlap{0%{opacity:0;transform:translateY(46px) rotateX(0deg);z-index:4}12%{opacity:1;transform:translateY(0) rotateX(0deg)}33%{transform:translateY(0) rotateX(0deg);z-index:4}49.9%{z-index:4}50%{z-index:1}52%{transform:translateY(0) rotateX(180deg);z-index:1}74%{opacity:1;transform:translateY(0) rotateX(180deg);z-index:1}100%{opacity:0;transform:translateY(80px) rotateX(180deg);z-index:1}}
+.cC.play .seal .a{animation:fSealA 3.4s both}
+.cC.play .seal .b{animation:fSealB 3.4s both}
+@keyframes fSealA{0%{opacity:0;transform:translateY(46px)}12%{opacity:1;transform:none}23%{transform:none}27%{transform:translate(-4px,1px) rotate(-3deg)}38%{opacity:0;transform:translate(-30px,84px) rotate(-30deg)}100%{opacity:0}}
+@keyframes fSealB{0%{opacity:0;transform:translateY(46px)}12%{opacity:1;transform:none}23%{transform:none}27%{transform:translate(4px,1px) rotate(3deg)}38%{opacity:0;transform:translate(30px,84px) rotate(30deg)}100%{opacity:0}}
+.cC.play .seal svg{animation:fSealS 3.4s both}
+@keyframes fSealS{0%{opacity:0}12%{opacity:.9}23%{opacity:.9}26%{opacity:0}100%{opacity:0}}
+.cC.play .fb{animation:fUp .8s 2.5s both}
+
+/* ---------- D · Libro de campaña ---------- */
+.cD{width:1000px;perspective:2600px}
+.cD .book{position:relative;transform-style:preserve-3d}
+.cD .pageR{margin-left:500px;width:500px;position:relative;background:var(--paper);border-radius:0 7px 7px 0;box-shadow:inset 18px 0 28px -14px rgba(60,35,10,.55),inset 0 0 40px rgba(120,80,30,.3),2px 1px 0 #e4d3a6,4px 2px 0 #c9b283,6px 3px 0 #e1cf9f,8px 4px 0 #b79e6c,0 30px 50px rgba(0,0,0,.5)}
+.cD .fb{padding:34px 38px 30px 42px}
+.cD .cover{position:absolute;left:500px;top:0;bottom:0;width:500px;transform-origin:0 50%;transform-style:preserve-3d;transform:translateZ(2px) rotateY(-180deg)}
+.cD .cover>div{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.cD .cf{border-radius:0 9px 9px 0;background:var(--grain),radial-gradient(120% 90% at 40% 30%,#2b3a66,#18213f 70%,#0f1530);box-shadow:inset 0 0 0 1px rgba(217,184,108,.35),inset 0 0 40px rgba(0,0,0,.5),0 30px 50px rgba(0,0,0,.5);display:grid;place-items:center;text-align:center;color:#e6c77e}
+.cD .cf::before{content:"";position:absolute;inset:18px;border-radius:3px;box-shadow:inset 0 0 0 1.5px rgba(230,199,126,.7),inset 0 0 0 5px rgba(0,0,0,.0),inset 0 0 0 6px rgba(230,199,126,.35)}
+.cD .cf .t{font:700 26px/1.2 var(--deco);letter-spacing:.04em;text-shadow:0 0 14px rgba(230,199,126,.3);background:linear-gradient(180deg,#f8e6b4,#d9b25a 55%,#9a7428);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cD .cf svg{display:block;width:96px;margin:0 auto 18px;color:#e6c77e}
+.cD .cf small{display:block;margin-top:12px;font:600 10px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:#9aa6c4}
+.cD .cb{transform:rotateY(180deg);border-radius:9px 0 0 9px;background:var(--paper);box-shadow:inset -18px 0 28px -14px rgba(60,35,10,.55),inset 0 0 40px rgba(120,80,30,.3),-2px 1px 0 #e4d3a6,-4px 2px 0 #c9b283,-6px 3px 0 #e1cf9f,-8px 4px 0 #b79e6c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:30px 34px;color:var(--ink)}
+.cD .cb svg.ill{width:100%;height:auto;display:block}
+.cD .cb .cap{margin:0;text-align:center;font:italic 400 18px/1.45 var(--hand);color:var(--ink2)}
+.cD .cb .cap b{display:block;margin-bottom:4px;font:700 17px var(--disp);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:var(--ink)}
+.cD .rib{position:absolute;z-index:3;right:84px;top:-4px;width:20px;height:104px;background:linear-gradient(90deg,#2a3a7a,#3f55a8 50%,#26357a);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);box-shadow:0 4px 6px rgba(0,0,0,.4)}
+.cD .fcta{background:linear-gradient(180deg,#3b2c1c,#241909);color:#f1d99a;border-radius:3px;box-shadow:inset 0 0 0 1px #c9a24a,inset 0 0 0 4px #241909,inset 0 0 0 5px rgba(201,162,74,.45),0 8px 16px rgba(40,25,5,.45)}
+.cD .fcta.ghost{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink2)}
+.cD.play{animation:fBookIn .8s both}
+@keyframes fBookIn{from{opacity:0;transform:translateY(34px) scale(.94)}}
+.cD.play .book{animation:fBookShift 1.3s .9s cubic-bezier(.45,.05,.25,1) both}
+@keyframes fBookShift{from{transform:translateX(-250px)}to{transform:none}}
+.cD.play .cover{animation:fCover 1.3s .9s cubic-bezier(.45,.05,.25,1) both}
+@keyframes fCover{from{transform:translateZ(2px) rotateY(0deg)}to{transform:translateZ(2px) rotateY(-180deg)}}
+.cD.play .fb,.cD.play .cb>*{animation:fUp .7s 1.9s both}
+
+/* ---------- E · Placa del Umbral ---------- */
+.cE{width:540px;--ink:#f4e8cf;--ink2:#d8cdb6;--ink3:#9aa6c4;--acc:#e3b866;--rule:rgba(227,184,102,.45);--sil:#120d08;--numbg:radial-gradient(circle at 34% 28%,#2c3b66,#161e34);--numc:#e9c779;--numsh:inset 0 0 0 1.5px rgba(227,184,102,.8),0 0 14px rgba(227,184,102,.25);--st:#6fcf8f}
+.cE.live{--st:#9d7bff}.cE.done{--st:#f1c35c}
+.cE .plate{position:relative;overflow:hidden;border-radius:8px;background:radial-gradient(130% 80% at 50% -10%,#2c3b66 0%,#18203a 62%,#10162a 100%);box-shadow:0 0 0 1px rgba(227,184,102,.75),inset 0 0 0 5px #0f1528,inset 0 0 0 6px rgba(227,184,102,.5),0 40px 70px rgba(0,0,0,.65),0 0 60px rgba(95,134,214,.16)}
+.cE .plate::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--grain);opacity:.25;mix-blend-mode:overlay}
+.cE .emb{position:absolute;right:-46px;top:-46px;width:220px;height:220px;color:#e3b866;opacity:.2;pointer-events:none}
+.cE .emb svg{width:100%;height:100%;animation:fSpin 70s linear infinite}
+@keyframes fSpin{to{transform:rotate(360deg)}}
+.cE .cn{position:absolute;width:26px;height:26px;color:#e3b866;opacity:.85}
+.cE .cn.a{left:12px;top:12px}.cE .cn.b{right:12px;top:12px;transform:scaleX(-1)}.cE .cn.c{left:12px;bottom:12px;transform:scaleY(-1)}.cE .cn.d{right:12px;bottom:12px;transform:scale(-1)}
+.cE .fx{right:28px;top:26px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(227,184,102,.5)}
+.cE .fx:hover{background:rgba(255,255,255,.14)}
+.cE .cam{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f6e2a8,#d3a84f 60%,#9a7128);box-shadow:inset 0 0 0 2px rgba(255,236,190,.5),0 4px 10px rgba(0,0,0,.45)}
+.cE .cam svg{height:34px}
+.cE .cam.big{width:84px;height:84px}
+.cE .cam.big svg{height:52px}
+.cE .cam.g{opacity:.28;filter:saturate(.6)}
+.cE .fcta{background:linear-gradient(180deg,#f2d58f,#c99a43 55%,#9a7128);color:#241705;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,240,200,.55),0 8px 18px rgba(0,0,0,.45),0 0 24px rgba(227,184,102,.18)}
+.cE .fcta.ghost{background:none;color:#f1e2c4;box-shadow:inset 0 0 0 1.5px rgba(227,184,102,.6)}
+.cE .seam{position:absolute;z-index:8;left:50%;top:-16px;bottom:-16px;width:2px;margin-left:-1px;background:linear-gradient(180deg,transparent,#fff3c9,#e3b866,#fff3c9,transparent);box-shadow:0 0 16px 4px rgba(227,184,102,.7);opacity:0;pointer-events:none}
+.cE.play .plate{animation:fUmbral 1.1s .35s cubic-bezier(.3,.7,.2,1) backwards}
+@keyframes fUmbral{from{clip-path:inset(-140px 50% -140px 50%)}to{clip-path:inset(-140px -140px -140px -140px)}}
+.cE.play .seam{animation:fSeam 1.5s both}
+@keyframes fSeam{0%{opacity:0;transform:scaleY(.1)}22%{opacity:1;transform:scaleY(1)}62%{opacity:1}100%{opacity:0}}
+.cE.play .fb{animation:fUp .7s 1.05s both}
+
+/* galería */
+h3.sec{margin:50px 0 4px;font:600 15px var(--disp);letter-spacing:.2em;text-transform:uppercase;color:#d9b86c}
+p.secd{margin:0 0 18px;max-width:940px;font:500 18px/1.4 var(--serif);color:#9aa6c4}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:22px}
+.gcard{padding:18px 18px 22px;border-radius:14px;background:#0d1322;box-shadow:inset 0 0 0 1px rgba(217,184,108,.18);overflow:hidden}
+.gcard.wide{grid-column:1/-1}
+.gh{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+.gh b{font:600 14px var(--disp);letter-spacing:.1em;color:#f1e2c4}
+.gh span{font:500 16px/1.35 var(--serif);color:#9aa6c4}
+.gv{position:relative;display:flex;justify-content:center;padding:26px 0;background:radial-gradient(70% 70% at 50% 40%,rgba(90,110,170,.2),transparent),#0b0d16;border-radius:10px;overflow:hidden}
+.gs{transform-origin:0 0}
+@media (prefers-reduced-motion:reduce){.fc *,.fc{animation:none!important}.cB .dgs{transform:translateY(66px)}}
+</style>
+</head>
+<body>
+<!-- filtros y definiciones compartidas -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <filter id="torn" x="-6%" y="-4%" width="112%" height="108%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="16" xChannelSelector="R" yChannelSelector="G"/></filter>
+ <filter id="inkp" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency=".05" numOctaves="2" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.6"/></filter>
+ <linearGradient id="dgS" x1="0" x2="1"><stop offset="0" stop-color="#f2f5fa"/><stop offset=".5" stop-color="#aab4c4"/><stop offset=".5" stop-color="#7c879a"/><stop offset="1" stop-color="#cdd5e2"/></linearGradient>
+ <linearGradient id="dgG" x1="0" x2="1"><stop offset="0" stop-color="#8a6420"/><stop offset=".45" stop-color="#f3d48a"/><stop offset="1" stop-color="#8a6420"/></linearGradient>
+</defs></svg>
+
+<div class="wrap">
+ <header class="ph">
+  <p class="keb">Maqueta · Gestor de campaña · v4</p>
+  <h1>La ficha de la misión</h1>
+  <p>Cinco formas de presentar la ficha que se abre al pulsar una hoguera o una misión de la lista. Pulsa una hoguera del mapa (o una misión de la columna) para abrirla; el botón «Repetir animación» la vuelve a lanzar. Más grande que la actual, sin el rojo, con siluetas de héroes y de jefe en lugar de números, y sin la mesa de 48″. Nada de esto está aplicado todavía.</p>
+ </header>
+ <div class="bar" id="bar"></div>
+ <div class="scr" id="scr"><div class="mapv popoff" id="mapv"></div><div class="fscrim" id="scrim"></div></div>
+
+ <h3 class="sec">Las cinco a la vez</h3>
+ <p class="secd">Cada una en su estado final, con la misión y el estado que tengas elegidos arriba, para compararlas sin esperar a las animaciones.</p>
+ <div class="gal" id="gal"></div>
+</div>
+
+<script>
+const S={round:0,fin:false,prim:false,end:false,defeat:false,al:1,d:2,mk:[],dead:false,secDone:false};
+const M={sel:-1,open:false};
+const f=n=>+n.toFixed(1);
+const MIS=[
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
+ {n:"III",t:"La aldea sitiada",z:"Asedio del Culto",h:"El Culto del Umbral cerca una aldea. Los Resonantes ofrecen su ayuda, a su manera."},
+ {n:"IV",t:"La emboscada",z:"Concordancia de Orum",h:"Alguien más sigue vuestro rastro. Una tercera facción entra en juego."},
+ {n:"V",t:"La cripta primordial",z:"Deudores de Vael",h:"Bajo la piedra duerme la ruina de un Primordial, y alguien ha venido a cobrar lo que se le debe."},
+ {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde la Ruptura empezó a borrar, os espera Ocaso."}];
+/* Campañas de Érebo: de momento solo una; el resto, cartas boca abajo. */
+const CAMPS=[{n:"I",t:"El Pueblo Sin Nombre",h:"Seis misiones, un contrato del Filo y un pueblo que olvidó su nombre.",ac:"#5f86d6",on:true},{n:"II",ac:"#6f9a5a"},{n:"III",ac:"#c9573f"},{n:"IV",ac:"#6f8fb6"},{n:"V",ac:"#c9a24a"}];
+const won=()=>S.prim&&S.end&&!S.defeat;
+const mst=i=>i===1?(S.fin?"open":"lock"):i?"lock":won()?"done":S.round?"live":"open";
+const SHORT={open:"Disponible",live:"En curso",done:"Cumplida",lock:"Sellada"};
+const stl=i=>{const s=mst(i);return s==="live"?`Partida en curso · Ronda ${S.round}`:s==="done"?"Cumplida":s==="open"?"Lista para jugar":"Sellada"};
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const P=[[395,598],[652,498],[316,408],[614,312],[360,212],[590,106]],VK=[500,742];
+const WP=[VK,[452,676],P[0],[528,566],P[1],[486,462],P[2],[468,352],P[3],[488,256],P[4],[470,150],P[5]];
+const SEG=(()=>{const o=[];for(let i=0;i<WP.length-1;i++){const p0=WP[i-1]||WP[i],p1=WP[i],p2=WP[i+1],p3=WP[i+2]||p2;o.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}return o})();
+const cpart=s=>`C${f(s[1][0])} ${f(s[1][1])} ${f(s[2][0])} ${f(s[2][1])} ${s[3][0]} ${s[3][1]}`;
+const legD=k=>`M${SEG[2*k][0][0]} ${SEG[2*k][0][1]}${cpart(SEG[2*k])}${cpart(SEG[2*k+1])}`;
+const RP=(()=>{const o=[];for(const s of SEG)for(let t=0;t<=1;t+=.05){const u=1-t;o.push([u*u*u*s[0][0]+3*u*u*t*s[1][0]+3*u*t*t*s[2][0]+t*t*t*s[3][0],u*u*u*s[0][1]+3*u*u*t*s[1][1]+3*u*t*t*s[2][1]+t*t*t*s[3][1]])}return o})();
+const FOR=[[720,505,205,92],[172,612,96,52],[842,392,92,58]],LAKE=[165,318,72,38];
+const inE=(x,y,e,m=1)=>((x-e[0])/(e[2]*m))**2+((y-e[1])/(e[3]*m))**2<1;
+function clear(x,y,pr=26){
+ if(P.some(p=>Math.hypot(p[0]-x,p[1]-y)<64))return false;
+ if(Math.hypot(VK[0]-x,VK[1]-y)<80)return false;
+ if(RP.some(p=>Math.hypot(p[0]-x,p[1]-y)<pr))return false;
+ if(inE(x,y,LAKE,1.5))return false;
+ if(x<360&&y<150)return false;if(x>820&&y<200)return false;if(x<210&&y>690)return false;
+ return true}
+function blob(r,n,R,j){const pts=[];for(let k=0;k<n;k++){const a=k/n*Math.PI*2,rr=r+(R()*2-1)*j;pts.push([rr*Math.cos(a),rr*Math.sin(a)])}
+ let d="";for(let k=0;k<n;k++){const a=pts[k],b=pts[(k+1)%n],m=[(a[0]+b[0])/2,(a[1]+b[1])/2];d+=(k?"":`M${f((pts[n-1][0]+a[0])/2)} ${f((pts[n-1][1]+a[1])/2)}`)+`Q${f(a[0])} ${f(a[1])} ${f(m[0])} ${f(m[1])}`}return d+"Z"}
+let TERR=null;
+function terrain(){if(TERR)return TERR;const R=rng(11);let s="";
+ s+=`<path class="wt" d="M196 346C238 392 252 432 224 482S190 562 232 612S264 692 238 744S252 792 262 812"/>`;
+ s+=`<ellipse class="lk" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]}" ry="${LAKE[3]}"/><ellipse class="rp" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]+10}" ry="${LAKE[3]+8}" stroke-dasharray="3 6"/><path class="rp" d="M128 312h22M168 326h26M142 336h14M176 300h18"/>`;
+ for(let k=0,c=0;k<400&&c<34;k++){const x=60+R()*880,y=470+R()*215;if(!clear(x,y)||FOR.some(e=>inE(x,y,e,1.1)))continue;c++;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}M${f(x+3)} ${f(y-5)}l4 4"/>`}
+ const mts=[];for(let k=0;k<1600&&mts.length<84;k++){const x=70+R()*860,y=150+R()*235;if(!clear(x,y,30)||FOR.some(e=>inE(x,y,e,1.15)))continue;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+ mts.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const w=20*k,h=25*k,px=x-w*.1,py=y-h;s+=`<path class="mt" d="M${f(x-w)} ${f(y)}L${f(px)} ${f(py)}L${f(x+w)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+w)} ${f(y)}L${f(x+w*.2)} ${f(y)}Q${f(x+w*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+ const trs=[];for(const e of FOR){const want=Math.round(e[2]*e[3]/140);for(let k=0,c=0;k<want*12&&c<want;k++){const x=e[0]+(R()*2-1)*e[2],y=e[1]+(R()*2-1)*e[3];if(!inE(x,y,e)||!clear(x,y,20))continue;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;c++;trs.push({x,y,s:.8+R()*.45})}}
+ trs.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+ s+=`<path class="fr" d="M24 660C200 648 300 672 450 658S700 646 820 662S940 654 996 660"/>`;
+ [-2.5,-1.95,-.55,.25,2.35,2.95].forEach((a,k)=>{const r=44+(k%2)*9,x=P[0][0]+r*Math.cos(a),y=P[0][1]+r*Math.sin(a)+6;s+=`<path class="gl" d="M${f(x-6)} ${f(y)}v-7l6-6 6 6v7z"/>`});
+ for(let k=0;k<26;k++){if(k%9===4)continue;const a=k/26*Math.PI*2,x=P[2][0]+38*Math.cos(a),y=P[2][1]+38*Math.sin(a);s+=`<path class="tk" stroke-width="1.6" d="M${f(x)} ${f(y)}l${f(Math.cos(a)*6)} ${f(Math.sin(a)*6-3)}"/>`}
+ {const x=P[3][0]-52,y=P[3][1]+22;s+=`<path class="tk" stroke-width="1.8" d="M${x-9} ${y-9}l18 18M${x+9} ${y-9}l-18 18M${x-11} ${y+5}l5 5M${x+11} ${y+5}l-5 5"/>`}
+ {const x=P[4][0]+52,y=P[4][1]+30;s+=`<path class="gl" d="M${x-11} ${y}v-11a11 11 0 0 1 22 0v11z"/><path class="tk" d="M${x-15} ${y+3}h30M${x-4} ${y}v-6a4 4 0 0 1 8 0v6"/>`}
+ return TERR=s}
+function compass(x,y){let s=`<g transform="translate(${x} ${y})"><circle r="44" fill="none" stroke="#cdb57d" stroke-width="1"/><circle r="38" fill="none" stroke="#cdb57d" stroke-width=".8" stroke-dasharray="2 3"/>`;
+ for(let k=0;k<8;k++){const L=k%2?24:46,w=k%2?5:8;s+=`<g transform="rotate(${k*45})"><path d="M0 ${-L}L${w} 0H0z" fill="#cdb57d"/><path d="M0 ${-L}L${-w} 0H0z" fill="#1d2740" stroke="#cdb57d" stroke-width=".8"/></g>`}
+ return s+`<circle r="3.5" fill="#e3b866"/><text y="-52" text-anchor="middle" fill="#e3b866" style="font:700 16px var(--disp)">N</text></g>`}
+/* Borde irregular del mapa. x0 y w: el mapa se ensancha hacia los lados para llenar la pantalla (2026-11-25). */
+function edgeW(x0,w){const R=rng(5),pts=[],m=6,st=26;
+ for(let x=x0+m;x<x0+w-m;x+=st)pts.push([x,m+R()*4]);for(let y=m;y<800-m;y+=st)pts.push([x0+w-m-R()*4,y]);
+ for(let x=x0+w-m;x>x0+m;x-=st)pts.push([x,800-m-R()*4]);for(let y=800-m;y>m;y-=st)pts.push([x0+m+R()*4,y]);
+ return "M"+pts.map(p=>f(p[0])+" "+f(p[1])).join("L")+"Z"}
+const STARS=(()=>{const R=rng(77);let s=`<g class="stars">`;for(let k=0;k<140;k++){const x=R()*1000,y=R()*800,r=R()<.12?1.6:.4+R()*.7;s+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" opacity="${f(.2+R()*.5)}"${R()<.2?` class="tw" style="animation-delay:-${f(R()*3.6)}s"`:""}/>`}return s+"</g>"})();
+/* Estrellas y terreno de las franjas laterales que se añaden al ensanchar (montañas arriba, bosques y colinas abajo). */
+function starsW(ext){if(!ext)return"";const R=rng(78);let s=`<g class="stars">`;for(let k=0;k<Math.round(ext*.3);k++){const x=-ext+R()*(1000+2*ext),y=R()*800;if(x>0&&x<1000)continue;s+=`<circle cx="${f(x)}" cy="${f(y)}" r="${f(.4+R()*.8)}" opacity="${f(.2+R()*.5)}"/>`}return s+"</g>"}
+const SIDEC={};
+function sideTerr(ext){if(!ext)return"";if(SIDEC[ext])return SIDEC[ext];const R=rng(31);let s="";
+ for(const[a,b]of[[-ext,0],[1000,1000+ext]]){const w=b-a;if(w<40)continue;
+  const mts=[];for(let k=0;k<900&&mts.length<Math.round(w/14);k++){const x=a+20+R()*(w-40),y=170+R()*220;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+  mts.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const W=20*k,h=25*k,px=x-W*.1,py=y-h;s+=`<path class="mt" d="M${f(x-W)} ${f(y)}L${f(px)} ${f(py)}L${f(x+W)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+W)} ${f(y)}L${f(x+W*.2)} ${f(y)}Q${f(x+W*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+  const cx=a+w/2,trs=[];for(let k=0;k<700&&trs.length<Math.round(w/9);k++){const x=cx+(R()*2-1)*w*.42,y=520+R()*125;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;trs.push({x,y,s:.8+R()*.45})}
+  trs.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+  for(let k=0;k<Math.round(w/22);k++){const x=a+15+R()*(w-30),y=440+R()*70;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}"/>`}}
+ return SIDEC[ext]=s}
+/* Niebla: hasta dónde se ve el mapa según la misión más lejana desbloqueada. Se recuerda lo último visto para animar lo nuevo. */
+const FOGY=[526,430,330,240,150,60],FKEY="psn-map-seen";
+let seen=null;try{seen=JSON.parse(localStorage.getItem(FKEY))}catch(e){}
+/* Contenido de la máscara de niebla; inv=true da su negativo (lo que la niebla tapa: ahí van las nubes y la lente). */
+function fogMask(id,sts,from,inv,x0,w){const W=inv?"#000":"#fff",B=inv?"#fff":"#000",X=x0-200,WW=w+400;
+ const rv=P.map((p,i)=>sts[i]!=="lock"?`<circle class="rv" data-k="${i}" cx="${p[0]}" cy="${p[1]}" r="128" fill="${W}" style="transform:scale(${seen&&!seen.u.includes(i)?0:1})"/>`:"").join("");
+ return `<mask id="${id}" maskUnits="userSpaceOnUse" x="${X}" y="-200" width="${WW}" height="1200"><g filter="url(#blot)"><rect x="${X}" y="-200" width="${WW}" height="1200" fill="${W}"/><rect class="fogr" x="${X}" y="-1500" width="${WW}" height="1500" fill="${B}" style="transform:translateY(${from}px)"/>${rv}<circle cx="590" cy="106" r="165" fill="${B}"/></g></mask>`}
+/* Marcador de cada misión: una hoguera de campamento (elegida el 2026-11-25; antes, un brasero).
+   Leños cruzados en un corro de piedras y chispas; sellada = ceniza fría con un hilo de humo. Mantiene el nombre brazier. */
+const FLC={open:"O",live:"V",done:"G"},FHI={open:"#ffd27a",live:"#e3d8ff",done:"#fff0bd"};
+function brazier(st,m){const lit=st!=="lock",c=FLC[st],hi=FHI[st];let back="",front="";
+ for(let k=0;k<9;k++){const a=k/9*Math.PI*2,e=`<ellipse cx="${f(17*Math.cos(a))}" cy="${f(4+5*Math.sin(a))}" rx="4.2" ry="2.9" fill="#232c47" stroke="#cdb57d" stroke-width=".9"/>`;Math.sin(a)<0?back+=e:front+=e}
+ const log=(d,col)=>`<path d="${d}" stroke="#cdb57d" stroke-width="6.6" stroke-linecap="round"/><path d="${d}" stroke="${col}" stroke-width="4.2" stroke-linecap="round"/>`;
+ const logs=`<g fill="none">${log("M-12 5L9 -4",lit?"#4a3420":"#26262b")}${log("M12 5L-9 -4",lit?"#3d2b1a":"#202026")}</g>`;
+ let top;
+ if(lit){top=`<ellipse cy="1" rx="9" ry="2.6" fill="${hi}" opacity=".7"/><g transform="translate(0 -1) scale(1.12 1)"><path class="flm" d="M0 0C-12 -6 -9 -20 -2 -30C-3 -20 6 -18 4 -28C12 -18 12 -6 0 0z" fill="url(#fl${c})"/><path class="flm f2" d="M-6 0C-12 -6 -10 -14 -6 -19C-5 -12 0 -12 -1 -17C4 -10 2 -3 -6 0z" fill="url(#fl${c})" opacity=".85"/><path class="flm f3" d="M5 0C0 -3 1 -11 5 -15C5 -10 9 -9 8 -13C12 -7 10 -2 5 0z" fill="#fff3c9" opacity=".7"/></g>`;
+  for(let k=0;k<5;k++)top+=`<circle class="spk" cx="${(k*37)%20-10}" cy="-22" r="${k%2?1:1.3}" fill="${hi}" style="--dx:${k%2?6:-5}px;animation-delay:-${(k*.44).toFixed(2)}s"/>`}
+ else top=`<path d="M-11 3q11 -10 22 0z" fill="#2b303f" stroke="#6b5a48" stroke-width="1"/><path class="smoke" d="M0 -6c-4 -6 4 -10 0 -16s4 -10 0 -14"/>`;
+ return `${lit?`<circle class="glow" cy="-12" r="52" fill="url(#gl${c})"/>`:""}<g class="body">${back}${logs}${top}${front}<text class="hn" y="30">${m.n}</text></g>`}
+/* Círculo a lápiz de la misión elegida: dos pasadas a mano que no cierran del todo (el CSS de .sel path las dibuja al elegir). */
+function sketch(r,seed,turn){const R=rng(seed),a0=R()*6.28,ph=R()*6.28,pts=[],cy=-6;
+ for(let k=0;k<=30;k++){const a=a0+turn*k/30,rr=r*(1+.05*Math.sin(2*a+ph)+(R()-.5)*.04)*(1+.06*k/30);pts.push([rr*Math.cos(a),cy+rr*.9*Math.sin(a)])}
+ let d=`M${f(pts[0][0])} ${f(pts[0][1])}`;for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;d+=`C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${f(p2[0])} ${f(p2[1])}`}return d}
+const PENRING=`<g class="sel" filter="url(#pencil)"><path d="${sketch(38,4,2*Math.PI+.5)}" pathLength="1"/><path d="${sketch(41,9,2*Math.PI+.25)}" pathLength="1"/></g>`;
+/* Camino de la misión como pisadas (2026-11-25): puntos de cada tramo con su distancia acumulada y huellas alternas. */
+function legPts(k){const o=[];let L=0,pv=null;for(const s of[SEG[2*k],SEG[2*k+1]])for(let i=0;i<=60;i++){const t=i/60,u=1-t,p=[u*u*u*s[0][0]+3*u*u*t*s[1][0]+3*u*t*t*s[2][0]+t*t*t*s[3][0],u*u*u*s[0][1]+3*u*u*t*s[1][1]+3*u*t*t*s[2][1]+t*t*t*s[3][1]];if(pv)L+=Math.hypot(p[0]-pv[0],p[1]-pv[1]);o.push([p[0],p[1],L]);pv=p}return o}
+function legAt(sp,d){for(let i=1;i<sp.length;i++)if(sp[i][2]>=d){const a=sp[i-1],b=sp[i],t=(d-a[2])/((b[2]-a[2])||1);return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,Math.atan2(b[1]-a[1],b[0]-a[0])]}const z=sp[sp.length-1];return[z[0],z[1],0]}
+const FPC={};
+function steps(k){if(FPC[k])return FPC[k];const sp=legPts(k),L=sp[sp.length-1][2],st=12.5,n=Math.floor((L-26)/st);let g="";
+ for(let i=0;i<n;i++){const[x,y,a]=legAt(sp,14+i*st),s=i%2?1:-1;
+  g+=`<path class="fp" transform="translate(${f(x-Math.sin(a)*3.6*s)} ${f(y+Math.cos(a)*3.6*s)}) rotate(${f(a*180/Math.PI+90)})" d="M0 -4.4c1.7 0 2.3 1.5 2.1 3.3l-.4 2.3c-.2 1.2-3 1.2-3.2 0l-.4-2.3c-.2-1.8.4-3.3 1.9-3.3zM-1 3h2l-.1 1.6c-.1.9-1.7.9-1.8 0z" style="animation-delay:${(i*3.85/n).toFixed(2)}s"/>`}
+ return FPC[k]=`<g fill="#e3cb92">${g}</g>`}
+/* Ambiente de rol: marco con esquineras y notas a mano junto al camino. */
+function rolFrame(x0,w,sts){const x1=x0+w,c=(x,y,sx,sy)=>`<g transform="translate(${x} ${y}) scale(${sx} ${sy})"><path d="M0 46V8Q0 0 8 0H46" fill="none" stroke="#cdb57d" stroke-width="1.6"/><path d="M8 40V14Q8 8 14 8H40" fill="none" stroke="#cdb57d" stroke-width=".8"/><path d="M14 14c10 0 14 4 14 14c-4-6-8-8-14-8z" fill="#cdb57d" opacity=".8"/><circle cx="4" cy="4" r="2.4" fill="#cdb57d"/></g>`;
+ let s=`<rect x="${x0+16}" y="16" width="${w-32}" height="768" fill="none" stroke="#cdb57d" stroke-width="1.1" opacity=".55"/><rect x="${x0+21}" y="21" width="${w-42}" height="758" fill="none" stroke="#cdb57d" stroke-width=".5" opacity=".4"/>`;
+ s+=c(x0+16,16,1,1)+c(x1-16,16,-1,1)+c(x0+16,784,1,-1)+c(x1-16,784,-1,-1);
+ s+=`<text class="note" transform="translate(370 642) rotate(54)">media jornada</text>`;
+ if(sts[1]!=="lock")s+=`<text class="note" transform="translate(508 556) rotate(-20)">dos jornadas</text>`;
+ return s}
+const SIDE=[1,1,-1,1,-1,1];
+/* ext: lo que se ensancha el mapa por cada lado (en unidades del mapa) para llenar el hueco de la pantalla. */
+function mapSVG(ext=0){const x0=-ext,w=1000+2*ext;
+ const sts=MIS.map((_,i)=>mst(i)),far=sts.reduce((a,s,i)=>s!=="lock"?i:a,0),fogY=FOGY[far],from=seen?seen.y:fogY;
+ let legs="",emb="";for(let k=0;k<6;k++){if(sts[k]!=="lock")emb+=steps(k);else legs+=`<path d="${legD(k)}" fill="none" stroke="#d8d0bd" stroke-width="1.2" stroke-dasharray="3 6" opacity=".3" filter="url(#pencil)"/>`}
+ let pins="";P.forEach((p,i)=>{const st=sts[i],m=MIS[i],sd=SIDE[i],lx=sd>0?32:-32,anc=sd>0?"start":"end";
+  pins+=`<g class="pin s-${st}${M.sel===i?" on":""}" data-mi="${i}" tabindex="0" role="button" aria-label="Misión ${m.n}, ${m.t}: ${stl(i)}" transform="translate(${p[0]} ${p[1]})"><circle class="hit" cy="-6" r="46"/>${PENRING}${brazier(st,m)}${st!=="lock"?`<text class="plab" x="${lx}" y="-6" text-anchor="${anc}">${m.t}</text><text class="psub" x="${lx}" y="12" text-anchor="${anc}">${SHORT[st].toUpperCase()}${st==="live"?` · RONDA ${S.round}`:""}</text>`:""}</g>`});
+ const lands=`<g filter="url(#ink)">${terrain()}${sideTerr(ext)}${legs}</g>`;
+ return `<svg class="mmap" viewBox="${x0} 0 ${w} 800" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa nocturno de las tierras al norte del Muro con las seis misiones">
+ <defs><clipPath id="mpc"><path d="${edgeW(x0,w)}"/></clipPath>
+ <linearGradient id="mpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2740"/><stop offset="1" stop-color="#0f1628"/></linearGradient>
+ <radialGradient id="mvg" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+ <radialGradient id="mns" r=".5"><stop offset="0" stop-color="#5a3fae" stop-opacity=".3"/><stop offset=".6" stop-color="#5a3fae" stop-opacity=".08"/><stop offset="1" stop-color="#5a3fae" stop-opacity="0"/></radialGradient>
+ <radialGradient id="mlg"><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+ <linearGradient id="flO" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2461f"/><stop offset=".6" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
+ <linearGradient id="flV" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#5a33c8"/><stop offset=".6" stop-color="#9d7bff"/><stop offset="1" stop-color="#e3d8ff"/></linearGradient>
+ <linearGradient id="flG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c0832a"/><stop offset=".6" stop-color="#f1c35c"/><stop offset="1" stop-color="#fff0bd"/></linearGradient>
+ <radialGradient id="glO"><stop offset="0" stop-color="#ffb04a" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>
+ <radialGradient id="glV"><stop offset="0" stop-color="#a587ff" stop-opacity=".8"/><stop offset="1" stop-color="#6a45e0" stop-opacity="0"/></radialGradient>
+ <radialGradient id="glG"><stop offset="0" stop-color="#ffd98a" stop-opacity=".6"/><stop offset="1" stop-color="#d9a640" stop-opacity="0"/></radialGradient>
+ <filter id="mgrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .28 0"/></filter>
+ <filter id="mmot" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".007" numOctaves="4" seed="9"/><feColorMatrix values="0 0 0 0 .45 0 0 0 0 .27 0 0 0 0 .1 0 0 0 .7 -.22"/></filter>
+ <filter id="ink"><feTurbulence baseFrequency=".045" numOctaves="2" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/></filter>
+ <filter id="blot" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="80" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter>
+ <filter id="mcl1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0045 .009" numOctaves="4" seed="21" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -1.05" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter>
+ <filter id="mcl2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008 .014" numOctaves="3" seed="44" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 -.95" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter>
+ ${fogMask("mfog",sts,from,false,x0,w)}${fogMask("mfogi",sts,from,true,x0,w)}<filter id="pencil" filterUnits="userSpaceOnUse" x="${x0-200}" y="-200" width="${w+400}" height="1200"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="g"/><feTurbulence baseFrequency=".05" numOctaves="2" seed="8" result="d"/><feDisplacementMap in="g" in2="d" scale="2.6"/></filter>
+ <mask id="mlens" maskUnits="userSpaceOnUse" x="${x0-200}" y="-200" width="${w+400}" height="1200"><circle id="mlensc" cx="-999" cy="-999" r="44" fill="url(#mlg)"/></mask>
+ </defs>
+ <g clip-path="url(#mpc)">
+  <rect x="${x0}" width="${w}" height="800" fill="url(#mpg)"/><rect x="${x0}" width="${w}" height="800" filter="url(#mmot)" opacity=".35"/><rect x="${x0}" width="${w}" height="800" filter="url(#mgrain)" opacity=".5"/>
+  ${STARS}${starsW(ext)}
+  <g mask="url(#mfog)">${lands}</g>
+  <g mask="url(#mfogi)"><rect x="${x0-50}" y="-50" width="${w+100}" height="900" fill="#232d48" opacity=".7"/><rect class="cloud" x="${x0-400}" y="-50" width="${w+800}" height="900" filter="url(#mcl1)"/><rect class="cloud c2" x="${x0-400}" y="-50" width="${w+800}" height="900" filter="url(#mcl2)" opacity=".8"/></g>
+  <g class="lens" mask="url(#mlens)" opacity=".5"><g mask="url(#mfogi)">${lands}</g></g>
+  <circle cx="590" cy="106" r="200" fill="url(#mns)"/>
+  <g filter="url(#ink)">
+   <path d="M${x0+14} 776C300 768 700 782 ${x0+w-10} 772" fill="none" stroke="#cdb57d" stroke-width="9"/>
+   <path d="M${x0+14} 766C300 758 700 772 ${x0+w-10} 762" fill="none" stroke="#cdb57d" stroke-width="7" stroke-dasharray="7 9"/>
+   ${ext?`<path class="fr" d="M${x0+24} 660C${x0+120} 652 -40 666 24 660"/><path class="fr" d="M996 660C1060 654 ${1000+ext-120} 668 ${1000+ext-24} 660"/>`:""}<g fill="#18213a" stroke="#cdb57d" stroke-width="1.6" stroke-linejoin="round"><path d="M474 760v-22h10v22z"/><path d="M472 738l7-9 7 9z"/><path d="M491 760v-30h15v30z"/><path d="M489 730l9.5-12 9.5 12z"/><path d="M513 760v-19h10v19z"/><path d="M511 741l7-8 7 8z"/></g>
+  </g>
+  <text class="cap" x="548" y="748" style="font-size:14px;letter-spacing:.14em">VAREK'S HOLD</text>
+  <text class="lab" x="${x0+64}" y="752" style="font-size:16px">el Muro que nadie construyó</text>
+  <text class="lab" x="${x0+w-30}" y="648" text-anchor="end" style="font-size:17px">la frontera</text>
+  <g transform="translate(${x0+50} 44)"><rect width="300" height="88" rx="2" fill="#141c31" fill-opacity=".8" stroke="#cdb57d" stroke-width="1.2"/><rect x="5" y="5" width="290" height="78" fill="none" stroke="#cdb57d" stroke-width=".7"/><text class="cap" x="150" y="38" text-anchor="middle">TIERRAS AL NORTE</text><text class="cap" x="150" y="56" text-anchor="middle" style="font-size:11px;letter-spacing:.3em">DEL MURO</text><text class="lab" x="150" y="74" text-anchor="middle" style="font-size:14px;fill:#a99a78">campaña de El Pueblo Sin Nombre</text></g>
+  ${compass(x0+w-108,120)}
+  <g transform="translate(${x0+54} 708)"><rect width="36" height="6" fill="#cdb57d"/><rect x="36" width="36" height="6" fill="none" stroke="#cdb57d"/><rect x="72" width="36" height="6" fill="#cdb57d"/><text class="lab" y="-6" style="font-size:13px">0</text><text class="lab" x="72" y="-6" text-anchor="middle" style="font-size:13px">5</text><text class="lab" x="112" y="-6" style="font-size:13px">10 leguas</text></g>
+  ${rolFrame(x0,w,sts)}
+  <rect x="${x0}" width="${w}" height="800" fill="url(#mvg)" pointer-events="none"/>
+ </g>
+ <path d="${edgeW(x0,w)}" fill="none" stroke="#cdb57d" stroke-opacity=".35" stroke-width="1.5"/>
+ ${emb}
+ ${pins}
+ </svg>`}
+
+/* ================= opciones ================= */
+const O={card:"A",pos:"center",st:"open"};
+const NAMES={
+ A:["A · Pergamino","Dos rodillos de madera; el papel se desenrolla desde el centro y deja ver la ficha."],
+ B:["B · Cartel clavado con un puñal","Un cartel de encargo se pega en el mapa y un puñal viene girando desde el fondo y lo clava."],
+ C:["C · Carta lacrada","Un sobre forrado de azul con sello de cera: el sello se rompe, la solapa se abre y la carta sale y se despliega."],
+ D:["D · Libro de campaña","Un libro de cuero se abre: a la izquierda, un dibujo a tinta; a la derecha, la ficha, con cinta marcapáginas."],
+ E:["E · Placa del Umbral","La carta nocturna de ahora, rehecha: una línea de luz se abre desde el centro y descubre una placa con marco de oro."]};
+const OPT={card:[["A","A · Pergamino"],["B","B · Cartel y puñal"],["C","C · Carta lacrada"],["D","D · Libro de campaña"],["E","E · Placa del Umbral"]],
+ pos:[["center","Centrada en el mapa"],["near","Junto a la hoguera"]],
+ st:[["open","Disponible"],["live","En curso"],["done","Cumplida"]]};
+const LAB={card:"Presentación",pos:"Colocación",st:"Estado de la misión I"};
+
+/* ================= siluetas ================= */
+const SIL=[
+ /* guerrero: casco con penacho, escudo y espada */
+ `<svg viewBox="0 0 32 44" fill="currentColor" aria-hidden="true"><circle cx="15" cy="8.2" r="4.3"/><path d="M15 2.4c2.9 0 4.4 1.8 4.4 3.8h-8.8c0-2 1.5-3.8 4.4-3.8z"/><path d="M15 2.6c-2-2.4.8-3.4 2.6-2-.4 1.1-1.3 1.8-2.6 2z"/><path d="M8.4 15.6C10.4 14 12.6 13.3 15 13.3s4.6.7 6.6 2.3l.8 11.6-2.6.8-.4 14.5h-3.7L15 31l-.7 11.2h-3.7l-.4-14.5-2.6-.8z"/><path d="M2.2 17.2h7.5v7.4c0 2.8-2 4.5-3.75 5.3C4.2 29.1 2.2 27.4 2.2 24.6z"/><path d="M25.2 2.6l1.6 1.6V22h-3.2V4.2z"/><rect x="22" y="21.6" width="6.4" height="1.6" rx=".6"/><rect x="24.4" y="23.2" width="1.8" height="4.2" rx=".6"/><path d="M21.2 17.2l3.9 6.2-1.3.9-4.3-5.2z"/></svg>`,
+ /* maga: sombrero, barba y bastón con orbe */
+ `<svg viewBox="0 0 32 44" fill="currentColor" aria-hidden="true"><path d="M14.6 0.4l6 11.4H8.8z"/><ellipse cx="14.8" cy="12.2" rx="9.8" ry="2.1"/><circle cx="14.8" cy="16.6" r="3.2"/><path d="M12.4 18.8h4.8l-2.4 5.2z"/><path d="M9.4 20.2c1.6-1 3.4-1.5 5.4-1.5s3.8.5 5.4 1.5l3.6 22.4H5.8z"/><rect x="26.2" y="7" width="1.6" height="35.6" rx=".7"/><circle cx="27" cy="5.4" r="2.6"/><path d="M19.8 22.4l6.6-1.8.5 1.7-6.5 2.2z"/></svg>`,
+ /* pícaro: capucha y daga */
+ `<svg viewBox="0 0 32 44" fill="currentColor" aria-hidden="true"><path d="M15 2.6c3.9 0 6.3 2.9 6.3 6.6 0 2-.8 3.5-1.8 4.5h-9c-1-1-1.8-2.5-1.8-4.5 0-3.7 2.4-6.6 6.3-6.6z"/><path d="M8.6 15.2c1.9-1.2 4-1.8 6.4-1.8s4.5.6 6.4 1.8l4.4 27.4H4.2z"/><path d="M27.6 14.4l1.5 8.4h-3.2z"/><rect x="25" y="22.8" width="5.2" height="1.5" rx=".6"/><rect x="26.9" y="24.3" width="1.5" height="3.2" rx=".5"/><path d="M21.4 20.6l4.6 3.2-.8 1.3-5.2-2.6z"/></svg>`,
+ /* arquero: capucha, carcaj y arco */
+ `<svg viewBox="0 0 32 44" fill="currentColor" aria-hidden="true"><circle cx="13.6" cy="8.2" r="4.1"/><path d="M9.6 6.8c.4-3 2.2-4.8 4.6-4.8 1.6 0 3 .8 3.7 2.4-2 .2-4 .4-5.4 1.8-.8.8-1.4 1.8-2.9 2.1z"/><path d="M7.8 15.6C9.6 14 11.6 13.3 13.6 13.3s4 .7 5.8 2.3l.8 11.4-2.2.6-.4 14.9h-3.1l-.9-10.4-.9 10.4h-3.1l-.4-14.9-2.2-.6z"/><path d="M5.2 13.6l2.6-1.6 2.6 7-2.6 1.6z"/><path d="M18.6 17.2l4.4 3.2-.6 1.4-5-2.7z"/><path d="M22.6 3.4c7.6 9.8 7.6 27.6 0 37.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M22.6 3.4v37.2" fill="none" stroke="currentColor" stroke-width=".7"/></svg>`];
+/* El Heraldo del Umbral: figura con capucha y la hoz del vacío; los ojos brillan. */
+const BOSS=`<svg viewBox="0 0 64 76" fill="currentColor" aria-hidden="true"><circle cx="32" cy="38" r="31" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2.6 4.2" opacity=".55"/><path d="M32 5c6.6 0 11 5.4 11.4 12.6.3 4.6-2.2 8-4.6 10.4H25.2c-2.4-2.4-4.9-5.8-4.6-10.4C21 10.4 25.4 5 32 5z"/><path d="M24.4 28c2.4-1.2 4.8-1.8 7.6-1.8s5.2.6 7.6 1.8L49 70l-4.4-3.4L41 71l-4.4-4-4.6 4.6-4.6-4.6-4.4 4-3.6-4.4L15 70z"/><path d="M39.4 31l7 4.4-.6 2.1-8-3.2z"/><path d="M48.4 3.8l1.6.3L47.4 73l-1.6-.3z"/><path d="M49.4 4.2c-9.8-2.8-17.8 1.2-21.4 8.8 6.6-4.8 13.8-6.6 21-4.4z"/><circle cx="28" cy="18.4" r="1.7" fill="var(--eye,#f0c765)"/><circle cx="36.2" cy="18.4" r="1.7" fill="var(--eye,#f0c765)"/></svg>`;
+
+const I={arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+ lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg>',
+ x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ orn:'<svg class="orn" viewBox="0 0 250 14" aria-hidden="true"><path d="M0 7h100M150 7h100" stroke="currentColor" stroke-width="1" fill="none"/><path d="M125 1.5l5.5 5.5-5.5 5.5-5.5-5.5z" fill="currentColor"/><circle cx="108" cy="7" r="1.7" fill="currentColor"/><circle cx="142" cy="7" r="1.7" fill="currentColor"/><circle cx="96" cy="7" r="1" fill="currentColor"/><circle cx="154" cy="7" r="1" fill="currentColor"/></svg>',
+ eclipse:'<svg viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="50" cy="50" r="46" stroke-width="1.2" stroke-dasharray="3 5"/><circle cx="50" cy="50" r="38" stroke-width="1"/><circle cx="50" cy="50" r="24" fill="currentColor" stroke="none"/><circle cx="58" cy="46" r="23" fill="#0f1530" stroke="none"/><path d="M50 2v8M50 90v8M2 50h8M90 50h8" stroke-width="1.5" stroke-linecap="round"/></svg>',
+ corner:'<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M2 24V8Q2 2 8 2h16"/><path d="M7 20V11Q7 7 11 7h9"/><circle cx="2.6" cy="2.6" r="1.6" fill="currentColor" stroke="none"/></svg>'};
+
+/* ================= contenido de la ficha ================= */
+const metaHTML=()=>`<div class="fmeta"><div class="fm" role="img" aria-label="De dos a cuatro héroes"><div class="heroes">${SIL.map((s,k)=>`<span class="cam${k>1?" g":""}">${s}</span>`).join("")}</div><span class="lab">Héroes</span></div><i class="vr"></i><div class="fm" role="img" aria-label="Jefe opcional"><span class="cam big">${BOSS}</span><span class="lab">Jefe <em class="opt">opcional</em></span></div></div>`;
+function stLabel(i){const s=mst(i);return s==="live"?"Partida en curso · Ronda "+S.round:s==="done"?"Cumplida":s==="open"?"Lista para jugar":"Sellada"}
+function body(i){const m=MIS[i],st=mst(i);
+ const head=`<button class="fx" type="button" data-close aria-label="Cerrar la ficha">${I.x}</button><header class="fh"><span class="fnum">${m.n}</span><div><p class="feb">Misión ${m.n} · ${m.z}</p><h2>${m.t}</h2></div></header>`;
+ let b;
+ if(st==="lock")b=`<p class="fhook blur" aria-hidden="true">${m.h}</p><div class="flock">${I.lock}<span>Sellada. Se abrirá al cumplir la misión ${MIS[i-1].n}; todavía está en preparación.</span></div>`;
+ else if(i===1&&st==="open")b=`<p class="fhook">${m.h}</p>${I.orn}${metaHTML()}<p class="fst"><i></i>Desbloqueada. Su mesa llegará en una versión futura.</p>`;
+ else{b=`<p class="fhook">${m.h}</p>${I.orn}${metaHTML()}`;
+  if(st==="live")b+=`<div class="fchips"><span>Alerta <b>${S.al}/6</b></span><span><b>${S.mk.filter(Boolean).length}</b> de 2 rastros</span></div>`;
+  b+=`<p class="fst"><i></i>${stLabel(i)}</p>`;
+  if(st==="done"){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0);b+=`<div class="fres"><div><span>Final</span><b>${S.dead?"Heraldo desaparecido":"Sin pelea de jefe"}</b></div><div><span>Por héroe</span><b>${xp} XP</b></div><div><span>Paga</span><b>${5*S.d+(S.dead?5:0)} oro</b></div></div><button class="fcta ghost" type="button">Ver la misión</button>`}
+  else b+=`<button class="fcta" type="button"><span>${st==="live"?"Continuar la partida":"Entrar en la misión"}</span>${I.arrow}</button>`}
+ return `<div class="fb">${head}${b}</div>`}
+
+/* ---- puñal ---- */
+const DAGGER=`<svg viewBox="0 0 28 110" aria-hidden="true"><circle cx="14" cy="5" r="4.4" fill="url(#dgG)"/><rect x="11" y="9" width="6" height="24" rx="2.2" fill="#3a2410"/><path d="M11 13l6 3M11 18l6 3M11 23l6 3M11 28l6 3" stroke="#c9a24a" stroke-width=".9" opacity=".8"/><path d="M1.5 34.4c3-3.2 7.4-3.8 12.5-1.4 5.1-2.4 9.5-1.8 12.5 1.4l-1.5 3.6c-3-1.8-6.6-1.8-11 .2-4.4-2-8-2-11-.2z" fill="url(#dgG)"/><path d="M8.6 38.4h10.8L17.8 86 14 108 10.2 86z" fill="url(#dgS)"/><path d="M14 42v52" stroke="rgba(40,50,70,.55)" stroke-width="1.1"/></svg>`;
+
+/* ---- tintas de la hoja izquierda del libro ---- */
+const ILL=`<svg class="ill" viewBox="0 0 400 280" aria-hidden="true"><defs><linearGradient id="fdx" x1="0" x2="1"><stop offset=".3" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="fdm"><rect width="400" height="280" fill="url(#fdx)"/></mask></defs>
+ <g filter="url(#inkp)" fill="none" stroke="#2a1d10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="332" cy="52" r="26" stroke-width="1.6"/><path d="M342 36a26 26 0 1 1-22 38 20 20 0 1 0 22-38z" fill="#2a1d10" stroke="none" opacity=".85"/>
+  <g mask="url(#fdm)">
+   <path d="M18 238V174l38-32 38 32v64z"/><path d="M47 238v-30h18v30"/><path d="M30 190h14v14H30zM68 190h14v14H68z" stroke-width="1.6"/><path d="M26 176l30-26 30 26M34 184l22-19 22 19" stroke-width="1.2" opacity=".6"/><path d="M80 150v-22h10v32" stroke-width="2"/>
+   <path d="M122 238V186l30-26 30 26v52z"/><path d="M143 238v-24h16v24"/><path d="M134 196h12v12h-12z" stroke-width="1.6"/>
+   <path d="M216 238V190l28-24 28 24v48z" stroke-dasharray="14 6"/><path d="M236 238v-22h14v22" stroke-dasharray="8 5"/>
+   <path d="M310 238v-36l22-20 22 20v36z" stroke-dasharray="6 9" opacity=".7"/>
+  </g>
+  <path d="M8 240C80 233 150 243 230 238S350 236 392 241" stroke-width="2.4"/>
+  <path d="M88 118c-6-8 6-12 0-20s6-12 0-20" stroke-width="1.4" opacity=".6"/>
+  <path d="M60 252c40 3 80-2 120 1M250 254c30 2 60 0 90 2" stroke-width="1" opacity=".5"/>
+ </g></svg>`;
+
+/* ================= las cinco presentaciones ================= */
+function cardHTML(k,i,play){const st=mst(i),cl=`fc c${k} ${st==="live"?"live":st==="done"?"done":st==="lock"?"lock":""}${play?" play":""}`,b=body(i);
+ if(k==="A")return `<div class="${cl}"><div class="rod"></div><div class="sheet"><div class="sin">${b}</div></div><div class="rod"></div></div>`;
+ if(k==="B")return `<div class="${cl}"><div class="poster"><div class="hit"><div class="paper"></div><span class="tag">Encargo del Filo</span>${b}<div class="dg">${DAGGER}</div><div class="dwin"><div class="dgs">${DAGGER}</div></div><i class="slit"></i></div></div></div>`;
+ if(k==="C")return `<div class="${cl}"><div class="letter">${b}</div><div class="ep eback"></div><div class="ep efront"></div><div class="ep eflap"><i class="o"></i><i class="n"></i></div><div class="seal"><i class="a"></i><i class="b"></i>${I.eclipse}</div></div>`;
+ if(k==="D"){const lock=st==="lock";return `<div class="${cl}"><div class="book"><div class="pageR"><i class="rib"></i>${b}</div><div class="cover"><div class="cf"><div>${I.eclipse}<div class="t">El Pueblo<br>Sin Nombre</div><small>Cuaderno de campaña</small></div></div><div class="cb">${lock?`<div style="color:var(--acc);width:70px">${I.lock}</div><p class="cap"><b>Página en blanco</b>Aún no se ha escrito.</p>`:`${ILL}<p class="cap"><b>${MIS[i].t}</b>«Nadie recuerda su nombre. Alguien tendrá que ir a escribirlo de nuevo.»</p>`}</div></div></div></div>`}
+ return `<div class="${cl}"><div class="plate"><div class="emb">${I.eclipse}</div><i class="cn a">${I.corner}</i><i class="cn b">${I.corner}</i><i class="cn c">${I.corner}</i><i class="cn d">${I.corner}</i>${b}</div><i class="seam"></i></div>`}
+
+/* ================= pantalla ================= */
+const BACKI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+function sideHTML(){const n=MIS.filter((_,i)=>mst(i)!=="lock").length;
+ return `<div class="side mside"><header class="mvh"><button class="back" type="button">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${MIS.map((_,i)=>{const s=mst(i);return `<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`}).join("")}</i></div></header><button class="mlore" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="14.6" cy="11" r="6.4" fill="currentColor"/></svg><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx">${idxHTML()}</nav><p class="mhint">Pulsa una hoguera del mapa o una misión de la lista para ver su ficha.</p></div><div class="mmapw" id="mw"></div>`}
+function idxHTML(){return `<p class="keb">La ruta hacia el norte</p>`+MIS.map((x,k)=>{const s=mst(k);return `<button type="button" class="s-${s}${k===M.sel?" on":""}" data-mi="${k}"><span class="n">${x.n}</span><span class="t">${x.t}<small>${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}</small></span></button>`}).join("")}
+const extOf=(W,H)=>W&&H?Math.min(900,Math.max(0,Math.round((800*W/H-1000)/2/10)*10)):0;
+function drawMap(force){const mw=document.getElementById("mw"),r=mw.getBoundingClientRect(),e=extOf(r.width,r.height);if(!force&&e===mw._ext)return;mw._ext=e;mw.innerHTML=mapSVG(e);if(OPEN)mark()}
+function mark(){document.querySelectorAll("#mapv .pin").forEach(p=>p.classList.toggle("on",+p.dataset.mi===M.sel));document.getElementById("midx").innerHTML=idxHTML()}
+function setState(st){Object.assign(S,{round:0,prim:false,end:false,defeat:false,fin:false,dead:false,secDone:false,al:1,mk:[]});
+ if(st==="live"){S.round=3;S.al=3;S.mk=[1,0]}
+ if(st==="done"){S.prim=true;S.end=true;S.fin=true;S.dead=true;S.secDone=true}}
+
+let OPEN=false,SELI=0;
+function paintAll(){const v=document.getElementById("mapv");v.innerHTML=sideHTML();drawMap(true);if(OPEN)mountCard(false);gallery();paintBar()}
+function paintBar(){document.getElementById("bar").innerHTML=Object.keys(OPT).map(k=>`<div class="grp"><span class="keb">${LAB[k]}</span><div class="seg">${OPT[k].map(([v,l])=>`<button type="button" data-k="${k}" data-v="${v}" class="${O[k]===v?"on":""}">${l}</button>`).join("")}</div></div>`).join("")+`<button class="replay" type="button" data-replay>↻ Repetir animación</button>`}
+
+function unmount(){const w=document.querySelector(".fwrap");if(w)w.remove()}
+function mountCard(play){unmount();if(!OPEN)return;const scr=document.getElementById("scr"),w=document.createElement("div");w.className="fwrap";w.innerHTML=cardHTML(O.card,SELI,false);scr.appendChild(w);place(w);
+ if(play){void w.offsetWidth;w.firstElementChild.classList.add("play")}
+ document.getElementById("scrim").classList.toggle("on",O.pos==="center")}
+function place(w){const scr=document.getElementById("scr"),fc=w.firstElementChild,nw=fc.offsetWidth,nh=fc.offsetHeight,sr=scr.getBoundingClientRect(),mr=document.getElementById("mw").getBoundingClientRect();
+ const ax=mr.left-sr.left,ay=mr.top-sr.top,aw=mr.width,ah=mr.height,pad=26;
+ let s=Math.min(1,(aw-pad*2)/nw,(ah-pad*2)/nh);
+ if(O.pos==="near"&&O.card!=="D"){const hit=document.querySelector(`#mapv .pin[data-mi="${SELI}"] .hit`);
+  if(hit){const hr=hit.getBoundingClientRect(),cx=hr.left+hr.width/2-sr.left,cy=hr.top+hr.height/2-sr.top,right=cx-ax<aw*.56,gap=hr.width*.7+(right===(SIDE[SELI]>0)&&mst(SELI)!=="lock"?175:14);
+   s=Math.min(1,(ah-pad*2)/nh,(right?ax+aw-(cx+gap)-pad:cx-gap-ax-pad)/nw);s=Math.max(.5,s);
+   let left=right?cx+gap:cx-gap-nw*s,top=cy-nh*s/2;left=Math.max(ax+pad/2,Math.min(ax+aw-nw*s-pad/2,left));top=Math.max(12,Math.min(sr.height-nh*s-12,top));
+   Object.assign(w.style,{left:left+"px",top:top+"px",transform:`scale(${s})`});return}}
+ Object.assign(w.style,{left:(ax+aw/2-nw*s/2)+"px",top:(ay+ah/2-nh*s/2)+"px",transform:`scale(${s})`})}
+function openCard(i){SELI=i;M.sel=i;OPEN=true;mark();mountCard(true)}
+function closeCard(){if(!OPEN)return;const w=document.querySelector(".fwrap");OPEN=false;M.sel=-1;mark();document.getElementById("scrim").classList.remove("on");if(w){w.classList.add("out");setTimeout(()=>{if(!OPEN)w.remove()},230)}}
+
+/* ================= galería ================= */
+function gallery(){const g=document.getElementById("gal");g.innerHTML="";const i=SELI>=0?SELI:0;
+ ["A","B","C","D","E"].forEach(k=>{const box=document.createElement("div");box.className="gcard"+(k==="D"?" wide":"");box.innerHTML=`<div class="gh"><b>${NAMES[k][0]}</b><span>${NAMES[k][1]}</span></div><div class="gv"><div class="gs">${cardHTML(k,i,false)}</div></div>`;g.appendChild(box)});
+ requestAnimationFrame(()=>g.querySelectorAll(".gv").forEach(v=>{const s=v.firstElementChild,c=s.firstElementChild,sc=.92;s.style.transform=`scale(${sc})`;s.style.width=c.offsetWidth+"px";v.style.height=(Math.max(c.offsetHeight+30,s.scrollHeight)*sc+56)+"px";s.style.marginTop="0";v.style.paddingLeft=v.style.paddingRight="0";
+  const free=v.clientWidth-c.offsetWidth*sc;s.style.marginLeft=Math.max(0,free/2)+"px";v.style.justifyContent="flex-start"}))}
+
+/* ================= eventos ================= */
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-k]");if(b){O[b.dataset.k]=b.dataset.v;if(b.dataset.k==="st"){setState(O.st);paintAll()}else{paintBar();if(OPEN)mountCard(true);gallery()}return}
+ if(e.target.closest("[data-replay]")){if(!OPEN)openCard(SELI>=0?SELI:0);else mountCard(true);return}
+ if(e.target.closest("[data-close]")){closeCard();return}
+ if(e.target.id==="scrim"){closeCard();return}
+ const m=e.target.closest("#mapv [data-mi]");if(m)openCard(+m.dataset.mi)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCard();const p=e.target.closest&&e.target.closest(".pin");if(p&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openCard(+p.dataset.mi)}});
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{drawMap(true);const w=document.querySelector(".fwrap");if(w)place(w)},120)});
+document.fonts.ready.then(()=>{setState("open");paintAll()});
+</script>
+</body>
+</html>

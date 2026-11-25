@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta · Mapa vivo v3 (cinco variaciones)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=IM+Fell+English:ital@0;1&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--serif:"Cormorant Garamond",Georgia,serif;--disp:"Cinzel",serif;--deco:"Cinzel Decorative",serif;--ui:"Inter",system-ui,sans-serif;--hand:"IM Fell English",Georgia,serif;--gold:#d9b86c;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .08 0 0 0 .26 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+ --paper:var(--grain),radial-gradient(120% 90% at 50% 30%,#f4e8c6 0%,#e7d2a2 62%,#cfb073 100%);
+ --night:var(--grain),radial-gradient(130% 80% at 50% -10%,#26335a,#141c34 65%,#10162a)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#07090f;color:#d6c9ae;font-family:var(--ui)}
+button{font:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:1680px;margin:0 auto;padding:22px 22px 80px}
+.ph h1{margin:0;font:700 28px var(--deco);background:linear-gradient(180deg,#f8ead0,#e2c37f 50%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ph p{margin:6px 0 0;max-width:980px;font:500 18px/1.45 var(--serif);color:#9aa6c4}
+.keb{margin:0;font:600 10px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:#8a96b4}
+.bar{position:sticky;top:0;z-index:90;margin:18px -22px 14px;padding:12px 22px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 28px;background:rgba(7,9,15,.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(217,184,108,.18)}
+.grp{display:flex;flex-direction:column;gap:6px}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button{padding:6px 13px;border:0;border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);color:#cdb894;font:600 12px var(--ui)}
+.seg button:hover{background:rgba(217,184,108,.1)}
+.seg button.on{background:linear-gradient(180deg,#e6c77e,#b48a3c);color:#1b1408;box-shadow:none}
+.note{margin:12px 0 0;font:italic 500 17px/1.4 var(--serif);color:#8a96b4;max-width:1060px}
+.scr{position:relative;height:min(840px,calc(100vh - 170px));min-height:620px;border-radius:14px;overflow:hidden;background:#090b13;box-shadow:0 0 0 1px rgba(217,184,108,.25),0 30px 80px rgba(0,0,0,.6)}
+.sc{position:absolute;inset:0;overflow:hidden;animation:scIn .55s both}
+@keyframes scIn{from{opacity:0}}
+%%SHAREDCSS%%
+
+/* ================= mapa común ================= */
+.mapw{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:0 0;transition:transform 1.2s cubic-bezier(.5,0,.2,1)}
+.mapw>svg{position:absolute;inset:0;width:100%;height:100%}
+.mmap .lab{fill:#e3cb92;font:italic 400 17px var(--hand)}
+.hot{cursor:pointer;outline:none}
+.hot .hit{fill:transparent}
+.hot .hl{fill:#e3cb92;font:italic 400 22px var(--hand);paint-order:stroke;stroke:#141c31;stroke-width:6px;stroke-linejoin:round;transition:opacity .3s}
+.hot .hs{fill:#a99a78;font:600 9.5px var(--ui);letter-spacing:.16em;paint-order:stroke;stroke:#141c31;stroke-width:5px;stroke-linejoin:round;transition:opacity .3s}
+.hot .body{transform-box:fill-box;transform-origin:50% 100%;transition:transform .3s}
+.hot:hover .body,.hot:focus-visible .body,.hot.on .body{transform:scale(1.14)}
+.hot .ringp{fill:none;stroke:#f3ead3;stroke-width:2;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.hot.on .ringp{opacity:.85;animation:ringd .9s forwards}
+@keyframes ringd{to{stroke-dashoffset:0}}
+.mmap .cloud{animation:cdrift 60s linear infinite alternate}
+.mmap .cloud.c2{animation-duration:40s;animation-direction:alternate-reverse}
+@keyframes cdrift{from{transform:translateX(-140px)}to{transform:translateX(140px)}}
+.fogc{transition:r 1.8s cubic-bezier(.3,0,.2,1)}
+.ico{display:inline-grid;place-items:center;color:#e3b866}
+.ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.x{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(227,184,102,.45)}
+.x:hover{background:rgba(255,255,255,.14)}
+.x svg{width:13px;height:13px}
+.ttl .eb{font:600 10.5px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:#8a96b4}
+.ttl h1{margin:8px 0 8px;font:700 44px/1.02 var(--deco);background:linear-gradient(180deg,#fbeccb,#e2c37f 48%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px rgba(0,0,0,.7))}
+.ttl p{margin:0;font:italic 500 20px/1.4 var(--serif);color:#c9d0e4;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.pnav{display:flex;justify-content:space-between;gap:10px}
+.pnav button{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:0;border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(227,184,102,.3);font:600 10.5px var(--ui);letter-spacing:.12em;text-transform:uppercase;color:#cdb894}
+.pnav button .ico{width:16px;height:16px}
+.pnav button:hover:not(:disabled){background:rgba(227,184,102,.16)}
+.pnav button:disabled{opacity:0;pointer-events:none}
+.sc.has~.fab,.sc.has~.rtip{right:auto;left:24px}
+.sc.v2.has~.fab,.sc.v2.has~.rtip{left:auto;right:24px}
+.sc.v3.has~.fab,.sc.v3.has~.rtip{opacity:0;pointer-events:none}
+.rd .obn{font-size:0!important;width:.62em!important;height:.62em!important;margin:.55em 0 0 .5em;border-radius:2px!important;transform:rotate(45deg)}
+.shade{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(90deg,rgba(9,11,19,.82),rgba(9,11,19,.35) 32%,transparent 52%);transition:opacity .8s}
+.sc.has .shade{opacity:0}
+/* aviso al pasar el ratón por una hoguera */
+.tip{position:absolute;z-index:25;width:280px;padding:14px 16px 15px;border-radius:8px;background:var(--night);box-shadow:0 0 0 1px rgba(227,184,102,.6),0 18px 40px rgba(0,0,0,.6);pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s}
+.tip.on{opacity:1;transform:none}
+.tip .th{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.tip .th .ico{width:26px;height:26px}
+.tip b{font:700 14px var(--disp);letter-spacing:.06em;color:#f6e8cc}
+.tip p{margin:0 0 8px;font:italic 500 17px/1.35 var(--serif);color:#c9d0e4}
+.tip small{font:600 9.5px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#e3b866}
+.tip small.c{color:#8a96b4}
+
+/* ================= V1 · Panel lateral ================= */
+.v1 .intro{position:absolute;z-index:10;left:30px;top:78px;width:380px;transition:opacity .6s,transform .8s}
+.v1.has .intro{opacity:0;transform:translateX(-30px);pointer-events:none}
+.v1 .legend{display:flex;flex-direction:column;gap:6px;margin:20px 0 0;padding:0;list-style:none}
+.v1 .legend button{display:flex;align-items:center;gap:12px;width:100%;padding:9px 14px;border:0;border-radius:8px;background:rgba(14,19,36,.78);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);text-align:left;font:500 19px var(--hand);color:#e3cb92;backdrop-filter:blur(4px);transition:.25s}
+.v1 .legend button:hover{background:rgba(217,184,108,.14);transform:translateX(4px)}
+.v1 .legend .ico{width:26px;height:26px;flex:none}
+.v1 .legend small{margin-left:auto;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7a86a3}
+.v1 .legend small.r{color:#e3b866}
+.v1 .pnl{position:absolute;z-index:12;right:22px;top:22px;bottom:22px;width:min(580px,46%);display:flex;flex-direction:column;border-radius:10px;background:var(--night);box-shadow:0 0 0 1px rgba(227,184,102,.7),inset 0 0 0 6px #0f1528,inset 0 0 0 7px rgba(227,184,102,.4),0 40px 80px rgba(0,0,0,.7);transform:translateX(115%);transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.v1.has .pnl{transform:none}
+.v1 .ph2{position:relative;display:flex;gap:16px;align-items:center;padding:32px 60px 14px 40px}
+.v1 .ph2 .md{flex:none;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#2c3b66,#161e34);box-shadow:inset 0 0 0 1.5px rgba(227,184,102,.8),0 0 16px rgba(227,184,102,.25)}
+.v1 .ph2 .md .ico{width:30px;height:30px}
+.v1 .ph2 .eb{margin:0 0 4px;font:600 10.5px var(--ui);letter-spacing:.22em;text-transform:uppercase;color:#e3b866}
+.v1 .ph2 h2{margin:0;font:700 27px/1.1 var(--disp);color:#f6e8cc}
+.v1 .ph2 .x{position:absolute;right:20px;top:20px}
+.v1 .pb{flex:1;min-height:0;overflow:auto;padding:4px 40px 20px;scrollbar-width:thin;scrollbar-color:#3d4a68 transparent}
+.v1 .pb::before{content:"";display:block;height:1px;margin:0 0 18px;background:linear-gradient(90deg,transparent,rgba(227,184,102,.5),transparent)}
+.v1 .pnav{padding:12px 32px 22px}
+.v1 .rd,.v3 .rd,.v4 .rd,.v5 .rd{--fs:18.5px;--tf:var(--serif);font-weight:500}
+.v1 .hfig,.v5 .hfig{max-width:240px;margin:0 auto 1.2em;box-shadow:0 0 0 1px rgba(227,184,102,.5),0 18px 40px rgba(0,0,0,.5)}
+
+/* ================= V2 · Diario de la compañía ================= */
+.v2 .jr{position:absolute;z-index:12;left:28px;top:80px;bottom:28px;width:330px;display:grid;grid-template-columns:330px 0fr;border-radius:6px;background:var(--paper);box-shadow:inset 0 0 0 1px rgba(110,70,25,.45),inset 0 0 50px rgba(120,80,30,.3),0 0 0 6px #18213f,0 0 0 7px rgba(227,184,102,.55),0 30px 60px rgba(0,0,0,.6);transition:width .9s cubic-bezier(.4,.1,.2,1),grid-template-columns .9s cubic-bezier(.4,.1,.2,1);overflow:hidden}
+.v2.has .jr{width:min(860px,64%);grid-template-columns:300px 1fr}
+.v2 .jl{position:relative;display:flex;flex-direction:column;min-height:0;padding:30px 22px 22px 28px;border-right:1px solid rgba(110,70,25,0);transition:border-color .9s}
+.v2.has .jl{border-right-color:rgba(110,70,25,.35)}
+.v2 .jl .eb{margin:0;font:600 10px var(--ui);letter-spacing:.26em;text-transform:uppercase;color:#8a5a1c}
+.v2 .jl h1{margin:6px 0 4px;font:700 30px/1.05 var(--deco);color:#1f150a}
+.v2 .jl .sb{margin:0 0 18px;font:italic 400 17px/1.4 var(--hand);color:#4b3a24}
+.v2 .jl .sep{display:flex;align-items:center;gap:10px;margin:14px 0 8px;font:600 9.5px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#7b6845}
+.v2 .jl .sep::after{content:"";flex:1;height:1px;background:rgba(110,70,25,.35)}
+.v2 .ent{display:flex;align-items:center;gap:12px;width:100%;padding:10px 10px;border:0;border-radius:4px;background:none;text-align:left;color:#2a1d10;transition:background .2s}
+.v2 .ent:hover{background:rgba(110,70,25,.1)}
+.v2 .ent.on{background:rgba(110,70,25,.16);box-shadow:inset 3px 0 0 #8a5a1c}
+.v2 .ent .ico{flex:none;width:30px;height:30px;color:#6b4a18}
+.v2 .ent span{display:block;font:400 19px/1.15 var(--hand)}
+.v2 .ent small{display:block;margin-top:2px;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7b6845}
+.v2 .ent small.r{color:#2a3a7a}
+.v2 .ent.rd0 span{text-decoration:line-through;text-decoration-color:rgba(42,29,16,.35)}
+.v2 .jl .ft{margin-top:auto;font:italic 400 16px/1.35 var(--hand);color:#6b5732}
+.v2 .jt{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;opacity:0;transition:opacity .5s}
+.v2.has .jt{opacity:1;transition-delay:.45s}
+.v2 .jt .hd{padding:30px 54px 10px 36px}
+.v2 .jt .hd .eb{margin:0 0 4px;font:600 10px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#8a5a1c}
+.v2 .jt .hd h2{margin:0;font:700 28px/1.1 var(--disp);color:#1f150a;white-space:nowrap}
+.v2 .jt .x{position:absolute;right:16px;top:18px;background:rgba(110,70,25,.1);box-shadow:inset 0 0 0 1px rgba(110,70,25,.45);color:#4b3a24}
+.v2 .jt .bd{flex:1;min-height:0;overflow:auto;padding:8px 40px 30px 36px;scrollbar-width:thin;scrollbar-color:#b79a62 transparent}
+.v2 .jt .rd{--tf:var(--hand);--fs:18px}
+.v2 .rib{position:absolute;right:120px;top:-6px;width:18px;height:96px;background:linear-gradient(90deg,#2a3a7a,#3f55a8 50%,#26357a);clip-path:polygon(0 0,100% 0,100% 100%,50% 88%,0 100%);box-shadow:0 4px 6px rgba(0,0,0,.4)}
+.v2 .hfig{max-width:220px;float:right;margin:0 0 12px 18px;padding:7px;background:#efe2bc;box-shadow:0 6px 16px rgba(40,25,5,.4);transform:rotate(1.5deg)}
+
+/* ================= V3 · Pergamino en el lugar ================= */
+.v3 .ttl{position:absolute;z-index:10;left:30px;top:78px;max-width:420px;transition:opacity .6s}
+.v3.has .ttl{opacity:0}
+.v3 .lead{position:absolute;inset:0;z-index:11;width:100%;height:100%;pointer-events:none;overflow:visible}
+.v3 .lead path{fill:none;stroke:#f3ead3;stroke-width:1.6;stroke-dasharray:5 7;opacity:.75}
+.v3 .lead circle{fill:#f3ead3}
+.v3 .scroll{position:absolute;z-index:12;width:540px;display:flex;flex-direction:column;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.v3 .scroll .rod{position:relative;z-index:4;height:24px;margin:0 -16px;border-radius:12px;background:linear-gradient(180deg,#9a6a32,#6a4219 45%,#3b230c);box-shadow:inset 0 2px 1px rgba(255,225,170,.4),inset 0 -2px 3px rgba(0,0,0,.55)}
+.v3 .scroll .rod::before,.v3 .scroll .rod::after{content:"";position:absolute;top:-6px;width:22px;height:36px;border-radius:11px;background:linear-gradient(90deg,#9a7022,#f3d48a 42%,#8a6420);box-shadow:inset 0 0 0 1px rgba(60,35,5,.5)}
+.v3 .scroll .rod::before{left:-11px}.v3 .scroll .rod::after{right:-11px}
+.v3 .scroll .sh{position:relative;display:grid;grid-template-rows:1fr;min-height:0;margin:-3px 4px;background:var(--paper);box-shadow:inset 0 0 44px rgba(120,80,30,.4),inset 0 0 0 1px rgba(110,70,25,.4);animation:unroll 1s cubic-bezier(.35,.1,.2,1) both}
+@keyframes unroll{from{grid-template-rows:0fr}}
+.v3 .scroll .sh::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,rgba(60,35,10,.4),transparent 7%,transparent 93%,rgba(60,35,10,.4))}
+.v3 .scroll .si{min-height:0;overflow:hidden;display:flex;flex-direction:column}
+.v3 .scroll .hd{position:relative;display:flex;gap:14px;align-items:center;padding:24px 54px 10px 34px}
+.v3 .scroll .hd .ico{flex:none;width:44px;height:44px;color:#6b4a18}
+.v3 .scroll .hd .eb{margin:0 0 3px;font:600 10px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#8a5a1c}
+.v3 .scroll .hd h2{margin:0;font:700 25px/1.1 var(--disp);color:#1f150a}
+.v3 .scroll .x{position:absolute;right:14px;top:16px;background:rgba(110,70,25,.1);box-shadow:inset 0 0 0 1px rgba(110,70,25,.45);color:#4b3a24}
+.v3 .scroll .bd{flex:1;min-height:0;overflow:auto;padding:6px 36px 18px 34px;scrollbar-width:thin;scrollbar-color:#b79a62 transparent}
+.v3 .scroll .rd{--tf:var(--hand);--fs:17.5px;color:#33261a}
+.v3 .scroll .pnav{padding:4px 26px 16px}
+.v3 .scroll .pnav button{background:rgba(110,70,25,.08);box-shadow:inset 0 0 0 1px rgba(110,70,25,.4);color:#4b3a24}
+.v3 .scroll .pnav button .ico{color:#6b4a18}
+.v3 .hfig{max-width:200px;float:right;margin:0 0 10px 16px;padding:6px;background:#efe2bc;box-shadow:0 6px 16px rgba(40,25,5,.4);transform:rotate(1.5deg)}
+
+/* ================= V4 · Barra de mando ================= */
+.v4 .ban{position:absolute;z-index:10;left:30px;top:80px;display:flex;flex-direction:column;align-items:center;padding:12px 54px 18px;background:var(--night);clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);box-shadow:inset 0 0 0 1px rgba(227,184,102,.6);transition:transform .8s,opacity .6s}
+.v4 .ban::before{content:"";position:absolute;inset:4px 4px 10px;border:1px solid rgba(227,184,102,.35);clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);pointer-events:none}
+.v4 .ban .eb{font:600 9.5px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:#8a96b4}
+.v4 .ban h1{margin:4px 0 0;font:700 28px var(--deco);background:linear-gradient(180deg,#fbeccb,#e2c37f 48%,#a87d34);-webkit-background-clip:text;background-clip:text;color:transparent}
+.v4.has .ban{transform:translateX(-120%);opacity:0}
+.v4 .hbar{position:absolute;z-index:14;left:50%;bottom:26px;transform:translateX(-50%);display:flex;gap:16px;padding:12px 22px;border-radius:999px;background:rgba(12,16,30,.88);box-shadow:0 0 0 1px rgba(227,184,102,.5),0 20px 40px rgba(0,0,0,.6);backdrop-filter:blur(6px);transition:bottom .9s cubic-bezier(.3,.7,.2,1)}
+.v4.has .hbar{bottom:calc(60% + 16px)}
+.v4 .md{position:relative;display:grid;place-items:center;width:62px;height:62px;border:0;border-radius:50%;background:radial-gradient(circle at 34% 28%,#2c3b66,#141c34);box-shadow:inset 0 0 0 2px rgba(227,184,102,.55),0 4px 12px rgba(0,0,0,.5);transition:transform .25s,box-shadow .25s}
+.v4 .md .ico{width:30px;height:30px}
+.v4 .md:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 2px #e3b866,0 0 20px rgba(227,184,102,.35)}
+.v4 .md.on{background:radial-gradient(circle at 34% 28%,#f6e2a8,#c99a43 60%,#8a6420);box-shadow:0 0 0 3px rgba(227,184,102,.25),0 0 24px rgba(227,184,102,.5)}
+.v4 .md.on .ico{color:#241705}
+.v4 .md .lb{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(4px);white-space:nowrap;padding:5px 11px;border-radius:6px;background:rgba(12,16,30,.95);box-shadow:inset 0 0 0 1px rgba(227,184,102,.45);font:600 10px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:#f1e2c4;opacity:0;pointer-events:none;transition:.2s}
+.v4 .md:hover .lb,.v4 .md:focus-visible .lb{opacity:1;transform:translateX(-50%)}
+.v4 .md .dot{position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:#0c1020;box-shadow:inset 0 0 0 1.5px #e3b866}
+.v4 .md .dot.r{background:#e3b866}
+.v4 .md .dot.c{display:none}
+.v4 .drw{position:absolute;z-index:13;left:0;right:0;bottom:0;height:60%;display:flex;flex-direction:column;background:var(--night);box-shadow:0 -1px 0 rgba(227,184,102,.75),0 -30px 60px rgba(0,0,0,.55);transform:translateY(104%);transition:transform .9s cubic-bezier(.3,.7,.2,1)}
+.v4.has .drw{transform:none}
+.v4 .drw::before{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:linear-gradient(90deg,transparent,rgba(227,184,102,.4) 20%,rgba(227,184,102,.4) 80%,transparent)}
+.v4 .drw .hd{display:flex;gap:16px;align-items:center;padding:26px 70px 8px 70px}
+.v4 .drw .hd .ico{width:38px;height:38px}
+.v4 .drw .hd .eb{margin:0 0 3px;font:600 10px var(--ui);letter-spacing:.24em;text-transform:uppercase;color:#e3b866}
+.v4 .drw .hd h2{margin:0;font:700 26px/1.1 var(--disp);color:#f6e8cc}
+.v4 .drw .x{position:absolute;right:26px;top:22px}
+.v4 .drw .bd{flex:1;min-height:0;overflow:auto;padding:12px 70px 34px;scrollbar-width:thin;scrollbar-color:#3d4a68 transparent}
+.v4 .drw .rd>div{columns:2 380px;column-gap:56px;column-rule:1px solid rgba(227,184,102,.15)}
+.v4 .drw .rd .ob,.v4 .drw .rd .fm,.v4 .drw .rd .how div,.v4 .drw .rd .xpb,.v4 .drw .rd .hq,.v4 .drw .rd p{break-inside:avoid}
+.v4 .drw .rd .how{display:block}
+.v4 .drw .rd .how div{margin-bottom:12px}
+.v4 .drw .rd .fam{display:block}.v4 .drw .rd .fm{margin-bottom:.7em}
+.v4 .drw .hrow{display:block}
+.v4 .hfig{max-width:220px;float:left;margin:0 22px 12px 0;box-shadow:0 0 0 1px rgba(227,184,102,.5),0 18px 40px rgba(0,0,0,.5)}
+.sc.v4~.fab{bottom:auto;top:22px}.sc.v4~.rtip{bottom:auto;top:92px}
+.sc.v4.has~.fab{left:auto;right:24px}.sc.v4.has~.rtip{left:auto;right:24px}
+
+/* ================= V5 · Niebla del olvido ================= */
+.v5 .mem{position:absolute;z-index:10;left:30px;top:78px;max-width:420px;transition:opacity .6s,transform .8s}
+.v5.has .mem{opacity:0;transform:translateX(-20px)}
+.v5 .flames{display:flex;align-items:center;gap:12px;margin-top:20px;padding:10px 16px;border-radius:999px;background:rgba(12,16,30,.82);box-shadow:inset 0 0 0 1px rgba(227,184,102,.35);width:max-content}
+.v5 .flames span{font:600 10px var(--ui);letter-spacing:.18em;text-transform:uppercase;color:#9aa6c4}
+.v5 .flames i{display:block;width:12px;height:16px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:#2a3350;box-shadow:inset 0 0 0 1px rgba(227,184,102,.35)}
+.v5 .flames i.r{background:radial-gradient(circle at 50% 70%,#fff0bd,#f1c35c 45%,#c0832a);box-shadow:0 0 10px rgba(241,195,92,.7)}
+.v5 .card{position:absolute;z-index:12;right:28px;top:24px;bottom:24px;width:min(520px,44%);display:flex;flex-direction:column;border-radius:14px;background:var(--night);box-shadow:0 0 0 1px rgba(227,184,102,.75),inset 0 0 0 7px #0f1528,inset 0 0 0 8px rgba(227,184,102,.45),0 40px 80px rgba(0,0,0,.7);opacity:0;transform:translateY(30px) scale(.97);pointer-events:none;transition:opacity .6s .35s,transform .8s .35s cubic-bezier(.3,.7,.2,1)}
+.v5.has .card{opacity:1;transform:none;pointer-events:auto}
+.v5 .card .cn{position:absolute;width:26px;height:26px;color:#e3b866;opacity:.8}
+.v5 .card .cn.a{left:14px;top:14px}.v5 .card .cn.b{right:14px;top:14px;transform:scaleX(-1)}.v5 .card .cn.c{left:14px;bottom:14px;transform:scaleY(-1)}.v5 .card .cn.d{right:14px;bottom:14px;transform:scale(-1)}
+.v5 .card .em{position:relative;display:grid;place-items:center;width:96px;height:96px;margin:30px auto 10px;border-radius:50%;background:radial-gradient(circle at 50% 40%,rgba(227,184,102,.22),transparent 70%)}
+.v5 .card .em::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(227,184,102,.55);animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.v5 .card .em .ico{width:48px;height:48px}
+.v5 .card .eb{margin:0;text-align:center;font:600 10px var(--ui);letter-spacing:.3em;text-transform:uppercase;color:#e3b866}
+.v5 .card h2{margin:6px 30px 4px;text-align:center;font:700 26px/1.1 var(--disp);color:#f6e8cc}
+.v5 .card .x{position:absolute;right:22px;top:22px}
+.v5 .card .bd{flex:1;min-height:0;overflow:auto;margin:10px 10px 0;padding:6px 32px 18px;scrollbar-width:thin;scrollbar-color:#3d4a68 transparent}
+.v5 .card .bd::before{content:"";display:block;height:1px;margin:0 0 18px;background:linear-gradient(90deg,transparent,rgba(227,184,102,.5),transparent)}
+.v5 .card .pnav{padding:10px 30px 24px}
+
+/* ---- panel izquierdo de la niebla (opciones) ---- */
+.v5 .mem{width:410px}
+.v5 .lfb{margin-top:18px;display:flex;flex-direction:column;gap:7px}
+.v5 .lfh{display:flex;align-items:center;gap:10px;margin:2px 0 4px;font:600 9.5px var(--ui);letter-spacing:.26em;text-transform:uppercase;color:#8a96b4}
+.v5 .lfh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(227,184,102,.45),transparent)}
+.v5 .ix{display:flex;align-items:center;gap:12px;width:100%;padding:9px 14px;border:0;border-radius:8px;background:rgba(12,16,30,.78);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);text-align:left;font:500 19px var(--hand);color:#e3cb92;backdrop-filter:blur(4px);transition:.25s}
+.v5 .ix:hover{background:rgba(217,184,108,.14);transform:translateX(4px)}
+.v5 .ix .ico{flex:none;width:26px;height:26px}
+.v5 .ix small{margin-left:auto;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#7a86a3}
+.v5 .ix small.r{color:#e3b866}
+.v5 .ix.rdn{box-shadow:inset 0 0 0 1px rgba(227,184,102,.55)}
+.v5 .frag{display:grid;grid-template-columns:28px 1fr;gap:12px;width:100%;padding:7px 12px;border:0;text-align:left;color:inherit;border-radius:8px;background:rgba(12,16,30,.7);box-shadow:inset 0 0 0 1px rgba(217,184,108,.18);backdrop-filter:blur(4px)}
+.v5 .frag .ico{width:26px;height:26px;opacity:.5}
+.v5 .frag p{margin:0;font:italic 500 15.5px/1.28 var(--serif);color:#c9d0e4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v5 .frag.fg p{filter:blur(4px);opacity:.5;user-select:none}
+.v5 .frag.fr{box-shadow:inset 0 0 0 1px rgba(227,184,102,.45)}
+.v5 .frag.fr .ico{opacity:1}
+.v5 .frag b{display:block;margin-bottom:2px;font:600 9px var(--ui);letter-spacing:.16em;text-transform:uppercase;color:#e3b866;font-style:normal}
+.v5 .chk{display:flex;align-items:center;gap:12px;width:100%;padding:10px 14px;border:0;text-align:left;border-radius:8px;background:rgba(12,16,30,.78);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);font:500 19px var(--hand);color:#e3cb92}
+.v5 .chk i{flex:none;width:22px;height:22px;border-radius:5px;box-shadow:inset 0 0 0 1.6px rgba(227,184,102,.6);position:relative}
+.v5 .chk.ok i{background:#e3b866}
+.v5 .chk.ok i::after{content:"";position:absolute;left:7px;top:2px;width:6px;height:11px;border:solid #241705;border-width:0 2.4px 2.4px 0;transform:rotate(40deg)}
+.v5 .chk.ok{color:#8a96b4;text-decoration:line-through;text-decoration-color:rgba(138,150,180,.5)}
+.v5 .gob{display:flex;align-items:center;gap:16px;width:100%;margin-top:6px;padding:16px 22px 16px 16px;border:0;border-radius:14px;text-align:left}
+.v5 .gob .fi{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;flex:none}
+.v5 .gob .fi svg{width:26px;height:26px}
+.v5 .gob b{display:block;font:700 13px var(--disp);letter-spacing:.2em;text-transform:uppercase}
+.v5 .gob small{display:block;margin-top:4px;font:italic 500 16px/1.3 var(--serif)}
+.v5 .gob.lk{background:rgba(22,30,52,.9);box-shadow:inset 0 0 0 1px rgba(154,166,196,.35);color:#9aa6c4}
+.v5 .gob.lk .fi{background:rgba(255,255,255,.06)}
+.v5 .gob.ok{background:linear-gradient(180deg,#f2d58f,#c99a43 55%,#9a7128);color:#241705;box-shadow:inset 0 0 0 1px rgba(255,240,200,.55),0 10px 30px rgba(0,0,0,.5),0 0 30px rgba(227,184,102,.3)}
+.v5 .gob.ok .fi{background:rgba(36,23,5,.14)}
+.sc.v5.lf4~.fab,.sc.v5.lf6~.fab,.sc.v5.lf4~.rtip,.sc.v5.lf6~.rtip{display:none}
+.v5 .crew{display:flex;flex-direction:column;gap:14px;padding:16px;border-radius:10px;background:rgba(12,16,30,.78);box-shadow:inset 0 0 0 1px rgba(217,184,108,.22);backdrop-filter:blur(4px)}
+.v5 .crew .row{display:flex;align-items:flex-end;gap:12px;justify-content:space-between}
+.v5 .crew .hs5{display:flex;gap:8px}
+.v5 .crew .cm{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f6e2a8,#d3a84f 60%,#9a7128);box-shadow:inset 0 0 0 2px rgba(255,236,190,.5),0 4px 10px rgba(0,0,0,.45);color:#120d08}
+.v5 .crew .cm svg{height:32px;width:auto}
+.v5 .crew .cm.bs{width:78px;height:78px}.v5 .crew .cm.bs svg{height:50px;overflow:visible}
+.v5 .crew .lb{margin:0;font:600 9.5px var(--ui);letter-spacing:.2em;text-transform:uppercase;color:#8a96b4}
+.v5 .crew .lb em{font:italic 500 15px var(--serif);letter-spacing:0;text-transform:none;color:#cdb894}
+.v5 .crew p.t{margin:0;font:italic 500 18px/1.4 var(--serif);color:#c9d0e4}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+<style>
+%%FIRECSS%%
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header class="ph">
+  <p class="keb">Maqueta · Menú de la misión · Mapa vivo · v3</p>
+  <h1>El mapa vivo, cinco variaciones</h1>
+  <p>La misma idea (el pueblo dibujado a tinta y una hoguera por capítulo) con cinco formas de leer. Sin números: cada capítulo tiene su símbolo. Ideas tomadas de los menús de los juegos de rol clásicos (diario de misiones, avisos al pasar el ratón, barra de acciones, niebla que se levanta), sin copiar ninguno. Pulsa las hogueras. Nada de esto está aplicado todavía.</p>
+ </header>
+ <div class="bar" id="bar"></div>
+ <div class="scr" id="scr"></div>
+ <p class="note" id="note"></p>
+</div>
+<script>
+%%CORE%%
+%%SHAREDJS%%
+
+const $=(s,r=document)=>r.querySelector(s);
+/* aquí cuentan como leídos todos los capítulos (para las hogueras de oro y la niebla); la mesa solo exige el contrato y los objetivos */
+function mark(k){if(!ST.read[k]){ST.read[k]=true;fabPaint()}}
+/* ================= variaciones ================= */
+const VO=[[1,"1 · Panel lateral"],[2,"2 · Diario de la compañía"],[3,"3 · Pergamino en el lugar"],[4,"4 · Barra de mando"],[5,"5 · Niebla del olvido"]];
+const VN={
+ 1:"1 · Panel lateral. La versión que elegiste, pulida: a la izquierda, el título y la lista de capítulos con su símbolo y si es obligatorio; al pulsar una hoguera el mapa se acerca y el capítulo se abre en un panel nocturno pegado a la derecha.",
+ 2:"2 · Diario de la compañía. Un diario de pergamino siempre abierto a la izquierda, como el registro de misiones de un juego de rol: entradas con su símbolo, separadas en «Antes de partir» y «Para consultar», que se tachan al leerlas. Al elegir una, el diario se abre a doble hoja y el mapa se desplaza para que el lugar quede a la vista.",
+ 3:"3 · Pergamino en el lugar. Al pasar el ratón por una hoguera aparece un aviso con un resumen. Al pulsarla, el mapa se acerca y junto a ella se desenrolla un pergamino, unido al lugar con una línea de tinta. Lo que se lee siempre está pegado a su sitio en el mapa.",
+ 4:"4 · Barra de mando. El título va en un estandarte y abajo hay una barra de medallones con los símbolos de los capítulos, como la barra de acciones de un juego de rol. Al elegir uno, la cámara viaja al lugar y sube un cajón con el texto a dos columnas; la barra sube con él.",
+ 5:"5 · Niebla del olvido. El pueblo empieza cubierto por la niebla del olvido y solo se ven las hogueras. Al leer un capítulo, la niebla se levanta alrededor de su lugar; arriba se cuentan las llamas recuperadas. El capítulo se lee en una carta nocturna con su símbolo y marco de oro."};
+const V={v:5,left:6,open:-1,base:[]};
+
+/* símbolos de cada capítulo: sello del contrato, diana, capucha del Heraldo, eclipse roto, cofre */
+const SYM={
+ pro:'<svg viewBox="0 0 24 24"><path d="M6 4h10a3 3 0 0 1 3 3v11H9a3 3 0 0 1-3-3z"/><path d="M6 15a3 3 0 0 0 3 3M10 8h6M10 11h5"/><circle cx="15.5" cy="15" r="2.2" fill="currentColor"/></svg>',
+ obj:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5" stroke-dasharray="2 2"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><path d="M12 1.8v3M12 19.2v3M1.8 12h3M19.2 12h3"/></svg>',
+ her:'<svg viewBox="0 0 24 24"><path d="M12 3c3.6 0 6 3 6 7 0 2.5-1.2 4.4-2.6 5.6L17 21H7l1.6-5.4C7.2 14.4 6 12.5 6 10c0-4 2.4-7 6-7z"/><path d="M10 10.6h.01M14 10.6h.01" stroke-width="2.6"/><path d="M20 3l-1.5 18" stroke-width="1.2"/><path d="M20 3c-3.4-.8-6 .4-7.2 2.8" stroke-width="1.2"/></svg>',
+ ev:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5l-1.6 4 2.2 2.2-2.2 3 1.6 4.8"/><path d="M12 1.5v2M12 20.5v2M1.5 12h2M20.5 12h2"/></svg>',
+ ch:'<svg viewBox="0 0 24 24"><path d="M4 10h16v9H4z"/><path d="M4 10c0-3.5 3.5-5 8-5s8 1.5 8 5"/><path d="M4 13h16M11 12h2v3h-2z"/></svg>'};
+const ico=(k,cls="")=>`<span class="ico ${cls}">${SYM[k]}</span>`;
+const REQ=k=>k==="pro"||k==="obj";
+const tag=k=>ST.read[k]?"Leído":REQ(k)?"Obligatorio":"Para consultar";
+const CORNER='<svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 24V8Q2 2 8 2h16"/><path d="M7 20V11Q7 7 11 7h9"/><circle cx="2.6" cy="2.6" r="1.6" fill="currentColor" stroke="none"/></svg>';
+const AR={l:'<svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>',r:'<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>'};
+const pnav=i=>`<div class="pnav"><button type="button" data-ch="${i-1}"${i?"":" disabled"}>${i?`<span class="ico">${AR.l}</span>${CHS[i-1].tab}`:""}</button><button type="button" data-ch="${i+1}"${i<4?"":" disabled"}>${i<4?`${CHS[i+1].tab}<span class="ico">${AR.r}</span>`:""}</button></div>`;
+const bodyOf=(i,opt)=>BODY[CHS[i].k](opt);
+
+/* ================= el pueblo ================= */
+const HOT=[[500,560,"El contrato del Filo","Varek’s Hold",1],[708,404,"Objetivos","Los dos rastros",1],[500,350,"El Heraldo","El pozo",1],[500,128,"Eventos de la Ruptura","El borde que se borra",1],[838,258,"Cofres","Las casas vacías",-1]];
+function villageSVG(){const R=rng(21);let s=`<rect width="1000" height="700" fill="url(#mpg)"/>`;
+ for(let k=0;k<120;k++)s+=`<circle cx="${f(R()*1000)}" cy="${f(R()*700)}" r="${f(.4+R()*.8)}" fill="#f3e6c4" opacity="${f(.15+R()*.45)}"/>`;
+ s+=`<g filter="url(#ink)" fill="none" stroke="#cdb57d" stroke-linecap="round" stroke-linejoin="round">`;
+ s+=`<path d="M70 392C260 380 400 400 500 388S760 376 930 392" stroke-width="12" opacity=".18"/><path d="M500 150C490 250 510 330 500 640" stroke-width="12" opacity=".18"/><path d="M70 392C260 380 400 400 500 388S760 376 930 392" stroke-width="1.6" stroke-dasharray="3 7"/><path d="M500 150C490 250 510 330 500 640" stroke-width="1.6" stroke-dasharray="3 7"/>`;
+ const H=[[300,300,64],[392,478,54],[640,300,60],[708,478,58],[190,440,52],[828,372,56],[580,520,44],[860,628,48],[250,600,46]];
+ H.forEach(([x,y,w])=>{const h=w*.72;s+=`<path d="M${x-w/2} ${y}V${y-h*.6}L${x} ${y-h}L${x+w/2} ${y-h*.6}V${y}z" fill="#18213a" stroke-width="1.7"/><path d="M${x-w/2-4} ${y-h*.6}L${x} ${y-h-5}L${x+w/2+4} ${y-h*.6}" stroke-width="1.2" opacity=".7"/><path d="M${x-7} ${y}v-${f(h*.42)}h14v${f(h*.42)}" stroke-width="1.2"/>`});
+ s+=`<circle cx="500" cy="388" r="46" stroke-width="1.5" stroke-dasharray="2 6"/><circle cx="500" cy="388" r="22" fill="#10162a" stroke-width="2.4"/><circle cx="500" cy="388" r="14" stroke-width="1.2" opacity=".6"/>`;
+ for(let k=0;k<80;k++){const x=40+R()*920,y=170+R()*420;if(Math.abs(y-390)<50||Math.abs(x-500)<44||H.some(h=>Math.hypot(h[0]-x,h[1]-y)<58)||HOT.some(h=>Math.hypot(h[0]-x,h[1]-y)<70))continue;const r=5+R()*5;s+=`<path d="M${f(x)} ${f(y+8)}V${f(y+1)}" stroke-width="1.3"/><circle cx="${f(x)}" cy="${f(y-4)}" r="${f(r)}" fill="#172038" stroke-width="1.1"/>`}
+ s+=`<path d="M14 662C300 654 700 668 986 658" stroke-width="9"/><path d="M14 650C300 642 700 656 986 646" stroke-width="7" stroke-dasharray="7 9"/><g fill="#18213a" stroke-width="1.6"><path d="M474 650v-22h10v22zM491 650v-30h15v30zM513 650v-19h10v19z"/></g>`;
+ s+=`<circle cx="500" cy="128" r="64" fill="#07090f" stroke-width="1.6"/><circle cx="500" cy="128" r="84" stroke-width="1.2" stroke-dasharray="3 9"/><path d="M500 64l-8 30 12 14-14 18 10 20M436 128l30 4M564 128l-30-6M452 84l18 18M548 172l-18-18" stroke-width="1.5"/>`;
+ return s+`</g><text class="lab" x="530" y="690" style="font-size:18px;letter-spacing:.14em;font-style:normal;font-family:var(--disp)">VAREK'S HOLD</text><text class="lab" x="610" y="196" style="opacity:.6">donde la Ruptura empezó a borrar</text>`}
+const DEFS=`<defs><linearGradient id="mpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2740"/><stop offset="1" stop-color="#0d1326"/></linearGradient><linearGradient id="flO" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2461f"/><stop offset=".6" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ffd27a"/></linearGradient><linearGradient id="flG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#c0832a"/><stop offset=".6" stop-color="#f1c35c"/><stop offset="1" stop-color="#fff0bd"/></linearGradient><radialGradient id="glO"><stop offset="0" stop-color="#ffb04a" stop-opacity=".75"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient><radialGradient id="glG"><stop offset="0" stop-color="#ffd98a" stop-opacity=".6"/><stop offset="1" stop-color="#d9a640" stop-opacity="0"/></radialGradient><radialGradient id="mvg" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".65"/></radialGradient><radialGradient id="fogg"><stop offset=".55" stop-color="#000"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient><filter id="ink"><feTurbulence baseFrequency=".045" numOctaves="2" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="3.2"/></filter><filter id="pen2" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence baseFrequency="1.1" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="g"/><feTurbulence baseFrequency=".05" numOctaves="2" seed="8" result="dd"/><feDisplacementMap in="g" in2="dd" scale="2.6"/></filter><filter id="mcl1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0045 .009" numOctaves="4" seed="21" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -1.05" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter><filter id="mcl2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".008 .014" numOctaves="3" seed="44" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 -.95" result="a"/><feFlood flood-color="#3a4766"/><feComposite operator="in" in2="a"/></filter><filter id="blot" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".02" numOctaves="3" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="70" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="6"/></filter></defs>`;
+function hotHTML(i){const h=HOT[i],st=ST.read[CHS[i].k]?"done":"open",d=h[4];
+ return `<circle class="hit" cy="-6" r="46"/><path class="ringp" pathLength="1" filter="url(#pen2)" d="M0 -44C22 -44 40 -28 40 -6S22 32 -2 32S-42 14 -40 -8S-20 -44 8 -42"/>${brazier(st,{n:""})}<text class="hl" x="${d*34}" y="-6" text-anchor="${d>0?"start":"end"}">${h[2]}</text><text class="hs" x="${d*34}" y="11" text-anchor="${d>0?"start":"end"}">${h[3].toUpperCase()}</text>`}
+function fogHTML(){return `<mask id="fogm" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1400" height="1100"><g filter="url(#blot)"><rect x="-200" y="-200" width="1400" height="1100" fill="#fff"/>${HOT.map((h,i)=>`<circle class="fogc" data-f="${i}" cx="${h[0]}" cy="${h[1]-10}" r="${ST.read[CHS[i].k]?190:52}" fill="#000"/>`).join("")}</g></mask><g mask="url(#fogm)"><rect x="-60" y="-60" width="1120" height="820" fill="#1c2440" opacity=".88"/><rect class="cloud" x="-400" y="-60" width="1800" height="820" filter="url(#mcl1)"/><rect class="cloud c2" x="-400" y="-60" width="1800" height="820" filter="url(#mcl2)" opacity=".8"/></g>`}
+function mapHTML(){return `<div class="mapw" id="mapw"><svg class="mmap" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice">${DEFS}${villageSVG()}${V.v===5?fogHTML():""}${HOT.map((h,i)=>`<g class="hot" data-ch="${i}" data-hi="${i}" tabindex="0" role="button" aria-label="${CHS[i].t}" transform="translate(${h[0]} ${h[1]})">${hotHTML(i)}</g>`).join("")}<rect width="1000" height="700" fill="url(#mvg)" pointer-events="none"/></svg></div>`}
+/* cámara: acerca el mapa a una hoguera y la deja en (fx, fy) de la pantalla, sin enseñar nunca el borde */
+function measure(){const sc=$("#sc"),sr=sc.getBoundingClientRect(),m=$("#mapw");m.style.transition="none";m.style.transform="none";V.base=HOT.map((_,i)=>{const g=$(`.hot[data-hi="${i}"]`),r=g.querySelector(".hit").getBoundingClientRect(),l=g.querySelector(".hl").getBoundingClientRect();return{x:r.left+r.width/2-sr.left,y:r.top+r.height/2-sr.top,lw:Math.max(l.width,g.querySelector(".hs").getBoundingClientRect().width)}});void m.offsetWidth;m.style.transition=""}
+/* o: cuánto puede meterse el borde del mapa bajo un panel (l, r, t, b en píxeles) */
+function cam(i,fx,fy,s,o={}){const sc=$("#sc"),W=sc.clientWidth,H=sc.clientHeight,b=V.base[i],tx=Math.max(W*(1-s)-(o.r||0),Math.min(o.l||0,W*fx-b.x*s)),ty=Math.max(H*(1-s)-(o.b||0),Math.min(o.t||0,H*fy-b.y*s));$("#mapw").style.transform=`translate(${tx}px,${ty}px) scale(${s})`;return{x:b.x*s+tx,y:b.y*s+ty}}
+const H0=()=>$("#sc").clientHeight;
+function camReset(){$("#mapw").style.transform="none"}
+function refreshHot(i){const g=$(`.hot[data-hi="${i}"]`);if(g&&ST.read[CHS[i].k]&&!g.dataset.gold){g.dataset.gold=1;g.innerHTML=hotHTML(i);if(V.open===i)g.classList.add("on")}const c=$(`.fogc[data-f="${i}"]`);if(c&&ST.read[CHS[i].k])c.style.r="190px"}
+function markOn(i){document.querySelectorAll(".hot").forEach(g=>g.classList.toggle("on",+g.dataset.hi===i))}
+
+
+/* ================= panel izquierdo de la niebla ================= */
+const LEFTO=[[1,"Como ahora"],[2,"Índice de capítulos"],[3,"Fragmentos recuperados"],[4,"Antes de partir"],[5,"La compañía"],[6,"Índice y botón de la mesa"]];
+const FRAG={pro:"Todos los registros de aquel pueblo están en blanco, y no es un error.",obj:"Entrar, buscar lo que quede, reunir dos cosas que parezcan importantes y salir antes de que el pueblo os olvide.",her:"Puede que nunca aparezca. Puede que ya os esté mirando.",ev:"Primero olvidas el camino de vuelta. Luego, a quién ibas a volver a ver.",ch:"En este pueblo nadie cierra con llave."};
+const flamesHTML=()=>{const r=CHS.filter(c=>ST.read[c.k]).length;return `<div class="flames" id="fl"><span>Lo que recordáis</span>${CHS.map(c=>`<i class="${ST.read[c.k]?"r":""}"></i>`).join("")}<span>${r} de 5</span></div>`};
+const ixRows=()=>CHS.map((c,i)=>`<button type="button" class="ix${ST.read[c.k]?" rdn":""}" data-ch="${i}">${ico(c.k)}${c.t}<small class="${ST.read[c.k]?"r":""}">${tag(c.k)}</small></button>`).join("");
+const goHTML=()=>{const ok=READ();return `<button class="gob ${ok?"ok":"lk"}" type="button" data-fab><span class="fi">${ok?I.swords:I.lock}</span><span><b>Mesa de juego</b><small>${ok?"Todo listo para empezar":"Leed antes el contrato del Filo y los objetivos."}</small></span></button>`};
+function leftHTML(){const L=V.left,fl=flamesHTML();
+ if(L===1)return fl;
+ if(L===2)return fl+`<div class="lfb"><p class="lfh">Capítulos</p>${ixRows()}</div>`;
+ if(L===3)return fl+`<div class="lfb"><p class="lfh">Fragmentos recuperados</p>${CHS.map((c,i)=>{const r=ST.read[c.k];return `<button type="button" class="frag ${r?"fr":"fg"}" data-ch="${i}">${ico(c.k)}<div>${r?`<b>${c.t}</b>`:`<b style="color:#7a86a3">${c.t} · olvidado</b>`}<p>${FRAG[c.k]}</p></div></button>`}).join("")}</div>`;
+ if(L===4)return fl+`<div class="lfb"><p class="lfh">Antes de partir</p>${CHS.filter(c=>REQ(c.k)).map(c=>`<button type="button" class="chk${ST.read[c.k]?" ok":""}" data-ch="${CHS.indexOf(c)}"><i></i>${c.t}</button>`).join("")}${goHTML()}</div>`;
+ if(L===5)return fl+`<div class="lfb"><p class="lfh">La compañía</p><div class="crew"><div class="row"><div class="hs5">${PZ_SIL.map(s=>`<span class="cm">${s}</span>`).join("")}</div><span class="cm bs">${PZ_BOSS}</span></div><div class="row"><p class="lb">Héroes</p><p class="lb">Jefe <em>opcional</em></p></div><p class="t">La mesa de juego tira por vosotros los eventos y los cofres. Solo hace falta que alguien entre en el pueblo.</p></div></div>`;
+ return fl+`<div class="lfb">${ixRows()}${goHTML()}</div>`}
+
+/* ================= pantalla ================= */
+function fabHTML(){const ok=READ();return `<button class="fab ${ok?"ok":"lk"}" type="button" data-fab id="fab"><span class="fi">${ok?I.swords:I.lock}</span><span><b>Mesa de juego</b><small>${ok?"Todo listo para empezar":"Lee el contrato y los objetivos"}</small></span></button><div class="rtip" id="rtip">Antes de abrir la mesa, leed <b>el contrato del Filo</b> y <b>los objetivos</b>. El resto son de consulta.</div>`}
+function fabPaint(){const f=$("#fab"),t=$("#rtip");if(f)f.remove();if(t)t.remove();$("#scr").insertAdjacentHTML("beforeend",fabHTML())}
+function render(){const s=$("#scr");V.open=-1;s.innerHTML=`<div class="sc v${V.v} lf${V.left}" id="sc">${mapHTML()}${[1,3,5].includes(V.v)?'<div class="shade"></div>':""}${UI[V.v].html()}</div><button class="bk" type="button">${I.back}<span>Misiones</span></button>`;fabPaint();$("#note").textContent=VN[V.v];
+ requestAnimationFrame(()=>{measure();UI[V.v].after&&UI[V.v].after()})}
+function afterRead(i){refreshHot(i);UI[V.v].list&&UI[V.v].list()}
+function openCh(i){if(i<0||i>4)return;const was=V.open;V.open=i;markOn(i);const k=CHS[i].k,first=!ST.read[k];mark(k);UI[V.v].open(i,was);afterRead(i)}
+function closeCh(){if(V.open<0)return;V.open=-1;markOn(-1);$("#sc").classList.remove("has");camReset();UI[V.v].close&&UI[V.v].close()}
+
+const UI={
+/* ---- 1 · Panel lateral ---- */
+1:{html:()=>`<div class="intro"><div class="ttl"><p class="eb">Misión I · Ruptura del Muro</p><h1>El pueblo vacío</h1><p>Un contrato del Filo, una Ruptura del Muro y un pueblo que ya no recuerda su nombre.</p></div><ul class="legend" id="lg"></ul></div><aside class="pnl" id="pn"></aside>`,
+ after(){this.list()},
+ list(){const n=$("#lg");if(n)n.innerHTML=CHS.map((c,i)=>`<li><button type="button" data-ch="${i}">${ico(c.k)}${c.t}<small class="${ST.read[c.k]?"r":""}">${tag(c.k)}</small></button></li>`).join("")},
+ open(i){const c=CHS[i];$("#sc").classList.add("has");$("#pn").innerHTML=`<div class="ph2"><span class="md">${ico(c.k)}</span><div><p class="eb">${CHS[i].s}</p><h2>${c.t}</h2></div><button class="x" type="button" data-close aria-label="Cerrar">${I.x}</button></div><div class="pb rd dk">${bodyOf(i)}</div>${pnav(i)}`;cam(i,.27,.52,1.55,{r:$("#pn").offsetWidth+30})}},
+/* ---- 2 · Diario ---- */
+2:{html:()=>`<aside class="jr" id="jr"><div class="jl"><p class="eb">Diario de la compañía</p><h1>El pueblo vacío</h1><p class="sb">Misión I · Ruptura del Muro</p><div id="jlist"></div><p class="ft">«Que alguien lo anote todo, y que no se fíe de lo primero que recuerde.»</p></div><div class="jt" id="jt"></div></aside>`,
+ after(){this.list()},
+ list(){const n=$("#jlist");if(!n)return;const e=(c,i)=>`<button type="button" class="ent${V.open===i?" on":""}${ST.read[c.k]?" rd0":""}" data-ch="${i}">${ico(c.k)}<div><span>${c.t}</span><small class="${ST.read[c.k]?"":REQ(c.k)?"r":""}">${tag(c.k)}</small></div></button>`;
+  n.innerHTML=`<p class="sep">Antes de partir</p>${CHS.map((c,i)=>REQ(c.k)?e(c,i):"").join("")}<p class="sep">Para consultar</p>${CHS.map((c,i)=>REQ(c.k)?"":e(c,i)).join("")}`},
+ open(i){const c=CHS[i];$("#sc").classList.add("has");$("#jt").innerHTML=`<i class="rib"></i><div class="hd"><p class="eb">${c.s}</p><h2>${c.t}</h2></div><button class="x" type="button" data-close aria-label="Cerrar">${I.x}</button><div class="bd rd pp">${bodyOf(i)}</div>`;this.list();cam(i,.8,.5,1.5,{l:$("#sc").clientWidth*.64})},
+ close(){this.list()}},
+/* ---- 3 · Pergamino en el lugar ---- */
+3:{html:()=>`<div class="ttl"><p class="eb">Misión I · Ruptura del Muro</p><h1>El pueblo vacío</h1><p>Pasa el ratón por las hogueras; pulsa una para desenrollar su pergamino.</p></div><svg class="lead" id="ld"></svg><div class="tip" id="tip"></div><div id="scw"></div>`,
+ after(){hoverTips()},
+ open(i){const c=CHS[i],sc=$("#sc"),W=sc.clientWidth,H=sc.clientHeight;sc.classList.add("has");$("#tip").classList.remove("on");
+  const s=1.35,p=cam(i,.24,.5,s),lw=V.base[i].lw*s,dir=HOT[i][4],gapR=dir>0?40*s+lw+36:56,gapL=dir<0?40*s+lw+36:56,roomR=W-p.x-gapR-24,right=roomR>=440||roomR>=p.x-gapL-24,w=Math.min(540,right?roomR:p.x-gapL-24),left=right?p.x+gapR:p.x-gapL-w,top=24,h=H-48;
+  $("#scw").innerHTML=`<div class="scroll" style="left:${left}px;top:${top}px;width:${w}px;height:${h}px"><div class="rod"></div><div class="sh" style="flex:1"><div class="si"><div class="hd">${ico(c.k)}<div><p class="eb">${c.s}</p><h2>${c.t}</h2></div><button class="x" type="button" data-close aria-label="Cerrar">${I.x}</button></div><div class="bd rd pp">${bodyOf(i)}</div>${pnav(i)}</div></div><div class="rod"></div></div>`;
+  const ld=$("#ld"),y2=top+h*.3,ax=right?left-4:left+w+4,sx=p.x+(right?1:-1)*(dir===(right?1:-1)?40*s+lw+8:34);ld.innerHTML=`<path d="M${sx} ${p.y-6}C${sx+(right?50:-50)} ${p.y-6} ${ax+(right?-50:50)} ${y2} ${ax} ${y2}" pathLength="1" style="stroke-dasharray:.02 .025"/><circle cx="${sx}" cy="${p.y-6}" r="3"/><circle cx="${ax}" cy="${y2}" r="3"/>`;
+  const pa=ld.querySelector("path");pa.animate([{opacity:0},{opacity:.75}],{duration:600,delay:700,fill:"backwards"});ld.querySelectorAll("circle").forEach(cc=>cc.animate([{opacity:0},{opacity:1}],{duration:500,delay:700,fill:"backwards"}))},
+ close(){$("#scw").innerHTML="";$("#ld").innerHTML=""}},
+/* ---- 4 · Barra de mando ---- */
+4:{html:()=>`<div class="ban"><span class="eb">Misión I · Ruptura del Muro</span><h1>El pueblo vacío</h1></div><nav class="hbar" id="hb"></nav><section class="drw" id="dw"></section>`,
+ after(){this.list()},
+ list(){const n=$("#hb");if(n)n.innerHTML=CHS.map((c,i)=>`<button type="button" class="md${V.open===i?" on":""}" data-ch="${i}" aria-label="${c.t}">${ico(c.k)}<span class="lb">${c.t} · ${tag(c.k)}</span><i class="dot ${ST.read[c.k]?"r":REQ(c.k)?"":"c"}"></i></button>`).join("")},
+ open(i){const c=CHS[i];$("#sc").classList.add("has");$("#dw").innerHTML=`<div class="hd">${ico(c.k)}<div><p class="eb">${c.s}</p><h2>${c.t}</h2></div></div><button class="x" type="button" data-close aria-label="Cerrar">${I.x}</button><div class="bd rd dk">${bodyOf(i)}</div>`;$("#dw .bd").scrollTop=0;this.list();cam(i,.5,.2,1.75,{b:H0()*.6})},
+ close(){this.list()}},
+/* ---- 5 · Niebla del olvido ---- */
+5:{html:()=>`<div class="mem"><div class="ttl"><p class="eb">Misión I · Ruptura del Muro</p><h1>El pueblo vacío</h1><p>La niebla del olvido lo cubre todo. Cada capítulo que leéis devuelve un trozo del pueblo.</p></div><div id="lf">${leftHTML()}</div></div><div class="tip" id="tip"></div><aside class="card" id="cd"></aside>`,
+ after(){this.list();hoverTips()},
+ list(){const n=$("#lf");if(n)n.innerHTML=leftHTML()},
+ open(i){const c=CHS[i];$("#sc").classList.add("has");$("#tip").classList.remove("on");$("#cd").innerHTML=`<i class="cn a">${CORNER}</i><i class="cn b">${CORNER}</i><i class="cn c">${CORNER}</i><i class="cn d">${CORNER}</i><button class="x" type="button" data-close aria-label="Cerrar">${I.x}</button><div class="em">${ico(c.k)}</div><p class="eb">${c.s}</p><h2>${c.t}</h2><div class="bd rd dk">${bodyOf(i)}</div>${pnav(i)}`;cam(i,.3,.52,1.5,{r:$("#cd").offsetWidth+40})}}};
+
+/* aviso al pasar el ratón (variaciones 3 y 5) */
+function hoverTips(){const t=$("#tip");if(!t)return;document.querySelectorAll(".hot").forEach(g=>{
+ g.addEventListener("pointerenter",()=>{if(V.open>=0)return;const i=+g.dataset.hi,c=CHS[i],sc=$("#sc").getBoundingClientRect(),r=g.querySelector(".hit").getBoundingClientRect(),x=r.left+r.width/2-sc.left,y=r.top-sc.top;
+  t.innerHTML=`<div class="th">${ico(c.k)}<b>${c.t}</b></div><p>${c.s}</p><small class="${REQ(c.k)&&!ST.read[c.k]?"":"c"}">${tag(c.k)}</small>`;
+  const L=Math.max(12,Math.min(sc.width-292,x-140)),T=y-118<12?r.bottom-sc.top+10:y-118;t.style.left=L+"px";t.style.top=T+"px";t.classList.add("on")});
+ g.addEventListener("pointerleave",()=>t.classList.remove("on"))})}
+
+/* ================= eventos ================= */
+document.addEventListener("click",e=>{
+ const o=e.target.closest("[data-v]");if(o){V.v=+o.dataset.v;render();paintBar();return}
+ const lf=e.target.closest("[data-lf]");if(lf){V.left=+lf.dataset.lf;V.v=5;render();paintBar();return}
+ const rr=e.target.closest("[data-rd]");if(rr){CHS.forEach(c=>ST.read[c.k]=false);ST.read.pro=ST.read.obj=rr.dataset.rd==="si";render();paintBar();return}
+ const f=e.target.closest("[data-fab]");if(f){if(!READ()){f.classList.remove("shake");void f.offsetWidth;f.classList.add("shake");const t=$("#rtip");t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2600)}return}
+ if(e.target.closest("[data-close]")){closeCh();return}
+ const c=e.target.closest("[data-ch]");if(c&&$("#scr").contains(c)){openCh(+c.dataset.ch)}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCh();const h=e.target.closest&&e.target.closest(".hot");if(h&&(e.key==="Enter"||e.key===" ")){e.preventDefault();openCh(+h.dataset.hi)}});
+let rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(render,150)});
+function paintBar(){$("#bar").innerHTML=`<div class="grp"><span class="keb">Variación</span><div class="seg">${VO.map(([v,l])=>`<button type="button" data-v="${v}" class="${V.v===v?"on":""}">${l}</button>`).join("")}</div></div><div class="grp"><span class="keb">Panel izquierdo (niebla del olvido)</span><div class="seg">${LEFTO.map(([v,l])=>`<button type="button" data-lf="${v}" class="${V.left===v?"on":""}">${l}</button>`).join("")}</div></div><div class="grp"><span class="keb">Lectura obligatoria (la mesa de juego)</span><div class="seg"><button type="button" data-rd="no" class="${READ()?"":"on"}">Sin leer</button><button type="button" data-rd="si" class="${READ()?"on":""}">Contrato y objetivos leídos</button></div></div>`}
+document.fonts.ready.then(()=>{paintBar();render()});
+</script>
+</body>
+</html>
