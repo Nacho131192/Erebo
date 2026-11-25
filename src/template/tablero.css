@@ -1107,3 +1107,48 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
  .du-card,.du-mid{transition:opacity .2s;transform:none!important}
  .du-ghost,.du-eye,.du-motes circle,.du-fog,.du-rays,.du-glint,.du-halo,.du-sigil,.du-sig::before,.du-art::after,.du-card.roll .du-cin,.du-card.low .du-hpb{animation:none}
 }
+
+/* ---- 2026-11-25: tarjeta compacta del héroe que ya actuó y botones flotantes de movimiento ---- */
+.tv-hc.mini{grid-template-columns:30px 1fr;padding:5px 8px;gap:8px;opacity:.7}
+.tv-hc.mini .tv-hp{width:30px;height:30px}
+.tv-hc.mini .tv-hn b{font-size:12.5px;line-height:1.2}
+.tv-hc.mini .tv-bars{margin-top:2px}
+.tv-hc.mini .tv-bar{height:12px}
+.tv-hc.mini .tv-bar em{line-height:12px}
+.tv-hcw.mini{order:0}
+.tv-mvf{display:none}
+@media (max-width:900px){
+ .tv-mvf{display:flex;position:absolute;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:20;justify-content:center;gap:10px;padding:0 14px;pointer-events:none}
+ .tv-mvf>*{pointer-events:auto;flex:1;max-width:200px;box-shadow:0 10px 26px rgba(0,0,0,.65)}
+ .tv-mvf .tv-ghostb{background:#0d1426;border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:10px 14px}
+}
+/* Móvil (2026-11-25): el tablero nunca se encoge ni se corta por arriba cuando el menú de acciones es alto. */
+@media (max-width:900px){
+ .tv-body>*,.tv-body .tv-boardw{flex-shrink:0}
+ .tv-boardw{justify-content:flex-start;min-height:auto}
+}
+/* Ventana única de dados de fin de ronda: alerta + evento (2026-11-25) */
+.tv-dpair{display:grid;grid-template-columns:auto 1fr;gap:0;align-items:start;margin:10px 0 4px}
+.tv-dcol{padding:0 14px;text-align:center}
+.tv-dcol+.tv-dcol{border-left:1px solid var(--line2)}
+.tv-dcol .tv-lab{margin:0 0 2px;font-size:10.5px}
+.tv-dcol .tv-dd{margin:8px 0}
+.tv-dcol .tv-die{width:52px;height:52px;font-size:20px}
+.tv-dcol p:last-child{font-size:12px;line-height:1.35}
+.tv-dpair+.tv-btn.big{margin-top:14px}
+/* Diseño B de la ventana conjunta: dos filas (2026-11-25) */
+.tv-drows{display:grid;gap:10px;margin:12px 0 4px;text-align:left}
+.tv-drow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 14px;border-radius:14px;border:1px solid var(--line2);background:#0a0f1f}
+.tv-drow.ev{border-color:rgba(167,139,250,.45)}
+.tv-drt{min-width:0}
+.tv-drt b{display:block;font:600 14px/1.25 Cinzel,Georgia,serif;color:var(--gold2)}
+.tv-drt small{display:block;margin-top:2px;font-size:12px;color:var(--mu);letter-spacing:0;text-transform:none}
+.tv-drow .tv-dd{display:flex;gap:8px;margin:0;flex:none}
+.tv-drow .tv-die{width:46px;height:46px;font-size:18px}
+.tv-drows+.tv-btn.big{margin-top:14px}
+.du-tags i.fx{border-color:rgba(167,139,250,.55);color:#d9ccff;background:rgba(167,139,250,.1)}
+.du-tags i.ev{border-color:rgba(240,215,154,.6);color:#f0d79a;background:rgba(240,215,154,.08)}
+.tv-dres{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:#0a0f1f;border:1px solid rgba(167,139,250,.5);text-align:left}
+.tv-dres.bad{border-color:rgba(255,138,154,.6)}.tv-dres.ok{border-color:rgba(134,209,174,.6)}
+.tv-dres b{display:block;font:700 15px/1.2 Cinzel,Georgia,serif;color:var(--gold2)}
+.tv-dres p{margin:4px 0 0;font-size:13px;color:var(--ink)}

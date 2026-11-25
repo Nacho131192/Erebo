@@ -817,7 +817,7 @@ function heroesDone(){return G.heroes.every(gh=>{const a=actor(gh.id);return!a||
    A 6 entran refuerzos y vuelve a 1 (regla de la casa: cuenta de 1 a 6). */
 /* Sin enemigos en la mesa al acabar la ronda (oficial: +2): no se tira el dado; sale un cartel y la alerta sube 2. */
 async function endRound(){G.mod=null;{const g=(G.ter||[]).filter(z=>z.until<=G.round);if(g.length){G.ter=G.ter.filter(z=>z.until>G.round);log(`Se desvanece el terreno de la Ruptura (${g.length} zona${g.length>1?"s":""}).`,"rd")}}G.units.forEach(u=>{u.act=false;u.fx=(u.fx||[]).filter(e=>e.until!=="round")});G.heroes.forEach(h=>{h.fx=(h.fx||[]).filter(e=>e.until!=="round")});G.phase="end";const none=!G.units.some(u=>u.hp>0);G.endInfo={r:G.round,add:0,pending:!none,none};paint();
- const v=none?0:(await rollDice({n:1,own:true,title:`Dado de alerta · fin de la ronda ${G.round}`,sub:"De 1 a 5, la alerta sube 1. Con un 6, sube 2.",need:"1-5 → +1 · 6 → +2",ok:r=>r===6}))[0];
+ const v=none?0:await alertRoll();
  U.busy=false;
  const prevAl=G.al,add=none||v===6?2:1;let al=G.al+add,rf=false;
  if(al>=6){al=1;rf=!G.boss&&!G.bossArmed}   /* con la pelea de jefe armada o en curso no entran refuerzos por alerta */
@@ -829,6 +829,8 @@ async function endRound(){G.mod=null;{const g=(G.ter||[]).filter(z=>z.until<=G.r
  G.endInfo=info}
 /* Todas las rondas empiezan con evento de la Ruptura (antes solo la 1 y las de refuerzos). */
 /* Norma (2026-11-24): si no queda ningún enemigo y no llegan refuerzos, aparecen 2 básicos (los de menos puntos) en un cuadrante al azar. */
+/* Dado de alerta (2026-11-25): sale en la misma ventana central y con el mismo aspecto que el evento de la Ruptura. */
+function alertRoll(){return new Promise(res=>{U.busy=false;U.evfx={st:"ask",kind:"al",res};paint()})}
 function spawnBasics(){const pts=Math.min(...TVA().map(a=>a.pts)),cands=TVA().map((a,i)=>i).filter(i=>TVA()[i].pts===pts);
  const cnt=[0,0,0,0],ids=[0,1].map(()=>cands[Math.floor(Math.random()*cands.length)]);WV=[];
  ids.forEach(i=>{const u=mkUnit(i),r=dq(),c=r-1,o=SPREAD[cnt[c]++%SPREAD.length],s=CC[c][0]<300?1:-1,t=CC[c][1]<300?1:-1;
@@ -1056,7 +1058,18 @@ function camFrame(pts,ms){let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;pts.forEach(q=>{x0=M
 const camReset=()=>camTween({s:1,x:300,y:300},700);
 const aiPts=(a,pl)=>{const q=[[a.x,a.y]];if(pl.to)q.push(pl.to);if(pl.t)q.push([pl.t.x,pl.t.y]);return q};
 const trabado=a=>atkTargets(a).some(u=>!u.sh());
-function scrollBoard(){const b=document.querySelector(".tv-boardw");if(b&&b.scrollIntoView)b.scrollIntoView({block:"center",behavior:"smooth"})}
+/* Sube la vista hasta el tablero (en móvil el mapa va arriba y el menú debajo). Animación propia (2026-11-25): el scroll «smooth» nativo se cancelaba
+   en cuanto un repintado restauraba el scrollTop (restoreScroll), y la pantalla se quedaba abajo del todo. Devuelve una promesa que se cumple al llegar. */
+let SCRQ=0;
+function scrollBoard(){return new Promise(res=>{const sc0=document.querySelector("#tv .tv-body");
+ if(!sc0||sc0.scrollTop<2){if(sc0)sc0.scrollTop=0;res();return}
+ const id=++SCRQ,y0=sc0.scrollTop,t0=performance.now(),d=REDUCE?0:Math.min(480,200+y0*.2);
+ setTimeout(()=>{if(id===SCRQ){const s=document.querySelector("#tv .tv-body");if(s)s.scrollTop=0}res()},d+120);   /* red de seguridad: si la pestaña está oculta y no hay fotogramas */
+ const step=t=>{if(id!==SCRQ){res();return}const k=d?Math.min(1,(t-t0)/d):1,e=1-Math.pow(1-k,3),s=document.querySelector("#tv .tv-body");if(s)s.scrollTop=y0*(1-e);if(k<1)requestAnimationFrame(step);else res()};
+ requestAnimationFrame(step)})}
+/* Si la partida sigue y el usuario toca/desplaza a mano, la animación de subida se suelta (no pelea con el dedo). */
+document.addEventListener("touchstart",()=>{SCRQ++},{passive:true,capture:true});
+document.addEventListener("wheel",()=>{SCRQ++},{passive:true,capture:true});
 function setZoom(s,cx,cy){s=Math.max(1,Math.min(4,s));const v=vbox();U.zm={s,x:cx!=null?cx:v.cx,y:cy!=null?cy:v.cy};applyView()}
 /* El zoom se hace donde pones los dedos o el cursor (2026-11-23, petición de Nacho): el punto del tablero bajo ellos se queda quieto.
    boardAt da ese punto (en unidades del tablero) y zoomHold fija el zoom s manteniéndolo bajo la posición de pantalla (cx, cy). */
@@ -1125,7 +1138,7 @@ function castHTML(){const C=U.cast;if(!C)return"";const gh=G.heroes[C.gi];if(!gh
 async function castGo(){const C=U.cast;if(!C||C.sp==null)return;const gh=G.heroes[C.gi],a=actor(gh.id),h=a.h,sl=spellList(h),sp=sl.list[C.sp],S=spellSpec(sp),mod=C.exT+C.exP;
  if(S.kind!=="manual"&&!C.tg.length){toast("Elige un objetivo.");return}
  const tg=C.tg.slice(),tA=tg.map(i=>actor(i)).filter(Boolean);
- await duOpen("spell",a,tA[0]||null,{spell:sp,more:Math.max(0,tA.length-1)});
+ await scrollBoard();await duOpen("spell",a,tA[0]||null,{spell:sp,more:Math.max(0,tA.length-1)});
  const rp=rollDice({n:1,own:true,ph:"cast",by:a.id,title:`${h.name} lanza ${sp.es}`,sub:`Cuesta ${sp.cost} ficha${sp.cost>1?"s":""}${C.exT?`, +${C.exT} ficha${C.exT>1?"s":""} extra`:""}${C.exP?`, +${C.exP} de poder extra`:""}. Con 4+ surte efecto.`,need:`${Math.max(2,4-mod)}+ surte efecto`,ok:x=>x===6||(x!==1&&x+mod>=4)});
  /* La ventana del hechizo se cierra mientras se tira: si queda encima, tapa el botón «Lanzar dados» de la bandeja y todo se bloquea. */
  paint();const[r]=await rp;
@@ -1197,7 +1210,7 @@ function shootTargets(a){const A=G.act,w=rwOf(a,A),hold=!!A&&(A.k==="hold"||A.k=
  if(A&&A.chain)L=L.filter(u=>u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01));
  return L}
 function chargeTargets(a){const A=G.act;return liveUnits().filter(u=>gap(a,u)>CONTACT+.01&&(!A||!A.chain||(u.id!==A.chain.from&&(!A.chain.r||(Math.hypot(u.x-A.chain.fp[0],u.y-A.chain.fp[1])-u.r)/BIN<=A.chain.r+.01)))).map(u=>({u,c:chargePath(a,u,A&&A.lim)})).filter(x=>x.c&&x.c.ok)}
-function endAct(gh){gh.act=2;gh.advShot=false;G.cur=-1;G.act=null;U.dest=null;U.sel="";if(heroesDone()){log("Todos los héroes han actuado. Turno de los enemigos.","rd");setTimeout(autoAI,900)}}
+function endAct(gh){gh.act=2;gh.advShot=false;G.cur=-1;G.act=null;U.dest=null;U.sel="";scrollBoard();if(heroesDone()){log("Todos los héroes han actuado. Turno de los enemigos.","rd");setTimeout(autoAI,900)}}
 
 /* ---------------------------------------------------------------- IA */
 /* Diagrama de las Core Rules: si al moverse puede disparar o cargar a un héroe → avanzar y disparar al más cercano,
@@ -1379,8 +1392,17 @@ function duScroll(sp){return`<article class="du-card sp" data-side="R"><div clas
  <g class="du-sigil" fill="none" stroke="#cbb8ff"><circle cx="100" cy="118" r="70" stroke-opacity=".45" stroke-dasharray="3 7"/><circle cx="100" cy="118" r="52" stroke-opacity=".7"/><path d="M100 66L145 144H55Z M100 170L55 92H145Z" stroke-opacity=".6"/><circle cx="100" cy="118" r="16" fill="#efe8ff" fill-opacity=".85" stroke="none"/></g></svg><span class="du-role">Hechizo</span><div class="du-hitfx"></div></div>
  <div class="du-plate"><b>${esc(sp.es||sp.n||"Hechizo")}</b><small>${sp.cost?`Coste ${sp.cost} ficha${sp.cost>1?"s":""}`:"Hechizo"}</small></div><p class="du-sfx">${esc(sp.fx||"")}</p></div></article>`}
 const duHp=a=>a.kind==="h"?[Math.max(0,a.h.hp),a.h.hpMax]:[Math.max(0,a.g.hp),a.g.m0*a.g.t];
-function duTags(a){const t=a.kind==="h"?(a.h.st||[]).map(s=>ST_N[s]).filter(Boolean):[];if(a.kind==="u"&&a.sh())t.push("Aturdida");if(a.g.fat===G.round&&!fxHas(a,"nofat"))t.push(a.kind==="h"?"Agotado":"Agotada");
- return t.map(x=>`<i>${esc(x)}</i>`).join("")}
+/* Efectos que afectan ahora a quien combate (2026-11-25): estados, habilidades y bonos activos, marcas del enemigo y el modificador del evento de la Ruptura. */
+function duTags(a){const out=[];const add=(x,c)=>out.push(`<i${c?` class="${c}"`:""}>${esc(x)}</i>`);
+ if(a.kind==="h")(a.h.st||[]).forEach(s=>{if(ST_N[s])add(ST_N[s])});
+ if(a.kind==="u"&&a.sh())add("Aturdida");
+ if(a.g.fat===G.round&&!fxHas(a,"nofat"))add(a.kind==="h"?"Agotado":"Agotada");
+ [...new Set(((a.g&&a.g.fx)||[]).filter(e=>e.id).map(e=>e.id))].forEach(x=>add(x,"fx"));
+ if(a.g.bmark>0)add("Marcado: Perdición","fx");
+ if(a.g.noSk>G.round)add("Sin habilidades","fx");
+ if(a.g.hid)add("Oculto","fx");
+ if(a.kind==="h"&&G.mod&&(G.mod.h===-1||G.mod.h===a.g.hi))add("Evento: "+(G.mod.t||"Ruptura"),"ev");
+ return out.join("")}
 function duCard(a,side,role,w){const hero=a.kind==="h",boss=!hero&&a.g.boss,[hp,mx]=duHp(a),pct=mx?Math.round(hp/mx*100):0,D=U.duel,P="du"+side;
  const art=hero?(a.h.img?`<img src="${esc(a.h.img)}" alt="">`:duHeroArt(a,P,w)):boss?`<img src="${IMG_RETRATO}" alt="">`:duFoeArt(a,P);
  const sub=hero?`${esc(a.h.prof||"Héroe")}${a.h.raza?" · "+esc(String(a.h.raza).split("·")[0].trim()):""}`:boss?"Jefe · El Umbral":`Borrados${a.g.m0>1?` · ${a.models()} de ${a.g.m0}`:""}`;
@@ -1498,9 +1520,10 @@ const rdLab=()=>`Ronda ${G.round} · ${tod()}`;
 let ENDNOTE="";const takeNote=()=>{const n=ENDNOTE;ENDNOTE="";return n?" "+n:""};
 const heroBanner=()=>banner({k:"hr",lab:rdLab(),t:`Comienza la ronda ${G.round}`,s:"Turno de los héroes: actúan en el orden que quieras."+takeNote()});
 /* Al empezar una ronda: si toca evento de la Ruptura, primero ese cartel; el de «Comienza la ronda» sale al cerrar el resultado del evento. */
+function applyEv(a,bb){U.evNote="";rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();const F={st:"done"};U.evfx=F;paint();setTimeout(()=>{if(U.evfx===F)evDone()},8000)}
 function roundBanner(){if(G.over)return Promise.resolve();
  /* Solo en la primera ronda sale el cartel del evento; en las siguientes van directo a los dados (con la nota de fin de ronda). */
- if(G.phase==="event"){if(G.round>1){U.evNote=takeNote();U.evfx={st:"ask"};paint();return Promise.resolve()}
+ if(G.phase==="event"){if(G.round>1){const pre=U.evPre&&U.evPre.r===G.round?U.evPre:null;U.evPre=null;takeNote();if(pre){G.ev=pre.ev;G.ev.r=G.round;G.mod=pre.mod;G.needEv=false;toHeroes();save();paint();return heroBanner()}U.evNote=takeNote();U.evfx={st:"ask"};paint();return Promise.resolve()}
   return banner({k:"ev",lab:rdLab(),t:"Evento de la Ruptura",s:"Antes de empezar se tira el evento de la Ruptura. Su efecto dura solo esta ronda."+takeNote()}).then(()=>{if(G.phase==="event"&&!G.over&&!U.evfx){U.evfx={st:"ask"};paint()}})}
  return heroBanner()}
 /* Turno de los enemigos: los héroes que no hayan terminado pierden lo que les quede. */
@@ -1763,7 +1786,11 @@ function head(){const live=G.phase!=="setup"&&G.phase!=="deploy",ci=PH.findIndex
  <div class="tv-tt"><small>Érebo · Misión I</small><b>El pueblo vacío</b></div>${steps||"<span></span>"}
  ${live?`<div class="tv-stat"><span><small>Ronda</small><b>${G.round}</b></span><span class="tv-tod ${tod()}"><small>Luz</small><b>${SVGI(tod()==="Noche"?ICO.moon:ICO.sun)}${tod()}</b></span><span><small>Alerta ${G.al}/6</small>${pips()}</span><span class="tv-rk${G.prim?" ok":""}"><small>Rastros</small><b>${T.filter(t=>t.on).length}<em>/${T.length||2}</em></b></span></div>`:"<span></span>"}
  <div class="tv-hact">${live||G.phase==="deploy"?`<div class="tv-pm"><button type="button" class="tv-pmb" data-tv="pmenu" aria-expanded="${!!U.pmenu}" aria-haspopup="menu">Partida${SVGI(ICO.chev)}</button>${menu}</div>`:""}</div></header>`}
+/* Los héroes con acciones por hacer van arriba; los que ya han actuado (o están inconscientes), abajo. */
+const heroSpent=gh=>{const a=actor(gh.id);return gh.act===2||(a&&a.ko())?1:0};
 function heroCard(gh,i){const a=actor(gh.id);if(!a)return"";const h=a.h,ko=a.ko(),st=ko?"Inconsciente":gh.act===2?"Ya ha actuado":gh.act===1?"Activo":"Por activar";
+ /* Héroe que ya ha actuado (o inconsciente): tarjeta compacta con nombre, heridas y poder; el retrato sigue abriendo su ficha (2026-11-25). */
+ if(G.phase==="heroes"&&(gh.act===2||ko))return`<div class="tv-hcw mini"><button type="button" class="tv-hc mini${ko?" ko":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa"><span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span><span class="tv-hn"><b>${esc(h.name)}${ko?" · inconsciente":""}</b><span class="tv-bars"><span class="tv-bar hp"><i style="width:${(h.hp/h.hpMax*100).toFixed(0)}%"></i><em>${h.hp}/${h.hpMax}</em></span><span class="tv-bar pw"><i style="width:${(h.pwMax?h.pw/h.pwMax*100:0).toFixed(0)}%"></i><em>${h.pw}/${h.pwMax}</em></span></span></span></button></div>`;
  const canAct=G.phase==="heroes"&&!U.busy&&!ko&&gh.act!==2&&G.cur<0,pend=G.phase==="heroes"&&!ko&&gh.act!==2;
  return`<div class="tv-hcw"><button type="button" class="tv-hc${G.cur===i?" cur":""}${ko?" ko":""}${gh.act===2?" done":""}" data-tv="heroinfo" data-i="${i}" title="Ver la ficha completa">
  <span class="tv-hp">${h.img?`<img src="${esc(h.img)}" alt="">`:`<i>${esc(ini(h.name))}</i>`}</span>
@@ -2148,7 +2175,7 @@ function actPanel(){const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,A=G.act;
  /* Acción extra (3 de poder): una acción más, con el mismo formato que las demás. */
  const xOn=!!gh.ex,xDis=!xOn&&!(usedA(gh)===2&&canExtra(gh));
  const xHTML=`<button type="button" class="tv-act extra${xOn?" on":""}" data-tv="xtick" data-k="extra" ${xDis?"disabled":""} title="Gasta 3 de poder y hace una acción más."><span class="tv-at">${SVGI(ICO.extra)}<i>3 poder</i></span><b>Acción extra</b>${xOn?"<em>Marcada: 3 de poder al elegirla</em>":xDis?"<em>Tras sus 2 acciones y con 3 de poder</em>":"<small>Una acción más</small>"}</button>`;return`${advS?`<div class="tv-box tv-advs"><b>Ha avanzado: puede disparar</b><p>El disparo va incluido en Avanzar y no gasta otra acción.${Lf>0?" También puede elegir otra acción, pero entonces pierde este disparo.":""}</p><button type="button" class="tv-btn" data-tv="advshot">Disparar tras avanzar</button></div>`:""}${h.st.includes("ac")?`<div class="tv-box"><b>Afectado</b><p>−1 a todas sus tiradas. Puede gastar D3 de poder para quitárselo.</p><button type="button" class="tv-btn sm" data-tv="unimp" ${h.pw<1?"disabled":""}>Gastar D3 de poder</button></div>`:""}
-  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<div class="tv-agroups">${(()=>{const T={};ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).forEach(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&done.length>0);
+  ${Lf<=0?`<p class="tv-note">No hay acciones disponibles${canExtra(gh)?": solo puede seguir con una acción extra (3 de poder).":"."}</p>`:""}<div class="tv-agroups">${(()=>{const T={};ACTS.filter(x=>(x[0]!=="cast"||casterX(a)>0)&&(x[0]!=="sec"||(G.prim&&!G.sec))&&(x[0]!=="chest"||(G.chests||[]).some(c=>c.st==="closed"))).forEach(([k,l,d,mv])=>{const lim=mv?moveLim(a,k):0,near=atkTargets(a).length,noRw=k==="shoot"&&!a.ws.some(isRanged),noT=k==="shoot"&&!noRw&&!liveUnits().some(u=>canShoot(a,u,true)),dis=noRw||noT||(k!=="rest"&&ACOST[k]>Lf)||(k==="chg"&&(near>0||!chargeTargets(a).length))||(k==="atk"&&!near)||(k==="obj"&&!trkNear(a).length)||((k==="adv"||k==="rush")&&trabado(a))||(k==="chest"&&!chestTarget(a))||(k==="sec"&&(!secNear(a)||secFoes().length))||(k==="rev"&&(!reviveTarget(a).length||h.pw<3))||(k==="scu"&&!atkTargets(a).length)||(k==="cast"&&!!castWhy(gh,a))||(k==="rest"&&(done.length>0||h.pw>=h.pwMax));
    const ems=`${k==="chg"&&dis?`<em>${near?"Ya está en contacto: usa Atacar":"Ningún enemigo al alcance (a más de "+CT+")"}</em>`:""}${k==="atk"&&dis&&!near?`<em>Ningún enemigo a ${CT} o menos</em>`:""}${noRw?`<em>Sin armas a distancia</em>`:""}${noT?`<em>Ningún enemigo a tiro y a la vista</em>`:""}${k==="obj"&&dis&&ACOST.obj<=Lf?`<em>${(G.tracks||[]).every(t=>t.on)?"Los dos rastros ya están recuperados":`Ningún rastro a ${CT} o menos`}</em>`:""}${k==="sec"&&dis&&ACOST.sec<=Lf?`<em>${!secNear(a)?"Hay que estar a 3″ o menos del pozo":"Hay enemigos a menos de 5″ del pozo"}</em>`:""}${k==="chest"?chestHint(a,dis):""}${k==="cast"?castHint(gh,a):""}${k==="scu"&&dis?"<em>Solo si un enemigo está trabado con él (a 1″ o menos)</em>":""}${k==="rev"&&dis?`<em>${reviveTarget(a).length?"Necesita 3 de poder":"Ningún héroe inconsciente a 3″ o menos"}</em>`:""}${(k==="adv"||k==="rush")&&dis&&trabado(a)?`<em>Trabado: un enemigo está en contacto. Escabúllete o ataca.</em>`:""}${k!=="rest"&&ACOST[k]>Lf?`<em>Necesita ${ACOST[k]} acciones</em>`:""}`,sub=dis&&ems?ems:`<small>${actShort(k,lim,gh)}</small>`;T[k]=`<button type="button" class="tv-act ${k}" data-tv="act" data-k="${k}" ${dis?"disabled":""} title="${esc(d)}"><span class="tv-at">${SVGI(ICO[k])}<i>${ACOST[k]} acc.</i></span><b>${l}</b>${sub}</button>`});T.extra=xHTML;return ACAT.map(([n,ks])=>{const h=ks.map(k=>T[k]||"").join("");return h?`<div class="tv-agrp"><p class="tv-agl">${n}</p><div class="tv-agrid">${h}</div></div>`:""}).join("")})()}</div>
   ${skillBar(gh,a)}
   <div class="tv-afoot"><button type="button" class="tv-btn alt tv-pick" data-tv="unpick" ${done.length||G.act?"disabled":""} title="${done.length||G.act?"Ya ha empezado su activación: termínala antes de elegir a otro":"Vuelve a la tira para activar a otro héroe antes que a este"}">Elegir otro héroe</button><button type="button" class="tv-btn endact" data-tv="endact">${advS&&Lf<=0?"No disparar y terminar":done.length?"Terminar activación":"No hacer nada"}</button></div>`}
@@ -2213,6 +2240,13 @@ function wpnPick(a,A){const mw=a.ws.filter(isMelee);if(mw.length<2)return"";cons
 /* Tirada de Neth en el centro de la pantalla: dados, y después el efecto (se queda en la tarjeta de la ronda). */
 const evDie=v=>`<span class="tv-die${v?"":" q"}">${v?dots(v):"?"}</span>`;
 function evFxHTML(){const F=U.evfx;if(!F||G.over)return"";
+ if(F.kind==="al"){
+  /* Una sola ventana con las dos tiradas del cambio de ronda (2026-11-25): a la izquierda el dado de alerta, a la derecha el evento de la Ruptura de la ronda siguiente. */
+  const st=F.st,sh=st==="done",dA=sh?evDie(F.v):evDie(0),dE=sh?evDie(F.a)+evDie(F.b):evDie(0)+evDie(0);
+  const body=`<div class="tv-drows"><div class="tv-drow"><div class="tv-drt"><b>Alerta</b><small>${sh?(F.v===6?"Sube 2 puntos":"Sube 1 punto"):"1-5 sube 1 · 6 sube 2"}</small></div><div class="tv-dd">${dA}</div></div><div class="tv-drow ev"><div class="tv-drt"><b>Evento de la Ruptura</b><small>${sh?`Dura toda la ronda ${G.round+1}`:"Para la ronda "+(G.round+1)}</small></div><div class="tv-dd">${dE}</div></div></div>${sh&&F.evr?`<div class="tv-dres ${F.evr.tone}"><b>${esc(F.evr.t)}</b><p>${esc(F.evr.eff||F.evr.x)}</p></div>`:""}`;
+  if(st==="ask")return`<div class="tv-evfx ask" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Fin de la ronda ${G.round}</p>${body}<button type="button" class="tv-btn big" data-tv="alroll">Tirar los dados</button></div></div>`;
+  if(st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Fin de la ronda ${G.round} · tirando</p>${body}</div></div>`;
+  return`<div class="tv-evfx" data-tv="alclose"><div class="tv-evfxc ${F.v===6?"bad":"all"}"><p class="tv-lab">Fin de la ronda ${G.round}</p>${body}<small>Toca para seguir</small></div></div>`}
  if(F.st==="ask")return`<div class="tv-evfx ask" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">${rdLab()} · Evento de la Ruptura</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Dos dados, de uno en uno: el primero son las decenas y el segundo las unidades. El efecto dura solo esta ronda.</p><button type="button" class="tv-btn big" data-tv="ev">Tirar los dados</button></div></div>`;
  if(F.st==="roll")return`<div class="tv-evfx" aria-live="polite"><div class="tv-evfxc"><p class="tv-lab">Evento de la Ruptura · tirando</p><div class="tv-dd">${evDie(0)}${evDie(0)}</div><p>Primero las decenas y luego las unidades.</p></div></div>`;
  const e=G.ev;if(!e)return"";
@@ -2274,7 +2308,7 @@ function sideMain(){let main="";
  else if(G.phase==="setup")main=setupPanel();
  else if(G.phase==="deploy")main=deployPanel();
  else if(G.phase==="event")main=evCard();
- else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes${G.cur<0?" · actúan en el orden que quieras":""}</p>${G.cur>=0?`${roster()}${activeCard()}${actPanel()}`:`<div class="tv-hcs">${G.heroes.map(heroCard).join("")}</div>`}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de los Borrados":"Terminar el turno de los héroes"}</button>`:""}`}
+ else if(G.phase==="heroes"){main=`<p class="tv-lab">Turno de los héroes${G.cur<0?" · actúan en el orden que quieras":""}</p>${G.cur>=0?`${roster()}${activeCard()}${actPanel()}`:`<div class="tv-hcs">${G.heroes.map((gh,i)=>[gh,i]).sort((x,y)=>heroSpent(x[0])-heroSpent(y[0])).map(([gh,i])=>heroCard(gh,i)).join("")}</div>`}${heroesDone()||G.cur<0?`<button type="button" class="tv-btn big ${heroesDone()?"":"alt"}" data-tv="toai">${heroesDone()?"Turno de los Borrados":"Terminar el turno de los héroes"}</button>`:""}`}
  else if(G.phase==="ai")main=aiPanel();
  else if(G.phase==="end")main=endPanel();
  return main}
@@ -2328,9 +2362,12 @@ function paint(){if(!U.open)return;
  const extra=`<div id="tvDice" class="tv-dwrap">${U.duel?"":diceHTML()}</div>${U.confirm?confirmHTML():""}${U.wilAsk?wilHTML():""}${U.prim?primHTML():""}${U.info&&actor(U.info)?unitInfo(U.info):""}${U.rinfo?ruleModal():""}${G.over?overModal():""}${U.inv?invHTML():""}${U.cast&&!U.dice&&!U.duel?castHTML():""}${U.ask?askHTML():""}${evFxHTML()}${heroModal()}${U.wave?waveHTML():""}${banHTML()}`;
  /* Antes de empezar (configuración): pantalla grande, sin tablero. El mapa sale al desplegar la mesa. */
  if(G.phase==="setup"&&!G.over){MAIN.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win tv-setupwin" role="dialog" aria-modal="true" aria-label="Configuración de la partida">${head()}<div class="tv-setupw"><div class="tv-setupc">${setupPanel()}</div></div>${extra}</section>`;return}
- MAIN.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Objetivos, evento y registro de actividad">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside></div>${extra}</section>`;
+ MAIN.innerHTML=`<div class="tv-veil" data-tv="close"></div><section class="tv-win" role="dialog" aria-modal="true" aria-label="Tablero virtual">${head()}<div class="tv-body"><div class="tv-boardw${G.phase==="deploy"&&!G.over?" dep":""}"><div class="tv-board">${boardSVG()}${chestPopHTML()}</div>${legend()}${G.phase==="deploy"&&!G.over?deployMenu():""}</div><aside class="tv-side tv-shero" aria-label="Objetivos, evento y registro de actividad">${heroDash()}</aside><aside class="tv-side tv-sact" aria-label="Acciones">${sideMain()}</aside></div>${mvFloat()}${extra}</section>`;
  restoreScroll(KS);placeBub();bindBoard()}
-function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();const s=$(".tv-side .tv-box .tv-btn[data-tv=mvok]");if(s)s.disabled=!U.dest}
+/* Botones flotantes de mover/cancelar (solo móvil): salen únicamente mientras se elige el destino de un movimiento, para no bajar al menú. */
+function mvFloat(){const A=G.act;if(G.phase!=="heroes"||G.over||U.busy||G.cur<0||!A||A.st!=="move"||A.mv)return"";
+ return`<div class="tv-mvf"><button type="button" class="tv-btn" data-tv="mvok" ${U.dest?"":"disabled"}>${A.k==="adv"?"Mover y seguir":"Mover aquí"}</button><button type="button" class="tv-ghostb" data-tv="${A.free?"nochain":"cancel"}">Cancelar</button></div>`}
+function paintOv(){const o=$("#tvOv");if(o)o.innerHTML=overlay();ROOT.querySelectorAll("[data-tv=mvok]").forEach(s=>{s.disabled=!U.dest})}
 function open(){if(U.open)return;U.open=true;
  /* si se cerró la página con el evento de la ronda sin tirar, los dados vuelven a salir en el centro */
  if(G.phase==="event"&&!G.over&&!U.ban&&!U.evfx)U.evfx={st:"ask"};
@@ -2401,6 +2438,9 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"evask":if(G.phase==="event"&&!G.over)U.evfx={st:"ask"};break;
  case"ev":{if(G.phase!=="event"||!U.evfx||U.evfx.st!=="ask")return;U.evNote="";const a=d6(),bb=d6();U.busy=true;U.evfx={st:"roll"};paint();
   rollAnim(()=>{U.busy=false;rollEvent(a,bb);G.ev.r=G.round;if(G.phase==="event")toHeroes();save();const F={st:"done"};U.evfx=F;paint();setTimeout(()=>{if(U.evfx===F)evDone()},8000)},".tv-evfx .tv-die");return}
+ case"alroll":{const F=U.evfx;if(!F||F.kind!=="al"||F.st!=="ask")return;const v=d6(),ea=d6(),eb=d6();U.busy=true;U.evfx={...F,st:"roll"};paint();
+  rollAnim(()=>{U.busy=false;rollEvent(ea,eb);const F2={...F,st:"done",v,a:ea,b:eb,evr:G.ev,mod:G.mod};U.evfx=F2;paint();setTimeout(()=>{if(U.evfx===F2)evDone()},8000)},".tv-evfx .tv-die");return}
+ case"alclose":evDone();return;
  case"evclose":evDone();return;
  case"heroinfo":U.hinfo=(G.heroes[+ds.i]||{}).id||null;break;
  case"hiclose":U.hinfo=null;break;
@@ -2425,7 +2465,7 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"act":{const gh=G.heroes[G.cur],a=actor(gh.id),h=a.h,kk=ds.k;
   if(kk!=="rest"&&ACOST[kk]>freeA(gh)){toast(usedA(gh)>=2&&canExtra(gh)?"Marca primero la acción extra (3 de poder).":freeA(gh)<=0?"No le quedan acciones en esta activación.":`Esa acción necesita ${ACOST[kk]} acciones.`);return}
   gh.exOpen=false;gh.advShot=false;
-  if(kk==="rest"){h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
+  if(kk==="rest"){if(h.pw>=h.pwMax){toast("Ya tiene todo el poder: no necesita descansar.");break}h.pw=h.pwMax;hfSync();log(`${h.name} descansa y recupera todo el poder (${h.pwMax}).`,"hr");finishAction(gh,"rest",true);break}
   if(kk==="hold"){log(`${h.name} se mantiene en su sitio.`,"hr");finishAction(gh,"hold");break}
   if(kk==="obj"){const t=trkNear(a)[0];if(!t){toast("No hay ningún rastro a "+CT+" o menos.");break}doTrack(gh,a,t);return}
   if(kk==="chest"){const t=chestTarget(a);if(!t){toast("No hay ningún cofre cerrado a 6″ o menos.");break}if(chestGap(a,t)<=1.01){openChest(gh,a,t);finishAction(gh,"chest");save();paint();return}doChest(gh,a,t);return}
@@ -2440,7 +2480,9 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"mvskip":{const gh=G.heroes[G.cur];U.dest=null;G.act=null;log(`${heroOf(gh).name} avanza sin moverse.`,"hr");gh.advShot=canShootAny(actor(gh.id));finishAction(gh,"adv");break}
  /* Disparo que va con Avanzar: no gasta otra acción. */
  case"advshot":{const gh=G.heroes[G.cur];if(!gh||!gh.advShot||G.act)break;G.act={k:"adv",st:"shoot",mv:true,free:true,wi:0};U.dest=null;break}
- case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id),k2=G.act.k,r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
+ case"mvok":{const gh=G.heroes[G.cur],a=actor(gh.id);let k2=G.act.k;const r=U.dest&&heroReach(a,U.dest,moveLim(a,k2));if(!r)return;U.dest=null;U.busy=true;
+  /* Correr con un recorrido que cabe en un Avanzar (≤ su alcance de avanzar, 6″ normalmente) solo gasta 1 acción: se cuenta como Avanzar (2026-11-25). */
+  if(k2==="rush"&&!G.act.free&&pathLen(r.pts)/BIN<=speed(a)[0]+.01){k2="adv";log(`${a.name} corre menos de ${inch(speed(a)[0])}: cuenta como Avanzar (1 acción).`,"hr")}
   log(`${a.name} ${k2==="adv"?"avanza":"corre"} ${inch(pathLen(r.pts)/BIN)}.`,"hr");
   const keep=G.act;G.act=null;paint();animPath(a.id,r.pts).then(async()=>{gh.x=r.end[0];gh.y=r.end[1];useMv(gh);collectChests(a);await danRoll(gh.id,r.pts);if(actor(gh.id).ko()){U.busy=false;G.act=null;endAct(gh);save();paint();return}U.busy=false;if(keep.free){fin(gh,keep)}else{G.act=null;if(k2==="adv")gh.advShot=canShootAny(actor(gh.id));finishAction(gh,k2)}save();paint()});return}
  case"noshoot":{const gh=G.heroes[G.cur];fin(gh,G.act);break}
@@ -2455,11 +2497,11 @@ function act(k,b){const ds=b&&b.dataset||{};
  case"tgt":{const gh=G.heroes[G.cur],a=actor(gh.id),B=actor(ds.id);if(!gh||!a||!B||!G.act)return;
   const st=G.act.st,kk=G.act.k,W=wsel(a,G.act);
   if(st==="shoot"){const RW=rwOf(a,G.act),hold=kk==="hold"||kk==="shoot";if(!RW||!canShoot(a,B,hold,RW))return;const A0=G.act;G.act={k:kk,st:"fight"};U.busy=true;U.dest=null;paint();
-   (async()=>{fxShot(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"shoot",{only:RW,hold});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(ds.id);if(nb)fxDmg(nb,L.tB)})();return}
+   (async()=>{await scrollBoard();fxShot(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"shoot",{only:RW,hold});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(ds.id);if(nb)fxDmg(nb,L.tB)})();return}
   if(st==="atk"){if(gap(a,B)>CONTACT+.01)return;log(`${a.name} ataca a ${B.name} (ya están en contacto, sin cargar).`,"hr");const A0=G.act;G.act={k:kk,st:"fight"};U.busy=true;paint();
-   (async()=>{fxClash(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"melee",{charge:false,only:W});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)})();return}
+   (async()=>{await scrollBoard();fxClash(a,B);await sleep(REDUCE?0:700);const L=await fight(a,B,"melee",{charge:false,only:W});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(a,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)})();return}
   if(st==="chg"){const A0=G.act,c=chargePath(a,B,A0.lim);if(!c||!c.ok||gap(a,B)<=CONTACT+.01)return;U.busy=true;log(`${a.name} carga ${inch(c.len/BIN)} contra ${B.name}.`,"hr");G.act={k:kk,st:"fight"};paint();
-   animPath(a.id,c.pts).then(async()=>{gh.x=c.end[0];gh.y=c.end[1];useMv(gh);await danRoll(gh.id,c.pts);if(actor(gh.id).ko()){U.busy=false;G.act=null;endAct(gh);save();paint();return}const A2=actor(gh.id),B2=actor(B.id);fxClash(A2,B2);await sleep(REDUCE?0:700);const L=await fight(A2,B2,"melee",{only:W,cd:c.len/BIN});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(A2,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)});return}
+   scrollBoard().then(()=>animPath(a.id,c.pts)).then(async()=>{gh.x=c.end[0];gh.y=c.end[1];useMv(gh);await danRoll(gh.id,c.pts);if(actor(gh.id).ko()){U.busy=false;G.act=null;endAct(gh);save();paint();return}const A2=actor(gh.id),B2=actor(B.id);fxClash(A2,B2);await sleep(REDUCE?0:700);const L=await fight(A2,B2,"melee",{only:W,cd:c.len/BIN});endDice();U.busy=false;const nx=L.chain&&!actor(gh.id).ko()?chainAct(A2,L.chain,A0):null;if(nx)G.act=nx;else fin(gh,A0);save();paint();const nb=actor(B.id),na=actor(gh.id);if(nb)fxDmg(nb,L.tB);if(na&&L.tA)fxDmg(na,L.tA)});return}
   return}
  case"ignsh":{const a=actor(G.offerIgnore);if(a&&a.h.pw>=2){a.h.pw-=2;a.h.st=a.h.st.filter(s=>s!=="at");log(`${a.name} gasta 2 de poder y no queda Aturdido.`,"hr");hfSync()}G.offerIgnore=null;break}
  case"endact":{const gh=G.heroes[G.cur];if(!(gh.done||[]).length)log(`${heroOf(gh).name} no hace nada.`,"hr");endAct(gh);break}
@@ -2535,7 +2577,7 @@ function finishAction(gh,k,rest,free){if(G.phase==="heroes")U.zm={s:1,x:300,y:30
  if(rest||G.over||!h||hfKo(h)||(leftA(gh)<=0&&!canExtra(gh)&&!gh.advShot)){endAct(gh);return}}
 const canShootAny=a=>!!a&&!a.ko()&&a.ws.some(isRanged)&&liveUnits().some(u=>canShoot(a,u,false));
 /* Al cerrar el resultado del evento de la Ruptura: cartel de que comienza la ronda (si ya es el turno de los héroes). */
-function evDone(){const was=!!U.evfx&&U.evfx.st==="done";U.evfx=null;paint();if(was&&G.phase==="heroes"&&!G.over)heroBanner()}
+function evDone(){const F=U.evfx,was=!!F&&F.st==="done";U.evfx=null;paint();if(F&&F.kind==="al"){if(was){U.evPre={r:G.round+1,ev:F.evr,mod:F.mod};if(F.res)F.res(F.v)}return}if(was&&G.phase==="heroes"&&!G.over)heroBanner()}
 function rollAnim(done,sel){const ds=ROOT.querySelectorAll(sel||".tv-die");if(REDUCE||!ds.length){done();return}let n=0;
  const it=setInterval(()=>{ds.forEach(d=>{d.classList.remove("q");d.innerHTML=dots(d6())});if(++n>9){clearInterval(it);done()}},70)}
 let TT=0;function toast(t){let el=$(".tv-toast");if(!el){el=document.createElement("div");el.className="tv-toast";ROOT.appendChild(el)}el.textContent=t;el.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>el.classList.remove("on"),2400)}
