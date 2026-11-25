@@ -12,25 +12,17 @@ out=s.replace("%%HC_CSS%%",rd("creador.css")).replace("%%HC_JS%%",rd("creador.js
 import base64
 def img(n): return "data:image/jpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","web",n),"rb").read()).decode()
 out=out.replace("%%IMG_RETRATO%%",img("heraldo.jpg")).replace("%%IMG_JEFE%%",img("heraldo-jefe.jpg"))
-# Ilustraciones de héroes por raza y clase (assets/web/heroes/*.webp: «<raza>-<clase>.webp» completa y «<raza>-<clase>-busto.webp»).
+# Ilustraciones de héroes y emblemas de raza: ARCHIVOS APARTE en src/img/ (el HTML solo lleva la lista de lo que existe y las pide al elegir).
+#   src/img/heroes/<raza>-<clase>.webp (completa) y <raza>-<clase>-busto.webp; src/img/razas/<slug>.webp.
 import json,glob
-def webp(p): return "data:image/webp;base64,"+base64.b64encode(open(p,"rb").read()).decode()
-HD=os.path.join(H,"..","..","assets","web","heroes")
-art={}
-for f in sorted(glob.glob(os.path.join(HD,"*.webp"))):
-    n=os.path.basename(f)[:-5]
-    if n.endswith("-busto"): art.setdefault(n[:-6],{})["b"]=webp(f)
-    else: art.setdefault(n,{})["f"]=webp(f)
-art={k:v for k,v in art.items() if "f" in v and "b" in v}
+IMG=os.path.join(H,"..","img")
+hs=set(os.path.basename(f)[:-5] for f in glob.glob(os.path.join(IMG,"heroes","*.webp")))
+art={k:1 for k in sorted(hs) if not k.endswith("-busto") and k+"-busto" in hs}
 out=out.replace("%%HC_ART%%",json.dumps(art,separators=(",",":")))
-# Emblemas genéricos de raza (assets/web/razas/<slug>.webp). El nombre de la raza sale de tools/razas-laminas.py (RAZAS).
 import importlib.util
 _sp=importlib.util.spec_from_file_location("razas_laminas",os.path.join(H,"..","..","tools","razas-laminas.py"))
 _m=importlib.util.module_from_spec(_sp); _sp.loader.exec_module(_m)
-emb={}
-for slug,(nom,_) in _m.RAZAS.items():
-    p=os.path.join(H,"..","..","assets","web","razas",slug+".webp")
-    if os.path.exists(p): emb[nom]=webp(p)
+emb={nom:slug for slug,(nom,_) in _m.RAZAS.items() if os.path.exists(os.path.join(IMG,"razas",slug+".webp"))}
 out=out.replace("%%HC_EMB%%",json.dumps(emb,ensure_ascii=False,separators=(",",":")))
 # Fondo del tablero táctico (boceto MX-CRUZ2-A, 900 px). Sus obstáculos están calcados a mano en BOBS de la plantilla.
 out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg"))

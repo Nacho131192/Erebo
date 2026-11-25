@@ -17,13 +17,15 @@ const hueF=fi=>HUES[D.facs[fi].n]??220;
 const NAMES=["Aldric","Brenna","Corvin","Dahlia","Eldrin","Fenna","Garrick","Hilda","Ivor","Kaelen","Lysa","Morwen","Neris","Orsin","Pella","Quillon","Rhosyn","Soren","Talia","Ulric","Vessa","Wren","Ysolde","Zarek","Tamsin","Ilvane"];
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
 
-/* ---------- ilustraciones por raza y clase (assets/web/heroes/, WebP; las incrusta build.py en el marcador de abajo) ----------
-   ART[clave] = {f: imagen completa, b: busto (del pecho hacia arriba)}. Clave = «raza-clase». Hoy solo hay Saurios; para añadir
-   una raza hay que poner sus 12 láminas en assets/web/heroes/ y registrarla en ARC (nombre en inglés de la raza → prefijo del archivo). */
+/* ---------- ilustraciones por raza y clase (src/img/heroes/, WebP, archivos aparte que se cargan al elegir) ----------
+   ART = {clave:1} con las combinaciones «raza-clase» que tienen imagen (lo rellena build.py en el marcador de abajo).
+   La imagen completa es img/heroes/<clave>.webp y el busto (del pecho hacia arriba) img/heroes/<clave>-busto.webp.
+   Para añadir una raza hay que poner sus láminas en src/img/heroes/ y registrarla en ARC (nombre en inglés de la raza → prefijo del archivo). */
 const ART=%%HC_ART%%;
-const ARC={"Saurians":"saurios"};
+const IMGD="img/heroes/";
+const ARC={"Saurians":"saurios","Beastmen":"hombres-bestia","Ratmen":"hombres-rata","War Disciples":"discipulos-guerra","Lust Disciples":"discipulos-lujuria","Plague Disciples":"discipulos-plaga","Change Disciples":"discipulos-cambio","Havoc Warriors":"guerreros-caos"};
 const ACL={"Barbarian":"barbaro","Bard":"bardo","Warlock":"brujo","Cleric":"clerigo","Druid":"druida","Ranger":"explorador","Fighter":"guerrero","Sorcerer":"hechicero","Wizard":"mago","Monk":"monje","Paladin":"paladin","Rogue":"picaro"};
-const art=(r,c)=>{const k=r&&c&&ARC[r.en]&&ACL[c.en]?ARC[r.en]+"-"+ACL[c.en]:null;return k&&ART[k]?{k,f:ART[k].f,b:ART[k].b}:null};
+const art=(r,c)=>{const k=r&&c&&ARC[r.en]&&ACL[c.en]?ARC[r.en]+"-"+ACL[c.en]:null;return k&&ART[k]?{k,f:IMGD+k+".webp",b:IMGD+k+"-busto.webp"}:null};
 
 /* ---------- clases permitidas por raza (selección de Nacho, 2026-11-25) ----------
    Cada raza solo ofrece las clases que le pegan (unas 230 combinaciones en total). Una raza sin entrada aquí ofrece todas. */
@@ -119,9 +121,9 @@ function crestInner(r){
   const glyph=FG[r.fac.n]||FG["Forasteros"];
   return `<defs><clipPath id="${id}"><path d="${sh}"/></clipPath></defs><g clip-path="url(#${id})"><rect width="64" height="80" fill="${A}"/><g fill="${B}">${F}</g><circle cx="32" cy="37" r="15" fill="${A}" opacity=".88"/></g><g transform="translate(20 25) scale(.5)" fill="none" stroke="#f3e2b0" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">${glyph}</g><path d="${sh}" fill="none" stroke="#d9b86c" stroke-width="2.4"/><path d="M32 8L53 14V36C53 50 44 60 32 66 20 60 11 50 11 36V14Z" fill="none" stroke="#d9b86c" stroke-opacity=".35" stroke-width="1"/>`;
 }
-/* Emblema genérico de la raza (assets/web/razas/, WebP; lo incrusta build.py en el marcador de abajo). Si una raza aún no lo tiene, se usa el escudo dibujado. */
+/* Emblema genérico de la raza (src/img/razas/<slug>.webp, archivo aparte). EMB = {nombre de la raza: slug} (lo rellena build.py en el marcador de abajo). Si una raza aún no lo tiene, se usa el escudo dibujado. */
 const EMB=%%HC_EMB%%;
-const emb=r=>(r&&EMB[r.n])||"";
+const emb=r=>(r&&EMB[r.n])?"img/razas/"+EMB[r.n]+".webp":"";
 const crest=(r,w=48)=>emb(r)?`<img class="glyph emb" src="${emb(r)}" width="${Math.round(w*1.2)}" height="${Math.round(w*1.2)}" alt="" aria-hidden="true">`:`<svg class="glyph" viewBox="0 0 64 76" width="${w}" height="${Math.round(w*76/64)}" aria-hidden="true">${crestInner(r)}</svg>`;
 const fig=(h)=>`<svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 6c9 0 15 7 15 17 0 7-2 11-4 15l11 26H10l11-26c-2-4-4-8-4-15C17 13 23 6 32 6z" fill="hsl(${h} 28% 24%)"/><ellipse cx="32" cy="26" rx="8" ry="10" fill="#05060b"/><path d="M23 44c5 4 13 4 18 0" fill="none" stroke="#d9b86c" stroke-width="1.6" stroke-linecap="round"/></svg>`;
 
@@ -505,5 +507,5 @@ function open(){
   openWin();
 }
 /* full(h): imagen completa del héroe (según h.art) para el duelo y las vistas grandes; "" si no tiene ilustración. */
-return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG,full:h=>(h&&h.art&&ART[h.art])?ART[h.art].f:""};
+return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG,full:h=>(h&&h.art&&ART[h.art])?IMGD+h.art+".webp":""};
 })();
