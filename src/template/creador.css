@@ -199,3 +199,16 @@
 #hc .skc:hover .hc-tip,#hc .skc:focus-visible .hc-tip{display:block}
 #hc .skc .hc-tip b{display:block;font:600 14px var(--disp);color:#f1e8d0}
 #hc .skc .hc-tip em{display:block;font:italic 500 12px var(--serif);color:var(--mu);margin:2px 0 6px}
+
+/* ---------- ilustración del héroe (busto en la ficha, imagen completa al pulsar) ---------- */
+#hc div.hc-por{cursor:default}
+#hc .hc-por.art{width:132px;height:132px;padding:5px}
+#hc .hc-por.art>.pi{background:radial-gradient(circle at 50% 28%,#26325c,#080b16);place-items:stretch}
+#hc .hc-por.art img{object-position:50% 0}
+#hc .hc-por.art:hover,#hc .hc-por.art:focus-visible{box-shadow:0 0 0 2px rgba(217,184,108,.5),0 6px 22px rgba(0,0,0,.5)}
+#hc .hc-por.art .cam{bottom:12px;opacity:0}
+#hc .hc-por.art:hover .cam,#hc .hc-por.art:focus-visible .cam{opacity:1}
+#hc .hc-zoom{position:absolute;inset:0;z-index:30;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);box-sizing:border-box;padding:20px;background:rgba(3,5,10,.92);cursor:zoom-out;animation:hc-pop .25s ease}
+#hc .hc-zoom>img{width:100%;height:100%;min-height:0;object-fit:contain;filter:drop-shadow(0 10px 34px rgba(0,0,0,.7))}
+#hc .hc-zoom>.xb{position:absolute;top:14px;right:14px}
+@media(max-width:700px){#hc .hc-por.art{width:104px;height:104px}}

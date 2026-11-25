@@ -17,6 +17,14 @@ const hueF=fi=>HUES[D.facs[fi].n]??220;
 const NAMES=["Aldric","Brenna","Corvin","Dahlia","Eldrin","Fenna","Garrick","Hilda","Ivor","Kaelen","Lysa","Morwen","Neris","Orsin","Pella","Quillon","Rhosyn","Soren","Talia","Ulric","Vessa","Wren","Ysolde","Zarek","Tamsin","Ilvane"];
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
 
+/* ---------- ilustraciones por raza y clase (assets/web/heroes/, WebP; las incrusta build.py en el marcador de abajo) ----------
+   ART[clave] = {f: imagen completa, b: busto (del pecho hacia arriba)}. Clave = «raza-clase». Hoy solo hay Saurios; para añadir
+   una raza hay que poner sus 12 láminas en assets/web/heroes/ y registrarla en ARC (nombre en inglés de la raza → prefijo del archivo). */
+const ART=%%HC_ART%%;
+const ARC={"Saurians":"saurios"};
+const ACL={"Barbarian":"barbaro","Bard":"bardo","Warlock":"brujo","Cleric":"clerigo","Druid":"druida","Ranger":"explorador","Fighter":"guerrero","Sorcerer":"hechicero","Wizard":"mago","Monk":"monje","Paladin":"paladin","Rogue":"picaro"};
+const art=(r,c)=>{const k=r&&c&&ARC[r.en]&&ACL[c.en]?ARC[r.en]+"-"+ACL[c.en]:null;return k&&ART[k]?{k,f:ART[k].f,b:ART[k].b}:null};
+
 /* ---------- glifos de facción y de clase (rejilla de 48) ---------- */
 const FG={
 "Bestias":'<path d="M9 9C6 22 13 28 24 28s18-6 15-19"/><path d="M15 28l3 12 6 4 6-4 3-12"/><circle cx="19" cy="31" r="1.2"/><circle cx="29" cy="31" r="1.2"/>',
@@ -230,7 +238,7 @@ function skillsPick(c,pv,t){
 }
 
 /* ---------- estado ---------- */
-const ST={open:false,step:1,race:null,type:0,cls:null,name:"",q:"",openF:new Set([0]),hov:null,anim:true,created:[],picks:[],photo:null,perr:""};
+const ST={open:false,step:1,race:null,type:0,cls:null,name:"",q:"",openF:new Set([0]),hov:null,anim:true,created:[],picks:[]};
 const R=()=>ST.race!=null?RACES[ST.race]:null;
 const T=()=>{const r=R();return r?r.types[Math.min(ST.type,r.types.length-1)]:null};
 const C=()=>ST.cls!=null?D.classes[ST.cls]:null;
@@ -280,12 +288,13 @@ function effective(){
   if(h&&h.k==="c"&&h.i!==ST.cls){c=D.classes[h.i];pv=true}
   return{r,t,c,pv};
 }
-const PHOTO_HINT="Foto cuadrada, de 400 × 400 px o más (mínimo 200 × 200). JPG, PNG o WebP, hasta 5 MB. Se recorta al centro y se guarda a 400 × 400.";
 function sheetParts(){
   const {r,t,c,pv}=effective(),full=ST.step===2;
-  const por=`<button type="button" class="hc-por ${ST.photo?"has":""}" data-act="photo" aria-label="${ST.photo?"Cambiar la foto del héroe":"Subir una foto del héroe"}"><span class="pi">${ST.photo?`<img src="${ST.photo}" alt="Foto del héroe">`:fig(r?hueF(r.fi):225)}</span><span class="cam">${ST.photo?"Cambiar":"Subir foto"}</span>${r?`<span class="cr2">${crest(r,30)}</span>`:""}</button>`;
+  /* Con ilustración (raza + clase elegidas): el busto, que al pulsar abre la imagen completa. Sin ella: la silueta de siempre. No se sube ninguna foto. */
+  const A=full?art(r,c):null,cr=r?`<span class="cr2">${crest(r,30)}</span>`:"";
+  const por=A?`<button type="button" class="hc-por has art" data-act="zoom" aria-label="Ver la imagen completa del héroe"><span class="pi"><img src="${A.b}" alt="${esc(r.n+" · "+c.n)}"></span><span class="cam">Ver completa</span>${cr}</button>`
+    :`<div class="hc-por"><span class="pi">${fig(r?hueF(r.fi):225)}</span>${cr}</div>`;
   const sub=r?`${esc(r.n)} · ${esc(t.n)}${c?` · ${esc(c.n)}`:""}${pv?'<span class="pvw">Vista previa</span>':""}`:"Elige una raza para empezar";
-  const hint=`<span>${ST.perr?`<b class="er">${esc(ST.perr)}</b>`:PHOTO_HINT}</span>${ST.photo?`<button type="button" class="hc-lk" data-act="unphoto">Quitar foto</button>`:""}`;
   let body="";
   if(!r)body=`<p class="emp">La ficha se irá rellenando con lo que elijas.<br>Pasa el ratón por la lista para ver cada opción.</p>`;
   else body=`<div><div class="sec-h"><span class="hc-lab">Características</span><small>${c?"Con los bonos de "+esc(c.n):"Solo la raza"}</small></div>${statGrid(t,c)}</div>
@@ -293,18 +302,18 @@ function sheetParts(){
     <div><div class="sec-h"><span class="hc-lab">Reglas especiales</span></div>${rulesBlock(t,c,false)}${full&&c&&c.feat?`<div style="margin-top:12px">${featBlock(c)}</div>`:""}</div>
     ${c&&full?skillsPick(c,pv,t):`<div><div class="sec-h"><span class="hc-lab">Habilidades iniciales</span></div><p class="emp" style="padding:14px">Las elegirás junto con la clase.</p></div>`}
     <div><div class="sec-h"><span class="hc-lab">Equipo</span></div><div class="hc-chips"><span class="chip hc-go">Oro inicial: 0</span></div></div>`;
-  return{por,sub,body,hint};
+  return{por,sub,body};
 }
 function C1(){return `<div class="sr"><input id="srch" type="search" placeholder="Buscar raza o facción…" value="${esc(ST.q)}" aria-label="Buscar raza" autocomplete="off"></div><div class="lst" data-keep="lst" id="rlist">${raceList()}</div>`}
 function C2(){return `<div class="ctl" data-keep="ctl">${D.classes.map((c,i)=>`<button class="ct" type="button" data-act="cls" data-i="${i}" aria-pressed="${ST.cls===i}"><span class="hc-gl">${cGl(c,26)}</span><b>${esc(c.n)}</b><span class="cm">${modChips(c).slice(0,3).map(x=>`<i>${x}</i>`).join("")}</span></button>`).join("")}</div>`}
 function bodyC(){
   const p=sheetParts();
-  return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="hc-sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre" maxlength="24" aria-label="Nombre del héroe"><div class="hc-sub" id="shsub">${p.sub}</div></div><div class="hc-seal"><div><small>NIVEL</small><b>1</b></div></div></div><div class="phint" id="shhint">${p.hint}</div><input type="file" id="pfile" accept="image/jpeg,image/png,image/webp" hidden><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
+  return `<div class="cw"><div class="cl">${ST.step===1?C1():C2()}</div><div class="cr" data-keep="cr"><div class="hc-sheet" aria-label="Ficha del héroe"><div class="sh1"><div id="shpor">${p.por}</div><div><input id="hname" type="text" value="${esc(ST.name)}" placeholder="Nombre" maxlength="24" aria-label="Nombre del héroe"><div class="hc-sub" id="shsub">${p.sub}</div></div><div class="hc-seal"><div><small>NIVEL</small><b>1</b></div></div></div><div id="shbody" style="display:flex;flex-direction:column;gap:18px">${p.body}</div></div></div></div>`;
 }
 function paintSheet(){
   const p=sheetParts();
-  const a=$("#shpor"),b=$("#shsub"),c=$("#shbody"),h=$("#shhint");
-  if(a)a.innerHTML=p.por;if(b)b.innerHTML=p.sub;if(c)c.innerHTML=p.body;if(h)h.innerHTML=p.hint;
+  const a=$("#shpor"),b=$("#shsub"),c=$("#shbody");
+  if(a)a.innerHTML=p.por;if(b)b.innerHTML=p.sub;if(c)c.innerHTML=p.body;
   if(POP&&!POP.el.isConnected)hidePop();
 }
 
@@ -337,23 +346,15 @@ function togglePop(el){
   showPop(el,el.dataset.rl||el.dataset.wr,true);
 }
 
-/* ---------- foto ---------- */
-async function takePhoto(f){
-  ST.perr="";
-  if(!f)return;
-  if(!/^image\/(jpeg|png|webp)$/.test(f.type)){ST.perr="Formato no válido. Usa JPG, PNG o WebP.";paintSheet();return}
-  if(f.size>5*1024*1024){ST.perr="La foto pesa más de 5 MB.";paintSheet();return}
-  const url=URL.createObjectURL(f);
-  try{
-    const img=new Image();img.src=url;await img.decode();
-    const w=img.naturalWidth,h=img.naturalHeight;
-    if(Math.min(w,h)<200){ST.perr="Es muy pequeña ("+w+" × "+h+"). Mínimo 200 × 200 px.";paintSheet();return}
-    const s=Math.min(w,h),cv=document.createElement("canvas");cv.width=cv.height=400;
-    cv.getContext("2d").drawImage(img,(w-s)/2,(h-s)/2,s,s,0,0,400,400);
-    ST.photo=cv.toDataURL("image/jpeg",.85);
-  }catch(_){ST.perr="No se pudo leer la imagen."}
-  URL.revokeObjectURL(url);
-  paintSheet();
+/* ---------- imagen completa (al pulsar el busto) ---------- */
+function zoomOff(){const z=$("#hzoom");if(z)z.remove()}
+function zoomOn(){
+  const A=art(R(),C()),w=$("#win");if(!A||!w)return;
+  zoomOff();
+  const z=document.createElement("div");z.id="hzoom";z.className="hc-zoom";z.dataset.act="unzoom";z.setAttribute("role","dialog");z.setAttribute("aria-label","Imagen completa del héroe");
+  z.innerHTML=`<img src="${A.f}" alt="${esc(R().n+" · "+C().n)}"><button type="button" class="xb" data-act="unzoom" aria-label="Cerrar la imagen"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`;
+  w.appendChild(z);
+  const x=$(".xb",z);if(x)x.focus({preventScroll:true});
 }
 
 /* ================= ventana ================= */
@@ -386,7 +387,7 @@ function goSheet(){
 
 /* ---------- crear el héroe de la hoja de campaña ---------- */
 function buildHero(){
-  const r=R(),t=T(),c=C(),s=statsFor(t,c);
+  const r=R(),t=T(),c=C(),s=statsFor(t,c),A=art(r,c);
   const sk=[];
   ruleItems(t,c).filter(x=>!/^Resistente/.test(x)).forEach(x=>{const g=rtext(x);sk.push({g:"regla",n:x,k:"",d:g.t})});
   if(c.feat)sk.push({g:"regla",n:c.feat.n,k:"Dote de clase",d:c.feat.t});
@@ -397,7 +398,7 @@ function buildHero(){
     sk.push({g:"equipo",n:(w.cnt>1?w.cnt+"× ":"")+w.n,k:p.join(", "),d:ex.map(g=>g.n+": "+g.t).join(" ")});
   });
   return{name:(ST.name||"").trim()||rnd(NAMES),raza:r.n+(r.types.length>1?" · "+t.n:""),prof:c.n,nivel:1,pts:0,
-    cal:s.cal,def:s.def,fue:s.fue,des:s.des,vol:s.vol,hp:s.hp,hpMax:s.hp,pw:s.pod,pwMax:s.pod,pot:0,gold:0,st:[],img:ST.photo||"",sk,c:HS.length};
+    cal:s.cal,def:s.def,fue:s.fue,des:s.des,vol:s.vol,hp:s.hp,hpMax:s.hp,pw:s.pod,pwMax:s.pod,pot:0,gold:0,st:[],img:A?A.b:"",art:A?A.k:"",sk,c:HS.length};
 }
 
 /* ---------- acciones ---------- */
@@ -415,8 +416,8 @@ const ACT={
     render();
   },
   openf(b){const f=+b.dataset.f;ST.openF=ST.openF.has(f)?new Set():new Set([f]);render()},
-  photo(){const f=$("#pfile");if(f)f.click()},
-  unphoto(){ST.photo=null;ST.perr="";paintSheet()},
+  zoom:zoomOn,
+  unzoom:zoomOff,
   create(){
     if(!R()||!C()||ST.picks.length!==needPicks())return;
     const h=buildHero();
@@ -437,20 +438,18 @@ ROOT.addEventListener("input",e=>{
   if(e.target.id==="srch"){ST.q=e.target.value;hidePop();const l=$("#rlist");if(l)l.innerHTML=raceList()}
   if(e.target.id==="hname")ST.name=e.target.value;
 });
-ROOT.addEventListener("change",e=>{
-  if(e.target.id==="pfile"){const f=e.target.files&&e.target.files[0];e.target.value="";takePhoto(f)}
-});
-/* Escape: primero cierra la ventanita de una regla; si no hay, cierra la creación. */
+/* Escape: primero cierra la imagen completa, luego la ventanita de una regla; si no hay, cierra la creación. */
 document.addEventListener("keydown",e=>{
   if(e.key!=="Escape"||!ST.open)return;
   e.preventDefault();e.stopImmediatePropagation();
-  if(POP)hidePop();else closeWin();
+  if($("#hzoom"))zoomOff();else if(POP)hidePop();else closeWin();
 },true);
 function open(){
   if(typeof HF!=="undefined"&&HF.open)hfClose();
-  Object.assign(ST,{step:1,race:null,type:0,cls:null,name:"",q:"",picks:[],photo:null,perr:"",hov:null});
+  Object.assign(ST,{step:1,race:null,type:0,cls:null,name:"",q:"",picks:[],hov:null});
   ST.openF=new Set([0]);
   openWin();
 }
-return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG};
+/* full(h): imagen completa del héroe (según h.art) para el duelo y las vistas grandes; "" si no tiene ilustración. */
+return{open,close:closeWin,isOpen:()=>ST.open,rule:rtext,rg:RG,full:h=>(h&&h.art&&ART[h.art])?ART[h.art].f:""};
 })();

@@ -12,6 +12,17 @@ out=s.replace("%%HC_CSS%%",rd("creador.css")).replace("%%HC_JS%%",rd("creador.js
 import base64
 def img(n): return "data:image/jpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","web",n),"rb").read()).decode()
 out=out.replace("%%IMG_RETRATO%%",img("heraldo.jpg")).replace("%%IMG_JEFE%%",img("heraldo-jefe.jpg"))
+# Ilustraciones de héroes por raza y clase (assets/web/heroes/*.webp: «<raza>-<clase>.webp» completa y «<raza>-<clase>-busto.webp»).
+import json,glob
+def webp(p): return "data:image/webp;base64,"+base64.b64encode(open(p,"rb").read()).decode()
+HD=os.path.join(H,"..","..","assets","web","heroes")
+art={}
+for f in sorted(glob.glob(os.path.join(HD,"*.webp"))):
+    n=os.path.basename(f)[:-5]
+    if n.endswith("-busto"): art.setdefault(n[:-6],{})["b"]=webp(f)
+    else: art.setdefault(n,{})["f"]=webp(f)
+art={k:v for k,v in art.items() if "f" in v and "b" in v}
+out=out.replace("%%HC_ART%%",json.dumps(art,separators=(",",":")))
 # Fondo del tablero táctico (boceto MX-CRUZ2-A, 900 px). Sus obstáculos están calcados a mano en BOBS de la plantilla.
 out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg"))
 # Narraciones (assets/audio/, MP3): también como data URI. Clave = texto de la mesa (start = Antes de empezar, r1 = Ronda 1…).

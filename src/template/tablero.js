@@ -1404,7 +1404,7 @@ function duTags(a){const out=[];const add=(x,c)=>out.push(`<i${c?` class="${c}"`
  if(a.kind==="h"&&G.mod&&(G.mod.h===-1||G.mod.h===a.g.hi))add("Evento: "+(G.mod.t||"Ruptura"),"ev");
  return out.join("")}
 function duCard(a,side,role,w){const hero=a.kind==="h",boss=!hero&&a.g.boss,[hp,mx]=duHp(a),pct=mx?Math.round(hp/mx*100):0,D=U.duel,P="du"+side;
- const art=hero?(a.h.img?`<img src="${esc(a.h.img)}" alt="">`:duHeroArt(a,P,w)):boss?`<img src="${IMG_RETRATO}" alt="">`:duFoeArt(a,P);
+ const art=hero?((HC.full(a.h)||a.h.img)?`<img src="${esc(HC.full(a.h)||a.h.img)}" alt="">`:duHeroArt(a,P,w)):boss?`<img src="${IMG_RETRATO}" alt="">`:duFoeArt(a,P);
  const sub=hero?`${esc(a.h.prof||"Héroe")}${a.h.raza?" · "+esc(String(a.h.raza).split("·")[0].trim()):""}`:boss?"Jefe · El Umbral":`Borrados${a.g.m0>1?` · ${a.models()} de ${a.g.m0}`:""}`;
  const key=D.kind==="spell"?(side==="R"&&a.kind!==(actor(D.a)||{}).kind?"d":""):side==="L"?"q":"d";
  const rl=splitTop(String(a.rules||"").replace(/^,\s*/,"")).filter(r=>r&&!/^Tough|^Heroe|^Héroe/i.test(r)).slice(0,4);
