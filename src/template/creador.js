@@ -23,7 +23,7 @@ const rnd=a=>a[Math.floor(Math.random()*a.length)];
    Para añadir una raza hay que poner sus láminas en src/img/heroes/ y registrarla en ARC (nombre en inglés de la raza → prefijo del archivo). */
 const ART=%%HC_ART%%;
 const IMGD="img/heroes/";
-const ARC={"Saurians":"saurios","Beastmen":"hombres-bestia","Ratmen":"hombres-rata","War Disciples":"discipulos-guerra","Lust Disciples":"discipulos-lujuria","Plague Disciples":"discipulos-plaga","Change Disciples":"discipulos-cambio","Havoc Warriors":"guerreros-caos"};
+const ARC={"Saurians":"saurios","Beastmen":"hombres-bestia","Ratmen":"hombres-rata","War Disciples":"discipulos-guerra","Lust Disciples":"discipulos-lujuria","Plague Disciples":"discipulos-plaga","Change Disciples":"discipulos-cambio","Havoc Warriors":"guerreros-caos","Daemons of War":"demonios-guerra","Daemons of Lust":"demonios-lujuria","Daemons of Plague":"demonios-plaga","Daemons of Change":"demonios-cambio","High Elves":"altos-elfos","Deep-Sea Elves":"elfos-abisales","Dark Elves":"elfos-oscuros","Wood Elves":"elfos-silvanos"};
 const ACL={"Barbarian":"barbaro","Bard":"bardo","Warlock":"brujo","Cleric":"clerigo","Druid":"druida","Ranger":"explorador","Fighter":"guerrero","Sorcerer":"hechicero","Wizard":"mago","Monk":"monje","Paladin":"paladin","Rogue":"picaro"};
 const art=(r,c)=>{const k=r&&c&&ARC[r.en]&&ACL[c.en]?ARC[r.en]+"-"+ACL[c.en]:null;return k&&ART[k]?{k,f:IMGD+k+".webp",b:IMGD+k+"-busto.webp"}:null};
 

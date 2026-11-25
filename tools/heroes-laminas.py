@@ -42,13 +42,29 @@ RAZAS = {
                          "slightly mutating limbs and feathers-like scales, blue, violet and pink colors",
     "guerreros-caos": "a Havoc Warrior: a massive human warrior in black spiked plate armor with a horned helm, "
                       "chaos star brands and dark iron with gold trim, menacing and grim",
+    "demonios-guerra": "a Daemon of War: a towering muscular red-skinned daemon with curved horns, a fanged snarling face, "
+                       "glowing molten eyes, brass-plated spiked armor accents, clawed hands, cloven hooves and a barbed tail, crimson, brass and black",
+    "demonios-lujuria": "a Daemon of Lust: a sleek, graceful magenta-and-pink skinned daemon with elegant curled horns, slit pupils, "
+                        "a barbed tail and lashing tendrils, ornate jewelry and silks, magenta, pink and gold (tasteful, non-explicit)",
+    "demonios-plaga": "a Daemon of Plague: a bloated pot-bellied daemon with sickly green-grey rotting skin, small horns, oozing pustules and boils, "
+                      "a drooping single eye, tattered rags, flies and slime, sickly green and rust colors",
+    "demonios-cambio": "a Daemon of Change: a lanky flickering iridescent blue, violet and pink daemon with feathered scales, several eyes, "
+                       "asymmetrical shifting horns, tendrils of multicolored flame and bird-like clawed feet",
+    "altos-elfos": "a High Elf: a tall, slender, regal elf with long pointed ears, flowing white-silver hair, noble fair features, "
+                   "elegant white and gold clothes and armor with blue accents",
+    "elfos-abisales": "a Deep-Sea Elf: a graceful elf with pale teal-blue skin, pointed fin-like ears, long dark seaweed-like hair, "
+                      "pearl and coral jewelry, scale-like armor and shell motifs, deep teal and blue colors",
+    "elfos-oscuros": "a Dark Elf: a lithe elf with ashen grey-violet skin, long pointed ears, white hair, cruel angular features, "
+                     "black and purple spiked lacquered armor and clothes with silver trim",
+    "elfos-silvanos": "a Wood Elf: a lithe agile elf with long pointed ears, tanned skin, braided auburn hair, leaf-and-bark clothing and leather, "
+                      "feathers, forest green and brown colors",
     "saurios": "a Saurian: an upright reptilian lizardfolk with a horned dragon-like head, "
                "blue and violet scales, sharp teeth, clawed feet and a thick tail",
 }
 
 # Arma y vestimenta por CLASE (dueño: Nacho, 2026-11-25).
 CLASES = {
-    "barbaro": ("Barbarian", "a huge battle axe with exactly ONE single large curved blade on one side only (NOT double-headed, no second small blade or spike at the other end of the handle), held high in one raised fist, the other hand empty",
+    "barbaro": ("Barbarian", "a huge battle axe with exactly ONE single large curved blade on one side only (NOT double-headed, no second small blade or spike at the other end of the handle), held high in one raised fist; the weapon is ONE plain axe only: a single straight wooden handle with a single axe head, and no sword blade or any other blade attached; the other hand empty",
                 "fur pelts, leather straps, bone trinkets, bare muscled arms, tribal war paint"),
     "bardo": ("Bard", "a lute slung forward and a slim rapier in the other hand",
               "colorful flamboyant doublet, feathered cap, short cape, jaunty and charismatic"),
@@ -58,8 +74,8 @@ CLASES = {
                 "chainmail under a white and gold tabard, sacred vestments, soft golden glow"),
     "druida": ("Druid", "a gnarled wooden staff topped with living branches",
                "leaf and bark armor, moss, vines, feathers, natural green-brown cloak"),
-    "explorador": ("Ranger", "a simple longbow held low in one hand at the side of the body, bow pointing diagonally downward, relaxed ready stance, with one smooth continuous curve and exactly two tips and a thin straight bowstring running clearly in front of the leg from tip to tip; the other hand rests on the belt; quiver of arrows on the back; the bow and string never cross the face or head",
-                   "hooded leather cloak, bracers, practical scout gear in forest greens and browns"),
+    "explorador": ("Ranger", "a simple longbow held low in one hand at the side of the body, bow pointing diagonally downward, both the upper limb and the lower limb of the bow completely visible and unbroken, relaxed ready stance, with one smooth continuous curve and exactly two tips and a thin straight bowstring running clearly in front of the leg from tip to tip; the other hand rests on the belt and holds nothing; quiver of arrows on the back; the bow and string never cross the face or head",
+                   "light armor made only of soft leather and cloth (a leather jerkin, leather bracers and boots, a hooded cloak), absolutely no plate armor and no metal armor, practical scout gear in forest greens and browns"),
     "guerrero": ("Fighter", "a steel longsword held up in front and clearly visible in the foreground, in front of the round shield, with the whole blade and crossguard visible and never hidden behind the shield, and a sturdy round shield on the other arm",
                  "full plate and mail armor, practical battle-worn steel, a red surcoat"),
     "hechicero": ("Sorcerer", "no weapon; a crackling orb of raw magical energy floating above an open palm",
@@ -85,17 +101,33 @@ PERMITIDAS = {
     "discipulos-plaga": ["clerigo", "druida", "brujo", "barbaro", "guerrero"],
     "discipulos-cambio": ["mago", "hechicero", "brujo", "picaro", "bardo"],
     "guerreros-caos": ["guerrero", "barbaro", "paladin", "brujo"],
+    "demonios-guerra": ["barbaro", "guerrero", "brujo"],
+    "demonios-lujuria": ["picaro", "bardo", "brujo", "hechicero"],
+    "demonios-plaga": ["brujo", "barbaro", "guerrero", "druida"],
+    "demonios-cambio": ["hechicero", "mago", "brujo", "picaro"],
+    "altos-elfos": ["mago", "paladin", "guerrero", "bardo", "hechicero", "explorador", "clerigo"],
+    "elfos-abisales": ["brujo", "hechicero", "mago", "picaro", "explorador", "druida"],
+    "elfos-oscuros": ["picaro", "brujo", "hechicero", "guerrero", "explorador"],
+    "elfos-silvanos": ["explorador", "druida", "bardo", "picaro", "mago", "guerrero"],
+}
+
+
+# Ajustes por combinación raza+clase cuando la paleta de la raza pisa el atuendo de la clase.
+EXTRA = {
+    ("altos-elfos", "explorador"): "IMPORTANT: nothing he wears is metallic or silver: a plain brown leather jerkin and brown leather bracers over a cream linen shirt, "
+                                   "brown leather trousers and boots, and a deep green hooded cloak; only a tiny gold clasp; the high-elf nobility shows only in his face, silver hair and graceful posture. ",
 }
 
 
 def prompt(raza: str, clase: str) -> str:
     en, arma, ropa = CLASES[clase]
+    extra = EXTRA.get((raza, clase), "")
     return (
         f"{ESTILO} The hero is {RAZAS[raza]}, a {en} class adventurer. "
-        f"Weapon/focus: {arma}. Outfit: {ropa}. "
+        f"Weapon/focus: {arma}. Outfit: {ropa}. {extra}"
         "Keep the same proportions, line weight and coloring approach as the reference, "
-        "but the race's own color palette and look take priority over the generic class outfit colors, "
-        "but design a new character of this race and class. "
+        "but design a new character of this race and class; the race's own look takes priority over the generic class outfit colors. "
+        "Anatomically clean and coherent: correct number of ears and limbs, every hand clearly gripping its object, no extra, duplicated or floating parts. "
         "Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery."
     )
 
