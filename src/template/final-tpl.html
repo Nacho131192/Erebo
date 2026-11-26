@@ -815,7 +815,10 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .midx .s-live .t small{color:#b9a2ff}
 .midx .s-lock .t{font-style:italic;color:#8a8576}.midx .s-lock .n{color:#8a8576}.midx .s-lock .n::before{opacity:.3}
 .midx .s-done .t::after{content:"";position:absolute;left:-4px;top:2px;width:min(230px,100%);height:22px;background:url(img/mapa/tachon.png) 0 50%/100% 100% no-repeat;opacity:.7;pointer-events:none}
-.mhint{margin:auto 0 0;font:400 12.5px/1.5 var(--rot);letter-spacing:.18em;color:#a7a08c}
+.mhint{margin:auto 0 12px;font:400 12.5px/1.5 var(--rot);letter-spacing:.18em;color:#a7a08c}
+.mwUnlock{align-self:flex-start;padding:7px 16px;border:1px solid rgba(217,184,108,.5);border-radius:999px;background:rgba(10,13,23,.6);font:400 13px var(--rot);letter-spacing:.2em;color:#d9ccaf;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
+.mwUnlock:hover,.mwUnlock:focus-visible{border-color:var(--oro);color:var(--hueso);outline:none}
+.mwUnlock:disabled{opacity:.45;cursor:default;border-color:rgba(217,184,108,.25)}
 /* Botón de lore del selector de misiones y su panel «Lo que aún se recuerda» */
 .mlore{display:flex;align-items:center;gap:14px;width:100%;padding:6px 0;border:0;background:none;color:var(--hueso);text-align:left;cursor:pointer}
 .mlore i{flex:none;width:46px;height:46px;background:url(img/mapa/sello.png) center/contain no-repeat;transition:transform .5s cubic-bezier(.3,.7,.2,1)}
@@ -840,7 +843,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 /* La lámina (2752×1536, Nano Banana Pro) va en un escenario que la cámara escala para cubrir la pantalla; encima, la niebla (máscara con borde de aguada),
    las nubes, las pisadas, los estandartes (tiras de fotogramas) y sus cartelas. Coordenadas en px de la lámina (MWG). */
 .mwView{position:absolute;inset:0;overflow:hidden}
-.mwStage{position:absolute;left:0;top:0;width:2752px;height:1536px;transform-origin:0 0;transition:transform 1.1s cubic-bezier(.25,.7,.2,1);-webkit-mask:linear-gradient(90deg,transparent 0,#000 160px);mask:linear-gradient(90deg,transparent 0,#000 160px)}
+.mwStage{position:absolute;left:0;top:0;width:2752px;height:1536px;transform-origin:0 0;transition:transform 1.1s cubic-bezier(.25,.7,.2,1);-webkit-mask:linear-gradient(90deg,transparent 0,#000 160px),linear-gradient(180deg,transparent 0,#000 150px);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent 0,#000 160px),linear-gradient(180deg,transparent 0,#000 150px);mask-composite:intersect}
 .mwStage.instant{transition:none}
 .mwMap{position:absolute;inset:0;width:100%;height:100%;display:block}
 .mwMap .rv{transform-box:fill-box;transform-origin:center;transition:transform 2.2s .3s cubic-bezier(.3,.6,.2,1)}
@@ -868,9 +871,9 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .mwMk.s-lock .glow{display:none}
 .mwMk.ign .spr{opacity:0;filter:blur(8px)}.mwMk.ign .glow{opacity:0;animation:none}
 .mwMk.ign.go .spr{opacity:1;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}.mwMk.ign.go .glow{opacity:.75;animation:mwFlick 2.3s ease-in-out infinite}
-.mwMk .lab{position:absolute;left:0;top:8px;transform:translateX(-50%);padding:22px 74px 28px;white-space:nowrap;text-align:center;pointer-events:none;background:url(img/mapa/cartela-pergamino.png) center/100% 100% no-repeat;transition:opacity .35s}
-.mwMk .lab b{display:block;font:400 40px/1 var(--tit);color:#2a1d12}
-.mwMk .lab small{display:block;margin-top:6px;font:400 21px var(--rot);letter-spacing:.2em;color:#7b4f22}
+.mwMk .lab{position:absolute;left:0;top:8px;transform:translateX(-50%);padding:18px 60px 23px;white-space:nowrap;text-align:center;pointer-events:none;background:url(img/mapa/cartela-pergamino.png) center/100% 100% no-repeat;transition:opacity .35s}
+.mwMk .lab b{display:block;font:400 32px/1 var(--tit);color:#2a1d12}
+.mwMk .lab small{display:block;margin-top:5px;font:400 17px var(--rot);letter-spacing:.2em;color:#7b4f22}
 .mwMk.s-lock .lab{opacity:0}.mwMk.s-lock:hover .lab,.mwMk.s-lock.on .lab{opacity:1}.mwMk.s-lock .lab b{font-style:italic}
 .mwMk.under .lab{opacity:0!important}
 .mapv:not(.popoff) .mwMk.on .lab{opacity:0}
@@ -3154,7 +3157,8 @@ const MIS=[
 /* Campañas de Érebo: de momento solo una; el resto, cartas boca abajo. */
 const CAMPS=[{n:"I",t:"El Pueblo Sin Nombre",h:"Un contrato del Filo os lleva a un pueblo al pie del Muro del que nadie recuerda el nombre. <em>Lo que allí se borra no vuelve.</em>",ac:"#5f86d6",on:true},{n:"II",t:"La Ruptura de Sael",h:"El agua olvidó la luna y la gravedad. Las mareas llegan a deshora, la lluvia sube hacia el cielo y, en una isla lejana, una fortaleza guarda lo que el mar no quiere devolver. <em>Allí empezó la Ruptura de Sael.</em>",ac:"#6f9ab6"}];
 const won=()=>S.prim&&S.end&&!S.defeat;
-const mst=i=>i===1?(S.fin?"open":"lock"):i?"lock":won()?"done":S.round?"live":"open";
+let ALLOPEN=false;try{ALLOPEN=localStorage.getItem("psn-all-open")==="1"}catch(e){}
+const mst=i=>ALLOPEN&&i?"open":i===1?(S.fin?"open":"lock"):i?"lock":won()?"done":S.round?"live":"open";
 const SHORT={open:"Disponible",live:"En curso",done:"Cumplida",lock:"Sellada"};
 const stl=i=>{const s=mst(i);return s==="live"?`Partida en curso · Ronda ${S.round}`:s==="done"?"Cumplida":s==="open"?"Lista para jugar":"Sellada"};
 function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
@@ -3341,8 +3345,8 @@ function sideTerr(ext){if(!ext)return"";if(SIDEC[ext])return SIDEC[ext];const R=
    MWG.m = estandarte de cada misión, MWG.w = puntos de paso de cada tramo del camino (desde Varek's Hold). Si cambia la lámina, hay que volver a medirlos.
    Lo no descubierto queda bajo un velo de aguada y nubes; la niebla se retira hasta la misión más lejana desbloqueada (se recuerda lo visto para animar solo lo nuevo). */
 const MWG={town:[1530,1300],tl:[1530,1500],
- m:[[1270,1120],[1660,960],[1125,745],[1650,690],[540,470],[1350,330]],
- w:[[[1400,1210]],[[1470,1050]],[[1400,900],[1250,820]],[[1450,760],[1560,720]],[[1450,600],[1150,500],[850,420]],[[700,400],[1040,340]]],
+ m:[[1270,1120],[1830,950],[1206,775],[1692,680],[540,470],[1350,330]],
+ w:[[[1400,1210]],[[1520,1060]],[[1600,920],[1400,840]],[[1400,770],[1560,720]],[[1450,600],[1150,500],[850,420]],[[700,400],[1040,340]]],
  focus:[1400,850]};
 const MWS={open:["estandarte",8,1.1],live:["estandarte",8,1.1],done:["estandarte",8,1.4],lock:["estandarte-roto",4,1.6,1]};
 const FKEY="psn-map-seen2";
@@ -3394,13 +3398,26 @@ const MWC={tx:0,ty:0,s:1,px:0,py:0};
 function mwCam(instant){const v=$("#home .mwView"),st=$("#home .mwStage");if(!v||!st||$("#home").hidden)return;
  const r=v.getBoundingClientRect(),W=r.width,H=r.height;if(!W||!H)return;
  const stack=STACK(),side=$("#home .mside"),L=stack?0:Math.max(0,side.getBoundingClientRect().right-r.left-20);
- const s=Math.max(W/2752,H/1536)*(stack?1.5:1.12),sel=MWG.m[M.sel]||MWG.m[0],fx=MWG.focus[0]*.8+sel[0]*.2,fy=MWG.focus[1]*.8+sel[1]*.2;
- let tx=L+(W-L)/2-fx*s+MWC.px,ty=H/2-fy*s+MWC.py;
- const sx=tx+sel[0]*s,lo=L+Math.min(170,(W-L)/4),hi=W-Math.min(170,(W-L)/4);if(sx<lo)tx+=lo-sx;else if(sx>hi)tx-=sx-hi;
- const sy=ty+sel[1]*s,m=Math.min(140,H/4);if(sy<m)ty+=m-sy;else if(sy>H-m)ty-=sy-(H-m);
- tx=Math.min(stack?0:L*.7,Math.max(W-2752*s,tx));ty=Math.min(0,Math.max(H-1536*s,ty));
+ /* escala: la lámina cubre la altura (y el ancho); en móvil, un poco más cerca */
+ /* escala: la lámina cubre el hueco; si las cartelas no caben a esa escala, se aleja un poco (hasta un 12 %) */
+ const s0=Math.max(W/2752,H/1536)*(stack?1.5:1),padL=stack?12:95,padR=16;
+ const labs=Array.from(document.querySelectorAll("#home .mwMk .lab"));
+ const lwU=labs.length?Math.max(...labs.map(l=>l.offsetWidth))/2:0;
+ let s=s0,lo,hi,cov0,cov1;
+ for(let k=0;k<=12;k++){
+  s=s0*(1-k*.01);
+  const xs=MWG.m.map(p=>p[0]*s),sx0=Math.min(...xs),sx1=Math.max(...xs),lw=lwU*s;
+  cov0=W-2752*s;cov1=stack?0:L;
+  lo=Math.max(cov0,L+padL+lw-sx0);hi=Math.min(cov1,W-padR-lw-sx1);
+  if(lo<=hi)break;
+  if(k===12){lo=cov0;hi=cov1}
+ }
+ const sel=MWG.m[M.sel]||MWG.m[0],fx=MWG.focus[0]*.8+sel[0]*.2,fy=MWG.focus[1]*.8+sel[1]*.2;
+ const want=L+(W-L)/2-fx*s+MWC.px;
+ const tx=Math.min(hi,Math.max(lo,want));
+ /* vertical: la lámina cubre la altura */
+ const ty=1536*s<H?H-1536*s:Math.min(0,Math.max(H-1536*s,H/2-fy*s+MWC.py));
  st.classList.toggle("instant",!!instant);st.style.transform=`translate(${f(tx)}px,${f(ty)}px) scale(${s.toFixed(4)})`;Object.assign(MWC,{tx,ty,s});
- /* lo que queda bajo la columna no enseña su cartela */
  $$m(".mwMk").forEach(k=>k.classList.toggle("under",!stack&&tx+MWG.m[+k.dataset.k][0]*s<L+30))}
 let mwRz=0;addEventListener("resize",()=>{clearTimeout(mwRz);mwRz=setTimeout(()=>{if(VIEW==="home"){mwSize();mwCam(true);placePop()}},120)});
 /* Motas de pigmento que suben de los estandartes encendidos (~18 fps, solo con el mapa a la vista). */
@@ -3429,7 +3446,7 @@ function popHTML(){const i=M.sel,m=MIS[i],st=mst(i);
  const meta=`<div class="pzmeta"><div class="pzm" role="img" aria-label="De dos a cuatro héroes"><div class="pzheroes">${PZ_SIL.map(s=>`<span class="pzcam">${s}</span>`).join("")}</div><span class="pzlab">Héroes</span></div><i class="pzvr"></i><div class="pzm" role="img" aria-label="Jefe opcional"><span class="pzcam big">${PZ_BOSS}</span><span class="pzlab">Jefe <em class="pzopt">opcional</em></span></div></div>`;
  let b;
  if(st==="lock")b=`<p class="pzhook blur" aria-hidden="true">${m.h}</p><div class="pzlock">${LOCK}<span>Sellada. Se abrirá al cumplir la misión ${MIS[i-1].n}; todavía está en preparación.</span></div>`;
- else if(i===1&&st==="open")b=`<p class="pzhook">${m.h}</p>${PZ_ORN}${meta}<p class="pzst"><i></i>Desbloqueada. Su mesa llegará en una versión futura.</p>`;
+ else if(i>0&&st==="open")b=`<p class="pzhook">${m.h}</p>${PZ_ORN}${meta}<p class="pzst"><i></i>Desbloqueada. Su mesa llegará en una versión futura.</p>`;
  else{b=`<p class="pzhook">${m.h}</p>${PZ_ORN}${meta}`;
   if(st==="done"){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0);b+=`<p class="pzst"><i></i>Cumplida</p><div class="pzres"><div><span>Final</span><b>${S.dead?"Heraldo desaparecido":"Sin pelea de jefe"}</b></div><div><span>Por héroe</span><b>${xp} XP</b></div><div><span>Paga</span><b>${5*S.d+(S.dead?5:0)} oro</b></div></div><button class="pzcta ghost" type="button" data-nav="m1">Ver la misión</button>`}
   else{const mk=(S.mk||[]).filter(Boolean).length;if(st==="live")b+=`<div class="pzchips"><span>Alerta <b>${S.al}/6</b></span><span><b>${mk}</b> de 2 rastros</span></div>`;
@@ -3438,7 +3455,7 @@ function popHTML(){const i=M.sel,m=MIS[i],st=mst(i);
 function idxHTML(){return `<p class="keb">La ruta hacia el norte</p>`+MIS.map((x,k)=>{const s=mst(k);return `<button type="button" class="s-${s}${k===M.sel?" on":""}" data-mi="${k}"><span class="n">${x.n}</span><span class="t">${x.t}<small>${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}</small></span></button>`}).join("")}
 function map(){const el=$("#home"),sts=MIS.map((_,i)=>mst(i)),n=sts.filter(s=>s!=="lock").length;
  el.classList.toggle("popoff",!M.open);
- el.innerHTML=`<div class="mwView"><div class="mwStage"><svg class="mwMap" viewBox="0 0 2752 1536" role="img" aria-label="Mapa a tinta y acuarela de las tierras al norte del Muro con las seis misiones">${mwSVG(sts)}</svg><div class="mwFogD">${mwDrifts(mwFar(sts))}</div><div class="mwMarks">${mwMarks(sts)}</div></div><div class="mwVig"></div><div class="mwGrain"></div><canvas class="mwMotes" aria-hidden="true"></canvas></div><div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${sts.map(s=>`<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`).join("")}</i></div></header><button class="mlore" type="button" data-lore aria-haspopup="dialog"><i aria-hidden="true"></i><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un estandarte del mapa o una misión de la lista para ver su ficha.</p></div><div class="mmapw"></div><div class="mscrim" id="mscrim"></div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>${PZ_DEFS}`;
+ el.innerHTML=`<div class="mwView"><div class="mwStage"><svg class="mwMap" viewBox="0 0 2752 1536" role="img" aria-label="Mapa a tinta y acuarela de las tierras al norte del Muro con las seis misiones">${mwSVG(sts)}</svg><div class="mwFogD">${mwDrifts(mwFar(sts))}</div><div class="mwMarks">${mwMarks(sts)}</div></div><div class="mwVig"></div><div class="mwGrain"></div><canvas class="mwMotes" aria-hidden="true"></canvas></div><div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${sts.map(s=>`<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`).join("")}</i></div></header><button class="mlore" type="button" data-lore aria-haspopup="dialog"><i aria-hidden="true"></i><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un estandarte del mapa o una misión de la lista para ver su ficha.</p><button class="mwUnlock" type="button" data-unlock${ALLOPEN?" disabled":""}>${ALLOPEN?"Todas desbloqueadas":"Desbloquear todas"}</button></div><div class="mmapw"></div><div class="mscrim" id="mscrim"></div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>${PZ_DEFS}`;
  mwSize();mwCam(true)}
 /* Coloca la ficha centrada en el hueco libre del mapa (con el puñal incluido) y la reduce si no cabe. */
 function placePop(){const v=$("#home"),pop=$("#mpop");if(!pop||v.hidden)return;
@@ -3493,6 +3510,7 @@ function loreOpen(from){if(document.getElementById("lorOv"))return;loreFrom=from
  document.body.appendChild(o);o.querySelector(".lorx").focus({preventScroll:true})}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("lorOv")){e.preventDefault();e.stopPropagation();loreClose()}},true);
 $("#home").addEventListener("click",e=>{const lb=e.target.closest("[data-lore]");if(lb){loreOpen(lb);return}
+ if(e.target.closest("[data-unlock]")){ALLOPEN=true;try{localStorage.setItem("psn-all-open","1")}catch(x){}map();mapAfter();return}
  if(e.target.closest("[data-nav]"))return;
  if(e.target.closest("[data-mclose]")||e.target.id==="mscrim"){M.open=false;$("#home").classList.add("popoff");return}
  const m=e.target.closest("[data-mi]");if(m)mselect(+m.dataset.mi)});
