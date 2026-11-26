@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1376,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "An empty ornate cartographer's cartouche from an old fantasy map: a horizontal unrolled scroll banner with curling ends and small flourishes, black dip-pen ink lines with a soft ochre and cream watercolor wash inside, the centre left empty for writing, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

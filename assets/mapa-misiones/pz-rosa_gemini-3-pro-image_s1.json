@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 1536,
+  "alto": 1536,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "An elegant hand-drawn compass rose from an old fantasy explorer's map, eight points, drawn with a black dip pen and washed with transparent ochre and indigo watercolor, fine ornamental ring, a small north star on top, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

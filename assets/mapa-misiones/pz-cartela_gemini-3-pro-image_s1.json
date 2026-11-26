@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 1536,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "An empty ornate cartographer's cartouche from an old fantasy map: a horizontal unrolled scroll banner with curling ends and small flourishes, black dip-pen ink lines with a soft ochre and cream watercolor wash inside, the centre left empty for writing, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

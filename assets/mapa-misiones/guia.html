@@ -1,0 +1,55 @@
+<!doctype html><meta charset="utf-8"><style>html,body{margin:0;background:#f4efe4}svg{display:block;width:1792px;height:1008px}
+.mt{fill:#e9e2d2;stroke:#2a2118;stroke-width:1.3;stroke-linejoin:round}.mts{fill:#2a2118;opacity:.25}
+.tr{fill:#9fb08a;stroke:#2a2118;stroke-width:1.1}.trs{fill:none;stroke:#2a2118;stroke-width:.8}.tk{fill:none;stroke:#2a2118;stroke-width:1.3}
+.mhl{fill:none;stroke:#2a2118;stroke-width:1.3;opacity:.7}.wt{fill:none;stroke:#4f7fae;stroke-width:3;stroke-linecap:round}
+.lk{fill:#b9cfe2;stroke:#4f7fae;stroke-width:1.8}.rp{fill:none;stroke:#4f7fae;stroke-width:1.2;opacity:.6}
+.gl{fill:#e9e2d2;stroke:#2a2118;stroke-width:1.4}.fr{fill:none;stroke:#7a3a2a;stroke-width:1.6;stroke-dasharray:16 6 3 6}</style>
+<svg id="s" viewBox="-300 0 1422 800"></svg><script>function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const f=n=>+n.toFixed(1);
+const P=[[395,598],[652,498],[316,408],[614,312],[360,212],[590,106]],VK=[500,742];
+const WP=[VK,[452,676],P[0],[528,566],P[1],[486,462],P[2],[468,352],P[3],[488,256],P[4],[470,150],P[5]];
+const SEG=(()=>{const o=[];for(let i=0;i<WP.length-1;i++){const p0=WP[i-1]||WP[i],p1=WP[i],p2=WP[i+1],p3=WP[i+2]||p2;o.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}return o})();
+const cpart=s=>`C${f(s[1][0])} ${f(s[1][1])} ${f(s[2][0])} ${f(s[2][1])} ${s[3][0]} ${s[3][1]}`;
+const legD=k=>`M${SEG[2*k][0][0]} ${SEG[2*k][0][1]}${cpart(SEG[2*k])}${cpart(SEG[2*k+1])}`;
+const RP=(()=>{const o=[];for(const s of SEG)for(let t=0;t<=1;t+=.05){const u=1-t;o.push([u*u*u*s[0][0]+3*u*u*t*s[1][0]+3*u*t*t*s[2][0]+t*t*t*s[3][0],u*u*u*s[0][1]+3*u*u*t*s[1][1]+3*u*t*t*s[2][1]+t*t*t*s[3][1]])}return o})();
+const FOR=[[720,505,205,92],[172,612,96,52],[842,392,92,58]],LAKE=[165,318,72,38];
+const inE=(x,y,e,m=1)=>((x-e[0])/(e[2]*m))**2+((y-e[1])/(e[3]*m))**2<1;
+function clear(x,y,pr=26){
+ if(P.some(p=>Math.hypot(p[0]-x,p[1]-y)<64))return false;
+ if(Math.hypot(VK[0]-x,VK[1]-y)<80)return false;
+ if(RP.some(p=>Math.hypot(p[0]-x,p[1]-y)<pr))return false;
+ if(inE(x,y,LAKE,1.5))return false;
+ if(x<360&&y<150)return false;if(x>820&&y<200)return false;if(x<210&&y>690)return false;
+ return true}
+function blob(r,n,R,j){const pts=[];for(let k=0;k<n;k++){const a=k/n*Math.PI*2,rr=r+(R()*2-1)*j;pts.push([rr*Math.cos(a),rr*Math.sin(a)])}
+ let d="";for(let k=0;k<n;k++){const a=pts[k],b=pts[(k+1)%n],m=[(a[0]+b[0])/2,(a[1]+b[1])/2];d+=(k?"":`M${f((pts[n-1][0]+a[0])/2)} ${f((pts[n-1][1]+a[1])/2)}`)+`Q${f(a[0])} ${f(a[1])} ${f(m[0])} ${f(m[1])}`}return d+"Z"}
+let TERR=null;
+function terrain(){if(TERR)return TERR;const R=rng(11);let s="";
+ s+=`<path class="wt" d="M196 346C238 392 252 432 224 482S190 562 232 612S264 692 238 744S252 792 262 812"/>`;
+ s+=`<ellipse class="lk" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]}" ry="${LAKE[3]}"/><ellipse class="rp" cx="${LAKE[0]}" cy="${LAKE[1]}" rx="${LAKE[2]+10}" ry="${LAKE[3]+8}" stroke-dasharray="3 6"/><path class="rp" d="M128 312h22M168 326h26M142 336h14M176 300h18"/>`;
+ for(let k=0,c=0;k<400&&c<34;k++){const x=60+R()*880,y=470+R()*215;if(!clear(x,y)||FOR.some(e=>inE(x,y,e,1.1)))continue;c++;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}M${f(x+3)} ${f(y-5)}l4 4"/>`}
+ const mts=[];for(let k=0;k<1600&&mts.length<84;k++){const x=70+R()*860,y=150+R()*235;if(!clear(x,y,30)||FOR.some(e=>inE(x,y,e,1.15)))continue;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+ mts.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const w=20*k,h=25*k,px=x-w*.1,py=y-h;s+=`<path class="mt" d="M${f(x-w)} ${f(y)}L${f(px)} ${f(py)}L${f(x+w)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+w)} ${f(y)}L${f(x+w*.2)} ${f(y)}Q${f(x+w*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+ const trs=[];for(const e of FOR){const want=Math.round(e[2]*e[3]/140);for(let k=0,c=0;k<want*12&&c<want;k++){const x=e[0]+(R()*2-1)*e[2],y=e[1]+(R()*2-1)*e[3];if(!inE(x,y,e)||!clear(x,y,20))continue;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;c++;trs.push({x,y,s:.8+R()*.45})}}
+ trs.sort((a,b)=>a.y-b.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+ s+=`<path class="fr" d="M24 660C200 648 300 672 450 658S700 646 820 662S940 654 996 660"/>`;
+ [-2.5,-1.95,-.55,.25,2.35,2.95].forEach((a,k)=>{const r=44+(k%2)*9,x=P[0][0]+r*Math.cos(a),y=P[0][1]+r*Math.sin(a)+6;s+=`<path class="gl" d="M${f(x-6)} ${f(y)}v-7l6-6 6 6v7z"/>`});
+ for(let k=0;k<26;k++){if(k%9===4)continue;const a=k/26*Math.PI*2,x=P[2][0]+38*Math.cos(a),y=P[2][1]+38*Math.sin(a);s+=`<path class="tk" stroke-width="1.6" d="M${f(x)} ${f(y)}l${f(Math.cos(a)*6)} ${f(Math.sin(a)*6-3)}"/>`}
+ {const x=P[3][0]-52,y=P[3][1]+22;s+=`<path class="tk" stroke-width="1.8" d="M${x-9} ${y-9}l18 18M${x+9} ${y-9}l-18 18M${x-11} ${y+5}l5 5M${x+11} ${y+5}l-5 5"/>`}
+ {const x=P[4][0]+52,y=P[4][1]+30;s+=`<path class="gl" d="M${x-11} ${y}v-11a11 11 0 0 1 22 0v11z"/><path class="tk" d="M${x-15} ${y+3}h30M${x-4} ${y}v-6a4 4 0 0 1 8 0v6"/>`}
+ return TERR=s}
+const SIDEC={};
+function sideTerr(ext){if(!ext)return"";if(SIDEC[ext])return SIDEC[ext];const R=rng(31);let s="";
+ for(const[a,b]of[[-ext,0],[1000,1000+ext]]){const w=b-a;if(w<40)continue;
+  const mts=[];for(let k=0;k<900&&mts.length<Math.round(w/14);k++){const x=a+20+R()*(w-40),y=170+R()*220;if(mts.some(m=>Math.hypot(m.x-x,(m.y-y)*1.5)<36))continue;mts.push({x,y,s:.75+R()*.5+(390-y)/420})}
+  mts.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const W=20*k,h=25*k,px=x-W*.1,py=y-h;s+=`<path class="mt" d="M${f(x-W)} ${f(y)}L${f(px)} ${f(py)}L${f(x+W)} ${f(y)}"/><path class="mts" d="M${f(px)} ${f(py)}L${f(x+W)} ${f(y)}L${f(x+W*.2)} ${f(y)}Q${f(x+W*.05)} ${f(y-h*.45)} ${f(px)} ${f(py)}Z"/>`});
+  const cx=a+w/2,trs=[];for(let k=0;k<700&&trs.length<Math.round(w/9);k++){const x=cx+(R()*2-1)*w*.42,y=520+R()*125;if(trs.some(t=>Math.hypot(t.x-x,(t.y-y)*1.3)<15))continue;trs.push({x,y,s:.8+R()*.45})}
+  trs.sort((p,q)=>p.y-q.y).forEach(({x,y,s:k})=>{const r=6.5*k,cy=y-6*k;s+=`<path class="tk" d="M${f(x)} ${f(cy+r-1)}V${f(y+2)}"/><circle class="tr" cx="${f(x)}" cy="${f(cy)}" r="${f(r)}"/><path class="trs" d="M${f(x+r*.35)} ${f(cy-r*.7)}A${f(r)} ${f(r)} 0 0 1 ${f(x+r*.35)} ${f(cy+r*.7)}"/>`});
+  for(let k=0;k<Math.round(w/22);k++){const x=a+15+R()*(w-30),y=440+R()*70;s+=`<path class="mhl" d="M${f(x-13)} ${f(y)}Q${f(x)} ${f(y-11)} ${f(x+13)} ${f(y)}"/>`}}
+ return SIDEC[ext]=s}
+const ext=300;let s=`<rect x="-300" width="1422" height="800" fill="#f4efe4"/>`+terrain()+sideTerr(ext);
+s+=`<path d="M-300 776C300 768 700 782 1122 772" fill="none" stroke="#2a2118" stroke-width="12"/>`;
+s+=`<g fill="#e9e2d2" stroke="#2a2118" stroke-width="1.6"><path d="M474 760v-22h10v22z"/><path d="M472 738l7-9 7 9z"/><path d="M491 760v-30h15v30z"/><path d="M489 730l9.5-12 9.5 12z"/><path d="M513 760v-19h10v19z"/><path d="M511 741l7-8 7 8z"/></g>`;
+
+P.forEach((p,i)=>{s+=`<circle cx="${p[0]}" cy="${p[1]}" r="10" fill="none" stroke="#c0392b" stroke-width="3"/>`});
+document.getElementById("s").innerHTML=s;</script>

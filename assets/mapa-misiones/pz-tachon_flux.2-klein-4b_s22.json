@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 1376,
+  "alto": 384,
+  "referencias": [],
+  "prompt": "A single hand-drawn horizontal strike-through made with a dip pen in black ink, two quick slightly wavy overlapping strokes like crossing out a word in a journal, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 1536,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "A sprite sheet of eight animation frames laid out in a perfectly regular grid of 4 columns and 2 rows, each frame centred in its own equal cell with generous empty margin, read left to right and top to bottom, forming one smooth seamless loop (frame 8 leads back into frame 1). Hand-painted with loose black dip-pen ink outlines and transparent watercolor washes, exactly the technique of image 1. The object is identical in every frame, same size, same position, same viewpoint (seen slightly from above, three-quarter view); only the animated part changes from frame to frame. Pure plain white background, no grid lines, no borders, no text, no numbers, no shadow on the ground beyond the object itself. The object: a cold dead campfire, charred grey logs and a mound of pale ash inside a ring of rough stones, painted in cool grey and blue-grey. The animation: a single thin wisp of grey smoke curling up from the ash and slowly drifting, its shape changing between frames.",
+  "dimensiones_servidor": null
+}

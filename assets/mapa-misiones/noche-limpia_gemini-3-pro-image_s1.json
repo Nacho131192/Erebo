@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 1536,
+  "referencias": [
+    "assets/mapa-misiones/mapa-noche_gemini-3-pro-image_s2.jpg"
+  ],
+  "prompt": "Edit this painting. Remove the small hand-written numbers 1, 2, 3, 4, 5 and 6 and paint the background over them so no trace remains. Change nothing else at all: same composition, same colours, same everything.",
+  "dimensiones_servidor": null
+}

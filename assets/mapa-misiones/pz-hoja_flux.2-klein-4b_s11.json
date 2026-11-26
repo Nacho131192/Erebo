@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 768,
+  "alto": 1376,
+  "referencias": [],
+  "prompt": "A single tall page torn from an old travel journal, warm cream watercolor paper with softly torn deckled edges, faint ruled lines, a few pale ochre and grey stains and a small coffee ring near the corner, slightly curled, flat top-down view, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

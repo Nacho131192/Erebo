@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 1536,
+  "alto": 1536,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "A small round stamp-like emblem drawn with a black dip pen: a crescent eclipse inside a thin double ring, with a light indigo watercolor wash, like a mark on an old map, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

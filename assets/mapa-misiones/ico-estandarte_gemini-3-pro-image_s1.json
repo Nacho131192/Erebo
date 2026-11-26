@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 1536,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "A sprite sheet of eight animation frames laid out in a perfectly regular grid of 4 columns and 2 rows, each frame centred in its own equal cell with generous empty margin, read left to right and top to bottom, forming one smooth seamless loop (frame 8 leads back into frame 1). Hand-painted with loose black dip-pen ink outlines and transparent watercolor washes, exactly the technique of image 1. The object is identical in every frame, same size, same position, same viewpoint (seen slightly from above, three-quarter view); only the animated part changes from frame to frame. Pure plain white background, no grid lines, no borders, no text, no numbers, no shadow on the ground beyond the object itself. The object: a tall wooden pole planted in a small pile of stones with a long swallow-tailed cloth banner hanging from a crossbar, the banner painted in ochre and burnt sienna. The animation: the banner waving in the night wind, its folds and tails rippling and changing between frames.",
+  "dimensiones_servidor": null
+}

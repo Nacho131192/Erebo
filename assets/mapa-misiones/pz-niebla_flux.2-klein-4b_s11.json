@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1376,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Soft drifting clouds of mist painted in watercolor, wet-in-wet, pale blue-grey and lavender-grey pigment with feathered blooms and soft hard-edged backruns, several separate cloud banks spread across the sheet, transparent and airy. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,433 @@
+<title>Selector de misiones a tinta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+/* Maqueta del selector de misiones (2026-11-26). Láminas: Nano Banana Pro (Pollinations). Todo es de la maqueta: nada está aplicado en la página. */
+:root{color-scheme:dark;--rot:"IM Fell English SC","IM Fell English",Georgia,serif;--tit:"IM Fell English",Georgia,serif;--serif:"Cormorant Garamond",Georgia,serif;
+ --hueso:#efe3c8;--oro:#e3c98d;--ocre:#c39352;--tintaN:#160f09;--tintaS:#2b2016;--colW:440px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#070910;color:var(--hueso);overflow:hidden;font-family:var(--serif)}
+button{font:inherit;color:inherit;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- escenario: la lámina a 2752×1536, escalada para cubrir la pantalla ---------- */
+#view{position:fixed;inset:0;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:2752px;height:1536px;-webkit-mask:linear-gradient(90deg,transparent 0,#000 160px);mask:linear-gradient(90deg,transparent 0,#000 160px);transform-origin:0 0;will-change:transform;transition:transform 1.1s cubic-bezier(.25,.7,.2,1)}
+#stage.instant{transition:none}
+#map{position:absolute;inset:0;width:100%;height:100%;display:block}
+.rv{transform-box:fill-box;transform-origin:center;transition:transform 2.2s cubic-bezier(.3,.6,.2,1)}
+.fogr{transition:transform 2.6s cubic-bezier(.3,.6,.2,1)}
+.cloud{animation:cdrift 70s linear infinite alternate}
+.cloud:nth-of-type(2n){animation-duration:95s;animation-direction:alternate-reverse}
+@keyframes cdrift{to{transform:translateX(160px)}}
+
+/* ruta */
+.leg{fill:none}
+.leg.ink{stroke:var(--rinkc);stroke-width:5;stroke-linecap:round;stroke-dasharray:2 16;filter:url(#inkf)}
+.leg.ink.draw{stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:ldraw 2.4s ease forwards}
+@keyframes ldraw{to{stroke-dashoffset:0}}
+.leg.ghost{stroke:var(--rghost);stroke-width:2.4;stroke-dasharray:8 14;opacity:.55;filter:url(#pencilf)}
+.fp{fill:var(--rinkc);opacity:0;animation:fpIn .5s ease forwards}
+@keyframes fpIn{from{opacity:0;transform:scale(.4)}to{opacity:.9}}
+.fp{transform-box:fill-box;transform-origin:center}
+
+/* marcadores */
+.mk{position:absolute;width:0;height:0}
+.mk .hit{position:absolute;left:-95px;top:-170px;width:190px;height:200px;border:0;background:none;padding:0;border-radius:50%}
+.mk .hit:focus-visible{outline:2px dashed var(--oro);outline-offset:6px}
+.mk .spr{position:absolute;left:-90px;top:-160px;width:180px;height:180px;background-repeat:no-repeat;background-size:calc(var(--n)*100%) 100%;pointer-events:none;
+ animation:spr var(--d) steps(var(--n),jump-none) infinite;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}
+.mk.alt .spr{animation-direction:alternate}
+@keyframes spr{from{background-position:0 0}to{background-position:100% 0}}
+.mk .glow{position:absolute;left:-170px;top:-250px;width:340px;height:340px;border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+ background:radial-gradient(circle,var(--gc) 0,transparent 62%);opacity:.75;animation:flick 2.3s ease-in-out infinite}
+[data-map="pergamino"] .mk .glow{mix-blend-mode:multiply;opacity:.35;background:radial-gradient(circle,var(--gcp) 0,transparent 60%)}
+@keyframes flick{0%,100%{opacity:.7;transform:scale(1)}22%{opacity:.85;transform:scale(1.04)}48%{opacity:.62;transform:scale(.97)}71%{opacity:.8}}
+.mk.s-open{--gc:rgba(255,150,60,.55);--gcp:rgba(214,120,40,.6)}
+.mk.s-live{--gc:rgba(165,135,255,.6);--gcp:rgba(120,90,210,.6)}
+.mk.s-done{--gc:rgba(255,206,110,.45);--gcp:rgba(196,150,50,.55)}
+.mk.s-lock .glow{display:none}
+.mk .spr,.mk .glow,.mk .lab{transition:opacity 1.4s ease,filter 1.4s ease}
+.mk.ign .spr{opacity:0;filter:blur(8px)}.mk.ign .glow{opacity:0;animation:none}
+.mk.ign.go .spr{opacity:1;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}.mk.ign.go .glow{opacity:.75;animation:flick 2.3s ease-in-out infinite}
+/* marca de la elegida en el mapa */
+.mk .sel{position:absolute;left:-150px;top:-190px;width:300px;height:250px;pointer-events:none;opacity:0;transition:opacity .4s}
+.mk.on .sel{opacity:1}
+[data-sel="circ"] .mk .sel{background:url(mapa-misiones-img/ui/circulo.png) center/100% 100% no-repeat;clip-path:circle(0 at 50% 50%);transition:clip-path .9s cubic-bezier(.3,.7,.2,1),opacity .2s}
+[data-sel="circ"] .mk.on .sel{clip-path:circle(75% at 50% 50%)}
+[data-map="pergamino"][data-sel="circ"] .mk .sel{filter:brightness(.45) sepia(1) saturate(2)}
+[data-sel="pinc"] .mk .sel{display:none}
+[data-sel="pinc"] .mk.on .sel{clip-path:inset(0 0 0 0)}
+[data-sel="man"] .mk .sel{left:-200px;top:-230px;width:400px;height:340px;background:radial-gradient(ellipse at 50% 55%,rgba(195,147,82,.55),rgba(195,147,82,.18) 45%,transparent 66%);
+ -webkit-mask:url(mapa-misiones-img/ui/mancha-mascara.png) center/100% 100% no-repeat;mask:url(mapa-misiones-img/ui/mancha-mascara.png) center/100% 100% no-repeat;transform:scale(.6);transition:transform .9s cubic-bezier(.3,.7,.2,1),opacity .5s}
+[data-sel="man"] .mk.on .sel{transform:scale(1)}
+[data-map="noche"][data-sel="man"] .mk .sel{mix-blend-mode:screen}
+/* rótulos */
+.mk .lab{position:absolute;left:0;top:22px;transform:translateX(-50%);text-align:center;white-space:nowrap;pointer-events:none;transition:opacity .35s}
+.mk .lab b{display:block;font:400 40px/1 var(--tit);letter-spacing:.01em;color:var(--labc);text-shadow:var(--labh)}
+.mk .lab small{display:block;margin-top:6px;font:400 21px var(--rot);letter-spacing:.2em;color:var(--labs);text-shadow:var(--labh)}
+[data-map="noche"]{--rinkc:#ead6a2;--rghost:#d8d0bd;--labc:#f2e6c9;--labs:#d9b878;--labh:0 0 14px rgba(5,8,18,.95),0 0 4px rgba(5,8,18,.9),0 2px 3px rgba(0,0,0,.9)}
+[data-map="pergamino"]{--rinkc:#5b3a1c;--rghost:#6b5841;--labc:#2a1d12;--labs:#7b4f22;--labh:0 0 10px rgba(246,236,214,.95),0 0 3px rgba(246,236,214,.95)}
+[data-lab="cart"] .mk .lab{padding:22px 74px 28px;background:url(mapa-misiones-img/cartela.png) center/100% 100% no-repeat;top:8px;--labc:#2a1d12;--labs:#7b4f22;--labh:none}
+[data-lab="hover"] .mk .lab{opacity:0}
+[data-lab="hover"] .mk.on .lab,[data-lab="hover"] .mk:hover .lab,[data-lab="hover"] .mk:focus-within .lab{opacity:1}
+.mk.under .lab{opacity:0!important}
+.mk.s-lock .lab b{font-style:italic;opacity:.7}
+.mk.s-lock .lab{opacity:0}.mk.s-lock:hover .lab,.mk.s-lock.on .lab{opacity:1}
+/* Varek's Hold */
+.town{position:absolute;pointer-events:none;text-align:center;transform:translate(-50%,0)}
+.town b{display:block;font:400 34px var(--rot);letter-spacing:.32em;color:var(--labs);text-shadow:var(--labh)}
+.town small{display:block;font:italic 400 28px var(--tit);color:var(--labc);opacity:.85;text-shadow:var(--labh)}
+.rosa{position:absolute;width:300px;height:338px;background:url(mapa-misiones-img/rosa.png) center/contain no-repeat;opacity:.9;pointer-events:none;transition:opacity .5s}
+[data-map="noche"] .rosa{filter:brightness(.82) saturate(.9)}
+[data-rosa="0"] .rosa{opacity:0}
+
+/* ---------- capas de pantalla ---------- */
+.vig{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(120% 90% at 62% 55%,transparent 55%,rgba(4,6,12,.55) 100%)}
+[data-map="pergamino"] .vig{background:radial-gradient(120% 90% at 62% 55%,transparent 60%,rgba(40,24,8,.35) 100%)}
+.grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.18;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
+#motes{position:fixed;inset:0;z-index:4;pointer-events:none}
+[data-motes="0"] #motes{display:none}
+
+/* ---------- columna ---------- */
+#col{position:fixed;z-index:10;left:0;top:0;bottom:0;width:var(--colW);padding:38px 30px 110px 56px;display:flex;flex-direction:column;gap:18px}
+#col::before{content:"";position:absolute;z-index:-1;pointer-events:none;transition:opacity .6s}
+.cback{align-self:flex-start;position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:10px;padding:10px 22px 10px 16px;border:0;background:none;font:400 15px var(--rot);letter-spacing:.18em;color:var(--c2)}
+.cback svg{width:18px;height:18px}
+.cback::before{content:"";position:absolute;inset:3px -6px;z-index:-1;background:url(mapa-misiones-img/ui/trazo.png) 0 50%/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .5s cubic-bezier(.3,.7,.2,1)}
+.cback:hover::before,.cback:focus-visible::before{clip-path:inset(0 0 0 0)}
+.cback:hover,.cback:focus-visible{color:var(--tintaN);outline:0}
+.ck{margin:10px 0 0;font:400 14px var(--rot);letter-spacing:.32em;color:var(--c3)}
+.ct{margin:2px 0 0;font:400 clamp(38px,3.4vw,52px)/1 var(--tit);color:var(--c1);text-shadow:var(--csh)}
+.cflo{display:block;width:230px;height:18px;background:url(mapa-misiones-img/ui/floron.png) 0 50%/contain no-repeat;opacity:.85}
+.cprog{display:flex;align-items:center;gap:14px;font:italic 400 17px var(--tit);color:var(--c2)}
+.cprog ol{display:flex;gap:6px;margin:0;padding:0;list-style:none}
+.cprog li{position:relative;width:28px;height:9px;background:url(mapa-misiones-img/ui/trazo2.png) 0 50%/100% 100% no-repeat}
+.cprog li.lock{background:none}.cprog li.lock::after{content:"";position:absolute;left:2px;right:2px;top:4px;height:1.4px;background:currentColor;opacity:.35}
+.cprog li.live{animation:lat 2.4s ease-in-out infinite}
+@keyframes lat{50%{filter:brightness(1.35) saturate(1.3)}}
+.clore{display:flex;align-items:center;gap:14px;padding:6px 0;border:0;background:none;text-align:left}
+.clore i{flex:none;width:46px;height:46px;background:url(mapa-misiones-img/sello.png) center/contain no-repeat;transition:transform .5s cubic-bezier(.3,.7,.2,1)}
+.clore:hover i{transform:rotate(-14deg)}
+.clore b{display:block;font:400 18px var(--tit);color:var(--c1)}
+.clore small{display:block;font:400 12.5px var(--rot);letter-spacing:.2em;color:var(--c3)}
+.clore:hover b{text-decoration:underline;text-decoration-color:var(--ocre);text-underline-offset:5px}
+.ch{margin:8px 0 0;font:400 13px var(--rot);letter-spacing:.3em;color:var(--c3)}
+.clist{display:flex;flex-direction:column;gap:2px;margin:0;padding:0;list-style:none;overflow:auto;scrollbar-width:none}
+.ci{position:relative;isolation:isolate;display:grid;grid-template-columns:44px 1fr;align-items:center;gap:14px;width:100%;padding:8px 10px 8px 4px;border:0;background:none;text-align:left}
+.ci .n{position:relative;display:grid;place-items:center;width:44px;height:44px;font:400 17px var(--tit);color:var(--c1)}
+.ci .n::before{content:"";position:absolute;left:0;top:0;width:44px;height:44px;background:url(mapa-misiones-img/ui/circulo.png) center/100% 100% no-repeat;filter:var(--circf);opacity:.75}
+.ci .t{font:400 21px/1.12 var(--tit);color:var(--c1);transition:color .3s}
+.ci .t small{display:block;margin-top:3px;font:400 12px var(--rot);letter-spacing:.22em;color:var(--c3)}
+.ci.s-lock .t{font-style:italic;color:var(--c4)}
+.ci.s-lock .n{color:var(--c4)}.ci.s-lock .n::before{opacity:.3}
+.ci.s-done .t{text-decoration:none}
+.ci.s-done .t::after{content:"";position:absolute;left:62px;top:16px;width:min(230px,70%);height:22px;background:url(mapa-misiones-img/tachon.png) 0 50%/100% 100% no-repeat;filter:var(--tachf);opacity:.7}
+.ci.s-live small{color:#b9a2ff}
+.ci::before{content:"";position:absolute;z-index:-1;inset:4px -8px 4px 46px;opacity:0;transition:opacity .3s,clip-path .6s cubic-bezier(.3,.7,.2,1)}
+.ci:hover .t,.ci:focus-visible .t{color:var(--c1h)}
+.ci:focus-visible{outline:1px dashed var(--oro);outline-offset:2px}
+/* marca de la elegida en la lista */
+[data-sel="pinc"] .ci::before{background:url(mapa-misiones-img/ui/trazo.png) 0 50%/100% 100% no-repeat;clip-path:inset(0 100% 0 0)}
+[data-sel="pinc"] .ci.on::before{opacity:1;clip-path:inset(0 0 0 0)}
+[data-sel="pinc"] .ci.on .t,[data-sel="pinc"] .ci.on .t small{color:var(--tintaN)}
+[data-sel="circ"] .ci.on .n::before{opacity:1;transform:scale(1.18) rotate(-8deg);filter:var(--circon)}
+[data-sel="circ"] .ci.on .t{text-decoration:underline;text-decoration-color:var(--ocre);text-decoration-thickness:1.5px;text-underline-offset:6px}
+[data-sel="man"] .ci::before{inset:-6px -16px -6px -10px;background:radial-gradient(ellipse at 40% 50%,rgba(195,147,82,.5),transparent 70%);-webkit-mask:url(mapa-misiones-img/ui/mancha-mascara.png) center/100% 100% no-repeat;mask:url(mapa-misiones-img/ui/mancha-mascara.png) center/100% 100% no-repeat}
+[data-sel="man"] .ci.on::before{opacity:1}
+.chint{margin:auto 0 0;font:400 12.5px var(--rot);letter-spacing:.18em;color:var(--c3);line-height:1.5}
+.chint kbd{display:inline-grid;place-items:center;width:22px;height:22px;background:url(mapa-misiones-img/ui/recuadro.png) center/100% 100% no-repeat;font:400 12px var(--tit);color:var(--c1)}
+
+/* A · aguada índigo desde el borde (como el selector de campañas) */
+[data-col="aguada"] #col{--c1:#efe3c8;--c1h:#fff6e0;--c2:#d9ccaf;--c3:#a7a08c;--c4:#8a8576;--csh:0 2px 22px rgba(0,0,0,.7);--circf:none;--circon:brightness(1.15) saturate(1.4);--tachf:none}
+[data-col="aguada"] #col::before{left:-60px;top:-6%;width:calc(var(--colW) + 260px);height:112%;background:url(mapa-misiones-img/ui/aguada.png) 0 0/100% 100% no-repeat;opacity:.95}
+/* B · hoja de diario clavada */
+[data-col="hoja"] #col{--c1:#2b2016;--c1h:#000;--c2:#4a3826;--c3:#7b6142;--c4:#9a8a74;--csh:none;--circf:brightness(.32) sepia(1);--circon:brightness(.55) sepia(1) saturate(3);--tachf:brightness(0) sepia(1) saturate(2) brightness(.35);padding:58px 44px 40px 66px;width:calc(var(--colW) + 10px)}
+[data-col="hoja"] #col::before{left:22px;top:16px;right:-8px;bottom:12px;background:url(mapa-misiones-img/hoja.png) center/100% 100% no-repeat;transform:rotate(-.8deg);filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+[data-col="hoja"] .cback:hover,[data-col="hoja"] .cback:focus-visible{color:var(--tintaN)}
+[data-col="hoja"] .cflo,[data-col="hoja"] .chint kbd{filter:brightness(0) sepia(1) brightness(.5)}
+[data-col="hoja"] .cprog li.lock::after{opacity:.5}
+[data-col="hoja"] #col::after{content:"";position:absolute;left:50%;top:22px;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c4a06a,#6b4a22 60%,#2d1d0c);box-shadow:0 3px 5px rgba(0,0,0,.5)}
+/* C · solo tinta sobre el mapa */
+[data-col="tinta"] #col{--c1:#efe3c8;--c1h:#fff6e0;--c2:#d9ccaf;--c3:#b3aa94;--c4:#8d8879;--csh:0 0 16px rgba(4,6,12,.95),0 2px 4px #000;--circf:none;--circon:brightness(1.15) saturate(1.4);--tachf:none}
+[data-col="tinta"] #col::before{inset:0 -180px 0 0;background:linear-gradient(90deg,rgba(6,8,15,.82) 0,rgba(6,8,15,.6) 55%,transparent)}
+[data-col="tinta"][data-map="pergamino"] #col::before{background:linear-gradient(90deg,rgba(20,14,8,.86) 0,rgba(20,14,8,.62) 55%,transparent)}
+
+/* sello del tablero (como en el selector de campañas) */
+.tvfab{position:fixed;z-index:12;left:26px;bottom:24px;display:flex;flex-direction:column;align-items:center;gap:5px;border:0;background:none;padding:0}
+.tvfab i{width:52px;height:52px;display:grid;place-items:center;background:url(mapa-misiones-img/ui/circulo.png) center/100% 100% no-repeat;transition:transform .5s cubic-bezier(.3,.7,.2,1)}
+.tvfab:hover i{transform:rotate(-12deg)}
+.tvfab i svg{width:24px;height:24px}
+.tvfab b{font:400 12px var(--rot);letter-spacing:.2em;color:#a7a08c;font-weight:400}
+[data-col="hoja"] .tvfab{display:none}
+
+/* ---------- ficha (provisional: la de ahora se queda) ---------- */
+#scrim{position:fixed;inset:0;z-index:20;background:rgba(4,6,12,.55);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .35s}
+#scrim.on{opacity:1;pointer-events:auto}
+#ficha{position:fixed;z-index:21;left:calc(var(--colW) + (100vw - var(--colW) - 328px)/2);top:50%;width:min(520px,90vw);transform:translate(-50%,-46%) scale(.96);opacity:0;pointer-events:none;transition:opacity .35s,transform .45s cubic-bezier(.25,.7,.2,1);
+ padding:30px 34px 28px;background:#efe3c8;color:var(--tintaS);border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.6);text-align:center}
+#ficha.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+#ficha .fx{position:absolute;right:12px;top:10px;width:36px;height:36px;border:0;background:none;font-size:26px;line-height:1;color:var(--tintaS)}
+#ficha p{margin:0}
+#ficha .fe{font:400 13px var(--rot);letter-spacing:.24em;color:#7b4f22}
+#ficha h2{margin:8px 0 10px;font:400 36px/1.05 var(--tit)}
+#ficha .fh{font:italic 500 19px/1.4 var(--serif)}
+#ficha .fn{margin-top:18px;padding-top:14px;border-top:1px dashed rgba(43,32,22,.35);font:italic 500 15px/1.4 var(--serif);color:#6b5841}
+
+/* ---------- taller (controles de la maqueta) ---------- */
+#dock{position:fixed;z-index:30;right:14px;top:14px;bottom:14px;width:300px;overflow:auto;scrollbar-width:thin;
+ padding:16px 16px 14px;border:1px solid rgba(227,201,141,.24);border-radius:14px;background:rgba(9,11,19,.88);backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.5);
+ font:500 13px/1.3 system-ui,-apple-system,"Segoe UI",sans-serif;color:#d8d2c4;transition:transform .45s cubic-bezier(.25,.7,.2,1),opacity .3s}
+#dock.min{transform:translateX(calc(100% + 30px));opacity:0;pointer-events:none}
+#dock header{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:12px}
+#dock header b{font:400 18px var(--tit);color:var(--oro);flex:1}
+#dock header span{order:3;width:100%;color:#8f8a7d;font-size:12px}
+#dock .grid{display:flex;flex-direction:column;gap:11px}
+#dock .g p{margin:0 0 5px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8f8a7d}
+#dock .g div{display:flex;flex-wrap:wrap;gap:5px}
+#dock button.o{padding:4px 10px;border:1px solid rgba(227,201,141,.25);border-radius:999px;background:transparent;font:600 12px system-ui,sans-serif;color:#d8d2c4}
+#dock button.o:hover{border-color:rgba(227,201,141,.6)}
+#dock button.o[aria-pressed="true"]{background:#e3c98d;border-color:#e3c98d;color:#1a140c}
+#dock .act{display:flex;flex-direction:column;gap:7px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(227,201,141,.15)}
+#dock .act button{padding:8px 12px;border:1px solid rgba(227,201,141,.4);border-radius:8px;background:rgba(227,201,141,.08);font:600 12.5px system-ui,sans-serif;color:#efe3c8}
+#dock .act button.pri{background:#e3c98d;color:#1a140c;border-color:#e3c98d}
+#dock .act button:disabled{opacity:.45;cursor:default}
+#dock .act .row{display:flex;gap:7px}#dock .act .row button{flex:1}
+#dock .act textarea{min-height:54px;padding:7px 10px;border:1px solid rgba(227,201,141,.25);border-radius:8px;background:rgba(0,0,0,.3);color:#efe3c8;font:13px system-ui,sans-serif;resize:vertical}
+#dock .act .ok{color:#9fd39a;font-size:12px;opacity:0;transition:opacity .3s;text-align:center}#dock .act .ok.on{opacity:1}
+#dockBtn{position:fixed;z-index:29;right:18px;top:16px;padding:9px 16px;border:1px solid rgba(227,201,141,.4);border-radius:999px;background:rgba(9,11,19,.85);font:600 12.5px system-ui,sans-serif;color:#efe3c8;opacity:0;pointer-events:none;transition:opacity .3s}
+#dock.min~#dockBtn{opacity:1;pointer-events:auto}
+#dock button:focus-visible,#dockBtn:focus-visible{outline:2px solid #e3c98d;outline-offset:2px}
+
+/* ---------- vertical / móvil ---------- */
+@media (max-height:820px) and (min-width:861px){#col{gap:12px;padding-top:28px}.ct{font-size:40px}.ck{margin-top:4px}.ci{padding:5px 10px 5px 4px}.ci .t{font-size:19px}.ci .n,.ci .n::before{width:40px;height:40px}.chint{display:none}#col{padding-bottom:96px}}
+@media (max-width:860px) and (orientation:portrait){
+ :root{--colW:0px}
+ #col{position:fixed;width:auto;right:0;bottom:auto;padding:16px 18px 14px;gap:8px;background:linear-gradient(180deg,rgba(6,8,15,.92),rgba(6,8,15,.7) 75%,transparent)}
+ #col::before{display:none}
+ [data-col] #col{--c1:#efe3c8;--c1h:#fff;--c2:#d9ccaf;--c3:#a7a08c;--c4:#8a8576;--circf:none;--circon:brightness(1.15) saturate(1.4);--tachf:none}
+ .ct{font-size:30px}.cflo,.clore,.ch,.chint,.ck{display:none}
+ .clist{flex-direction:row;overflow-x:auto;gap:4px;padding-bottom:4px}
+ .ci{grid-template-columns:36px auto;width:auto;flex:none;gap:8px}
+ .ci .n,.ci .n::before{width:36px;height:36px}
+ .ci .t{font-size:15px;white-space:nowrap}
+ .ci.s-done .t::after{left:44px}
+ .tvfab{display:none}
+ #ficha{left:50%}
+ #dock{left:8px;right:8px;top:auto;bottom:8px;width:auto;max-height:44vh}
+ #dock.min{transform:translateY(calc(100% + 30px))}
+}
+.q .fp{animation:none;opacity:.9}.q .leg.ink.draw{animation:none;stroke-dashoffset:0}
+@media (prefers-reduced-motion:reduce){
+ .mk .spr{animation-duration:6s!important}.cloud,.mk .glow{animation:none}
+ .rv,.fogr,#stage{transition-duration:.01s!important}
+}
+</style>
+
+
+<div id="view" aria-hidden="false">
+ <div id="stage">
+  <svg id="map" viewBox="0 0 2752 1536" role="img" aria-label="Mapa a tinta y acuarela de las tierras al norte del Muro con las seis misiones"></svg>
+  <div id="marks"></div>
+ </div>
+</div>
+<div class="vig"></div><div class="grain"></div><canvas id="motes"></canvas>
+
+<aside id="col" aria-label="Campaña I">
+ <button class="cback" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Campañas</button>
+ <div>
+  <p class="ck">Érebo · Campaña I</p>
+  <h1 class="ct">El Pueblo<br>Sin Nombre</h1>
+ </div>
+ <i class="cflo" aria-hidden="true"></i>
+ <div class="cprog" id="cprog"></div>
+ <button class="clore" type="button"><i aria-hidden="true"></i><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button>
+ <p class="ch">La ruta hacia el norte</p>
+ <ol class="clist" id="clist" aria-label="Misiones"></ol>
+ <p class="chint">Pulsa una hoguera del mapa o una misión de la lista. <kbd>↑</kbd> <kbd>↓</kbd> cambian de misión.</p>
+</aside>
+<button class="tvfab" type="button"><i><svg viewBox="0 0 24 24" fill="none" stroke="#efe3c8" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M12 4v16M4 12h16"/></svg></i><b>Tablero</b></button>
+
+<div id="scrim"></div>
+<section id="ficha" role="dialog" aria-modal="true" aria-labelledby="fT"><button class="fx" type="button" aria-label="Cerrar la ficha">×</button><p class="fe" id="fE"></p><h2 id="fT"></h2><p class="fh" id="fH"></p><p class="fn">Aquí se abre la ficha actual (el cartel clavado con el puñal), sin cambios: la trabajaremos más adelante.</p></section>
+
+<section id="dock" aria-label="Taller de la maqueta">
+ <header><b>Taller</b><span>Elige cada pieza; el mapa responde al momento. La tecla H oculta el taller.</span><span class="sp"></span><button class="o" type="button" id="hide">Ocultar</button></header>
+ <div class="grid" id="opts"></div>
+ <div class="act">
+  <button type="button" class="pri" id="unlock">Desbloquear la siguiente misión</button>
+  <div class="row"><button type="button" id="replay">Repetir la entrada</button><button type="button" id="reset">Volver a una</button></div>
+  <textarea id="notes" placeholder="Notas para Claude (opcional)" aria-label="Notas"></textarea>
+  <button type="button" id="copy">Copiar mis decisiones</button><span class="ok" id="ok">Copiado</span>
+ </div>
+</section>
+<button id="dockBtn" type="button">Taller</button>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s),B=document.body,IMG="mapa-misiones-img/",REDUCE=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const MIS=[
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
+ {n:"III",t:"La aldea sitiada",z:"Asedio del Culto",h:"El Culto del Umbral cerca una aldea. Los Resonantes ofrecen su ayuda, a su manera."},
+ {n:"IV",t:"La emboscada",z:"Concordancia de Orum",h:"Alguien más sigue vuestro rastro. Una tercera facción entra en juego."},
+ {n:"V",t:"La cripta primordial",z:"Deudores de Vael",h:"Bajo la piedra duerme la ruina de un Primordial, y alguien ha venido a cobrar lo que se le debe."},
+ {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde la Ruptura empezó a borrar, os espera Ocaso."}];
+/* Posiciones medidas sobre cada lámina (px de 2752×1536). m = hoguera de cada misión; w = puntos de paso de cada tramo; side = rótulo a la derecha (1) o a la izquierda (-1). */
+const GEO={
+ noche:{town:[1530,1300],tl:[1530,1500],m:[[1480,1140],[1640,975],[1360,815],[1700,690],[560,600],[1380,330]],side:[-1,1,-1,1,1,1],
+  w:[[[1470,1225]],[[1590,1070]],[[1500,905]],[[1545,770]],[[1460,615],[1160,520],[860,505]],[[820,420],[1130,365]]],focus:[1430,820],rosa:[2360,980]},
+ pergamino:{town:[1550,1355],tl:[1550,1500],m:[[1500,1160],[1700,1000],[1360,830],[1640,720],[1400,470],[1760,260]],side:[-1,1,-1,1,-1,1],
+  w:[[[1480,1255]],[[1640,1085]],[[1530,905]],[[1520,790]],[[1540,590]],[[1580,390],[1690,320]]],focus:[1520,800],rosa:[2380,1000]}};
+const SPR={hoguera:{open:["hoguera",8,.8],live:["hoguera-viva",8,.85],done:["hoguera-oro",12,2.2],lock:["ceniza",8,1.9]},
+ estandarte:{open:["estandarte",8,1.1],live:["estandarte",8,1.1],done:["estandarte",8,1.4],lock:["estandarte-roto",4,1.6,1]}};
+const OPTS=[
+ ["map","Mapa",[["noche","Noche (como el Panorama)"],["pergamino","Pergamino"]]],
+ ["fog","Lo no descubierto",[["boceto","Boceto a lápiz"],["nubes","Nubes de acuarela"],["aguada","Aguada índigo"],["no","Sin niebla"]]],
+ ["mark","Marcador de misión",[["hoguera","Hoguera"],["estandarte","Estandarte"]]],
+ ["route","Camino",[["pisadas","Pisadas"],["tinta","Tinta punteada"],["no","Ninguno"]]],
+ ["col","Columna",[["aguada","Aguada índigo"],["hoja","Hoja de diario"],["tinta","Solo tinta"]]],
+ ["sel","Marca de la elegida",[["pinc","Pincelada ocre"],["circ","Círculo a tinta"],["man","Mancha de acuarela"]]],
+ ["lab","Rótulos del mapa",[["mano","A mano"],["cart","En cartela"],["hover","Solo la elegida"]]],
+ ["st","Estado de la misión actual",[["open","Disponible"],["live","En curso"],["done","Cumplida"]]],
+ ["rosa","Rosa de los vientos",[["1","Sí"],["0","No"]]],
+ ["motes","Motas de pigmento",[["1","Sí"],["0","No"]]]];
+const DEF={map:"noche",fog:"nubes",mark:"estandarte",route:"pisadas",col:"aguada",sel:"pinc",lab:"cart",st:"open",rosa:"0",motes:"1"};
+let O={...DEF},U=1,SEL=0,seenU=0;
+try{Object.assign(O,JSON.parse(localStorage.getItem("mmv4-o")||"{}"));U=+localStorage.getItem("mmv4-u")||1}catch(e){}
+const save=()=>{try{localStorage.setItem("mmv4-o",JSON.stringify(O));localStorage.setItem("mmv4-u",U)}catch(e){}};
+const st=i=>i>=U?"lock":i<U-1?"done":O.st;
+const SHORT={open:"Disponible",live:"En curso · Ronda 3",done:"Cumplida",lock:"Sellada"};
+const f=n=>Math.round(n*10)/10;
+
+/* ---------- camino: curva suave por los puntos de paso ---------- */
+function legPts(g,k){const a=k?g.m[k-1]:g.town;return[a,...g.w[k],g.m[k]]}
+function cr(p){let d=`M${p[0][0]} ${p[0][1]}`;for(let i=0;i<p.length-1;i++){const p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;
+ d+=`C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${p2[0]} ${p2[1]}`}return d}
+/* Recorte para que el camino no pase por encima de las hogueras. */
+function trim(path,a,b){const L=path.getTotalLength();return[a,L-b,L]}
+const FOOT="M0 -11c4.2 0 5.7 3.7 5.2 8.2l-1 5.7c-.5 3-7.5 3-8 0l-1-5.7c-.5-4.5 1-8.2 4.8-8.2zM-2.5 7.5h5l-.2 4c-.3 2.2-4.3 2.2-4.6 0z";
+
+/* ---------- mapa (SVG) ---------- */
+function fogY(g){return U>=6?-400:g.m[U-1][1]-240}
+function mapSVG(){const g=GEO[O.map],M=IMG+"mapa-"+O.map+".jpg",S=IMG+"boceto-"+O.map+".jpg",from=seenU?(seenU>=6?-400:g.m[seenU-1][1]-240):1600;
+ const circ=(r,big)=>g.m.map((p,i)=>i<U?`<circle class="rv" data-k="${i}" cx="${p[0]}" cy="${p[1]-40}" r="${r}" fill="#fff" style="transform:scale(${i<seenU?1:0})"/>`:"").join("")+`<circle cx="${g.town[0]}" cy="${g.town[1]}" r="${big?360:320}" fill="#fff"/>`;
+ const mask=(id,grow)=>`<mask id="${id}" maskUnits="userSpaceOnUse" x="-300" y="-300" width="3352" height="2136"><g filter="url(#blot)"><rect x="-300" y="-300" width="3352" height="2136" fill="#000"/><rect class="fogr" x="-300" y="${-grow}" width="3352" height="2200" fill="#fff" style="transform:translateY(${from}px)"/>${circ(270+grow,grow)}</g></mask>`;
+ const minv=`<mask id="minv" maskUnits="userSpaceOnUse" x="-300" y="-300" width="3352" height="2136"><g filter="url(#blot)"><rect x="-300" y="-300" width="3352" height="2136" fill="#fff"/><rect class="fogr" x="-300" y="0" width="3352" height="2200" fill="#000" style="transform:translateY(${from}px)"/>${circ(270,0).replace(/#fff/g,"#000")}</g></mask>`;
+ let base;
+ if(O.fog==="boceto")base=`<image href="${S}" width="2752" height="1536"/>`;
+ else if(O.fog==="nubes")base=`<image href="${M}" width="2752" height="1536" filter="url(#dull)"/>`;
+ else if(O.fog==="aguada")base=`<image href="${M}" width="2752" height="1536" filter="url(#night)"/><rect width="2752" height="1536" fill="#141a33" opacity=".55"/>`;
+ else base="";
+ let clouds="";if(O.fog==="nubes"){const R=rnd(7);for(let k=0;k<90;k++){const x=-400+R()*3300,y=-260+R()*1650,w=640+R()*620,fr=Math.floor(R()*4);
+  clouds+=`<svg class="cloud" x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(w*.62)}" viewBox="${fr*640} 0 640 640" preserveAspectRatio="none" opacity="${f(.8+R()*.2)}"><image href="${IMG}nubes.png" width="2560" height="640"/></svg>`}}
+ const fogOn=O.fog!=="no";
+ // camino
+ let legs="",steps="";
+ for(let k=0;k<6;k++){const d=cr(legPts(g,k));if(k<U){if(O.route==="tinta")legs+=`<path class="leg ink${k>=seenU?" draw":""}" data-leg="${k}" d="${d}"/>`;else if(O.route==="pisadas")legs+=`<path class="leg probe" data-leg="${k}" d="${d}" stroke="none"/>`}
+  else if(O.route!=="no")legs+=`<path class="leg ghost" d="${d}"/>`}
+ return `<defs>
+  <filter id="blot" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".006 .009" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="230" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="mistf" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".0025 .005" numOctaves="4" seed="21" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 3 -1.1"/></filter><filter id="tide"><feColorMatrix type="matrix" values=".55 0 0 0 0  0 .52 0 0 0  0 0 .6 0 0  0 0 0 1 0"/></filter>
+  <filter id="dull"><feColorMatrix type="saturate" values=".25"/><feComponentTransfer><feFuncR type="linear" slope=".42"/><feFuncG type="linear" slope=".45"/><feFuncB type="linear" slope=".58"/></feComponentTransfer></filter>
+  <filter id="night"><feColorMatrix type="saturate" values=".3"/><feComponentTransfer><feFuncR type="linear" slope=".35"/><feFuncG type="linear" slope=".38"/><feFuncB type="linear" slope=".55"/></feComponentTransfer></filter>
+  <filter id="inkf"><feTurbulence baseFrequency=".05" numOctaves="2" seed="2" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="5"/></filter>
+  <filter id="pencilf" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.7" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  ${fogOn?mask("mrev",0)+mask("mtide",34)+minv:""}
+ </defs>
+ ${fogOn?base:""}
+ ${fogOn&&O.fog!=="aguada"?`<image href="${M}" width="2752" height="1536" mask="url(#mtide)" filter="url(#tide)"/>`:""}
+ <image href="${M}" width="2752" height="1536" ${fogOn?'mask="url(#mrev)"':""}/>
+ ${clouds?`<g mask="url(#minv)"><rect x="-300" y="-300" width="3352" height="2136" fill="#323a58" opacity=".86"/><rect x="-300" y="-300" width="3352" height="2136" fill="#8d93b0" opacity=".18" filter="url(#mistf)"/>${clouds}</g>`:""}
+ <g>${legs}</g><g id="steps">${steps}</g>`}
+function rnd(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* Pisadas a lo largo de cada tramo desbloqueado (las nuevas aparecen una a una). */
+function placeSteps(){const svg=$("#map"),box=$("#steps");box.innerHTML="";if(O.route!=="pisadas")return;
+ let html="";svg.querySelectorAll(".leg.probe").forEach(p=>{const k=+p.dataset.leg,L=p.getTotalLength(),a=k?80:40,b=80,stp=30,n=Math.floor((L-a-b)/stp),fresh=k>=seenU;
+  for(let i=0;i<n;i++){const d=a+i*stp,q=p.getPointAtLength(d),q2=p.getPointAtLength(Math.min(L,d+2)),an=Math.atan2(q2.y-q.y,q2.x-q.x),s=i%2?1:-1;
+   html+=`<path class="fp" d="${FOOT}" transform="translate(${f(q.x-Math.sin(an)*9*s)} ${f(q.y+Math.cos(an)*9*s)}) rotate(${f(an*180/Math.PI+90)})" style="animation-delay:${fresh?(1.2+i*2.6/n).toFixed(2):(i*.012).toFixed(2)}s"/>`}});
+ box.innerHTML=html}
+function legLens(){$("#map").querySelectorAll(".leg.ink").forEach(p=>p.style.setProperty("--L",p.getTotalLength()))}
+
+/* ---------- marcadores ---------- */
+function marks(){const g=GEO[O.map],box=$("#marks");let h="";
+ g.m.forEach((p,i)=>{const s=st(i),[file,n,d,alt]=SPR[O.mark][s],m=MIS[i],sd=g.side[i];
+  h+=`<div class="mk s-${s}${alt?" alt":""}${i===SEL?" on":""}${i>=seenU&&i<U?" ign":""}" data-i="${i}" style="left:${p[0]}px;top:${p[1]}px;--n:${n};--d:${d}s">
+   <i class="sel"></i><i class="glow"></i><i class="spr" style="background-image:url(${IMG}${file}.png)"></i>
+   <span class="lab"><b>${s==="lock"?"Sellada":m.t}</b><small>${s==="lock"?"Todavía en preparación":"Misión "+m.n+" · "+SHORT[s]}</small></span>
+   <button class="hit" type="button" aria-label="Misión ${m.n}, ${m.t}: ${SHORT[s]}"></button></div>`});
+ h+=`<div class="town" style="left:${g.tl[0]}px;top:${g.tl[1]}px"><b>VAREK'S HOLD</b></div><div class="rosa" style="left:${g.rosa[0]}px;top:${g.rosa[1]}px"></div>`;
+ box.innerHTML=h}
+
+/* ---------- columna ---------- */
+function column(){const n=Math.min(U,6);
+ $("#cprog").innerHTML=`<span>${n} de 6 misiones</span><ol>${MIS.map((_,i)=>`<li class="${st(i)==="lock"?"lock":st(i)==="live"?"live":""}"></li>`).join("")}</ol>`;
+ $("#clist").innerHTML=MIS.map((m,i)=>{const s=st(i);return `<li><button class="ci s-${s}${i===SEL?" on":""}" type="button" data-i="${i}"><span class="n">${m.n}</span><span class="t">${m.t}<small>${SHORT[s]}</small></span></button></li>`}).join("")}
+
+/* ---------- cámara: la lámina cubre la pantalla; el centro del recorrido queda en el hueco libre ---------- */
+let PX=0,PY=0;
+function cam(instant){const g=GEO[O.map],W=innerWidth,H=innerHeight,narrow=matchMedia("(max-width:860px) and (orientation:portrait)").matches,L=narrow?0:parseFloat(getComputedStyle(B).getPropertyValue("--colW"))||440;
+ const s=Math.max(W/2752,H/1536)*(narrow?1.5:1.12),sel=g.m[SEL],fx=g.focus[0]*.8+sel[0]*.2,fy=g.focus[1]*.8+sel[1]*.2;
+ const R=narrow||$("#dock").classList.contains("min")?0:328;let tx=L+(W-L-R)/2-fx*s+PX,ty=(narrow?H*.58:H/2)-fy*s+PY;
+ const sx=tx+sel[0]*s,lo=L+170,hi=W-R-170;if(sx<lo)tx+=lo-sx;else if(sx>hi)tx-=sx-hi;
+ const sy=ty+sel[1]*s;if(sy<140)ty+=140-sy;else if(sy>H-140)ty-=sy-(H-140);
+ /* bajo la columna la lámina puede asomar su borde (fundido); por el resto, nunca */
+ tx=Math.min(narrow?0:L*.7,Math.max(W-2752*s,tx));ty=Math.min(0,Math.max(H-1536*s,ty));
+ const el=$("#stage");el.classList.toggle("instant",!!instant);el.style.transform=`translate(${f(tx)}px,${f(ty)}px) scale(${s.toFixed(4)})`;CAM={tx,ty,s};
+ /* lo que queda bajo la columna no enseña su rótulo */
+ document.querySelectorAll(".mk").forEach((m,i)=>m.classList.toggle("under",!narrow&&tx+g.m[i][0]*s<L+30))}
+let CAM={tx:0,ty:0,s:1};
+
+/* ---------- motas de pigmento que suben de los fuegos encendidos ---------- */
+const cv=$("#motes"),cx=cv.getContext("2d");let P=[],last=0;
+function sizeCv(){const d=Math.min(2,devicePixelRatio||1);cv.width=innerWidth*d;cv.height=innerHeight*d;cx.setTransform(d,0,0,d,0,0)}
+function tick(t){requestAnimationFrame(tick);if(O.motes!=="1"||REDUCE||t-last<55)return;last=t;const g=GEO[O.map];cx.clearRect(0,0,innerWidth,innerHeight);
+ g.m.forEach((p,i)=>{const s=st(i);if(s==="lock"||Math.random()>(s==="open"?.5:.3))return;
+  P.push({x:CAM.tx+p[0]*CAM.s+(Math.random()-.5)*18,y:CAM.ty+(p[1]-70)*CAM.s,vx:(Math.random()-.5)*.5,vy:-(.6+Math.random()*1.1),life:1,c:s==="live"?"190,160,255":s==="done"?"255,214,120":"255,160,70",r:.8+Math.random()*1.6})});
+ P=P.filter(q=>(q.life-=.022)>0);for(const q of P){q.x+=q.vx+Math.sin(q.y*.05)*.3;q.y+=q.vy;cx.fillStyle=`rgba(${q.c},${(q.life*.85).toFixed(2)})`;cx.beginPath();cx.arc(q.x,q.y,q.r,0,7);cx.fill()}}
+
+/* ---------- pintar todo ---------- */
+function paint(entry){for(const k in O)B.dataset[k]=O[k];
+ if(entry)seenU=0;
+ $("#map").innerHTML=mapSVG();legLens();marks();column();placeSteps();cam(true);opts();
+ requestAnimationFrame(()=>requestAnimationFrame(reveal))}
+/* La niebla se retira hasta la misión más lejana y se abren los círculos de las nuevas; luego se encienden sus fuegos. */
+function reveal(){const g=GEO[O.map];document.querySelectorAll("#map .fogr").forEach(r=>r.style.transform=`translateY(${fogY(g)}px)`);
+ document.querySelectorAll("#map .rv").forEach(c=>c.style.transform="scale(1)");
+ document.querySelectorAll(".mk.ign").forEach((m,j)=>setTimeout(()=>m.classList.add("go"),REDUCE?0:1500+j*350));
+ seenU=U}
+
+/* ---------- selección y ficha ---------- */
+function select(i,open){SEL=i;document.querySelectorAll(".mk").forEach(m=>m.classList.toggle("on",+m.dataset.i===i));document.querySelectorAll(".ci").forEach(b=>b.classList.toggle("on",+b.dataset.i===i));cam();if(open)ficha(true)}
+function ficha(on){const m=MIS[SEL],s=st(SEL);$("#fE").textContent=`Misión ${m.n} · ${m.z}`;$("#fT").textContent=m.t;$("#fH").textContent=s==="lock"?"Sellada: todavía está en preparación.":m.h;
+ $("#ficha").classList.toggle("on",on);$("#scrim").classList.toggle("on",on);if(on)$("#ficha .fx").focus()}
+document.addEventListener("click",e=>{const mk=e.target.closest(".mk .hit");if(mk){select(+mk.parentNode.dataset.i,true);return}
+ const ci=e.target.closest(".ci");if(ci){select(+ci.dataset.i,true);return}
+ if(e.target.closest("#ficha .fx")||e.target.id==="scrim"){ficha(false);const b=document.querySelector(`.ci[data-i="${SEL}"]`);if(b)b.focus();return}
+ const o=e.target.closest("#opts button");if(o){O[o.dataset.k]=o.dataset.v;save();if(["col","sel","lab","rosa","motes"].includes(o.dataset.k)){for(const k in O)B.dataset[k]=O[k];opts();cam()}else paint();return}});
+document.addEventListener("keydown",e=>{if(/TEXTAREA|INPUT/.test(document.activeElement.tagName))return;
+ if(e.key==="Escape"){if($("#ficha").classList.contains("on"))ficha(false);return}
+ if(e.key==="h"||e.key==="H"){toggleDock();return}
+ if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();const i=Math.max(0,Math.min(5,SEL+(e.key==="ArrowDown"?1:-1)));select(i);const b=document.querySelector(`.ci[data-i="${i}"]`);if(b)b.focus()}});
+addEventListener("pointermove",e=>{if(e.pointerType==="touch"||REDUCE)return;PX=-(e.clientX/innerWidth-.5)*22;PY=-(e.clientY/innerHeight-.5)*14;if(!cam.raf)cam.raf=requestAnimationFrame(()=>{cam.raf=0;$("#stage").classList.add("instant");camSoft()})});
+function camSoft(){const g=GEO[O.map];cam(true)}
+let rz=0;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>{sizeCv();cam(true)},120)});
+
+/* ---------- taller ---------- */
+function opts(){$("#opts").innerHTML=OPTS.map(([k,t,vs])=>`<div class="g"><p>${t}</p><div>${vs.map(([v,l])=>`<button class="o" type="button" data-k="${k}" data-v="${v}" aria-pressed="${O[k]===v}">${l}</button>`).join("")}</div></div>`).join("");
+ $("#unlock").textContent=U>=6?"Todas desbloqueadas":"Desbloquear la siguiente misión";$("#unlock").disabled=U>=6}
+function toggleDock(){$("#dock").classList.toggle("min");cam()}
+$("#hide").onclick=toggleDock;$("#dockBtn").onclick=toggleDock;
+$("#unlock").onclick=()=>{if(U>=6)return;U++;SEL=U-1;save();const keep=seenU;paint();seenU=keep;};
+$("#reset").onclick=()=>{U=1;SEL=0;seenU=0;save();paint(true)};
+$("#replay").onclick=()=>paint(true);
+$("#copy").onclick=()=>{const txt="Selector de misiones · mis decisiones\n"+OPTS.filter(o=>o[0]!=="st").map(([k,t,vs])=>`- ${t}: ${vs.find(v=>v[0]===O[k])[1]}`).join("\n")+($("#notes").value.trim()?"\nNotas: "+$("#notes").value.trim():"");
+ (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove()}).finally(()=>{$("#ok").classList.add("on");setTimeout(()=>$("#ok").classList.remove("on"),1600)})};
+/* Enlace directo: #noche, #pergamino, #hoja, #nubes… cambian esa pieza. */
+(location.hash.slice(1)||"").split(/[,&]/).forEach(v=>{for(const [k,,vs] of OPTS)if(vs.some(x=>x[0]===v))O[k]=v});
+if(matchMedia("(max-width:860px) and (orientation:portrait)").matches)$("#dock").classList.add("min");
+const QUIET=/quieto/.test(location.hash),HU=location.hash.match(/u([1-6])/);if(HU){U=+HU[1];SEL=U-1}
+sizeCv();requestAnimationFrame(tick);if(QUIET){B.classList.add("q");seenU=U;paint()}else paint(true);
+</script>
+

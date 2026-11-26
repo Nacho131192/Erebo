@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 1536,
+  "referencias": [
+    "assets/mapa-misiones/mapa-pergamino_gemini-3-pro-image_s3.jpg"
+  ],
+  "prompt": "Show the unfinished first stage of this exact same painting: only a faint, light graphite pencil underdrawing of every line of the map (same mountains, forests, lake, river, ruins, town and wall, in exactly the same positions and sizes) on bare warm cream cold-press watercolor paper, with a few very pale hints of the first diluted washes here and there. No ink, almost no colour, delicate and airy, like an artist's preparatory sketch. No text.",
+  "dimensiones_servidor": null
+}

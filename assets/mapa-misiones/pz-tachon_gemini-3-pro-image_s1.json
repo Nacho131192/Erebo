@@ -1,0 +1,11 @@
+{
+  "modelo": "google/gemini-3-pro-image",
+  "seed": 1,
+  "ancho": 2752,
+  "alto": 768,
+  "referencias": [
+    "assets/web/panorama.jpg"
+  ],
+  "prompt": "A single hand-drawn horizontal strike-through made with a dip pen in black ink, two quick slightly wavy overlapping strokes like crossing out a word in a journal, centred. Pure plain white background, nothing else in the image, no text, no letters.",
+  "dimensiones_servidor": null
+}
