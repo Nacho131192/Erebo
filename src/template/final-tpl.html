@@ -3364,8 +3364,8 @@ function mwSteps(k,fresh){const sp=mwSample(mwLeg(k)),L=sp[sp.length-1][2],a=k?8
   g+=`<path class="fp${fresh?" nw":""}" d="${MWFOOT}" transform="translate(${f(x-Math.sin(an)*9*s)} ${f(y+Math.cos(an)*9*s)}) rotate(${f(an*180/Math.PI+90)})"${fresh?` style="animation-delay:${(1.2+i*2.6/n).toFixed(2)}s"`:""}/>`}
  return g}
 /* Nubes de acuarela (posiciones fijas) y velo: tapan casi del todo lo que aún no se ha descubierto. */
-const MWCLOUDS=(()=>{const R=rng(7);let c="";for(let k=0;k<90;k++){const x=-400+R()*3300,y=-260+R()*1650,w=640+R()*620,fr=Math.floor(R()*4);
- c+=`<svg class="cloud" x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(w*.62)}" viewBox="${fr*400} 0 400 400" preserveAspectRatio="none" opacity="${f(.8+R()*.2)}"><image href="img/mapa/nubes.png" width="1600" height="400"/></svg>`}return c})();
+const MWCLOUDS=(()=>{const R=rng(7);let c="";for(let k=0;k<150;k++){const x=-500+R()*3500,y=-300+R()*1750,w=780+R()*720,fr=Math.floor(R()*4);
+ c+=`<svg class="cloud" x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(w*.62)}" viewBox="${fr*400} 0 400 400" preserveAspectRatio="none" opacity="${f(.92+R()*.08)}"><image href="img/mapa/nubes.png" width="1600" height="400"/></svg>`}return c})();
 function mwSVG(sts){const far=mwFar(sts),un=sts.map((s,i)=>s!=="lock"),known=seen?seen.u:[],from=seen?mwFog(seen.far):1600;
  const circ=(r,col)=>MWG.m.map((p,i)=>un[i]?`<circle class="rv" data-k="${i}" cx="${p[0]}" cy="${p[1]-40}" r="${r}" fill="${col}" style="transform:scale(${known.includes(i)?1:0})"/>`:"").join("")+`<circle cx="${MWG.town[0]}" cy="${MWG.town[1]}" r="${r+50}" fill="${col}"/>`;
  const area=`maskUnits="userSpaceOnUse" x="-300" y="-300" width="3352" height="2136"`,full=`x="-300" y="-300" width="3352" height="2136"`;
@@ -3382,7 +3382,7 @@ function mwSVG(sts){const far=mwFar(sts),un=sts.map((s,i)=>s!=="lock"),known=see
  </defs>
  <image href="img/mapa/mapa-apagado.jpg" width="2752" height="1536"/>
  <image href="img/mapa/mapa.jpg" width="2752" height="1536" mask="url(#mwRev)"/>
- <g mask="url(#mwInv)"><rect ${full} fill="#323a58" opacity=".86"/>${MWCLOUDS}</g>
+ <g mask="url(#mwInv)"><rect ${full} fill="#323a58" opacity=".95"/>${MWCLOUDS}</g>
  <g>${legs}</g><g>${fps}</g>`}
 function mwMarks(sts){const known=seen?seen.u:[];
  return MWG.m.map((p,i)=>{const s=sts[i],[file,n,d,alt]=MWS[s],m=MIS[i];
@@ -3390,7 +3390,7 @@ function mwMarks(sts){const known=seen?seen.u:[];
   <span class="lab"><b>${s==="lock"?"Sellada":m.t}</b><small>${s==="lock"?"Todavía en preparación":`Misión ${m.n} · ${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}`}</small></span>
   <button class="hit" type="button" data-mi="${i}" aria-label="Misión ${m.n}, ${m.t}: ${stl(i)}"></button></div>`}).join("")+`<div class="mwTown" style="left:${MWG.tl[0]}px;top:${MWG.tl[1]}px">VAREK'S HOLD</div>`}
 function mwDrifts(far){const R=rng(13),top=mwFog(far)-260;if(top<120)return"";let h="";
- for(let k=0;k<9;k++){const w=760+R()*520,x=-200+R()*2900,y=-200+R()*Math.max(0,top-w*.3),fr=Math.floor(R()*4);
+ for(let k=0;k<14;k++){const w=860+R()*560,x=-200+R()*2900,y=-200+R()*Math.max(0,top-w*.3),fr=Math.floor(R()*4);
   h+=`<i class="mwDrift" style="left:${f(x)}px;top:${f(y)}px;width:${f(w)}px;height:${f(w*.62)}px;background-position:${fr*33.333}% 0;animation-delay:-${f(R()*80)}s"></i>`}return h}
 /* Cámara: la lámina cubre el hueco; el recorrido queda en la zona libre (a la derecha de la columna) y la misión elegida, siempre a la vista.
    Bajo la columna puede asomar el borde de la lámina, que se funde. Un poco de parallax con el ratón. */
