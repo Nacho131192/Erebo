@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 768,
+  "alto": 1152,
+  "referencias": [],
+  "prompt": "A large vertical blot of dark indigo and night-blue watercolor wash painted on white paper, wet-in-wet, granulating pigment, soft blooms and backruns inside, darker hard edges where the pigment pooled, irregular organic outline, the blot fills most of the sheet and fades out to the right. Pure plain white background around it. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

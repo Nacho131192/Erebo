@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 640,
+  "referencias": [],
+  "prompt": "An ornate empty cartographer's cartouche frame from an old fantasy map, drawn only with black dip-pen ink lines: rolled scroll ends, curling flourishes, a small compass star on top, the center completely empty. Pure plain white background, black ink only. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 384,
+  "referencias": [],
+  "prompt": "A single bold horizontal brush stroke of warm ochre and burnt sienna watercolor on white paper, loaded brush at the left, dry-brush streaks and broken bristle marks at the right end, slightly darker pigment along its edges. Centered on a pure plain white background. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

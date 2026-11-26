@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 768,
+  "alto": 384,
+  "referencias": [],
+  "prompt": "A few small splatters and drops of black India ink flicked from a brush, with tiny specks, on a pure plain white background. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 44,
+  "ancho": 1024,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "A dark indigo and night-blue watercolor wash painted on white paper that starts beyond the left edge of the paper and covers the left two thirds, wet-in-wet with granulating pigment and soft blooms, its right side breaking up into an irregular bleeding edge with feathered backruns and a few drips, fading to bare white paper on the right. Pure plain white paper elsewhere. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

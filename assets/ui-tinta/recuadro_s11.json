@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 320,
+  "referencias": [],
+  "prompt": "A hand-drawn rectangular frame made with a dip pen in black ink, a double line with the corners slightly overshooting, wide and short like a button, centered on a pure plain white background, black ink only. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 320,
+  "referencias": [],
+  "prompt": "A single horizontal band of muted ochre watercolor wash on white paper, with a thin loose black dip-pen ink line drawn along its top and bottom edges like an ink-and-wash illustration, the ink line not perfectly following the wash, a few small ink flicks at the ends. Pure plain white paper around it. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

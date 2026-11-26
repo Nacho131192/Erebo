@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 1024,
+  "alto": 256,
+  "referencias": [],
+  "prompt": "A single hand-drawn horizontal underline stroke made with a dip pen in black ink, slightly wavy, thicker in the middle and tapering at both ends, on a pure plain white background, black ink only. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

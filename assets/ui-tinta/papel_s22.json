@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 768,
+  "alto": 1152,
+  "referencias": [],
+  "prompt": "A single loose sheet of cold-press watercolor paper, cream coloured, with softly torn deckled edges on all four sides, a few very faint pale ochre and grey watercolor stains near the edges and a faint pencil guideline, flat top-down photo, the sheet floating centered on a pure solid black background. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

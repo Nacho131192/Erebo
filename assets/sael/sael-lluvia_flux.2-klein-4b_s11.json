@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Ink and watercolor illustration in the style of a fantasy cartographer's sketchbook: thick uneven black India-ink outlines with a dip-pen look, loose wet-in-wet indigo and deep teal washes, granulating pigment, warm ochre touches only for lit windows and lanterns, visible paper grain, wide cinematic panoramic landscape at night. No people, no text, no frame. The bottom fifth is a dark, empty, rocky shore foreground with a few tide pools, with no buildings or figures on it. The rain rises: from a dark sea, countless drops and threads of water rise upward into the starry night sky instead of falling, glittering in the moonlight. A lone small sailing ship with a pale sail on the water below, a chain of dark rocky islands behind it, and a tiny distant stone fortress with warm lit windows on the farthest island. Pale full moon. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

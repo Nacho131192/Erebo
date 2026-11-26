@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 320,
+  "referencias": [],
+  "prompt": "A single horizontal stroke made with a half-dry flat brush in diluted warm umber and dull ochre watercolor, broken and textured by the paper grain, transparent, quiet and muted, tapering at the right end. Pure plain white paper around it. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 66,
+  "ancho": 1024,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "A dark indigo watercolor wash painted on white paper that starts beyond the left edge and covers the left half, wet-in-wet with salt texture speckles like sea foam, a large round bloom near the middle edge like a whirlpool and curling backruns, the right edge ragged and spattered with drops, fading to bare white paper on the right. Pure plain white paper elsewhere. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

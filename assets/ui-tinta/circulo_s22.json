@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 512,
+  "alto": 512,
+  "referencias": [],
+  "prompt": "A single hand-drawn circle made with one confident stroke of a dip pen in black ink, slightly uneven thickness, the end overlapping the start a little, centered on a pure plain white background, black ink only. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

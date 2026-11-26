@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 1024,
+  "alto": 320,
+  "referencias": [],
+  "prompt": "A single horizontal band of transparent raw sienna and yellow ochre watercolor laid with one wide flat brush on white cold-press paper, pale and luminous, granulating pigment, a darker hard edge where the pigment pooled along the bottom, soft uneven ends, slightly irregular height. Pure plain white paper around it. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}
