@@ -197,7 +197,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-log li.ai{border-left-color:#ff8a9a}.tv-log li.hr{border-left-color:#f0d79a}.tv-log li.ev{border-left-color:var(--vio)}.tv-log li.rd{border-left-color:var(--blue);color:#a9c4e6}.tv-log li.bad{border-left-color:#ff4a63;color:#ffb3bf}.tv-log li.ok{border-left-color:var(--ok)}.tv-log li.mel,.tv-log li.sho{border-left-color:#c9b8ff}.tv-log li.al{border-left-color:#ff6b4a}
 .tv-toast{position:absolute;left:50%;bottom:28px;transform:translate(-50%,20px);padding:10px 18px;border-radius:12px;background:#1b2340;border:1px solid var(--gold);color:var(--gold2);opacity:0;pointer-events:none;transition:.3s}.tv-toast.on{opacity:1;transform:translate(-50%,0)}
 
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){
  .tv-body{display:block;overflow-y:auto}
  .tv-boardw{padding:10px 10px 4px}
  .tv-board{width:min(100%,560px)}
@@ -217,7 +217,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){#tv,.tv-win,.tvfab{transition:none}.tv-tg,.tv-path,.tv-unit.fresh .tv-halo,.tv-hero.cur .tv-halo{animation:none}}
 
 /* ---- distribución (escritorio): datos de los héroes a la izquierda | tablero | acciones y registro a la derecha ---- */
-@media (min-width:901px){
+@media (min-width:901px),(orientation:landscape) and (max-height:500px){
  .tv-body{grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:minmax(0,auto) minmax(0,1fr);grid-template-areas:"board hero" "board act"}
  .tv-boardw{grid-area:board}
  .tv-shero{grid-area:hero;max-height:44vh;border-right:0;border-left:1px solid var(--line)}
@@ -230,7 +230,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
  .tv-sact{max-height:none}
 }
 /* Columna de objetivos, evento y registro: el registro ocupa lo que queda y se desplaza él, sin desplazar la pantalla (2026-11-24). */
-@media (min-width:901px){
+@media (min-width:901px),(orientation:landscape) and (max-height:500px){
  .tv-shero{display:flex;flex-direction:column;overflow-y:auto}
  .tv-shero>*{flex-shrink:0}
  .tv-shero .tv-obw{max-height:240px;overflow-y:auto}
@@ -245,7 +245,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-log header small{padding:1px 8px;border-radius:999px;background:#18213e;color:var(--gold2)}
 .tv-log ol{max-height:none;border-top:1px solid var(--line);padding-top:10px}
 .tv-empty{margin:0;padding:0 14px 14px;color:var(--mu2);font-size:13px}
-@media (max-width:900px){.tv-log ol{max-height:360px}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-log ol{max-height:360px}}
 
 /* ---- configuración de la partida: pantalla grande, sin mapa ---- */
 .tv-setupw{flex:1;min-height:0;overflow-y:auto;display:flex;justify-content:center;padding:clamp(20px,5vh,56px) 22px 70px}
@@ -475,7 +475,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-wzone{padding:2px 10px;border-radius:999px;background:rgba(255,138,154,.14);border:1px solid rgba(255,138,154,.5);color:#ffc2cb;font-size:12px;font-weight:600}
 .tv-wcard .tv-qd{grid-template-columns:repeat(5,1fr)}
 .tv-wc{justify-content:center;margin-top:6px}
-@media (max-width:900px){.tv-hd{margin-top:8px}.tv-wcard .tv-qd{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-hd{margin-top:8px}.tv-wcard .tv-qd{grid-template-columns:repeat(3,1fr)}}
 
 .tv-sc1 .tv-seg{grid-template-columns:repeat(5,1fr)}
 .tv-seg button.lock{opacity:.5;cursor:not-allowed;border-style:dashed}.tv-seg button.lock b{font-size:15px}
@@ -495,7 +495,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 @media (min-width:560px){.tv-dmrow{grid-template-columns:minmax(0,1fr) auto}}
 .tv-dmc .tv-lab{margin:0 0 4px}.tv-dmc .tv-seg button{padding:6px 4px}.tv-dmc .tv-seg b{font-size:16px}.tv-dmc .tv-seg small{font-size:10px}
 .tv-dmenu .tv-btn.big{width:auto;margin:0;padding:12px 18px;font-size:14px;white-space:nowrap}
-@media (max-width:900px){.tv-boardw.dep .tv-board{width:min(100%,560px)}.tv-dmenu{width:min(100%,560px)}.tv-dmrow{grid-template-columns:1fr}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-boardw.dep .tv-board{width:min(100%,560px)}.tv-dmenu{width:min(100%,560px)}.tv-dmrow{grid-template-columns:1fr}}
 /* Tirada del evento de la Ruptura: los dados salen en el centro y se pulsa para tirarlos. */
 .tv-evfx.ask{cursor:default}
 .tv-evfx.ask .tv-btn.big{margin-top:14px}
@@ -760,12 +760,12 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-pmenu button{text-align:left;padding:10px 12px;border-radius:8px;border:0;background:transparent;color:var(--ink);font-size:13px;cursor:pointer}
 .tv-pmenu button:hover{background:rgba(214,180,106,.1)}
 .tv-pmenu button.arm{color:#ffb3bf;background:rgba(224,86,106,.12)}
-@media (max-width:900px){.tv-head{grid-template-columns:auto 1fr auto}.tv-steps{grid-column:1/-1;order:5;justify-self:start}.tv-stat{grid-column:1/-1;order:4}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-head{grid-template-columns:auto 1fr auto}.tv-steps{grid-column:1/-1;order:5;justify-self:start}.tv-stat{grid-column:1/-1;order:4}}
 
 /* barra bajo el mapa */
 .tv-tbar{width:min(100%,calc(100vh - 210px),calc(100dvh - 210px));display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .tv-boardw.dep .tv-tbar{width:min(100%,calc(100vh - 360px),calc(100dvh - 360px))}
-@media (max-width:900px){.tv-tbar,.tv-boardw.dep .tv-tbar{width:min(100%,560px)}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-tbar,.tv-boardw.dep .tv-tbar{width:min(100%,560px)}}
 .tv-legw{position:relative}
 .tv-legb{height:38px;padding:0 13px;border-radius:10px;border:1px solid rgba(214,180,106,.35);background:#0e1322;color:var(--ink);font-size:12.5px;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
 .tv-legb svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
@@ -832,16 +832,16 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-agrid .tv-act.obj:not(:disabled)::after{display:none}
 .tv-afoot{position:sticky;bottom:-40px;z-index:2;margin:14px -18px -40px;padding:12px 18px 18px;background:linear-gradient(180deg,rgba(10,14,26,.7),#0a0e1a 45%);border-top:1px solid rgba(214,180,106,.12)}
 .tv-afoot .tv-btn{width:100%;min-height:46px}
-@media (max-width:900px){.tv-afoot{position:static;margin:14px 0 0;padding:0;background:none;border:0}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-afoot{position:static;margin:14px 0 0;padding:0;background:none;border:0}}
 
 @media (min-width:1180px){.tv-body{grid-template-columns:minmax(260px,300px) minmax(0,1fr) minmax(360px,404px)}}
 .tv-agrid .tv-act small,.tv-agrid .tv-act em{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .tv-afoot{display:grid;grid-template-columns:1fr 1.4fr;gap:8px}
 .tv-afoot .tv-pick:disabled{opacity:.45}
-@media (max-width:900px){.tv-afoot{display:grid}}
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){.tv-afoot{display:grid}}
 
 /* Móvil: sin desbordes laterales (2026-11-24) */
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){
  .tv-win,.tv-head{min-width:0;max-width:100%}
  .tv-steps{min-width:0;max-width:100%;overflow-x:auto;justify-self:stretch}
  .tv-steps li{padding:6px 10px;font-size:12px}
@@ -862,7 +862,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 /* Hechizos (2026-11-24): el seleccionado sin brillo excesivo. La animación del hechizo ya no va en el mapa: está en la escena de duelo. */
 .tv-cast .tv-btn.sm.on{background:#1a2440!important;background-image:none!important;color:#f0d99a!important;box-shadow:none!important;animation:none!important;filter:none;outline:1px solid var(--gold)}
 /* Móvil: el registro de actividad queda al final de todo (2026-11-24) */
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){
  /* Rejilla de una columna con filas a la altura de su contenido: ningún bloque se encoge ni se pisa (también en Safari/WebKit) */
  .tv-body{display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:max-content;align-content:start;overflow-y:auto;-webkit-overflow-scrolling:touch}
  .tv-body>*,.tv-main>*,.tv-shero>*{min-height:auto;min-width:0}
@@ -1078,7 +1078,7 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 @keyframes du-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 /* ---- pantallas estrechas: cartas arriba, compactas; el centro debajo ---- */
-@media (max-width:860px){
+@media (max-width:860px) and (orientation:portrait),(max-width:860px) and (min-height:501px){
  .du{place-items:start center}
  .du-stage{padding:14px 12px 28px;height:100%}
  .du-arena{grid-template-columns:1fr 1fr;gap:12px 10px;align-items:start}
@@ -1117,13 +1117,13 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-hc.mini .tv-bar em{line-height:12px}
 .tv-hcw.mini{order:0}
 .tv-mvf{display:none}
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){
  .tv-mvf{display:flex;position:absolute;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:20;justify-content:center;gap:10px;padding:0 14px;pointer-events:none}
  .tv-mvf>*{pointer-events:auto;flex:1;max-width:200px;box-shadow:0 10px 26px rgba(0,0,0,.65)}
  .tv-mvf .tv-ghostb{background:#0d1426;border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:10px 14px}
 }
 /* Móvil (2026-11-25): el tablero nunca se encoge ni se corta por arriba cuando el menú de acciones es alto. */
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait),(max-width:900px) and (min-height:501px){
  .tv-body>*,.tv-body .tv-boardw{flex-shrink:0}
  .tv-boardw{justify-content:flex-start;min-height:auto}
 }
@@ -1152,3 +1152,30 @@ body.tvopen .tvfab{opacity:0;pointer-events:none}
 .tv-dres.bad{border-color:rgba(255,138,154,.6)}.tv-dres.ok{border-color:rgba(134,209,174,.6)}
 .tv-dres b{display:block;font:700 15px/1.2 Cinzel,Georgia,serif;color:var(--gold2)}
 .tv-dres p{margin:4px 0 0;font-size:13px;color:var(--ink)}
+
+/* ---- móvil apaisado (alto ≤ 500 px, 2026-11-26): cabecera fina, tablero a toda la altura a la izquierda y columna de héroes y acciones a la derecha ---- */
+@media (orientation:landscape) and (max-height:500px){
+ .tv-head{min-height:0;gap:4px 12px;padding-top:max(4px,env(safe-area-inset-top,0px));padding-bottom:4px}
+ .tv-tt{display:none}
+ .tv-head{grid-template-columns:auto 1fr auto auto}
+ .tv-steps{padding:3px;gap:2px}
+ .tv-steps li{padding:4px 9px;font-size:11px;gap:5px}
+ .tv-steps li svg{width:11px;height:11px}
+ .tv-stat{gap:10px}
+ .tv-stat small{font-size:8.5px}
+ .tv-stat b{font-size:14px}
+ .tv-body{grid-template-columns:auto minmax(0,1fr)}
+ .tv-shero{max-height:40vh}
+ .tv-afoot{padding:8px 14px 12px;margin-top:8px}
+ .tv-tbar,.tv-boardw.dep .tv-tbar{width:min(100%,calc(100vh - 92px),calc(100dvh - 92px));gap:6px;transform:scale(.82);transform-origin:50% 0;margin-bottom:-8px}
+ .tv-boardw.dep .tv-board{width:min(100%,calc(100vh - 150px),calc(100dvh - 150px))}
+ .tv-afoot .tv-btn{padding:8px 10px;font-size:12.5px}
+ .tv-boardw{padding:6px 8px;gap:6px}
+ .tv-board{width:min(100%,calc(100vh - 92px),calc(100dvh - 92px))}
+ .tv-shero{max-height:48vh}
+ .tv-setupw{padding:14px 18px 60px}
+ .tv-setupwin .tv-shead h3{font-size:24px;margin-bottom:6px}
+ .tv-setupwin .tv-shead .tv-sub{font-size:13px}
+ .tv-sgrid{margin:14px 0 16px;gap:18px}
+}
+@media (orientation:landscape) and (max-height:500px) and (max-width:760px){.tv-steps{display:none}.tv-head{grid-template-columns:auto 1fr auto}}

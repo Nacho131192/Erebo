@@ -1,0 +1,13 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 409,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v5/panorama5-mar-cero_flux.2-klein-4b_s307.jpg",
+    "assets/borradores/panorama-v5/panorama5-mar-cero_flux.2-klein-4b_s101.jpg",
+    "assets/borradores/panorama-v6/panorama6-c1_flux.2-klein-4b_s503.jpg"
+  ],
+  "prompt": "Edit image 1. Keep everything from image 1 exactly: the framing, the starry sky and the bitten moon, the mountain on the left, the open ocean reaching a flat horizon, the river that runs between the two halves of the town and flows into the sea, the town and its warm lit windows, the dark rocky foreground and the ink and watercolor technique. Make two changes. First, replace the wall on the right with the colossal wall from image 2: the same huge pale grey fitted stone blocks with a heavy coping along the top, the same perspective rising towards the top-right corner, the same bitten and erased crest with stone fragments drifting up, and the same boulders at its foot. Second, add the two sailing ships from image 3 on the moonlit sea, in the same positions as in image 3: a small single-masted boat with a pale sail on the left and a larger two-masted cog further out on the right. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

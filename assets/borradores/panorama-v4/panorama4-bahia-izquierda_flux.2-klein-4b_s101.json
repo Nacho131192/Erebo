@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 101,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v3/panorama3-valle-bahia_flux.2-klein-4b_s101.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep exactly the same framing and point of view, the starry night sky, the bitten moon crumbling into specks, the layered blue mountains on the left, the fog in the valley, the dark rocky foreground ridge, the indigo and ochre colors and the ink and watercolor technique with brush-pen linework and paper grain. Make only these changes: First, the colossal ancient wall on the right: its top must be one clean, continuous edge that slopes down towards the horizon, with nothing standing on top of it: remove the square block or small tower that sticks up from its crest where it meets the hills; no battlements, no turrets, no beacons. The only breaks in the top edge are the places where it is bitten away and erased, with stone fragments drifting up like dust. Second, move the water: there is no water between the town and the wall any more; the town sits directly against the foot of the wall, and on its left side, away from the wall, it opens onto the sea: a small harbor with stone piers, moored fishing boats and a lantern at the end of a pier, the dark sea spreading out to the left below the mountains and into the mist, warm windows reflected in the water. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

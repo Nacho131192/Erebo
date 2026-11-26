@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 31,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v1/panorama-acuarela-diagonal_flux.2-klein-4b_s11.jpg"
+  ],
+  "prompt": "Ink and watercolor illustration: confident brush-pen linework, loose wet-in-wet indigo washes for the sky and the mist, granulating pigment texture, warm ochre touches for the windows, visible paper grain. Like a page from the sketchbook of a fantasy cartographer. Use the reference image only for the painting style, palette and mood; the composition is completely new. Wide panoramic night landscape seen from a low grassy ridge. An immense ancient wall of colossal smooth stone blocks that nobody built sweeps in a vast curve around a dark valley, like the rim of a bowl, from the left foreground to the far right distance where it fades into mist. Its top is missing in a few places, as if erased, with stone fragments drifting up like dust. A small fortified town with warm lit windows sits at the foot of the wall on the left. Pine forests fill the valley. High in the sky, a pale full moon with a chunk missing from its lower-left edge, crumbling into specks. Clear starry sky. The bottom fifth of the image is a dark, empty, gently rolling foreground ridge with short grass and a few rocks, with no buildings, towers or figures on it. No people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

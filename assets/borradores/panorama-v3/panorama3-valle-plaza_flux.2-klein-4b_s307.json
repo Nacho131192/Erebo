@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 307,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v2/panorama2-acuarela-valle_flux.2-klein-4b_s101.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep everything else exactly the same: the framing and point of view, the starry night sky, the bitten moon crumbling into specks, the colossal ancient wall on the right with its erased gaps and floating stone fragments, the layered blue mountains and the fog filling the valley, the dark rocky foreground ridge, the indigo and ochre colors and the ink and watercolor technique with its brush-pen linework and paper grain. Only redraw the town in the valley: a smaller, looser town scattered along a winding road, with a central square, a tall bell tower and a lit main street, a few houses spreading into the fog, warm lit windows and thin chimney smoke. The new town is clearly different from the reference: much larger and more detailed, filling the lower centre of the valley right up to the foot of the colossal wall, its roofs and lights easy to read at a glance. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

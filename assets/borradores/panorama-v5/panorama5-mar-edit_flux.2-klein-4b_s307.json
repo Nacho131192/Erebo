@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 307,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v4/panorama4b-bahia-i4_flux.2-klein-4b_s307.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep the same framing and point of view, the starry sky, the bitten moon crumbling into specks, the large mountain on the far left, the dark rocky foreground ridge, the colors and the ink and watercolor technique. Redraw the rest following this layout. Layout, from left to right: on the far left, one large mountain slope with fog on it. In the centre of the image there are NO mountains in the distance at all: the valley opens onto the open ocean, a wide calm sea that fills the centre all the way to a flat, straight horizon line under the night sky, with moonlight glittering on the water. A river starts at the town and winds down the middle of the valley, widening into an estuary that flows out into the ocean. On the right, a few hills next to the wall. The town sits at the foot of the wall and fills the ground right up against its base: houses, roofs and warm lit windows touch the wall, and there is absolutely no water, no canal and no river between the town and the wall. The colossal ancient wall on the right is built of enormous fitted stone blocks with clearly drawn joints, its top one clean continuous edge with nothing standing on it, broken only where it is bitten away and erased, with stone fragments drifting up like dust. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

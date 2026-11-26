@@ -25,7 +25,7 @@ _m=importlib.util.module_from_spec(_sp); _sp.loader.exec_module(_m)
 emb={nom:slug for slug,(nom,_) in _m.RAZAS.items() if os.path.exists(os.path.join(IMG,"razas",slug+".webp"))}
 out=out.replace("%%HC_EMB%%",json.dumps(emb,ensure_ascii=False,separators=(",",":")))
 # Fondo del tablero táctico (boceto MX-CRUZ2-A, 900 px). Sus obstáculos están calcados a mano en BOBS de la plantilla.
-out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg"))
+out=out.replace("%%IMG_TABLERO%%",img("tablero.jpg")).replace("%%IMG_PANORAMA%%",img("panorama.jpg"))
 # Narraciones (assets/audio/, MP3): también como data URI. Clave = texto de la mesa (start = Antes de empezar, r1 = Ronda 1…).
 def aud(n): return "data:audio/mpeg;base64,"+base64.b64encode(open(os.path.join(H,"..","..","assets","audio",n),"rb").read()).decode()
 out=out.replace("%%AUD_START%%",aud("antes-de-empezar.mp3"))

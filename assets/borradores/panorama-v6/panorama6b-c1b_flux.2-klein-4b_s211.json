@@ -1,0 +1,12 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 211,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v3/panorama3-valle-bahia_flux.2-klein-4b_s101.jpg",
+    "assets/borradores/panorama-v5/panorama5-mar-cero_flux.2-klein-4b_s101.jpg"
+  ],
+  "prompt": "Edit image 2. Keep from image 2 the framing, the starry sky and the bitten moon crumbling into specks, the large mountain on the left, the open ocean reaching a flat horizon, the river that runs through the town into the sea, the town reaching right up to the foot of the wall with no water between them, the dark rocky foreground and the ink and watercolor technique. Replace the wall on the right of image 2 with the colossal wall from image 1: the same massive weathered stone blocks with small lit windows, the same colors, the same crest bitten away and erased with stone fragments drifting up like dust, nothing standing on top. Add two small period sailing ships at sea on the moonlit water: a single-masted fishing boat with a patched square sail and a two-masted medieval merchant cog, each with a tiny lantern on board, drawn in the same ink and watercolor style. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

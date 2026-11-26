@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 211,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/pruebas/panorama6-c3_flux.2-klein-4b_s101.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep absolutely everything exactly the same, especially the colossal wall on the right, the town, the river, the ocean, the mountains, the sky and the moon. Only change the ships: replace them with two small period sailing ships at sea on the moonlit water: a single-masted fishing boat with a patched square sail and a two-masted medieval merchant cog, each with a tiny lantern on board, drawn in the same ink and watercolor style, in different positions on the sea, one closer to the river mouth and one further out near the horizon. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}
