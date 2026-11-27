@@ -3081,8 +3081,7 @@ body:has(.zm.has):not(:has(#panel.open)) .hf-meds{opacity:0;visibility:hidden;po
 }
 /* --- móvil apaisado (decisión de Nacho, 2026-11-26): en un móvil en vertical se pide girarlo; en Android, botón de pantalla completa que fija la horizontal --- */
 #rotOv{display:none;position:fixed;inset:0;z-index:2000;place-items:center;text-align:center;padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));background:radial-gradient(ellipse at 50% 40%,#16203a,#070a14 70%);color:#ecdfc3}
-/* Menús en apaisado (hay que girar el móvil); la mesa y el tablero virtual se juegan en vertical, sin aviso. */
-@media (orientation:portrait) and (pointer:coarse) and (max-width:900px){body:not(.tvopen):not(:has(#panel.open)) #rotOv{display:grid}html:not(:has(body.tvopen)):not(:has(#panel.open)),body:not(.tvopen):not(:has(#panel.open)){overflow:hidden}}
+/* 2026-11-27 (Nacho): nunca se pide girar el móvil. En vertical todo usa el diseño apilado; si el jugador lo gira, los menús se ven en apaisado. #rotOv queda sin mostrarse. */
 .rot-c{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:300px}
 .rot-c svg{width:150px;height:150px;overflow:visible}
 .rot-ph{transform-origin:75px 75px;animation:rotPh 3.2s cubic-bezier(.6,0,.3,1) infinite}
