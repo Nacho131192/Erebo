@@ -1,0 +1,204 @@
+# El Pueblo Sin Nombre — Misión 2: El camino de las raíces
+
+*Campaña para Age of Fantasy: Quest (One Page Rules), ambientada en Érebo · 2 a 4 héroes · Mesa de 122 x 122 cm*
+
+> **Estado (2026-11-27):** misión desarrollada a partir de las decisiones de Nacho: el rastro es la **expedición de los cartógrafos** (1A), la guía es **Orwen Savia**, antigua patrulla del Muro (2C), y la misión es una **contrarreloj** (3C). Los textos, las cifras y las reglas de la casa son **PROPUESTA** de Claude hasta que Nacho los confirme y se pruebe en mesa. Las palabras clave de reglas (Ambush, Caster, Fast, Tough, AP…) se dejan en inglés.
+>
+> La misión no se basa en la Ruptura de Eryn: el bosque solo pone el escenario y a la guía. La amenaza es el borrado, el mismo de la Misión 1. El nombre de Neth no aparece.
+
+## Prólogo: La guía de la Senda
+
+*Léelo antes de colocar las miniaturas.*
+
+El pueblo ha desaparecido a vuestra espalda, pero el diario no. Sus páginas siguen intactas y su letra os suena, aunque no sabéis decir de quién es. En la última hay un camino dibujado que cruza el bosque de Eryn, y al final del trazo alguien ha pintado un círculo vacío.
+
+La Voz del Filo no ha vuelto a llamaros. El Mercado, en cambio, ha preguntado por vosotros. Hace dos meses una expedición de cartógrafos salió de Varek's Hold a levantar el mapa del borde del bosque y no regresó. Su gremio sabe que faltan, pero ya no recuerda cuántos eran, y en su archivo los nombres aparecen tachados con una letra que no es la suya. Nadie os ha prometido paga. Solo os han dicho que, si el mapa existe, estará en su último campamento.
+
+En el límite de la Senda de Eryn os espera una mujer con un bastón de caminante y un broche arrancado de la capa. Se llama Orwen Savia. No pregunta quiénes sois ni qué buscáis. Dice que el bosque lleva semanas retirándose de algo, que ese algo viene detrás de vosotros y que las raíces se apartan para ella, aunque no sabe por qué ni desde cuándo.
+
+—Os llevaré hasta el campamento —dice—. Si el aire huele a ceniza, no os giréis. Corred.
+
+Al pisar el primer sendero, la hierba que dejáis atrás pierde el color, y luego el sitio.
+
+## Reglas especiales de la misión
+
+### El Olvido avanza *(regla de la casa)*
+
+El borrado entra en el bosque por un borde de la mesa y se lo va comiendo.
+
+- **Borde del Olvido:** tira un dado y numera los bordes del 1 al 4 en sentido horario empezando por el norte. Con 1-4 el Olvido entra por el borde con ese número, y con 5-6 eliges tú. El borde opuesto es la **Salida**.
+- **Avance:** al final de cada ronda, la zona borrada crece **6"** desde el borde del Olvido (3" en una mesa de 24"x24"). Márcala con una cinta o una tira de papel. Con 48" de mesa, en la ronda 8 ya no queda bosque.
+- **Zona borrada:** nadie puede entrar en ella ni cuenta para objetivos. Los marcadores que queden dentro se pierden.
+- **Olvidados:** al final de cada ronda, cualquier héroe cuya peana toque la zona borrada queda **olvidado**: se retira de la mesa y cuenta como inconsciente. Un héroe olvidado **no sufre herida duradera** si el principal se cumple. Los enemigos que queden dentro se retiran de la mesa sin contar como bajas.
+- **Eventos:** el Olvido no se detiene por un efecto, salvo las excepciones de la tabla de eventos y de la semilla negra.
+
+### Orwen Savia, la guía *(regla de la casa)*
+
+Orwen es una aliada controlada por el grupo, pero no es un héroe: no gana XP ni oro.
+
+| | |
+|---|---|
+| **Perfil** | Calidad 4+, Defensa 4+, *Tough(6)* |
+| **Arma** | Bastón de caminante: Ataques 2, AP(0) |
+| **Activación** | Después de los héroes y antes de la IA. Avanza o corre hacia el objetivo activo (primero el campamento, luego la Salida) y evita el combate. Solo ataca si la cargan. |
+| **Camino de raíces** | Al empezar cada ronda, un héroe a 3" o menos de ella ignora el terreno difícil durante esa ronda. |
+| **Caída** | Si queda a 0 heridas, queda inconsciente y no puede usar *Camino de raíces*. Un héroe a 1" puede revivirla con una acción de habilidad. Si queda en la zona borrada, se pierde. |
+
+### Si el Heraldo os sigue *(regla de la casa, opcional)*
+
+Según el final de la Misión 1:
+
+- **El Heraldo sobrevivió:** la Alertness empieza en **2**. Su voz se oye entre los árboles y no se puede evitar.
+- **Tenéis la semilla negra:** una vez por partida, un héroe puede gastar una acción para **hundirla en el suelo**: el Olvido **no avanza** al final de esa ronda. La semilla se consume.
+
+## Objetivos y recompensas
+
+- **Objetivo principal: el mapa de los cartógrafos.** Coloca el marcador del **campamento** en el centro de la mesa más cercano a la Salida (a 30" del borde del Olvido en una mesa de 48"). Un héroe a 1" del marcador gasta una acción de habilidad y pasa una tirada de Voluntad: recoge el mapa. Quien lo lleve lo guarda mientras esté consciente; si cae, el mapa queda en el suelo y otro héroe puede cogerlo. El objetivo se cumple cuando **todos los héroes conscientes, con el mapa, están a 6" o menos de la Salida** sin enemigos alrededor al final de una ronda. El marcador del campamento es el Objetivo de IA.
+- **Objetivo secundario: la guía a salvo.** Se cumple si Orwen sale de la mesa por la Salida junto con los héroes, consciente y a 6" o menos del borde. Si no, se pierde.
+- **Fin de la misión:** con el principal cumplido. El secundario no es obligatorio.
+- **Sin jefe:** esta misión no tiene pelea de jefe.
+- **Al terminar:** los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera, salvo los héroes **olvidados** si el principal se cumple.
+- **Derrota:** si todos los héroes quedan inconscientes u olvidados a la vez, todos cuentan como muertos, sufren heridas duraderas y repiten el capítulo.
+
+## Recompensas y XP
+
+Cada héroe recibe el XP y el oro de la misión. D es el nivel de dificultad (de 1 a 4).
+
+| Recompensa | Fórmula | Nv. 1 | Nv. 2 | Nv. 3 | Nv. 4 |
+|---|---|---|---|---|---|
+| Principal: el mapa de los cartógrafos | 2 × D de XP | 2 | 4 | 6 | 8 |
+| Secundario: la guía a salvo | D de XP | 1 | 2 | 3 | 4 |
+| Máximo de XP | 3 × D | 3 | 6 | 9 | 12 |
+| Paga de riesgo (oro) | 5 × D | 5 | 10 | 15 | 20 |
+
+Las fórmulas son las del Campaign Builder v2.1.0 de OPR.
+
+## Preparación
+
+- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm), con más de 20 piezas de terreno: árboles (cobertura), troncos caídos y **raíces** (terreno difícil), y claros abiertos. También puede jugarse en 24"x24" con todas las distancias a la mitad. Deja un claro con el **campamento** de los cartógrafos: tiendas, un fuego apagado y mapas pisados.
+- **1. Borde del Olvido y Salida:** determínalos como se explica arriba.
+- **2. Objetivos:** coloca el marcador del campamento.
+- **3. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o esquina), y con 5-6 eliges tú. Cada ficha es un cofre (**tablas en la Misión 1**).
+- **4. Despliegue enemigo:** ver Oleadas y sorpresas.
+- **5. Despliegue de héroes:** a 6" o menos del **borde del Olvido**, con Orwen. Corren con el Olvido pegado a los talones.
+- **6. Desafíos opcionales:** la misión empieza de **noche** (-1 a impactar al disparar y visión limitada a 12"). Pasa a **alba** cuando llegan los primeros refuerzos, y a día después. También se usan los eventos del bosque.
+
+## Cofres
+
+Usa las tablas de **cofres, peligros y objetos de la Misión 1** (`docs/mision-1.md`): abrir una ficha, contenido (1d6), Peligro, elixires, bombas, pociones y tesoro maldito. En el tesoro maldito, el Borrado débil sale a 6" del héroe que lo abrió, hacia el borde del Olvido.
+
+## Oleadas y sorpresas
+
+- **Colección de enemigos:** Borrados (espectros o muertos vivientes, algunos con la forma de cartógrafos), animales deformados con *Fast*, bestias de raíz y cultistas del Umbral con un *Caster*. Ten al menos 2 o 3 veces más unidades que héroes.
+- **Tamaño de oleada:** porcentaje de los puntos totales de los héroes: nivel 1 = 25%, nivel 2 = 50%, nivel 3 = 100% y nivel 4 = 200%.
+- **Centinelas:** antes de empezar, se despliegan en el centro de un cuadrante al azar (un dado por unidad: con 1-4 va al cuadrante con ese número, y con 5-6 eliges). Usa el tamaño de una oleada.
+- **Alertness:** al final de cada ronda sube 1, o 2 si no queda ningún enemigo en la mesa. Al llegar a 6 entra una oleada de refuerzos y la Alertness vuelve a 0.
+- **Refuerzos:** cada unidad entra a 6" o menos de una de las **dos esquinas del lado de la Salida**, al azar. Así el camino de salida siempre está disputado.
+- **Eventos del bosque:** tira en la tabla al empezar la ronda 1 y cada vez que entren refuerzos.
+
+| Oleada | Composición | Sorpresa |
+|---|---|---|
+| Centinelas | Borrados y animales deformados con *Fast* | El evento del bosque de la ronda 1. |
+| Refuerzos 1 | Cultistas con un *Caster* y su escolta | Mientras el *Caster* no esté Aturdido, los Borrados a 6" de él ganan +1 a impactar en cuerpo a cuerpo. |
+| Refuerzos 2 | Bestias de raíz y una unidad con *Ambush* | La unidad con *Ambush* entra D3 rondas después, al empezar la ronda, a 6" o menos de un Objetivo de IA (al azar si hay varios). |
+| Refuerzos 3 en adelante | Alterna los refuerzos 1 y 2 | Un evento del bosque cada vez. |
+
+## Eventos del bosque
+
+*Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento. Es la tabla de la Misión 1 con otro ambiente, más dos eventos propios del Olvido (36 y 41).*
+
+| 2d6 | Evento | Efecto |
+|---|---|---|
+| 11 | Rama que cae | Un héroe al azar queda Aturdido. |
+| 12 | Savia pegajosa | Un héroe al azar queda Afectado. |
+| 13 | Raíz en la memoria | Un héroe al azar tiene -1 a las tiradas de Fuerza hasta el siguiente evento. |
+| 14 | Derrumbe de ramas | Un héroe al azar sufre D3 heridas. |
+| 15 | Zarzas secas | Un héroe al azar queda Debilitado. |
+| 16 | Memoria falsa | Un héroe al azar tiene -1 a las tiradas de Voluntad hasta el siguiente evento. |
+| 21 | Trampa de raíces | Un héroe al azar sufre D3 impactos. |
+| 22 | Susurros sin voz | Un héroe al azar pierde D3 de poder. |
+| 23 | Polen maldito | Un héroe al azar queda Afligido. |
+| 24 | Enjambre de sombras | Un héroe al azar queda Aturdido. |
+| 25 | Hilos de olvido | Un héroe al azar tiene -1 a las tiradas de Destreza hasta el siguiente evento. |
+| 26 | Moho gris | Un héroe al azar queda Enfermo. |
+| 31 | Tierra que se borra | Un cuadrante al azar cuenta como terreno peligroso hasta el siguiente evento. |
+| 32 | Corteza quebradiza | Todos los héroes y enemigos tienen -1 a las tiradas de Defensa hasta el siguiente evento. |
+| 33 | Bruma que aturde | Todos los héroes y enemigos tienen -1 a impactar hasta el siguiente evento. |
+| 34 | Lluvia de hojas muertas | Un cuadrante al azar cuenta como terreno difícil hasta el siguiente evento. |
+| 35 | Niebla espesa | Todos los héroes y enemigos tienen -6" de alcance al disparar hasta el siguiente evento. |
+| 36 | **El Olvido se adelanta** | La zona borrada avanza **3"** más ahora mismo. |
+| 41 | **El Olvido vacila** | El próximo avance de la zona borrada es de **3"** en vez de 6". |
+| 42 | Perro fiel | Un héroe al azar tiene +1 a las tiradas de Destreza hasta el siguiente evento. |
+| 43 | Hoja de un mapa | Coloca D3 fichas de búsqueda, cada una a 6" del centro de cuadrantes distintos. |
+| 44 | Cuervo vigía | Un héroe al azar tiene +6" de alcance al disparar hasta el siguiente evento. |
+| 45 | Eco de un cartógrafo | Un héroe al azar restaura D3 de poder. |
+| 46 | Sumidero | Una unidad enemiga al azar queda Aturdida. |
+| 51 | Niebla de lucidez | Un héroe al azar tiene +1 a las tiradas de Voluntad hasta el siguiente evento. |
+| 52 | Bayas veloces | Un héroe al azar se mueve +2" al Avanzar y +4" al Correr o Cargar hasta el siguiente evento. |
+| 53 | Arma encantada | Un héroe al azar tiene +1 a impactar en cuerpo a cuerpo hasta el siguiente evento. |
+| 54 | Espíritu de apoyo | Un héroe al azar tiene +1 a las tiradas de Fuerza hasta el siguiente evento. |
+| 55 | Vientos encantados | Un héroe al azar tiene +1 a impactar al disparar hasta el siguiente evento. |
+| 56 | Espíritu guardián | Un héroe al azar tiene +1 a las tiradas de Defensa hasta el siguiente evento. |
+| 61 | Bolsa de elixires | Un héroe al azar recibe un Elixir de poder. |
+| 62 | Visión profética | Revela el contenido de D3 fichas de búsqueda al azar que aún no se hayan revelado. |
+| 63 | Bolsa de bombas | Un héroe al azar recibe una Bomba aturdidora. |
+| 64 | Montón de oro | Un héroe al azar recibe 15 de oro. |
+| 65 | Caja de pociones | Un héroe al azar recibe una Poción de salud. |
+| 66 | Claridad súbita | Un héroe al azar recibe D3 de XP. |
+
+## Orwen Savia
+
+*Esto es lo que se cuenta de ella; su perfil de juego está en las reglas especiales.*
+
+**Lo que se cuenta:** Nadie en la Senda de Eryn recuerda cuándo llegó. Una mujer que viste como si no hubiera decidido aún si pertenece a algún sitio, con un bastón de caminante y un broche de capa raspado hasta dejarlo liso, en el que quizá hubo un emblema. Dicen que las raíces se apartan para ella. Ella dice que no lo hace a propósito. Tararea una canción que no recuerda y se detiene siempre en el mismo verso.
+
+> «Yo no vine aquí. Me quedé aquí, que no es lo mismo.»
+
+**Nota para Nacho (PROPUESTA):** Orwen es una de la patrulla del Muro que volvió sin recuerdos (Misión 1), la única que no regresó a Varek's Hold y se quedó en la Senda. Los héroes pueden intuirlo por el broche, pero **la misión no lo confirma**: eso se decide más adelante.
+
+## Narración
+
+*Lee cada texto cuando ocurra el momento indicado.*
+
+### Antes de empezar
+
+El sendero se estrecha entre troncos tan anchos como casas. Orwen camina delante sin mirar el suelo, y las raíces se levantan un palmo para dejarla pasar y vuelven a bajar detrás. A vuestra espalda, la hierba va perdiendo el color, y después el sitio. No queda nada que mirar, así que seguís hacia delante.
+
+### Ronda 1
+
+Un crujido largo, como de madera vieja que no quiere romperse. Algo se mueve entre los árboles, rápido y bajo. Orwen levanta una mano y dice, sin volverse, que no es el bosque.
+
+### Ronda 2
+
+El aire huele a ceniza fría. Una figura de contornos grises hace como si midiera el claro con un compás que no tiene. Tiene el sombrero de un cartógrafo y la cara de nadie. Cuando os ve, deja caer el compás sin ruido.
+
+### Ronda 3
+
+Las raíces de delante se abren en abanico. Orwen se detiene, tararea tres notas de su canción y se calla justo donde siempre se calla. —Por aquí —dice—. Lo sabía antes de saber cómo.
+
+### Ronda 4
+
+Voces cantando una sola nota, larga y apagada. Hombres encapuchados avanzan en fila, con el signo del Umbral cosido en las mangas. Sobre sus cabezas, un árbol deja caer todas sus hojas a la vez, y en el suelo no hacen ruido.
+
+### Ronda 5
+
+Detrás de vosotros, el bosque ya no se mueve: ha dejado de estar. No es oscuro ni es vacío. Es la clase de nada que ocurre cuando alguien pierde el hilo de lo que estaba pensando. Orwen os mira por primera vez en toda la misión. —No os giréis —dice—. Corred.
+
+### Se cumple el objetivo principal
+
+En un claro bajo, las tiendas siguen en pie y el fuego sigue apagado. Entre mapas pisados hay uno sin rastro de barro, con las esquinas aún dobladas. Lo desplegáis y veis que está lleno de huecos blancos, como si alguien hubiera borrado el bosque con el dedo. Orwen dice que ya está, y que lo que sea que sigue viniendo, no se va a cansar.
+
+## Finales
+
+- **Misión cumplida:** salís del bosque con el mapa y con el Olvido a un paso de vuestros talones. Cuando por fin os paráis, lo desplegáis. Los huecos blancos rodean una sola marca en tinta roja sobre un nombre: **Ceniza Mansa**. Al margen, con otra letra, alguien ha escrito «ya no hablan». Orwen lo lee dos veces y se lleva la mano al broche. —Conozco ese nombre —dice, aunque no sabe de qué—. Vamos.
+- **Misión cumplida sin Orwen:** salís del bosque con el mapa, sin la guía, y con el Olvido cerrándose a vuestra espalda. Lo desplegáis: unos huecos blancos rodean una marca en tinta roja sobre un nombre, **Ceniza Mansa**, y un margen con otra letra dice «ya no hablan». Nadie recuerda haber oído ese nombre. Pero todos sienten, con una claridad extraña, que quien ha escrito eso lo ha dicho en voz baja.
+- **Si el Heraldo sobrevivió:** esa noche vuelve la voz entre los árboles. Ya no dice vuestros nombres: dice el de Ceniza Mansa, despacio, como quien lo recuerda.
+- **Si tenéis la semilla negra:** late más fuerte cada vez que alguien pronuncia ese nombre.
+- **Derrota:** el bosque os devuelve al sendero por el que entrasteis. El camino ha cambiado, y la hierba de allí tiene otro color. No recordáis qué buscabais, pero sí que alguien os esperaba al final.
+
+## Notas
+
+- Son **reglas de la casa**: El Olvido avanza (zona borrada, olvidados y su excepción), Orwen Savia (perfil y *Camino de raíces*), la Salida y el despliegue, el Heraldo vivo y la semilla negra, el contenido de la tabla de eventos del bosque y los dos eventos propios (36 y 41). Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
+- Son **oficiales**: Alertness, refuerzos por esquinas, tamaño de oleada por dificultad, fichas de búsqueda y XP por objetivos (fórmulas de arriba).
+- **Sin probar en mesa:** el ritmo del avance (6" por ronda), el perfil de Orwen y la dificultad de escapar con el mapa. Probar con 2 y con 4 héroes antes de fijarlo.
+- **Enlace con la Misión 3:** el mapa termina en **Ceniza Mansa**, la aldea tomada por el Culto del Umbral (*La aldea de los callados*).

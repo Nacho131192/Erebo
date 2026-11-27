@@ -19,7 +19,9 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 - **DECIDIDO:** la misión principal sigue relacionada con el borrado.
 - **DECIDIDO (2026-11-27):** la pista o personaje de Eryn es **una guía de la Senda de Eryn** («algo así parecido»).
 - **PROPUESTA:** una naturalista que conoce el bosque y dice que las raíces «se retiran» ante algo que no es del bosque. Acompaña a los héroes, pero no se fía de ellos.
-- **ABIERTO:** el eje de la misión (lo que se busca: otro rastro del borrado) y el nombre de la guía.
+- **DECIDIDO (2026-11-27):** el rastro es la **expedición de los cartógrafos** de Varek's Hold, desaparecida en el bosque, cuyo mapa tiene una marca sobre **Ceniza Mansa** (enlace con la Misión 3). La guía es **Orwen Savia**, antigua patrulla del Muro. La misión es una **contrarreloj**: el borrado avanza por el bosque desde un borde.
+- **Desarrollada** en `docs/mision-2.md` (prólogo, reglas, objetivos, oleadas, eventos, narración y finales). Todo es PROPUESTA hasta que Nacho lo confirme y se pruebe en mesa.
+- **PROPUESTA:** Orwen es de la patrulla del Muro que volvió sin recuerdos (Misión 1); la misión no lo confirma.
 
 ### Misión 3 · La aldea de los callados
 - **DECIDIDO (2026-11-27):** el nombre de la misión es **«La aldea de los callados»** y la aldea se llama **Ceniza Mansa**. Ya no es «la aldea sitiada» y **no tiene nada de Kael ni de los Resonantes**.
@@ -93,7 +95,7 @@ El mapa y las siete Rupturas siguen **archivados y sin tocar**; primero se termi
 
 ## Preguntas abiertas
 
-1. **Misión 2:** ¿cuál es el eje (qué otro rastro del borrado se busca) y cómo se llama la guía de la Senda de Eryn?
+1. **Misión 2:** ¿te convencen las reglas (avance de 6" por ronda, olvidados, perfil de Orwen)? ¿Es Orwen de la patrulla del Muro? Falta probarla en mesa.
 2. **Misión 3:** ¿qué se cuenta sobre el Culto (por qué están aquí, qué buscan) y qué aldeanos importan?
 3. **Misión 4:** ¿cómo se llama el aldeano infiltrado, qué sabe y cómo se disfraza? ¿Qué sale mal para los héroes?
 4. **Misión 5:** ¿quiénes eran los rehenes?

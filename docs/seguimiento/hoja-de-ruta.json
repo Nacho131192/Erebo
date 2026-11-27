@@ -674,6 +674,24 @@
           "tag": "",
           "done": false,
           "text": "Pasar al tablero virtual los cambios de la misión: evento de la Ruptura, secundario «Contener el Olvido» y vida del Heraldo."
+        },
+        {
+          "id": "f11-m2",
+          "tag": "",
+          "done": true,
+          "text": "Misión 2 «El camino de las raíces» desarrollada en docs/mision-2.md: cartógrafos, guía Orwen Savia y contrarreloj del Olvido (propuesta, sin confirmar)."
+        },
+        {
+          "id": "f11-m2-prueba",
+          "tag": "Casa",
+          "done": false,
+          "text": "Probar la Misión 2 en mesa: avance de 6 pulgadas por ronda, olvidados, perfil de Orwen y dificultad de escapar con el mapa."
+        },
+        {
+          "id": "f11-m2-web",
+          "tag": "",
+          "done": false,
+          "text": "Llevar la Misión 2 a la web: página de la misión, mesa, regla del Olvido, guía y oleadas."
         }
       ],
       "done_when": "",

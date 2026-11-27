@@ -20,7 +20,7 @@ Seis misiones. Solo la 1 está desarrollada.
 | # | Misión | Tema |
 |---|---|---|
 | 1 | **El pueblo vacío** | Ruptura de Neth · Borrados y Culto del Umbral |
-| 2 | El camino de las raíces | Borrado + una guía de la Senda de Eryn (eje por decidir) |
+| 2 | El camino de las raíces | Cartógrafos desaparecidos; contrarreloj del Olvido; guía Orwen Savia (`docs/mision-2.md`, sin probar) |
 | 3 | La aldea de los callados (aldea de Ceniza Mansa) | Liberar a los aldeanos y echar a los cultistas; cuentan la historia del Culto |
 | 4 | La emboscada | Un aldeano de la misión 3 es un cultista infiltrado; antes de morir habla de una cripta al noroeste |
 | 5 | La cripta primordial | Cultistas y Borrados; rehenes; aparece la entidad (jefe final, sin identidad) y los mata |
