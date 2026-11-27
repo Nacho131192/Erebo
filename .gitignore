@@ -1,4 +1,3 @@
-assets/pruebas/
 __pycache__/
 # Galerías de láminas: se generan con docs/maquetas/build-panorama-galeria.py a partir de assets/borradores/
 docs/maquetas/panorama-galeria*.html

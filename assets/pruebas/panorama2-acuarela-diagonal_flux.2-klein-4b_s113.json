@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 113,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Ink and watercolor illustration: confident brush-pen linework, loose wet-in-wet indigo washes for the sky and the mist, granulating pigment texture, warm ochre touches for the windows, visible paper grain. Like a page from the sketchbook of a fantasy cartographer. Wide panoramic night landscape seen from a low grassy ridge. On the left, close to the viewer, an immense ancient wall of colossal smooth stone blocks that nobody built rises far above everything and runs in steep perspective across the image, getting smaller and smaller until it disappears into the mist on the far right horizon. In three places the top of the wall is missing, as if bitten away and erased, with small fragments of stone drifting up into the air like dust. At its foot, on the left half, a small fortified town with crowded roofs, a squat round keep, warm lit windows and thin chimney smoke. Dark pine forests and layered blue mountain ridges in the distance. High in the sky, a pale full moon with a chunk missing from its lower-left edge, crumbling into specks. Clear starry sky. The bottom fifth of the image is a dark, empty, gently rolling foreground ridge with short grass and a few rocks, with no buildings, towers or figures on it. No people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Traditional hand-painted matte painting for a film: volumetric moonlight, layered atmospheric perspective, deep blues, subtle warm light from the town, restrained detail, quiet and vast. Wide cinematic panoramic landscape at night, seen from a low grassy ridge. On the left, close to the viewer, an immense ancient wall of colossal smooth stone blocks rises far above everything, and runs in steep perspective across the whole image towards the right horizon, where it becomes small and hazy. In three places the top of the wall is missing, as if bitten away and erased, with small fragments of stone drifting up into the air like dust. At the foot of the wall, on the left half, a small fortified town with crowded roofs, a squat keep, warm lit windows and thin chimney smoke. Beyond the town, dark pine forests and layered mountain ridges fading into blue mist. High in the sky on the right, a pale full moon with a chunk missing from its lower-left edge, crumbling into specks. Clear starry sky with a faint band of stars. The bottom fifth of the image is a dark, empty, gently rolling foreground ridge with short grass and a few rocks, with no buildings, towers or figures on it. No people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

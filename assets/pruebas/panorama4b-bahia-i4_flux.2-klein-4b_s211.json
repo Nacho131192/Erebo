@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 211,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/pruebas/panorama4-bahia-izquierda_flux.2-klein-4b_s409.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep exactly the same framing and point of view, the starry night sky, the bitten moon crumbling into specks, the mountains and fog on the left, the sea, harbor, piers, boats and lantern on the left side of the town, the dark rocky foreground ridge, the colors and the ink and watercolor technique. Make only these changes: 1) There is no water at all between the town and the wall: the narrow channel next to the wall becomes land, and the houses and lit windows of the town extend right up to the foot of the wall. 2) The wall on the right is not a natural cliff: it is an immense ancient wall built of colossal fitted stone blocks with clearly drawn joints, like ancient masonry, its top one clean continuous edge with nothing standing on it, broken only where it is bitten away and erased, with stone fragments drifting up like dust. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

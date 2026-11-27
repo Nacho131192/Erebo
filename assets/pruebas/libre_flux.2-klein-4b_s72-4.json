@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 72,
+  "ancho": 768,
+  "alto": 768,
+  "referencias": [
+    "assets/boton-tinta/t0.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep exactly the same: the round dark indigo watercolor disc, the ochre ring, the thick black ink outlines, the plain white background, the framing, size and position of the medallion, the flat ink and watercolor style with paper grain (no gloss, no digital glow, no 3D). Only change the arrow and what is painted around it: the orange watercolor wash bleeds further along the arrow, from the tip toward the middle of the shaft, and a few small ink-orange splatter dots appear near the tip. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

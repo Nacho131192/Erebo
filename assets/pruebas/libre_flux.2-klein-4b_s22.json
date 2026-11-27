@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 768,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "A single round fantasy UI button, drawn in ink and watercolor with brush-pen linework and paper grain: a worn dark indigo stone medallion with a thin hand-drawn ochre-gold rim, and in its centre a bold hand-inked arrow pointing right, made of pale gold ink with a faint ember glow at its tip. Flat front view, perfectly centered, nothing else. Pure plain white background, no shadow on the background, no text, no people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

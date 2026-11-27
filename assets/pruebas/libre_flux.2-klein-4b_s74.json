@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 74,
+  "ancho": 768,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "A single round fantasy button drawn as a hand-made ink and watercolor illustration, matching a loose pen-and-wash night landscape: thick uneven black India-ink outlines with a dip-pen look, flat translucent watercolor washes with visible pigment blooms and paper grain, no gloss, no highlights, no 3D shading, no digital glow. A rough round stone disc washed in deep dark night-indigo and blue-grey, a hand-drawn ochre watercolor ring around its edge outlined in black ink, and in its centre a bold arrow pointing right drawn with thick black ink outline and filled with pale cream-ochre wash. Flat front view, centered, nothing else. Pure plain white background, no shadow, no text. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

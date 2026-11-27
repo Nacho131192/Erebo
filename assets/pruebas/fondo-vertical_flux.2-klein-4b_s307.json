@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 307,
+  "ancho": 896,
+  "alto": 1952,
+  "referencias": [
+    "assets/panorama.jpg"
+  ],
+  "prompt": "Repaint the reference image as a tall vertical portrait composition of the same place, in exactly the same ink and watercolor style, palette and mood: confident brush-pen linework, indigo watercolor washes, warm ochre lit windows, visible paper grain. From top to bottom: a deep starry night sky filling the upper third, with the same pale moon with a chunk bitten out of it crumbling into specks; below it the open ocean reaching a flat horizon with the moon glittering on the water and a few small period sailing ships; then the narrow valley with the river running down through the town of warm lit houses on both banks into the sea; on the right side the colossal ancient wall of huge fitted stone blocks rising tall along the right edge, its crest bitten away in places; on the left a steep mountain slope with fog; at the bottom a dark rocky foreground. No text, no frame, no border, no people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

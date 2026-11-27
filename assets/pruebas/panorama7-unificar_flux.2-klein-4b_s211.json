@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 211,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/pruebas/panorama7-montaje.jpg"
+  ],
+  "prompt": "Keep this image exactly as it is: the same composition, the same wall, the same ships, the same town, river, sea, sky and moon, in the same positions and sizes. Only repaint it lightly so that everything looks like one single coherent ink and watercolor painting, smoothing any visible seams between parts, without adding or removing anything. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

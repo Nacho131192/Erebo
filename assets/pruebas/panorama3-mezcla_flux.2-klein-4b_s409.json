@@ -1,0 +1,13 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 409,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [
+    "assets/borradores/panorama-v1/panorama-acuarela-diagonal_flux.2-klein-4b_s23.jpg",
+    "assets/borradores/panorama-v2/panorama2-acuarela-diagonal_flux.2-klein-4b_s31.jpg",
+    "assets/borradores/panorama-v2/panorama2-acuarela-diagonal_flux.2-klein-4b_s113.jpg"
+  ],
+  "prompt": "Combine the three reference images into one new ink and watercolor painting of the same place. From image 1 take the overall framing, the sky and the bitten moon crumbling into specks, the colors and the ink linework. From image 2 take the town at the foot of the wall and the grassy foreground. From image 3 take the colossal wall: taller and more massive, rising out of the left edge and running in perspective to the right, with its top bitten away and erased in places and stone fragments drifting up like dust. Dark pine forests and layered blue mountains with mist on the right. The bottom fifth of the image is a dark, empty, gently rolling foreground ridge with short grass and a few rocks, with no buildings or figures on it. No people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

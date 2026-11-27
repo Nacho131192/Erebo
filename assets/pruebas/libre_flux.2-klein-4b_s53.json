@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 53,
+  "ancho": 768,
+  "alto": 768,
+  "referencias": [
+    "assets/boton-flecha/f0.jpg"
+  ],
+  "prompt": "Edit the reference image. Keep exactly the same: the round dark indigo stone medallion with its cracks, the gold rim, the pure white background, the framing, size and position of the medallion, the ink and watercolor style. Only change the arrow and the glow: the arrow is slightly to the right of its original place, flat and pointing right, steady warm golden glow, a few soft embers, the rim glows gold. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}
