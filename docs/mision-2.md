@@ -2,19 +2,19 @@
 
 *Campaña para Age of Fantasy: Quest (One Page Rules), ambientada en Érebo · 2 a 4 héroes · Mesa de 122 x 122 cm*
 
-> **Estado (2026-11-27):** misión desarrollada a partir de las decisiones de Nacho: el rastro es la **expedición de los cartógrafos** (1A), la guía es **Orwen Savia**, antigua patrulla del Muro (2C), y la misión es una **contrarreloj** (3C). Los textos, las cifras y las reglas de la casa son **PROPUESTA** de Claude hasta que Nacho los confirme y se pruebe en mesa. Las palabras clave de reglas (Ambush, Caster, Fast, Tough, AP…) se dejan en inglés.
+> **Estado (2026-11-27):** Nacho revisó la misión y la dio por buena: el rastro es la **expedición de los cartógrafos**, la guía es **Orwen Savia** (de la patrulla del Muro) y la misión es una **contrarreloj** del Olvido. **Pendiente de probar en mesa:** la contrarreloj, quién controla a Orwen y la tabla de eventos. Las cifras (avance de 6", XP) se ajustarán más adelante. Los textos y las reglas de la casa siguen siendo propuesta hasta esas pruebas. Las palabras clave de reglas (Ambush, Caster, Fast, Tough, AP…) se dejan en inglés.
 >
-> La misión no se basa en la Ruptura de Eryn: el bosque solo pone el escenario y a la guía. La amenaza es el borrado, el mismo de la Misión 1. El nombre de Neth no aparece.
+> La misión no se basa en la Ruptura de Eryn: el bosque solo pone el escenario y a la guía. La amenaza es el borrado, el mismo de la Misión 1. El nombre de Neth no aparece. No usa los ganchos del Heraldo vivo ni de la semilla negra de la Misión 1.
 
 ## Prólogo: La guía de la Senda
 
 *Léelo antes de colocar las miniaturas.*
 
-El pueblo ha desaparecido a vuestra espalda, pero el diario no. Sus páginas siguen intactas y su letra os suena, aunque no sabéis decir de quién es. En la última hay un camino dibujado que cruza el bosque de Eryn, y al final del trazo alguien ha pintado un círculo vacío.
+El pueblo ha desaparecido a vuestra espalda, pero el diario del olvidado no. Sus páginas siguen intactas y su letra os suena, aunque no sabéis decir de quién es. En la última hay un camino dibujado que cruza el bosque de Eryn, y al final del trazo alguien ha pintado un círculo vacío.
 
-La Voz del Filo no ha vuelto a llamaros. El Mercado, en cambio, ha preguntado por vosotros. Hace dos meses una expedición de cartógrafos salió de Varek's Hold a levantar el mapa del borde del bosque y no regresó. Su gremio sabe que faltan, pero ya no recuerda cuántos eran, y en su archivo los nombres aparecen tachados con una letra que no es la suya. Nadie os ha prometido paga. Solo os han dicho que, si el mapa existe, estará en su último campamento.
+La Voz del Filo no ha vuelto a llamaros. El Mercado, en cambio, ha preguntado por vosotros. Hace dos meses una expedición de cartógrafos salió de Varek's Hold a levantar el mapa del borde del bosque y no regresó. Su gremio sabe que faltan, pero ya no recuerda cuántos eran, y en su archivo los nombres aparecen tachados con una letra que no es la suya. Nadie os ha prometido paga. Solo os han dicho que el jefe de la expedición llevaba un diario de campo, que el mapa iba dentro y que lo que escribió allí quizá explique algo de lo que está pasando.
 
-En el límite de la Senda de Eryn os espera una mujer con un bastón de caminante y un broche arrancado de la capa. Se llama Orwen Savia. No pregunta quiénes sois ni qué buscáis. Dice que el bosque lleva semanas retirándose de algo, que ese algo viene detrás de vosotros y que las raíces se apartan para ella, aunque no sabe por qué ni desde cuándo.
+En el límite de la Senda de Eryn os espera una mujer con un bastón de caminante y, prendido en la capa, un broche con el emblema del Muro. Lo reconocéis: es el de las patrullas que vigilan Varek's Hold. Ella lo lleva como quien lleva una piedra en el bolsillo sin saber de dónde la sacó. No pregunta quiénes sois ni qué buscáis. Se llama Orwen Savia. Dice que el bosque lleva semanas retirándose de algo, que ese algo viene detrás de vosotros y que las raíces se apartan para ella, aunque no sabe por qué ni desde cuándo.
 
 —Os llevaré hasta el campamento —dice—. Si el aire huele a ceniza, no os giréis. Corred.
 
@@ -29,31 +29,34 @@ El borrado entra en el bosque por un borde de la mesa y se lo va comiendo.
 - **Borde del Olvido:** tira un dado y numera los bordes del 1 al 4 en sentido horario empezando por el norte. Con 1-4 el Olvido entra por el borde con ese número, y con 5-6 eliges tú. El borde opuesto es la **Salida**.
 - **Avance:** al final de cada ronda, la zona borrada crece **6"** desde el borde del Olvido (3" en una mesa de 24"x24"). Márcala con una cinta o una tira de papel. Con 48" de mesa, en la ronda 8 ya no queda bosque.
 - **Zona borrada:** nadie puede entrar en ella ni cuenta para objetivos. Los marcadores que queden dentro se pierden.
-- **Olvidados:** al final de cada ronda, cualquier héroe cuya peana toque la zona borrada queda **olvidado**: se retira de la mesa y cuenta como inconsciente. Un héroe olvidado **no sufre herida duradera** si el principal se cumple. Los enemigos que queden dentro se retiran de la mesa sin contar como bajas.
-- **Eventos:** el Olvido no se detiene por un efecto, salvo las excepciones de la tabla de eventos y de la semilla negra.
+- **Olvidados:** al final de cada ronda, cualquier héroe cuya peana toque la zona borrada queda **olvidado**: se retira de la mesa y cuenta como inconsciente durante esa ronda.
+  - **Reaparece** al empezar la ronda siguiente a 6" o menos de la **Salida**, Aturdido, sin poder y con las heridas que tuviera.
+  - Si llevaba el diario, este **se pierde con él** (cae dentro de la zona borrada), salvo que antes de que acabe la ronda se lo haya pasado a un héroe a 1" con una acción de habilidad.
+  - Un héroe olvidado **no sufre herida duradera** si el principal se cumple.
+- **Enemigos en la zona:** los que queden dentro se retiran de la mesa sin contar como bajas.
+- **Eventos:** el Olvido no se detiene por un efecto, salvo las excepciones de la tabla de eventos.
+
+*Nota de diseño: ser olvidado adelanta al héroe hasta la Salida, así que tiene que costar caro (sin poder, Aturdido y el diario perdido). Si en las pruebas resulta un atajo, se endurece.*
 
 ### Orwen Savia, la guía *(regla de la casa)*
 
-Orwen es una aliada controlada por el grupo, pero no es un héroe: no gana XP ni oro.
+Orwen es una aliada, no un héroe: no gana XP ni oro.
+
+**Quién la controla (PENDIENTE de decidir tras las pruebas, Nacho):**
+
+- **Modo A, la controla el jugador:** se activa como una unidad más del grupo, después de los héroes, y el grupo decide cómo se mueve y a quién ataca.
+- **Modo B, la controla la IA:** se activa después de los héroes y antes de la IA enemiga. Avanza o corre hacia el objetivo activo (primero el campamento, luego la Salida) y evita el combate. Solo ataca si la cargan.
 
 | | |
 |---|---|
 | **Perfil** | Calidad 4+, Defensa 4+, *Tough(6)* |
 | **Arma** | Bastón de caminante: Ataques 2, AP(0) |
-| **Activación** | Después de los héroes y antes de la IA. Avanza o corre hacia el objetivo activo (primero el campamento, luego la Salida) y evita el combate. Solo ataca si la cargan. |
 | **Camino de raíces** | Al empezar cada ronda, un héroe a 3" o menos de ella ignora el terreno difícil durante esa ronda. |
-| **Caída** | Si queda a 0 heridas, queda inconsciente y no puede usar *Camino de raíces*. Un héroe a 1" puede revivirla con una acción de habilidad. Si queda en la zona borrada, se pierde. |
-
-### Si el Heraldo os sigue *(regla de la casa, opcional)*
-
-Según el final de la Misión 1:
-
-- **El Heraldo sobrevivió:** la Alertness empieza en **2**. Su voz se oye entre los árboles y no se puede evitar.
-- **Tenéis la semilla negra:** una vez por partida, un héroe puede gastar una acción para **hundirla en el suelo**: el Olvido **no avanza** al final de esa ronda. La semilla se consume.
+| **Caída** | Si queda a 0 heridas, queda inconsciente y no puede usar *Camino de raíces*. Un héroe a 1" puede revivirla con una acción de habilidad. Si queda en la zona borrada al final de la ronda, reaparece como un héroe olvidado (ver arriba), sin Aturdimiento ni daño extra. |
 
 ## Objetivos y recompensas
 
-- **Objetivo principal: el mapa de los cartógrafos.** Coloca el marcador del **campamento** en el centro de la mesa más cercano a la Salida (a 30" del borde del Olvido en una mesa de 48"). Un héroe a 1" del marcador gasta una acción de habilidad y pasa una tirada de Voluntad: recoge el mapa. Quien lo lleve lo guarda mientras esté consciente; si cae, el mapa queda en el suelo y otro héroe puede cogerlo. El objetivo se cumple cuando **todos los héroes conscientes, con el mapa, están a 6" o menos de la Salida** sin enemigos alrededor al final de una ronda. El marcador del campamento es el Objetivo de IA.
+- **Objetivo principal: el diario de los cartógrafos.** El diario de campo del jefe de la expedición lleva **el mapa dentro**. Coloca el marcador del **campamento** en el centro de la mesa más cercano a la Salida (a 30" del borde del Olvido en una mesa de 48"). Un héroe a 1" del marcador gasta una acción de habilidad y pasa una tirada de Voluntad: recoge el diario. Quien lo lleve lo guarda mientras esté consciente y en la mesa; si cae, el diario queda en el suelo y otro héroe puede cogerlo. El objetivo se cumple cuando **todos los héroes conscientes, con el diario, están a 6" o menos de la Salida** sin enemigos alrededor al final de una ronda. El marcador del campamento es el Objetivo de IA.
 - **Objetivo secundario: la guía a salvo.** Se cumple si Orwen sale de la mesa por la Salida junto con los héroes, consciente y a 6" o menos del borde. Si no, se pierde.
 - **Fin de la misión:** con el principal cumplido. El secundario no es obligatorio.
 - **Sin jefe:** esta misión no tiene pelea de jefe.
@@ -62,11 +65,11 @@ Según el final de la Misión 1:
 
 ## Recompensas y XP
 
-Cada héroe recibe el XP y el oro de la misión. D es el nivel de dificultad (de 1 a 4).
+Cada héroe recibe el XP y el oro de la misión. D es el nivel de dificultad (de 1 a 4). *Provisional: se ajustará más adelante.*
 
 | Recompensa | Fórmula | Nv. 1 | Nv. 2 | Nv. 3 | Nv. 4 |
 |---|---|---|---|---|---|
-| Principal: el mapa de los cartógrafos | 2 × D de XP | 2 | 4 | 6 | 8 |
+| Principal: el diario de los cartógrafos | 2 × D de XP | 2 | 4 | 6 | 8 |
 | Secundario: la guía a salvo | D de XP | 1 | 2 | 3 | 4 |
 | Máximo de XP | 3 × D | 3 | 6 | 9 | 12 |
 | Paga de riesgo (oro) | 5 × D | 5 | 10 | 15 | 20 |
@@ -75,7 +78,7 @@ Las fórmulas son las del Campaign Builder v2.1.0 de OPR.
 
 ## Preparación
 
-- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm), con más de 20 piezas de terreno: árboles (cobertura), troncos caídos y **raíces** (terreno difícil), y claros abiertos. También puede jugarse en 24"x24" con todas las distancias a la mitad. Deja un claro con el **campamento** de los cartógrafos: tiendas, un fuego apagado y mapas pisados.
+- **Mesa:** tamaño estándar, 48"x48" (122 x 122 cm), con más de 20 piezas de terreno: árboles (cobertura), troncos caídos y **raíces** (terreno difícil), y claros abiertos. También puede jugarse en 24"x24" con todas las distancias a la mitad. Deja un claro con el **campamento** de los cartógrafos: tiendas, un fuego apagado y papeles pisados.
 - **1. Borde del Olvido y Salida:** determínalos como se explica arriba.
 - **2. Objetivos:** coloca el marcador del campamento.
 - **3. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o esquina), y con 5-6 eliges tú. Cada ficha es un cofre (**tablas en la Misión 1**).
@@ -106,6 +109,8 @@ Usa las tablas de **cofres, peligros y objetos de la Misión 1** (`docs/mision-1
 ## Eventos del bosque
 
 *Tira 2d6 de uno en uno: el primer dado son las decenas y el segundo las unidades (de 11 a 66). Se tira al empezar la ronda 1 y cada vez que entren refuerzos. Los efectos con duración terminan en el siguiente evento. Es la tabla de la Misión 1 con otro ambiente, más dos eventos propios del Olvido (36 y 41).*
+
+> **Pendiente (Nacho):** estas 36 entradas se mantienen de momento con la misma mecánica que la Misión 1. Más adelante se listarán y se modificarán algunas, **empezando por la 36 y la 41**.
 
 | 2d6 | Evento | Efecto |
 |---|---|---|
@@ -150,11 +155,23 @@ Usa las tablas de **cofres, peligros y objetos de la Misión 1** (`docs/mision-1
 
 *Esto es lo que se cuenta de ella; su perfil de juego está en las reglas especiales.*
 
-**Lo que se cuenta:** Nadie en la Senda de Eryn recuerda cuándo llegó. Una mujer que viste como si no hubiera decidido aún si pertenece a algún sitio, con un bastón de caminante y un broche de capa raspado hasta dejarlo liso, en el que quizá hubo un emblema. Dicen que las raíces se apartan para ella. Ella dice que no lo hace a propósito. Tararea una canción que no recuerda y se detiene siempre en el mismo verso.
+**Lo que se cuenta:** Nadie en la Senda de Eryn recuerda cuándo llegó. Una mujer que viste como si no hubiera decidido aún si pertenece a algún sitio, con un bastón de caminante y, en la capa, un broche con el emblema de las patrullas del Muro que lleva sin saber qué es. Dicen que las raíces se apartan para ella. Ella dice que no lo hace a propósito. Tararea una canción que no recuerda y se detiene siempre en el mismo verso.
 
 > «Yo no vine aquí. Me quedé aquí, que no es lo mismo.»
 
-**Nota para Nacho (PROPUESTA):** Orwen es una de la patrulla del Muro que volvió sin recuerdos (Misión 1), la única que no regresó a Varek's Hold y se quedó en la Senda. Los héroes pueden intuirlo por el broche, pero **la misión no lo confirma**: eso se decide más adelante.
+**DECIDIDO (Nacho, 2026-11-27):** Orwen **es de la patrulla del Muro**, la que volvió sin recuerdos en la Misión 1. **Ella no lo dice**: lo dicen sus ropas (el broche con el emblema del Muro), pero ya se le ha olvidado qué es lo que lleva puesto. La misión no lo confirma con palabras; los héroes lo deducen. Por qué se quedó en la Senda, o qué le pasó, se decide más adelante.
+
+## El diario de los cartógrafos
+
+*El objeto del objetivo principal. Se lee cuando los héroes lo recogen y al final de la misión. Todo es PROPUESTA: contiene información relacionada con la historia.*
+
+Es un cuaderno de campo de tapas de cuero. Dentro, doblado en cuatro, está **el mapa** de la expedición. En la primera página, el nombre de su dueño ha sido tachado. Entradas sueltas:
+
+- **Día 3.** «El bosque se deja medir, pero no se deja quieto. Las raíces cambian de sitio cuando nadie mira. He decidido dibujar solo lo que no se mueve.»
+- **Día 19.** «Hemos perdido a alguien del grupo. Todos coincidimos en que faltaba alguien, pero nadie sabe quién. Cuento seis tiendas y cinco cartógrafos. Todas las noches sobra una taza.»
+- **Día 24.** «Hay hombres con capuchas en el límite del claro. No se acercan. Parecen esperar a que pase algo, como quien espera una respuesta.»
+- **Día 31.** «Mi letra ha cambiado. Alguien más escribe por mí por las noches, y no escribe mal.»
+- **Último día.** «Si alguien lee esto: el mapa termina en Ceniza Mansa. Allí dejaron de hablar. No sé si fueron ellos los que callaron o nosotros los que dejamos de oírlos.»
 
 ## Narración
 
@@ -170,7 +187,7 @@ Un crujido largo, como de madera vieja que no quiere romperse. Algo se mueve ent
 
 ### Ronda 2
 
-El aire huele a ceniza fría. Una figura de contornos grises hace como si midiera el claro con un compás que no tiene. Tiene el sombrero de un cartógrafo y la cara de nadie. Cuando os ve, deja caer el compás sin ruido.
+El aire huele a ceniza fría. Una figura de contornos grises hace como si midiera el claro con un compás que no tiene. Lleva el sombrero de un cartógrafo y la cara de nadie. Cuando os ve, deja caer el compás sin ruido.
 
 ### Ronda 3
 
@@ -186,19 +203,19 @@ Detrás de vosotros, el bosque ya no se mueve: ha dejado de estar. No es oscuro 
 
 ### Se cumple el objetivo principal
 
-En un claro bajo, las tiendas siguen en pie y el fuego sigue apagado. Entre mapas pisados hay uno sin rastro de barro, con las esquinas aún dobladas. Lo desplegáis y veis que está lleno de huecos blancos, como si alguien hubiera borrado el bosque con el dedo. Orwen dice que ya está, y que lo que sea que sigue viniendo, no se va a cansar.
+En un claro bajo, las tiendas siguen en pie y el fuego sigue apagado. Entre papeles pisados hay un cuaderno de tapas de cuero que no tiene ni una gota de barro. Lo abrís: dentro, doblado en cuatro, hay un mapa lleno de huecos blancos, como si alguien hubiera borrado el bosque con el dedo. Las páginas están escritas con una letra que cambia a mitad de frase. Orwen dice que ya está, y que lo que sea que sigue viniendo, no se va a cansar.
 
 ## Finales
 
-- **Misión cumplida:** salís del bosque con el mapa y con el Olvido a un paso de vuestros talones. Cuando por fin os paráis, lo desplegáis. Los huecos blancos rodean una sola marca en tinta roja sobre un nombre: **Ceniza Mansa**. Al margen, con otra letra, alguien ha escrito «ya no hablan». Orwen lo lee dos veces y se lleva la mano al broche. —Conozco ese nombre —dice, aunque no sabe de qué—. Vamos.
-- **Misión cumplida sin Orwen:** salís del bosque con el mapa, sin la guía, y con el Olvido cerrándose a vuestra espalda. Lo desplegáis: unos huecos blancos rodean una marca en tinta roja sobre un nombre, **Ceniza Mansa**, y un margen con otra letra dice «ya no hablan». Nadie recuerda haber oído ese nombre. Pero todos sienten, con una claridad extraña, que quien ha escrito eso lo ha dicho en voz baja.
-- **Si el Heraldo sobrevivió:** esa noche vuelve la voz entre los árboles. Ya no dice vuestros nombres: dice el de Ceniza Mansa, despacio, como quien lo recuerda.
-- **Si tenéis la semilla negra:** late más fuerte cada vez que alguien pronuncia ese nombre.
+- **Misión cumplida:** salís del bosque con el diario y con el Olvido a un paso de vuestros talones. Cuando por fin os paráis, lo abrís. Los huecos blancos del mapa rodean una sola marca en tinta roja sobre un nombre, **Ceniza Mansa**. En la última página, con otra letra, alguien ha escrito «ya no hablan». Orwen lo lee dos veces y se lleva la mano al broche de la capa, sin mirarlo. —Conozco ese nombre —dice, aunque no sabe de qué—. Vamos.
+- **Misión cumplida sin Orwen:** salís del bosque con el diario, sin la guía, y con el Olvido cerrándose a vuestra espalda. Lo abrís: unos huecos blancos rodean una marca en tinta roja sobre un nombre, **Ceniza Mansa**, y en la última página, con otra letra, alguien ha escrito «ya no hablan». Nadie recuerda haber oído ese nombre. Pero todos sienten, con una claridad extraña, que quien lo escribió lo dijo en voz baja.
 - **Derrota:** el bosque os devuelve al sendero por el que entrasteis. El camino ha cambiado, y la hierba de allí tiene otro color. No recordáis qué buscabais, pero sí que alguien os esperaba al final.
 
 ## Notas
 
-- Son **reglas de la casa**: El Olvido avanza (zona borrada, olvidados y su excepción), Orwen Savia (perfil y *Camino de raíces*), la Salida y el despliegue, el Heraldo vivo y la semilla negra, el contenido de la tabla de eventos del bosque y los dos eventos propios (36 y 41). Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
+- Son **reglas de la casa**: El Olvido avanza (zona borrada, olvidados y su reaparición), Orwen Savia (perfil y *Camino de raíces*; quién la controla está por decidir), la Salida y el despliegue, el diario como objeto de misión, el contenido de la tabla de eventos del bosque y los dos eventos propios (36 y 41). Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
 - Son **oficiales**: Alertness, refuerzos por esquinas, tamaño de oleada por dificultad, fichas de búsqueda y XP por objetivos (fórmulas de arriba).
-- **Sin probar en mesa:** el ritmo del avance (6" por ronda), el perfil de Orwen y la dificultad de escapar con el mapa. Probar con 2 y con 4 héroes antes de fijarlo.
-- **Enlace con la Misión 3:** el mapa termina en **Ceniza Mansa**, la aldea tomada por el Culto del Umbral (*La aldea de los callados*).
+- **Sin probar en mesa:** el ritmo del avance (6" por ronda), el perfil de Orwen, quién la controla, la reaparición de los olvidados y la dificultad de escapar con el diario. Probar con 2 y con 4 héroes antes de fijarlo.
+- **No se usan** los ganchos del Heraldo vivo ni de la semilla negra de la Misión 1.
+- **No confundir:** el *diario del olvidado* es el de la Misión 1 (los héroes lo llevan); el *diario de los cartógrafos* es el de esta misión.
+- **Enlace con la Misión 3:** el mapa del diario termina en **Ceniza Mansa**, la aldea tomada por el Culto del Umbral (*La aldea de los callados*).

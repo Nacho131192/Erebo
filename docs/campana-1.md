@@ -20,8 +20,8 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 - **DECIDIDO (2026-11-27):** la pista o personaje de Eryn es **una guía de la Senda de Eryn** («algo así parecido»).
 - **PROPUESTA:** una naturalista que conoce el bosque y dice que las raíces «se retiran» ante algo que no es del bosque. Acompaña a los héroes, pero no se fía de ellos.
 - **DECIDIDO (2026-11-27):** el rastro es la **expedición de los cartógrafos** de Varek's Hold, desaparecida en el bosque, cuyo mapa tiene una marca sobre **Ceniza Mansa** (enlace con la Misión 3). La guía es **Orwen Savia**, antigua patrulla del Muro. La misión es una **contrarreloj**: el borrado avanza por el bosque desde un borde.
-- **Desarrollada** en `docs/mision-2.md` (prólogo, reglas, objetivos, oleadas, eventos, narración y finales). Todo es PROPUESTA hasta que Nacho lo confirme y se pruebe en mesa.
-- **PROPUESTA:** Orwen es de la patrulla del Muro que volvió sin recuerdos (Misión 1); la misión no lo confirma.
+- **Desarrollada y revisada** en `docs/mision-2.md`. Nacho la dio por buena (2026-11-27), salvo lo que se prueba en mesa: la contrarreloj del Olvido, quién controla a Orwen y la tabla de eventos del bosque. No hay jefe. El objeto del principal es el **diario de los cartógrafos**, con el mapa dentro y pistas de la historia.
+- **DECIDIDO:** Orwen **es** de la patrulla del Muro. Lo dicen sus ropas (un broche con el emblema), no ella: ya olvidó qué lleva puesto.
 
 ### Misión 3 · La aldea de los callados
 - **DECIDIDO (2026-11-27):** el nombre de la misión es **«La aldea de los callados»** y la aldea se llama **Ceniza Mansa**. Ya no es «la aldea sitiada» y **no tiene nada de Kael ni de los Resonantes**.
@@ -75,7 +75,7 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 
 - La tabla de misiones de `CLAUDE.md` queda reemplazada por este plan.
 - **Selector de misiones (web):** las fichas de las misiones **II, III, IV y VI ya están reescritas** (2026-11-27). La de V **sigue con el plan antiguo** hasta desarrollar la misión.
-- Los ganchos de la Misión 1 (diario hacia Eryn, Heraldo que sigue o semilla negra) siguen vigentes; la Misión 2 los aprovecha. El de «Ocaso» se eliminó.
+- Los ganchos de la Misión 1 (diario hacia Eryn, Heraldo que sigue o semilla negra) siguen vigentes en la Misión 1, pero la Misión 2 **no** usa el del Heraldo vivo ni el de la semilla negra (decisión de Nacho). El de «Ocaso» se eliminó.
 - La hoja de ruta (`docs/seguimiento/`) menciona las misiones II-VI de forma general; se actualizará al desarrollarlas.
 - Las Rupturas de Kael y Vael, los Resonantes, la Concordancia de Orum y los Deudores de Vael **ya no son ejes de esta campaña**. Siguen existiendo en el mundo y pueden aparecer como pistas.
 
@@ -95,7 +95,7 @@ El mapa y las siete Rupturas siguen **archivados y sin tocar**; primero se termi
 
 ## Preguntas abiertas
 
-1. **Misión 2:** ¿te convencen las reglas (avance de 6" por ronda, olvidados, perfil de Orwen)? ¿Es Orwen de la patrulla del Muro? Falta probarla en mesa.
+1. **Misión 2:** probar en mesa la contrarreloj (6" por ronda), la reaparición de los olvidados y quién controla a Orwen (jugador o IA). Más adelante, listar y modificar los eventos del bosque (empezando por el 36 y el 41) y ajustar el XP.
 2. **Misión 3:** ¿qué se cuenta sobre el Culto (por qué están aquí, qué buscan) y qué aldeanos importan?
 3. **Misión 4:** ¿cómo se llama el aldeano infiltrado, qué sabe y cómo se disfraza? ¿Qué sale mal para los héroes?
 4. **Misión 5:** ¿quiénes eran los rehenes?

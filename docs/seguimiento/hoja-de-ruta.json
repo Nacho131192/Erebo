@@ -679,19 +679,31 @@
           "id": "f11-m2",
           "tag": "",
           "done": true,
-          "text": "Misión 2 «El camino de las raíces» desarrollada en docs/mision-2.md: cartógrafos, guía Orwen Savia y contrarreloj del Olvido (propuesta, sin confirmar)."
+          "text": "Misión 2 «El camino de las raíces» desarrollada y revisada (docs/mision-2.md): diario de los cartógrafos con el mapa dentro, Orwen Savia de la patrulla del Muro y contrarreloj del Olvido. Nacho la dio por buena."
         },
         {
           "id": "f11-m2-prueba",
           "tag": "Casa",
           "done": false,
-          "text": "Probar la Misión 2 en mesa: avance de 6 pulgadas por ronda, olvidados, perfil de Orwen y dificultad de escapar con el mapa."
+          "text": "Probar la Misión 2 en mesa: avance de 6 pulgadas por ronda, reaparición de los olvidados, quién controla a Orwen (jugador o IA) y dificultad de escapar con el diario."
         },
         {
           "id": "f11-m2-web",
           "tag": "",
           "done": false,
           "text": "Llevar la Misión 2 a la web: página de la misión, mesa, regla del Olvido, guía y oleadas."
+        },
+        {
+          "id": "f11-m2-eventos",
+          "tag": "Casa",
+          "done": false,
+          "text": "Listar los 36 eventos del bosque de la Misión 2 y modificar algunos, empezando por el 36 (El Olvido se adelanta) y el 41 (El Olvido vacila)."
+        },
+        {
+          "id": "f11-m2-xp",
+          "tag": "Casa",
+          "done": false,
+          "text": "Ajustar la experiencia de la Misión 2 (hoy 2×D principal, D secundario, sin jefe)."
         }
       ],
       "done_when": "",
