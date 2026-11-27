@@ -37,14 +37,24 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 - **DECIDIDO:** la ruina está al **noroeste**. Dentro hay **cultistas y Borrados**.
 - **DECIDIDO:** los héroes encuentran **información final**, y también **rehenes de los cultistas** a los que **no quieren matar**.
 - **DECIDIDO:** aparece **una entidad de la que no se dice nada ni se sabe quién es**: es el **jefe final de toda la campaña**. Mata a los rehenes (eran suyos) y **huye antes de que los héroes averigüen toda la verdad**.
-- **ABIERTO:** quién es. Puede ser el Heraldo del Umbral u otro más fuerte; «ya veremos».
+- **DECIDIDO (2026-11-27):** **no es el Heraldo del Umbral**. El Heraldo es su **segundo al mando**. La entidad **se autodenomina «el Umbral»**: es un ser, pero se llama así. Es el **jefe de la secta** del Culto del Umbral (ver más abajo).
+- **DECIDIDO:** se dice su nombre en la partida, pero no quién es realmente: no se explica de dónde viene ni qué quiere.
 
 ### Misión 6 · El corazón del borrado
 - **DECIDIDO:** aquí está el **jefe final**, con **enemigos bastante fuertes**.
 - **DECIDIDO:** al completarla, se sabe **qué pasó cuando el Primordial de esta Ruptura desapareció**.
 - **DECIDIDO:** **aquí aparece por fin el nombre de Neth.**
 - **DECIDIDO:** se consigue **un objeto o una información** que hay que obtener **en cada campaña** para desbloquear la campaña final.
-- **ABIERTO:** dónde está el corazón del borrado (PROPUESTA anterior: el círculo de polvo del Muro de Varek's Hold; sin confirmar) y si **Hermano Ocaso** sigue siendo el villano o se sustituye por la entidad de la Misión 5. El final de la Misión 1 apunta a «Ocaso».
+- **DECIDIDO (2026-11-27):** el corazón del borrado **se queda en la Misión 6 exactamente como está en el plan; no se cambia**. (La ubicación que se había propuesto es el círculo de polvo del Muro de Varek's Hold; Nacho no la ha movido.)
+- **DECIDIDO (2026-11-27):** el final de la Misión 1 **sigue apuntando a «Ocaso» y no se sustituye por la entidad**. «Ocaso» y «Hermano Ocaso» se mantienen.
+- **ABIERTO:** qué es exactamente Ocaso respecto al Umbral: ¿otro nombre del jefe, un lugar o un lugarteniente? Nacho dijo que el jefe final va a ser el Umbral y que Ocaso no se sustituye. Ver la pregunta abajo.
+
+## El Culto del Umbral y su jefe
+
+- **DECIDIDO (2026-11-27):** el villano de esta campaña es **el jefe de la secta del Culto del Umbral**, que se hace llamar **el Umbral**. El **Heraldo del Umbral** es su **segundo al mando**.
+- **DECIDIDO:** el Culto **no tiene que ver con el enemigo supremo** que encerró y acabó con los Primordiales. Es una **secta independiente que se generó a través de los Primordiales** y que **sí sabe algo de lo que pasó**.
+- **DECIDIDO:** el **enemigo supremo no aparece en esta campaña**. Aparecerá más adelante, en otras campañas.
+- **PROPUESTA:** como secta nacida de los Primordiales, el Culto adora lo que quedó del borrado sin haber causado el encierro. Los aldeanos de la Misión 3 y el infiltrado de la Misión 4 pueden contar fragmentos de esa historia.
 
 ## La campaña final (meta-historia)
 
@@ -62,16 +72,30 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 ## Qué cambia en lo ya escrito
 
 - La tabla de misiones de `CLAUDE.md` queda reemplazada por este plan.
-- En la web (selector de misiones) las fichas de las misiones II-VI y el aviso «Neth empezó a borrar» (ya cambiado a «la Ruptura») están **provisionales**; hay que reescribirlos con este plan cuando se desarrolle cada misión.
+- **Selector de misiones (web):** las fichas de las misiones **II y IV ya están reescritas** (2026-11-27). Las de III, V y VI **siguen con el plan antiguo** hasta elegir el nombre de la aldea y desarrollar cada misión.
 - Los ganchos de la Misión 1 (diario hacia Eryn y «Ocaso», Heraldo que sigue o semilla negra) siguen vigentes; la Misión 2 los aprovecha.
 - La hoja de ruta (`docs/seguimiento/`) menciona las misiones II-VI de forma general; se actualizará al desarrollarlas.
 - Las Rupturas de Kael y Vael, los Resonantes, la Concordancia de Orum y los Deudores de Vael **ya no son ejes de esta campaña**. Siguen existiendo en el mundo y pueden aparecer como pistas.
 
+## Notas para el mapamundi (guardadas para cuando se retome el mapa)
+
+El mapa y las siete Rupturas siguen **archivados y sin tocar**; primero se termina la campaña. Datos de esta campaña que el mapa deberá recoger:
+
+- **Ruptura del Muro (borrado):** es el eje. Aparece en el círculo de polvo del Muro de Varek's Hold y en el pueblo sin nombre al norte. Es la de Neth, cuyo nombre solo se revela en la Misión 6.
+- **Bosque de Eryn:** destino de la Misión 2 (el diario apunta al bosque); allí hay algo de la Ruptura de Eryn como pista, no como eje.
+- **Aldea tomada por el Culto (Misión 3):** lugar nuevo por situar; sus aldeanos siguen dentro. Nombre pendiente.
+- **Lugar de la emboscada (Misión 4):** por situar; lo elige el aldeano infiltrado.
+- **Cripta primordial (Misión 5):** una **ruina al noroeste** (según el infiltrado). Lleva cultistas y Borrados. En el mapa archivado la Cripta estaba al norte de Drath; habría que moverla al noroeste.
+- **Corazón del borrado (Misión 6):** se queda como en el plan (propuesta: círculo de polvo del Muro).
+- **Ocaso:** apuntado en el diario de la Misión 1. **No debe salir en el mapamundi** (decisión anterior): se hará en mapas más cercanos.
+- **Cámara divina** con los Primordiales encerrados y **enemigo supremo**: **ocultos**; no se muestran ni se sitúan en el mapamundi.
+- **Neth:** su nombre no se ve en el mapa hasta que se revele (Misión 6).
+
 ## Preguntas abiertas
 
-1. **Misión 2:** ¿cuál es el eje y qué pista o personaje de Eryn entra?
-2. **Misión 3:** ¿nombre de la aldea y título de la misión? ¿Qué se cuenta sobre el Culto (por qué están aquí, qué buscan)?
+1. **Misión 2:** ¿cuál es el eje y qué pista o personaje de Eryn entra? (Claude propone tres opciones.)
+2. **Misión 3:** ¿nombre de la aldea y título de la misión? (Claude propone tres opciones.) ¿Qué se cuenta sobre el Culto (por qué están aquí, qué buscan)?
 3. **Misión 4:** ¿cómo se llama el aldeano infiltrado, qué sabe y cómo se disfraza? ¿Qué sale mal para los héroes?
-4. **Misión 5:** ¿quién es la entidad (el Heraldo del Umbral u otro más fuerte)? ¿Quiénes eran los rehenes?
-5. **Misión 6:** ¿dónde está el corazón del borrado? ¿Sigue Hermano Ocaso o se sustituye?
+4. **Misión 5:** ¿quiénes eran los rehenes?
+5. **Misión 6:** ¿qué es «Ocaso» respecto al Umbral: otro nombre del jefe, un lugar o un lugarteniente?
 6. **Meta:** ¿qué objeto o información da cada campaña? ¿Cómo se llama el enemigo supremo y dónde está la cámara divina? (no se revela todavía)
