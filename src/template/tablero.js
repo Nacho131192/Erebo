@@ -2372,11 +2372,11 @@ function open(){if(U.open)return;U.open=true;
  /* si se cerró la página con el evento de la ronda sin tirar, los dados vuelven a salir en el centro */
  if(G.phase==="event"&&!G.over&&!U.ban&&!U.evfx)U.evfx={st:"ask"};
  /* fichas guardadas que hayan quedado dentro de una casa o del pozo (p. ej. de una partida con otro mapa): al borde */
- G.units.concat(G.heroes).forEach(o=>{const p=tOut([o.x,o.y]);o.x=p[0];o.y=p[1]});ensureTracks();ROOT.hidden=false;FAB.setAttribute("aria-expanded","true");document.body.classList.add("tvopen");paint();requestAnimationFrame(()=>ROOT.classList.add("on"));setTimeout(()=>{const b=$(".tv-x");if(b)b.focus({preventScroll:true})},60);
+ G.units.concat(G.heroes).forEach(o=>{const p=tOut([o.x,o.y]);o.x=p[0];o.y=p[1]});ensureTracks();ROOT.hidden=false;FAB.setAttribute("aria-expanded","true");document.body.classList.add("tvopen");if(typeof freeOrient==="function")freeOrient();paint();requestAnimationFrame(()=>ROOT.classList.add("on"));setTimeout(()=>{const b=$(".tv-x");if(b)b.focus({preventScroll:true})},60);
  /* si se cerró la página en pleno turno de la IA, se retoma donde iba */
  if(G.phase==="ai"&&!U.busy&&!G.over)setTimeout(runAI,500);
  if(G.phase==="heroes"&&!G.over&&heroesDone())setTimeout(autoAI,700)}
-function close(){if(!U.open)return;document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");setTimeout(()=>{if(!U.open){ROOT.hidden=true;MAIN.innerHTML=""}},380);FAB.focus({preventScroll:true})}
+function close(){if(!U.open)return;document.querySelectorAll("body > .tv-wbub").forEach(n=>n.remove());U.open=false;ROOT.classList.remove("on");FAB.setAttribute("aria-expanded","false");document.body.classList.remove("tvopen");if(typeof menuOrient==="function"&&!document.querySelector("#panel.open"))menuOrient();setTimeout(()=>{if(!U.open){ROOT.hidden=true;MAIN.innerHTML=""}},380);FAB.focus({preventScroll:true})}
 
 /* ---------------------------------------------------------------- tablero: toques y arrastre */
 function svgPt(e){const svg=$("#tvMap");if(!svg)return null;const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return[q.x,q.y]}

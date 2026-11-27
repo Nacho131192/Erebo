@@ -1678,7 +1678,8 @@ body:has(.zm.has):not(:has(#panel.open)) .hf-meds{opacity:0;visibility:hidden;po
 }
 /* --- móvil apaisado (decisión de Nacho, 2026-11-26): en un móvil en vertical se pide girarlo; en Android, botón de pantalla completa que fija la horizontal --- */
 #rotOv{display:none;position:fixed;inset:0;z-index:2000;place-items:center;text-align:center;padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));background:radial-gradient(ellipse at 50% 40%,#16203a,#070a14 70%);color:#ecdfc3}
-@media (orientation:portrait) and (pointer:coarse) and (max-width:900px){#rotOv{display:grid}html,body{overflow:hidden}}
+/* Menús en apaisado (hay que girar el móvil); la mesa y el tablero virtual se juegan en vertical, sin aviso. */
+@media (orientation:portrait) and (pointer:coarse) and (max-width:900px){body:not(.tvopen):not(:has(#panel.open)) #rotOv{display:grid}html:not(:has(body.tvopen)):not(:has(#panel.open)),body:not(.tvopen):not(:has(#panel.open)){overflow:hidden}}
 .rot-c{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:300px}
 .rot-c svg{width:150px;height:150px;overflow:visible}
 .rot-ph{transform-origin:75px 75px;animation:rotPh 3.2s cubic-bezier(.6,0,.3,1) infinite}
@@ -2213,6 +2214,7 @@ function openMesa(){
  const p=$("#panel");if(p.classList.contains("open"))return;
  p.inert=false;$("#mis").inert=true;document.documentElement.classList.add("lock");
  p.classList.add("open","intro");$("#fab").setAttribute("aria-expanded","true");
+ freeOrient();
  setTimeout(()=>p.classList.remove("intro"),1200);
  requestAnimationFrame(()=>$("#px").focus({preventScroll:true}));
 }
@@ -2223,6 +2225,7 @@ function closeMesa(){
  if(UI.au){narStop();render()}
  p.classList.remove("open","intro");$("#mis").inert=false;document.documentElement.classList.remove("lock");
  $("#fab").setAttribute("aria-expanded","false");$("#fab").focus({preventScroll:true});
+ if(!document.body.classList.contains("tvopen"))menuOrient();
  setTimeout(()=>{if(!p.classList.contains("open"))p.inert=true},REDUCE?0:640);
 }
 function NAV(t){
@@ -3575,6 +3578,9 @@ return{
 (function(){const b=document.getElementById("rotFs");if(!b)return;const de=document.documentElement;
  if(!(de.requestFullscreen&&screen.orientation&&screen.orientation.lock))return;b.hidden=false;
  b.addEventListener("click",()=>{de.requestFullscreen({navigationUI:"hide"}).then(()=>screen.orientation.lock("landscape")).catch(()=>{})})})();
+/* La mesa y el tablero virtual se juegan en vertical: al abrirlos se suelta la horizontal fijada; al volver a los menús, se fija otra vez (solo con pantalla completa). */
+function freeOrient(){try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}catch(e){}}
+function menuOrient(){try{if(document.fullscreenElement&&screen.orientation&&screen.orientation.lock)screen.orientation.lock("landscape").catch(()=>{})}catch(e){}}
 function buildHome(){HOME.build()}
 function paintHome(){HOME.paint()}
 buildHome();buildSheet();render();

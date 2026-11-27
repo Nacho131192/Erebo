@@ -4,7 +4,9 @@
 
 > **Estado (2026-11-27):** Nacho revisó la misión y la dio por buena: el rastro es la **expedición de los cartógrafos**, la guía es **Orwen Savia** (de la patrulla del Muro) y la misión es una **contrarreloj** del Olvido. **Pendiente de probar en mesa:** la contrarreloj, quién controla a Orwen y la tabla de eventos. Las cifras (avance de 6", XP) se ajustarán más adelante. Los textos y las reglas de la casa siguen siendo propuesta hasta esas pruebas. Las palabras clave de reglas (Ambush, Caster, Fast, Tough, AP…) se dejan en inglés.
 >
-> La misión no se basa en la Ruptura de Eryn: el bosque solo pone el escenario y a la guía. La amenaza es el borrado, el mismo de la Misión 1. El nombre de Neth no aparece. No usa los ganchos del Heraldo vivo ni de la semilla negra de la Misión 1.
+> La misión no se basa en la Ruptura de Eryn: la amenaza es el borrado, el mismo de la Misión 1. **La pista de Eryn (DECIDIDO, 2026-11-27):** el Culto del Umbral ha arrancado del bosque **algo vivo de la Ruptura de Eryn**, el **corazón de raíz**, y se lo lleva; recuperarlo es la mitad del secundario (secundario doble con «la guía a salvo»). Para qué lo quiere el Culto queda **ABIERTO** hasta las misiones 5 o 6. Las reglas y los textos del corazón son **PROPUESTA**.
+>
+> El bosque pone el escenario y a la guía. El nombre de Neth no aparece. No usa los ganchos del Heraldo vivo ni de la semilla negra de la Misión 1.
 
 ## Prólogo: La guía de la Senda
 
@@ -16,7 +18,7 @@ La Voz del Filo no ha vuelto a llamaros. El Mercado, en cambio, ha preguntado po
 
 En el límite de la Senda de Eryn os espera una mujer con un bastón de caminante y, prendido en la capa, un broche con el emblema del Muro. Lo reconocéis: es el de las patrullas que vigilan Varek's Hold. Ella lo lleva como quien lleva una piedra en el bolsillo sin saber de dónde la sacó. No pregunta quiénes sois ni qué buscáis. Se llama Orwen Savia. Dice que el bosque lleva semanas retirándose de algo, que ese algo viene detrás de vosotros y que las raíces se apartan para ella, aunque no sabe por qué ni desde cuándo.
 
-—Os llevaré hasta el campamento —dice—. Si el aire huele a ceniza, no os giréis. Corred.
+—Os llevaré hasta el campamento —dice—. Hay otros en el bosque. Hombres con capucha. Se han llevado algo que no era suyo, y el bosque no para de llamarlo. Si el aire huele a ceniza, no os giréis. Corred.
 
 Al pisar el primer sendero, la hierba que dejáis atrás pierde el color, y luego el sitio.
 
@@ -54,10 +56,25 @@ Orwen es una aliada, no un héroe: no gana XP ni oro.
 | **Camino de raíces** | Al empezar cada ronda, un héroe a 3" o menos de ella ignora el terreno difícil durante esa ronda. |
 | **Caída** | Si queda a 0 heridas, queda inconsciente y no puede usar *Camino de raíces*. Un héroe a 1" puede revivirla con una acción de habilidad. Si queda en la zona borrada al final de la ronda, reaparece como un héroe olvidado (ver arriba), sin Aturdimiento ni daño extra. |
 
+### El corazón de raíz *(regla de la casa, PROPUESTA)*
+
+Un nudo de raíces del tamaño de un puño que late despacio, arrancado del Enraizado. Es un pedazo vivo de la Ruptura de Eryn. Los cultistas lo llevan en un relicario de hierro y caminan con él **hacia el Olvido**, en sentido contrario a los héroes.
+
+- **El portador:** una unidad de cultistas con *Caster* sale entre los centinelas (ver Preparación). Lleva el corazón. En su activación **no corre ni carga**: Avanza por el camino más corto hacia el **borde del Olvido** y puede lanzar sus hechizos. Si está en combate, lucha con normalidad. Si queda Aturdido, no se mueve.
+- **Se pierde:** si el portador entra en la zona borrada, desaparece con el corazón y esa parte del secundario ya no se puede cumplir.
+- **Cae al suelo:** cuando el portador queda destruido (o huye de la mesa por la moral), deja el marcador del corazón donde estaba su última miniatura.
+- **Recogerlo:** un héroe a 1" gasta una acción de habilidad, sin tirada. Si quien lo lleva cae, el corazón queda en el suelo y otro héroe puede recogerlo. Si el marcador está dentro de la zona borrada al final de una ronda, se pierde.
+- **El bosque lo llama:** el héroe que lleva el corazón **cuenta como Objetivo de IA** (los enemigos también van a por él).
+
+*Nota de diseño: el portador obliga a elegir entre correr hacia la Salida o volver hacia el Olvido para cortarle el paso. Con el campamento a 30" y el Olvido avanzando 6" por ronda, el portador llega al borde en dos o tres rondas si nadie lo frena. Se ajusta en las pruebas.*
+
 ## Objetivos y recompensas
 
 - **Objetivo principal: el diario de los cartógrafos.** El diario de campo del jefe de la expedición lleva **el mapa dentro**. Coloca el marcador del **campamento** en el centro de la mesa más cercano a la Salida (a 30" del borde del Olvido en una mesa de 48"). Un héroe a 1" del marcador gasta una acción de habilidad y pasa una tirada de Voluntad: recoge el diario. Quien lo lleve lo guarda mientras esté consciente y en la mesa; si cae, el diario queda en el suelo y otro héroe puede cogerlo. El objetivo se cumple cuando **todos los héroes conscientes, con el diario, están a 6" o menos de la Salida** sin enemigos alrededor al final de una ronda. El marcador del campamento es el Objetivo de IA.
-- **Objetivo secundario: la guía a salvo.** Se cumple si Orwen sale de la mesa por la Salida junto con los héroes, consciente y a 6" o menos del borde. Si no, se pierde.
+- **Objetivo secundario (doble): la guía y el corazón.** Tiene dos partes, y cada una se comprueba al cumplirse el principal:
+  - **La guía a salvo:** Orwen está con los héroes a 6" o menos de la Salida, consciente.
+  - **El corazón recuperado:** uno de los héroes que salen lleva el corazón de raíz.
+  - Con las dos partes se gana el XP completo del secundario; con una sola, la mitad (redondeando hacia arriba).
 - **Fin de la misión:** con el principal cumplido. El secundario no es obligatorio.
 - **Sin jefe:** esta misión no tiene pelea de jefe.
 - **Al terminar:** los héroes recuperan 3 heridas y 3 de poder, pero no las condiciones ni las heridas duraderas. Un héroe inconsciente al terminar cuenta como muerto y sufre una herida duradera, salvo los héroes **olvidados** si el principal se cumple.
@@ -70,7 +87,8 @@ Cada héroe recibe el XP y el oro de la misión. D es el nivel de dificultad (de
 | Recompensa | Fórmula | Nv. 1 | Nv. 2 | Nv. 3 | Nv. 4 |
 |---|---|---|---|---|---|
 | Principal: el diario de los cartógrafos | 2 × D de XP | 2 | 4 | 6 | 8 |
-| Secundario: la guía a salvo | D de XP | 1 | 2 | 3 | 4 |
+| Secundario: la guía y el corazón (las dos partes) | D de XP | 1 | 2 | 3 | 4 |
+| Secundario: solo una de las dos partes | D ÷ 2, hacia arriba | 1 | 1 | 2 | 2 |
 | Máximo de XP | 3 × D | 3 | 6 | 9 | 12 |
 | Paga de riesgo (oro) | 5 × D | 5 | 10 | 15 | 20 |
 
@@ -82,7 +100,7 @@ Las fórmulas son las del Campaign Builder v2.1.0 de OPR.
 - **1. Borde del Olvido y Salida:** determínalos como se explica arriba.
 - **2. Objetivos:** coloca el marcador del campamento.
 - **3. Fichas de búsqueda:** coloca D3 + el número de héroes. Reparte la mitad por cuadrantes y la otra mitad por esquinas, numéralos de 1 a 4 y tira un dado por ficha: con 1-4 va a 6" o menos del centro de ese cuadrante (o esquina), y con 5-6 eliges tú. Cada ficha es un cofre (**tablas en la Misión 1**).
-- **4. Despliegue enemigo:** ver Oleadas y sorpresas.
+- **4. Despliegue enemigo:** ver Oleadas y sorpresas. El **portador del corazón** (una unidad de cultistas con *Caster*, que cuenta para el valor de los centinelas) se despliega a 6" del campamento, del lado de la Salida.
 - **5. Despliegue de héroes:** a 6" o menos del **borde del Olvido**, con Orwen. Corren con el Olvido pegado a los talones.
 - **6. Desafíos opcionales:** la misión empieza de **noche** (-1 a impactar al disparar y visión limitada a 12"). Pasa a **alba** cuando llegan los primeros refuerzos, y a día después. También se usan los eventos del bosque.
 
@@ -101,7 +119,7 @@ Usa las tablas de **cofres, peligros y objetos de la Misión 1** (`docs/mision-1
 
 | Oleada | Composición | Sorpresa |
 |---|---|---|
-| Centinelas | Borrados y animales deformados con *Fast* | El evento del bosque de la ronda 1. |
+| Centinelas | El portador del corazón (cultistas con *Caster*), Borrados y animales deformados con *Fast* | El evento del bosque de la ronda 1. El portador camina hacia el Olvido. |
 | Refuerzos 1 | Cultistas con un *Caster* y su escolta | Mientras el *Caster* no esté Aturdido, los Borrados a 6" de él ganan +1 a impactar en cuerpo a cuerpo. |
 | Refuerzos 2 | Bestias de raíz y una unidad con *Ambush* | La unidad con *Ambush* entra D3 rondas después, al empezar la ronda, a 6" o menos de un Objetivo de IA (al azar si hay varios). |
 | Refuerzos 3 en adelante | Alterna los refuerzos 1 y 2 | Un evento del bosque cada vez. |
@@ -170,6 +188,7 @@ Es un cuaderno de campo de tapas de cuero. Dentro, doblado en cuatro, está **el
 - **Día 3.** «El bosque se deja medir, pero no se deja quieto. Las raíces cambian de sitio cuando nadie mira. He decidido dibujar solo lo que no se mueve.»
 - **Día 19.** «Hemos perdido a alguien del grupo. Todos coincidimos en que faltaba alguien, pero nadie sabe quién. Cuento seis tiendas y cinco cartógrafos. Todas las noches sobra una taza.»
 - **Día 24.** «Hay hombres con capuchas en el límite del claro. No se acercan. Parecen esperar a que pase algo, como quien espera una respuesta.»
+- **Día 27.** «Esta noche han entrado en el claro. Han cavado entre las raíces más viejas y han sacado algo que latía. Lo han metido en una caja de hierro. Desde entonces el bosque no está quieto ni un momento: se inclina hacia donde ellos van.»
 - **Día 31.** «Mi letra ha cambiado. Alguien más escribe por mí por las noches, y no escribe mal.»
 - **Último día.** «Si alguien lee esto: el mapa termina en Ceniza Mansa. Allí dejaron de hablar. No sé si fueron ellos los que callaron o nosotros los que dejamos de oírlos.»
 
@@ -183,7 +202,11 @@ El sendero se estrecha entre troncos tan anchos como casas. Orwen camina delante
 
 ### Ronda 1
 
-Un crujido largo, como de madera vieja que no quiere romperse. Algo se mueve entre los árboles, rápido y bajo. Orwen levanta una mano y dice, sin volverse, que no es el bosque.
+Un crujido largo, como de madera vieja que no quiere romperse. Algo se mueve entre los árboles, rápido y bajo. Orwen levanta una mano y dice, sin volverse, que no es el bosque. Más allá, una fila de capuchas camina despacio en sentido contrario, hacia la ceniza. El que va delante lleva una caja de hierro contra el pecho, y las ramas se tuercen a su paso, como si quisieran alcanzarla.
+
+### Cae el portador del corazón
+
+La caja de hierro rueda por el suelo y se abre. Dentro hay un nudo de raíces del tamaño de un puño, caliente, que late despacio. Las raíces de alrededor se levantan un palmo hacia él y se quedan quietas, esperando. Orwen lo mira como se mira a alguien que te ha llamado por tu nombre. —Eso no es suyo —dice—. Ni nuestro.
 
 ### Ronda 2
 
@@ -208,14 +231,18 @@ En un claro bajo, las tiendas siguen en pie y el fuego sigue apagado. Entre pape
 ## Finales
 
 - **Misión cumplida:** salís del bosque con el diario y con el Olvido a un paso de vuestros talones. Cuando por fin os paráis, lo abrís. Los huecos blancos del mapa rodean una sola marca en tinta roja sobre un nombre, **Ceniza Mansa**. En la última página, con otra letra, alguien ha escrito «ya no hablan». Orwen lo lee dos veces y se lleva la mano al broche de la capa, sin mirarlo. —Conozco ese nombre —dice, aunque no sabe de qué—. Vamos.
+- **Con el corazón de raíz** (se añade a cualquier final cumplido): en el borde del bosque, el corazón late más deprisa y luego se calma, como quien llega a casa y no encuentra a nadie. Quien lo lleva nota que pesa un poco más que antes. Los cultistas querían llevárselo a algún sitio. Todavía no sabéis adónde.
+- **Sin el corazón:** a vuestra espalda, en algún punto de lo borrado, el bosque entero se inclina hacia un lugar que ya no está, y se queda así.
 - **Misión cumplida sin Orwen:** salís del bosque con el diario, sin la guía, y con el Olvido cerrándose a vuestra espalda. Lo abrís: unos huecos blancos rodean una marca en tinta roja sobre un nombre, **Ceniza Mansa**, y en la última página, con otra letra, alguien ha escrito «ya no hablan». Nadie recuerda haber oído ese nombre. Pero todos sienten, con una claridad extraña, que quien lo escribió lo dijo en voz baja.
 - **Derrota:** el bosque os devuelve al sendero por el que entrasteis. El camino ha cambiado, y la hierba de allí tiene otro color. No recordáis qué buscabais, pero sí que alguien os esperaba al final.
 
 ## Notas
 
-- Son **reglas de la casa**: El Olvido avanza (zona borrada, olvidados y su reaparición), Orwen Savia (perfil y *Camino de raíces*; quién la controla está por decidir), la Salida y el despliegue, el diario como objeto de misión, el contenido de la tabla de eventos del bosque y los dos eventos propios (36 y 41). Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
+- Son **reglas de la casa**: El Olvido avanza (zona borrada, olvidados y su reaparición), Orwen Savia (perfil y *Camino de raíces*; quién la controla está por decidir), la Salida y el despliegue, el diario como objeto de misión, el corazón de raíz y su portador, el secundario doble, el contenido de la tabla de eventos del bosque y los dos eventos propios (36 y 41). Todo lo demás sigue el Campaign Builder v2.1.0 y las Core Rules v2.1.0 de OPR.
 - Son **oficiales**: Alertness, refuerzos por esquinas, tamaño de oleada por dificultad, fichas de búsqueda y XP por objetivos (fórmulas de arriba).
 - **Sin probar en mesa:** el ritmo del avance (6" por ronda), el perfil de Orwen, quién la controla, la reaparición de los olvidados y la dificultad de escapar con el diario. Probar con 2 y con 4 héroes antes de fijarlo.
 - **No se usan** los ganchos del Heraldo vivo ni de la semilla negra de la Misión 1.
-- **No confundir:** el *diario del olvidado* es el de la Misión 1 (los héroes lo llevan); el *diario de los cartógrafos* es el de esta misión.
+- **No confundir:** el *diario del olvidado* es el de la Misión 1 (los héroes lo llevan); el *diario de los cartógrafos* es el de esta misión. El *corazón de raíz* (Eryn, esta misión) no es la *semilla negra* del final de la Misión 1.
+- **DECIDIDO (Nacho, 2026-11-27):** el corazón de raíz y la secundaria doble se quedan así. **Enlace con la Misión 5:** en la cripta primordial aparecen **otros corazones de Ruptura, ya secos**; así se entiende que el Umbral los colecciona y las dos misiones quedan unidas.
+- **ABIERTO:** para qué colecciona el Umbral los corazones y qué hacen los héroes con el de Eryn después de la misión.
 - **Enlace con la Misión 3:** el mapa del diario termina en **Ceniza Mansa**, la aldea tomada por el Culto del Umbral (*La aldea de los callados*).

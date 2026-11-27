@@ -21,6 +21,7 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 - **PROPUESTA:** una naturalista que conoce el bosque y dice que las raíces «se retiran» ante algo que no es del bosque. Acompaña a los héroes, pero no se fía de ellos.
 - **DECIDIDO (2026-11-27):** el rastro es la **expedición de los cartógrafos** de Varek's Hold, desaparecida en el bosque, cuyo mapa tiene una marca sobre **Ceniza Mansa** (enlace con la Misión 3). La guía es **Orwen Savia**, antigua patrulla del Muro. La misión es una **contrarreloj**: el borrado avanza por el bosque desde un borde.
 - **Desarrollada y revisada** en `docs/mision-2.md`. Nacho la dio por buena (2026-11-27), salvo lo que se prueba en mesa: la contrarreloj del Olvido, quién controla a Orwen y la tabla de eventos del bosque. No hay jefe. El objeto del principal es el **diario de los cartógrafos**, con el mapa dentro y pistas de la historia.
+- **DECIDIDO (2026-11-27, afinado):** la relación con Eryn es que **el Culto del Umbral ha arrancado algo vivo de la Ruptura de Eryn** (el **corazón de raíz**, PROPUESTA de nombre) y se lo lleva hacia el borrado. Recuperarlo es la mitad de un **secundario doble** (la otra mitad, Orwen a salvo). **ABIERTO:** para qué lo quiere el Culto y qué hacen los héroes con él después. Sustituye a la propuesta de la naturalista. Nacho lo dio por bueno (2026-11-27).
 - **DECIDIDO:** Orwen **es** de la patrulla del Muro. Lo dicen sus ropas (un broche con el emblema), no ella: ya olvidó qué lleva puesto.
 
 ### Misión 3 · La aldea de los callados
@@ -38,6 +39,7 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 ### Misión 5 · La cripta primordial
 - **DECIDIDO:** ya no es de los Deudores de Vael.
 - **DECIDIDO:** la ruina está al **noroeste**. Dentro hay **cultistas y Borrados**.
+- **DECIDIDO (2026-11-27):** en la cripta aparecen **otros corazones de Ruptura, ya secos**, como el corazón de raíz de Eryn de la Misión 2. Así se ve que el Umbral los colecciona y la Misión 5 queda enlazada con la 2. **ABIERTO:** de qué Rupturas son y para qué los quiere.
 - **DECIDIDO:** los héroes encuentran **información final**, y también **rehenes de los cultistas** a los que **no quieren matar**.
 - **DECIDIDO:** aparece **una entidad de la que no se dice nada ni se sabe quién es**: es el **jefe final de toda la campaña**. Mata a los rehenes (eran suyos) y **huye antes de que los héroes averigüen toda la verdad**.
 - **DECIDIDO (2026-11-27):** **no es el Heraldo del Umbral**. El Heraldo es su **segundo al mando**. La entidad **se autodenomina «el Umbral»**: es un ser, pero se llama así. Es el **jefe de la secta** del Culto del Umbral (ver más abajo).
