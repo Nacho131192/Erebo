@@ -20,8 +20,8 @@ Seis misiones. Solo la 1 está desarrollada.
 | # | Misión | Tema |
 |---|---|---|
 | 1 | **El pueblo vacío** | Ruptura de Neth · Borrados y Culto del Umbral |
-| 2 | El camino de las raíces | Borrado + una pista o personaje de Eryn (eje por decidir) |
-| 3 | (aldea tomada por el Culto; nombre por decidir) | Liberar a los aldeanos y echar a los cultistas; cuentan la historia del Culto |
+| 2 | El camino de las raíces | Borrado + una guía de la Senda de Eryn (eje por decidir) |
+| 3 | La aldea de los callados (aldea de Ceniza Mansa) | Liberar a los aldeanos y echar a los cultistas; cuentan la historia del Culto |
 | 4 | La emboscada | Un aldeano de la misión 3 es un cultista infiltrado; antes de morir habla de una cripta al noroeste |
 | 5 | La cripta primordial | Cultistas y Borrados; rehenes; aparece la entidad (jefe final, sin identidad) y los mata |
 | 6 | El corazón del borrado | Jefe final; se revela el nombre de Neth y qué pasó; objeto para la campaña final |
@@ -30,7 +30,7 @@ Lore usado (poco; el usuario pidió "no darle demasiada importancia al trasfondo
 - Los **Primordiales** dejaron de responder. Quedan **Rupturas** (zonas donde la realidad falla). **Neth** = borrado.
 - **Varek's Hold**: ciudad contra un muro que nadie construyó. Tres Voces: **Muro** (vigila), **Mercado** (monedas), **Filo** (paga por lo que no debe constar). El Filo contrata a los héroes.
 - **Culto del Umbral**: cultistas cerca de donde Neth borra.
-- El final de la misión 1 deja una dirección: **Ocaso** (gancho hacia el villano de la misión 6).
+- El final de la misión 1 deja un camino dibujado hacia el bosque de Eryn. **Ocaso se eliminó (2026-11-27)**: el jefe de la campaña es el Umbral y su segundo, el Heraldo.
 - **Plan de la campaña I (2026-11-27):** `docs/campana-1.md`. La campaña gira en torno a la Ruptura del Muro (el borrado); Kael, Orum y Vael ya no son ejes. **El nombre de Neth solo sale en la misión 6.**
 - **Decisión del 2026-11-21: el nombre de Neth NO aparece en ningún texto que vea el jugador** (misión, página, mesa, tablero). La Ruptura del pueblo se llama **la Ruptura del Muro**, y las tiradas son «Evento de la Ruptura» (el nombre está «olvidado» a propósito). En los comentarios del código y en el lore interno sí queda. No reintroducir «Neth» en textos visibles.
 - **Lore de Varek's Hold** (Voces, elecciones, Custodios, distritos, Misión 1): `docs/varek-hold.md`. Es la fuente del lore de la ciudad.

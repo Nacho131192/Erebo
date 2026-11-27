@@ -2603,7 +2603,7 @@ function sumHTML(){const xp=(S.prim?2*S.d:0)+(S.secDone?S.d:0)+(S.dead?2*S.d+1:0
   <button type="button" class="pb pr big" data-a="finishM" data-f="finishM">Finalizar misión</button>
   <button type="button" class="pb sm gh" data-a="sumClose" data-f="sumClose">Volver a la mesa</button>
  </aside></div>`}
-function finHTML(){return `<p class="alov-l">Misión I completada</p><h3>El pueblo vacío queda atrás</h3><p class="alov-t">Habéis salido del pueblo, y con él, la memoria de quienes vivían allí. Os quedáis con el diario del olvidado y con una dirección: <b>Ocaso</b>.</p><p class="alov-n">La segunda misión, <b>El camino de las raíces</b>, ya está desbloqueada en el selector de misiones. Eryn despierta, la selva crece sin control y el diario os guiará hacia el bosque. Descansad, reparad vuestras heridas y elegid bien vuestro camino.</p><button type="button" class="pb pr big" data-a="finishOk" data-f="finishOk">Ir al selector de misiones</button>`}
+function finHTML(){return `<p class="alov-l">Misión I completada</p><h3>El pueblo vacío queda atrás</h3><p class="alov-t">Habéis salido del pueblo, y con él, la memoria de quienes vivían allí. Os quedáis con el diario del olvidado y con un camino dibujado hacia el bosque.</p><p class="alov-n">La segunda misión, <b>El camino de las raíces</b>, ya está desbloqueada en el selector de misiones. Eryn despierta, la selva crece sin control y el diario os guiará hacia el bosque. Descansad, reparad vuestras heridas y elegid bien vuestro camino.</p><button type="button" class="pb pr big" data-a="finishOk" data-f="finishOk">Ir al selector de misiones</button>`}
 /* Ventanas de información: centradas, con X arriba a la derecha y se cierran solas a los 7 segundos. */
 function paintAlertPop(){let ov=document.getElementById("alrtOv");if(!UI.alPop){if(ov)ov.remove();return}
  if(!ov){ov=document.createElement("div");ov.id="alrtOv";document.body.appendChild(ov)}
@@ -3184,10 +3184,10 @@ const KORN='<div class="korn" aria-hidden="true"><svg viewBox="0 0 16 16" fill="
 const MIS=[
  {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
  {n:"II",t:"El camino de las raíces",z:"Bosque de Eryn",h:"El diario os lleva al bosque, donde las raíces han empezado a moverse. Entre ellas hay otro rastro del olvido, y no sois los únicos que lo siguen."},
- {n:"III",t:"La aldea sitiada",z:"Asedio del Culto",h:"El Culto del Umbral cerca una aldea. Los Resonantes ofrecen su ayuda, a su manera."},
+ {n:"III",t:"La aldea de los callados",z:"Ceniza Mansa",h:"Los cultistas del Umbral tomaron Ceniza Mansa sin quemar una casa. Sus vecinos siguen dentro, y ninguno se atreve a hablar."},
  {n:"IV",t:"La emboscada",z:"Culto del Umbral",h:"Un camino que parece seguro y un guía que parece sincero. Antes de que acabe la jornada, alguien os habrá mentido."},
  {n:"V",t:"La cripta primordial",z:"Deudores de Vael",h:"Bajo la piedra duerme la ruina de un Primordial, y alguien ha venido a cobrar lo que se le debe."},
- {n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso",h:"Todos los rastros llevan al mismo nombre. Allí donde la Ruptura empezó a borrar, os espera Ocaso."}];
+ {n:"VI",t:"El corazón del borrado",z:"Culto del Umbral",h:"Todos los rastros llevan al mismo sitio. Allí donde la Ruptura empezó a borrar, os espera el final del camino."}];
 /* Campañas de Érebo: de momento solo una; el resto, cartas boca abajo. */
 const CAMPS=[{n:"I",t:"El Pueblo Sin Nombre",h:"Un contrato del Filo os lleva a un pueblo al pie del Muro del que nadie recuerda el nombre. <em>Lo que allí se borra no vuelve.</em>",ac:"#5f86d6",on:true},{n:"II",t:"La Ruptura de Sael",h:"El agua olvidó la luna y la gravedad. Las mareas llegan a deshora, la lluvia sube hacia el cielo y, en una isla lejana, una fortaleza guarda lo que el mar no quiere devolver. <em>Allí empezó la Ruptura de Sael.</em>",ac:"#6f9ab6"}];
 const won=()=>S.prim&&S.end&&!S.defeat;

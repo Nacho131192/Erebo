@@ -11,7 +11,7 @@
 - **DECIDIDO:** un continente **más grande y con más geografía**.
 - **DECIDIDO:** el **Muro es un anillo** de muralla, como el de una ciudad, y **en el centro solo hay polvo**: como si se hubiera borrado lo que había dentro, sin que se sepa qué era.
 - **DECIDIDO:** las **Rupturas son siete** (una por Primordial). Puede haber más de una en el mismo reino o tierra.
-- **DECIDIDO:** **Ocaso no sale** en el mapamundi. Se hará más adelante, en mapas más cercanos.
+- **DECIDIDO:** **Ocaso no sale** en el mapamundi. (Actualización 2026-11-27: Ocaso se eliminó de la historia por completo.)
 
 ## Imágenes (docs/mapa/v2/comp/)
 

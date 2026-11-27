@@ -17,11 +17,12 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 ### Misión 2 · El camino de las raíces
 - **DECIDIDO:** puede tener relación con la **Ruptura de Eryn**, pero **no se basa en ella**: solo añade una pista, un personaje u otro detalle ligado a Eryn.
 - **DECIDIDO:** la misión principal sigue relacionada con el borrado.
-- **ABIERTO:** el eje de la misión, y qué pista o personaje de Eryn entra. «Ya lo pensaremos».
-- **PROPUESTA:** sigue el camino dibujado en el diario hacia el bosque de Eryn, pero lo que se busca es otro rastro del borrado; Eryn aporta, por ejemplo, un guía o un testigo.
+- **DECIDIDO (2026-11-27):** la pista o personaje de Eryn es **una guía de la Senda de Eryn** («algo así parecido»).
+- **PROPUESTA:** una naturalista que conoce el bosque y dice que las raíces «se retiran» ante algo que no es del bosque. Acompaña a los héroes, pero no se fía de ellos.
+- **ABIERTO:** el eje de la misión (lo que se busca: otro rastro del borrado) y el nombre de la guía.
 
-### Misión 3 · Aldea tomada por el Culto del Umbral
-- **DECIDIDO:** ya no es «la aldea sitiada» y **no tiene nada de Kael ni de los Resonantes**. **Hay que cambiarle el nombre** (pendiente).
+### Misión 3 · La aldea de los callados
+- **DECIDIDO (2026-11-27):** el nombre de la misión es **«La aldea de los callados»** y la aldea se llama **Ceniza Mansa**. Ya no es «la aldea sitiada» y **no tiene nada de Kael ni de los Resonantes**.
 - **DECIDIDO:** es una aldea **capturada por los cultistas del Umbral**. Los **aldeanos y demás no militares siguen viviendo allí**, bajo el control de los cultistas.
 - **DECIDIDO:** la misión consiste en **liberar a los aldeanos y echar a los cultistas**.
 - **DECIDIDO:** los aldeanos cuentan **cómo llegaron los cultistas** y la **historia del Culto**: por qué están aquí, algo que todavía nadie sabe.
@@ -46,8 +47,7 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 - **DECIDIDO:** **aquí aparece por fin el nombre de Neth.**
 - **DECIDIDO:** se consigue **un objeto o una información** que hay que obtener **en cada campaña** para desbloquear la campaña final.
 - **DECIDIDO (2026-11-27):** el corazón del borrado **se queda en la Misión 6 exactamente como está en el plan; no se cambia**. (La ubicación que se había propuesto es el círculo de polvo del Muro de Varek's Hold; Nacho no la ha movido.)
-- **DECIDIDO (2026-11-27):** el final de la Misión 1 **sigue apuntando a «Ocaso» y no se sustituye por la entidad**. «Ocaso» y «Hermano Ocaso» se mantienen.
-- **ABIERTO:** qué es exactamente Ocaso respecto al Umbral: ¿otro nombre del jefe, un lugar o un lugarteniente? Nacho dijo que el jefe final va a ser el Umbral y que Ocaso no se sustituye. Ver la pregunta abajo.
+- **DECIDIDO (2026-11-27, corrige lo anterior):** **Ocaso y Hermano Ocaso se eliminan de la historia**; no tenían demasiado sentido. El jefe se queda como **el Umbral** y su segundo al mando es el **Heraldo del Umbral**. El final de la Misión 1 apunta solo a un camino dibujado hacia el bosque de Eryn.
 
 ## El Culto del Umbral y su jefe
 
@@ -72,8 +72,8 @@ Ya desarrollada (`docs/mision-1.md`). Un pueblo borrado por la Ruptura del Muro,
 ## Qué cambia en lo ya escrito
 
 - La tabla de misiones de `CLAUDE.md` queda reemplazada por este plan.
-- **Selector de misiones (web):** las fichas de las misiones **II y IV ya están reescritas** (2026-11-27). Las de III, V y VI **siguen con el plan antiguo** hasta elegir el nombre de la aldea y desarrollar cada misión.
-- Los ganchos de la Misión 1 (diario hacia Eryn y «Ocaso», Heraldo que sigue o semilla negra) siguen vigentes; la Misión 2 los aprovecha.
+- **Selector de misiones (web):** las fichas de las misiones **II, III, IV y VI ya están reescritas** (2026-11-27). La de V **sigue con el plan antiguo** hasta desarrollar la misión.
+- Los ganchos de la Misión 1 (diario hacia Eryn, Heraldo que sigue o semilla negra) siguen vigentes; la Misión 2 los aprovecha. El de «Ocaso» se eliminó.
 - La hoja de ruta (`docs/seguimiento/`) menciona las misiones II-VI de forma general; se actualizará al desarrollarlas.
 - Las Rupturas de Kael y Vael, los Resonantes, la Concordancia de Orum y los Deudores de Vael **ya no son ejes de esta campaña**. Siguen existiendo en el mundo y pueden aparecer como pistas.
 
@@ -83,19 +83,19 @@ El mapa y las siete Rupturas siguen **archivados y sin tocar**; primero se termi
 
 - **Ruptura del Muro (borrado):** es el eje. Aparece en el círculo de polvo del Muro de Varek's Hold y en el pueblo sin nombre al norte. Es la de Neth, cuyo nombre solo se revela en la Misión 6.
 - **Bosque de Eryn:** destino de la Misión 2 (el diario apunta al bosque); allí hay algo de la Ruptura de Eryn como pista, no como eje.
-- **Aldea tomada por el Culto (Misión 3):** lugar nuevo por situar; sus aldeanos siguen dentro. Nombre pendiente.
+- **Ceniza Mansa (Misión 3):** aldea tomada por el Culto, lugar nuevo por situar; sus aldeanos siguen dentro.
 - **Lugar de la emboscada (Misión 4):** por situar; lo elige el aldeano infiltrado.
 - **Cripta primordial (Misión 5):** una **ruina al noroeste** (según el infiltrado). Lleva cultistas y Borrados. En el mapa archivado la Cripta estaba al norte de Drath; habría que moverla al noroeste.
 - **Corazón del borrado (Misión 6):** se queda como en el plan (propuesta: círculo de polvo del Muro).
-- **Ocaso:** apuntado en el diario de la Misión 1. **No debe salir en el mapamundi** (decisión anterior): se hará en mapas más cercanos.
+- **Ocaso:** eliminado de la historia (2026-11-27); no sale en ningún mapa.
 - **Cámara divina** con los Primordiales encerrados y **enemigo supremo**: **ocultos**; no se muestran ni se sitúan en el mapamundi.
 - **Neth:** su nombre no se ve en el mapa hasta que se revele (Misión 6).
 
 ## Preguntas abiertas
 
-1. **Misión 2:** ¿cuál es el eje y qué pista o personaje de Eryn entra? (Claude propone tres opciones.)
-2. **Misión 3:** ¿nombre de la aldea y título de la misión? (Claude propone tres opciones.) ¿Qué se cuenta sobre el Culto (por qué están aquí, qué buscan)?
+1. **Misión 2:** ¿cuál es el eje (qué otro rastro del borrado se busca) y cómo se llama la guía de la Senda de Eryn?
+2. **Misión 3:** ¿qué se cuenta sobre el Culto (por qué están aquí, qué buscan) y qué aldeanos importan?
 3. **Misión 4:** ¿cómo se llama el aldeano infiltrado, qué sabe y cómo se disfraza? ¿Qué sale mal para los héroes?
 4. **Misión 5:** ¿quiénes eran los rehenes?
-5. **Misión 6:** ¿qué es «Ocaso» respecto al Umbral: otro nombre del jefe, un lugar o un lugarteniente?
+5. **Misión 6:** ¿qué se revela exactamente sobre Neth y el borrado, y qué objeto se consigue?
 6. **Meta:** ¿qué objeto o información da cada campaña? ¿Cómo se llama el enemigo supremo y dónde está la cámara divina? (no se revela todavía)
