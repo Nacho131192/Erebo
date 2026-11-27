@@ -3,6 +3,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>El Pueblo Sin Nombre</title>
+<script>
+/* Teléfono: todo en horizontal salvo el tablero virtual (2026-11-27, Nacho; sin pedir que se gire nada).
+   En un teléfono táctil la página se abre dentro de un marco (?marco=1) que se gira 90° cuando hace falta:
+   los menús y la mesa ven siempre una pantalla apaisada (y usan su diseño apaisado) y el tablero virtual,
+   una vertical. El marco avisa con postMessage({psnTv}) al abrir o cerrar el tablero. El resto del documento
+   se descarta en esta página exterior con <plaintext>, para no arrancar la aplicación dos veces. */
+(function(){
+ if(/[?&]marco=1(&|$)/.test(location.search))return;
+ if(!matchMedia("(pointer:coarse)").matches||Math.min(screen.width,screen.height)>500)return;
+ var u=location.pathname+(location.search?location.search+"&":"?")+"marco=1"+location.hash;
+ document.write('<style>html,body{margin:0;height:100%;overflow:hidden;background:#0b0d16;overscroll-behavior:none}#psnF{position:fixed;left:0;top:0;border:0;transform-origin:0 0;background:#0b0d16}</style>'
+  +'<iframe id="psnF" title="El Pueblo Sin Nombre" allow="fullscreen" src="'+u.replace(/"/g,"&quot;")+'"></iframe>'
+  +'<script>(function(){var f=document.getElementById("psnF"),tv=false;'
+  +'function fit(){var W=innerWidth,H=innerHeight,land=W>=H,want=!tv,fw,fh,t;'
+  +'if(want===land){fw=W;fh=H;t="none"}else{fw=H;fh=W;t=want?"translate("+W+"px,0) rotate(90deg)":"translate(0,"+H+"px) rotate(-90deg)"}'
+  +'f.style.width=fw+"px";f.style.height=fh+"px";f.style.transform=t}'
+  +'addEventListener("resize",fit);addEventListener("orientationchange",function(){setTimeout(fit,250)});'
+  +'addEventListener("message",function(e){if(e.source===f.contentWindow&&e.data&&typeof e.data.psnTv==="boolean"){tv=e.data.psnTv;fit()}});fit()})()<\/script>'
+  +'<plaintext style="display:none">');
+})();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* Una sola hoja de pergamino con la historia y las reglas, y un panel de juego fijo al lado (barra inferior en móvil). */
