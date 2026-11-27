@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 768,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "A parchment contract unfolded flat on a table, with visible fold creases making a cross, warm ochre and sienna watercolor stains, deckled uneven edges, slightly darker borders, flat top-down photo, centered on a pure solid black background. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 707,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/f29cffe1-71b0-4db2-923a-f42ae02c1e75"
+  ],
+  "prompt": "Keep image 1 exactly as it is: same low angle, moon, rooftops, faceless dark hood, dark robe, armor, scythe and spheres. Only change: each of the two black shoulder pauldrons gets one large curved black horn growing from its top and rising straight upward, symmetrical on both sides of the hood. The hood stays without horns and without any face. Ink and sepia wash with fine cross-hatching on plain aged parchment, continuous to every edge, no border, no text.",
+  "dimensiones_servidor": null
+}

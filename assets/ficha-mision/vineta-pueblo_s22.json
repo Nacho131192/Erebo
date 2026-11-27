@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 1024,
+  "alto": 640,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\web\\panorama.jpg"
+  ],
+  "prompt": "A small empty village of stone houses with steep roofs at the foot of a colossal ancient wall, the doors left open, no people, night with pale mist between the houses, painted as a vignette whose edges fade softly into bare white paper, in the same ink and watercolor style and night palette as the reference. Ink and watercolor illustration for a dark fantasy roleplaying game: loose confident dip-pen ink contours, transparent indigo, sepia and umber watercolor washes, granulating pigment, soft blooms and bleeding edges, cold-press paper texture. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

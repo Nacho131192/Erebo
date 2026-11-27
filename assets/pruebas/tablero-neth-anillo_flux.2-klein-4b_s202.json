@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 202,
+  "ancho": 1024,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "Strict top-down orthographic battlemap of a small abandoned medieval village for a tabletop wargame, seen from directly above like a satellite photo: flat orthographic projection, every roof seen straight from above as a flat shape, no building walls visible, no isometric angle, no perspective, no horizon, no sky. Between 15 and 20 separate elements in total, spread over the whole map: cottages arranged loosely in a wide ring around the plaza with open ground between them; the roofless ruin of a small stone chapel; a curved low stone wall; two short hedgerows; a few trees near the map edges; a stack of barrels. Wide open dirt lanes and grassy gaps of at least two figure-widths between every element so miniatures can walk between them. A round stone well in a small open plaza at the exact center of the map. No people, no creatures, no text, no labels, no letters, no grid, no frame, no border, no compass, no legend. Painted digital fantasy battlemap in soft lavender dusk light, still bright and readable. Around the central well the world is partly erased: patches of ground fade into pale grey and violet void with crumbling, flaking edges, a few faint violet motes, one or two roofs half dissolved; the rest of the village is normal with warm earth tones. Premium illustrated RPG map, not dark.",
+  "dimensiones_servidor": null
+}

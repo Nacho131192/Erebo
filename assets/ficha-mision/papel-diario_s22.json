@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 1024,
+  "alto": 704,
+  "referencias": [],
+  "prompt": "An open travel journal lying flat, two cream pages with a soft dark gutter in the middle, small watercolor stains and a few pencil guide lines, flat top-down photo, centered on a pure solid black background. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

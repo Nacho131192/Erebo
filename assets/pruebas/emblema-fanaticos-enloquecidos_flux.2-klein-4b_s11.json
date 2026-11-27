@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 768,
+  "alto": 768,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole shape, plain pure white background, no text, no letters. This is NOT a character: it is a single round heraldic emblem, a circular medallion crest, perfectly centered, symmetrical, bold and instantly readable at small size, premium collectible enamel-pin illustration. Emblem of the fantasy race 'Fanáticos enloquecidos': a wild burning eye above a broken chain and a torch, red and orange. Avoid: text, letters, watermark, photorealism, 3D render, anime style, characters, background scenery.",
+  "dimensiones_servidor": null
+}

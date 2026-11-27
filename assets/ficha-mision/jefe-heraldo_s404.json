@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 404,
+  "ancho": 768,
+  "alto": 1024,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\web\\heraldo.jpg"
+  ],
+  "prompt": "The same hooded Herald from the reference image, now painted full body as a towering dark shadow silhouette: horned shoulder plates, a ragged cloak that dissolves into dripping wisps at the bottom, a long curved scythe held in one hand. Only the small cracked clock on the chest and two tiny eyes under the hood glow faint pale gold; everything else is deep indigo-black wash. Full body, centered, isolated on plain white paper. Ink and watercolor illustration for a dark fantasy roleplaying game: loose confident dip-pen ink contours, transparent indigo, sepia and umber watercolor washes, granulating pigment, soft blooms and bleeding edges, cold-press paper texture. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

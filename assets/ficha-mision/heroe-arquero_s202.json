@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 202,
+  "ancho": 512,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "An archer in a hood holding a tall longbow at his side, a quiver of arrows on the back. The figure is painted as a shadow: almost entirely a deep indigo-black wash, the face hidden in darkness, only the outline in ink and a few lighter wet-in-wet blooms inside the cloth, full body standing, centered, isolated on plain white paper. Ink and watercolor illustration for a dark fantasy roleplaying game: loose confident dip-pen ink contours, transparent indigo, sepia and umber watercolor washes, granulating pigment, soft blooms and bleeding edges, cold-press paper texture. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

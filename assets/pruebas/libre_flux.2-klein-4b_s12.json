@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 12,
+  "ancho": 1600,
+  "alto": 1100,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\docs\\mapa\\ref\\ref-base.png"
+  ],
+  "prompt": "Repaint the reference image as a top-down fantasy world map of a single continent, keeping EXACTLY the same coastline, islands, mountain ranges, forests, lakes, rivers and the dark wall at the south in the same positions, with a small peninsula behind the wall. Luxurious midnight map style: deep navy-blue paper, land in slightly lighter navy with fine gold stippling, thin glowing antique-gold coastlines and gold ink contour waves in the sea, gold line-art mountains and tiny gold tree symbols, forests in dark teal, soft golden glow around the huge wall at the south, faint pale stars scattered in the sea, black mist on the peninsula behind the wall. Premium, elegant, high contrast. Absolutely no text, no letters, no writing, no labels, no icons, no compass, no frame, no border, no clouds, no smoke. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

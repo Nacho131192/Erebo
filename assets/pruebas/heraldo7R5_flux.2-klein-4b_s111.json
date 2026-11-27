@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 111,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/8574a7ac-a0ea-4f5d-8377-14d1dd283121"
+  ],
+  "prompt": "Keep image 1: same figure, same erased dark void inside the hood, same dark tattered robe, same heavy black riveted armor with the cracked pale medallion, same two upward horns on the pauldrons, same head-and-shoulders framing. Changes: remove the scythe completely, no blade and no staff anywhere in the image. Above the open hand, three small dark spheres float in a gentle orbit, with a thin violet glow. Background: the parchment is darkened with a soft mottled wash of sepia and grey-brown stains and blotches, clearly darker than plain paper but still a mid-tone, noticeably lighter than the figure so the dark silhouette stands out with strong contrast; faint violet tint in the stains near the figure.  Ink and sepia wash with fine cross-hatching, no border, no frame, no text.",
+  "dimensiones_servidor": null
+}

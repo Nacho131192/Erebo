@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 512,
+  "alto": 512,
+  "referencias": [],
+  "prompt": "A single round dark red wax seal seen from above, embossed with a small crest of a dagger crossing a closed eye, thick irregular edges with a few drips, a short torn ribbon underneath, painted with precise dip-pen ink contours and rich carmine and oxblood watercolor with a bright bare-paper highlight, isolated on plain white paper. Ink and watercolor illustration for a dark fantasy roleplaying game: loose confident dip-pen ink contours, transparent indigo, sepia and umber watercolor washes, granulating pigment, soft blooms and bleeding edges, cold-press paper texture. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

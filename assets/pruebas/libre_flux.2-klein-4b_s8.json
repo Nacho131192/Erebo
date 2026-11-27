@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 8,
+  "ancho": 1600,
+  "alto": 1100,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\docs\\mapa\\ref\\ref-base.png"
+  ],
+  "prompt": "Repaint the reference image as a top-down fantasy world map of a single continent, keeping EXACTLY the same coastline, islands, mountain ranges, forests, lakes, rivers and the dark wall at the south in the same positions. The dark brown-grey shape behind the wall is a rugged rocky headland of land. Do not add any mountains, towns, roads or features that are not in the reference. Hand-painted antique parchment style: aged cream paper, sepia and brown ink, delicate hatching on the sea along the coasts, tiny drawn mountains with shaded sides, little tree symbols in the forests, warm cream land, muted blue-grey sea, a heavy stone wall with battlements across the neck of land at the south and a dark rocky headland behind it. Elegant cartographic illustration, rich texture, subtle vignette. Absolutely no text, no letters, no writing, no labels, no icons, no compass, no frame, no border, no clouds, no smoke, no fog. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

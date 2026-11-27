@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.1-kontext-pro",
+  "seed": 7,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "assets/pruebas/heroe-discipulos-guerra-barbaro_flux.2-klein-4b_s11.jpg"
+  ],
+  "prompt": "Edit this image: remove the small axe head at the left end of the weapon handle so the weapon is a single-bladed axe with only the large blade on the right; keep everything else exactly the same, including the sticker border and white background. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,271 @@
+<title>Contrato del Filo · ficha v6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<!--
+ Maqueta v6 de la ficha de misión (2026-11-27). Decisiones de Nacho sobre la v5: estructura B «Contrato del Filo»,
+ sombras en acuarela índigo, jefe velado, sin puñal. Nuevo: el contrato se planta en el centro con un «plof» sutil
+ y el botón va a la derecha del doblez del papel, sin la pincelada ocre, en cinco versiones a elegir.
+ Enlaces directos: #firma, #sello, #recuadro, #casilla, #cinta (+ -curso, -cumplida, -sellada, -taller-no, quieto).
+-->
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:dark;--colW:440px;--rot:"IM Fell English SC","IM Fell English",Georgia,serif;--tit:"IM Fell English",Georgia,serif;--hueso:#efe3c8;--oro:#e3c98d;
+ --ink:#2a1d10;--ink2:#4b3a24;--ink3:#7b6845;--acc:#7a4d1a;--indigo:#1f2a52;--indigo2:#2f3f78}
+html,body{margin:0;height:100%;background:#070910;color:var(--hueso);font-family:var(--tit);overflow:hidden}
+button{font:inherit;color:inherit}
+/* ---------- mapa y columna, como en la página ---------- */
+.map{position:fixed;inset:0;background:url(ficha-v5-img/base/mapa.jpg) 62% 70%/cover no-repeat;filter:saturate(.85) brightness(.8);transform-origin:62% 50%}
+.ag{position:fixed;left:-60px;top:-6%;width:calc(var(--colW) + 260px);height:112%;background:url(ficha-v5-img/base/aguada.png) 0 0/100% 100% no-repeat;opacity:.95;pointer-events:none}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--colW);padding:40px 30px 40px 56px;display:flex;flex-direction:column;gap:14px;z-index:4}
+.side .keb{margin:0;font:400 14px var(--rot);letter-spacing:.32em;color:#a7a08c}
+.side h1{margin:0;font:400 46px/1 var(--tit);text-shadow:0 2px 22px rgba(0,0,0,.7)}
+.side h1::after{content:"";display:block;width:230px;height:16px;margin-top:12px;background:url(ficha-v5-img/base/floron.png) 0 50%/contain no-repeat;opacity:.85}
+.side ol{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.side li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;padding:5px 0;font:400 19px/1.1 var(--tit);cursor:pointer;position:relative;isolation:isolate}
+.side li .n{display:grid;place-items:center;width:40px;height:40px;background:url(ficha-v5-img/base/circulo.png) center/100% 100% no-repeat;font-size:16px}
+.side li small{display:block;margin-top:2px;font:400 11.5px var(--rot);letter-spacing:.22em;color:#a7a08c}
+.side li.on::before{content:"";position:absolute;z-index:-1;inset:-2px -8px -2px 44px;background:url(ficha-v5-img/base/trazo.png) 0 50%/100% 100% no-repeat}
+.side li.on,.side li.on small{color:#160f09}.side li.on .n{color:var(--hueso)}
+.side li.lk{color:#8a8576;font-style:italic}
+.scrim{position:fixed;inset:0;z-index:3;background:radial-gradient(70% 70% at 62% 50%,rgba(6,8,16,.42),rgba(6,8,16,.82));opacity:0;transition:opacity .45s;pointer-events:none}
+body.open .scrim{opacity:1;pointer-events:auto}
+
+/* ---------- el contrato ---------- */
+.fzw{position:fixed;z-index:5;left:calc(var(--colW) + (100vw - var(--colW)) / 2);top:50%;width:0;height:0}
+body:not(.open) .fzw{display:none}
+.fz{position:absolute;width:520px;left:-260px;top:-366px;transform-origin:50% 50%}
+.sheet{position:relative;width:520px;height:732px;background:url(ficha-v5-img/papel-contrato.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 22px 24px rgba(0,0,0,.55))}
+
+/* «plof»: cae desde un poco más cerca de la cámara, se aplasta un pelo al tocar el mapa y se asienta;
+   la sombra pasa de ancha y difusa a corta y firme. Debajo, un soplo de aguada y unas motas de papel. */
+.fz.plof .sheet{animation:plof .62s cubic-bezier(.3,0,.25,1) both}
+@keyframes plof{
+ 0%{opacity:0;transform:translateY(-16px) scale(1.07) rotate(-1.2deg);filter:drop-shadow(0 58px 46px rgba(0,0,0,.28))}
+ 45%{opacity:1;transform:translateY(0) scale(1) rotate(0);filter:drop-shadow(0 22px 24px rgba(0,0,0,.55))}
+ 58%{transform:scale(1.012,.988)}
+ 74%{transform:scale(.997,1.004)}
+ 100%{transform:none;filter:drop-shadow(0 22px 24px rgba(0,0,0,.55))}}
+.puff{position:absolute;inset:-30px;z-index:-1;pointer-events:none;opacity:0;border-radius:42%;
+ background:radial-gradient(closest-side,transparent 72%,rgba(214,200,170,.34) 84%,transparent 100%)}
+.fz.plof.polvo .puff{animation:puff .9s .26s ease-out both}
+@keyframes puff{0%{opacity:0;transform:scale(.9)}25%{opacity:1}100%{opacity:0;transform:scale(1.16)}}
+.motas{position:absolute;left:50%;bottom:6px;width:3px;height:3px;border-radius:50%;pointer-events:none;opacity:0;
+ box-shadow:-250px -6px 0 0 rgba(230,216,184,.8),-232px 2px 0 1px rgba(230,216,184,.6),-210px -14px 0 0 rgba(120,90,50,.6),248px -4px 0 0 rgba(230,216,184,.8),226px 4px 0 1px rgba(230,216,184,.55),206px -16px 0 0 rgba(120,90,50,.55),-120px 8px 0 0 rgba(230,216,184,.5),130px 9px 0 0 rgba(230,216,184,.5)}
+.fz.plof.polvo .motas{animation:motas .7s .28s ease-out both}
+@keyframes motas{0%{opacity:0;transform:translateY(0) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translateY(-14px) scale(1.4)}}
+body.temblor .map.thud{animation:thud .32s .26s ease-out}
+@keyframes thud{0%,100%{transform:none}30%{transform:scale(1.004) translateY(1px)}60%{transform:scale(.999)}}
+.fz.plof .txt>*,.fz.plof .foot>*{animation:inkIn .6s .3s both}
+@keyframes inkIn{from{opacity:0}to{opacity:1}}
+
+/* textos */
+.x{position:absolute;z-index:7;right:30px;top:24px;width:32px;height:32px;border:0;background:url(ficha-v5-img/base/circulo.png) center/100% 100% no-repeat;color:var(--ink2);font:400 19px/1 var(--tit);cursor:pointer;opacity:.75;transition:transform .3s,opacity .2s}
+.x:hover,.x:focus-visible{opacity:1;transform:rotate(90deg);outline:none}
+.txt{position:absolute;inset:66px 54px 150px;display:flex;flex-direction:column;gap:12px}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(90,62,28,.5);padding-bottom:6px;padding-right:34px}
+.eb{margin:0;font:400 13px var(--rot);letter-spacing:.24em;color:var(--acc)}
+.head .eb:last-child{color:var(--ink3)}
+.ttl{margin:2px 0 0;font:400 41px/1.02 var(--tit);color:var(--ink);text-wrap:balance}
+.hook{margin:0;font:italic 400 18.5px/1.46 var(--tit);color:var(--ink2);text-wrap:pretty}
+.hook.blur{filter:blur(4px);opacity:.5;user-select:none}
+.cl{display:grid;grid-template-columns:124px 1fr;gap:3px 14px;align-items:baseline;margin:0}
+.cl dt{font:400 12.5px var(--rot);letter-spacing:.18em;color:var(--ink3)}
+.cl dd{margin:0;font:400 16.5px/1.35 var(--tit);color:var(--ink)}
+.sign{display:grid;grid-template-columns:1fr 118px;gap:10px;align-items:end;margin-top:4px}
+.figs{display:flex;align-items:flex-end;border-bottom:1px solid rgba(42,29,16,.6);padding-bottom:2px}
+.figs img{display:block;height:80px;width:auto;margin:0 -6px;mix-blend-mode:multiply}
+.lab{display:block;margin-top:4px;font:400 12.5px var(--rot);letter-spacing:.2em;color:var(--ink3)}
+.boss{text-align:center;transform:rotate(3deg)}
+.boss img{display:block;height:108px;width:auto;margin:0 auto;mix-blend-mode:multiply;opacity:.42;filter:blur(.5px);-webkit-mask:linear-gradient(#000 35%,transparent);mask:linear-gradient(#000 35%,transparent)}
+.opt{display:inline-block;margin-left:6px;padding:0 8px;border:1px dashed var(--ink3);border-radius:99px;font:italic 400 14px var(--tit);letter-spacing:0;color:var(--ink2)}
+.note{margin:0;font:italic 400 15px/1.35 var(--tit);color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.chips span{padding:3px 12px;border:1px solid rgba(90,62,28,.5);border-radius:99px;font:400 12.5px var(--rot);letter-spacing:.14em;color:var(--ink2)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(90,62,28,.45);border-bottom:1px solid rgba(90,62,28,.45)}
+.res div{padding:7px 6px;text-align:center}.res div+div{border-left:1px solid rgba(90,62,28,.35)}
+.res span{display:block;font:400 11px var(--rot);letter-spacing:.18em;color:var(--ink3)}
+.res b{display:block;margin-top:2px;font:400 16px var(--tit);color:var(--ink)}
+.lock{padding:10px 14px;border:1px dashed rgba(90,62,28,.55);font:italic 400 17px/1.4 var(--tit);color:var(--ink2)}
+.st{display:flex;align-items:center;gap:9px;margin:0;font:400 12.5px var(--rot);letter-spacing:.2em;color:var(--ink2)}
+.st i{flex:none;width:10px;height:10px;border-radius:50% 45% 55% 48%;background:var(--stc,#3f7a4f);box-shadow:0 0 0 3px color-mix(in srgb,var(--stc,#3f7a4f) 25%,transparent)}
+
+/* pie: el doblez vertical del papel cae en el 50 %; a la izquierda, sello y estado; a la derecha, el botón */
+.foot{position:absolute;left:0;right:0;bottom:44px;height:104px;display:grid;grid-template-columns:50% 50%;align-items:center}
+.fl{display:flex;align-items:center;gap:14px;padding:0 18px 0 52px}
+.fr{display:flex;align-items:center;justify-content:center;padding:0 40px 0 20px}
+.seal{flex:none;width:80px;height:82px;background:url(ficha-v5-img/sello-lacre-11.png) center/contain no-repeat;transform:rotate(-10deg);filter:drop-shadow(0 4px 3px rgba(60,20,5,.45))}
+
+/* ---------- las cinco versiones del botón (sin pincelada ocre) ---------- */
+.cta{position:relative;border:0;background:none;cursor:pointer;color:var(--ink);padding:0}
+.cta:focus-visible{outline:1px dashed var(--ink2);outline-offset:6px}
+.cta .t{font:400 17px var(--rot);letter-spacing:.14em;white-space:nowrap}
+.cta .ar{display:inline-block;margin-left:10px;font:400 21px var(--tit);transition:transform .3s}
+.cta:hover .ar,.cta:focus-visible .ar{transform:translateX(4px)}
+
+/* 1 · Firma a pluma: el texto sobre una línea de firma; al pasar el ratón, la firma se escribe sola */
+.firma{display:grid;justify-items:start;gap:0;width:206px}
+.firma .x2{position:absolute;left:0;top:22px;font:italic 400 18px var(--tit);color:var(--ink3)}
+.firma .sig{display:block;width:190px;height:46px;margin-left:16px;overflow:visible}
+.firma .sig path{fill:none;stroke:var(--indigo);stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:640;stroke-dashoffset:640;transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)}
+.firma.hv .sig path,.firma:hover .sig path,.firma:focus-visible .sig path,.firma.done .sig path{stroke-dashoffset:0}
+.firma .ln{display:block;width:206px;height:1.4px;background:var(--ink);opacity:.7;margin-top:-6px}
+.firma .t{margin-top:8px;font-size:14.5px;color:var(--ink2)}
+
+/* 2 · Sello de lacre: el propio sello es el botón (pasa al lado derecho del doblez) */
+.sello{display:flex;align-items:center;gap:14px}
+.sello .wax{width:86px;height:88px;background:url(ficha-v5-img/sello-lacre-11.png) center/contain no-repeat;transform:rotate(-8deg);filter:drop-shadow(0 4px 3px rgba(60,20,5,.45));transition:transform .35s cubic-bezier(.3,.7,.2,1.3),filter .35s}
+.sello.hv .wax,.sello:hover .wax,.sello:focus-visible .wax{transform:rotate(-14deg) translateY(-3px) scale(1.05);filter:drop-shadow(0 10px 8px rgba(60,20,5,.4))}
+.sello:active .wax{transform:rotate(-8deg) scale(.93);filter:drop-shadow(0 2px 1px rgba(60,20,5,.5))}
+.sello .t{white-space:normal;max-width:118px;text-align:left;font-size:15px;line-height:1.35}
+body.b-sello .fl .seal{display:none}
+
+/* 3 · Recuadro a tinta: doble línea a pluma; dentro, una aguada índigo que aparece al pasar el ratón */
+.recuadro{padding:15px 20px;isolation:isolate;white-space:nowrap}
+.recuadro .t{font-size:14.5px;letter-spacing:.12em}.recuadro .ar{font-size:18px;margin-left:8px}
+.recuadro::before{content:"";position:absolute;inset:0;background:url(ficha-v5-img/base/recuadro-negro.png) 0 0/100% 100% no-repeat;opacity:.85}
+.recuadro::after{content:"";position:absolute;inset:7px 9px;z-index:-1;background:radial-gradient(120% 140% at 30% 40%,var(--indigo2),var(--indigo) 70%);opacity:0;transition:opacity .35s;border-radius:40% 30% 45% 35%/30% 45% 35% 40%;filter:url(#bleed)}
+.recuadro.hv::after,.recuadro:hover::after,.recuadro:focus-visible::after{opacity:.92}
+.recuadro.hv,.recuadro:hover,.recuadro:focus-visible{color:var(--hueso)}
+
+/* 4 · Casilla: «Acepto el encargo» con una casilla a pluma que se marca al pasar el ratón */
+.casilla{display:flex;align-items:center;gap:12px}
+.casilla svg{flex:none;width:38px;height:38px;overflow:visible}
+.casilla .bx{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.casilla .ck{fill:none;stroke:var(--indigo);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:70;stroke-dashoffset:70;transition:stroke-dashoffset .45s cubic-bezier(.4,0,.2,1)}
+.casilla.hv .ck,.casilla:hover .ck,.casilla:focus-visible .ck,.casilla.done .ck{stroke-dashoffset:0}
+
+/* 5 · Cinta índigo: la cinta de pergamino teñida de índigo, con el texto en hueso */
+.cinta{width:248px;height:60px;display:flex;align-items:center;justify-content:center;padding-bottom:12px;color:var(--hueso);transition:transform .3s}
+body.b-cinta .fr{padding:0 22px 0 12px}
+.cinta::before{content:"";position:absolute;inset:0;z-index:-1;background:url(ficha-v5-img/base/cinta.png) 0 0/100% 100% no-repeat;filter:hue-rotate(188deg) saturate(2.2) brightness(.3) contrast(1.35)}
+.cinta{isolation:isolate}
+.cinta.hv,.cinta:hover,.cinta:focus-visible{transform:translateY(-2px) rotate(-1deg)}
+.cinta .t{font-size:13px;letter-spacing:.1em}.cinta .ar{font-size:17px;margin-left:6px}
+
+/* ---------- taller ---------- */
+.tl{position:fixed;z-index:20;right:16px;bottom:16px;width:330px;max-height:calc(100vh - 32px);overflow:auto;padding:14px 16px 16px;background:rgba(9,11,20,.94);border:1px solid #3a3220;border-radius:6px;box-shadow:0 14px 40px rgba(0,0,0,.6);font:400 14px var(--tit)}
+.tl.min .tb{display:none}
+.tl h2{margin:0;display:flex;justify-content:space-between;align-items:center;gap:12px;font:400 15px var(--rot);letter-spacing:.14em;color:var(--oro)}
+.tl h2 button{border:0;background:none;color:#a7a08c;cursor:pointer;font-size:13px}
+.tl h3{margin:14px 0 6px;font:400 12px var(--rot);letter-spacing:.2em;color:#a7a08c}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{padding:5px 10px;border:1px solid #5a4b2c;border-radius:99px;background:#0d1020;color:#d9ccaf;cursor:pointer;font-size:13.5px}
+.seg button[aria-pressed="true"]{background:var(--oro);border-color:var(--oro);color:#160f09}
+.tl p.d{margin:6px 0 0;font:italic 400 13.5px/1.4 var(--tit);color:#a7a08c}
+.tl label{display:flex;align-items:center;gap:8px;margin-top:8px;color:#d9ccaf}
+.tl textarea{width:100%;min-height:60px;margin-top:6px;padding:8px;border:1px solid #3a3220;background:#0b0d16;color:#efe3c8;font:400 14px var(--tit);resize:vertical}
+.tl .acts{display:flex;gap:8px;margin-top:10px}
+.tl .acts button{flex:1;padding:8px;border:1px solid var(--oro);background:none;color:var(--oro);cursor:pointer;font:400 13px var(--rot);letter-spacing:.12em}
+.tl .acts button.pri{background:var(--oro);color:#160f09}
+.toast{position:fixed;z-index:30;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 16px;background:var(--oro);color:#160f09;border-radius:4px;opacity:0;transition:opacity .3s;font:400 14px var(--rot);letter-spacing:.1em}
+.toast.on{opacity:1}
+.quieto *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){.fz.plof .sheet,.puff,.motas,.map.thud{animation:none!important}}
+@media (max-width:860px){:root{--colW:0px}.side,.ag{display:none}.tl{left:8px;right:8px;width:auto;max-height:42vh}}
+</style>
+<div class="map" id="map" aria-hidden="true"></div>
+<div class="ag" aria-hidden="true"></div>
+<aside class="side" aria-label="Columna del selector (simplificada)">
+ <p class="keb">Érebo · Campaña I</p>
+ <h1>El Pueblo<br>Sin Nombre</h1>
+ <ol id="lst"></ol>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="fzw" id="fzw"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="bleed" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="9"/></filter></svg>
+
+<section class="tl" id="tl" aria-label="Taller">
+ <h2>Taller · contrato del Filo <button type="button" id="tlMin">Ocultar (T)</button></h2>
+ <div class="tb">
+  <h3>Botón · a la derecha del doblez (1-5)</h3>
+  <div class="seg" data-k="bt"><button data-v="firma">Firma a pluma</button><button data-v="sello">Sello de lacre</button><button data-v="recuadro">Recuadro a tinta</button><button data-v="casilla">Casilla</button><button data-v="cinta">Cinta índigo</button></div>
+  <p class="d" id="btD"></p>
+  <h3>Estado de la misión</h3>
+  <div class="seg" data-k="st"><button data-v="open">Disponible</button><button data-v="live">En curso</button><button data-v="done">Cumplida</button><button data-v="lock">Sellada (II)</button></div>
+  <h3>Al plantarse</h3>
+  <label><input type="checkbox" id="polvo" checked> Soplo de aguada y motas de papel</label>
+  <label><input type="checkbox" id="temblor" checked> El mapa acusa el golpe (casi nada)</label>
+  <h3>Notas</h3>
+  <textarea id="notes" placeholder="Lo que quieras añadir…"></textarea>
+  <div class="acts"><button type="button" id="again">Repetir (R)</button><button type="button" class="pri" id="copy">Copiar mis decisiones</button></div>
+ </div>
+</section>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+document.body.className="open temblor";
+const IMG="ficha-v5-img/";
+const MIS=[
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
+ {n:"III",t:"La aldea sitiada"},{n:"IV",t:"La emboscada"},{n:"V",t:"La cripta primordial"},{n:"VI",t:"El corazón del borrado"}];
+const BTD={firma:"El botón es la línea de firma: «Firmar el contrato» bajo una raya a pluma, con su X. Al pasar el ratón, una firma en tinta índigo se escribe sola.",
+ sello:"El sello de lacre se pasa a la derecha del doblez y es el propio botón: al pasar el ratón se levanta un poco, al pulsar se aplasta como si sellaras.",
+ recuadro:"Un recuadro de doble línea a pluma. Al pasar el ratón se llena de una aguada índigo y el texto pasa a color hueso.",
+ casilla:"«Acepto el encargo» con una casilla dibujada a pluma. Al pasar el ratón, una marca índigo la cruza.",
+ cinta:"La cinta de pergamino de la columna, teñida de índigo, con el texto en hueso. Se levanta un poco al pasar el ratón."};
+const NOM={firma:"Firma a pluma",sello:"Sello de lacre",recuadro:"Recuadro a tinta",casilla:"Casilla",cinta:"Cinta índigo"};
+let HOV=false;
+const S={bt:"firma",st:"open",polvo:true,temblor:true};
+const HEROES=["guerrero","maga","picaro","arquero"];
+const SIG=`<svg class="sig" viewBox="0 0 190 46" aria-hidden="true"><path d="M6 34c8-14 14-26 20-24 6 2-6 26-2 27 5 1 12-20 18-19 5 1-3 17 2 17 6 0 10-13 15-12 4 1 0 10 4 10 5 0 9-9 14-9 6 0 2 9 8 9 7 0 12-12 20-12 6 0 0 11 6 11 9 0 18-9 30-12 10-2 22-1 30 1M44 22c18-3 40-4 70-3"/></svg>`;
+const CK=`<svg viewBox="0 0 40 40" aria-hidden="true"><path class="bx" d="M6 8c9-1 19-1 27 0 1 8 1 17 0 25-9 1-18 1-27 0-1-8-1-17 0-25z"/><path class="ck" d="M10 21l7 8c5-11 12-20 22-27"/></svg>`;
+
+function stc(st){return st==="live"?"#6a4bc0":st==="done"?"#a87d34":st==="lock"?"#6b6150":"#3f7a4f"}
+function stl(st){return st==="live"?"En curso · Ronda 3":st==="done"?"Cumplida":st==="lock"?"Sellada":"Disponible"}
+function label(st,bt){
+ if(st==="live")return "Continuar la partida";if(st==="done")return "Ver la misión";
+ return bt==="firma"?"Firmar el contrato":bt==="sello"?"Sellar el contrato":bt==="casilla"?"Acepto el encargo":"Aceptar el contrato"}
+function button(st){const bt=S.bt,t=label(st,bt);
+ if(st==="lock")return `<p class="st" style="--stc:${stc(st)}"><i></i>Todavía sellado</p>`;
+ if(bt==="firma")return `<button class="cta firma" type="button"><span class="x2">X</span>${SIG}<i class="ln"></i><span class="t">${t}<span class="ar">→</span></span></button>`;
+ if(bt==="sello")return `<button class="cta sello" type="button"><span class="wax"></span><span class="t">${t}</span></button>`;
+ if(bt==="casilla")return `<button class="cta casilla" type="button">${CK}<span class="t">${t}</span></button>`;
+ return `<button class="cta ${bt}" type="button"><span class="t">${t}</span><span class="ar">→</span></button>`}
+function sheet(){const st=S.st,lk=st==="lock",m=lk?MIS[1]:MIS[0];
+ const body=lk?`<div class="lock">Sellado. Se abrirá al cumplir la misión I; todavía está en preparación.</div>`:
+  `<dl class="cl"><dt>Lugar</dt><dd>${m.z}, al norte de Varek's Hold</dd><dt>Paga</dt><dd>Cinco monedas por cada grado de riesgo</dd><dt>Que no conste</dt><dd>Nada de lo que veáis allí dentro</dd></dl>
+  <div class="sign"><div><div class="figs">${HEROES.map(h=>`<img src="${IMG}heroe-${h}.png" alt="">`).join("")}</div><span class="lab">Firman · de dos a cuatro</span></div><div class="boss"><img src="${IMG}jefe-heraldo.png" alt=""><span class="lab">Jefe<span class="opt">opcional</span></span></div></div>
+  ${st==="open"?`<p class="note">Al margen, a otra mano: «Si veis al Heraldo, no os debe nada. Podéis iros.»</p>`:st==="live"?`<p class="chips"><span>Alerta <b>4/6</b></span><span><b>1</b> de 2 rastros</span></p>`:`<div class="res"><div><span>Final</span><b>Heraldo desaparecido</b></div><div><span>Por héroe</span><b>9 XP</b></div><div><span>Paga</span><b>15 oro</b></div></div>`}`;
+ return `<div class="fz plof${S.polvo?" polvo":""}" id="fz"><i class="puff"></i><div class="sheet"><button class="x" type="button" data-close aria-label="Cerrar el contrato">✕</button>
+  <div class="txt"><div class="head"><p class="eb">Contrato del Filo</p><p class="eb">Encargo nº ${m.n}</p></div><h2 class="ttl">${m.t}</h2><p class="hook${lk?" blur":""}">${m.h}</p>${body}</div>
+  <div class="foot"><div class="fl"><span class="seal" aria-hidden="true"></span><p class="st" style="--stc:${stc(st)}"><i></i>${stl(st)}</p></div><div class="fr">${button(st)}</div></div></div><i class="motas"></i></div>`}
+function render(){
+ document.getElementById("fzw").innerHTML=sheet();
+ document.getElementById("lst").innerHTML=MIS.map((x,k)=>{const sel=k===(S.st==="lock"?1:0);return `<li class="${sel?"on":""}${!sel&&k>0?" lk":""}"><span class="n">${x.n}</span><span>${x.t}<small>${k===0?(S.st==="lock"?"Cumplida":stl(S.st).split(" ·")[0]):"Sellada"}</small></span></li>`}).join("");
+ document.getElementById("btD").textContent=BTD[S.bt];
+ document.querySelectorAll(".seg").forEach(s=>s.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(S[s.dataset.k]===b.dataset.v))));
+ const q=document.body.classList.contains("quieto");
+ document.body.className=`open b-${S.bt}${S.temblor?" temblor":""}${q?" quieto":""}`;
+ const mp=document.getElementById("map");mp.classList.remove("thud");void mp.offsetWidth;mp.classList.add("thud");
+ fit();if(HOV){const c=document.querySelector(".cta");if(c)c.classList.add("hv")}}
+function fit(){const fz=document.getElementById("fz");if(!fz)return;const narrow=innerWidth<=860,tmin=document.getElementById("tl").classList.contains("min");
+ const aw=innerWidth-parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--colW"))-(tmin||narrow?32:380),ah=innerHeight-(narrow&&!tmin?innerHeight*.42+40:48);
+ const k=Math.min(1,aw/520,ah/740);fz.style.transform=`scale(${k.toFixed(3)})`;
+ const w=document.getElementById("fzw");w.style.marginLeft=tmin||narrow?"0":"-170px";w.style.marginTop=narrow&&!tmin?`${-(innerHeight*.42+40)/2}px`:"0"}
+
+document.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S[s.dataset.k]=b.dataset.v;render()}));
+document.getElementById("polvo").addEventListener("change",e=>{S.polvo=e.target.checked;render()});
+document.getElementById("temblor").addEventListener("change",e=>{S.temblor=e.target.checked;render()});
+document.getElementById("again").addEventListener("click",render);
+document.getElementById("lst").addEventListener("click",()=>{document.body.classList.add("open");render()});
+document.getElementById("fzw").addEventListener("click",e=>{if(e.target.closest("[data-close]"))document.body.classList.remove("open");
+ const c=e.target.closest(".firma,.casilla");if(c)c.classList.add("done")});
+document.getElementById("scrim").addEventListener("click",()=>document.body.classList.remove("open"));
+const tl=document.getElementById("tl");
+function tlToggle(){tl.classList.toggle("min");document.getElementById("tlMin").textContent=tl.classList.contains("min")?"Abrir el taller (T)":"Ocultar (T)";fit()}
+document.getElementById("tlMin").addEventListener("click",tlToggle);
+addEventListener("keydown",e=>{if(e.target.closest("textarea"))return;const k=e.key.toLowerCase();
+ if("12345".includes(k)&&k.length===1){S.bt=["firma","sello","recuadro","casilla","cinta"][+k-1];render()}else if(k==="r")render();else if(k==="t")tlToggle();else if(k==="escape")document.body.classList.remove("open")});
+addEventListener("resize",fit);
+document.getElementById("copy").addEventListener("click",()=>{const t=`Contrato del Filo · ficha v6 · mis decisiones\n- Botón: ${NOM[S.bt]}\n- Al plantarse: ${S.polvo?"con":"sin"} soplo de aguada y motas · ${S.temblor?"con":"sin"} golpe en el mapa\n- Notas: ${document.getElementById("notes").value.trim()||"(ninguna)"}`;
+ const msg=s=>{const o=document.getElementById("toast");o.textContent=s;o.classList.add("on");setTimeout(()=>o.classList.remove("on"),2600)};
+ const fb=()=>{const n=document.getElementById("notes");n.value=t;n.focus();n.select();msg("Texto seleccionado en Notas: cópialo con Ctrl+C.")};
+ try{navigator.clipboard.writeText(t).then(()=>msg("Copiado. Pégamelo en el chat."),fb)}catch(e){fb()}});
+(function(){const h=decodeURIComponent(location.hash.slice(1)).toLowerCase();if(!h)return;
+ for(const b of ["firma","sello","recuadro","casilla","cinta"])if(h.includes(b))S.bt=b;
+ if(h.includes("curso"))S.st="live";if(h.includes("cumplida"))S.st="done";if(h.includes("sellada"))S.st="lock";
+ if(h.includes("taller-no"))tl.classList.add("min");if(h.includes("quieto"))document.body.classList.add("quieto");
+ if(h.includes("hover"))HOV=true})();
+render();
+</script>

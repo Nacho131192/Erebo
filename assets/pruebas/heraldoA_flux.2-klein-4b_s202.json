@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 202,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [],
+  "prompt": "Ink and sepia wash illustration on aged parchment, in the manner of an old hand-drawn bestiary or a vintage tabletop RPG book plate. Fine pen linework with cross-hatching, muted earthy palette of dark brown ink (#2b1d12), warm sepia and faded ochre, with only small touches of desaturated violet (#5b45a8) for anything touched by the Void. Soft vignette that fades into the parchment at the edges. Atmospheric, melancholic, eerie, not gory. Bestiary plate portrait, three-quarter view, waist up, calm and patient, menacing without moving. the Herald of the Threshold: an unnaturally tall, thin figure in a long colorless tattered robe with a deep hood; where the face should be there is only smooth featureless darkness, no mouth, no eyes, as if the face slips out of memory; a cracked pale medallion on its chest; a long void scythe whose blade is drawn as empty negative space outlined in violet; three small dark spheres orbit its open hand. The parchment background is plain and continuous to every edge, no torn paper edges, no border, no frame. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

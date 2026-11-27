@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 23,
+  "ancho": 1600,
+  "alto": 1100,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\docs\\mapa\\ref\\ref-base.png"
+  ],
+  "prompt": "Repaint the reference image as a top-down fantasy world map of a single continent, keeping EXACTLY the same coastline, islands, mountain ranges, forests, lakes, rivers and the dark wall at the south in the same positions. The dark brown-grey shape behind the wall is a rugged rocky headland of land. Do not add any mountains, towns, roads or features that are not in the reference. Loose watercolor style with fine black ink linework on warm off-white paper: soft washes of sage green forests, ochre and pale yellow land, turquoise sea fading to white at the coasts, grey-blue mountains with ink hatching, visible paper grain and gentle color bleeding, a heavy dark stone wall across the neck of land at the south and a dark grey-brown rocky headland behind it. Delicate and refined. Absolutely no text, no letters, no writing, no labels, no icons, no compass, no frame, no border, no clouds, no smoke, no fog. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

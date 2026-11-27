@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 1,
+  "ancho": 512,
+  "alto": 512,
+  "referencias": [],
+  "prompt": "test silhouette",
+  "dimensiones_servidor": null
+}

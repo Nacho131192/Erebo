@@ -1,0 +1,12 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 606,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/a8206634-f678-4f09-b555-d62d9b7562f3",
+    "https://media.pollinations.ai/63ccdee1-2bb8-4093-820c-bee20455900c"
+  ],
+  "prompt": "Head-and-shoulders portrait in the exact style, colors and framing of image 1: dark tattered robe, deep hood whose opening is only a smudged erased cloud of black and violet ink, no face, black riveted plate breastplate with the cracked pale medallion, an open hand with long fingers. Like the figure in image 2, BOTH black pauldrons carry a long curved black horn rising straight up, one on the left shoulder and one on the right shoulder, mirror-symmetric, framing the hood. The long scythe with an ornate dark iron head and a sweeping solid violet crescent blade stands upright behind the right shoulder, so both horns remain fully visible. Ink and sepia wash with fine cross-hatching on plain aged parchment, continuous to every edge, no border, no text.",
+  "dimensiones_servidor": null
+}

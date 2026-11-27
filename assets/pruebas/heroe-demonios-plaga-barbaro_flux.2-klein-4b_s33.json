@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 33,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole figure, plain pure white background, no text, no frame, no extra characters. Full-body figure, three-quarter view facing right, dynamic action pose, premium collectible figure-pin illustration. The hero is a Daemon of Plague: a bloated pot-bellied daemon with sickly green-grey rotting skin, small horns, oozing pustules and boils, a drooping single eye, tattered rags, flies and slime, sickly green and rust colors, a Barbarian class adventurer. Weapon/focus: a huge battle axe with exactly ONE single large curved blade on one side only (NOT double-headed, no second small blade or spike at the other end of the handle), held high in one raised fist; the weapon is ONE plain axe only: a single straight wooden handle with a single axe head, and no sword blade or any other blade attached; the other hand empty. Outfit: fur pelts, leather straps, bone trinkets, bare muscled arms, tribal war paint. Keep the same proportions, line weight and coloring approach as the reference, but the race's own color palette and look take priority over the generic class outfit colors, but design a new character of this race and class. Anatomically clean and coherent: correct number of ears and limbs, every hand clearly gripping its object, no extra, duplicated or floating parts. Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery.",
+  "dimensiones_servidor": null
+}

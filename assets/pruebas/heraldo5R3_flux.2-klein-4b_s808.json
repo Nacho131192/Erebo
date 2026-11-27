@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 808,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/a8206634-f678-4f09-b555-d62d9b7562f3"
+  ],
+  "prompt": "Keep image 1 exactly as it is: same framing, same erased violet-black ink cloud inside the hood, same armor, robe, medallion, hand and scythe. Only change: the left shoulder pauldron gets the same large curved black horn as the right one, so both pauldrons have one identical horn each, rising straight upward, symmetrical on both sides of the hood. Ink and sepia wash with fine cross-hatching on plain aged parchment, continuous to every edge, no border, no text.",
+  "dimensiones_servidor": null
+}

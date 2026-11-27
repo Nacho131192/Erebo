@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 33,
+  "ancho": 1024,
+  "alto": 1024,
+  "referencias": [
+    "assets/pruebas/tablero-tinta-cruz_flux.2-klein-4b_s202.jpg"
+  ],
+  "prompt": "Repaint this exact top-down village battlemap in a new style. Keep the layout identical: every cottage, roof, stone wall, fence, tree, cart, woodpile, path and the central well stay in exactly the same position, size and shape, and the open lanes stay exactly as wide. Do not add or remove any element. New style: painted digital fantasy battlemap, warm golden-hour sunset light from the left, long soft shadows, slate and thatched roofs, muddy earth paths, green and ochre grass, rich but bright colors, crisp detail, premium illustrated RPG map, bright and readable, not dark. Strict top-down view. No paper texture, no ink outlines, no people, no text, no grid, no frame.",
+  "dimensiones_servidor": null
+}

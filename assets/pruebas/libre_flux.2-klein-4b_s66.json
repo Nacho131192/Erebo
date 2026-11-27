@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 66,
+  "ancho": 512,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "A lone hooded mage silhouette holding a tall staff with a faint pale glow, painted as ink and watercolor: deep indigo and warm sepia wash, loose dip-pen ink contours, granulating pigment, soft bleeding edges, the figure is a shadow with a hidden face, full body standing alone, centered, on plain white paper, fantasy roleplaying illustration. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

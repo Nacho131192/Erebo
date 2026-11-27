@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole figure, plain pure white background, no text, no frame, no extra characters. Full-body figure, three-quarter view facing right, dynamic action pose, premium collectible figure-pin illustration. The hero is a Wood Elf: a lithe agile elf with long pointed ears, tanned skin, braided auburn hair, leaf-and-bark clothing and leather, feathers, forest green and brown colors, a Rogue class adventurer. Weapon/focus: TWO short curved daggers, one in EACH hand, both blades clearly visible, held low in a reverse grip, crouched and ready to strike. Outfit: dark leather armor, hood and half-mask, knife belt, soft boots. Keep the same proportions, line weight and coloring approach as the reference, but the race's own color palette and look take priority over the generic class outfit colors, but design a new character of this race and class. Anatomically clean and coherent: correct number of ears and limbs, every hand clearly gripping its object, no extra, duplicated or floating parts. Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery.",
+  "dimensiones_servidor": null
+}

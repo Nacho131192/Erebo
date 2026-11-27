@@ -1,0 +1,12 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 303,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/2707765d-8f92-4035-993a-eecb961a5412",
+    "https://media.pollinations.ai/21f5e692-ca46-4276-935d-6596d9176098"
+  ],
+  "prompt": "Keep image 1 almost exactly: same character, same black plate armor and breastplate, same dark tattered robe, same cracked pale medallion, same head-and-shoulders framing and open hand. Change only this: Each of the two black shoulder pauldrons has one large curved black horn growing out of the top of the pauldron itself, rising straight upward beside the hood like a spike. The hood has no horns. The opening of the hood shows no head and no features at all: only a smudged, rubbed-out cloud of black and violet ink, like an erased drawing. Replace the small blade with the full scythe, held upright in the left hand. The scythe is the one from the last reference image: an ornate dark iron head with small decorative flanges and a long sweeping crescent blade of solid violet, on a long dark staff.  Ink and sepia wash with fine cross-hatching on plain aged parchment, continuous to every edge, no border, no text.",
+  "dimensiones_servidor": null
+}

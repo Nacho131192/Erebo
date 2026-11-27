@@ -1,0 +1,9 @@
+{
+  "modelo": "tongyi-mai/z-image-turbo",
+  "seed": 23,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [],
+  "prompt": "Ink and sepia wash illustration on aged parchment, in the manner of an old hand-drawn bestiary or a vintage tabletop RPG book plate. Fine pen linework with cross-hatching, muted earthy palette of dark brown ink (#2b1d12), warm sepia and faded ochre, with only small touches of desaturated violet (#5b45a8) for anything touched by the Void. Soft vignette that fades into the parchment at the edges. Atmospheric, melancholic, eerie, not gory. Portrait of the Herald of the Threshold: a tall, unnaturally thin figure in a long colorless tattered robe with a deep hood. Where the face should be there is only a smooth, featureless darkness with the faintest pale shape, as if the face slips out of memory when you look at it. A cracked pale medallion hangs on its chest. It holds a long void scythe; the blade is drawn as negative space with violet edges. Three small dark spheres orbit its open hand. Three-quarter view, waist up, calm and patient, menacing without moving. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

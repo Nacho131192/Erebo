@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 320,
+  "referencias": [],
+  "prompt": "A single realistic medieval dagger seen exactly from the side, lying perfectly horizontal with the point to the right: a double-edged steel blade with a central fuller, a small curved brass crossguard, a grip wrapped in dark leather cord, a round brass pommel. Precise dip-pen ink contours, cool grey and blue-grey watercolor on the steel with a bright bare-paper highlight along the edge, warm umber and ochre on the brass and leather. Isolated on plain white paper. Ink and watercolor illustration for a dark fantasy roleplaying game: loose confident dip-pen ink contours, transparent indigo, sepia and umber watercolor washes, granulating pigment, soft blooms and bleeding edges, cold-press paper texture. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

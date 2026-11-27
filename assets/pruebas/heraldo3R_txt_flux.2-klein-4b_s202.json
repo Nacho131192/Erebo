@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 202,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [],
+  "prompt": "Portrait of the Herald of the Threshold, an unnaturally tall thin figure, head and shoulders, close up, the deep hood fills the frame. Over the robe it wears blackened metal plate armor: a dark iron breastplate and heavy black pauldrons, and from each pauldron rises a single curved horn pointing straight upward. The robe is now dark, the color of shadow, deep sepia-black ink wash, tattered at the hem. Inside the hood the face is a smudged, half-erased blur of ink, as if rubbed out of the drawing, with a faint violet haze; no eyes, no mouth. The cracked pale medallion hangs over the breastplate. Three small dark spheres orbit its open hand. It holds a long scythe with an ornate dark iron head and a sweeping crescent blade of solid violet.  Ink and sepia wash with fine cross-hatching on plain aged parchment, continuous to every edge, no border, no torn edges, no text.",
+  "dimensiones_servidor": null
+}

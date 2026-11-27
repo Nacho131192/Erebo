@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.1-kontext-pro",
+  "seed": 9,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "assets/pruebas/heroe-altos-elfos-explorador_flux.2-klein-4b_s133.jpg"
+  ],
+  "prompt": "Edit this image: completely remove the bowstring from the bow, so the bow is just the bare curved wooden bow with no string at all and nothing stretched between its two tips. Keep everything else exactly identical: the character, pose, face, hair, leather armor, green cloak, quiver, the bow itself, the sticker border and the white background. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 66,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole figure, plain pure white background, no text, no frame, no extra characters. Full-body figure, three-quarter view facing right, dynamic action pose, premium collectible figure-pin illustration. The hero is a Beastman: a hulking upright horned beast-headed humanoid with a goat-and-bull face, curved horns, shaggy brown fur, a broad snout, cloven hooves and powerful muscled limbs, a Ranger class adventurer. Weapon/focus: a simple longbow held ready in one hand at arm's length to the side of the body, with one smooth continuous curve and exactly two tips, the bowstring RELAXED and perfectly straight from the top tip to the bottom tip, fully visible in front of empty space beside the body and clear of the head; the other hand holds a single arrow; quiver on the back. Outfit: hooded leather cloak, bracers, practical scout gear in forest greens and browns. Keep the same proportions, line weight and coloring approach as the reference, but design a new character of this race and class. Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery.",
+  "dimensiones_servidor": null
+}

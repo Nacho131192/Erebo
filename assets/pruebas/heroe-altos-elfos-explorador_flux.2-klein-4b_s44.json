@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 44,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole figure, plain pure white background, no text, no frame, no extra characters. Full-body figure, three-quarter view facing right, dynamic action pose, premium collectible figure-pin illustration. The hero is a High Elf: a tall, slender, regal elf with long pointed ears, flowing white-silver hair, noble fair features, elegant white and gold clothes and armor with blue accents, a Ranger class adventurer. Weapon/focus: a simple longbow held low in one hand at the side of the body, bow pointing diagonally downward, both the upper limb and the lower limb of the bow completely visible and unbroken, relaxed ready stance, with one smooth continuous curve and exactly two tips and a thin straight bowstring running clearly in front of the leg from tip to tip; the other hand rests on the belt and holds nothing; quiver of arrows on the back; the bow and string never cross the face or head. Outfit: hooded leather cloak, bracers, practical scout gear in forest greens and browns. Keep the same proportions, line weight and coloring approach as the reference, but the race's own color palette and look take priority over the generic class outfit colors, but design a new character of this race and class. Anatomically clean and coherent: correct number of ears and limbs, every hand clearly gripping its object, no extra, duplicated or floating parts. Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery.",
+  "dimensiones_servidor": null
+}

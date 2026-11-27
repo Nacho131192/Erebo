@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 1024,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Three tall dark hooded adventurer silhouettes standing side by side in a loose row, seen from the front, painted as ink and watercolor: deep indigo and warm sepia wash, loose dip-pen ink contours, granulating pigment, soft bleeding edges, the figures are shadows with no faces and no details, a few brushstrokes of pale ochre light behind them, on plain white paper, like a fantasy roleplaying illustration. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Maqueta · Ficha de misión v5 · tinta y acuarela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<!--
+ Maqueta de la ficha de misión (2026-11-27). Cuatro estructuras (A cartel clavado, B contrato del Filo, C diario de campaña,
+ D lámina con cartela) y un taller con piezas mezclables. Todo a tinta y acuarela: papeles, sombras de los héroes, el Heraldo,
+ la viñeta y el puñal son láminas de Pollinations (flux.2-klein-4b) generadas con tools/ficha-mision-laminas.py.
+ El puñal es una tira de 17 fotogramas hecha con tools/punal-fotogramas.ps1 (vuelo en arco, desenfoque, sombra, raja, vibración).
+ Enlaces directos: #A … #D, #B-curso, #C-cumplida, #D-sellada, y #quieto (sin animación).
+-->
+<style>
+*{box-sizing:border-box}
+:root{--colW:440px;--rot:"IM Fell English SC","IM Fell English",Georgia,serif;--tit:"IM Fell English",Georgia,serif;--hueso:#efe3c8;--oro:#e3c98d;--ocre:#c39352;
+ --ink:#2a1d10;--ink2:#4b3a24;--ink3:#7b6845;--acc:#7a4d1a}
+html,body{margin:0;height:100%;background:#070910;color:var(--hueso);font-family:var(--tit);overflow:hidden}
+button{font:inherit;color:inherit}
+/* ---------- el mapa de fondo y la columna, como en la página ---------- */
+.map{position:fixed;inset:0;background:url(ficha-v5-img/base/mapa.jpg) 62% 70%/cover no-repeat;filter:saturate(.85) brightness(.8)}
+.ag{position:fixed;left:-60px;top:-6%;width:calc(var(--colW) + 260px);height:112%;background:url(ficha-v5-img/base/aguada.png) 0 0/100% 100% no-repeat;opacity:.95;pointer-events:none}
+.side{position:fixed;left:0;top:0;bottom:0;width:var(--colW);padding:40px 30px 40px 56px;display:flex;flex-direction:column;gap:14px;z-index:4}
+.side .keb{margin:0;font:400 14px var(--rot);letter-spacing:.32em;color:#a7a08c}
+.side h1{margin:0;font:400 46px/1 var(--tit);text-shadow:0 2px 22px rgba(0,0,0,.7)}
+.side h1::after{content:"";display:block;width:230px;height:16px;margin-top:12px;background:url(ficha-v5-img/base/floron.png) 0 50%/contain no-repeat;opacity:.85}
+.side ol{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.side li{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;padding:5px 0;font:400 19px/1.1 var(--tit);cursor:pointer;position:relative;isolation:isolate}
+.side li .n{display:grid;place-items:center;width:40px;height:40px;background:url(ficha-v5-img/base/circulo.png) center/100% 100% no-repeat;font-size:16px}
+.side li small{display:block;margin-top:2px;font:400 11.5px var(--rot);letter-spacing:.22em;color:#a7a08c}
+.side li.on::before{content:"";position:absolute;z-index:-1;inset:-2px -8px -2px 44px;background:url(ficha-v5-img/base/trazo.png) 0 50%/100% 100% no-repeat}
+.side li.on{color:#160f09}.side li.on small{color:#160f09}.side li.on .n{color:var(--hueso)}
+.side li.lk{color:#8a8576;font-style:italic}
+.scrim{position:fixed;inset:0;z-index:3;background:radial-gradient(70% 70% at 62% 50%,rgba(6,8,16,.42),rgba(6,8,16,.82));opacity:0;transition:opacity .45s;pointer-events:none}
+body.open .scrim{opacity:1;pointer-events:auto}
+
+/* ---------- la ficha: contenedor común ---------- */
+.fzw{position:fixed;z-index:5;left:calc(var(--colW) + (100vw - var(--colW)) / 2);top:50%;width:0;height:0}
+.fz{position:absolute;transform-origin:50% 50%}
+.fz .sheet{position:relative;transform-origin:var(--pinx) var(--piny)}
+body:not(.open) .fzw{display:none}
+.fz.in .sheet{animation:fzIn .55s cubic-bezier(.2,.8,.25,1) both}
+@keyframes fzIn{from{opacity:0;transform:translate(-14px,38px) rotate(4deg) scale(.94);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+.fz.hit .sheet{animation:fzHit .62s ease-out both}
+@keyframes fzHit{0%{transform:none}12%{transform:rotate(-1.6deg) translateY(4px)}32%{transform:rotate(1deg)}55%{transform:rotate(-.45deg)}78%{transform:rotate(.2deg)}100%{transform:none}}
+.fz .txt>*{animation:inkIn .7s both}
+.fz .txt>*:nth-child(2){animation-delay:.08s}.fz .txt>*:nth-child(3){animation-delay:.14s}.fz .txt>*:nth-child(4){animation-delay:.2s}.fz .txt>*:nth-child(5){animation-delay:.26s}.fz .txt>*:nth-child(6){animation-delay:.32s}.fz .txt>*:nth-child(7){animation-delay:.38s}
+@keyframes inkIn{from{opacity:0;filter:blur(3px)}to{opacity:1;filter:none}}
+/* el puñal: tira de fotogramas; el ancla (575,290 de cada fotograma de 660×380) cae en el punto de clavado */
+.dg{position:absolute;z-index:6;pointer-events:none;width:calc(660px * var(--ds));height:calc(380px * var(--ds));
+ left:calc(var(--pinx) - 575px * var(--ds));top:calc(var(--piny) - 290px * var(--ds));
+ background:var(--strip) 0 0/calc(660px * 17 * var(--ds)) calc(380px * var(--ds)) no-repeat}
+.dg.off{display:none}
+.x{position:absolute;z-index:7;width:34px;height:34px;border:0;background:url(ficha-v5-img/base/circulo.png) center/100% 100% no-repeat;color:var(--ink2);font:400 20px/1 var(--tit);cursor:pointer;display:grid;place-items:center;opacity:.8;transition:transform .3s,opacity .2s}
+.x:hover{opacity:1;transform:rotate(90deg)}
+
+/* textos a tinta (comunes) */
+.eb{margin:0;font:400 13px var(--rot);letter-spacing:.24em;color:var(--acc)}
+.ttl{margin:4px 0 0;font:400 42px/1.02 var(--tit);color:var(--ink);text-wrap:balance}
+.orn{display:block;width:210px;height:14px;margin:10px auto 2px;background:url(ficha-v5-img/base/floron.png) center/contain no-repeat;filter:brightness(.35) sepia(1) saturate(1.6) hue-rotate(-12deg);opacity:.75}
+.hook{margin:0;font:italic 400 19.5px/1.48 var(--tit);color:var(--ink2);text-wrap:pretty}
+.hook.blur{filter:blur(4px)!important;opacity:.5!important;user-select:none}
+.lkd{filter:grayscale(1) blur(2px)!important;opacity:.45!important}
+.lab{display:block;font:400 12.5px var(--rot);letter-spacing:.2em;color:var(--ink3);text-align:center}
+.opt{display:inline-block;margin-left:6px;padding:0 8px;border:1px dashed var(--ink3);border-radius:99px;font:italic 400 14px var(--tit);letter-spacing:0;color:var(--ink2)}
+.figs{display:flex;align-items:flex-end;justify-content:center;gap:0}
+.figs img{display:block;height:var(--fh,96px);width:auto;margin:0 -6px;mix-blend-mode:multiply}
+.boss img{display:block;height:var(--bh,150px);width:auto;mix-blend-mode:multiply}
+.st{display:flex;align-items:center;gap:9px;margin:0;font:400 13px var(--rot);letter-spacing:.2em;color:var(--ink2)}
+.st i{width:10px;height:10px;border-radius:50% 45% 55% 48%;background:var(--stc,#3f7a4f);box-shadow:0 0 0 3px color-mix(in srgb,var(--stc,#3f7a4f) 25%,transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0}
+.chips span{padding:3px 12px;border:1px solid rgba(90,62,28,.5);border-radius:99px;font:400 12.5px var(--rot);letter-spacing:.14em;color:var(--ink2)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(90,62,28,.45);border-bottom:1px solid rgba(90,62,28,.45)}
+.res div{padding:8px 6px;text-align:center}.res div+div{border-left:1px solid rgba(90,62,28,.35)}
+.res span{display:block;font:400 11px var(--rot);letter-spacing:.18em;color:var(--ink3)}
+.res b{display:block;margin-top:2px;font:400 17px var(--tit);color:var(--ink)}
+.lock{display:flex;gap:12px;align-items:center;padding:10px 14px;border:1px dashed rgba(90,62,28,.55);font:italic 400 17px/1.4 var(--tit);color:var(--ink2)}
+.cta{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:12px;padding:12px 30px 12px 26px;border:0;background:none;cursor:pointer;font:400 17px var(--rot);letter-spacing:.16em;color:#1b1209}
+.cta::before{content:"";position:absolute;z-index:-1;inset:-4px -10px;background:url(ficha-v5-img/base/trazo.png) 0 50%/100% 100% no-repeat;transition:transform .35s cubic-bezier(.3,.7,.2,1)}
+.cta:hover::before{transform:scaleX(1.06)}
+.cta b{font:400 22px var(--tit);transition:transform .3s}.cta:hover b{transform:translateX(4px)}
+.cta.ghost::before{opacity:.45}
+
+/* tratamiento de las sombras (taller) */
+body.sh-tinta .figs img,body.sh-tinta .boss img{filter:brightness(.18) saturate(0) contrast(1.4)}
+body.sh-sepia .figs img,body.sh-sepia .boss img{filter:sepia(1) saturate(.7) brightness(.75) contrast(1.15)}
+body.jf-velado .boss img{opacity:.42;filter:blur(.6px);-webkit-mask:linear-gradient(#000 35%,transparent);mask:linear-gradient(#000 35%,transparent)}
+body.jf-sello .boss .bw{width:var(--bs,112px);height:var(--bs,112px);border-radius:50%;overflow:hidden;background:url(ficha-v5-img/base/circulo.png) center/100% 100% no-repeat;display:grid;place-items:start center;padding-top:8px}
+body.jf-sello .boss img{height:calc(var(--bs,112px) * 1.6)}
+
+/* ---------- A · Cartel clavado ---------- */
+.A{width:500px;left:-250px;top:-322px;--pinx:50%;--piny:40px}
+.A .sheet{width:500px;height:643px;background:url(ficha-v5-img/papel-cartel.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 26px 28px rgba(0,0,0,.55))}
+.A .txt{position:absolute;inset:78px 54px 44px;display:flex;flex-direction:column;gap:14px;text-align:center;align-items:center}
+.A .meta{display:flex;align-items:flex-end;justify-content:center;gap:16px;width:100%;margin-top:4px}
+.A .meta .vr{align-self:stretch;width:1px;background:linear-gradient(transparent,rgba(90,62,28,.55),transparent)}
+.A .x{right:30px;top:30px}
+.A .cta{margin-top:auto}
+
+/* ---------- B · Contrato del Filo ---------- */
+.B{width:500px;left:-250px;top:-352px;--pinx:13%;--piny:7%}
+.B .sheet{width:500px;height:704px;background:url(ficha-v5-img/papel-contrato.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 26px 28px rgba(0,0,0,.55))}
+.B .txt{position:absolute;inset:64px 52px 48px;display:flex;flex-direction:column;gap:12px}
+.B .head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(90,62,28,.5);padding-bottom:6px}
+.B .head .eb:last-child{color:var(--ink3)}
+.B .ttl{font-size:40px}
+.cl{display:grid;grid-template-columns:120px 1fr;gap:4px 14px;align-items:baseline;margin:0}
+.cl dt{font:400 12.5px var(--rot);letter-spacing:.18em;color:var(--ink3)}
+.cl dd{margin:0;font:400 17px/1.4 var(--tit);color:var(--ink)}
+.B .sign{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:end;margin-top:2px}
+.B .sign .figs{justify-content:flex-start;border-bottom:1px solid rgba(42,29,16,.6);padding-bottom:2px}
+.B .sign .boss{text-align:center;transform:rotate(3deg)}
+.B .sign .boss .lab{margin-top:4px}
+.B .note{margin:0;font:italic 400 15px/1.35 var(--tit);color:var(--ink3)}
+.B .foot{margin-top:auto;display:flex;align-items:center;gap:18px}
+.B .seal{flex:none;width:92px;height:94px;background:url(ficha-v5-img/sello-lacre-11.png) center/contain no-repeat;transform:rotate(-10deg);filter:drop-shadow(0 4px 3px rgba(60,20,5,.45))}
+.B .cta{white-space:nowrap;font-size:15px;padding:10px 26px 10px 22px}
+.B .x{right:30px;top:24px}
+
+/* ---------- C · Diario de campaña ---------- */
+.C{width:900px;left:-450px;top:-318px;--pinx:79%;--piny:30px}
+.C .sheet{width:900px;height:636px;background:url(ficha-v5-img/papel-diario.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 28px 30px rgba(0,0,0,.6))}
+.C .pg{position:absolute;top:44px;bottom:44px;display:flex;flex-direction:column;gap:12px}
+.C .pl{left:50px;width:368px}
+.C .pr{left:488px;width:360px}
+.C .vin{width:100%;height:262px;flex:none;background:url(ficha-v5-img/vineta-pueblo.png) center/cover no-repeat;mix-blend-mode:multiply;-webkit-mask:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent);mask:radial-gradient(70% 70% at 50% 50%,#000 55%,transparent)}
+.C .ttl{font-size:38px}
+.C .pl .hook{font-size:17px}
+.C .meta{display:flex;align-items:flex-end;justify-content:center;gap:18px;margin-top:10px}
+.C .pr .hook{margin-top:18px}
+.C .cl{grid-template-columns:110px 1fr;margin-top:4px}.C .cl dd{font-size:16px}
+.C .pr{justify-content:center;gap:18px}
+.C .cta{align-self:flex-start;margin-top:14px}
+.C .x{right:34px;top:26px}
+.C .date{font:italic 400 15px var(--tit);color:var(--ink3);margin:0}
+
+/* ---------- D · Lámina con cartela ---------- */
+.D{width:660px;left:-330px;top:-340px;--pinx:50%;--piny:24px}
+.D .sheet{width:660px;height:660px}
+.D .lam{position:absolute;left:0;top:0;width:660px;height:470px;background:url(ficha-v5-img/papel-cartel.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 22px 26px rgba(0,0,0,.6))}
+.D .vin{position:absolute;inset:40px 34px 60px;background:url(ficha-v5-img/vineta-pueblo.png) center 60%/cover no-repeat;mix-blend-mode:multiply;-webkit-mask:radial-gradient(75% 75% at 50% 50%,#000 60%,transparent);mask:radial-gradient(75% 75% at 50% 50%,#000 60%,transparent)}
+.D .boss{position:absolute;right:46px;top:44px}
+.D .boss img{height:250px;opacity:.88}
+.D .boss .lab{margin-top:-6px}
+.D .heroes{position:absolute;left:58px;bottom:62px}
+.D .heroes .figs{--fh:128px}
+.D .card{position:absolute;left:60px;right:60px;top:416px;height:240px;background:url(ficha-v5-img/base/cartela-pergamino.png) 0 0/100% 100% no-repeat;filter:drop-shadow(0 16px 20px rgba(0,0,0,.55))}
+.D .txt{position:absolute;inset:40px 96px 30px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.D .ttl{font-size:34px}
+.D .hook{font-size:16.5px}
+.D .x{right:30px;top:26px}
+
+/* ---------- taller ---------- */
+.tl{position:fixed;z-index:20;right:16px;bottom:16px;width:330px;max-height:calc(100vh - 32px);overflow:auto;padding:14px 16px 16px;background:rgba(9,11,20,.94);border:1px solid #3a3220;border-radius:6px;box-shadow:0 14px 40px rgba(0,0,0,.6);font:400 14px var(--tit);scrollbar-width:thin}
+.tl.min{width:auto;max-height:none}.tl.min .tb{display:none}
+.tl h2{margin:0;display:flex;justify-content:space-between;align-items:center;gap:12px;font:400 15px var(--rot);letter-spacing:.14em;color:var(--oro)}
+.tl h2 button{border:0;background:none;color:#a7a08c;cursor:pointer;font-size:13px}
+.tl h3{margin:14px 0 6px;font:400 12px var(--rot);letter-spacing:.2em;color:#a7a08c}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{padding:5px 10px;border:1px solid #5a4b2c;border-radius:99px;background:#0d1020;color:#d9ccaf;cursor:pointer;font-size:13.5px}
+.seg button[aria-pressed="true"]{background:var(--oro);border-color:var(--oro);color:#160f09}
+.tl p.d{margin:6px 0 0;font:italic 400 13.5px/1.4 var(--tit);color:#a7a08c}
+.tl label{display:flex;align-items:center;gap:8px;margin-top:8px;color:#d9ccaf}
+.tl input[type=range]{flex:1}
+.tl textarea{width:100%;min-height:62px;margin-top:6px;padding:8px;border:1px solid #3a3220;background:#0b0d16;color:#efe3c8;font:400 14px var(--tit);resize:vertical}
+.tl .acts{display:flex;gap:8px;margin-top:10px}
+.tl .acts button{flex:1;padding:8px;border:1px solid var(--oro);background:none;color:var(--oro);cursor:pointer;font:400 13px var(--rot);letter-spacing:.12em}
+.tl .acts button.pri{background:var(--oro);color:#160f09}
+.toast{position:fixed;z-index:30;left:50%;bottom:24px;transform:translateX(-50%);padding:8px 16px;background:var(--oro);color:#160f09;border-radius:4px;opacity:0;transition:opacity .3s;font:400 14px var(--rot);letter-spacing:.1em}
+.toast.on{opacity:1}
+.quieto *{animation:none!important;transition:none!important}
+:root{color-scheme:dark}
+/* pantallas estrechas: sin columna; la ficha ocupa el ancho y el taller va abajo */
+@media (max-width:860px){:root{--colW:0px}.side,.ag{display:none}.tl{left:8px;right:8px;width:auto;max-height:42vh}}
+</style>
+</head>
+<body class="open sh-acuarela jf-visible">
+<div class="map" aria-hidden="true"></div>
+<div class="ag" aria-hidden="true"></div>
+<aside class="side" aria-label="Columna del selector (simplificada)">
+ <p class="keb">Érebo · Campaña I</p>
+ <h1>El Pueblo<br>Sin Nombre</h1>
+ <ol id="lst"></ol>
+</aside>
+<div class="scrim" id="scrim"></div>
+<div class="fzw" id="fzw"></div>
+
+<section class="tl" id="tl" aria-label="Taller">
+ <h2>Taller · ficha de misión <button type="button" id="tlMin">Ocultar (T)</button></h2>
+ <div class="tb">
+  <h3>Estructura (1-4)</h3>
+  <div class="seg" data-k="alt"><button data-v="A">A · Cartel clavado</button><button data-v="B">B · Contrato del Filo</button><button data-v="C">C · Diario de campaña</button><button data-v="D">D · Lámina con cartela</button></div>
+  <p class="d" id="altD"></p>
+  <h3>Estado de la misión</h3>
+  <div class="seg" data-k="st"><button data-v="open">Disponible</button><button data-v="live">En curso</button><button data-v="done">Cumplida</button><button data-v="lock">Sellada (II)</button></div>
+  <h3>Sombras de los héroes y del jefe</h3>
+  <div class="seg" data-k="sh"><button data-v="acuarela">Acuarela índigo</button><button data-v="tinta">Tinta plana</button><button data-v="sepia">Sepia</button></div>
+  <h3>Jefe opcional</h3>
+  <div class="seg" data-k="jf"><button data-v="visible">A la vista</button><button data-v="velado">Velado</button><button data-v="sello">En un sello</button></div>
+  <h3>Puñal</h3>
+  <div class="seg" data-k="dg"><button data-v="izq">Desde la izquierda</button><button data-v="corto">Más cerca</button><button data-v="no">Ya clavado</button></div>
+  <label>Duración <input type="range" id="dur" min="450" max="1600" step="50" value="820"><span id="durV">0,82 s</span></label>
+  <label><input type="checkbox" id="vib" checked> Vibración al clavarse</label>
+  <h3>Notas</h3>
+  <textarea id="notes" placeholder="Lo que quieras añadir: qué piezas mezclar, qué cambiar…"></textarea>
+  <div class="acts"><button type="button" id="again">Repetir (R)</button><button type="button" class="pri" id="copy">Copiar mis decisiones</button></div>
+ </div>
+</section>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const IMG="ficha-v5-img/";
+const MIS=[
+ {n:"I",t:"El pueblo vacío",z:"Ruptura del Muro",h:"Un pueblo entero que nadie recuerda. Entrad, buscad lo que quede y salid antes de que el pueblo os olvide también a vosotros."},
+ {n:"II",t:"El camino de las raíces",z:"Ruptura de Eryn",h:"Donde Eryn despierta, la selva crece sin control. Terreno peligroso, veneno y un camino que se cierra a vuestra espalda."},
+ {n:"III",t:"La aldea sitiada",z:"Asedio del Culto"},{n:"IV",t:"La emboscada",z:"Concordancia de Orum"},{n:"V",t:"La cripta primordial",z:"Deudores de Vael"},{n:"VI",t:"El corazón del borrado",z:"Hermano Ocaso"}];
+const ALTD={A:"El cartel de encargo de siempre, ahora con papel pintado de verdad: rasgado, con manchas de té y agujeros de chincheta. El puñal lo clava por arriba.",
+ B:"El encargo como contrato del Filo, doblado en cuatro: cláusulas, los héroes «firman» sobre la línea y el Heraldo aparece como nota al margen. Sello de lacre. El puñal lo clava por la esquina.",
+ C:"Un diario abierto: a la izquierda la viñeta a acuarela del pueblo y el título; a la derecha el encargo, las sombras y el botón. La más grande y la más «de rol».",
+ D:"Una lámina pintada de la misión con las sombras dentro de la escena (los héroes delante, el Heraldo al fondo) y una cartela de pergamino con el texto. El puñal clava la cartela."};
+const S={alt:"A",st:"open",sh:"acuarela",jf:"visible",dg:"izq",dur:820,vib:true};
+const HEROES=["guerrero","maga","picaro","arquero"];
+
+function figs(){return `<div class="figs">${HEROES.map(h=>`<img src="${IMG}heroe-${h}.png" alt="">`).join("")}</div>`}
+function boss(lab=true){return `<div class="boss"><div class="bw"><img src="${IMG}jefe-heraldo.png" alt=""></div>${lab?`<span class="lab">Jefe<span class="opt">opcional</span></span>`:""}</div>`}
+function stc(st){return st==="live"?"#6a4bc0":st==="done"?"#a87d34":st==="lock"?"#6b6150":"#3f7a4f"}
+function stl(st){return st==="live"?"En curso · Ronda 3":st==="done"?"Cumplida":st==="lock"?"Sellada":"Disponible · tu siguiente encargo"}
+function extra(st){
+ if(st==="live")return `<p class="chips"><span>Alerta <b>4/6</b></span><span><b>1</b> de 2 rastros</span></p>`;
+ if(st==="done")return `<div class="res"><div><span>Final</span><b>Heraldo desaparecido</b></div><div><span>Por héroe</span><b>9 XP</b></div><div><span>Paga</span><b>15 oro</b></div></div>`;
+ return "";}
+function cta(st,txt){if(st==="lock")return "";return `<button class="cta${st==="done"?" ghost":""}" type="button">${st==="live"?"Continuar la partida":st==="done"?"Ver la misión":txt}<b>→</b></button>`}
+function lockBox(){return `<div class="lock">Sellada. Se abrirá al cumplir la misión I; todavía está en preparación.</div>`}
+const X=`<button class="x" type="button" data-close aria-label="Cerrar la ficha">✕</button>`;
+
+const BUILD={
+ A(m,st){const lk=st==="lock";return `<div class="sheet">${X}<div class="txt">
+  <p class="eb">Encargo · Misión ${m.n} · ${m.z}</p><h2 class="ttl">${m.t}</h2><span class="orn"></span>
+  <p class="hook${lk?" blur":""}">${m.h}</p>
+  ${lk?lockBox():`<div class="meta"><div><div style="--fh:92px">${figs()}</div><span class="lab">Héroes · de dos a cuatro</span></div><i class="vr"></i><div style="--bh:128px;--bs:104px">${boss()}</div></div>${extra(st)}`}
+  <p class="st" style="--stc:${stc(st)}"><i></i>${stl(st)}</p>${cta(st,"Entrar en la misión")}</div></div>`},
+ B(m,st){const lk=st==="lock";return `<div class="sheet">${X}<div class="txt">
+  <div class="head"><p class="eb">Contrato del Filo</p><p class="eb">Encargo nº ${m.n}</p></div>
+  <h2 class="ttl">${m.t}</h2>
+  <p class="hook${lk?" blur":""}">${m.h}</p>
+  ${lk?lockBox():`<dl class="cl"><dt>Lugar</dt><dd>${m.z}, al norte de Varek's Hold</dd><dt>Paga</dt><dd>Cinco monedas por cada grado de riesgo</dd><dt>Que no conste</dt><dd>Nada de lo que veáis allí dentro</dd></dl>
+  <div class="sign"><div><div style="--fh:84px">${figs()}</div><span class="lab" style="text-align:left">Firman · de dos a cuatro</span></div><div style="--bh:112px;--bs:96px">${boss()}</div></div>
+  ${st==="open"?`<p class="note">Al margen, a otra mano: «Si veis al Heraldo, no os debe nada. Podéis iros.»</p>`:extra(st)}`}
+  <div class="foot"><span class="seal" aria-hidden="true"></span><div style="display:flex;flex-direction:column;gap:8px"><p class="st" style="--stc:${stc(st)}"><i></i>${stl(st).split(" · tu")[0]}</p>${cta(st,"Aceptar el contrato")}</div></div></div></div>`},
+ C(m,st){const lk=st==="lock";return `<div class="sheet">${X}
+  <div class="pg pl txt"><div class="vin${lk?" lkd":""}"></div><p class="eb">Misión ${m.n} · ${m.z}</p><h2 class="ttl">${m.t}</h2><p class="date">Anotado la víspera de la partida, en Varek's Hold</p>${lk?"":`<dl class="cl"><dt>Quién paga</dt><dd>El Filo, sin preguntas</dd><dt>Dónde</dt><dd>Al pie del Muro, a medio día de camino</dd></dl>`}</div>
+  <div class="pg pr txt"><p class="hook${lk?" blur":""}">${m.h}</p><span class="orn" style="margin:0"></span>
+  ${lk?lockBox():`<div class="meta"><div><div style="--fh:118px">${figs()}</div><span class="lab">Héroes · de dos a cuatro</span></div><div style="--bh:168px;--bs:110px">${boss()}</div></div>${extra(st)}`}
+  <p class="st" style="--stc:${stc(st)}"><i></i>${stl(st)}</p>${cta(st,"Entrar en la misión")}</div></div>`},
+ D(m,st){const lk=st==="lock";return `<div class="sheet">
+  <div class="lam">${X}<div class="vin${lk?" lkd":""}"></div>${lk?"":`<div style="--bs:120px">${boss()}</div><div class="heroes">${figs()}</div>`}</div>
+  <div class="card"><div class="txt"><p class="eb">Misión ${m.n} · ${m.z}</p><h2 class="ttl">${m.t}</h2><p class="hook${lk?" blur":""}">${m.h}</p>
+  ${lk?lockBox():extra(st)}<div style="margin-top:auto">${lk?`<p class="st" style="--stc:${stc(st)}"><i></i>Sellada</p>`:cta(st,"Entrar en la misión")}</div></div></div></div>`}};
+
+let tm=0;
+function render(play=true){
+ const m=S.st==="lock"?MIS[1]:MIS[0];
+ const w=document.getElementById("fzw");
+ w.innerHTML=`<div class="fz ${S.alt}${play?" in":""}" id="fz">${BUILD[S.alt](m,S.st)}<div class="dg" id="dg"></div></div>`;
+ document.getElementById("lst").innerHTML=MIS.map((x,k)=>`<li class="${k===(S.st==="lock"?1:0)?"on":""}${k>0&&S.st!=="lock"?" lk":""}" data-i="${k}"><span class="n">${x.n}</span><span>${x.t}<small>${k===0?stl(S.st==="lock"?"done":S.st).split(" ·")[0]:"Sellada"}</small></span></li>`).join("");
+ document.getElementById("altD").textContent=ALTD[S.alt];
+ document.querySelectorAll(".seg").forEach(s=>s.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(S[s.dataset.k]===b.dataset.v))));
+ document.body.className=`open sh-${S.sh} jf-${S.jf}${document.body.classList.contains("quieto")?" quieto":""}`;
+ fit();dagger(play);
+}
+function fit(){const fz=document.getElementById("fz");if(!fz)return;
+ const r={A:[500,700],B:[500,720],C:[900,640],D:[660,680]}[S.alt];
+ const narrow=innerWidth<=860,tmin=document.getElementById("tl").classList.contains("min");
+ const aw=innerWidth-parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--colW"))-(tmin||narrow?32:380),ah=innerHeight-(narrow&&!tmin?innerHeight*.42+40:60);
+ const k=Math.min(1,aw/r[0],ah/r[1]);fz.style.transform=`scale(${k.toFixed(3)})`;
+ // con el taller abierto, la ficha se aparta un poco a la izquierda para que no quede debajo
+ document.getElementById("fzw").style.marginLeft=tmin||narrow?"0":"-170px";
+ document.getElementById("fzw").style.marginTop=narrow&&!tmin?`${-(innerHeight*.42+40)/2}px`:"0"}
+function dagger(play){clearTimeout(tm);const d=document.getElementById("dg"),fz=document.getElementById("fz");
+ const strip=S.dg==="corto"?"punal-tira-corta.png":"punal-tira.png";
+ d.style.setProperty("--strip",`url(${IMG}${strip})`);d.style.setProperty("--ds",S.alt==="C"?".5":".56");
+ const W=660*parseFloat(getComputedStyle(d).getPropertyValue("--ds"));
+ const show=f=>d.style.backgroundPosition=`${-f*W}px 0`;
+ if(S.dg==="no"||!play||document.body.classList.contains("quieto")){show(16);return}
+ const seq=S.vib?[...Array(17).keys()]:[0,1,2,3,4,5,6,7,8,16];
+ const step=S.dur/seq.length;let i=0;d.style.visibility="hidden";
+ // el papel cae primero y el puñal sale un instante después
+ tm=setTimeout(function tick(){d.style.visibility="visible";show(seq[i]);
+  if(seq[i]===7){fz.classList.remove("in");void fz.offsetWidth;fz.classList.add("hit")}
+  if(++i<seq.length)tm=setTimeout(tick,step)},300)}
+
+document.querySelectorAll(".seg").forEach(s=>s.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;S[s.dataset.k]=b.dataset.v;render(!["sh","jf"].includes(s.dataset.k))}));
+document.getElementById("dur").addEventListener("input",e=>{S.dur=+e.target.value;document.getElementById("durV").textContent=(S.dur/1000).toFixed(2).replace(".",",")+" s"});
+document.getElementById("dur").addEventListener("change",()=>render());
+document.getElementById("vib").addEventListener("change",e=>{S.vib=e.target.checked;render()});
+document.getElementById("again").addEventListener("click",()=>render());
+document.getElementById("lst").addEventListener("click",e=>{if(e.target.closest("li"))render()});
+document.getElementById("fzw").addEventListener("click",e=>{if(e.target.closest("[data-close]")){document.body.classList.remove("open")}});
+document.getElementById("scrim").addEventListener("click",()=>document.body.classList.remove("open"));
+document.getElementById("lst").addEventListener("click",()=>document.body.classList.add("open"));
+const tl=document.getElementById("tl");
+function tlToggle(){tl.classList.toggle("min");document.getElementById("tlMin").textContent=tl.classList.contains("min")?"Abrir el taller (T)":"Ocultar (T)";fit()}
+document.getElementById("tlMin").addEventListener("click",tlToggle);
+addEventListener("keydown",e=>{if(e.target.closest("textarea"))return;const k=e.key.toLowerCase();
+ if("1234".includes(k)&&k.length===1){S.alt="ABCD"[+k-1];render()}else if(k==="r")render();else if(k==="t")tlToggle();else if(k==="escape")document.body.classList.remove("open")});
+addEventListener("resize",fit);
+const NAMES={alt:{A:"A · Cartel clavado",B:"B · Contrato del Filo",C:"C · Diario de campaña",D:"D · Lámina con cartela"},sh:{acuarela:"acuarela índigo",tinta:"tinta plana",sepia:"sepia"},jf:{visible:"a la vista",velado:"velado",sello:"en un sello"},dg:{izq:"desde la izquierda",corto:"más cerca",no:"ya clavado, sin vuelo"}};
+document.getElementById("copy").addEventListener("click",()=>{const t=`Ficha de misión v5 · mis decisiones\n- Estructura: ${NAMES.alt[S.alt]}\n- Sombras: ${NAMES.sh[S.sh]}\n- Jefe opcional: ${NAMES.jf[S.jf]}\n- Puñal: ${NAMES.dg[S.dg]} · ${(S.dur/1000).toFixed(2)} s · ${S.vib?"con":"sin"} vibración\n- Notas: ${document.getElementById("notes").value.trim()||"(ninguna)"}`;
+ const ok=()=>{const o=document.getElementById("toast");o.textContent="Copiado. Pégamelo en el chat.";o.classList.add("on");setTimeout(()=>o.classList.remove("on"),2200)};
+ const fb=()=>{const n=document.getElementById("notes");n.value=t;n.focus();n.select();const o=document.getElementById("toast");o.textContent="Texto seleccionado en Notas: cópialo con Ctrl+C.";o.classList.add("on");setTimeout(()=>o.classList.remove("on"),3200)};
+ try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}});
+// enlaces directos: #A … #D, con estado (-curso, -cumplida, -sellada) y #quieto
+(function(){const h=decodeURIComponent(location.hash.slice(1)).toLowerCase();if(!h)return;
+ const a=h.match(/^[abcd]/);if(a)S.alt=a[0].toUpperCase();
+ if(h.includes("curso"))S.st="live";if(h.includes("cumplida"))S.st="done";if(h.includes("sellada"))S.st="lock";
+ if(h.includes("tinta"))S.sh="tinta";if(h.includes("velado"))S.jf="velado";if(h.includes("sello"))S.jf="sello";
+ if(h.includes("taller-no"))tl.classList.add("min");if(h.includes("quieto"))document.body.classList.add("quieto")})();
+render();
+</script>
+</body>
+</html>

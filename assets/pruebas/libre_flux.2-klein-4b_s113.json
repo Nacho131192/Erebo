@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 113,
+  "ancho": 1600,
+  "alto": 1100,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\docs\\mapa\\v2\\ref\\ref-B.png"
+  ],
+  "prompt": "Repaint the reference image as a top-down fantasy world map, keeping EXACTLY the same coastlines, islands, mountain ranges, forests, lakes and rivers in the same positions and adding nothing new. The land continues beyond the top and right edges of the image: do not draw any coast, frame or border there. At the south there is a thick circular stone city wall; inside the circle the ground is bare pale grey and completely empty, with nothing built inside. The small dark teal patch with dots is a marsh. Do not add any mountains, towns, roads, deserts or other features that are not in the reference. Luxurious midnight map style: deep navy-blue paper, all land in slightly lighter navy with fine gold stippling, thin glowing antique-gold coastlines and gold ink contour waves in the sea, gold line-art mountains and tiny gold tree symbols, forests in dark teal, soft golden glow around the circular wall, a few faint pale stars in the sea. Premium, elegant, high contrast. Absolutely no text, no letters, no writing, no labels, no icons, no compass, no frame, no border, no clouds, no smoke, no fog. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

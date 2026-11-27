@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 11,
+  "ancho": 832,
+  "alto": 1216,
+  "referencias": [
+    "C:\\Users\\nache\\Desktop\\Nueva carpeta\\pueblo-sin-nombre\\Erebo\\assets\\heroes\\ref-saurio-paladin.webp"
+  ],
+  "prompt": "Same illustration style as the reference image: bold thick black ink outline, cel-shaded comic-book coloring with rough pen hatching and painterly shading, rich saturated colors with metallic gold accents, a thick white die-cut sticker border around the whole figure, plain pure white background, no text, no frame, no extra characters. Full-body figure, three-quarter view facing right, dynamic action pose, premium collectible figure-pin illustration. The hero is a Saurian: an upright reptilian lizardfolk with a horned dragon-like head, blue and violet scales, sharp teeth, clawed feet and a thick tail, a Wizard class adventurer. Weapon/focus: a tall arcane staff with a glowing crystal and an open spellbook in the other hand. Outfit: long star-embroidered robes, pointed hood or hat, belts with scroll cases and potions. Keep the same proportions, line weight and coloring approach as the reference, but design a new character of this race and class. Avoid: text, letters, watermark, photorealism, 3D render, anime style, gore, background scenery.",
+  "dimensiones_servidor": null
+}

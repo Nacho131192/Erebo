@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 22,
+  "ancho": 768,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "A single sheet of old handmade laid paper used as a notice poster, cream and pale ochre, rough torn edges on all four sides, one corner torn away, faint sepia and tea watercolor stains near the edges, two small pin holes and soft creases, flat top-down photo, the sheet centered on a pure solid black background. No text, no letters, no frame, no border, no drop shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}

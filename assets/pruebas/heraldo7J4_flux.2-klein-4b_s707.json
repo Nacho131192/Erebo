@@ -1,0 +1,11 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 707,
+  "ancho": 912,
+  "alto": 1152,
+  "referencias": [
+    "https://media.pollinations.ai/63ccdee1-2bb8-4093-820c-bee20455900c"
+  ],
+  "prompt": "Keep image 1: same dramatic low angle, figure towering over tiny village rooftops, dark moon behind, faceless dark hood, dark tattered robe, horns on both pauldrons, three small spheres above the open left hand. Changes: the armor is much heavier: full black plate breastplate, large layered pauldrons, plated arms and gauntlets, armored tassets over the robe. The scythe stands perfectly vertical at the figure's right side, its long staff straight up and down, the bottom resting on the ground among the roofs, the right gauntleted hand gripping the staff at chest height; the ornate dark iron head and the sweeping violet crescent blade are at the top, above the figure's shoulder; the scythe is not tilted. Background: the parchment is darkened with a soft mottled wash of sepia and grey-brown stains and blotches, clearly darker than plain paper but still a mid-tone, noticeably lighter than the figure so the dark silhouette stands out with strong contrast; faint violet tint in the stains near the figure.  Ink and sepia wash with fine cross-hatching, no border, no frame, no text.",
+  "dimensiones_servidor": null
+}

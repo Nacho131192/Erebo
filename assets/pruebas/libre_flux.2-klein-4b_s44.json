@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 44,
+  "ancho": 768,
+  "alto": 1024,
+  "referencias": [],
+  "prompt": "A tall gaunt hooded shadow figure, the Herald of the Threshold, painted as ink and watercolor: almost black sepia-indigo wash, thin ragged cloak dissolving into loose wisps, a long curved blade of pale void-grey held low, loose dip-pen ink contours, granulating pigment, the outline bleeding into the paper, no face, fantasy roleplaying illustration, on plain white paper. No text, no letters, no frame, no border, no shadow, nothing else in the image.",
+  "dimensiones_servidor": null
+}
