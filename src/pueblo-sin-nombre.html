@@ -781,7 +781,6 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
  position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#070910}
 .mside{position:absolute;z-index:5;left:0;top:0;bottom:0;width:var(--colW);display:flex;flex-direction:column;gap:16px;min-height:0;
  padding:calc(34px + env(safe-area-inset-top,0px)) 30px 104px max(56px,calc(env(safe-area-inset-left,0px) + 24px))}
-.mside::before{content:"";position:absolute;z-index:-1;left:-60px;top:-6%;width:calc(var(--colW) + 260px);height:112%;background:url(img/ui/aguada.png) 0 0/100% 100% no-repeat;opacity:.95;pointer-events:none}
 .mvh{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
 .mvh .back{position:relative;isolation:isolate;gap:10px;padding:10px 22px 10px 16px;border:0;border-radius:0;background:none;box-shadow:none;font:400 15px var(--rot);letter-spacing:.18em;text-transform:none;color:#d9ccaf}
 .mvh .back::before{content:"";position:absolute;inset:3px -6px;z-index:-1;background:url(img/ui/trazo.png) 0 50%/100% 100% no-repeat;clip-path:inset(0 100% 0 0);transition:clip-path .5s cubic-bezier(.3,.7,.2,1)}
@@ -816,8 +815,9 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .midx .s-lock .t{font-style:italic;color:#8a8576}.midx .s-lock .n{color:#8a8576}.midx .s-lock .n::before{opacity:.3}
 .midx .s-done .t::after{content:"";position:absolute;left:-4px;top:2px;width:min(230px,100%);height:22px;background:url(img/mapa/tachon.png) 0 50%/100% 100% no-repeat;opacity:.7;pointer-events:none}
 .mhint{margin:auto 0 12px;font:400 12.5px/1.5 var(--rot);letter-spacing:.18em;color:#a7a08c}
-.mwUnlock{align-self:flex-start;padding:7px 16px;border:1px solid rgba(217,184,108,.5);border-radius:999px;background:rgba(10,13,23,.6);font:400 13px var(--rot);letter-spacing:.2em;color:#d9ccaf;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
+.mwUnlock{padding:6px 12px;border:1px solid rgba(217,184,108,.5);border-radius:999px;background:rgba(10,13,23,.6);font:400 12px var(--rot);letter-spacing:.12em;color:#d9ccaf;cursor:pointer;transition:border-color .2s,color .2s,opacity .2s}
 .mwUnlock:hover,.mwUnlock:focus-visible{border-color:var(--oro);color:var(--hueso);outline:none}
+.mwTest{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-start}
 .mwUnlock:disabled{opacity:.45;cursor:default;border-color:rgba(217,184,108,.25)}
 /* Botón de lore del selector de misiones y su panel «Lo que aún se recuerda» */
 .mlore{display:flex;align-items:center;gap:14px;width:100%;padding:6px 0;border:0;background:none;color:var(--hueso);text-align:left;cursor:pointer}
@@ -843,6 +843,16 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 /* La lámina (2752×1536, Nano Banana Pro) va en un escenario que la cámara escala para cubrir la pantalla; encima, la niebla (máscara con borde de aguada),
    las nubes, las pisadas, los estandartes (tiras de fotogramas) y sus cartelas. Coordenadas en px de la lámina (MWG). */
 .mwView{position:absolute;inset:0;overflow:hidden}
+/* La mancha azul de la columna y, encima, las cartelas de las misiones (2026-11-27): las cartelas se ven por encima de la mancha. */
+.mwAg{position:absolute;left:-60px;top:-6%;width:calc(var(--colW) + 260px);height:112%;background:url(img/ui/aguada.png) 0 0/100% 100% no-repeat;opacity:.95;pointer-events:none}
+.mwLabs{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.mwLabStage{position:absolute;left:0;top:0;width:2752px;height:1536px;transform-origin:0 0;transition:transform 1.1s cubic-bezier(.25,.7,.2,1);will-change:transform}
+.mwLabStage.instant{transition:none}
+.mwLb{position:absolute;width:0;height:0}
+/* Lente (2026-11-27): bajo el ratón, el mapa de verdad asoma a medias a través de las nubes. Es un cuadrado pequeño que se mueve con transform (barato). */
+.mwLens{position:absolute;left:0;top:0;width:150px;height:150px;pointer-events:none;opacity:0;transition:opacity .35s;will-change:transform;background:url(img/mapa/mapa.jpg) 0 0/2752px 1536px no-repeat;-webkit-mask-image:radial-gradient(circle closest-side,#000 0,#000 30%,transparent 100%);mask-image:radial-gradient(circle closest-side,#000 0,#000 30%,transparent 100%)}
+.mwLens.on{opacity:.4}
+.mapv:not(.popoff) .mwLens{display:none}
 .mwStage{position:absolute;left:0;top:0;width:2752px;height:1536px;transform-origin:0 0;transition:transform 1.1s cubic-bezier(.25,.7,.2,1);-webkit-mask:linear-gradient(90deg,transparent 0,#000 160px),linear-gradient(180deg,transparent 0,#000 150px);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent 0,#000 160px),linear-gradient(180deg,transparent 0,#000 150px);mask-composite:intersect}
 .mwStage.instant{transition:none}
 .mwMap{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -871,19 +881,19 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
 .mwMk.s-lock .glow{display:none}
 .mwMk.ign .spr{opacity:0;filter:blur(8px)}.mwMk.ign .glow{opacity:0;animation:none}
 .mwMk.ign.go .spr{opacity:1;filter:drop-shadow(0 6px 6px rgba(0,0,0,.35))}.mwMk.ign.go .glow{opacity:.75;animation:mwFlick 2.3s ease-in-out infinite}
-.mwMk .lab{position:absolute;left:0;top:8px;transform:translateX(-50%);padding:18px 60px 23px;white-space:nowrap;text-align:center;pointer-events:none;background:url(img/mapa/cartela-pergamino.png) center/100% 100% no-repeat;transition:opacity .35s}
-.mwMk .lab b{display:block;font:400 32px/1 var(--tit);color:#2a1d12}
-.mwMk .lab small{display:block;margin-top:5px;font:400 17px var(--rot);letter-spacing:.2em;color:#7b4f22}
-.mwMk.s-lock .lab{opacity:0}.mwMk.s-lock:hover .lab,.mwMk.s-lock.on .lab{opacity:1}.mwMk.s-lock .lab b{font-style:italic}
-.mwMk.under .lab{opacity:0!important}
-.mapv:not(.popoff) .mwMk.on .lab{opacity:0}
+.mwLb .lab{position:absolute;left:0;top:8px;transform:translateX(-50%);padding:18px 60px 23px;white-space:nowrap;text-align:center;pointer-events:none;background:url(img/mapa/cartela-pergamino.png) center/100% 100% no-repeat;transition:opacity .35s}
+.mwLb .lab b{display:block;font:400 32px/1 var(--tit);color:#2a1d12}
+.mwLb .lab small{display:block;margin-top:5px;font:400 17px var(--rot);letter-spacing:.2em;color:#7b4f22}
+.mwLb.s-lock .lab{opacity:0}.mwLb.s-lock.on .lab{opacity:1}.mwLb.s-lock .lab b{font-style:italic}
+.mwLb.under .lab{opacity:0!important}
+.mapv:not(.popoff) .mwLb.on .lab{opacity:0}
 .mwTown{position:absolute;transform:translateX(-50%);pointer-events:none;white-space:nowrap;font:400 34px var(--rot);letter-spacing:.32em;color:#d9b878;text-shadow:0 0 14px rgba(5,8,18,.95),0 0 4px rgba(5,8,18,.9),0 2px 3px #000}
 .mwVig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 62% 55%,transparent 55%,rgba(4,6,12,.55) 100%)}
 .mwGrain{position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
 .mwMotes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .mmapw{position:absolute;top:0;bottom:0;left:var(--colW);right:0;pointer-events:none}
 @media (max-height:820px) and (min-width:861px){.mside{gap:11px;padding-top:calc(26px + env(safe-area-inset-top,0px));padding-bottom:96px}.mvh h1{font-size:40px}.mvh h1::after{margin-top:8px}.midx button{padding:5px 10px 5px 4px}.midx .t{font-size:19px}.midx .n{width:40px;height:40px}.mhint{display:none}}
-@media (prefers-reduced-motion:reduce){.mwMk .spr{animation-duration:6s!important}.mwDrift,.mwMk .glow{animation:none}.mwMap .rv,.mwMap .fogr,.mwStage{transition-duration:.01s!important}}
+@media (prefers-reduced-motion:reduce){.mwMk .spr{animation-duration:6s!important}.mwDrift,.mwMk .glow{animation:none}.mwMap .rv,.mwMap .fogr,.mwStage,.mwLabStage,.mwLens{transition-duration:.01s!important}}
 /* --- ficha de la misión: cartel de encargo clavado con un puñal (elegido el 2026-11-25; maqueta ficha-mision-v4, opción B) --- */
 .mscrim{position:absolute;inset:0;z-index:3;background:radial-gradient(70% 70% at 50% 50%,rgba(6,8,16,.5),rgba(6,8,16,.82));opacity:0;pointer-events:none;transition:opacity .45s}
 .mapv:not(.popoff) .mscrim{opacity:1;pointer-events:auto}
@@ -964,6 +974,7 @@ svg.hf-rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90d
  .mmapw{display:none}
  .mwView{order:2;position:relative;inset:auto;height:min(62vh,540px);border-radius:4px}
  .mwStage{-webkit-mask:none;mask:none}
+ .mwAg{display:none}
  .mscrim{display:none}
  .mpop,.mapv.popoff .mpop{order:3;display:block;position:relative;left:auto!important;top:auto!important;width:auto;transform:none!important}
  .pzb{padding:74px 22px 26px}.pzh h2{font-size:24px}.pznum{width:52px;height:52px}.pzhook{font-size:19px}.pzx{display:none}
@@ -3142,6 +3153,22 @@ body:is(:has(#camp:not([hidden])),:has(#home:not([hidden]))) .tvf-tx{display:blo
 body:is(:has(#camp:not([hidden])),:has(#home:not([hidden]))) .tvf-tx b{font:400 12px "IM Fell English SC",Georgia,serif;letter-spacing:.2em;color:#a7a08c}
 body:is(:has(#camp:not([hidden])),:has(#home:not([hidden]))) .tvf-tx small{display:none}
 @media (prefers-reduced-motion:reduce){#camp .cpInfo.sw{animation:none;-webkit-mask:none;mask:none}}
+/* 2026-11-27: la ficha de la campaña va centrada en vertical en su columna y las flechas de cambiar de campaña bajan, para no tapar texto */
+#camp .cpGo + .cpGo{margin-top:-4px}
+#camp .cpGo2{padding:12px 46px 12px 30px;color:var(--hueso)}
+#camp .cpGo2::before{opacity:.48}
+#camp .cpGo2 span{display:flex;flex-direction:column;gap:4px}
+#camp .cpGo2 small{font:400 12.5px var(--rot);letter-spacing:.14em;text-transform:none;color:#d9ccaf}
+#camp .cpGo2:hover,#camp .cpGo2:focus-visible{color:var(--tintaN)}
+#camp .cpGo2:hover small,#camp .cpGo2:focus-visible small{color:#3a2a1a}
+#camp .cpGo2:hover::before,#camp .cpGo2:focus-visible::before{opacity:.9}
+@media (min-width:861px) and (min-height:501px){
+ #camp .cpInfo{top:calc(96px + env(safe-area-inset-top,0px));bottom:calc(218px + env(safe-area-inset-bottom,0px));justify-content:center;gap:clamp(6px,calc((100vh - 736px) / 8),24px)}
+ #camp .cpArr{width:88px;height:88px;top:auto;bottom:calc(112px + env(safe-area-inset-bottom,0px));margin:0}
+}
+/* en pantallas bajas el texto baja más: las flechas quedan a la izquierda del texto, sin tocarlo */
+@media (min-width:861px) and (min-height:501px) and (max-height:800px){#camp .cpInfo{top:calc(88px + env(safe-area-inset-top,0px));bottom:calc(72px + env(safe-area-inset-bottom,0px));gap:10px}}
+@media (orientation:landscape) and (max-height:500px){#camp .cpArr{top:auto;bottom:calc(64px + env(safe-area-inset-bottom,0px));margin:0}}
 @media (max-height:720px) and (min-width:861px){#camp .cpT{font-size:46px}#camp .cpH{font-size:19px}#camp .cpInfo{gap:10px;bottom:92px}}
 /* vertical (diseño apilado): sin aguada; menú debajo, en fila */
 @media (max-width:860px) and (orientation:portrait),(max-width:860px) and (min-height:501px){
@@ -9752,9 +9779,9 @@ function pInfo(i){const c=CAMPS[i];
  if(!c.on)return `<p class="cpK">Campaña ${c.n}</p><h2 class="cpT">${c.t}</h2><span class="cpFlo" aria-hidden="true"></span><p class="cpH">${c.h}</p><p class="cpF">Seis misiones · todavía por escribir</p><div class="cpP"><ol aria-label="Progreso de la campaña">${MIS.map(()=>`<li class="lock" title="Sellada"></li>`).join("")}</ol><span>Seis misiones selladas</span></div><p class="cpS"><i></i>En preparación · aún no se puede jugar</p><p class="cpLk">${LOCK}Todavía sellada</p>`;
  const live=mst(0)==="live",nx=S.fin?1:0;
  const st=live?`Misión I en curso · Ronda ${S.round}`:won()?(S.fin?"Misión I cumplida · la II ya está abierta":"Misión I cumplida"):"1 de 6 misiones desbloqueadas";
- return `<p class="cpK">Campaña ${c.n}</p><h2 class="cpT">${c.t}</h2><span class="cpFlo" aria-hidden="true"></span><p class="cpH">${c.h}</p><p class="cpF">Seis misiones · desde Varek's Hold</p><div class="cpP"><ol aria-label="Progreso de la campaña">${MIS.map((m,k)=>`<li class="${mst(k)}" title="${mst(k)==="lock"?"Sellada":m.t}"></li>`).join("")}</ol><span>${live?"En curso":"Siguiente"}: ${MIS[nx].t}</span></div><p class="cpS${live?" live":""}"><i></i>${st}</p><button class="cpGo" type="button" data-nav="home"><span>${live?"Continuar la campaña":"Entrar en la campaña"}</span>${ARROW}</button>`}
+ return `<p class="cpK">Campaña ${c.n}</p><h2 class="cpT">${c.t}</h2><span class="cpFlo" aria-hidden="true"></span><p class="cpH">${c.h}</p><p class="cpF">Seis misiones · desde Varek's Hold</p><div class="cpP"><ol aria-label="Progreso de la campaña">${MIS.map((m,k)=>`<li class="${mst(k)}" title="${mst(k)==="lock"?"Sellada":m.t}"></li>`).join("")}</ol><span>${live?"En curso":"Siguiente"}: ${MIS[nx].t}</span></div><p class="cpS${live?" live":""}"><i></i>${st}</p>${live?`<button class="cpGo cpGo2" type="button" data-nav="m1"><span>Continuar misión<small>Misión ${MIS[0].n} · ${MIS[0].t} · Ronda ${S.round}</small></span>${ARROW}</button>`:""}<button class="cpGo" type="button" data-nav="home"><span>${live?"Continuar la campaña":"Entrar en la campaña"}</span>${ARROW}</button>`}
 function pNav(){const live=mst(0)==="live";
- return `<nav class="cpNav" aria-label="Menú principal">${live?`<button type="button" data-nav="m1"><span>Continuar<small>Misión I · Ronda ${S.round}</small></span></button>`:""}<button type="button" class="on" aria-current="page"><span>Campañas</span></button><button type="button" data-lore><span>Lo que aún se recuerda</span></button></nav>`}
+ return `<nav class="cpNav" aria-label="Menú principal"><button type="button" class="on" aria-current="page"><span>Campañas</span></button><button type="button" data-lore><span>Lo que aún se recuerda</span></button></nav>`}
 /* Cámara: un leve acercamiento que lleva el fuego elegido a 2/3 de la pantalla (al centro en móvil) sin enseñar el borde del papel; el ratón añade un poco de movimiento. */
 function pPlace(now){const sc=$("#camp .cpSc"),cam=sc&&sc.querySelector(".cpCam");if(!cam)return;
  const W=sc.clientWidth||1,H=sc.clientHeight||1,asp=W/H,mb=STACK();let vw,vh,x0,y0;
@@ -9798,7 +9825,7 @@ $("#camp").addEventListener("click",e=>{const lb=e.target.closest("[data-lore]")
  const ab=e.target.closest(".cpArr");if(ab){kselect(Math.max(0,Math.min(CAMPS.length-1,K.sel+ +ab.dataset.ad)));return}
  const b=e.target.closest(".cpB");if(!b)return;const i=+b.dataset.kc;
  if(K.sel===i){if(b.classList.contains("lk")){b.classList.remove("shake");void b.getBoundingClientRect();b.classList.add("shake")}
-  else{const g=$("#camp .cpGo");if(g&&g.animate&&!REDUCE)g.animate([{filter:"none"},{filter:"brightness(1.45)"},{filter:"none"}],{duration:520,iterations:2})}}
+  else{const g=$('#camp .cpGo[data-nav="home"]');if(g&&g.animate&&!REDUCE)g.animate([{filter:"none"},{filter:"brightness(1.45)"},{filter:"none"}],{duration:520,iterations:2})}}
  kselect(i)});
 $("#camp").addEventListener("keydown",e=>{const b=e.target.closest(".cpB");if(b&&(e.key==="Enter"||e.key===" ")){e.preventDefault();b.dispatchEvent(new MouseEvent("click",{bubbles:true}))}});
 $("#camp").addEventListener("pointermove",e=>{if(e.pointerType==="touch"||STACK()||REDUCE)return;const n=performance.now();if(n-K.pt<80)return;K.pt=n;K.px=e.clientX/innerWidth-.5;K.py=e.clientY/innerHeight-.5;pPlace()});
@@ -9866,7 +9893,7 @@ const MWS={open:["estandarte",8,1.1],live:["estandarte",8,1.1],done:["estandarte
 const FKEY="psn-map-seen2";
 let seen=null;try{seen=JSON.parse(localStorage.getItem(FKEY))}catch(e){}
 const mwFar=sts=>sts.reduce((a,s,i)=>s!=="lock"?i:a,0);
-const mwFog=far=>far>=5?-400:MWG.m[far][1]-240;
+const mwFog=far=>far>=5?-400:MWG.m[far][1]-70;
 /* camino: curva suave por los puntos de paso; las pisadas se muestrean sobre ella */
 const mwLeg=k=>[k?MWG.m[k-1]:MWG.town,...MWG.w[k],MWG.m[k]];
 function mwSegs(p){const o=[];for(let i=0;i<p.length-1;i++){const p0=p[i-1]||p[i],p1=p[i],p2=p[i+1],p3=p[i+2]||p2;o.push([p1,[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6],p2])}return o}
@@ -9901,8 +9928,9 @@ function mwSVG(sts){const far=mwFar(sts),un=sts.map((s,i)=>s!=="lock"),known=see
 function mwMarks(sts){const known=seen?seen.u:[];
  return MWG.m.map((p,i)=>{const s=sts[i],[file,n,d,alt]=MWS[s],m=MIS[i];
   return `<div class="mwMk s-${s}${alt?" alt":""}${M.sel===i?" on":""}${s!=="lock"&&!known.includes(i)?" ign":""}" data-k="${i}" style="left:${p[0]}px;top:${p[1]}px;--n:${n};--d:${d}s"><i class="glow"></i><i class="spr" style="background-image:url(img/mapa/${file}.png)"></i>
-  <span class="lab"><b>${s==="lock"?"Sellada":m.t}</b><small>${s==="lock"?"Todavía en preparación":`Misión ${m.n} · ${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}`}</small></span>
-  <button class="hit" type="button" data-mi="${i}" aria-label="Misión ${m.n}, ${m.t}: ${stl(i)}"></button></div>`}).join("")+`<div class="mwTown" style="left:${MWG.tl[0]}px;top:${MWG.tl[1]}px">VAREK'S HOLD</div>`}
+  <button class="hit" type="button" data-mi="${i}" aria-label="Misión ${m.n}, ${m.t}: ${stl(i)}"></button></div>`}).join("")}
+function mwLabels(sts){return MWG.m.map((p,i)=>{const s=sts[i],m=MIS[i];
+  return `<div class="mwLb s-${s}${M.sel===i?" on":""}" data-k="${i}" style="left:${p[0]}px;top:${p[1]}px"><span class="lab"><b>${s==="lock"?"Sellada":m.t}</b><small>${s==="lock"?"Todavía en preparación":`Misión ${m.n} · ${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}`}</small></span></div>`}).join("")}
 function mwDrifts(far){const R=rng(13),top=mwFog(far)-260;if(top<120)return"";let h="";
  for(let k=0;k<14;k++){const w=860+R()*560,x=-200+R()*2900,y=-200+R()*Math.max(0,top-w*.3),fr=Math.floor(R()*4);
   h+=`<i class="mwDrift" style="left:${f(x)}px;top:${f(y)}px;width:${f(w)}px;height:${f(w*.62)}px;background-position:${fr*33.333}% 0;animation-delay:-${f(R()*80)}s"></i>`}return h}
@@ -9915,7 +9943,7 @@ function mwCam(instant){const v=$("#home .mwView"),st=$("#home .mwStage");if(!v|
  /* escala: la lámina cubre la altura (y el ancho); en móvil, un poco más cerca */
  /* escala: la lámina cubre el hueco; si las cartelas no caben a esa escala, se aleja un poco (hasta un 12 %) */
  const s0=Math.max(W/2752,H/1536)*(stack?1.5:1),padL=stack?12:95,padR=16;
- const labs=Array.from(document.querySelectorAll("#home .mwMk .lab"));
+ const labs=Array.from(document.querySelectorAll("#home .mwLb .lab"));
  const lwU=labs.length?Math.max(...labs.map(l=>l.offsetWidth))/2:0;
  let s=s0,lo,hi,cov0,cov1;
  for(let k=0;k<=12;k++){
@@ -9932,7 +9960,8 @@ function mwCam(instant){const v=$("#home .mwView"),st=$("#home .mwStage");if(!v|
  /* vertical: la lámina cubre la altura */
  const ty=1536*s<H?H-1536*s:Math.min(0,Math.max(H-1536*s,H/2-fy*s+MWC.py));
  st.classList.toggle("instant",!!instant);st.style.transform=`translate(${f(tx)}px,${f(ty)}px) scale(${s.toFixed(4)})`;Object.assign(MWC,{tx,ty,s});
- $$m(".mwMk").forEach(k=>k.classList.toggle("under",!stack&&tx+MWG.m[+k.dataset.k][0]*s<L+30))}
+ const ls=$("#home .mwLabStage");if(ls){ls.classList.toggle("instant",!!instant);ls.style.transform=st.style.transform}
+ $$m(".mwLb").forEach(k=>k.classList.toggle("under",!stack&&tx+MWG.m[+k.dataset.k][0]*s<L+30))}
 let mwRz=0;addEventListener("resize",()=>{clearTimeout(mwRz);mwRz=setTimeout(()=>{if(VIEW==="home"){mwSize();mwCam(true);placePop()}},120)});
 /* Motas de pigmento que suben de los estandartes encendidos (~18 fps, solo con el mapa a la vista). */
 let mwP=[],mwT=0;
@@ -9969,7 +9998,7 @@ function popHTML(){const i=M.sel,m=MIS[i],st=mst(i);
 function idxHTML(){return `<p class="keb">La ruta hacia el norte</p>`+MIS.map((x,k)=>{const s=mst(k);return `<button type="button" class="s-${s}${k===M.sel?" on":""}" data-mi="${k}"><span class="n">${x.n}</span><span class="t">${x.t}<small>${SHORT[s]}${s==="live"?` · Ronda ${S.round}`:""}</small></span></button>`}).join("")}
 function map(){const el=$("#home"),sts=MIS.map((_,i)=>mst(i)),n=sts.filter(s=>s!=="lock").length;
  el.classList.toggle("popoff",!M.open);
- el.innerHTML=`<div class="mwView"><div class="mwStage"><svg class="mwMap" viewBox="0 0 2752 1536" role="img" aria-label="Mapa a tinta y acuarela de las tierras al norte del Muro con las seis misiones">${mwSVG(sts)}</svg><div class="mwFogD">${mwDrifts(mwFar(sts))}</div><div class="mwMarks">${mwMarks(sts)}</div></div><div class="mwVig"></div><div class="mwGrain"></div><canvas class="mwMotes" aria-hidden="true"></canvas></div><div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${sts.map(s=>`<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`).join("")}</i></div></header><button class="mlore" type="button" data-lore aria-haspopup="dialog"><i aria-hidden="true"></i><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un estandarte del mapa o una misión de la lista para ver su ficha.</p><button class="mwUnlock" type="button" data-unlock${ALLOPEN?" disabled":""}>${ALLOPEN?"Todas desbloqueadas":"Desbloquear todas"}</button></div><div class="mmapw"></div><div class="mscrim" id="mscrim"></div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>${PZ_DEFS}`;
+ el.innerHTML=`<div class="mwView"><div class="mwStage"><svg class="mwMap" viewBox="0 0 2752 1536" role="img" aria-label="Mapa a tinta y acuarela de las tierras al norte del Muro con las seis misiones">${mwSVG(sts)}</svg><div class="mwFogD">${mwDrifts(mwFar(sts))}</div><i class="mwLens" aria-hidden="true"></i><div class="mwMarks">${mwMarks(sts)}</div></div><div class="mwVig"></div><div class="mwGrain"></div><canvas class="mwMotes" aria-hidden="true"></canvas><i class="mwAg"></i><div class="mwLabs"><div class="mwLabStage">${mwLabels(sts)}</div></div></div><div class="mside"><header class="mvh"><button class="back" type="button" data-nav="camp" aria-label="Volver a las campañas">${BACKI}<span>Campañas</span></button><div class="mvt"><p class="keb">Érebo · Campaña I</p><h1>El Pueblo Sin Nombre</h1></div><div class="mprog"><span>${n} de 6 misiones</span><i>${sts.map(s=>`<b class="${s==="live"?"lv":s!=="lock"?"on":""}"></b>`).join("")}</i></div></header><button class="mlore" type="button" data-lore aria-haspopup="dialog"><i aria-hidden="true"></i><span><b>Lo que aún se recuerda</b><small>Crónica de la campaña</small></span></button><nav class="midx" id="midx" aria-label="Misiones">${idxHTML()}</nav><p class="mhint">Pulsa un estandarte del mapa o una misión de la lista para ver su ficha.</p><div class="mwTest"><button class="mwUnlock" type="button" data-unlock${ALLOPEN?" disabled":""}>${ALLOPEN?"Todas desbloqueadas":"Desbloquear todas"}</button><button class="mwUnlock" type="button" data-relock${ALLOPEN?"":" disabled"}>Bloquear misiones</button></div></div><div class="mmapw"></div><div class="mscrim" id="mscrim"></div><aside class="mpop" id="mpop" aria-live="polite">${popHTML()}</aside>${PZ_DEFS}`;
  mwSize();mwCam(true)}
 /* Coloca la ficha centrada en el hueco libre del mapa (con el puñal incluido) y la reduce si no cabe. */
 function placePop(){const v=$("#home"),pop=$("#mpop");if(!pop||v.hidden)return;
@@ -9988,7 +10017,15 @@ function mapAfter(){const sts=MIS.map((_,i)=>mst(i)),far=mwFar(sts),u=sts.map((s
  placePop();
  const g=$("#mpop .pzcta");if(g&&M.open)g.focus({preventScroll:true})}
 const $$m=s=>document.querySelectorAll("#home "+s);
-function mselect(i){M.sel=i;M.open=true;$("#home").classList.remove("popoff");$$m(".mwMk").forEach(p=>p.classList.toggle("on",+p.dataset.k===i));
+/* La lente sigue al ratón (no en táctil ni en vertical) y se apaga sobre la columna. */
+{let lraf=0,lev=null;const lens=()=>$("#home .mwLens");
+ $("#home").addEventListener("pointermove",e=>{if(e.pointerType==="touch"||STACK()||REDUCE)return;lev=e;if(lraf)return;lraf=requestAnimationFrame(()=>{lraf=0;const l=lens(),v=$("#home .mwView");if(!l||!v)return;
+  if(lev.target.closest&&lev.target.closest(".mside")){l.classList.remove("on");return}
+  const r=v.getBoundingClientRect(),x=(lev.clientX-r.left-MWC.tx)/MWC.s,y=(lev.clientY-r.top-MWC.ty)/MWC.s,D=190/MWC.s,h=D/2;
+  if(l._d!==D){l._d=D;l.style.width=l.style.height=f(D)+"px"}
+  l.style.transform=`translate(${f(x-h)}px,${f(y-h)}px)`;l.style.backgroundPosition=`${f(-(x-h))}px ${f(-(y-h))}px`;l.classList.add("on")})});
+ $("#home").addEventListener("pointerleave",()=>{const l=lens();if(l)l.classList.remove("on")})}
+function mselect(i){M.sel=i;M.open=true;$("#home").classList.remove("popoff");$$m(".mwMk,.mwLb").forEach(p=>p.classList.toggle("on",+p.dataset.k===i));
  $("#midx").innerHTML=idxHTML();const pop=$("#mpop");pop.innerHTML=popHTML();mwCam();placePop();
  if(STACK())window.scrollTo({top:pop.getBoundingClientRect().top+scrollY-12,behavior:"smooth"})}
 
@@ -10025,6 +10062,7 @@ function loreOpen(from){if(document.getElementById("lorOv"))return;loreFrom=from
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&document.getElementById("lorOv")){e.preventDefault();e.stopPropagation();loreClose()}},true);
 $("#home").addEventListener("click",e=>{const lb=e.target.closest("[data-lore]");if(lb){loreOpen(lb);return}
  if(e.target.closest("[data-unlock]")){ALLOPEN=true;try{localStorage.setItem("psn-all-open","1")}catch(x){}map();mapAfter();return}
+ if(e.target.closest("[data-relock]")){ALLOPEN=false;try{localStorage.removeItem("psn-all-open")}catch(x){}M.sel=0;M.open=false;map();mapAfter();return}
  if(e.target.closest("[data-nav]"))return;
  if(e.target.closest("[data-mclose]")||e.target.id==="mscrim"){M.open=false;$("#home").classList.add("popoff");return}
  const m=e.target.closest("[data-mi]");if(m)mselect(+m.dataset.mi)});
