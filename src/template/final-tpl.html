@@ -3424,9 +3424,14 @@ function mwSteps(k,fresh){const sp=mwSample(mwLeg(k)),L=sp[sp.length-1][2],a=k?8
 const MWCLOUDS=(()=>{const R=rng(7);let c="";for(let k=0;k<150;k++){const x=-500+R()*3500,y=-300+R()*1750,w=780+R()*720,fr=Math.floor(R()*4);
  c+=`<svg class="cloud" x="${f(x)}" y="${f(y)}" width="${f(w)}" height="${f(w*.62)}" viewBox="${fr*400} 0 400 400" preserveAspectRatio="none" opacity="${f(.92+R()*.08)}"><image href="img/mapa/nubes.png" width="1600" height="400"/></svg>`}return c})();
 function mwSVG(sts){const far=mwFar(sts),un=sts.map((s,i)=>s!=="lock"),known=seen?seen.u:[],from=seen?mwFog(seen.far):1600;
+ const TOUCH=matchMedia("(pointer:coarse)").matches;
  const circ=(r,col)=>MWG.m.map((p,i)=>un[i]?`<circle class="rv" data-k="${i}" cx="${p[0]}" cy="${p[1]-40}" r="${r}" fill="${col}" style="transform:scale(${known.includes(i)?1:0})"/>`:"").join("")+`<circle cx="${MWG.town[0]}" cy="${MWG.town[1]}" r="${r+50}" fill="${col}"/>`;
  const area=`maskUnits="userSpaceOnUse" x="-300" y="-300" width="3352" height="2136"`,full=`x="-300" y="-300" width="3352" height="2136"`;
- const mask=(id,g)=>`<mask id="${id}" ${area}><g filter="url(#mwBlot)"><rect ${full} fill="#000"/><rect class="fogr" x="-300" y="${-g}" width="3352" height="2200" fill="#fff" style="transform:translateY(${from}px)"/>${circ(270+g,"#fff")}</g></mask>`;
+ /* En táctil, el borde de acuarela (turbulencia + desplazamiento a pantalla completa) se cambia por degradados suaves: el filtro cuelga el móvil. */
+ const gFog=TOUCH?"":` filter="url(#mwBlot)"`;
+ const fogr=col=>`<rect class="fogr" x="-300" y="0" width="3352" height="2200" fill="${col}" style="transform:translateY(${from}px)"/>`;
+ const mrev=`<mask id="mwRev" ${area}><g${gFog}><rect ${full} fill="#000"/>${fogr(TOUCH?"url(#mwSoft)":"#fff")}${circ(270,TOUCH?"url(#mwSoftR)":"#fff")}</g></mask>`;
+ const minv=`<mask id="mwInv" ${area}><g${gFog}><rect ${full} fill="#fff"/>${fogr(TOUCH?"url(#mwSoftI)":"#000")}${circ(270,TOUCH?"url(#mwSoftRI)":"#000")}</g></mask>`;
  let legs="",fps="";for(let k=0;k<6;k++){if(un[k])fps+=mwSteps(k,!known.includes(k));else legs+=`<path class="ghost" d="${mwD(mwLeg(k))}"/>`}
  return `<defs>
  <filter id="mwBlot" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".006 .009" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="230" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="7"/></filter>
@@ -3434,8 +3439,12 @@ function mwSVG(sts){const far=mwFar(sts),un=sts.map((s,i)=>s!=="lock"),known=see
  <filter id="mwTide"><feColorMatrix type="matrix" values=".55 0 0 0 0  0 .52 0 0 0  0 0 .6 0 0  0 0 0 1 0"/></filter>
  <filter id="mwDull"><feColorMatrix type="saturate" values=".25"/><feComponentTransfer><feFuncR type="linear" slope=".42"/><feFuncG type="linear" slope=".45"/><feFuncB type="linear" slope=".58"/></feComponentTransfer></filter>
  <filter id="mwPencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 1.7" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
- ${mask("mwRev",0)}
- <mask id="mwInv" ${area}><g filter="url(#mwBlot)"><rect ${full} fill="#fff"/><rect class="fogr" x="-300" y="0" width="3352" height="2200" fill="#000" style="transform:translateY(${from}px)"/>${circ(270,"#000")}</g></mask>
+ <linearGradient id="mwSoft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".08" stop-color="#fff" stop-opacity="1"/></linearGradient>
+ <linearGradient id="mwSoftI" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".08" stop-color="#000" stop-opacity="1"/></linearGradient>
+ <radialGradient id="mwSoftR" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".8" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+ <radialGradient id="mwSoftRI" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000"/><stop offset=".8" stop-color="#000"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ ${mrev}
+ ${minv}
  </defs>
  <image href="img/mapa/mapa-apagado.jpg" width="2752" height="1536"/>
  <image href="img/mapa/mapa.jpg" width="2752" height="1536" mask="url(#mwRev)"/>
