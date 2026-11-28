@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 404,
+  "ancho": 1536,
+  "alto": 960,
+  "referencias": [],
+  "prompt": "Aged parchment paper sheet, flat and full-bleed, mostly empty and clean in the center. Very subtle ink-and-watercolor treatment: faint indigo and warm ochre watercolor washes bleeding softly in from the corners and the top and bottom edges, a few tiny grey-brown ink stains and faint ink speckles scattered near the edges, delicate granulating pigment and visible paper grain, soft warm aged-paper tone. The center is left blank and clean for writing. No text, no letters, no frame, no border, no lines, no objects, no people, no writing. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

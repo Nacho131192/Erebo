@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 101,
+  "ancho": 1792,
+  "alto": 768,
+  "referencias": [],
+  "prompt": "Ink and watercolor illustration in the style of a fantasy cartographer's sketchbook: thick uneven black India-ink outlines with a dip-pen look, loose wet-in-wet indigo and deep teal washes, granulating pigment, a few warm ochre touches for distant lights, visible paper grain, wide cinematic panoramic landscape at night. A dark, moody archipelago of rocky islands scattered across a vast calm ocean, seen from a low rocky shore. Between the islands a slow whirlpool turns in the black water, and thin threads of rain rise upward from the sea into the starry sky instead of falling. A low band of pale mist lies on the water. High in the sky a pale full moon; beneath it the sea looks wrong, the waves leaning away from the moon and old tide lines stranded high on the rocks. No people, no text, no frame. The bottom fifth is a dark, empty, rocky shore foreground with a few tide pools, with no buildings or figures on it. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

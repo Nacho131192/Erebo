@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 606,
+  "ancho": 1536,
+  "alto": 960,
+  "referencias": [],
+  "prompt": "A single old, worn sheet of handmade paper photographed straight from above, filling the entire frame edge to edge. Realistic and tactile: the paper has slightly irregular, uneven, softened edges that are not a perfectly straight rectangle, with a couple of small nicks, tiny tears and one curled corner from years of handling. Across the sheet there are visible diagonal fold creases and fold lines, light scratches and scuff marks, a few faint foxing spots, and one distinct dark ink stain near the bottom-right corner that has bled slightly into the fibers. The surface has a soft warm aged-paper tone with visible laid paper grain and gentle uneven lighting, with a very faint indigo and warm ochre watercolor tint bleeding in from the top and bottom edges. The center is left mostly clear for writing. No text, no letters, no writing, no frame, no border, no objects, no people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}

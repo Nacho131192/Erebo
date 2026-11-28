@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maqueta · Configuración de la partida (tablero virtual) · tinta y acuarela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{
+  --rot:"IM Fell English SC","IM Fell English",Georgia,serif;
+  --tit:"IM Fell English",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --ui:Inter,system-ui,sans-serif;
+  --num:"Space Grotesk",Inter,sans-serif;
+  --hueso:#efe3c8;--oro:#e3c98d;--ocre:#c39352;--tintaN:#160f09;
+  --tinta:#2b1d12;--tinta2:#5c4630;--tinta3:#7b6845;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#06070e;color:var(--tinta);font:400 15px/1.5 var(--ui)}
+.sc{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--fondo) 50% 50%/cover no-repeat}
+.veil{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(5,7,14,.62),rgba(5,7,14,.18) 34%,transparent 55%),
+    radial-gradient(130% 100% at 50% 50%,transparent 42%,rgba(4,6,12,.55) 100%)}
+.aguada{position:absolute;z-index:1;left:-40px;top:-6%;width:min(46%,680px);height:112%;background:url(../../src/img/ui/aguada.png) 0 0/100% 100% no-repeat;opacity:.9;pointer-events:none}
+.splash{position:absolute;z-index:2;left:22%;top:56%;width:150px;height:70px;background:url(../../src/img/ui/salpicadura.png) center/contain no-repeat;opacity:.5;transform:rotate(-12deg);pointer-events:none}
+.grain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.head{position:absolute;z-index:6;left:max(30px,calc((100vw - 1180px)/2));right:max(30px,calc((100vw - 1180px)/2));top:26px;display:flex;align-items:center;gap:14px}
+.head .marca{display:flex;flex-direction:column;gap:2px}
+.head .keb{font:400 12px var(--rot);letter-spacing:.3em;text-transform:none;color:var(--oro)}
+.head b{font:400 22px/1 var(--tit);color:var(--hueso);letter-spacing:.03em;text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.head .x{margin-left:auto;position:relative;isolation:isolate;width:46px;height:46px;display:grid;place-items:center;border:0;background:none;color:var(--hueso);cursor:pointer;font-size:20px;line-height:1}
+.head .x::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../../src/img/ui/circulo.png) center/100% 100% no-repeat}
+.stage{position:absolute;z-index:5;inset:0;display:grid;place-items:center;padding:80px 30px 30px}
+.sheet{position:relative;width:min(1180px,100%);padding:38px 46px 34px;border-radius:3px;
+  background:
+    radial-gradient(120% 90% at 50% 0%,rgba(255,248,232,.75),transparent 55%),
+    linear-gradient(180deg,#efe0c0 0,#e7d2a8 58%,#ddc391 100%);
+  box-shadow:0 42px 90px rgba(0,0,0,.65),0 0 0 1px rgba(90,62,28,.5),inset 0 0 0 8px rgba(255,255,255,.05),inset 0 0 140px rgba(120,80,30,.16)}
+.sheet::before{content:"";position:absolute;inset:10px;pointer-events:none;border:1px solid rgba(90,62,28,.4)}
+.sheet::after{content:"";position:absolute;inset:14px;pointer-events:none;border:1px solid rgba(90,62,28,.22)}
+.shead{text-align:center}
+.shead .keb{font:400 13px var(--rot);letter-spacing:.34em;text-transform:none;color:var(--ocre)}
+.shead h1{margin:6px 0 0;font:400 clamp(34px,4vw,50px)/1 var(--tit);color:var(--tintaN);letter-spacing:.01em}
+.floron{display:block;width:240px;height:18px;margin:14px auto 0;background:url(../../src/img/ui/floron.png) center/contain no-repeat;opacity:.7;filter:sepia(.4)}
+.shead .sub{margin:14px auto 0;max-width:720px;font:italic 500 17px/1.5 var(--serif);color:var(--tinta2)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:40px;margin:30px 0 26px;align-items:start}
+.lab{display:flex;align-items:baseline;gap:12px;margin:0 0 12px;font:400 15px var(--rot);letter-spacing:.18em;color:var(--tinta3)}
+.lab::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(90,62,28,.5),transparent)}
+.lab b{font:italic 400 15px var(--tit);color:var(--ocre);letter-spacing:0}
+.dif{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.dif button{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:3px;padding:17px 6px 15px;border:0;background:none;color:var(--tinta);text-align:center;cursor:pointer;font-family:var(--rot)}
+.dif button::before{content:"";position:absolute;inset:0 -7px;z-index:-1;background:url(../../src/img/ui/trazo.png) center/100% 100% no-repeat;opacity:.3;transition:opacity .25s,filter .25s}
+.dif button:hover::before{opacity:.55}
+.dif button.on::before{opacity:1;filter:saturate(1.08) brightness(1.02)}
+.dif button.on{color:var(--tintaN)}
+.dif b{font:400 30px/1 var(--tit)}
+.dif small{font:400 11.5px/1.2 var(--rot);letter-spacing:.1em;text-transform:none}
+.dif button.lock{opacity:.42}
+.dif button.lock .lk{display:inline-grid;place-items:center;width:30px;height:30px}
+.dif button.lock svg{width:15px;height:15px;stroke:var(--tinta)}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.sum .c{padding:12px 16px;border:1px solid rgba(90,62,28,.4);background:rgba(255,248,230,.35)}
+.sum small{display:block;font:400 11.5px var(--rot);letter-spacing:.16em;color:var(--tinta3)}
+.sum b{font:400 27px/1 var(--tit);color:var(--tintaN)}
+.sum i{font:italic 400 13px var(--tit);color:var(--ocre)}
+.heroes{display:flex;flex-direction:column;gap:7px}
+.hero{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;padding:9px 16px 9px 9px;border:1px solid rgba(90,62,28,.4);border-radius:2px;background:rgba(255,248,230,.32);text-align:left;cursor:pointer;transition:background .2s,border-color .2s}
+.hero:hover{border-color:rgba(90,62,28,.7)}
+.hero .hp{width:52px;height:52px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#e8d6ac;box-shadow:0 0 0 1.5px rgba(90,62,28,.55)}
+.hero .hp img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.hero b{display:block;font:400 18px/1.1 var(--tit);color:var(--tintaN)}
+.hero small{display:block;margin-top:3px;font:400 13px/1.3 var(--serif);color:var(--tinta2)}
+.hero em{font-style:normal;font:italic 400 20px var(--tit);color:var(--ocre);opacity:0}
+.hero.on{border-color:var(--ocre);background:rgba(195,147,82,.16);box-shadow:0 0 0 1px var(--ocre)}
+.hero.on em{opacity:1}
+.deploy{position:relative;isolation:isolate;display:block;margin:0 auto;padding:19px 62px 19px 42px;border:0;background:none;color:var(--tintaN);font:700 17px var(--rot);letter-spacing:.2em;text-transform:none;cursor:pointer}
+.deploy::before{content:"";position:absolute;inset:0 -10px;z-index:-1;background:url(../../src/img/ui/trazo.png) center/100% 100% no-repeat;transition:filter .3s}
+.deploy::after{content:"";position:absolute;right:-50px;top:-14px;width:84px;height:40px;background:url(../../src/img/ui/salpicadura-ocre.png) center/contain no-repeat;opacity:.9;transform:rotate(-8deg)}
+.deploy:hover::before{filter:brightness(1.07) saturate(1.1)}
+.deploy .ar{margin-left:10px;font:400 20px var(--tit)}
+.taller{position:absolute;z-index:9;right:16px;bottom:14px;display:flex;gap:6px}
+.taller button{padding:7px 14px;border:1px solid rgba(227,201,141,.5);border-radius:999px;background:rgba(10,13,23,.5);color:#cfc4a8;font:400 12px var(--rot);letter-spacing:.12em;cursor:pointer}
+.taller button.on{background:var(--ocre);border-color:var(--ocre);color:var(--tintaN)}
+</style>
+</head>
+<body>
+<div class="sc">
+  <i class="aguada"></i><i class="splash"></i><div class="grain"></div><div class="veil"></div>
+
+  <header class="head">
+    <div class="marca"><span class="keb">Érebo · Tablero virtual</span><b>Configuración de la partida</b></div>
+    <button class="x" type="button" aria-label="Cerrar">✕</button>
+  </header>
+
+  <main class="stage">
+    <section class="sheet">
+      <header class="shead">
+        <span class="keb">Nueva partida de prueba</span>
+        <h1>Configuración de la partida</h1>
+        <span class="floron" aria-hidden="true"></span>
+        <p class="sub">Una partida aparte de la de la mesa: no toca su ronda, su alerta ni sus oleadas. Las heridas, el poder y los estados sí se guardan en las fichas de los héroes. Cuando termines de prepararla, se despliega el tablero.</p>
+      </header>
+
+      <div class="grid">
+        <div class="col">
+          <p class="lab">Dificultad</p>
+          <div class="dif">
+            <button type="button"><b>I</b><small>Principiante</small></button>
+            <button type="button"><b>II</b><small>Intermedio</small></button>
+            <button type="button" class="on"><b>III</b><small>Experto</small></button>
+            <button type="button"><b>IV</b><small>Legendario</small></button>
+            <button type="button" class="lock" disabled aria-disabled="true" title="Bloqueada por ahora"><span class="lk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span><small>Abisal</small></button>
+          </div>
+          <div class="sum">
+            <div class="c"><small>Puntos de los héroes</small><b>560</b> <i>pts</i></div>
+            <div class="c"><small>Oleada · 100 %</small><b>560</b> <i>pts</i></div>
+          </div>
+        </div>
+        <div class="col">
+          <p class="lab">Héroes <b>3</b></p>
+          <div class="heroes">
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-guerrero.png" alt=""></span><span><b>Aldric</b><small>Guerrero · 145 pts · 12/12 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-maga.png" alt=""></span><span><b>Lyra</b><small>Maga · 160 pts · 10/10 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-picaro.png" alt=""></span><span><b>Caín</b><small>Pícaro · 120 pts · 11/11 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero"><span class="hp"><img src="../../src/img/ficha/heroe-arquero.png" alt=""></span><span><b>Sera</b><small>Arquera · 135 pts · 10/10 heridas</small></span><em>✓</em></button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="deploy">Desplegar la mesa<span class="ar" aria-hidden="true">→</span></button>
+    </section>
+  </main>
+
+  <footer class="taller">
+    <button type="button" data-f="1" class="on">Fondo · Archipiélago</button>
+    <button type="button" data-f="2">Fondo · Marea</button>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var FONDO={
+    "1":"url(../../assets/pruebas/setup-fondo-archipielago_flux.2-klein-4b_s101.jpg)",
+    "2":"url(../../assets/pruebas/setup-fondo-marea_flux.2-klein-4b_s202.jpg)"
+  };
+  var q=new URLSearchParams(location.search), f=q.get("fondo")||"1";
+  if(!FONDO[f]) f="1";
+  var sc=document.querySelector(".sc");
+  function poner(k){
+    sc.style.setProperty("--fondo",FONDO[k]);
+    document.querySelectorAll(".taller button").forEach(function(b){b.classList.toggle("on",b.dataset.f===k)});
+  }
+  poner(f);
+  document.querySelectorAll(".taller button").forEach(function(b){
+    b.addEventListener("click",function(){poner(b.dataset.f)});
+  });
+})();
+</script>
+</body>
+</html>

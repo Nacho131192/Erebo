@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maqueta · Configuración de la partida · manuscrito tinta y acuarela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root{
+  --tit:"IM Fell English",Georgia,serif;
+  --rot:"IM Fell English SC","IM Fell English",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --ui:Inter,system-ui,sans-serif;
+  --hueso:#efe3c8;--oro:#e3c98d;--oro2:#d9b86c;--ocre:#c39352;
+  --tinta:#2b1d12;--tinta2:#5c4630;--tinta3:#7b6845;
+  --rub:#9a3b26;--indigo:#24325f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#06070e;color:var(--tinta);font:400 15px/1.5 var(--ui)}
+.sc{position:relative;width:100vw;height:100vh;overflow:hidden;background:url(../../assets/pruebas/setup-fondo-marea_flux.2-klein-4b_s202.jpg) 50% 50%/cover no-repeat}
+.veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,7,14,.6),rgba(5,7,14,.16) 34%,transparent 55%),radial-gradient(130% 100% at 50% 50%,transparent 42%,rgba(4,6,12,.55) 100%)}
+.aguada{position:absolute;z-index:1;left:-40px;top:-6%;width:min(46%,680px);height:112%;background:url(../../src/img/ui/aguada.png) 0 0/100% 100% no-repeat;opacity:.9;pointer-events:none}
+.splash{position:absolute;z-index:2;left:22%;top:56%;width:150px;height:70px;background:url(../../src/img/ui/salpicadura.png) center/contain no-repeat;opacity:.5;transform:rotate(-12deg);pointer-events:none}
+.grain{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .38 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.head{position:absolute;z-index:6;left:max(30px,calc((100vw - 1120px)/2));right:max(30px,calc((100vw - 1120px)/2));top:24px;display:flex;align-items:center;gap:14px}
+.head .marca{display:flex;flex-direction:column;gap:2px}
+.head .keb{font:400 12px var(--rot);letter-spacing:.3em;color:var(--oro)}
+.head b{font:400 22px/1 var(--tit);color:var(--hueso);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+.head .x{margin-left:auto;position:relative;isolation:isolate;width:46px;height:46px;display:grid;place-items:center;border:0;background:none;color:var(--hueso);cursor:pointer;font-size:20px}
+.head .x::before{content:"";position:absolute;inset:0;z-index:-1;background:url(../../src/img/ui/circulo.png) center/100% 100% no-repeat}
+.stage{position:absolute;z-index:5;inset:0;display:grid;place-items:center;padding:78px 30px 30px}
+.sheet{position:relative;width:min(1120px,100%);padding:36px 50px 34px}
+.paper{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.body{position:relative}
+.shead{text-align:center}
+.shead .keb{font:400 13px var(--rot);letter-spacing:.34em;color:var(--rub)}
+.titulo{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 0;font:400 clamp(34px,4vw,46px)/1 var(--tit);color:var(--tinta)}
+.cap{display:grid;place-items:center;width:64px;height:64px;flex:none;background:radial-gradient(130% 130% at 30% 20%,#3b4f86,#1e2a50);border:1px solid rgba(217,184,108,.65);box-shadow:inset 0 0 0 3px rgba(217,184,108,.14);color:var(--oro2);font:400 44px/1 var(--tit);text-shadow:0 1px 0 rgba(0,0,0,.35)}
+.floron{display:block;width:230px;height:18px;margin:14px auto 0;background:url(../../src/img/ui/floron.png) center/contain no-repeat;opacity:.6;filter:sepia(.35)}
+.shead .sub{margin:14px auto 0;max-width:700px;font:italic 500 16.5px/1.5 var(--serif);color:var(--tinta2)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:44px;margin:30px 0 26px;align-items:start}
+.rub{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;font:400 15px var(--rot);letter-spacing:.2em;color:var(--rub)}
+.rub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(154,59,38,.5),transparent)}
+.rub b{font:italic 400 15px var(--tit);letter-spacing:0;color:var(--ocre)}
+.dif{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.dif button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 4px;border:0;background:none;cursor:pointer;text-align:center}
+.dif .n{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(90,62,28,.55);border-radius:50%;font:400 19px/1 var(--tit);color:var(--tinta2)}
+.dif button.on .n{background:radial-gradient(120% 120% at 30% 25%,#3b4f86,#1e2a50);border-color:rgba(217,184,108,.65);color:var(--oro2);box-shadow:0 0 0 3px rgba(217,184,108,.12)}
+.dif .d{font:400 12px var(--rot);letter-spacing:.06em;color:var(--tinta2)}
+.dif button.on .d{color:var(--tinta)}
+.dif button.lock{opacity:.4}
+.dif button.lock .lk{display:grid;place-items:center;width:36px;height:36px}
+.dif button.lock svg{width:14px;height:14px;stroke:var(--tinta2)}
+.sum{display:flex;gap:26px;margin-top:22px;padding:10px 14px;border-top:1px solid rgba(90,62,28,.3);border-bottom:1px solid rgba(90,62,28,.3)}
+.sum .c{display:flex;align-items:baseline;gap:8px}
+.sum small{font:400 12px var(--rot);letter-spacing:.14em;color:var(--tinta3)}
+.sum b{font:400 24px/1 var(--tit);color:var(--tinta)}
+.sum i{font:italic 400 13px var(--tit);color:var(--ocre)}
+.heroes{display:flex;flex-direction:column}
+.hero{display:grid;grid-template-columns:46px 1fr auto;gap:14px;align-items:center;padding:9px 8px;border:0;border-bottom:1px solid rgba(90,62,28,.25);background:none;text-align:left;cursor:pointer}
+.hero .hp{width:46px;height:46px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:#e8d6ac;box-shadow:0 0 0 1.5px rgba(90,62,28,.5)}
+.hero .hp img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
+.hero b{display:block;font:400 17px/1.1 var(--tit);color:var(--tinta)}
+.hero small{display:block;margin-top:3px;font:italic 400 13px/1.3 var(--serif);color:var(--tinta2)}
+.hero em{font-style:normal;font:400 18px var(--tit);color:var(--rub);opacity:0}
+.hero.on{background:rgba(195,147,82,.1)}
+.hero.on em{opacity:1}
+.deploy{position:relative;display:block;margin:8px auto 0;cursor:pointer}
+.d-sello{display:inline-flex;align-items:center;gap:16px;padding:8px 30px 8px 10px;border:1px solid rgba(90,62,28,.45);border-radius:2px;background:rgba(255,248,230,.38)}
+.d-sello .lacre{width:54px;height:56px;background:url(../../src/img/ficha/sello-lacre.png) center/contain no-repeat;transform:rotate(-8deg);filter:drop-shadow(0 3px 2px rgba(60,20,5,.4));transition:transform .3s}
+.d-sello:hover .lacre{transform:rotate(-2deg) scale(1.05)}
+.d-sello .txt b{display:block;font:400 18px var(--tit);color:var(--tinta)}
+.d-sello .txt small{font:italic 400 12.5px var(--serif);color:var(--tinta2)}
+.d-firma{padding:10px 10px 8px;border:0;background:none}
+.d-firma .txt{font:italic 400 23px var(--tit);color:var(--tinta)}
+.d-firma .rubrica{display:block;width:250px;height:16px;margin:6px auto 0;background:url(../../src/img/ui/floron.png) center/contain no-repeat;opacity:.5;filter:sepia(.3)}
+.d-estampa{display:inline-flex;align-items:center;gap:16px;padding:6px 26px 6px 6px;border:0;background:none}
+.d-estampa .st{display:grid;place-items:center;width:56px;height:56px}
+.d-estampa svg{width:56px;height:56px}
+.d-estampa .txt b{display:block;font:400 18px var(--tit);color:var(--tinta)}
+.d-estampa .txt small{font:italic 400 12.5px var(--serif);color:var(--tinta2)}
+.taller{position:absolute;z-index:9;right:16px;bottom:14px;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.taller .lbl{font:400 11px var(--rot);letter-spacing:.14em;color:#a7a08c}
+.taller .row{display:flex;gap:6px}
+.taller button{padding:7px 14px;border:1px solid rgba(227,201,141,.5);border-radius:999px;background:rgba(10,13,23,.5);color:#cfc4a8;font:400 12px var(--rot);letter-spacing:.1em;cursor:pointer}
+.taller button.on{background:var(--ocre);border-color:var(--ocre);color:var(--tinta)}
+</style>
+</head>
+<body>
+<div class="sc">
+  <i class="aguada"></i><i class="splash"></i><div class="grain"></div><div class="veil"></div>
+
+  <header class="head">
+    <div class="marca"><span class="keb">Érebo · Tablero virtual</span><b>Configuración de la partida</b></div>
+    <button class="x" type="button" aria-label="Cerrar">✕</button>
+  </header>
+
+  <main class="stage">
+    <section class="sheet">
+      <img class="paper" src="../../assets/pruebas/setup-papel-manuscrito-v3.jpg" alt="" aria-hidden="true">
+      <div class="body">
+      <header class="shead">
+        <span class="keb">Nueva partida de prueba</span>
+        <h1 class="titulo"><span class="cap">C</span>onfiguración de la partida</h1>
+        <span class="floron" aria-hidden="true"></span>
+        <p class="sub">Una partida aparte de la de la mesa: no toca su ronda, su alerta ni sus oleadas. Las heridas, el poder y los estados sí se guardan en las fichas de los héroes. Cuando termines de prepararla, se despliega el tablero.</p>
+      </header>
+
+      <div class="grid">
+        <div class="col">
+          <p class="rub">Dificultad</p>
+          <div class="dif">
+            <button type="button"><span class="n">I</span><span class="d">Principiante</span></button>
+            <button type="button"><span class="n">II</span><span class="d">Intermedio</span></button>
+            <button type="button" class="on"><span class="n">III</span><span class="d">Experto</span></button>
+            <button type="button"><span class="n">IV</span><span class="d">Legendario</span></button>
+            <button type="button" class="lock" disabled aria-disabled="true" title="Bloqueada por ahora"><span class="lk"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span><span class="d">Abisal</span></button>
+          </div>
+          <div class="sum">
+            <span class="c"><small>Puntos de los héroes</small><b>560</b> <i>pts</i></span>
+            <span class="c"><small>Oleada · 100 %</small><b>560</b> <i>pts</i></span>
+          </div>
+        </div>
+        <div class="col">
+          <p class="rub">Héroes <b>3</b></p>
+          <div class="heroes">
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-guerrero.png" alt=""></span><span><b>Aldric</b><small>Guerrero · 145 pts · 12/12 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-maga.png" alt=""></span><span><b>Lyra</b><small>Maga · 160 pts · 10/10 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero on"><span class="hp"><img src="../../src/img/ficha/heroe-picaro.png" alt=""></span><span><b>Caín</b><small>Pícaro · 120 pts · 11/11 heridas</small></span><em>✓</em></button>
+            <button type="button" class="hero"><span class="hp"><img src="../../src/img/ficha/heroe-arquero.png" alt=""></span><span><b>Sera</b><small>Arquera · 135 pts · 10/10 heridas</small></span><em>✓</em></button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="deploy d-estampa" id="deployBtn">
+        <span class="st"><svg viewBox="0 0 64 64" fill="none" stroke="#2b1d12"><circle cx="32" cy="32" r="29" stroke-width="1.5"/><circle cx="32" cy="32" r="23" stroke-width="1" stroke-dasharray="3 3"/><path d="M32 18 L38 32 L32 46 L26 32 Z" stroke-width="1.2"/></svg></span>
+        <span class="txt"><b>Desplegar la mesa</b><small>Marca y estampa la orden</small></span>
+      </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="taller">
+    <span class="lbl">Botón «Desplegar la mesa»</span>
+    <div class="row">
+      <button type="button" data-d="sello" class="on">Sello de lacre</button>
+      <button type="button" data-d="firma">Rúbrica a pluma</button>
+      <button type="button" data-d="estampa">Sello de tinta</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var DEPLOY={
+    sello:'<span class="lacre"></span><span class="txt"><b>Desplegar la mesa</b><small>Precinta y sella la orden</small></span>',
+    firma:'<span class="txt">Desplegar la mesa</span><span class="rubrica"></span>',
+    estampa:'<span class="st"><svg viewBox="0 0 64 64" fill="none" stroke="#2b1d12"><circle cx="32" cy="32" r="29" stroke-width="1.5"/><circle cx="32" cy="32" r="23" stroke-width="1" stroke-dasharray="3 3"/><path d="M32 18 L38 32 L32 46 L26 32 Z" stroke-width="1.2"/></svg></span><span class="txt"><b>Desplegar la mesa</b><small>Marca y estampa la orden</small></span>'
+  };
+  var btn=document.getElementById("deployBtn");
+  function poner(k){
+    btn.className="deploy d-"+k;
+    btn.innerHTML=DEPLOY[k];
+    document.querySelectorAll(".taller .row button").forEach(function(b){b.classList.toggle("on",b.dataset.d===k)});
+  }
+  document.querySelectorAll(".taller .row button").forEach(function(b){
+    b.addEventListener("click",function(){poner(b.dataset.d)});
+  });
+  var q=new URLSearchParams(location.search), d0=q.get("deploy")||"estampa";
+  poner(d0);
+})();
+</script>
+</body>
+</html>

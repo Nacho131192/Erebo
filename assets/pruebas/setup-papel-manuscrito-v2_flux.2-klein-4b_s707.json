@@ -1,0 +1,9 @@
+{
+  "modelo": "black-forest-labs/flux.2-klein-4b",
+  "seed": 707,
+  "ancho": 1536,
+  "alto": 960,
+  "referencias": [],
+  "prompt": "A single old, worn sheet of handmade paper that fills the entire frame completely, edge to edge, with no background, no margins and no border around it. Photographed straight from above. Realistic and tactile: the edges of the sheet look slightly worn, uneven and softened, with a couple of small nicks and a faintly curled corner right at the very border. Across the sheet there are visible diagonal fold creases and fold lines, light scratches and scuff marks, a few faint foxing spots, and one distinct dark ink stain near the bottom-right corner that has bled slightly into the fibers. Soft warm aged-paper tone with visible laid paper grain and gentle uneven lighting, a very faint indigo and warm ochre watercolor tint bleeding in from the top and bottom edges. The center is left mostly clear for writing. No text, no letters, no writing, no frame, no objects, no people. Avoid: text, letters, captions, signature, watermark, frame, border, photorealism, 3D render, glossy digital painting, saturated colors, neon, anime style, gore",
+  "dimensiones_servidor": null
+}
